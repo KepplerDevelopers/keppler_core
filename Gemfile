@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 #utilities
 gem 'haml-rails'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'therubyracer', '~> 0.11.4', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.0'
@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'material_icons'
+gem 'materialize-sass'
 
 #authentication and authorization
 gem 'devise'
@@ -59,7 +60,7 @@ group :development, :test do
   gem 'table_print'
   gem 'spring'
   gem 'guard'
-  gem 'guard-sass'
+  #gem 'guard-sass'
   gem 'guard-coffeescript'
   gem 'guard-livereload'
   gem 'byebug'

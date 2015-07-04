@@ -8,7 +8,7 @@ guard 'coffeescript', coffeescript_options do
   coffeescript_options[:patterns].each { |pattern| watch(pattern) }
 end
 
-guard 'sass', :input => 'app/assets/stylesheets', :output => 'app/assets/stylesheets/guard_stylesheets'
+#guard 'sass', :input => 'app/assets/stylesheets', :output => 'app/assets/stylesheets/guard_stylesheets'
 
 guard 'livereload' do
 	watch(%r{app/views/.+\.(erb|haml|slim)})

@@ -1,0 +1,22 @@
+@import "base";
+
+nav{
+	height: 54px;
+	padding: 9px 16px 12px 16px;
+	background: $primary-color;
+	.nav-wrapper{
+		line-height: 30px;
+		i{
+			line-height: 38px;
+		}
+		.btn-floating:hover{
+			box-shadow: none !important;
+		}
+		.title{
+			font-family: 'Patua One', cursive;
+			position: relative;
+			left: 60px;
+			font-size: 30px;
+		}
+	}
+}

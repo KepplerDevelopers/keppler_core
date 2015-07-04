@@ -1,0 +1,46 @@
+@import "materialize";
+
+body, html {
+  position: relative;
+  height: 100%;
+  #progress {
+    .progress-linear--is-shown {
+      top: 0px;
+      z-index: 100000;
+    }
+  }
+  #waiting {
+    background: #ececec;
+    position: relative;
+    height: 100%;
+    z-index: 10;
+    text-align: center;
+    i {
+      position: relative;
+      top: 48%;
+      left: 0;
+      font-size: 4em;
+      color: #f44336;
+    }
+  }
+}
+
+.rotate {
+  -webkit-animation: rotate 0.6s linear infinite;
+  animation: rotate 0.6s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

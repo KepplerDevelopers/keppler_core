@@ -7,8 +7,8 @@
 				Keppler
 			%actions.right
 				%a{ class: "btn-floating waves-effect waves-black btn-flat" }
-					= material_icon.search.md_24
+					= material_icon.md_24.search
+				= link_to users_path, class: "btn-floating waves-effect waves-black btn-flat spinner-refresh", "ng-click" => "spinnerReload()" do
+					= material_icon.md_24.refresh
 				%a{ class: "btn-floating waves-effect waves-black btn-flat"}
-					= material_icon.refresh.md_24
-				%a{ class: "btn-floating waves-effect waves-black btn-flat"}
-					= material_icon.more_vert.md_24
+					= material_icon.md_24.more_vert

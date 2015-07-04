@@ -11,6 +11,9 @@ angular.module('keppler', [
 
 # iniciar ng-app mediante turbolinks
 $(document).on 'ready page:load', () ->		
-		angular.bootstrap document.body, [ 'keppler' ]
+		angular.bootstrap document.body, [ 'keppler' ] #añadir ng-app al body
 		$('#waiting').remove()
+		Waves.displayEffect() # agregar el efecto de olas de los botones
 	return
+
+	
