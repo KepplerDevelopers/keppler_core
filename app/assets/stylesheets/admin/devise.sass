@@ -1,0 +1,39 @@
+@import base
+
+.devise
+	.authform
+		width: 40%
+		@media #{$tablet}
+			width: 80%
+		@media #{$phone}
+			width: 100%
+		.devise-logo						
+			margin-right: auto
+			margin-left: auto
+			width: 120px
+		.devise-box			
+			margin-right: auto
+			margin-left: auto
+			box-shadow: 0px 0px 5px #525252
+			position: relative
+			top: 50px
+			@media #{$phone}
+				top: 10px
+			.devise-box-header
+				background: $keppler-red
+				padding-top: 100px !important			
+				.title-app
+					font-family: $keppler-patua
+					font-size: 30px
+					color: $keppler-white
+			.devise-box-body
+				.form-group
+					padding-bottom: 50px
+					.devise-errors
+						color: $keppler-red
+				.form-actions
+					position: relative
+					top: -34px
+					.recoverable
+						a
+							color: rgb(137, 137, 137)

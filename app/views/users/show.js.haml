@@ -1,0 +1,7 @@
+$(".show-side .item").remove()
+$(".show-side").append("#{j render('index_show')}")
+$(".listing-row").removeAttr("style")
+$("#row-#{@user.id}").css("background", "#F5F5F5")
+
+$scope = angular.element($(".item")).scope()
+$scope.compiledHTML($(".item"))

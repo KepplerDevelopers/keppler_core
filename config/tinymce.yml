@@ -1,0 +1,13 @@
+alternate:
+  theme_advanced_toolbar_location: bottom
+  theme_advanced_toolbar_align: left code
+  theme_advanced_statusbar_location: bottom
+  menubar: false
+  toolbar1: undo redo | bold italic | styleselect | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | media image | preview | code | visualblocks
+  plugins: code media preview image code paste visualblocks
+  fontsize_formats: 8pt 10pt 12pt 14pt 18pt 24pt 36pt
+
+default:
+  theme_advanced_toolbar_location: bottom
+  theme_advanced_toolbar_align: left
+  theme_advanced_statusbar_location: bottom

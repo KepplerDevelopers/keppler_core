@@ -1,0 +1,26 @@
+!!!
+%html
+	= render "layouts/admin/head"
+	%body{ 'ng-controller'=>'MainCtrl', class: "#{'body-login' if controller.class.name.split('::').first == 'Devise'}" }
+		<!-- progressbar -->
+		#progress 
+		<!-- preloader -->
+		#waiting 
+			= icon(:"rotate-right", "rotate")
+
+		- if current_user #view for admin
+			= render 'layouts/admin/navigation'
+			= render 'layouts/admin/sidebar'
+			%main{ role: 'main', "ng-click" => "sidebarClose()" }
+				= lumx_flex_container "row", class: "body-yield" do
+					= render 'layouts/admin/messages'
+					= yield
+				= #console
+		- else
+			.main-devise
+				= yield	
+       
+
+      
+    
+

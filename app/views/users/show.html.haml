@@ -1,0 +1,20 @@
+= content_for(:title, "Keppler | #{@user.name}")
+= wrapper "wrapper" do
+	= header "wrapper-header hidden-xs" do
+		= render 'layouts/admin/index/header'
+	.show.wrapper-body.container
+		.actions
+			.pull-right
+				- if can? :update, User
+					= link_to edit_user_path(@user), buttons_attributes("Editar", "bottom") do
+						= icon(:pencil)
+				- if can? :delete, User
+					= link_to user_path(@user), buttons_attributes("Eliminar", "bottom", method: :delete, data: { confirm: 'Are you sure?' }) do
+						= icon(:delete)		
+		.card			
+			= show_body do
+				%ul.list
+					- @user.as_json(only: ["id", "name", "permalink", "email","created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
+						= list_row do
+							.display-block= t("model.#{controller_name.singularize}.attributes.#{attribute}")
+							.display-block.fs-body-1.tc-black-2= value

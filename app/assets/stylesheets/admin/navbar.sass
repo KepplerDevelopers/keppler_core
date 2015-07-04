@@ -1,0 +1,47 @@
+@import base
+
+.navbar-fixed-top
+	position: fixed
+	z-index: 99997	
+	height: 54px !important
+	min-height: 55px !important
+
+.navbar
+	padding-top: 9px
+	@media #{$phone}
+		width: 100% !important
+	@media #{$tablet}
+		width: 100% !important
+	.title-app
+		font-family: 'Patua One', cursive
+		font-size: 30px
+		position: relative
+		top: -2.5px
+	@media screen and ( max-height: 300px )
+		.title-app
+			display: none
+	@media #{$phone}
+		.title-app
+			display: none
+	.title-app-mobile
+		display: none
+		font-family: 'Patua One', cursive
+		font-size: 30px
+		position: relative
+		left: -30px
+		@media #{$phone}
+			display: block
+		@media screen and ( max-height: 300px )
+			display: block
+	.sidebar-switch
+		-webkit-transform: rotate(-180deg)
+		transform: rotate(-180deg)
+		-webkit-transition: all ease-in-out
+		transition: all 0.25s ease-in-out
+	.side-show-true
+		-webkit-transform: rotate(0deg)
+		transform: rotate(0deg)
+	.side-show-true::after
+		content: "\f13d"
+	.side-show-false:before
+		content: "\f3a3"

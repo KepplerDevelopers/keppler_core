@@ -1,0 +1,28 @@
+%pageslide.card{ "ps-open"=>"sidebar", "ps-auto-close" => true }
+  .profile-menu.bgc-red-500
+    .profile-pic
+      = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
+    .profile-info
+      = current_user.name
+  %ul.main-menu
+    %li{ class: "#{'active' if controller_name == 'admin' }" }
+      = link_to dashboard_admin_index_path do
+        %i.mdi.mdi-home
+        Dashboard
+    %v-accordion.vAccordion--default
+      %v-pane
+        %v-pane-header
+          %i.mdi.mdi-library-books
+          Blog
+        %v-pane-content
+          %ul.sub-menu 
+            %li.active
+              = link_to "/admin" do
+                Posts
+            %li
+              = link_to "/admin" do
+                Categorías
+    %li{ class: "#{'' if controller_name == 'users' }" }
+      = link_to "/admin/users" do
+        %i.mdi.mdi-account-multiple
+        Usuarios

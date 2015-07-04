@@ -1,0 +1,9 @@
+= title "Acceso denegado"
+%h2 ¡Prohibido!
+%small= flash[:message] ? flash[:message] : "No estás autorizado"
+
+%footer
+  = link_to "#{icon(:"arrow-left")}".html_safe, flash[:back] if flash[:back]
+  = link_to "#{icon(:home)}".html_safe, dashboard_admin_index_path
+
+       

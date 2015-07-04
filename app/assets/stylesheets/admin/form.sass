@@ -1,0 +1,24 @@
+@import base
+.body-yield, main
+	@media #{$desktop-large}
+		height: 100%
+	.wrapper
+		margin-top: 35px
+		width: 100%
+		+wrapper_header(100%, false) // ubication base.sass
+		.wrapper-body
+			margin-top: 120px
+			width: 90%
+			.card
+				padding: 20px
+				padding-bottom: 40px
+				form
+					.actions
+						margin-top: 10px
+						float: right
+					.help-inline
+						position: relative
+						top: -10px
+						color: red
+						font-family: 'Roboto', sans-serif
+						font-size: 0.75em

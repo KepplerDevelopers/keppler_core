@@ -1,0 +1,25 @@
+= title("Usuarios - Listado")
+
+= lumx_flex_item 9, 1, class: "listing-side" do
+	= wrapper "listing-index card" do
+		= header "wrapper-header hidden-xs" do
+			= render 'layouts/admin/index/header'
+			= lumx_floating_button new_user_path
+		= listing_body do
+			= entries User.count, @users
+			= lumx_table do
+				= lumx_table_body do
+					- @users.each do |user|
+						= render 'listing', user: user
+					- if @users.count.zero?
+						= lumx_table_tr do
+							%td{colspan: "4"}
+								%center
+									No hay usuarios registrados.
+
+			= paginate @users, window: 2
+
+= lumx_flex_item 3, 2, class: "show-side" do
+	= render "description"
+
+

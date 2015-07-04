@@ -1,0 +1,25 @@
+.toolbar.bgc-red-500.navbar-fixed-top.navbar{ "ng-style" => action_name == "index" ? "{'width':'75%'}" : "{'width':'100%'}" }
+  .toolbar__left{:class => "mr+++"}
+    = link_to "", buttons_attributes(nil, nil, "ng-click" => "sidebarSwitch()") do
+      = icon(nil, "sidebar-switch side-show-{{sidebar}}")
+  %span.toolbar__label.fs-title.tc-white
+    .title-app.hidden-xs Keppler
+  .toolbar__right
+    - if action_name.eql?("index")
+      %lx-search-filter{:closed => "", :theme=>"dark" }
+      = link_to "", buttons_attributes("Seleccionar todos", "bottom") do
+        = icon(:"checkbox-multiple-marked-outline") 
+      = link_to({ controller: controller_name, action: :index, :page => params[:page] }, buttons_attributes("Refrescar", "bottom", "ng-click" => "spinnerReload()")) do
+        = icon(:refresh, "spinner-refresh")
+        
+    = lumx_dropdown do
+      %li
+        = link_to "Ir a la web", main_app.root_path, class: "dropdown-link"
+      %li
+        = link_to "Editar perfil", main_app.root_path, class: "dropdown-link"
+      %li.dropdown-divider
+      %li
+        = link_to 'Cerrar Sesión', main_app.destroy_user_session_path, class: "dropdown-link" 
+
+
+     

@@ -1,0 +1,15 @@
+= wrapper "wrapper" do
+	= header "wrapper-header hidden-xs" do
+		= render 'layouts/admin/index/header'
+	.wrapper-body.container
+		.card
+			= simple_form_for @user do |f|
+				= lumx_flex_container "row" do
+					= lumx_flex_item do
+						= lumx_text_field f, :name, :string, "Nombre", :lumx
+						= lumx_text_field f, :email, :email, "Email", :lumx
+						= lumx_select_field f, :role_ids, "Roles", Role.all.to_json(only: [:id, :name]), f.object.roles.first.to_json(only: [:id, :name])
+						= lumx_text_field f, :password, :password, "Contraseña", :lumx
+						= lumx_text_field f, :password_confirmation, :password, "Confirmar contraseña", :lumx
+						.actions
+							= f.button :submit, "Guardar", class: "btn btn--m btn--red btn--raised"

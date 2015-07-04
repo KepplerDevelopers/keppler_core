@@ -1,0 +1,20 @@
+= lumx_table_tr nil, id: "row-#{user.id}", class: "hola" do
+	%td{style:"width: 10%"}
+		= link_to "", user_path(user), remote: true, class: "show-row"
+		= lumx_checkbox_tag(id: "checkbox#{user.id}") do 
+			= icon(:"account")
+	%td{style:"width: 30%"}
+		= link_to "", user_path(user), remote: true, class: "show-row"
+		%span
+			= user.name											
+	%td.hidden-xs{style:"width: 40%"}
+		= link_to "", user_path(user), remote: true, class: "show-row"
+		%span
+			= user.email			 
+	%td{style:"width: 30%"}
+		= link_to "", user_path(user), remote: true, class: "show-row"
+		%span
+			= user.role	
+	%td{style:"width: 30%"}		
+		= link_to user_path(user), buttons_attributes("Ver detallado", "bottom")  do
+			= icon("dots-horizontal")						

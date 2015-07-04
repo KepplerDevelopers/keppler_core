@@ -1,0 +1,49 @@
+@import base
+
+pageslide
+	height: 100% !important
+	&::-webkit-scrollbar
+		width: 0 !important
+	.profile-menu
+		width: 268px
+		height: 139px
+		background: url(profile-menu.png) center no-repeat
+		background-size: 268px 159px
+		.profile-pic
+			padding: 12px
+			img 
+				width: 70px
+				height: 70px
+				border-radius: 50%
+				border: 3px solid rgba(0, 0, 0, 0.14)
+				box-sizing: content-box
+		.profile-info
+			font-weight: 400
+			font-size: 14px
+			background: rgba(0, 0, 0, 0.60)
+			padding: 7px 14px
+			color: #fff
+			bottom: -4px
+			position: relative
+.main-menu::-webkit-scrollbar
+	width: 0 !important
+ul.main-menu
+	height: 78%
+	padding-left: 0
+	margin: 20px 0 0 0
+	list-style: none
+	li 
+		a
+			position: relative
+			padding: 14px 20px 14px 20px
+			font-weight: 300
+			display: block
+			color: #4C4C4C
+			text-decoration: none
+	li:hover
+		background: #f7f7f7
+	
+	li.active
+		background: #f0f0f0
+
+
