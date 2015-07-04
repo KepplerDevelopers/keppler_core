@@ -6,33 +6,30 @@
 	height: 54px !important
 	min-height: 55px !important
 
-.navbar
-	padding-top: 9px
+nav
+	height: 54px
+	min-height 54px
+	padding: 9px 16px 12px 16px
+	background: $keppler-red
 	@media #{$phone}
 		width: 100% !important
 	@media #{$tablet}
 		width: 100% !important
-	.title-app
-		font-family: 'Patua One', cursive
-		font-size: 30px
-		position: relative
-		top: -2.5px
-	@media screen and ( max-height: 300px )
-		.title-app
-			display: none
-	@media #{$phone}
-		.title-app
-			display: none
-	.title-app-mobile
-		display: none
-		font-family: 'Patua One', cursive
-		font-size: 30px
-		position: relative
-		left: -30px
-		@media #{$phone}
-			display: block
-		@media screen and ( max-height: 300px )
-			display: block
+	.nav-wrapper
+		line-height: 30px
+		i
+			line-height: 38px
+		.btn-floating:hover
+			box-shadow: none !important
+		.title
+			font-family: 'Patua One', cursive
+			position: relative
+			left: 60px
+			font-size: 30px
+			@media #{$phone}
+				display: block
+			@media screen and ( max-height: 300px )
+				display: block
 	.sidebar-switch
 		-webkit-transform: rotate(-180deg)
 		transform: rotate(-180deg)

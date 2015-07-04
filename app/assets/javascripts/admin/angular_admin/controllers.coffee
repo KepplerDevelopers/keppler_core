@@ -1,6 +1,6 @@
 angular.module('admin', []).controller 'MainCtrl', [
-  '$scope', "$compile", "$http", 'LxDialogService', 'LxProgressService'
-  (scope, $compile, $http, dialog, LxProgressService) ->
+  '$scope', "$compile", "$http", "$timeout"
+  (scope, $compile, $http, $timeout) ->
   	# modelo para abrir y cerrar el sidebar true: open, false: close
     scope.sidebar = false
 
@@ -8,9 +8,21 @@ angular.module('admin', []).controller 'MainCtrl', [
       $(".spinner-refresh").addClass("rotate")
       return
 
-    #abre y cierra el sidebar
+    #abre y cierra el sidebar y agrega efectos a el icon
     scope.sidebarSwitch = ->
       scope.sidebar = !scope.sidebar
+      if scope.sidebar
+        $('.switch i').text("arrow_back").addClass("slideInRight")
+        $timeout (->
+          $('.switch i').text("arrow_back").removeClass("slideInRight")
+          return
+        ),1000
+      else
+        $('.switch i').text("menu").addClass("slideInLeft")
+        $timeout (->
+          $('.switch i').text("menu").removeClass("slideInLeft")
+          return
+        ),1000
       return
 
     #cerrar sidebar si hace click en el main de la aplicación
@@ -35,10 +47,10 @@ angular.module('admin', []).controller 'MainCtrl', [
 
     #Configuración de progress bar con turbolinks
     jQuery(document).on 'page:fetch', ->
-       LxProgressService.linear.show('#00897B', '#progress')
+       
        return
     jQuery(document).on 'page:receive', ->
-       LxProgressService.linear.hide()
+       
       return
 ]
 

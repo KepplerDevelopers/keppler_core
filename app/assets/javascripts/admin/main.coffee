@@ -1,8 +1,6 @@
 angular.module('keppler', [
 	'admin'
-	'lumx'
 	'pageslide-directive'
-	'vAccordion'
 ]).config [
 	'$httpProvider'
 	(provider) ->

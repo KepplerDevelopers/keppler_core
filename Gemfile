@@ -34,6 +34,7 @@ gem 'simple_form'
 #desgin
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
+gem 'material_icons'
 
 #authentication and authorization
 gem 'devise'

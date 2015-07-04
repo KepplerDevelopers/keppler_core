@@ -1,4 +1,4 @@
-module LumxHelper
+module MaterializeHelper
 
 	#container-flex
 	def lumx_flex_container(direction, html_options = {}, &block)
