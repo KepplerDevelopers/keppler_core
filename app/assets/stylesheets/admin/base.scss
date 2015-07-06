@@ -23,9 +23,9 @@ body, html {
       top: 45%;
     }
   }
-
+  
   .material-tooltip{
-    top: 40px !important;
+    margin-top: -2px !important;
     padding: 5px !important;
     height: 25px !important;
     min-height: 25px !important;
@@ -98,15 +98,6 @@ body{
   overflow-x: hidden;
 }
 
-.title-app{
-  font-family: 'Patua One', cursive;
-  position: relative;
-  font-size: 30px;
-}
-
-.pull-right{
-  float: right
-}
 //spinner para peticiones turbolink
 .rotate {
   -webkit-animation: rotate 0.6s linear infinite;

@@ -2,6 +2,16 @@
 	margin-top: 100px;
 	.actions{
 		height:30px;
+		margin-bottom: 15px;
+		a{
+			margin-left: 2px;
+		}
+		.btn-floating{
+			box-shadow: none;
+		}
+		.btn-floating:hover{
+			background: rgb(218, 218, 218);
+		}
 	}
 	.wrapper-body{
 		.card{
