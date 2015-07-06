@@ -5,6 +5,7 @@ $primary-color: #F44336;
 body, html {
   position: relative;
   height: 100%;
+  background: #f0f0f0;
 
   main.row{
     margin-bottom: 0px;
@@ -63,6 +64,12 @@ body, html {
   }
 }
 
+.body-login{
+  background-image: url(profile-menu.png);
+  background-position: center;
+  background-size: cover;
+}
+
 body.open{
   overflow: hidden;
 }
@@ -71,6 +78,15 @@ body{
   overflow-x: hidden;
 }
 
+.title-app{
+  font-family: 'Patua One', cursive;
+  position: relative;
+  font-size: 30px;
+}
+
+.pull-right{
+  float: right
+}
 //spinner para peticiones turbolink
 .rotate {
   -webkit-animation: rotate 0.6s linear infinite;
@@ -89,4 +105,11 @@ body{
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.card{
+  border-radius: 2px !important;
+  background-color: #FFFFFF !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
 }

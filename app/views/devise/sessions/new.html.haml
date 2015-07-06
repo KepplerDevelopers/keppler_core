@@ -7,24 +7,27 @@
         = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
           = devise_error_messages!
           .form-group
-            = lumx_textfield("Email") do
-              = f.email_field :email, :autofocus => true, "ng-model" => "login.email=#{f.object.email}"
+            .row
+              .input-field.col.s12
+                = f.email_field :email, :autofocus => true, class: "validate"
+                %label{for: "email"} Email
 
-            = lumx_textfield("Password") do
-              = f.password_field :password, "ng-model" => "login.password"
-            .devise-errors
-              - flash.each do |name, msg|
-                = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+              .input-field.col.s12
+                = f.password_field :password,  :autofocus => true, class: "validate"
+                %label{for: "password"} Contraseña
+                .devise-errors
+                  - flash.each do |name, msg|
+                    = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
 
-          .form-actions
-            = lumx_flex_container("row") do  
-              = lumx_flex_item(6, 1) do   
-                .recoverable
-                  - if devise_mapping.recoverable?
-                    = link_to new_password_path(resource_name) do
-                      = "¿Olvidaste tu contraseña?"
-              = lumx_flex_item(6, 2) do
-                = f.submit "Entrar", :class => 'pull-right btn btn--m btn--red btn--raised'
-
-        = image_tag "admin/inyxtech.png", class: "devise-logo hidden-xs" 
+          .form-actions.row 
+            .col.s6
+              .recoverable
+                - if devise_mapping.recoverable?
+                  = link_to new_password_path(resource_name) do
+                    = "¿Olvidaste tu contraseña?"             
+            .col.s6 
+              = f.submit "Entrar", :class => 'pull-right btn'
+          .row.col.s6    
+            .center
+              = #image_tag "admin/inyxtech.png", class: "devise-logo hidden-xs" 
         .clearfix

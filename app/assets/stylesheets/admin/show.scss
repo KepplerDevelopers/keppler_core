@@ -1,0 +1,24 @@
+.wrapper{
+	margin-top: 100px;
+	.actions{
+		height:30px;
+	}
+	.wrapper-body{
+		.card{
+			padding: 20px;
+			ul.list {
+				margin-top: 8px;
+				li.list-row{
+					margin-bottom: 10px;
+					.display-label{
+						color: #767676;
+						font-weight: 600;
+					}
+					.display-value{
+						font-weight: 300;
+					}
+				}
+			}
+		}
+	}
+}

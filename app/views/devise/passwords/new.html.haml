@@ -1,21 +1,21 @@
 .devise
   .authform.container     
     .devise-box.card
-      .devise-box-header{class: "p+"}
+      .devise-box-header
         .title-app Keppler
-      .devise-box-body{class: "p+"}
+      .devise-box-body
         = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f|
-          %h3 ¿Haz olvidado tu contraseña?
+          %h5 ¿Haz olvidado tu contraseña?
           %p Envianos tu email para darle las instrucciones a seguir.
           .form-group
-            = lumx_textfield("Email", !resource.errors.blank?) do
-              = f.email_field :email, :autofocus => true, "ng-model" => "forgot.email=#{f.object.email}"
-
-            .devise-errors 
-              - resource.errors.each do |name, msg|
-                = msg.capitalize
+            .row
+              .input-field.col.s12
+                = f.email_field :email, :autofocus => true, class: "validate"
+                %label{for: "email"} Email
+                .devise-errors 
+                  - resource.errors.each do |name, msg|
+                    = msg.capitalize
           = lumx_flex_container("row") do  
             = lumx_flex_item(12, 2) do 
-              = f.submit 'Enviar', :class => 'pull-right btn btn--m btn--red btn--raised'
-          = image_tag "admin/inyxtech.png", class: "devise-logo hidden-xs" 
+              = f.submit 'Enviar', :class => 'pull-right btn '
         .clearfix

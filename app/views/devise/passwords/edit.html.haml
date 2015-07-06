@@ -5,21 +5,20 @@
         .title-app Keppler
       .devise-box-body{class: "p+"}
         = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-          %h3 Cambia tu contraseña
+          %h5 Cambia tu contraseña
           = f.hidden_field :reset_password_token
-          .form-group
-            = lumx_textfield("Nueva Contraseña") do
-              = f.password_field :password, autofocus: true, autocomplete: 'off', "ng-model" => "changePass.password"
+          .form-group.row
+            .input-field.col.s12
+              = f.password_field :password, autofocus: true, autocomplete: 'off', class: "validate"
+              %label{for: "password"} Contraseña
             .devise-errors
               = resource.errors.messages[:password][0]  
-            = lumx_textfield("Confirmar Contraseña") do
-              = f.password_field :password_confirmation, autocomplete: 'off', "ng-model" => "changePass.password_confirmation"
+            .input-field.col.s12
+              = f.password_field :password_confirmation, autocomplete: 'off', class: "validate"
+              %label{for: "password"} Confirmar Contraseña
             .devise-errors
               = resource.errors.messages[:password_confirmation][0]
           = lumx_flex_container("row") do  
             = lumx_flex_item(12, 2) do
-              = f.submit 'Cambiar contraseña', :class => 'pull-right btn btn--m btn--red btn--raised'
-            %br
-            %br
-          = image_tag "admin/inyxtech.png", class: "devise-logo hidden-xs" 
+              = f.submit 'Cambiar contraseña', :class => 'pull-right btn' 
         .clearfix
