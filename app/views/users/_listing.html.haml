@@ -1,7 +1,7 @@
 %tr{ id: "row-#{user.id}" }
 	%td.item-check{style:"width: 10%"}
 		= link_to "", user_path(user), remote: true, class: "show-row"
-		= lumx_checkbox_tag(id: "checkbox#{user.id}") do 
+		= lumx_checkbox_tag(id: "filled-in-box checkbox#{user.id}", type: "checkbox", class: "filled-in") do 
 			= icon(:"account")
 	%td{style:"width: 30%"}
 		= link_to "", user_path(user), remote: true, class: "show-row"
