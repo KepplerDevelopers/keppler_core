@@ -9,7 +9,7 @@
             %h5 ¿Haz olvidado tu contraseña?
             %p Envianos tu email para darle las instrucciones a seguir.
           .input-field.col.s12
-            = f.email_field :email, :autofocus => true
+            = f.email_field :email, :autofocus => true, class: "validate #{'invalid' unless resource.errors.messages.empty?}"
             %label{for: :email} Email
           .devise-errors.col.s12.center-align 
             - resource.errors.each do |name, msg|

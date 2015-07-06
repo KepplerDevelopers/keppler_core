@@ -6,13 +6,13 @@
 			= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
 				.devise-box-body.row
 					.input-field.col.s12
-						= f.email_field :email, :autofocus => true, class: "validate"
+						= f.email_field :email, :autofocus => true, class: "validate #{'invalid' if flash[:alert]}"
 						%label{for: :email} Email
 					.input-field.col.s12
-						= f.password_field :password,  :autofocus => true, class: "validate"
+						= f.password_field :password,  :autofocus => true, class: "validate #{'invalid' if flash[:alert]}"
 						%label{for: :password} Contraseña
 					.devise-errors.center-align
-						- resource.errors.each do |name, msg|
+						- flash.each do |name, msg|
 							= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
 				.devise-box-footer.row
 					.col.s6

@@ -30,6 +30,10 @@ main#devise{
 				p{
 					font-weight: 300;
 				}
+				.input-errors{
+					color: #F44336;
+					margin-top: -15px;
+				}
 				.devise-errors{
 					color: #F44336;
 				}
