@@ -1,14 +1,22 @@
-.navbar-fixed
-	%nav
-		.nav-wrapper				
-			%a.brand-logo.switch.animated{ "ng-click" => "sidebarSwitch()", class: "btn-floating waves-effect waves-black btn-flat switch-{{sidebar}}" }
+.navbar-fixed{ "ng-style" => is_index? ? "{'max-width':'75%'}" : "{'min-width':'100%'}" }
+	%nav{ "ng-style" => is_index? ? "{'max-width':'75%'}" : "{'min-width':'100%'}" }
+		.nav-wrapper			
+			%a.brand-logo.switch.animated{ "ng-click" => "sidebarSwitch()", class: "btn-floating waves-effect waves-light btn-flat switch-{{sidebar}}" }
 				%i.material-icons.md-24.animated menu
-			%a.brand-logo.title
+			%a.brand-logo.title.hide-on-small-only
 				Keppler
-			%actions.right
-				%a{ class: "btn-floating waves-effect waves-black btn-flat" }
-					= material_icon.md_24.search
-				= link_to users_path, class: "btn-floating waves-effect waves-black btn-flat spinner-refresh", "ng-click" => "spinnerReload()" do
-					= material_icon.md_24.refresh
-				%a{ class: "btn-floating waves-effect waves-black btn-flat"}
+			.actions.right
+				- if is_index?
+					%a{ class: "btn-floating waves-effect waves-light btn-flat" }
+						= material_icon.md_24.search
+					= link_to users_path, class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
+						= material_icon.md_24.refresh
+				= link_to "#", class: "btn-floating waves-effect waves-light btn-flat dropdown-button", "data-activates" => 'more-options' do
 					= material_icon.md_24.more_vert
+				%ul{ id: "more-options", class: "dropdown-content" }
+					%li
+						= link_to "Ir a la web", main_app.root_path
+					%li
+						= link_to "Editar perfil", main_app.edit_user_path(current_user)
+					%li
+						= link_to 'Cerrar Sesión', main_app.destroy_user_session_path

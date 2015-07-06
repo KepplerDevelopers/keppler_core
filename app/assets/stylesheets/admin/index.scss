@@ -1,0 +1,116 @@
+@import "base";
+
+.listing{
+	padding: 0px !important;
+	margin-top: 75px;
+	position: relative;
+	box-shadow: 0 1px 2px rgba(0,0,0,.3);
+	.btn-new{
+		position: fixed;
+		z-index: 3;
+		top: 100px;
+		margin-left: 32px;
+	}
+	.entries{
+		float: right;
+		margin: 10px 15px 10px 15px;
+	  padding-right: 15px;
+	  border: 1px solid #eeeeee;
+	  padding: 7px 30px;
+	  font-size: 12px;
+	}
+	table{
+		width: 100.1%;	
+		tbody{
+			tr{
+				td.item-check{
+					text-align: center;
+				}
+				td{
+					position: relative;
+					font-weight: 300;
+					.btn-floating:hover{
+						box-shadow: none !important;
+					}
+					.show-row{
+						position: absolute;
+					  left: 0px;
+					  top: 0px;
+					  width: 100%;
+					  height: 67px
+					}
+				}
+			}
+			tr:hover, tr.active{
+				background: #eeeeee;
+			}
+		}
+	}
+}
+
+.listing-show{
+	padding: 0px !important;
+	.listing-show-header{
+		position: fixed;
+		top: 0px;
+		height: 129px;
+		width: 25%;
+		background: rgb(211, 47, 47);
+		.actions{
+			float: right;
+			position: relative;
+			top: 9px;
+			right: 10px;
+			.btn-floating:hover{
+				box-shadow: none !important;
+			}
+		}
+		h5{
+			color: white;
+			margin: 0px;
+			padding: 10px;
+			position: absolute;
+			bottom: 0px;
+			font-weight: 300;
+			i{
+				position: relative;
+				top: 3px;
+			}
+		}
+	}
+	.listing-show-body{
+		padding: 10px;
+		margin-top: 75px;
+		position: fixed;
+		min-width: 25%;	
+		h5{
+			color: rgb(118, 118, 118);
+			font-weight: 600;
+			font-size: 16px;
+			margin-top: 10px;
+			margin-bottom: 0px;
+		}
+		p{
+			font-weight: 300;
+			text-align: justify;
+		}
+		p.not_found{
+			margin-top: 9px;
+			text-align: center;
+			color: red;
+		}
+		ul.list {
+			margin-top: 8px;
+			li.list-row{
+				margin-bottom: 10px;
+				.display-label{
+					color: #767676;
+					font-weight: 600;
+				}
+				.display-value{
+					font-weight: 300;
+				}
+			}
+		}
+	}
+}

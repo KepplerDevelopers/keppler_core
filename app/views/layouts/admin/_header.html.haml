@@ -1,0 +1,7 @@
+.header-information.hide-on-small-only{ "ng-style" => is_index? ? "{'max-width':'75%'}" : "{'min-width':'100%'}" }
+	%h1 
+		= t("model.plural.#{controller_name}")
+	%small 
+		= t("actions.#{action_name}")
+
+	

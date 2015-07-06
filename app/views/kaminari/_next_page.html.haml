@@ -6,4 +6,4 @@
 -#    per_page:      number of items to fetch per page
 -#    remote:        data-remote
 %span.next
-  = link_to_unless current_page.last?, "<i class='mdi mdi-chevron-right'></i>".html_safe, url, :rel => 'next', :remote => remote, class: "btn btn--m bgc-grey-200 tc-grey-600 btn--fab"
+  = link_to_unless current_page.last?, material_icon.md_24.chevron_right.css_class("md-dark"), url, :rel => 'next', :remote => remote, class: "btn-floating grey lighten-3"

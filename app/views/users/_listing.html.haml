@@ -1,5 +1,5 @@
-= lumx_table_tr nil, id: "row-#{user.id}", class: "hola" do
-	%td{style:"width: 10%"}
+%tr{ id: "row-#{user.id}" }
+	%td.item-check{style:"width: 10%"}
 		= link_to "", user_path(user), remote: true, class: "show-row"
 		= lumx_checkbox_tag(id: "checkbox#{user.id}") do 
 			= icon(:"account")
@@ -16,5 +16,5 @@
 		%span
 			= user.role	
 	%td{style:"width: 30%"}		
-		= link_to user_path(user), buttons_attributes("Ver detallado", "bottom")  do
-			= icon("dots-horizontal")						
+		= link_to user_path(user), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

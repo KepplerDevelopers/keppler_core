@@ -1,0 +1,22 @@
+@import "base";
+
+.header-information {
+	background: $primary-color;
+	padding: 0px 0px 20px 115px;
+	position: fixed;
+	min-height: 75px !important;
+	top: 54;
+	z-index: 2;
+	width: 75%;
+	h1 {
+		margin: 0px;
+		font-weight: 300;
+		font-size: 2em;
+		color: white;
+	}
+	small {
+		color: white;
+		font-size: 1em;
+		font-weight: 400;
+	}
+}

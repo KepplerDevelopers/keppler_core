@@ -6,4 +6,8 @@ module ApplicationHelper
 	def loggedin?
 		current_user
 	end
+
+	def is_index?
+		action_name.to_sym.eql?(:index)
+	end
 end
