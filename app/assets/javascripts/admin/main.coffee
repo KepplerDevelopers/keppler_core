@@ -16,6 +16,7 @@ $(document).on 'ready page:load', () ->
 		Waves.displayEffect() # agregar el efecto de olas de los botones
 		$('.dropdown-button').dropdown() #activar los dropdowns
 		$('.tooltipped').tooltip({delay: 1}); #activar tooltips
+		$('.collapsible').collapsible({accordion : false}); #activar collapse
 
 		#capturar status de peticion del show-row
 		$('.show-row').on('ajax:success', (e, data, status, xhr) ->

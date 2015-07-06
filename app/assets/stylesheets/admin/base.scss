@@ -5,7 +5,7 @@ $primary-color: #F44336;
 body, html {
   position: relative;
   height: 100%;
-  
+
   main.row{
     margin-bottom: 0px;
   }
@@ -61,6 +61,14 @@ body, html {
       border-radius: none;
     }
   }
+}
+
+body.open{
+  overflow: hidden;
+}
+
+body{
+  overflow-x: hidden;
 }
 
 //spinner para peticiones turbolink

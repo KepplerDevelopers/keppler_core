@@ -4,25 +4,22 @@
       = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
     .profile-info
       = current_user.name
-  %ul.main-menu
-    %li{ class: "#{'active' if controller_name == 'admin' }" }
-      = link_to dashboard_admin_index_path do
-        %i.mdi.mdi-home
+  %ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
+    %li
+      = link_to dashboard_admin_index_path, class: "collapsible-header #{'current' if controller_name == 'admin' }" do
+        = material_icon.md_18.dashboard
         Dashboard
-    %v-accordion.vAccordion--default
-      %v-pane
-        %v-pane-header
-          %i.mdi.mdi-library-books
-          Blog
-        %v-pane-content
-          %ul.sub-menu 
-            %li.active
-              = link_to "/admin" do
-                Posts
-            %li
-              = link_to "/admin" do
-                Categorías
-    %li{ class: "#{'' if controller_name == 'users' }" }
-      = link_to "/admin/users" do
-        %i.mdi.mdi-account-multiple
+    %li
+      .collapsable.collapsible-header
+        = material_icon.md_18.local_library
+        Blog
+      .collapsible-body
+        %ul.pageslide-sub-menu
+          %li
+            = link_to "Posts", "#", class: "current"
+          %li
+            = link_to "Categorías", "#" 
+    %li
+      = link_to users_path, class: "collapsible-header #{'current' if controller_name == 'users' }" do
+        = material_icon.md_18.person
         Usuarios

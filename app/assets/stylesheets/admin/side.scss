@@ -1,0 +1,108 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("/assets/fontawesome-webfont.eot?v=4.3.0");
+  src: url("/assets/fontawesome-webfont.eot?#iefix&v=4.3.0") format("embedded-opentype"), url("/assets/fontawesome-webfont.woff2?v=4.3.0") format("woff2"), url("/assets/fontawesome-webfont.woff?v=4.3.0") format("woff"), url("/assets/fontawesome-webfont.ttf?v=4.3.0") format("truetype"), url("/assets/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin icon-before($icon){
+  content: $icon;
+  font: normal 100 normal 12px/4 FontAwesome;
+  position: absolute;
+  color: #575757;
+  right: 10px;
+}
+
+pageslide {
+  margin: 0px !important;
+  height: 100% !important;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  .profile-menu {
+    width: 268px;
+    height: 129px;
+    background: url(profile-menu.png) center no-repeat;
+    background-size: 268px 159px;
+    .profile-pic {
+      padding: 12px;
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid rgba(0, 0, 0, 0.14);
+        box-sizing: content-box;
+      }
+    }
+    .profile-info {
+      font-weight: 400;
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 7px 14px;
+      color: white;
+      bottom: 2px;
+      position: relative;
+    }
+  }
+}
+
+.main-menu::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+ul.pageslide-menu {
+  box-shadow: none;
+  border: 0px;
+  margin-top: 20px;
+  color: #4C4C4C;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  li{
+    .collapsible-header{
+      border: 0px;
+    }
+    .collapsible-header:hover{
+      background: #F4F4F4;
+      color: #262626;
+      a{
+        color: #262626;
+      }
+    }
+    .collapsible-header.current{
+      background: #F4F4F4;
+    }
+    .collapsible-body{
+      border: 0px;
+      background: #F4F4F4;
+    }
+    a{
+      color: #4C4C4C;
+    }
+    .collapsable.collapsible-header:before{
+      @include icon-before("\f067")
+    }
+    .collapsable.collapsible-header.active:before{
+      @include icon-before("\f068")
+    }
+
+    .collapsible-body{
+      .pageslide-sub-menu{
+        padding: 10px 10px 10px 60px;
+        li{
+          margin-top: 5px;
+          margin-bottom: 5px;
+          a{
+            color: #7f7f7f;
+            font-weight: 500;
+          }
+          a.current, a:hover{
+            color: #262626;
+          }
+        }
+      }
+    }
+  }
+}
+
