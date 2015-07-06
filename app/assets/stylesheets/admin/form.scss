@@ -1,0 +1,16 @@
+@import "base";
+
+.wrapper{
+	.wrapper-body{
+		.actions{
+		}
+		.wrapper-inputs{
+			margin-bottom: 0px;
+			.help-inline{
+				color: #F44336;
+				position: relative;
+				top: -15px;
+			}
+		}
+	}
+}

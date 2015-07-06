@@ -9,7 +9,6 @@ module MaterialHelper
 		end
 	end
 
-
 	private
 
 	# dependencia de preloader

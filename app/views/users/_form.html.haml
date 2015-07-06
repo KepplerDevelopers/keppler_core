@@ -1,13 +1,14 @@
-= wrapper "wrapper" do
+.wrapper
 	.wrapper-body.container
-		.card
+		.actions
+			= link_to users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Volver" do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs.row.card
 			= simple_form_for @user do |f|
-				= lumx_flex_container "row" do
-					= lumx_flex_item do
-						= lumx_text_field f, :name, :string, "Nombre", :lumx
-						= lumx_text_field f, :email, :email, "Email", :lumx
-						= lumx_select_field f, :role_ids, "Roles", Role.all.to_json(only: [:id, :name]), f.object.roles.first.to_json(only: [:id, :name])
-						= lumx_text_field f, :password, :password, "Contraseña", :lumx
-						= lumx_text_field f, :password_confirmation, :password, "Confirmar contraseña", :lumx
-						.actions
-							= f.button :submit, "Guardar", class: "btn btn--m btn--red btn--raised"
+				.col.col12 
+					= f.input :name, input_html: { class: "validate #{'invalid' if f.error(:name)}" }
+					= f.input :email, input_html: { class: "validate #{'invalid' if f.error(:email)}" }
+					= #f.input :role_ids, collection: Role.all
+					= f.input :password, input_html: { class: "validate#{'invalid' if f.error(:password)}" }
+					= f.input :password_confirmation, input_html: { class: "validate #{'invalid' if f.error(:password_confirmation)}" }
+					= f.button :submit, "Guardar", class: "btn right"
