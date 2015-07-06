@@ -1,33 +1,26 @@
 .devise
-  .authform.container     
-    .devise-box.card
-      .devise-box-header{class: "p+"}
-        .title-app Keppler
-      .devise-box-body{class: "p+"}
-        = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
-          = devise_error_messages!
-          .form-group
-            .row
-              .input-field.col.s12
-                = f.email_field :email, :autofocus => true, class: "validate"
-                %label{for: "email"} Email
+	.container     
+		.devise-box.card
+			.devise-box-header
+				.title-app Keppler
+			= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
+				.devise-box-body.row
+					.input-field.col.s12
+						= f.email_field :email, :autofocus => true, class: "validate"
+						%label{for: :email} Email
 
-              .input-field.col.s12
-                = f.password_field :password,  :autofocus => true, class: "validate"
-                %label{for: "password"} Contraseña
-                .devise-errors
-                  - flash.each do |name, msg|
-                    = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
-
-          .form-actions.row 
-            .col.s6
-              .recoverable
-                - if devise_mapping.recoverable?
-                  = link_to new_password_path(resource_name) do
-                    = "¿Olvidaste tu contraseña?"             
-            .col.s6 
-              = f.submit "Entrar", :class => 'pull-right btn'
-          .row.col.s6    
-            .center
-              = #image_tag "admin/inyxtech.png", class: "devise-logo hidden-xs" 
-        .clearfix
+					.input-field.col.s12
+						= f.password_field :password,  :autofocus => true, class: "validate"
+						%label{for: :password} Contraseña
+					.devise-errors.center-align
+						- resource.errors.each do |name, msg|
+							= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+				.devise-box-footer.row
+					.col.s6
+						- if devise_mapping.recoverable?
+							= link_to new_password_path(resource_name), class: "recoverable" do
+								= "¿Olvidaste tu contraseña?"             
+					.col.s6 
+						= f.submit "Entrar", :class => 'right btn'
+					.col.s12.devise-logo.center-align.hidden-xs
+						= image_tag "admin/inyxtech.png"

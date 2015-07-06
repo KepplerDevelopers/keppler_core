@@ -1,8 +1,7 @@
 !!!
 %html
 	= render "layouts/admin/head"
-	%body{ 'ng-controller'=>'MainCtrl', class: "#{'body-login' if controller.class.name.split('::').first == 'Devise'}" }
-
+	%body{ 'ng-controller'=>'MainCtrl' }
 		#waiting 
 			= preloader
 
