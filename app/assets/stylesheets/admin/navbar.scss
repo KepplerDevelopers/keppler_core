@@ -2,6 +2,7 @@
 
 .navbar-fixed{
 	height: 54px;
+
 }
 
 nav{
@@ -10,8 +11,11 @@ nav{
 	background: $primary-color;
 	box-shadow: none;
 	@media #{$small-and-down} {
-    min-width: 100%;
-  }
+	    min-width: 100%;
+	}
+	@media #{$medium-and-down} {
+	    min-width: 100%;
+	}
 	.nav-wrapper{
 		line-height: 30px;
 		i{
@@ -30,6 +34,9 @@ nav{
 			position: relative;
 			left: 10px;
 			font-size: 30px;
+			@media #{$medium-and-down} {
+			    display: none;
+			}
 		}
 		.dropdown-content{
 			top: 45px !important;

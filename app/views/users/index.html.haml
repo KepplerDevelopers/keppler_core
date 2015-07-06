@@ -1,6 +1,6 @@
 = title("Usuarios - Listado")
-.listing.col.s9
-	= link_to new_user_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new" do
+.listing.col.l9.m12.s12
+	= link_to new_user_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
 		= material_icon.md_24.add
 	= entries User.count, @users
 	%table.bordered
@@ -14,7 +14,7 @@
 							No hay usuarios registrados.
 	= paginate @users, window: 2
 
-.listing-show.col.s3
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
 	= render "description"
 
 

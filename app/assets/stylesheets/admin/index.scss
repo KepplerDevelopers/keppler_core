@@ -6,6 +6,9 @@
 	position: relative;
 	box-shadow: 0 1px 2px rgba(0,0,0,.3);
 	background: #ffffff;
+	@media #{$small-and-down} {
+    margin-top: 0px;
+  }
 	.btn-new{
 		position: fixed;
 		z-index: 3;
@@ -19,6 +22,9 @@
 	  border: 1px solid #eeeeee;
 	  padding: 7px 30px;
 	  font-size: 12px;
+	  @media #{$small-and-down} {
+	    display: none;
+	  }
 	}
 	table{
 		width: 100.1%;	
@@ -117,4 +123,5 @@
 			}
 		}
 	}
+	
 }

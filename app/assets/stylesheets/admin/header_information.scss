@@ -8,6 +8,10 @@
 	top: 54;
 	z-index: 2;
 	width: 75%;
+	@media #{$medium-and-down} {
+	    max-width: 100% !important;
+	    width: 100% !important;
+	}
 	h1 {
 		margin: 0px;
 		font-weight: 300;
