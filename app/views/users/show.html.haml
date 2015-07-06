@@ -2,7 +2,7 @@
 .wrapper
 	.wrapper-body.container
 		.actions
-			.pull-right
+			.right
 				- if can? :update, User
 					= link_to edit_user_path(@user), class: "tooltipped", "data-position" => "bottom", "data-tooltip" => "Editar" do
 						= material_icon.md_24.create.css_class("md-dark") 
