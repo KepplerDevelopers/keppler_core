@@ -1,15 +1,13 @@
-%lx-dialog{class: "dialog dialog--l", id: "change-role","auto-close" => "true", :onclose => "closingDialog('change-role')", :onscrollend => "scrollEndDialog()"}
-  = form_tag user_path(@user),  method: "PUT" do
-    .dialog__header
-      .toolbar.bgc-red-500{:class => "pl++"}
-        %span.toolbar__label.tc-white.fs-title
-          Cambiar rol de usuario 
-    .dialog__content{class: "p+"}
-      .radio-group
-        - Role.all.each do |role|
-          .radio-button
-            = radio_button_tag "user[role_ids]", role.id, false, class: "radio-button__input", id: "radio#{role.id}", :type => "radio", :value => "#{role.id}", :checked => @user.has_role?(role.name)
-            = label_tag "user[role_ids]", role.name, class: "radio-button__label", :for => "radio#{role.id}"
-    .dialog__actions
-      %a.btn.btn--m.btn--black.btn--flat{"lx-dialog-close" => "", "lx-ripple" => ""} Cancel
-      = submit_tag "Asignar Rol", :class => "btn btn--m btn--black btn--flat", "lx-ripple" => "", name: 'commit'
+.modal{ id: "modal-#{@user.id}"}
+	= form_tag user_path(@user),  method: "PUT" do
+		.modal-header
+			%h4= "Cambiar rol de #{@user.name}"
+		.modal-content
+			- Role.all.each do |role|
+				.radio-button
+					= radio_button_tag "user[role_ids]", role.id, false, class: "radio-button__input", id: "radio#{role.id}", :type => "radio", :value => "#{role.id}", :checked => @user.has_role?(role.name)
+					= label_tag "user[role_ids]", role.name, class: "radio-button__label", :for => "radio#{role.id}"
+		.modal-footer
+			= button_tag "Asignar Rol", :class => "waves-effect waves-light btn", name: 'commit', value: "Asignar Rol"
+			= link_to "Cancelar", "", class: "modal-action modal-close waves-effect waves-light btn red"
+		

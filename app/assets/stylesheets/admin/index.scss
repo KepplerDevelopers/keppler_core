@@ -84,7 +84,7 @@
 		position: fixed;
 		min-width: 25%;	
 		h5{
-			color: rgb(118, 118, 118);
+			color: #4C4C4C;
 			font-weight: 600;
 			font-size: 16px;
 			margin-top: 10px;
@@ -104,11 +104,13 @@
 			li.list-row{
 				margin-bottom: 10px;
 				.display-label{
-					color: #767676;
-					font-weight: 600;
+					color: #4C4C4C;
+					font-weight: 500;
+					font-size: 13px;
 				}
 				.display-value{
 					font-weight: 300;
+					font-size: 13px;
 				}
 			}
 		}
