@@ -62,6 +62,26 @@ body, html {
       border-radius: none;
     }
   }
+
+  .modal{
+    .modal-header{
+      h4{
+        padding: 10px;
+        background: $primary-color;
+        color: white;
+        font-size: 2em;
+      }
+    }
+    .modal-content{
+      padding: 10px !important;
+    }
+    .modal-footer{
+      padding: 0px 10px 10px 10px;
+      .modal-close{
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 .body-login{

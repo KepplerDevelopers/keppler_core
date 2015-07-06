@@ -3,7 +3,7 @@
 %small= flash[:message] ? flash[:message] : "No estás autorizado"
 
 %footer
-  = link_to "#{icon(:"arrow-left")}".html_safe, flash[:back] if flash[:back]
-  = link_to "#{icon(:home)}".html_safe, dashboard_admin_index_path
+  = link_to material_icon.md_24.arrow_back, flash[:back] if flash[:back]
+  = link_to material_icon.md_24.home, dashboard_admin_index_path
 
        
