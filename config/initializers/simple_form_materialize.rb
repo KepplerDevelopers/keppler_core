@@ -3,7 +3,7 @@ SimpleForm.setup do |config|
   config.wrappers :materialize, tag: 'div', class: 'input-field col s12', :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
-    b.use :input
+    b.use :input, class: "validate"
     b.use :label
     b.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }

@@ -2,13 +2,20 @@
 //= require animate
 //= require_self
 
-@import "index";
-@import "header_information";
-@import "pageslide";
+@import "materialize";
 @import "devise";
-@import "show";
-@import "dashboard";
-@import "form";
 @import "base";
 @import "navbar";
+@import "pageslide";
+@import "header_information";
+@import "dashboard";
+@import "index";
+@import "show";
+@import "form";
+
+
+
+
+
+
 

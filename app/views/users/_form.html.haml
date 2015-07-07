@@ -6,9 +6,9 @@
 		.wrapper-inputs.row.card
 			= simple_form_for @user do |f|
 				.col.col12 
-					= f.input :name, input_html: { class: "validate #{'invalid' if f.error(:name)}" }
-					= f.input :email, input_html: { class: "validate #{'invalid' if f.error(:email)}" }
-					= #f.input :role_ids, collection: Role.all
-					= f.input :password, input_html: { class: "validate#{'invalid' if f.error(:password)}" }
-					= f.input :password_confirmation, input_html: { class: "validate #{'invalid' if f.error(:password_confirmation)}" }
+					= f.input :name
+					= f.input :email
+					= f.input :role_ids, collection: Role.all, label: false, include_blank: "Selecione un rol"
+					= f.input :password
+					= f.input :password_confirmation
 					= f.button :submit, "Guardar", class: "btn right"

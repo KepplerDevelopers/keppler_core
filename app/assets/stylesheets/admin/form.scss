@@ -1,11 +1,14 @@
-@import "base";
-
 .wrapper{
 	.wrapper-body{
 		.actions{
 		}
 		.wrapper-inputs{
 			margin-bottom: 0px;
+			.input-field.error{
+				input{
+					border-bottom: 2px solid #F44336;
+				}
+			}
 			.help-inline{
 				color: #F44336;
 				position: relative;
