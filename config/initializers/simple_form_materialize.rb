@@ -10,7 +10,7 @@ SimpleForm.setup do |config|
   end
 
   1.upto(12) do |col|
-    config.wrappers "materialize-field-#{col}", tag: 'div', class: "input-field col s#{col}", :error_class => 'error' do |b|
+    config.wrappers "mf_#{col}".to_sym, tag: 'div', class: "input-field col s#{col}", :error_class => 'error' do |b|
       b.use :html5
       b.use :placeholder
       b.use :input, class: "validate"
