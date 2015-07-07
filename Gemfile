@@ -6,6 +6,7 @@ gem 'rails', '4.2.0'
 #javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
+gem 'nprogress-rails'
 
 #documentation
 gem 'sdoc', '~> 0.4.0',          group: :doc

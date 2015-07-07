@@ -181,6 +181,7 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    nprogress-rails (0.1.6.7)
     orm_adapter (0.5.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -302,6 +303,7 @@ DEPENDENCIES
   material_icons
   materialize-sass
   mysql2
+  nprogress-rails
   quiet_assets
   rails (= 4.2.0)
   rails_layout

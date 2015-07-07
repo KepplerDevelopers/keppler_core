@@ -1,4 +1,10 @@
 $primary-color: #F44336;
+$nprogress-color: #009688;
+$nprogress-height: 4px;
+$nprogress-zindex: 10100;
+
+@import 'nprogress';
+@import 'nprogress-bootstrap';
 
 body, html {
   position: relative;
@@ -19,6 +25,7 @@ body, html {
     .preloader-wrapper {
       position: absolute;
       top: 45%;
+      left: 47%;
     }
   }
   
