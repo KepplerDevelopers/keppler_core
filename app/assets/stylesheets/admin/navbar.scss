@@ -25,6 +25,10 @@ nav{
 			position: relative;
 			left: 0px;
 			top: -5px;
+			@media #{$medium-and-down} {
+				top: 0px;
+				left: 10px;
+			}
 		}
 		.title{
 			font-family: 'Patua One', cursive;
