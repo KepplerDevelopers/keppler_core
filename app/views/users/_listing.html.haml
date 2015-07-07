@@ -3,7 +3,7 @@
 		= link_to "", user_path(user), remote: true, class: "show-row"
 		%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}" }
 		%label{ for: "checkbox-#{user.id}" }
-	%td{style:"width: 30%"}
+	%td.hide-on-small-and-down{style:"width: 30%"}
 		= link_to "", user_path(user), remote: true, class: "show-row"
 		%span
 			= user.name											

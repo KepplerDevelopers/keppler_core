@@ -10,6 +10,9 @@ main#devise{
 			width: 60%;
 			margin-left: auto;
 			margin-right: auto;
+			@media #{$small-and-down} {
+				width:100%;
+			}
 			.devise-box-header{
 				background: #F44336;
 				padding-top: 80px;
