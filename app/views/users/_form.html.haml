@@ -12,6 +12,5 @@
 						= f.input :role_ids, collection: Role.all, label: false, include_blank: "Selecione un rol"
 						= f.input :password
 						= f.input :password_confirmation
-						= f.collection_radio_buttons :name, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last, item_wrapper_tag: :div #vertical
 					.form-actions.right
 						= f.button :submit, "Guardar", class: "btn"
