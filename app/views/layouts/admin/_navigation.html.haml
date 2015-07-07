@@ -6,9 +6,12 @@
 			%a.brand-logo.title.hide-on-small-only.hide-on-med-and-down
 				Keppler
 			.actions.right
+				= form_tag url_for(action: :index, controller: controller_name), method: :get, class: "form-search" do
+					.input-field
+						= text_field_tag :search, params[:search], id: "search" 
+				%a{ class: "btn-floating waves-effect waves-light btn-flat" }
+					= material_icon.md_24.search
 				- if is_index?
-					%a{ class: "btn-floating waves-effect waves-light btn-flat" }
-						= material_icon.md_24.search
 					= link_to users_path, class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
 						= material_icon.md_24.refresh
 				= link_to "#", class: "btn-floating waves-effect waves-light btn-flat dropdown-button", "data-activates" => 'more-options' do

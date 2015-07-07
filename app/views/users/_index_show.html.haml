@@ -18,6 +18,7 @@
 			%li.list-row
 				.display-label= t("model.#{controller_name.singularize}.attributes.#{attribute}")
 				.display-value= value
+				= session[:users_search]
 
 = render "users/modal"
 

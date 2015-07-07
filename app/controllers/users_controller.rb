@@ -6,8 +6,14 @@ class UsersController < ApplicationController
   before_action :get_page, only: [:destroy]
 
   def index
-    @users = User.where.not(id: current_user.id).order(id: :desc).page params[:page]
-    redirect_to users_path if !@users.first_page? and @users.size.zero?
+    if params[:search] and !params[:search].blank?
+      items = User.search(User.query params[:search]).records
+      @users, @total = items.order(id: :desc).page(params[:page]), items.count
+      redirect_to users_path if !@users.first_page? and @users.size.zero?
+    else
+      @users = User.where.not(id: current_user.id).order(id: :desc).page params[:page]
+      redirect_to users_path if !@users.first_page? and @users.size.zero?
+    end
   end
 
   def new
