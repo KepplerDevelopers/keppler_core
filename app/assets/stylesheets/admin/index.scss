@@ -131,7 +131,7 @@
 	display: none;
 	@media #{$small-and-down} {
 		display: block;
-		position: absolute;
+		position: fixed;
 		bottom: 20px;
 		right: 20px;
 	}
