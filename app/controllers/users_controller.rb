@@ -22,7 +22,14 @@ class UsersController < ApplicationController
   
   def update
     respond_to do |format|
-      update_attributes = user_params.delete_if { |attribute, value| value.blank? if user_params["password"] }
+      update_attributes = user_params.delete_if do |attribute, value|
+        case attribute
+          when "password"
+            value.blank?
+          when "password_confirmation"
+            value.blank? if user_params.fetch("password").blank?
+        end
+      end
 
       if @user.update_attributes(update_attributes)    
         if params.fetch(:commit).eql?("Asignar Rol")

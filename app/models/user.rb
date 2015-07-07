@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
   before_save :create_permalink, on: :create
   rolify
-  validates_presence_of :name, :role_ids
+  validates_presence_of :name, :role_ids, :email
 
   #has_many :posts, dependent: :destroy relation posts
   

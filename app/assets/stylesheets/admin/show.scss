@@ -1,5 +1,8 @@
 .wrapper{
 	margin-top: 100px;
+	@media #{$small-and-down} {
+    margin-top: 20px;
+  }
 	.actions{
 		height:30px;
 		margin-bottom: 15px;
