@@ -3,7 +3,7 @@
 		.nav-wrapper			
 			%a.brand-logo.switch.animated{ "ng-click" => "sidebarSwitch()", class: "btn-floating waves-effect waves-light btn-flat switch-{{sidebar}}" }
 				%i.material-icons.md-24.animated menu
-			%a.brand-logo.title.hide-on-small-only
+			%a.brand-logo.title.hide-on-small-only.hide-on-med-and-down
 				Keppler
 			.actions.right
 				- if is_index?
