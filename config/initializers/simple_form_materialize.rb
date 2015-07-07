@@ -9,6 +9,17 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 
+  1.upto(12) do |col|
+    config.wrappers "materialize-field-#{col}", tag: 'div', class: "input-field col s#{col}", :error_class => 'error' do |b|
+      b.use :html5
+      b.use :placeholder
+      b.use :input, class: "validate"
+      b.use :label
+      b.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
+      b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
+  end
+
   # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.
   # Check the Bootstrap docs (http://twitter.github.com/bootstrap)
   # to learn about the different styles for forms and inputs,

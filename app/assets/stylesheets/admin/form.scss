@@ -14,6 +14,15 @@
 				position: relative;
 				top: -15px;
 			}
+			.form-actions{
+				margin-top: 5px;
+			}
+			label.collection_radio_buttons, label.collection_check_boxes {
+			  margin-right: 10px;
+			  vertical-align: -2px;
+			  padding-left: 28px;
+			  margin-left: 10px;
+			}
 		}
 	}
 }
