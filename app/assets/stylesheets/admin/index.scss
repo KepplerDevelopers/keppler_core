@@ -1,5 +1,3 @@
-@import "base";
-
 .listing{
 	padding: 0px !important;
 	margin-top: 75px;
@@ -32,6 +30,9 @@
 			tr{
 				td.item-check{
 					text-align: center;
+					[type="checkbox"] + label{
+						top: 4.9px;
+					}
 				}
 				td{
 					position: relative;

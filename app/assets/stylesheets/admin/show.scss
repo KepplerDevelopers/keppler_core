@@ -1,5 +1,3 @@
-@import "base";
-
 .wrapper{
 	margin-top: 100px;
 	@media #{$small-and-down} {
@@ -26,11 +24,13 @@
 				li.list-row{
 					margin-bottom: 10px;
 					.display-label{
-						color: #767676;
-						font-weight: 600;
+						color: #4C4C4C;
+						font-weight: 500;
+						font-size: 13px;
 					}
 					.display-value{
 						font-weight: 300;
+						font-size: 13px;
 					}
 				}
 			}

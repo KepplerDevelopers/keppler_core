@@ -18,5 +18,6 @@
 						= link_to "Ir a la web", main_app.root_path
 					%li
 						= link_to "Editar perfil", main_app.edit_user_path(current_user)
+					%li.divider
 					%li
 						= link_to 'Cerrar Sesión', main_app.destroy_user_session_path
