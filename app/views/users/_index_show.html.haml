@@ -6,9 +6,6 @@
 		- if can? :update, User
 			= link_to edit_user_path(@user), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Editar" do
 				= material_icon.md_24.create
-		- if can? :delete, User
-			= link_to user_path(@user, search: @query), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Eliminar", method: :delete, data: { confirm: 'Are you sure?' } do
-				= material_icon.md_24.delete
 	%h5
 		= material_icon.md_24.account_circle.css_class("md-light") 
 		= t("model.singular.#{controller_name.singularize}")
