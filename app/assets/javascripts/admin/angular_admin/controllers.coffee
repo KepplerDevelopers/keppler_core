@@ -3,6 +3,20 @@ angular.module('admin', []).controller 'MainCtrl', [
 	(scope, $compile, $http, $timeout) ->
 		# modelo para abrir y cerrar el sidebar true: open, false: close
 		scope.sidebar = false
+		scope.btnDelete = false
+		scope.check = {}
+
+		scope.$watchCollection 'check', ()->
+			checkTrue = 0
+			angular.forEach scope.check, (value, key)->
+				if value == true
+					checkTrue = checkTrue + 1
+				return
+			if checkTrue > 0
+				scope.btnDelete = true
+			else
+				scope.btnDelete = false
+			return
 
 		scope.spinnerReload = ->
 			$(".spinner-refresh").addClass("rotate")
@@ -45,7 +59,8 @@ angular.module('admin', []).controller 'MainCtrl', [
 		#Configuración de progress bar con turbolinks
 		jQuery(document).on 'page:fetch', ->
 			 
-			 return
+			return
+
 		jQuery(document).on 'page:receive', ->
 			 
 			return

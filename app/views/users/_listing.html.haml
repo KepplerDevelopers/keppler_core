@@ -1,7 +1,7 @@
 %tr{ id: "row-#{user.id}" }
 	%td.item-check{style:"width: 10%"}
 		= link_to "", user_path(user), remote: true, class: "show-row"
-		%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}" }
+		%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", "ng-model"=>"check[#{user.id}]"}
 		%label{ for: "checkbox-#{user.id}" }
 	%td.hide-on-small-and-down{style:"width: 30%"}
 		= link_to "", user_path(user), remote: true, class: "show-row"
