@@ -8,11 +8,14 @@ app.service 'MainService', [
 				if scope.check.length > 0
 					scope.btnDelete = true
 					scope.iconCheck = "indeterminate_check_box"
+					scope.tooltipCheck = "Deseleccionar"
 					if scope.check.length == users.length
 						scope.iconCheck = "check_box"
+						scope.tooltipCheck = "Deseleccionar todo"
 				else
 					scope.btnDelete = false
 					scope.iconCheck = "check_box_outline_blank"
+					scope.tooltipCheck = "Seleccionar todo"
 			if button == "btn"
 				if scope.check.length == 0
 					users.filter (element)->
@@ -20,9 +23,11 @@ app.service 'MainService', [
 						return
 					scope.btnDelete = true
 					scope.iconCheck = "check_box"
+					scope.tooltipCheck = "Deseleccionar todo"
 				else
 					scope.check = []
 					scope.iconCheck = "check_box_outline_blank"
+					scope.tooltipCheck = "Seleccionar todo"
 					scope.btnDelete = false
 			return
 

@@ -6,6 +6,7 @@ app.controller 'MainCtrl', [
 		scope.btnDelete = false
 		scope.check = []
 		scope.iconCheck = "check_box_outline_blank"
+		scope.tooltipCheck = "Seleccionar todo"
 
 		scope.checkChanged = ->
 			MainService.addRemoveButtonInNavbar(scope)

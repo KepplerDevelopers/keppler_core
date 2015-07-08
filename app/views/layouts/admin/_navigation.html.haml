@@ -5,10 +5,11 @@
 				%i.material-icons.md-24.animated menu
 			%a.brand-logo.title.hide-on-small-only.hide-on-med-and-down
 				Keppler
-			.actions.right
-				=link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat" } do
-					= material_icon.md_24.search
+			.actions.right				
 				- if is_index?
+					= link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat" } do
+						= material_icon.md_24.search
+
 					- if can? :destroy_multiple, controller_name.classify.constantize
 						= link_to destroy_multiple_users_path.concat("?multiple_ids={{check}}&page=#{params[:page]}&search=#{@query}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
 							= material_icon.md_24.delete
