@@ -19,6 +19,10 @@ app.controller 'MainCtrl', [
 			scope.inputSearch = !scope.inputSearch
 			return
 
+		scope.searchSiwtch = ->
+			scope.inputSearch = !scope.inputSearch
+			return
+
 		scope.spinnerReload = ->
 			$(".spinner-refresh").addClass("rotate")
 			return

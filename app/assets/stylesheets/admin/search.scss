@@ -1,11 +1,11 @@
 .top-search-wrap{
 	height: 54px;
-	background: $primary-color;
+	background: rgba(0, 0, 0, 0);
 	width: 75%;
 	top: -54px;
 	opacity: 0;
 	position: fixed;
-	z-index: 1000;
+	z-index: 10;
 	-webkit-transition: all 0.25s ease-in-out;
 	-moz-transition: all 0.25s ease-in-out;
 	transition: all 0.25s ease-in-out;
@@ -17,12 +17,13 @@
 		position: relative;
 		#search{
 			border: 0px;
+			z-index: 1000000;
 			border-bottom: 0px;
 			height: 35px;
 			margin: 8px 0px 0px 0px;
 			padding: 0 10px 0 40px;
 			font-size: 18px;
-			width: 500px;
+			width: 400px;
 			border-radius: 2px;
 			box-shadow: none;
 			color: white;
@@ -47,7 +48,7 @@
 		  text-align: center;
 		  border-radius: 2px;
 		  cursor: pointer;
-		  right: 20px;
+		  right: 270px;
 		  @media #{$small-and-down} {
 				right: 5px;
 			}
