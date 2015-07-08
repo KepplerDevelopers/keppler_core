@@ -26,12 +26,22 @@ class User < ActiveRecord::Base
   end
 
   def self.query(query)
-    { query: { multi_match:  { query: query, fields: [:role_name, :name, :email, :permalink] , operator: :and }  }, sort: { id: "desc" }, size: User.count }
+    { query: { multi_match:  { query: query, fields: [:rol, :name, :email, :id] , operator: :and }  }, sort: { id: "desc" }, size: User.count }
   end
 
   #saber la pagina a la que pertenece
   def page(order = :id)
     ((self.class.order(order => :desc).pluck(order).index(self.send(order))+1).to_f / self.class.default_per_page).ceil
+  end
+
+  #armar indexado de elasticserch
+  def as_indexed_json(options={})
+    {
+      id: self.id.to_s,
+      email: self.email,
+      name: self.name,
+      rol: self.rol
+    }.as_json
   end
 
   private
