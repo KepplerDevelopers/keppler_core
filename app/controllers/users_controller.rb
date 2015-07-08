@@ -62,13 +62,12 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    puts request.url
     redirect_to users_path(@size.zero? ? 1 : @current_page, search: @query), notice: "Usuario eliminado satisfactoriamente" 
   end
 
   def destroy_multiple
-    puts "holaaaaaaaaaaaaaaaaaaa"
-    puts params[:multiple_ids]
+    User.destroy params[:multiple_ids].delete("[]").split(",")
+    redirect_to users_path(page: params[:page], search: @query), notice: "Usuarios eliminados satisfactoriamente" 
   end
 
   private
