@@ -10,7 +10,7 @@
 					=link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat" } do
 						= material_icon.md_24.search
 
-					= link_to users_path, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
+					= link_to destroy_multiple_users_path.concat("?multiple_ids={{check}}&page=#{params[:page]}&search=#{@query}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
 						= material_icon.md_24.delete
 
 					%a{class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@users.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "{{tooltipCheck}}"}

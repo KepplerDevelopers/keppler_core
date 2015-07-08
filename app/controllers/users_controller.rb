@@ -3,11 +3,10 @@ class UsersController < ApplicationController
   layout 'admin/application'
   load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :get_page, only: [:destroy]
 
   def index
     items = User.searching(@query)
-    @users, @total = items.where.not(id: current_user.id).page(params[:page]), items.count
+    @users, @total = items.where.not(id: current_user.id).page(@current_page), items.count
     redirect_to users_path if !@users.first_page? and @users.size.zero?
   end
 
@@ -62,24 +61,22 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    puts request.url
-    redirect_to users_path(@size.zero? ? 1 : @current_page, search: @query), notice: "Usuario eliminado satisfactoriamente" 
+    redirect_to users_path, notice: "Usuario eliminado satisfactoriamente" 
   end
 
   def destroy_multiple
-    puts "holaaaaaaaaaaaaaaaaaaa"
-    puts params[:multiple_ids]
+    User.destroy redefine_destroy(params[:multiple_ids])
+    redirect_to users_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
+  def redefine_destroy(ids)
+    ids.delete("[]").split(",").select { |id| id if User.exists? id }
   end
 
-  def get_page
-    @size = User.page(@user.page).count
-    @current_page = @user.page
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def user_params
