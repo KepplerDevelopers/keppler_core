@@ -1,4 +1,10 @@
 $primary-color: #F44336;
+$nprogress-color: #009688;
+$nprogress-height: 4px;
+$nprogress-zindex: 10100;
+
+@import 'nprogress';
+@import 'nprogress-bootstrap';
 
 body, html {
   position: relative;
@@ -19,6 +25,7 @@ body, html {
     .preloader-wrapper {
       position: absolute;
       top: 45%;
+      left: 47%;
     }
   }
   
@@ -67,10 +74,12 @@ body, html {
         padding: 10px;
         background: $primary-color;
         color: white;
-        font-size: 2em;
+        font-weight: 500;
+        font-size: 1.5em;
       }
     }
     .modal-content{
+      max-width: 50%;
       padding: 10px !important;
     }
     .modal-footer{

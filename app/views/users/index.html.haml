@@ -1,17 +1,17 @@
 = title("Usuario - Listado")
 .listing.col.l9.m12.s12
-	= link_to new_user_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
-		= material_icon.md_24.add
-	= entries User.count, @users
+	= #link_to new_user_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
+	= #material_icon.md_24.add
+	= entries(@total, @users)
 	%table.bordered
 		%tbody
 			- @users.each do |user|
 				= render 'listing', user: user
 			- if @users.count.zero?
-				= lumx_table_tr do
+				%tr
 					%td{colspan: "4"}
 						%center
-							No hay usuarios registrados.
+							No se han encontrado usuarios.
 	= paginate @users, window: 2
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down

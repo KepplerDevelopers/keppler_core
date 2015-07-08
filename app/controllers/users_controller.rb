@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   before_action :get_page, only: [:destroy]
 
   def index
-    @users = User.where.not(id: current_user.id).order(id: :desc).page params[:page]
+    items = User.searching(@query)
+    @users, @total = items.where.not(id: current_user.id).page(params[:page]), items.count
     redirect_to users_path if !@users.first_page? and @users.size.zero?
   end
 
@@ -61,7 +62,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path(@size.zero? ? 1 : @current_page), notice: "Usuario eliminado satisfactoriamente" 
+    puts request.url
+    redirect_to users_path(@size.zero? ? 1 : @current_page, search: @query), notice: "Usuario eliminado satisfactoriamente" 
   end
 
   private

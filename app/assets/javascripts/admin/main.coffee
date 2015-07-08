@@ -34,6 +34,13 @@ $(document).on 'ready page:load', () ->
 		).bind 'ajax:error', (e, xhr, status, error) ->
 			$(".listing-show-body").html("<p class='not_found'>Este registro no fue encontrado, por favor recargue la página para actualizar los datos.</p>")
 			return
+
+		#config nprogress
+		NProgress.configure
+			showSpinner: false
+			easing: 'ease'
+			speed: 500
+
 	return
 
 

@@ -12,7 +12,7 @@
 				= material_icon.md_18.arrow_back.css_class("md-dark") 
 		.card			
 			%ul.list
-				- @user.as_json(only: ["id", "name", "permalink", "email","created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
+				- @user.as_json(only: ["id", "name", "permalink", "email","created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
 					%li.list-row
 						.display-label= t("model.#{controller_name.singularize}.attributes.#{attribute}")
-						.display-value.fs-body-1.tc-black-2= value
+						.display-value.fs-body-1.tc-black-2= value.to_s.humanize

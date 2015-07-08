@@ -29,10 +29,13 @@
 		tbody{
 			tr{
 				td.item-check{
-					text-align: center;
+					left: 20px;
 					[type="checkbox"] + label{
 						top: 4.9px;
 					}
+					@media #{$small-and-down} {
+				    left: 11px;
+				  }
 				}
 				td{
 					position: relative;

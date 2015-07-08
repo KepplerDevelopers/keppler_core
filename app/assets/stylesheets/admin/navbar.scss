@@ -17,6 +17,7 @@ nav{
 		line-height: 30px;
 		i{
 			line-height: 38px;
+			height: 34px;
 		}
 		.btn-floating:hover{
 			box-shadow: none !important;
@@ -25,6 +26,14 @@ nav{
 			position: relative;
 			left: 0px;
 			top: -5px;
+			@media #{$medium-and-down} {
+				top: 0px;
+				left: 10px;
+			}
+			i{
+			  -webkit-animation-duration: .7s;
+			  -webkit-animation-delay: 0s;
+		  }
 		}
 		.title{
 			font-family: 'Patua One', cursive;

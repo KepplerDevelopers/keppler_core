@@ -1,0 +1,5 @@
+- if is_index?
+	.top-search-wrap.center-align{ class: "top-search-{{inputSearch}}", "ng-init" => "inputSearch=#{!@query.blank?}" }
+		= form_tag url_for(action: :index, controller: controller_name), method: :get, class: "form-search" do
+			= text_field_tag :search, @query, id: "search", autofocus: true
+			%i.close-top-search{ "ng-click" => "searchSiwtch()"} ×

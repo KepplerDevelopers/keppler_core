@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   scope :admin do
   	resources :users do 
-      get '(page/:page)', :action => :index, :on => :collection, :as => '' 
+      get '(page/:page)', action: :index, on: :collection, as: ''
     end
   end
 
