@@ -66,6 +66,11 @@ class UsersController < ApplicationController
     redirect_to users_path(@size.zero? ? 1 : @current_page, search: @query), notice: "Usuario eliminado satisfactoriamente" 
   end
 
+  def destroy_multiple
+    puts "holaaaaaaaaaaaaaaaaaaa"
+    puts params[:multiple_ids]
+  end
+
   private
 
   def set_user
