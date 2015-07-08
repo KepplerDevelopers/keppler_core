@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
     @current_page = (params[:page] and !params[:page].blank?) ? params[:page] : nil
   end
 
+  private
+
+  def redefine_ids(ids)
+    ids.delete("[]").split(",").select { |id| id if controller_name.classify.constantize.exists? id }
+  end
+
   protected
   
   def configure_permitted_parameters
