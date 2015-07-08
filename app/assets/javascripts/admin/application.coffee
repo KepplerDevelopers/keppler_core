@@ -4,6 +4,8 @@
 #= require angular
 #= require sidebar
 #= require noty
+#= require checklist-model
+#= require angular-local-storage
 #= require materialize-sprockets
 #= require nprogress
 #= require nprogress-turbolinks

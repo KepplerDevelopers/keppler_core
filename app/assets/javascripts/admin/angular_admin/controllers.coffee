@@ -1,8 +1,23 @@
-angular.module('admin', []).controller 'MainCtrl', [
-	'$scope', "$compile", "$http", "$timeout"
-	(scope, $compile, $http, $timeout) ->
+app.controller 'MainCtrl', [
+	'$scope', "$compile", "$http", "$timeout", 'MainService'
+	(scope, $compile, $http, $timeout, MainService) ->
 		# modelo para abrir y cerrar el sidebar true: open, false: close
 		scope.sidebar = false
+		scope.btnDelete = false
+		scope.check = []
+		scope.iconCheck = "check_box_outline_blank"
+
+		scope.checkChanged = ->
+			MainService.addRemoveButtonInNavbar(scope)
+			return
+
+		scope.select = (users, button)->
+			MainService.selectOptions(scope, users, button)
+			return
+
+		scope.searchSiwtch = ->
+			scope.inputSearch = !scope.inputSearch
+			return
 
 		scope.searchSiwtch = ->
 			scope.inputSearch = !scope.inputSearch
@@ -49,7 +64,8 @@ angular.module('admin', []).controller 'MainCtrl', [
 		#Configuración de progress bar con turbolinks
 		jQuery(document).on 'page:fetch', ->
 			 
-			 return
+			return
+
 		jQuery(document).on 'page:receive', ->
 			 
 			return
