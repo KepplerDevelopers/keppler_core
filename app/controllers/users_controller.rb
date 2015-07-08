@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   end
 
   def destroy_multiple
-    User.destroy redefine_destroy(params[:multiple_ids])
+    User.destroy redefine_ids(params[:multiple_ids])
     redirect_to users_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
   end
 

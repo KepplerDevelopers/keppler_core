@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def redefine_destroy(ids)
+  def redefine_ids(ids)
     ids.delete("[]").split(",").select { |id| id if controller_name.classify.constantize.exists? id }
   end
 
