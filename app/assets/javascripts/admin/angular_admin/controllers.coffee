@@ -4,6 +4,10 @@ angular.module('admin', []).controller 'MainCtrl', [
 		# modelo para abrir y cerrar el sidebar true: open, false: close
 		scope.sidebar = false
 
+		scope.searchSiwtch = ->
+			scope.inputSearch = !scope.inputSearch
+			return
+
 		scope.spinnerReload = ->
 			$(".spinner-refresh").addClass("rotate")
 			return

@@ -17,6 +17,14 @@ class User < ActiveRecord::Base
     self.roles.first.name
   end
 
+  def self.searching(query)
+    if query
+      self.search(self.query query).records.order(id: :desc)
+    else
+      self.order(id: :desc)
+    end
+  end
+
   def self.query(query)
     { query: { multi_match:  { query: query, fields: [:role_name, :name, :email, :permalink] , operator: :and }  }, sort: { id: "desc" }, size: User.count }
   end

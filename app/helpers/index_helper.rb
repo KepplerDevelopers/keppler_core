@@ -1,7 +1,6 @@
 module IndexHelper
 
 	def entries(total, objects)
-		total = @total if @total
 		unless total.zero?
 			content_tag :div, class: "entries hidden-xs" do
 				if objects.first_page?

@@ -6,7 +6,7 @@ class Ability
     if user.has_role? :admin
 
       # - user authorize -
-      can [:delete, :show, :edit, :update, :create, :index, :search], User
+      can [:delete, :show, :edit, :update, :create, :index], User
       can :destroy, User do |u| !u.eql?(user) end
      
 
