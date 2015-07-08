@@ -14,9 +14,8 @@
 
 					%a{class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@users.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo"}
 						%i.mi.md-24 {{iconCheck}}
-					
-					= link_to users_path, class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
 
+					= link_to users_path(params[:page], search: @query), class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
 						= material_icon.md_24.refresh
 				= link_to "#", class: "btn-floating waves-effect waves-light btn-flat dropdown-button", "data-activates" => 'more-options' do
 					= material_icon.md_24.more_vert

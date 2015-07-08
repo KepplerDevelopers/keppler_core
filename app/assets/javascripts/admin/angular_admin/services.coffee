@@ -18,10 +18,12 @@ app.service 'MainService', [
 					users.filter (element)->
 						scope.check.push element.id
 						return
+					scope.btnDelete = true
 					scope.iconCheck = "check_box"
 				else
 					scope.check = []
 					scope.iconCheck = "check_box_outline_blank"
+					scope.btnDelete = false
 			return
 
 		return
