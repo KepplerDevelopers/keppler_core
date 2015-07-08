@@ -71,10 +71,6 @@ class UsersController < ApplicationController
 
   private
 
-  def redefine_destroy(ids)
-    ids.delete("[]").split(",").select { |id| id if User.exists? id }
-  end
-
   def set_user
     @user = User.find(params[:id])
   end
