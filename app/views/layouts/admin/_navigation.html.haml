@@ -9,11 +9,12 @@
 				=link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat" } do
 					= material_icon.md_24.search
 				- if is_index?
-					= link_to destroy_multiple_users_path.concat("?multiple_ids={{check}}&page=#{params[:page]}&search=#{@query}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
-						= material_icon.md_24.delete
+					- if can? :destroy_multiple, controller_name.classify.constantize
+						= link_to destroy_multiple_users_path.concat("?multiple_ids={{check}}&page=#{params[:page]}&search=#{@query}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
+							= material_icon.md_24.delete
 
-					%a{class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@users.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo"}
-						%i.mi.md-24 {{iconCheck}}
+						= link_to "", class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@users.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo" do
+							%i.mi.md-24 {{iconCheck}}
 
 					= link_to users_path(params[:page], search: @query), class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
 						= material_icon.md_24.refresh

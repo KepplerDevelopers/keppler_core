@@ -29,7 +29,7 @@
 		tbody{
 			tr{
 				td.item-check{
-					left: 20px;
+					left: 5px;
 					[type="checkbox"] + label{
 						top: 4.9px;
 					}
@@ -38,12 +38,13 @@
 				  }
 				}
 				td{
+					padding-left: 20px;
 					position: relative;
 					font-weight: 300;
 					.btn-floating:hover{
 						box-shadow: none !important;
 					}
-					.show-row{
+					a.show-row{
 						position: absolute;
 					  left: 0px;
 					  top: 0px;
