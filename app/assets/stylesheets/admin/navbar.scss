@@ -45,9 +45,17 @@ nav{
 			position: relative;
 			left: 0px;
 			top: -5px;
-			@media #{$medium-and-down} {
-				top: -5px;
+			@media #{$small-and-down} {
+				top: -2px;
 				left: 10px;
+			}
+			@media #{$medium-and-up} {
+				top: -5px;
+				left: 0px;
+			}
+			@media #{$medium-and-down} {
+				top: -4px;
+				left: 15px;
 			}
 			i{
 			  -webkit-animation-duration: .7s;

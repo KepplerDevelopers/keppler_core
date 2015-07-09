@@ -10,6 +10,9 @@
 		margin-left: 0px;
 		top: 0px;
 	}
+	@media #{$medium-and-down} {
+    margin-left: 0px;
+  }
 	#search{
 		border: 0px;
 		border-bottom: 0px;
@@ -30,6 +33,16 @@
 			background-image: none;
 			padding: 0 5px 0 5px;
 		}
+	  @media #{$medium-and-up} {
+	   	width: 33%;
+			padding: 0 10px 0 40px;
+	  }
+	  @media #{$medium-and-down} {
+	   	width: 58%;
+			background-image: none;
+			padding: 0 5px 0 5px;
+	  }
+	  
 	}
 	#search:focus{
 		background-color: rgba(0, 0, 0, 0.25);
