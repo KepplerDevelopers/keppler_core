@@ -16,6 +16,8 @@ nav{
 	.nav-wrapper{
 		line-height: 30px;
 		.actions{
+			position: relative;
+			top: -4px;
 			@media #{$medium-and-down} {
 				position: relative;
 				right: -10px;
