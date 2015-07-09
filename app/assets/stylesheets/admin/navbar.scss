@@ -15,9 +15,26 @@ nav{
 	}
 	.nav-wrapper{
 		line-height: 30px;
+		.actions{
+			@media #{$medium-and-down} {
+				position: relative;
+				right: -10px;
+				top: 2px;
+				i{
+					line-height: 32px;
+					font-size: 20px !important;
+				}
+			}
+		}
 		i{
 			line-height: 38px;
 			height: 34px;
+		}
+		.btn-floating{
+			@media #{$medium-and-down} {
+				width: 30px;
+				height: 30px;
+			}
 		}
 		.btn-floating:hover{
 			box-shadow: none !important;
@@ -27,12 +44,16 @@ nav{
 			left: 0px;
 			top: -5px;
 			@media #{$medium-and-down} {
-				top: 0px;
+				top: -5px;
 				left: 10px;
 			}
 			i{
 			  -webkit-animation-duration: .7s;
 			  -webkit-animation-delay: 0s;
+			  @media #{$medium-and-down} {
+					 line-height: 33px;
+				}
+			 
 		  }
 		}
 		.title{

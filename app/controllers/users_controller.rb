@@ -6,8 +6,8 @@ class UsersController < ApplicationController
 
   def index
     items = User.searching(@query)
-    @users, @total = items.where.not(id: current_user.id).page(@current_page), items.count
-    redirect_to users_path if !@users.first_page? and @users.size.zero?
+    @objects, @total = items.where.not(id: current_user.id).page(@current_page), items.count
+    redirect_to users_path if !@objects.first_page? and @objects.size.zero?
   end
 
   def new

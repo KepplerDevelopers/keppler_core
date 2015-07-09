@@ -10,4 +10,8 @@ module ApplicationHelper
 	def is_index?
 		action_name.to_sym.eql?(:index)
 	end
+
+	def model
+		controller_name.classify.constantize
+	end
 end

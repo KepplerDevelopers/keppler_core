@@ -2,22 +2,23 @@
 	%nav{ "ng-style" => is_index? ? "{'max-width':'75%'}" : "{'min-width':'100%'}" }
 		.nav-wrapper			
 			%a.brand-logo.switch.animated{ "ng-click" => "sidebarSwitch()", class: "btn-floating waves-effect waves-light btn-flat switch-{{sidebar}}" }
-				%i.material-icons.md-24.animated menu
+				= material_icon.md_24.menu.css_class "animated"
 			%a.brand-logo.title.hide-on-small-only.hide-on-med-and-down
 				Keppler
+			= render 'layouts/admin/search'
 			.actions.right				
 				- if is_index?
-					= link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat" } do
+					= link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat hide-on-small-and-down", "ng-show" => "!inputSearch" } do
 						= material_icon.md_24.search
 
-					- if can? :destroy_multiple, controller_name.classify.constantize
-						= link_to destroy_multiple_users_path.concat("?multiple_ids={{check}}&page=#{params[:page]}&search=#{@query}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
+					- if can? :destroy_multiple, model
+						= link_to url_for(action: :destroy_multiple, controller: controller_name, page: @current_page, search: @query).concat("&multiple_ids={{check}}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
 							= material_icon.md_24.delete
+						- unless @objects.count.zero?
+							= link_to "", class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@objects.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo" do
+								%i.mi.md-24 {{iconCheck}}
 
-						= link_to "", class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@users.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo" do
-							%i.mi.md-24 {{iconCheck}}
-
-					= link_to users_path(params[:page], search: @query), class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
+					= link_to url_for(action: :index, controller: controller_name, page: @current_page, search: @query), class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped hide-on-small-and-down", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
 						= material_icon.md_24.refresh
 				= link_to "#", class: "btn-floating waves-effect waves-light btn-flat dropdown-button", "data-activates" => 'more-options' do
 					= material_icon.md_24.more_vert

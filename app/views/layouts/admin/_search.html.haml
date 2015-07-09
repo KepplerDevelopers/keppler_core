@@ -1,5 +1,8 @@
 - if is_index?
-	.top-search-wrap.center-align{ class: "top-search-{{inputSearch}}", "ng-init" => "inputSearch=#{!@query.blank?}" }
-		= form_tag url_for(action: :index, controller: controller_name), method: :get, class: "form-search" do
-			= text_field_tag :search, @query, id: "search", autofocus: true
-			%i.close-top-search{ "ng-click" => "searchSiwtch()"} ×
+	= form_tag url_for(action: :index, controller: controller_name), method: :get, class: "form-search form-search-{{inputSearch}}", "ng-init" => "inputSearch=#{!@query.blank?}" do
+		= text_field_tag :search, @query, id: "search", autofocus: true, placeholder: "Buscar"
+		- if @query
+			= link_to url_for(action: :index, controller: controller_name), class: "hide-on-small-and-down" do
+				%i.close-top-search.hide-on-small-and-down ×
+		- else
+			%i.close-top-search.hide-on-small-and-down{ "ng-click" => "searchSiwtch()"} × 

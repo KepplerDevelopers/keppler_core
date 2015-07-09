@@ -2,17 +2,17 @@
 .listing.col.l9.m12.s12
 	= link_to new_user_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
 		= material_icon.md_24.add
-	= entries(@total, @users)
+	= entries(@total, @objects)
 	%table.bordered
 		%tbody
-			- @users.each do |user|
+			- @objects.each do |user|
 				= render 'listing', user: user
-			- if @users.count.zero?
+			- if @objects.count.zero?
 				%tr
 					%td{colspan: "4"}
 						%center
 							No se han encontrado usuarios.
-	= paginate @users, window: 2
+	= paginate @objects, window: 2
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
 	= render "description"
