@@ -12,7 +12,7 @@
 						= material_icon.md_24.search
 
 					- if can? :destroy_multiple, model #helper
-						= link_to url_for(action: :destroy_multiple, controller: controller_name, page: @current_page, search: @query).concat("&multiple_ids={{check}}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
+						= link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids={{check}}#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar"  do
 							= material_icon.md_24.delete
 						- unless @objects.count.zero?
 							= link_to "", class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@objects.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo" do

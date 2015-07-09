@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    items = User.searching(@query)
-    @objects, @total = items.where.not(id: current_user.id).page(@current_page), items.count
+    users = User.searching(@query)
+    @objects, @total = users.where.not(id: current_user.id).page(@current_page), users.where.not(id: current_user.id).count
     redirect_to users_path if !@objects.first_page? and @objects.size.zero?
   end
 
