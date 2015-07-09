@@ -9,7 +9,7 @@ app.service 'MainService', [
 					scope.btnDelete = true
 					scope.iconCheck = "indeterminate_check_box"
 					scope.tooltipCheck = "Deseleccionar"
-					if scope.check.length == users.length
+					if scope.check.length == users
 						scope.iconCheck = "check_box"
 						scope.tooltipCheck = "Deseleccionar todo"
 				else

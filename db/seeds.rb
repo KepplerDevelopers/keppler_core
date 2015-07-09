@@ -13,5 +13,7 @@
 	puts "#{name} creado"
 end
 
-User.create name: "Admin", email: "admin@inyxtech.com", password: "12345678", password_confirmation: "12345678", role_ids: "1"
-puts "admin@inyxtech.com ha sido creado"
+2.times do |i|
+	User.create name: "Admin#{i}", email: "admin#{i}@inyxtech.com", password: "12345678", password_confirmation: "12345678", role_ids: "1"
+	puts "admin#{i}@inyxtech.com ha sido creado"
+end
