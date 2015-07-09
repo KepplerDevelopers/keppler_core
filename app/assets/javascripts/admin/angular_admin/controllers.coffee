@@ -8,12 +8,12 @@ app.controller 'MainCtrl', [
 		scope.iconCheck = "check_box_outline_blank"
 		scope.tooltipCheck = "Seleccionar todo"
 
-		scope.checkChanged = ->
-			MainService.addRemoveButtonInNavbar(scope)
+		scope.selectByCheck = (usersCount)->
+			MainService.selectByCheckService(scope, usersCount)
 			return
 
-		scope.select = (users, button)->
-			MainService.selectOptions(scope, users, button)
+		scope.selectAll = (users)->
+			MainService.selectAllService(scope, users)
 			return
 
 		scope.searchSiwtch = ->

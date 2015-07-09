@@ -16,7 +16,7 @@
 							= material_icon.md_24.delete
 
 						- unless @objects.count.zero?
-							= link_to "", class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "select(#{@objects.to_json}, 'btn')", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo" do
+							= link_to "", class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "selectAll(#{@objects.to_json})", "data-position" => "bottom", "data-tooltip" => "Seleccionar todo" do
 								%i.mi.md-24 {{iconCheck}}
 
 					= link_to url_for(action: :index, controller: controller_name, page: @current_page, search: @query), class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped hide-on-small-and-down", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => "Recargar"  do
