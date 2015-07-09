@@ -7,7 +7,7 @@
 		%tbody
 			- @objects.each do |user|
 				= render 'listing', user: user
-			- if @objects.count.zero?
+			- if @objects.size.zero?
 				%tr
 					%td{colspan: "4"}
 						%center
