@@ -81,7 +81,7 @@ end
 #gem 'inyx_blog_rails', path: '../inyx_blog_rails'
 
 #---- contact_us -----
-#gem 'contact_us', path: '../inyx_contact_us_rails'
+#gem 'inyx_contact_us_rails', path: '../inyx_contact_us_rails'
 
 #---- inyx_catalogue_rails ----
 #gem 'inyx_catalog_rails', path: '../inyx_catalog_rails'

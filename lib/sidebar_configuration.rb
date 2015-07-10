@@ -1,7 +1,7 @@
-module EngineRails
+module SidebarConfiguration
 
 	class << self
-    mattr_accessor :routes_sitebar, :routes_dropdown, :list_engines
+    mattr_accessor :routes_sitebar, :keppler_engines
     # add default values of more config vars here
   	end
 
