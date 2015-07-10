@@ -1,10 +1,19 @@
-= simple_form_for(@<%= singular_table_name %>) do |f|
-  = f.error_notification
+.wrapper
+	.wrapper-body.container
+		.actions
+			= link_to <%= plural_table_name %>_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Volver" do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs
+			.card
+				= simple_form_for @<%= singular_table_name %> do |f|
+					.row
+					<%- attributes.each do |attribute| -%>
+					<%- if attribute.type.to_s == "text" -%>
+						= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
+					<%- else -%>
+						= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+					<%- end -%>
+					<%- end -%>
 
-  .form-inputs
-  <%- attributes.each do |attribute| -%>
-    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
-  <%- end -%>
-
-  .form-actions
-    = f.button :submit
+					.form-actions.right
+						= f.button :submit, "Guardar", class: "btn"

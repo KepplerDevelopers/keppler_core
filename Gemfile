@@ -23,7 +23,6 @@ gem 'jquery-turbolinks'
 
 #database
 gem 'mysql2'
-
 #websocket
 #gem 'faye'
 #gem 'thin'

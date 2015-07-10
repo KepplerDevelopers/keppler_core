@@ -1,0 +1,18 @@
+%tr{ id: "row-#{<%= singular_table_name %>.id}" }
+	- if can? :destroy_multiple, <%= singular_table_name.capitalize %>
+		%td.item-check{style:"width: 10%"}
+			= link_to "", <%= singular_table_name %>_path(<%= singular_table_name %>), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{<%= singular_table_name %>.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{<%= singular_table_name %>.id}" }
+
+	<%- attributes.each do |attribute| -%>
+	<%- unless attribute.type.to_s == "text" -%>
+		%td{style:"width: 30%"}
+			= link_to "", <%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: "show-row"
+			%span
+				= <%= singular_table_name %>.<%= attribute.name %>
+	<%- end -%>
+	<%- end -%>								
+	%td{style:"width: 5%"}		
+		= link_to <%= singular_table_name %>_path(<%= singular_table_name %>), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

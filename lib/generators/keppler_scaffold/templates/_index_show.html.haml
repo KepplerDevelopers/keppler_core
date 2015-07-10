@@ -1,0 +1,22 @@
+.listing-show-header
+	.actions
+		- if can? :update, User
+			= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Editar" do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light") 
+		= t("model.singular.#{controller_name.singularize}")
+.listing-show-body.card
+	%ul.list
+		%li.list-row
+			.display-label= t("model.#{controller_name.singularize}.attributes.id")
+			.display-value= @<%= singular_table_name %>.id
+	<%- attributes.each do |attribute| -%>
+		%li.list-row
+			.display-label= t("model.#{controller_name.singularize}.attributes.<%= attribute.name %>")
+			.display-value= @<%= singular_table_name %>.<%= attribute.name %>
+	<%- end -%>	
+
+:javascript
+	$(".modal-trigger").leanModal();
+	$('.tooltipped').tooltip({delay: 1});

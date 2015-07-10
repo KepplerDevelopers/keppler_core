@@ -1,0 +1,22 @@
+= title("<%= plural_table_name.capitalize %> - Listado")
+.listing.col.l9.m12.s12
+	= link_to new_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
+		= material_icon.md_24.add
+	= entries(@total, @objects)
+	%table.bordered
+		%tbody
+			- @objects.each do |<%= singular_table_name %>|
+				= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
+			- if @objects.size.zero?
+				%tr
+					%td{colspan: "4"}
+						%center
+							No se han encontrado <%= plural_table_name %>.
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+
+= link_to new_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large teal waves-effect waves-light red" do
+	= material_icon.md_24.add.css_class("md-light")

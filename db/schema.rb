@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812210925) do
+ActiveRecord::Schema.define(version: 20150710202356) do
+
+  create_table "cars", force: :cascade do |t|
+    t.string   "company",     limit: 255
+    t.string   "model",       limit: 255
+    t.string   "year",        limit: 255
+    t.string   "color",       limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.string   "firtname",    limit: 255
+    t.string   "lastname",    limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -51,5 +69,12 @@ ActiveRecord::Schema.define(version: 20140812210925) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "workers", force: :cascade do |t|
+    t.string   "firtsname",  limit: 255
+    t.string   "lastname",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
 end
