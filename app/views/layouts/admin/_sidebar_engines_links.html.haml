@@ -13,4 +13,4 @@
 		%li
 			= link_to engine::ROUTE_SIDEBAR.fetch(:route), class: "collapsible-header #{'current' if controller_name == engine::ROUTE_SIDEBAR.fetch(:controller) }" do
 				= material_icon.md_18.send(engine::ROUTE_SIDEBAR.fetch :icon)
-				= engine::ROUTE_SIDEBAR.fetch :controller
+				= engine::ROUTE_SIDEBAR.fetch :controller #agreat title al json
