@@ -297,7 +297,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    table_print (1.5.3)
+    table_print (1.5.4)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
