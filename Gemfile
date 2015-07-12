@@ -88,7 +88,7 @@ end
 #gem 'inyx_catalog_rails', path: '../inyx_catalog_rails'
 
 #---- keppler_ga_dashboard ----
-gem 'keppler_ga_dashboard', path: '../keppler_ga_dashboard'
+gem 'keppler_ga_dashboard', git: 'https://github.com/inyxtech/keppler_ga_dashboard.git'
 gem 'google-api-client'
 
 
