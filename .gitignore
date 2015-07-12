@@ -31,6 +31,7 @@ db/*.sqlite3
 /app/assets/stylesheets/guard_stylesheets/*
 /config/application.yml
 /config/secrets.yml
+/config/gaAuth
 /coverage.data
 /coverage/
 /db/*.javadb/

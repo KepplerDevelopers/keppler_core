@@ -3,9 +3,7 @@ class AdminController < ApplicationController
 	layout 'admin/application'
 
 	def index
-		redirect_to dashboard_admin_index_path
+		redirect_to '/admin/dashboard'
 	end
-
-  def dashboard
-  end
+	
 end

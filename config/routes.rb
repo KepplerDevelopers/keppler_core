@@ -4,9 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
-  resources :admin, only: :index do
-  	get 'dashboard', action: :dashboard, on: :collection, as: :dashboard
-  end
+  resources :admin, only: :index
 
   get 'admin/users/refresh',  to: 'users#refresh', as: :user_refresh
   
@@ -24,5 +22,9 @@ Rails.application.routes.draw do
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
+
+
+  #dashboard
+  mount KepplerGaDashboard::Engine, :at => '/', as: 'dashboard'
 
 end

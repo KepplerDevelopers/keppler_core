@@ -23,6 +23,7 @@ gem 'jquery-turbolinks'
 
 #database
 gem 'mysql2'
+
 #websocket
 #gem 'faye'
 #gem 'thin'
@@ -86,5 +87,8 @@ end
 #---- inyx_catalogue_rails ----
 #gem 'inyx_catalog_rails', path: '../inyx_catalog_rails'
 
+#---- keppler_ga_dashboard ----
+gem 'keppler_ga_dashboard', path: '../keppler_ga_dashboard'
+gem 'google-api-client'
 
 

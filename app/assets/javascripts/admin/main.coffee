@@ -12,12 +12,13 @@ angular.module('keppler', [
 # iniciar ng-app mediante turbolinks
 $(document).on 'ready page:load', () ->		
 		angular.bootstrap document.body, [ 'keppler' ] #añadir ng-app al body
-		$('#waiting').remove()
+		$("#waiting").hide()
+		$('body').css('overflow-y', 'auto')
 		Waves.displayEffect() # agregar el efecto de olas de los botones
 		#$('.dropdown-button').dropdown() #activar los dropdowns
 		#$('.tooltipped').tooltip({delay: 1}); #activar tooltips
 		#$('.collapsible').collapsible({accordion : false}); #activar collapse
-		$('select').material_select(); #activar select material
+		$('select').material_select() #activar select material
 			
 		# inputs errors
 		$('.select-wrapper').click ->
@@ -42,6 +43,5 @@ $(document).on 'ready page:load', () ->
 			speed: 500
 
 	return
-
 
 
