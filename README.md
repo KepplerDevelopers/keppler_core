@@ -67,3 +67,12 @@ Aqui algunos ejemplos para la creacion de inputs:
 Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo con tan solo aplicar la tarea.
 
 `rails g keppler_scaffold <module_name> <attributes>`
+
+### Plugins (Módulos)
+
+La plataforma permite la adaptación de módulos con facil instalación, algunos de los mmódulos desarrollados son:
+
+* [Keppler google analytics dashboar](https://github.com/inyxtech/keppler_ga_dashboard) **ya viene integrado**
+* [Keppler blog](https://github.com/inyxtech/inyx_blog_rails)
+* [Keppler cátalago](https://github.com/inyxtech/inyx_catalog_rails)
+
