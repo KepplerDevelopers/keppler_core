@@ -16,7 +16,7 @@ La plataforma cuenta con una base de gemas ya integradas, de tal forma que acele
 * Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
 * Integración con framework javascript [AngularJs](https://angularjs.org/)
 
-# Instalación
+### Instalación
 
 ```
 git clone https://github.com/inyxtech/Keppler-CMS.git
@@ -63,6 +63,8 @@ Aqui algunos ejemplos para la creacion de inputs:
 **Nota:** *Puede revisar la docmentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
 
 
-# Keppler Scaffold
+### Keppler scaffolds
 
-rails g keppler_scaffold <module_name> <attributes>
+Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo con tan solo aplicar la tarea.
+
+`rails g keppler_scaffold <module_name> <attributes>`
