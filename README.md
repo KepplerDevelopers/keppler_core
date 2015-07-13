@@ -45,7 +45,7 @@ Aqui algunos ejemplos para la creacion de inputs:
 = f.input :date, input_html: {class: "datepicker"}
 ```
 
-**Nota:** *Puede revisar la docmentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.
+**Nota:** *Puede revisar la docmentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
 
 # Keppler Scaffold
 
