@@ -30,7 +30,10 @@ db/*.sqlite3
 /app/assets/javascripts/guard_javascript/*
 /app/assets/stylesheets/guard_stylesheets/*
 /config/application.yml
-/config/secrets.yml/coverage.data
+/config/secrets.yml
+/config/secrets.yml.example
+/config/gaAuth
+/coverage.data
 /coverage/
 /db/*.javadb/
 /db/*.sqlite3
