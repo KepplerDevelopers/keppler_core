@@ -4,4 +4,5 @@
 	%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Inyxmater Rails'}"}
 	= stylesheet_link_tag 'frontend/application', media: 'all', 'data-turbolinks-track' => true
 	= javascript_include_tag 'frontend/application', 'data-turbolinks-track' => true
+	= favicon_link_tag "admin/favicon.png"
 	= csrf_meta_tags

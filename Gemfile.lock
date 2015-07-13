@@ -1,5 +1,6 @@
-PATH
-  remote: ../keppler_ga_dashboard
+GIT
+  remote: https://github.com/inyxtech/keppler_ga_dashboard.git
+  revision: b452b2f88f941258a5cdc4b58913c791a5257065
   specs:
     keppler_ga_dashboard (0.0.1)
       rails (~> 4.2.0)
@@ -181,9 +182,6 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kaminari-bootstrap (3.0.1)
-      kaminari (>= 0.13.0)
-      rails
     kaminari-i18n (0.3.2)
       kaminari
       rails
@@ -344,7 +342,6 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
-  kaminari-bootstrap (~> 3.0.1)
   kaminari-i18n
   keppler_ga_dashboard!
   material_icons
