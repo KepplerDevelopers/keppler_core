@@ -75,7 +75,7 @@ Luego crea la tablar en base de datos.
 Coloca la ruta en el admin desde el archivo `config/routes.rb`.
 
 ```ruby
-	scope :admin do   
+  scope :admin do   
   	resources :<module_name> do 
       get '(page/:page)', action: :index, on: :collection, as: ''
       delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple
@@ -86,14 +86,14 @@ Coloca la ruta en el admin desde el archivo `config/routes.rb`.
 Asignale permisos al modulo en el archivo `app/models/ability.rb`.
 
 ```ruby
-	can :manage, <model_name>
+  can :manage, <model_name>
 ```
 Para configurar el buscador dentro del modulo solo se debe asignar los atributos en los que se tomaran en cuenta a la hora de realizar la busqueda en el modelo.
 
 ```ruby
-def self.query(query)
-  { query: { multi_match:  { query: query, fields: [<attributes>] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
-end 
+ def self.query(query)
+   { query: { multi_match:  { query: query, fields: [<attributes>] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
+ end 
 ```
 
 ### Plugins (Módulos)
