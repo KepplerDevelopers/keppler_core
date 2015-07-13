@@ -1,58 +1,27 @@
-.containe-1{style:"background:#FFDF5E;padding-top:100px;"}
-	%img{src:"assets/admin/inyxtech.png"} 
-	%center.hidden-xs
-		%h4 Sistema de Gestión y Construcción de Aplicaciones Web.
-	.visible-xs
-		%br
-		%br
-	.container-code.hidden-xs{style:"background:#363636;color:#ffffff;width:60%;font-size:20px;padding:20px;border-top:20px solid #c0c0c0;margin:4em auto;"}
-		%span{style: "color:#E63D3D"} class 
-		FrontendController 
-		%span{style: "color:#BDE63D"} < ApplicationController
-		%br
-		&nbsp&nbsp 
-		%span{style: "color:#E63D3D"} def 
-		%span{style: "color:#BDE63D"} index
-		%br
-		&nbsp&nbsp&nbsp&nbsp 
-		%span{style: "color:#3291B6"} Location.
-		add(request.remote_ip)
-		%br
-		&nbsp&nbsp 
-		%span{style: "color:#E63D3D"}end
-		%br
-		%span{style: "color:#E63D3D"}end
-.container
-	%br
-	%br
-	.row
-		.col-lg-4
-			.col-lg-4
+.front
+	.front-container
+		.front-logo-horizontal
+			.front-logo-vertical
+				= image_tag "frontend/keppler-front.png", class: "front-logo img-responsive"
+				.row.front-social
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://twitter.com/Inyxtech", target:"_blank" do
+								= icon 'twitter'
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://www.facebook.com/Inyxtech", target:"_blank" do
+								= icon 'facebook'
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://instagram.com/inyxtech/", target:"_blank" do
+								= icon 'instagram'
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://github.com/inyxtech/Keppler-CMS", target:"_blank" do
+								= icon 'github'
+			.front-footer.navbar-fixed-bottom
 				%center
-					%img{src:"assets/frontend/ruby.png", width:"150px"} 
-			.col-lg-8{align:"justify"}
-				%h3
-					%b Ruby on Rails
-				%p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit natus aperiam iure dolorem repellendus, nisi iste porro sed error voluptatibus ab necessitatibus similique nostrum eligendi, ducimus voluptates. distinctio, iste.
-		.col-lg-4
-			.col-lg-4
-				%center
-					%img{src:"assets/frontend/angularjs.png", width:"150px"} 
-			.col-lg-8{align:"justify"}
-				%h3
-					%b Angular JS
-				%p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit natus aperiam iure dolorem repellendus, nisi iste porro sed error voluptatibus ab necessitatibus similique nostrum eligendi, ducimus voluptates. 
-		.col-lg-4
-			.col-lg-4
-				%center
-					%img{src:"assets/frontend/bootstrap.png", width:"150px"} 
-			.col-lg-8{align:"justify"}
-				%h3
-					%b Bootstrap
-				%p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit natus aperiam iure dolorem repellendus, nisi iste porro sed error voluptatibus ab necessitatibus similique nostrum eligendi, ducimus voluptates.
-	%br
-	%br
-.footer-1{style:"padding:20px;margin:0px;"}
-	%center
-		Todos los derechos reservados. Desarollado por 
-		%b{style:"color:#FFC107"} Inyxtech
+					%span Powered by
+					= link_to "https://inyxtech.com", target:"_blank" do
+						= image_tag "frontend/inyxtech-front.png"

@@ -35,7 +35,7 @@ gem 'simple_form'
 
 #desgin
 gem 'bootstrap-sass'
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 4.3.0'
 gem 'material_icons'
 gem 'materialize-sass'
 

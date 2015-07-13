@@ -110,8 +110,8 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
-    font-awesome-rails (4.3.0.0)
-      railties (>= 3.2, < 5.0)
+    font-awesome-sass (4.3.2.1)
+      sass (~> 3.2)
     formatador (0.2.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
@@ -332,7 +332,7 @@ DEPENDENCIES
   devise-i18n
   elasticsearch-model
   elasticsearch-rails
-  font-awesome-rails
+  font-awesome-sass (~> 4.3.0)
   google-api-client
   guard
   guard-coffeescript
