@@ -51,7 +51,6 @@ gem 'elasticsearch-rails'
 
 #pagination
 gem 'kaminari-i18n'
-gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'kaminari'
 
 #development
