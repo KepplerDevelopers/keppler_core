@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 html, body, main{
 	height: 100%;
 }
@@ -19,12 +20,12 @@ html, body, main{
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				@media(max-width:768px) and (orientation : portrait) {
+				@media #{$phone} {
 					.front-logo{
 						width: 300px;
 					}
 				}
-				@media(max-width:768px) and (orientation : landscape) {
+				@media #{$phone-landscape} {
 					.front-logo{
 						width: 300px;
 					}

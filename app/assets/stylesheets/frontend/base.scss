@@ -1,0 +1,13 @@
+//Responsive design
+$desktop-large: "(min-width:1600px)";
+$desktop: "(min-width:992px)";
+$tablet: "(min-width:768px)";
+$tablet-landscape: "(min-width:768px) and (orientation : landscape)";
+$phone: "(max-width: 767px) and (orientation : portrait)";
+$phone-landscape: "(max-width: 767px) and (orientation : landscape)";
+
+//fuentes
+$font-type: 'Roboto', sans-serif;
+
+//colores
+$red-color: #F44336;
