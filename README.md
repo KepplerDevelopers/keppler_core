@@ -22,7 +22,7 @@ git clone https://github.com/inyxtech/Keppler-CMS.git
 bundle install
 ```
 
-Luego debe configurar el archivo `config/secrets.yml` [ver archivo](https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example) de tal forma que puede añadir los parametros de configuración de su base de datos y poder realizar migraciones.
+Luego debe configurar el archivo `config/secrets.yml` [ver archivo](https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example) de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
 
 ```
 rake db:create
