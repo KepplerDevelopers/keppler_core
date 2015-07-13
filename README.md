@@ -22,7 +22,7 @@ git clone https://github.com/inyxtech/Keppler-CMS.git
 bundle install
 ```
 
-Luego debe configurar el archivo `config/secrets.yml` [ver archivo](https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example) de tal forma que puede añadir los parametros de configuración de su base de datos y poder realizar migraciones.
+Luego debe configurar el archivo `config/secrets.yml` [ver archivo](https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example) de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
 
 ```
 rake db:create
@@ -59,7 +59,7 @@ Aqui algunos ejemplos para la creacion de inputs:
 = f.input :date, input_html: {class: "datepicker"}
 ```
 
-**Nota:** *Puede revisar la docmentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
+**Nota:** *Puede revisar la documentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
 
 
 ### Keppler scaffolds
@@ -72,7 +72,8 @@ Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configu
 
 La plataforma permite la adaptación de módulos con facil instalación, algunos de los mmódulos desarrollados son:
 
-* [Keppler google analytics dashboar](https://github.com/inyxtech/keppler_ga_dashboard) - *ya viene integrado*
+* [Keppler google analytics dashboard](https://github.com/inyxtech/keppler-ga-dashboard) - *ya viene integrado*
 * [Keppler blog](https://github.com/inyxtech/inyx_blog_rails)
-* [Keppler cátalago](https://github.com/inyxtech/inyx_catalog_rails)
+* [Keppler catalogs](https://github.com/inyxtech/inyx_catalog_rails)
+* [Keppler contact](https://github.com/inyxtech/inyx_contact_us_rails)
 
