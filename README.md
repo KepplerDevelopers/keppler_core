@@ -16,6 +16,21 @@ La plataforma cuenta con una base de gemas ya integradas, de tal forma que acele
 * Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
 * Integración con framework javascript [AngularJs](https://angularjs.org/)
 
+### Instalación
+
+```
+git clone https://github.com/inyxtech/Keppler-CMS.git
+bundle install
+```
+
+Luego debe configurar el archivo `config/secrets.yml` [ver archivo](https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example) de tal forma que puede añadir los parametros de configuración de su base de datos y poder realizar migraciones.
+
+```
+rake db:create
+rake db:migrate
+rake db:seed
+```
+
 ### SimpleForm con Materialize
 
 Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en `config/initializers/simple_form_materialize.rb`
@@ -47,6 +62,9 @@ Aqui algunos ejemplos para la creacion de inputs:
 
 **Nota:** *Puede revisar la docmentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
 
-# Keppler Scaffold
 
-rails g keppler_scaffold <module_name> <attributes>
+### Keppler scaffolds
+
+Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo con tan solo aplicar la tarea.
+
+`rails g keppler_scaffold <module_name> <attributes>`
