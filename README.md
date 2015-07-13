@@ -59,7 +59,7 @@ Aqui algunos ejemplos para la creacion de inputs:
 = f.input :date, input_html: {class: "datepicker"}
 ```
 
-**Nota:** *Puede revisar la docmentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
+**Nota:** *Puede revisar la documentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
 
 
 ### Keppler scaffolds
@@ -74,5 +74,5 @@ La plataforma permite la adaptación de módulos con facil instalación, algunos
 
 * [Keppler google analytics dashboar](https://github.com/inyxtech/keppler_ga_dashboard) - *ya viene integrado*
 * [Keppler blog](https://github.com/inyxtech/inyx_blog_rails)
-* [Keppler cátalago](https://github.com/inyxtech/inyx_catalog_rails)
+* [Keppler catalogs](https://github.com/inyxtech/inyx_catalog_rails)
 
