@@ -6,8 +6,10 @@ La plataforma cuenta con una base de gemas ya integradas, de tal forma que acele
 
 ### Características
 
-*Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
-*Integración para autorizaciones con [CanCan](https://github.com/CanCanCommunity/cancancan)
+* Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
+* Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
+* Integración para autorizaciones con [CanCan](https://github.com/CanCanCommunity/cancancan)
+* 
 
 CMS 
 
