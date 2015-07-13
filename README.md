@@ -72,7 +72,7 @@ Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configu
 
 La plataforma permite la adaptación de módulos con facil instalación, algunos de los mmódulos desarrollados son:
 
-* [Keppler google analytics dashboard](https://github.com/inyxtech/keppler_ga_dashboard) - *ya viene integrado*
+* [Keppler google analytics dashboard](https://github.com/inyxtech/keppler-ga-dashboard) - *ya viene integrado*
 * [Keppler blog](https://github.com/inyxtech/inyx_blog_rails)
 * [Keppler catalogs](https://github.com/inyxtech/inyx_catalog_rails)
 * [Keppler contact](https://github.com/inyxtech/inyx_contact_us_rails)
