@@ -98,7 +98,7 @@ end
 
 ### Plugins (Módulos)
 
-La plataforma permite la adaptación de módulos con facil instalación, algunos de los mmódulos desarrollados son:
+La plataforma permite la adaptación de módulos con facil instalación, algunos de los módulos desarrollados son:
 
 * [Keppler google analytics dashboard](https://github.com/inyxtech/keppler-ga-dashboard) - *ya viene integrado*
 * [Keppler blog](https://github.com/inyxtech/inyx_blog_rails)
