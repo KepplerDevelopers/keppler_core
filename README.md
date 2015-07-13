@@ -6,12 +6,15 @@ La plataforma cuenta con una base de gemas ya integradas, de tal forma que acele
 
 ### Características
 
+* Base de datos por defecto MySQL
 * Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
 * Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
 * Integración para autorizaciones con [CanCanCan](https://github.com/CanCanCommunity/cancancan)
+* Inegración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
 * Integración para helpers de formularios con [SimpleForm](https://github.com/RolifyCommunity/rolify)
 * Integración para búsquedas full-text con [ElasticSearch](https://github.com/elastic/elasticsearch-rails)
 * Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
+* Integración con framework javascript [AngularJs](https://angularjs.org/)
 
 # inputs examples
 
