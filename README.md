@@ -64,11 +64,11 @@ Aqui algunos ejemplos para la creacion de inputs:
 
 ### Keppler scaffolds
 
-Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo con tan solo aplicar la tarea. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
+Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
 
 `rails g keppler_scaffold <module_name> <attributes>`
 
-Luego crea la tablar en base de datos.
+Luego crea la tabla en base de datos.
 
 `rake db:migrate`
 
