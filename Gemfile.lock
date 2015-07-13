@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/inyxtech/keppler_ga_dashboard.git
-  revision: 90fa35b733f42a068b1ad19303eaa768aca49994
+  revision: b452b2f88f941258a5cdc4b58913c791a5257065
   specs:
     keppler_ga_dashboard (0.0.1)
       rails (~> 4.2.0)
