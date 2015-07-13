@@ -1,8 +1,7 @@
 ### KEPPLER CMS
 
-KEPPLER CMS es una plataforma de aplicaciones de código abierto de vanguardia basado en la plataforma Ruby on Rails.
+KEPPLER CMS es una entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
 
-La plataforma cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones.
 
 ### Características
 
