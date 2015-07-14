@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redefine_ids(ids)
-    ids.delete("[]").split(",").select { |id| id if controller_name.classify.constantize.exists? id }
+    ids.delete("[]").split(",").select { |id| id if controller_path.classify.constantize.exists? id }
   end
 
   protected
