@@ -1,16 +1,3 @@
 - SidebarConfiguration.keppler_engines.each do |engine|
-	- if engine.constants.include? :ROUTES_TREE_SIDEBAR
-		%li
-			.collapsable.collapsible-header
-				= material_icon.md_18.send(engine::ROUTES_TREE_SIDEBAR.fetch :icon)
-				= engine::ROUTES_TREE_SIDEBAR.fetch(:title).titleize
-			.collapsible-body
-				%ul.pageslide-sub-menu
-					- engine::ROUTES_TREE_SIDEBAR.fetch(:routes).each do |controller, route|
-						%li
-							= link_to controller, route
-	- else
-		%li
-			= link_to engine::ROUTE_SIDEBAR.fetch(:route), class: "collapsible-header #{'current' if controller_name == engine::ROUTE_SIDEBAR.fetch(:controller) }", engine::ROUTE_SIDEBAR.fetch(:controller).eql?("dashboard") ? "data-no-turbolink" : "data-turbolink" => true do
-				= material_icon.md_18.send(engine::ROUTE_SIDEBAR.fetch :icon)
-				= engine::ROUTE_SIDEBAR.fetch(:title).titleize
+	= render "layouts/#{engine.name.underscore}/links"
+
