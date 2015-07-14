@@ -8,7 +8,7 @@ class Ability
       # - user authorize -
       can [:delete, :show, :edit, :update, :create, :index, :destroy_multiple], User
       can :destroy, User do |u| !u.eql?(user) end
-      can :manage, KepplerContactUs::Message
+      
     elsif user.has_role? :client
 
       # - user authorize -
