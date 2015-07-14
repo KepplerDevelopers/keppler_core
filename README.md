@@ -40,6 +40,9 @@ Aqui algunos ejemplos para la creacion de inputs:
 #inputs de tipo text
 = f.input :name
 
+#inputs de tipo boolean
+= f.input :public, as: :checkbox_material
+
 #inputs de tipo textarea
 = f.input :description, input_html: { class: "materialize-textarea" }
 
