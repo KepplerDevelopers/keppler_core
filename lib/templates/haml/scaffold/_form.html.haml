@@ -10,6 +10,10 @@
 					<%- attributes.each do |attribute| -%>
 					<%- if attribute.type.to_s == "text" -%>
 						= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
+					<%- elsif attribute.type.to_s == "date" -%>
+						= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
+					<%- elsif attribute.type.to_s == "boolean" -%>
+						= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :checkbox_material
 					<%- else -%>
 						= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
 					<%- end -%>
