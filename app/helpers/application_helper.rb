@@ -12,6 +12,6 @@ module ApplicationHelper
 	end
 
 	def model
-		controller_name.classify.constantize
+		controller.controller_path.classify.constantize
 	end
 end
