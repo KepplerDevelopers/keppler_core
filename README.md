@@ -1,6 +1,6 @@
-### KEPPLER CMS
+### KEPPLER ADMIN
 
-KEPPLER CMS es una entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
+KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
 
 
 ### Características
@@ -39,6 +39,9 @@ Aqui algunos ejemplos para la creacion de inputs:
 ```ruby
 #inputs de tipo text
 = f.input :name
+
+#inputs de tipo boolean
+= f.input :public, as: :checkbox_material
 
 #inputs de tipo textarea
 = f.input :description, input_html: { class: "materialize-textarea" }
