@@ -19,7 +19,12 @@ $(document).on 'ready page:load', () ->
 		#$('.tooltipped').tooltip({delay: 1}); #activar tooltips
 		#$('.collapsible').collapsible({accordion : false}); #activar collapse
 		$('select').material_select() #activar select material
-			
+		#activar datepicker material
+		$('.datepicker').pickadate({
+			selectMonths: true,
+			selectYears: 15
+		});
+
 		# inputs errors
 		$('.select-wrapper').click ->
 			$(this).parent().removeClass 'error'
