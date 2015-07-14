@@ -1,9 +1,17 @@
 GIT
   remote: https://github.com/inyxtech/keppler_ga_dashboard.git
-  revision: b452b2f88f941258a5cdc4b58913c791a5257065
+  revision: 32666280f0b770d66fab7c27360210742b2846ed
   specs:
     keppler_ga_dashboard (0.0.1)
       rails (~> 4.2.0)
+
+PATH
+  remote: ../keppler_contact_us
+  specs:
+    keppler_contact_us (0.0.1)
+      haml_rails
+      rails (~> 4.2.0)
+      simple_form
 
 GEM
   remote: https://rubygems.org/
@@ -159,6 +167,7 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    haml_rails (0.1.0)
     hashie (3.4.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
@@ -343,6 +352,7 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari
   kaminari-i18n
+  keppler_contact_us!
   keppler_ga_dashboard!
   material_icons
   materialize-sass

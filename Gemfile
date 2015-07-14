@@ -84,7 +84,7 @@ end
 #gem 'inyx_contact_us_rails', path: '../inyx_contact_us_rails'
 
 #---- inyx_catalogue_rails ----
-#gem 'inyx_catalog_rails', path: '../inyx_catalog_rails'
+gem 'keppler_contact_us', path: '../keppler_contact_us'
 
 #---- keppler_ga_dashboard ----
 gem 'keppler_ga_dashboard', git: 'https://github.com/inyxtech/keppler_ga_dashboard.git'

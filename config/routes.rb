@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   #dashboard
   mount KepplerGaDashboard::Engine, :at => '/', as: 'dashboard'
 
+  #Contact Us
+  mount KepplerContactUs::Engine, :at => '/', as: 'contact_us'
+
 end

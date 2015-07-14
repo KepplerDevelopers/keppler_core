@@ -11,32 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713154216) do
+ActiveRecord::Schema.define(version: 20150714180651) do
 
-  create_table "cars", force: :cascade do |t|
-    t.string   "company",     limit: 255
-    t.string   "model",       limit: 255
-    t.string   "year",        limit: 255
-    t.string   "color",       limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  create_table "friends", force: :cascade do |t|
-    t.string   "firtname",    limit: 255
-    t.string   "lastname",    limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  create_table "phones", force: :cascade do |t|
-    t.string   "company",    limit: 255
-    t.string   "model",      limit: 255
-    t.string   "year",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "keppler_contact_us_messages", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "subject",    limit: 255
+    t.string   "email",      limit: 255
+    t.text     "content",    limit: 65535
+    t.boolean  "read",       limit: 1
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -77,12 +61,5 @@ ActiveRecord::Schema.define(version: 20150713154216) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
-
-  create_table "workers", force: :cascade do |t|
-    t.string   "firtsname",  limit: 255
-    t.string   "lastname",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
 
 end
