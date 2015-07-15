@@ -1,5 +1,5 @@
 class FileMaterialInput < SimpleForm::Inputs::Base
-  def input
+  def input(wrapper_options = nil)
   	template.content_tag(:div, file_input, class: "btn")+
   	template.content_tag(:div, template.content_tag(:input, nil, class: "file-path validate", type: "text"), class: "file-path-wrapper")
   end
