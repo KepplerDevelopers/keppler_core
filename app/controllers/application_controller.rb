@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message = exception.action.eql?(:index) ? "No estás autorizado para acceder a esta página" : "No estás autorizado para realizar esta acción"
-    link_back = exception.action.eql?(:index) ? nil : "/admin/#{exception.subject.class.to_s.downcase.pluralize}"
-    redirect_to not_authorized_path, flash: { message: exception.message, back: link_back }
+    redirect_to not_authorized_path, flash: { message: exception.message }
   end
 
   def get_paginator_params
