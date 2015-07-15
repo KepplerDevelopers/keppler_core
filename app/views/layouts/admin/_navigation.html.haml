@@ -12,7 +12,7 @@
 						= material_icon.md_24.search
 
 					- if can? :destroy_multiple, User #helper
-						= link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids={{check}}#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar", data:{confirm: '¿Deseas eliminar los registros seleccinado?'}  do
+						= link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids={{check}}#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => "Eliminar", data:{confirm: "#{t("model.#{controller_name.singularize}.actions.delete")}"} do
 							= material_icon.md_24.delete
 
 						- unless @objects.size.zero?
