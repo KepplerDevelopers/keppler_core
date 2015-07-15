@@ -93,9 +93,13 @@
 	.listing-show-body{
 		padding: 10px;
 		margin-top: 75px;
-		height: 100%;
+		height: 85%;
 		position: fixed;
 		min-width: 25%;	
+		overflow: auto !important;
+		&::-webkit-scrollbar {
+			width: 0 !important;
+		}	
 		h5{
 			color: #4C4C4C;
 			font-weight: 600;
