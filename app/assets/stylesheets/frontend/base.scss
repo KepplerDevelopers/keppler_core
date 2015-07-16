@@ -12,7 +12,44 @@ $font-type: 'Roboto', sans-serif;
 //colores
 $red-color: #F44336;
 
+// make all images responsive by default
 img {
   @extend .img-responsive;
   margin: 0 auto;
+  }
+
+// override for the 'Home' navigation link
+.navbar-brand {
+  font-size: inherit;
+  }
+
+// THESE ARE EXAMPLES YOU CAN MODIFY
+// create your own classes
+// to make views framework-neutral
+.column {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+  
+.form {
+  @extend .col-md-6;
+  }
+
+.form-centered {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+
+.submit {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  }
+// apply styles to HTML elements
+// to make views framework-neutral
+
+.button-xs {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-xs;
 }
