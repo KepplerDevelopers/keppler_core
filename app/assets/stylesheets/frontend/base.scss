@@ -11,3 +11,8 @@ $font-type: 'Roboto', sans-serif;
 
 //colores
 $red-color: #F44336;
+
+img {
+  @extend .img-responsive;
+  margin: 0 auto;
+}
