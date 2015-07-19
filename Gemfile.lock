@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/inyxtech/keppler_ga_dashboard.git
-  revision: 32666280f0b770d66fab7c27360210742b2846ed
+  revision: 086f62e858637ae2a334040307d2773de4dca34d
   specs:
     keppler_ga_dashboard (0.0.1)
       rails (~> 4.2.0)
@@ -44,13 +44,13 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    angularjs-rails (1.4.2)
+    angularjs-rails (1.4.3)
     arel (6.0.2)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (5.2.1)
+    autoprefixer-rails (5.2.1.1)
       execjs
       json
     bcrypt (3.1.10)

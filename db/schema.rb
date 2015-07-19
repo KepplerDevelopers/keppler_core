@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714180651) do
-
-  create_table "keppler_contact_us_messages", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "subject",    limit: 255
-    t.string   "email",      limit: 255
-    t.text     "content",    limit: 65535
-    t.boolean  "read",       limit: 1
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
+ActiveRecord::Schema.define(version: 20140812210925) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
