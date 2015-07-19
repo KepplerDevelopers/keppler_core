@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_commit on: [:update] do
+    puts __elasticsearch__.index_document
+  end
+
   def rol
     self.roles.first.name
   end
