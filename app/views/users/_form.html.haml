@@ -12,5 +12,5 @@
 						= f.input :role_ids, collection: Role.all.map { |rol| [rol.name.humanize, rol.id] }, label: false, include_blank: "Selecione un rol"
 						= f.input :password
 						= f.input :password_confirmation
-					.form-actions.right
-						= f.button :submit, "Guardar", class: "btn"
+						.form-actions.right
+							= f.button :submit, "Guardar", class: "btn"
