@@ -14,6 +14,7 @@ KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya i
 * Integración para búsquedas full-text con [ElasticSearch](https://github.com/elastic/elasticsearch-rails)
 * Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
 * Integración con framework javascript [AngularJs](https://angularjs.org/)
+* Integración sitemap dinamicos con [sitemap_generator](https://github.com/kjvarga/sitemap_generator)
 
 ### Instalación
 

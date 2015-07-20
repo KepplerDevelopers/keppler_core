@@ -24,6 +24,9 @@ gem 'jquery-turbolinks'
 #database
 gem 'mysql2'
 
+#SEO
+gem 'sitemap_generator'
+
 #websocket
 #gem 'faye'
 #gem 'thin'
