@@ -2,6 +2,10 @@ module ApplicationHelper
 	def title(page_title)
 		content_for(:title) { page_title }
 	end
+	
+	def	meta_description(page_description)
+		content_for(:description) { page_description }
+	end
 
 	def loggedin?
 		current_user
