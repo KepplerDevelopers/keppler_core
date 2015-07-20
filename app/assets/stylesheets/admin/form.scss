@@ -4,6 +4,9 @@
 		}
 		.wrapper-inputs{
 			margin-bottom: 0px;
+			.row{
+				margin-bottom: 0px;
+			}
 			.card{
 				margin-bottom: 40px;
 			}
@@ -18,7 +21,7 @@
 				top: -15px;
 			}
 			.form-actions{
-				margin-top: 5px;
+				margin: 10px 10px;
 			}
 			label.collection_radio_buttons, label.collection_check_boxes {
 			  margin-right: 10px;
