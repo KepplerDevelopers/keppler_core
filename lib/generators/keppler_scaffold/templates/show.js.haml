@@ -3,3 +3,4 @@ $('.listing table').find(".active").removeClass("active")
 $("#row-#{@<%= singular_table_name %>.id}").addClass("active")
 $scope = angular.element($(".listing-show")).scope()
 $scope.compiledHTML($(".listing-show"))
+$(".listing-show-body").trigger("click");
