@@ -9,13 +9,13 @@ app.directive 'resize', ->
       }
 
     scope.$watch scope.getWindowDimensions, ((newValue, oldValue) ->
-      scope.windowHeight = newValue.h
+      scope.windowHeight = newValue.h-129
       scope.windowWidth = newValue.w
 
       scope.style = ->
         {
-          'height': newValue.h - 100 + 'px'
-          'width': newValue.w - 100 + 'px'
+          'height': newValue.h+'px'
+          'width': newValue.w+'px'
         }
 
       return
