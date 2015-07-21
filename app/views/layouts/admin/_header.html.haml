@@ -1,6 +1,6 @@
 .header-information.hide-on-small-only{ "ng-style" => is_index? ? "{'max-width':'75%'}" : "{'min-width':'100%'}" }
 	%h1 
-		= t("header.#{controller_name}").html_safe
+		= t("header.#{controller_path.downcase}").html_safe
 	%small 
 		= t("actions.#{action_name}")
 
