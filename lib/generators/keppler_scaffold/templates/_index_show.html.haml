@@ -6,7 +6,7 @@
 	%h5
 		= material_icon.md_24.account_circle.css_class("md-light") 
 		= t("model.singular.#{controller_name.singularize}")
-.listing-show-body.card
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	%ul.list
 		%li.list-row
 			.display-label= t("model.#{controller_name.singularize}.attributes.id")
