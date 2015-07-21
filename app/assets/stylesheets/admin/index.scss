@@ -95,9 +95,7 @@
 		position: fixed;
 		min-width: 25%;	
 		overflow: auto !important;
-		&::-webkit-scrollbar {
-			width: 0 !important;
-		}	
+		
 		h5{
 			color: #4C4C4C;
 			font-weight: 600;
