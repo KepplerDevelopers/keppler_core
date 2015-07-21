@@ -13,15 +13,6 @@
 		top: 100px;
 		margin-left: 32px;
 	}
-	.btn-index-add{
-		display: none;
-		@media #{$small-and-down} {
-			display: block;
-			position: fixed;
-			bottom: 20px;
-			right: 20px;
-		}
-	}
 	.entries{
 		float: right;
 		margin: 10px 15px 10px 15px;
@@ -145,4 +136,14 @@
 		}
 	}
 	
+}
+
+.btn-index-add{
+	display: none;
+	@media #{$small-and-down} {
+		display: block;
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+	}
 }
