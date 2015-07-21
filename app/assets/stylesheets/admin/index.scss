@@ -94,7 +94,6 @@
 		margin-top: 75px;
 		position: fixed;
 		min-width: 25%;	
-		padding-bottom: 15px;
 		overflow: auto !important;
 		&::-webkit-scrollbar {
 			width: 0 !important;
@@ -121,6 +120,7 @@
 		.list {
 			padding: 10px;
 			margin-top: 0px;
+			padding-bottom: 20px;
 			li.list-row{
 				margin-bottom: 10px;
 				.display-label{
