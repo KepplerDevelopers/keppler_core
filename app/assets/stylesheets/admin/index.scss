@@ -95,7 +95,9 @@
 		position: fixed;
 		min-width: 25%;	
 		overflow: auto !important;
-		
+		&::-webkit-scrollbar {
+      width: 0 !important;
+    }
 		h5{
 			color: #4C4C4C;
 			font-weight: 600;
@@ -118,7 +120,7 @@
 		.list {
 			padding: 10px;
 			margin-top: 0px;
-			padding-bottom: 20px;
+			margin-bottom: 0px;
 			li.list-row{
 				margin-bottom: 10px;
 				.display-label{
@@ -134,14 +136,4 @@
 		}
 	}
 	
-}
-
-.btn-index-add{
-	display: none;
-	@media #{$small-and-down} {
-		display: block;
-		position: fixed;
-		bottom: 20px;
-		right: 20px;
-	}
 }
