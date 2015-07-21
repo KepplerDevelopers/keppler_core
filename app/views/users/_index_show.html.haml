@@ -9,7 +9,7 @@
 	%h5
 		= material_icon.md_24.account_circle.css_class("md-light") 
 		= t("model.singular.#{controller_name.singularize}")
-.listing-show-body.card{ style: "height: {{windowHeight}}px;" }
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	%ul.list
 		- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
 			%li.list-row
