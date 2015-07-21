@@ -1,4 +1,7 @@
 es:
+  header:
+    users: Usuarios
+    keppler_ga_dashboard/dashboard: Dashboard
   model:
     plural:
       users: Usuarios
