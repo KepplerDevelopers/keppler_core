@@ -17,8 +17,12 @@
 			}
 			.help-inline{
 				color: #F44336;
-				position: relative;
-				top: -15px;
+			}
+			.string{
+				.help-inline{
+					position: relative;
+					top: -15px;
+				}
 			}
 			.form-actions{
 				margin: 10px 10px;
