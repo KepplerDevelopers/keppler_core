@@ -19,7 +19,7 @@ KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya i
 ### Instalación
 
 ```
-git clone https://github.com/inyxtech/Keppler-CMS.git
+git clone https://github.com/inyxtech/Keppler-admin.git
 bundle install
 ```
 
