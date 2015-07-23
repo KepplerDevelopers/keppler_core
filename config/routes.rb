@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 
   resources :admin, only: :index
 
-  get 'admin/users/refresh',  to: 'users#refresh', as: :user_refresh
-  
   scope :admin do
    
   	resources :users do 
