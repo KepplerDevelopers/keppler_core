@@ -7,4 +7,6 @@
   %ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
     = render "layouts/admin/sidebar_engines_links"
     - if can? :index, User
-      = tab "Usuarios", "person", main_app.users_path, "users"
+      %li
+        = tab "Usuarios", "person", main_app.users_path, "users"
+
