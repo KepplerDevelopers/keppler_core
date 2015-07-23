@@ -1,5 +1,5 @@
 CKEDITOR.editorConfig = (config) ->
-  config.toolbar_catalog = [ [
+  config.toolbar_short = [ [
     'Styles'
     'Format'
     'Font'
