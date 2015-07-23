@@ -1,6 +1,6 @@
 module NavigationHelper
 	def tab(name, icon, link, current)	
-		link_to link, class: "collapsible-header #{'current' if controller_path == current }" do
+		link_to link, class: "collapsible-header #{'current' if current_path == current }" do
     	content_tag(:i, icon, class: "mi md-18")+name
     end
 	end
