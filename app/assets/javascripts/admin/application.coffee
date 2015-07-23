@@ -9,6 +9,7 @@
 #= require materialize-sprockets
 #= require nprogress
 #= require nprogress-turbolinks
+#= require ckeditor/init
 #= require turbolinks
 #= require_tree .
 		
