@@ -18,4 +18,8 @@ module ApplicationHelper
 	def model
 		controller.controller_path.classify.constantize
 	end
+
+	def header_information(&block)
+		content_for(:header_information) { capture(&block) }
+	end
 end
