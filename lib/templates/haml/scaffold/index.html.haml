@@ -1,7 +1,8 @@
 = title("<%= plural_table_name.capitalize %> - Listado")
 .listing.col.l9.m12.s12
-	= link_to new_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
-		= material_icon.md_24.add
+	- if can? :new, model
+		= link_to new_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
+			= material_icon.md_24.add
 	= entries(@total, @objects)
 	%table.bordered
 		%tbody
@@ -17,6 +18,6 @@
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
 	= render "description"
 
-
-= link_to new_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large teal waves-effect waves-light red" do
-	= material_icon.md_24.add.css_class("md-light")
+- if can? :new, model
+	= link_to new_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large teal waves-effect waves-light red" do
+		= material_icon.md_24.add.css_class("md-light")
