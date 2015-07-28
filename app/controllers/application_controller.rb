@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   # verificar si el usuario tiene permisos para eliminar cada uno de los objects seleccionados
   def can_multiple_destroy
     redefine_ids(params[:multiple_ids]).each do |id|
-      puts authorize! :destroy, controller_path.classify.constantize.find(id)
+      authorize! :destroy, controller_path.classify.constantize.find(id)
     end
   end
 
