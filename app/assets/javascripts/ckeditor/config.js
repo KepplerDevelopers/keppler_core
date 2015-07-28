@@ -103,7 +103,7 @@ CKEDITOR.editorConfig = function( config )
     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     '/',
     { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+    { name: 'colors', items: [ 'TextColor', 'BGColor', "Maximize" ] },
     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] }
   ];
 
@@ -113,7 +113,7 @@ CKEDITOR.editorConfig = function( config )
     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike' ] },
-    { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule' ] },
+    { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', "Maximize" ] },
     { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] }
   ];
 
@@ -123,7 +123,7 @@ CKEDITOR.editorConfig = function( config )
     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike' ] },
-    { name: 'insert', items: [ 'HorizontalRule' ] },
+    { name: 'insert', items: [ 'HorizontalRule', "Maximize" ] },
     { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] }
   ];
 
