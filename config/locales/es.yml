@@ -17,6 +17,7 @@ es:
         created_at: Fecha de creación
         updated_at: Última actualiazación
       actions:
+        delete: ¿Estás seguro de querer eliminar?
   actions:
     index: Listado
     edit: "Editar"
