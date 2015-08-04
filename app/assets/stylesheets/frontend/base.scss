@@ -12,6 +12,49 @@ $font-type: 'Roboto', sans-serif;
 //colores
 $red-color: #F44336;
 
+//media
+@mixin phone-all{
+  @media #{$phone} {
+    @content
+  }
+  @media #{$phone-landscape} {
+    @content
+  }
+}
+
+//transition
+@mixin transition($time) {
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  -o-transition: $time;
+  -ms-transition:$time;
+  transition: $time;
+}
+
+//transform
+@mixin transform($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  transform: $val;
+}
+
+//animation
+@mixin animation($name, $duration, $iteration, $direction) {
+  -webkit-animation: $name $duration $iteration $direction;
+  -moz-animation: $name $duration $iteration $direction;
+  -o-animation: $name $duration $iteration $direction;
+  -ms-animation: $name $duration $iteration $direction;
+}
+
+//keyframes
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} { @content; }
+  @-moz-keyframes #{$name} { @content; }
+  @-ms-keyframes #{$name} { @content; }
+  @keyframes #{$name} { @content; } 
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
