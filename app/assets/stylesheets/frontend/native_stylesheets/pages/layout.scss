@@ -1,0 +1,56 @@
+@import "../core/main";
+
+html, body {
+ height: 100%;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+// override for the 'Home' navigation link
+.navbar-brand {
+  font-size: inherit;
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 20px;  
+  font-weight: 300;
+  @include phone-all {
+    font-size: 1.5em;
+  }
+}
+
+.section-hr {
+  border-bottom: 1px solid #ccc;
+  max-width: 400px;
+  margin-bottom: 50px;
+
+  @include phone-all {
+    margin-bottom: 40px;
+  }
+}
+
+#nprogress {
+  .spinner{
+    z-index: 999999;
+    top: 15px;
+  }
+
+  .spinner-icon {
+    border: solid 3px transparent;
+
+    border-top-color: #29d;
+    border-left-color: #29d;
+
+    width: 40px;
+    height: 40px;
+
+    @include phone_all {
+      display: none;
+    }
+
+  }
+}

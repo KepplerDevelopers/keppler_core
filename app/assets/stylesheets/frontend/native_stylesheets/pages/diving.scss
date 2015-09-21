@@ -1,0 +1,18 @@
+@import "../core/main";
+.diving{
+	font-family: $raleway;
+	#home{
+		background-image: image-url("frontend/diving/home.jpg");	
+		background-size: cover;
+		color: white;
+		height: 500px;
+		padding: 3%;
+
+		.home-title{
+			font: {
+				size: 70px;
+				weight: bold;
+			}
+		}
+	}
+}

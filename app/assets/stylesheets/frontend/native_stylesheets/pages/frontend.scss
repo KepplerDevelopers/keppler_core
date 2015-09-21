@@ -1,0 +1,39 @@
+// Place all the styles related to the frontend controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+html, body, main{
+	height: 100%;
+}
+
+#oceanica-navbar{
+	width: 300px;
+	.navbar-icon{
+		float: left;
+		position: relative;
+		top: 18px;
+	}
+}
+
+.center-h{
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	height: 100%;	
+}
+
+.center-v{
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	    flex-direction: column;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	    justify-content: center;
+}

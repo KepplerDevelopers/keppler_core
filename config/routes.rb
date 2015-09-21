@@ -2,6 +2,14 @@ Rails.application.routes.draw do
 
   root to: 'frontend#index'
 
+  get 'discover', to: 'frontend#discover' 
+
+  get 'diving', to: 'frontend#diving' 
+
+  get 'fishing', to: 'frontend#fishing'
+
+  get 'kiteboarding', to: 'frontend#kiteboarding' 
+
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   resources :admin, only: :index

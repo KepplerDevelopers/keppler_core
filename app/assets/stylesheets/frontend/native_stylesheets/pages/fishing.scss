@@ -1,0 +1,18 @@
+@import "../core/main";
+.fishing{
+	font-family: $raleway;
+	#home{
+		background-image: image-url("frontend/fishing/home.jpg");		
+		background-size: cover;
+		color: white;
+		height: 500px;
+		padding: 3%;
+
+		.home-title{
+			font: {
+				size: 70px;
+				weight: bold;
+			}
+		}
+	}
+}
