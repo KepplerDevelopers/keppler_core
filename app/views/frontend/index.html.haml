@@ -1,36 +1,27 @@
-.home
-	.home-container.row.hidden-xs
-		.col-lg-6.col-md-6.col-sm-6#section-one
-			%a{href:"discover"}
-				.home-logo
-					= image_tag "frontend/logo.png"
-				.center-h
-					.center-v
-						.home-title#home-discover-font Discover Los Roques
-		.col-lg-6.col-md-6.col-sm-6#section-two
-			.home-container-two.row
-				- @sections[1, 3].each do |section|		
-					.col-lg-12.col-md-12.col-sm-12{id: "section-#{section[:selector]}"}
-						.image-hover
-							%a{href:"#{section[:url]}"}
-								.center-h
-									.center-v
-										.home-title 
-											= section[:name]
-								.home-title-hover
-									= section[:name]
-	.home-container.visible-xs
-		%div#section-title
-			= image_tag "frontend/logo.png"
-		- @sections.each do |section|			
-			%div{id:"section-#{section[:selector]}"}
-				.image-hover
-					%a{href:"#{section[:url]}"}
-						.center-h
-							.center-v
-								- if section[:selector] == "one"
-									.home-title#home-discover-font 	
-										= section[:name]
-								- else
-									.home-title 	
-										= section[:name]
+.front
+	.front-container
+		.front-logo-horizontal
+			.front-logo-vertical
+				= image_tag "frontend/keppler-front.png", class: "front-logo img-responsive"
+				.row.front-social
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://twitter.com/Inyxtech", target:"_blank" do
+								= icon 'twitter'
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://www.facebook.com/Inyxtech", target:"_blank" do
+								= icon 'facebook'
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://instagram.com/inyxtech/", target:"_blank" do
+								= icon 'instagram'
+					.col-lg-3.col-md-3.col-sm-3.col-xs-3
+						%center
+							=	link_to "https://github.com/inyxtech/Keppler-CMS", target:"_blank" do
+								= icon 'github'
+			.front-footer.navbar-fixed-bottom
+				%center
+					%span Powered by
+					= link_to "https://inyxtech.com", target:"_blank" do
+						= image_tag "frontend/inyxtech-front.png"
