@@ -3,16 +3,16 @@
 //= require_self
 
 @import "materialize";
-@import "devise";
-@import "base";
-@import "navbar";
-@import "pageslide";
-@import "header_information";
+@import "pages/layout";
+@import "pages/devise";
+@import "pages/navbar";
+@import "pages/pageslide";
+@import "pages/header_information";
+@import "pages/index";
+@import "pages/show";
+@import "pages/form";
+@import "pages/search";
 @import "dashboard"; //dashboard gem
-@import "index";
-@import "show";
-@import "form";
-@import "search";
 
 
 
