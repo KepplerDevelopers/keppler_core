@@ -8,5 +8,5 @@
     = render "layouts/admin/sidebar_engines_links"
     - if can? :index, User
       %li
-        = tab "Usuarios", "person", main_app.users_path, "users"
+        = tab "Usuarios", "person", main_app.users_path, current_navigation?("Users")
 
