@@ -22,7 +22,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 #database
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 
 #SEO
 gem 'sitemap_generator'
