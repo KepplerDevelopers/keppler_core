@@ -28,11 +28,10 @@ db/*.sqlite3
 .redcar/
 .sass-cache
 /app/assets/javascripts/guard_javascript/*
-/app/assets/stylesheets/guard_stylesheets/*
+/app/assets/stylesheets/frontend/native_stylesheets/guard_stylesheets/*
 /config/application.yml
 /config/secrets.yml
 /config/secrets.yml.example
-/config/gaAuth
 /coverage.data
 /coverage/
 /db/*.javadb/
@@ -41,7 +40,10 @@ db/*.sqlite3
 /doc/app/
 /doc/features.html
 /doc/specs.html
-/public/*
+/public/cache
+/public/uploads
+/public/stylesheets/compiled
+/public/system/*
 /spec/tmp/*
 /cache
 /capybara*
