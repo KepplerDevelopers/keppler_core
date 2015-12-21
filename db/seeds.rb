@@ -13,5 +13,5 @@
 	puts "#{name} creado"
 end
 
-User.create name: "Admin", email: "admin@inyxtech.com", password: "12345678", password_confirmation: "12345678", role_ids: "1"
-puts "admin@inyxtech.com ha sido creado"
+User.create name: "Admin", email: "admin@keppler.com", password: "12345678", password_confirmation: "12345678", role_ids: "1"
+puts "admin@keppler.com ha sido creado"
