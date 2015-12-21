@@ -1,15 +1,15 @@
-.chip
-	%i.fa.fa-pencil
-%b
-	= activity.owner.name if activity.owner
-update user to 
-- if activity.trackable
-	to 
+.collection-item.avatar
+	%i.fa.fa-pencil.circle
 	%b
-		= activity.trackable.name
-	at
-	= activity.created_at
-- else
-	at	
-	= activity.created_at
-	whitch has since been removed
+		= activity.owner.name if activity.owner
+	update user
+	- if activity.trackable
+		to 
+		%b
+			= activity.trackable.name
+		at
+		= activity.created_at
+	- else
+		at	
+		= activity.created_at
+		whitch has since been removed

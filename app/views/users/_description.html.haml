@@ -3,12 +3,11 @@
 		= material_icon.md_24.account_circle.css_class("md-light") 
 		= t("model.singular.#{controller_name.singularize}")
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
-	.list
-	
-		%h5 
-			%i.fa.fa-clock-o
-			Historial de actividades
-		%br                                  
-		- @activities.each do |activity|
-			.activity
-				= render_activity activity
+	.list{style: "padding: 0px;"}
+		.collection.with-header{style: "margin: 0px;"}
+			.collection-header
+				%h5
+					%i.fa.fa-clock-o
+					Historial de actividades		                                 
+			- @activities.each do |activity|
+				= render_activity activity	
