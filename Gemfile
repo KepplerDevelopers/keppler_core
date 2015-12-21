@@ -32,6 +32,9 @@ gem 'sitemap_generator'
 #gem 'thin'
 #gem 'sync'
 
+#history
+gem 'public_activity'
+
 #forms
 gem 'simple_form'
 #gem 'cocoon'

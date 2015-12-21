@@ -1,0 +1,16 @@
+.chip
+	%i.fa.fa-plus
+%b
+	= activity.owner.name if activity.owner
+create user
+
+- if activity.trackable
+	to 
+	%b
+		= activity.trackable.name
+	at
+	= activity.created_at
+- else
+	at	
+	= activity.created_at
+	whitch has since been removed

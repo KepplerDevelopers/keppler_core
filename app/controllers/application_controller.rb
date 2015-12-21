@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :get_paginator_params
   before_action :can_multiple_destroy, only: [:destroy_multiple]
-
+  include PublicActivity::StoreController
+  
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message = exception.action.eql?(:index) ? "No estás autorizado para acceder a esta página" : "No estás autorizado para realizar esta acción"
     redirect_to not_authorized_path, flash: { message: exception.message }

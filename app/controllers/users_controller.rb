@@ -3,10 +3,12 @@ class UsersController < ApplicationController
   layout 'admin/application'
   load_and_authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  #after_action :activity_create, only: [:update, :create, :destroy]
 
   def index
     users = User.searching(@query).where.not(id: current_user.id)
     @objects, @total = users.page(@current_page), users.size
+    @activities = PublicActivity::Activity.where(trackable_type: "User").order("created_at desc")
     redirect_to users_path(page: @current_page.to_i.pred, search: @query) if !@objects.first_page? and @objects.size.zero?
   end
 
@@ -77,6 +79,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_ids, :encrypted_password)
+  end
+
+  def activity_create
+    PublicActivity::Activity.create trackable_type: model_name, key: action_name, owner_id: current_user.id, owner_type: current_user.name
   end
 
 end
