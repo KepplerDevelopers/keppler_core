@@ -4,6 +4,8 @@ require 'elasticsearch/model'
 class <%= class_name %> < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
   
   after_commit on: [:update] do
     puts __elasticsearch__.index_document

@@ -1,0 +1,17 @@
+.collection-item.avatar
+	= material_icon.md_24.add.css_class("circle") 	
+	%b
+		= activity.owner.name if activity.owner
+	= t('keppler.actions.create').downcase
+	= activity.trackable_type.downcase
+
+	- if activity.trackable
+		= t('keppler.messages.to') 
+		%b
+			= activity.trackable.name
+		= t('keppler.messages.at')
+		= activity.created_at
+	- else
+		at	
+		= activity.created_at
+		= t('keppler.messages.since_been_removed')

@@ -33,6 +33,11 @@ en:
       not_found_records: "No %{model} found"
       data_confirm: Are you sure?
       records: records
+      to: "to"
+      at: "at"
+      since_been_removed: whitch has since been removed
+      login_in_activity: login to system at 
+      logout_in_activity: logout to system at 
       successfully:
         created: "%{model} has been created successfully"
         updated: "%{model} has been updated successfully"
@@ -43,7 +48,10 @@ en:
       show: "%{model} - Show"
       edit: "%{model} - Edit"
       new: "%{model} - New"
+      history: Activities
     actions:
+      create: Create
+      update: Update
       edit: Edit
       show: Show
       new: New
@@ -61,3 +69,4 @@ en:
       assing_rol: Assign rol
       select_rol: Select rol
       save: Save
+      back_history: "Back to history"
