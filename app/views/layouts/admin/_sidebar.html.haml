@@ -10,12 +10,12 @@
       - menu.each do |key, value|
         - unless menu[key]["submenu"]
           %li
-            = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].downcase == controller_path}" do
+            = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}" do
               %i.material-icons.mi.md-18= menu[key]["icon"]
               = t("keppler.menu.#{menu[key]['name']}")
         - else
           %li
-            .collapsable.collapsible-header
+            .collapsable.collapsible-header{ class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
               %i.material-icons.mi.md-18= menu[key]['icon']
               = t("keppler.menu.#{menu[key]['name']}")
             .collapsible-body
