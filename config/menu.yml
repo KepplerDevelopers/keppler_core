@@ -12,13 +12,13 @@ menu:
   blog:
     name: blog
     icon: library_books
-    current: ["blog"]
+    current: ["keppler_blog/posts", "keppler_blog/categories"]
     submenu:
-      - categories:
-          name: categories
-          url_path: 
-          current: ["1", "2"]
       - posts:
           name: posts
-          url_path:
-          current:
+          url_path: /admin/blog/posts
+          current: ["keppler_blog/posts"]
+      - categories:
+          name: categories
+          url_path: /admin/blog/categories
+          current: ["keppler_blog/categories"]

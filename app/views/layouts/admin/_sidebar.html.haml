@@ -5,7 +5,6 @@
     .profile-info
       = current_user.name
   %ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
-    = render "layouts/admin/sidebar_engines_links"
     - KepplerConfiguration.visible_models.each do |menu|
       - menu.each do |key, value|
         - unless menu[key]["submenu"]
@@ -23,6 +22,6 @@
                 - menu[key]["submenu"].each do |submenu|
                   - submenu.each do |name, val|
                     %li
-                      = link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), ""
+                      = link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}"
 
 
