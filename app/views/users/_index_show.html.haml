@@ -15,6 +15,8 @@
 			%li.list-row
 				.display-label= t("model.#{controller_name.singularize}.attributes.#{attribute}")
 				.display-value= value
+		%li.list-row
+			= link_to "Back to history", users_path
 
 = render "users/modal"
 

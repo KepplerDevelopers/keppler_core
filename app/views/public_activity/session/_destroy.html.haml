@@ -1,6 +1,6 @@
 .collection-item.avatar
-	= material_icon.md_24.delete.css_class("circle") 
+	= material_icon.md_24.lock.css_class("circle")
 	%b
 		= activity.owner.name if activity.owner
-	delete a user at
+	logout to system at
 	= activity.created_at
