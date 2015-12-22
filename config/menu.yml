@@ -3,7 +3,7 @@ menu:
     name: dashboard
     url_path: /admin/dashboard
     icon: dashboard
-    current: analytics
+    current: keppler_ga_dashboard/dashboard
   user:
     name: users
     url_path: /admin/users
