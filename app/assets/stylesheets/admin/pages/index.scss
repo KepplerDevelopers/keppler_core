@@ -117,8 +117,10 @@
 		img{
 			width: 100%;
 		}
-		.list {
+		.card-content{
 			padding: 10px;
+		}
+		.list {
 			margin-top: 0px;
 			margin-bottom: 0px;			
 			.activity{
@@ -129,7 +131,7 @@
 				margin-bottom: 10px;
 				.display-label{
 					color: #4C4C4C;
-					font-weight: 500;
+					font-weight: 600;
 					font-size: 13px;
 				}
 				.display-value{

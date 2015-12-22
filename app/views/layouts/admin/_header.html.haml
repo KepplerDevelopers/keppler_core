@@ -2,8 +2,6 @@
 	%h1 
 		= content_for?(:header_information) ? yield(:header_information) : t("keppler.modules.#{controller_path.underscore}")
 	%small 
-		= t("actions.#{action_name}")
-
-	= title(t('keppler.model.titles.show', model: "Users"))
+		= t("keppler.actions.#{action_name}")
 
 	

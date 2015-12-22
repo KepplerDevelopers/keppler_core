@@ -21,12 +21,23 @@
 
 en:
   keppler:
+    models:
+      singularize:
+        user: user
+      pluralize: 
+        user: users
     modules:
       keppler_ga_dashboard/dashboard: Dashboard
+      users: Users
     messages:
       not_found_records: "No %{model} found"
       data_confirm: Are you sure?
       records: records
+      successfully:
+        created: "%{model} has been created successfully"
+        updated: "%{model} has been updated successfully"
+        deleted: "%{model} has been deleted successfully"
+        removed: "%{model} have been deleted successfully"
     titles:
       index: "%{model} - Listing"
       show: "%{model} - Show"
@@ -37,6 +48,7 @@ en:
       show: Show
       new: New
       delete: Delete
+      index: List
       change_rol: Change rol
       select_all: Select all
       refresh: Refresh
@@ -45,3 +57,7 @@ en:
       edit_profile: Edit profile
       sign_out: Sign out
       back: Back
+      cancel: Cancel
+      assing_rol: Assign rol
+      select_rol: Select rol
+      save: Save

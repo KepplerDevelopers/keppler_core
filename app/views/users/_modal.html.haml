@@ -1,13 +1,13 @@
 .modal{ id: "modal-#{@user.id}"}
 	= form_tag user_path(@user),  method: "PUT" do
 		.modal-header
-			%h4= "Cambiar rol de #{@user.name}"
+			%h4= "#{t('keppler.actions.change_rol')} - #{@user.name}"
 		.modal-content
 			- Role.all.each do |role|
 				.radio-button
 					= radio_button_tag "user[role_ids]", role.id, false, class: "radio-button__input", id: "radio#{role.id}", :type => "radio", :value => "#{role.id}", :checked => @user.has_role?(role.name)
 					= label_tag "user[role_ids]", role.name.humanize, class: "radio-button__label", :for => "radio#{role.id}"
 		.modal-footer
-			= button_tag "Asignar Rol", :class => "waves-effect waves-light btn", name: 'commit', value: "Asignar Rol"
-			= link_to "Cancelar", "", class: "modal-action modal-close waves-effect waves-light btn red"
+			= button_tag t('keppler.actions.assign_rol'), :class => "waves-effect waves-light btn", name: 'commit', value: "Assign rol"
+			= link_to t('keppler.actions.cancel'), "", class: "modal-action modal-close waves-effect waves-light btn red"
 		

@@ -31,7 +31,7 @@ angular.module("pageslide-directive", [])
                 var param = {};
 
                 param.side = $scope.psSide || 'left';
-                param.speed = $scope.psSpeed || '0.25';
+                param.speed = $scope.psSpeed || '0.5';
                 param.size = $scope.psSize || '268px';
                 param.zindex = 100000000; // Override with custom CSS
                 param.className = $scope.psClass || 'ng-pageslide';
@@ -71,7 +71,7 @@ angular.module("pageslide-directive", [])
                 slider.style.overflowY = 'auto';
                 slider.style.transitionDuration = param.speed + 's';
                 slider.style.webkitTransitionDuration = param.speed + 's';
-                slider.style.transitionProperty = 'left'; //agregar efectos de transición
+                slider.style.transitionProperty = 'left, opacity'; //agregar efectos de transición
                 if (param.squeeze) {
                     body.style.position = 'absolute';
                     body.style.transitionDuration = param.speed + 's';
@@ -121,7 +121,7 @@ angular.module("pageslide-directive", [])
                                 break;
                             case 'left':
                                  slider.style.left = '-268px';
-                                 // slider.style.opacity = '0';
+                                 slider.style.opacity = '0';
                                  $("body").removeClass('open')
                                 if (param.squeeze) body.style.left = '0px'; 
                                 if (param.push) {
