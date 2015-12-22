@@ -6,7 +6,23 @@
       = current_user.name
   %ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
     = render "layouts/admin/sidebar_engines_links"
-    - if can? :index, User
-      %li
-        = tab "Usuarios", "person", main_app.users_path, current_navigation?("Users")
+    - KepplerConfiguration.visible_models.each do |menu|
+      - menu.each do |key, value|
+        - unless menu[key]["submenu"]
+          %li
+            = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].downcase == controller_path}" do
+              %i.material-icons.mi.md-18= menu[key]["icon"]
+              = t("keppler.menu.#{menu[key]['name']}")
+        - else
+          %li
+            .collapsable.collapsible-header
+              %i.material-icons.mi.md-18= menu[key]['icon']
+              = t("keppler.menu.#{menu[key]['name']}")
+            .collapsible-body
+              %ul.pageslide-sub-menu
+                - menu[key]["submenu"].each do |submenu|
+                  - submenu.each do |name, val|
+                    %li
+                      = link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), ""
+
 

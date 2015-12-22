@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  keppler:
+    modules:
+      keppler_ga_dashboard/dashboard: Dashboard
+    messages:
+      index:
+        not_found_records: "No %{model} found"
+    titles:
+      index: "%{model} - Listing"
+      show: "%{model} - Show"
+      edit: "%{model} - Edit"
+      new: "%{model} - New"

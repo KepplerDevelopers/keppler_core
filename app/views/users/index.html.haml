@@ -1,5 +1,5 @@
 //change title
-= title("Usuario - Listado")
+= title(t('keppler.titles.index', model: "Users"))
 
 .listing.col.l9.m12.s12
 	= link_to new_user_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
@@ -13,7 +13,7 @@
 				%tr
 					%td{colspan: "4"}
 						%center
-							No se han encontrado usuarios.
+							= t('keppler.messages.index.not_found_records', model: "users")
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down

@@ -1,0 +1,23 @@
+menu:
+  dashboard:
+    name: dashboard
+    url_path: /admin/dashboard
+    icon: dashboard
+    current: analytics
+  user:
+    name: users
+    url_path: /admin/users
+    icon: account_circle
+    current: users
+  blog:
+    name: blog
+    icon: library_books
+    submenu:
+      - categories:
+          name: categories
+          url_path: 
+          current:
+      - posts:
+          name: posts
+          url_path:
+          current:
