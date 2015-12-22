@@ -2,5 +2,7 @@
 	= material_icon.md_24.delete.css_class("circle") 
 	%b
 		= activity.owner.name if activity.owner
-	delete a user at
+	delete a 
+	= activity.trackable_type.downcase 
+	at
 	= activity.created_at

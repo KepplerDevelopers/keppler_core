@@ -1,9 +1,9 @@
 .collection-item.avatar
-	= material_icon.md_24.add.css_class("circle") 
+	= material_icon.md_24.create.css_class("circle") 
 	%b
 		= activity.owner.name if activity.owner
-	create user
-
+	update 
+	= activity.trackable_type.downcase 
 	- if activity.trackable
 		to 
 		%b

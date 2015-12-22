@@ -9,6 +9,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   layout 'admin/application'
   load_and_authorize_resource
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
+  before_action :show_history, only: [:index]
 
   # GET <%= route_url %>
   def index
@@ -74,6 +75,16 @@ class <%= controller_class_name %>Controller < ApplicationController
       <%- else -%>
       params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
       <%- end -%>
+    end
+
+    def show_history
+      current_user.roles.each do |role|
+        if role.name.eql?("admin")
+          @activities = PublicActivity::Activity.where(trackable_type: '<%= singular_table_name.humanize %>').order("created_at desc").limit(50)
+        else
+          @activities = PublicActivity::Activity.where("trackable_type = '<%= singular_table_name.humanize %>' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
+        end
+      end
     end
 end
 <% end -%>
