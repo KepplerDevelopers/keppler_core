@@ -24,10 +24,24 @@ en:
     modules:
       keppler_ga_dashboard/dashboard: Dashboard
     messages:
-      index:
-        not_found_records: "No %{model} found"
+      not_found_records: "No %{model} found"
+      data_confirm: Are you sure?
+      records: records
     titles:
       index: "%{model} - Listing"
       show: "%{model} - Show"
       edit: "%{model} - Edit"
       new: "%{model} - New"
+    actions:
+      edit: Edit
+      show: Show
+      new: New
+      delete: Delete
+      change_rol: Change rol
+      select_all: Select all
+      refresh: Refresh
+      search: Search
+      go_to_web: Go to web
+      edit_profile: Edit profile
+      sign_out: Sign out
+      back: Back

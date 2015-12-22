@@ -33,11 +33,11 @@ angular.module("pageslide-directive", [])
                 param.side = $scope.psSide || 'left';
                 param.speed = $scope.psSpeed || '0.25';
                 param.size = $scope.psSize || '268px';
-                param.zindex = 1; // Override with custom CSS
+                param.zindex = 100000000; // Override with custom CSS
                 param.className = $scope.psClass || 'ng-pageslide';
                 param.cloak = false;
-                param.squeeze = Boolean($scope.psSqueeze) || true;
-                param.push = Boolean($scope.psPush) || true;
+                param.squeeze = Boolean($scope.psSqueeze) || false;
+                param.push = Boolean($scope.psPush) || false;
                 
                 // Apply Class
                 el.addClass(param.className);

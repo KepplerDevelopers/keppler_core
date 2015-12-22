@@ -3,12 +3,12 @@
 	.wrapper-body.container
 		.actions
 			- if can? :delete, User
-				= link_to user_path(@user), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => "Eliminar", method: :delete, data: { confirm: 'Are you sure?' } do
+				= link_to user_path(@user), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
 					= material_icon.md_18.delete.css_class("md-dark")	
 			- if can? :update, User
-				= link_to edit_user_path(@user), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Editar" do
+				= link_to edit_user_path(@user), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
 					= material_icon.md_18.create.css_class("md-dark")
-			= link_to users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Volver" do
+			= link_to users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
 				= material_icon.md_18.arrow_back.css_class("md-dark") 
 		.card			
 			%ul.list

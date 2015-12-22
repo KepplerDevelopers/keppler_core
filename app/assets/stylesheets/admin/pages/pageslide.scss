@@ -1,12 +1,29 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-@mixin icon-before($icon){
-  content: $icon;
-  font: normal 100 normal 12px/4 FontAwesome;
-  position: absolute;
-  color: #575757;
-  right: 10px;
+//transition
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -ms-transition:$transition;
+  transition: $transition;
+}
+
+body.open{
+  .pageslide-background{
+    background: rgba(0, 0, 0, 0.65);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    @include transition(.25s);
+  }
+}
+body{
+  .pageslide-background{
+    @include transition(.25s);
+  }
 }
 
 pageslide {
@@ -69,12 +86,6 @@ pageslide {
       }
       a{
         color: #4C4C4C;
-      }
-      .collapsable.collapsible-header:before{
-        @include icon-before("\f067")
-      }
-      .collapsable.collapsible-header.active:before{
-        @include icon-before("\f068")
       }
 
       .collapsible-body{
