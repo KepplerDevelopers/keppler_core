@@ -1,30 +1,57 @@
 es:
-  header:
-    users: Usuarios
-    keppler_ga_dashboard/dashboard: Dashboard
-  model:
-    plural:
+  keppler:
+    models:
+      singularize:
+        user: usuario
+      pluralize: 
+        user: usuarios
+    modules:
+      keppler_ga_dashboard/dashboard: Dashboard
       users: Usuarios
-    singular:
-      user: Usuario
-    user:
-      attributes:
+    messages:
+      not_found_records: "No se han encontrado %{model}"
+      data_confirm: ¿Estas seguro?
+      records: registros
+      successfully:
+        created: "%{model} ha sido creado satisfactoriamente"
+        updated: "%{model} hha sido actualizado satisfactoriamente"
+        deleted: "%{model} ha sido eliminado satisfactoriamente"
+        removed: "%{model} han sido eliminados satisfactoriamente"
+    titles:
+      index: "%{model} - Listado"
+      show: "%{model} - Ver"
+      edit: "%{model} - Editar"
+      new: "%{model} - Nuevo"
+    actions:
+      edit: Editar
+      show: Ver
+      new: Nuevo
+      delete: Eliminar
+      index: Listado
+      change_rol: Cambiar rol
+      select_all: Seleccionar todo
+      refresh: Refrescar
+      search: Buscar
+      go_to_web: ir a web
+      edit_profile: Editar perfil
+      sign_out: Cerrar sesión
+      back: Volver
+      cancel: Cancelar
+      assing_rol: Asignar rol
+      select_rol: Seleccionar rol
+      save: Guardar
+  activerecord:
+    attributes:
+      user:
         id: Identificador
         name: Nombre
         permalink: Permalink
-        email: Correo electrónico
-        sign_in_count: Conteo de entradas
+        email: Email
+        sign_in_count: Veces logeado
         created_at: Fecha de creación
-        updated_at: Última actualiazación
-      actions:
-        delete: ¿Estás seguro de querer eliminar?
-  actions:
-    index: Listado
-    edit: "Editar"
-    update: "Editar"
-    new: "Nuevo"
-    create: "Nuevo"
-    show: "Visualizar"
+        updated_at: Ultima actualización
+        password: Contraseña
+        password_confirmation: Confirmar contraseña
   date:
     abbr_day_names:
     - Dom

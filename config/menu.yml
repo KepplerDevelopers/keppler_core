@@ -1,0 +1,24 @@
+menu:
+  dashboard:
+    name: dashboard
+    url_path: /admin/dashboard
+    icon: dashboard
+    current: ["keppler_ga_dashboard/dashboard"]
+  user:
+    name: users
+    url_path: /admin/users
+    icon: account_circle
+    current: ["users"]
+  blog:
+    name: blog
+    icon: library_books
+    current: ["keppler_blog/posts", "keppler_blog/categories"]
+    submenu:
+      - posts:
+          name: posts
+          url_path: /admin/blog/posts
+          current: ["keppler_blog/posts"]
+      - categories:
+          name: categories
+          url_path: /admin/blog/categories
+          current: ["keppler_blog/categories"]

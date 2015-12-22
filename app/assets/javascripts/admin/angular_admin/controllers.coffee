@@ -31,28 +31,10 @@ app.controller 'MainCtrl', [
 		#abre y cierra el sidebar y agrega efectos a el icon
 		scope.sidebarSwitch = ->
 			scope.sidebar = !scope.sidebar
-			if scope.sidebar
-				$('.switch i').text("arrow_back").addClass("bounceInRight")
-				$timeout (->
-					$('.switch i').text("arrow_back").removeClass("bounceInRight")
-					return
-				),1000
-			else
-				$('.switch i').text("menu").addClass("bounceInLeft")
-				$timeout (->
-					$('.switch i').text("menu").removeClass("bounceInLeft")
-					return
-				),1000
 			return
 
 		#cerrar sidebar si hace click en el main de la aplicación
 		scope.sidebarClose = ->
-			if scope.sidebar
-				$('.switch i').text("menu").addClass("bounceInLeft")
-				$timeout (->
-					$('.switch i').text("menu").removeClass("bounceInLeft")
-					return
-				),1000
 			scope.sidebar = false
 			return
 

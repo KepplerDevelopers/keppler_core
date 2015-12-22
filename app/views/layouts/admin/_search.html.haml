@@ -1,6 +1,6 @@
 - if is_index?
 	= form_tag url_for(action: :index, controller: controller_name), method: :get, class: "form-search form-search-{{inputSearch}}", "ng-init" => "inputSearch=#{!@query.blank?}" do
-		= text_field_tag :search, @query, id: "search", placeholder: "Buscar"
+		= text_field_tag :search, @query, id: "search", placeholder: t("keppler.actions.search")
 		- if @query
 			= link_to url_for(action: :index, controller: controller_name), class: "hide-on-small-and-down" do
 				%i.close-top-search.hide-on-small-and-down ×

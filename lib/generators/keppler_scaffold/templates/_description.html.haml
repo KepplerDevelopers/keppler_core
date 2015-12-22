@@ -8,9 +8,9 @@
 			.collection-header
 				%h5
 					%i.fa.fa-clock-o
-					Historial de actividades		                                 
+					= t("keppler.titles.history")  		                                 
 			- @activities.each do |activity|
 				- if activity.trackable_type.eql? "Session"
-					= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity }
+					= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "<attribute_name>" }
 				- else
-					= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity }
+					= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "<attribute_name>" }

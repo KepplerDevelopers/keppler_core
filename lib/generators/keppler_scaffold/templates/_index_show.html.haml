@@ -7,18 +7,18 @@
 		= material_icon.md_24.account_circle.css_class("md-light") 
 		= t("model.singular.#{controller_name.singularize}")
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
-	%ul.list
-		%li.list-row
-			.display-label= t("model.#{controller_name.singularize}.attributes.id")
-			.display-value= @<%= singular_table_name %>.id
-	<%- attributes.each do |attribute| -%>
-		%li.list-row
-			.display-label= t("model.#{controller_name.singularize}.attributes.<%= attribute.name %>")
-			.display-value= @<%= singular_table_name %>.<%= attribute.name %>
-	<%- end -%>			
-		%li.list-row
-			= link_to "Back to history", <%= plural_table_name %>_path
+	.card-content
+		%ul.list
+			%li.list-row
+				.display-label= t("model.#{controller_name.singularize}.attributes.id")
+				.display-value= @<%= singular_table_name %>.id
+		<%- attributes.each do |attribute| -%>
+			%li.list-row
+				.display-label= t("activerecord.attributes.<%= singular_table_name %>.#{attribute}")
+				.display-value= @<%= singular_table_name %>.<%= attribute.name %>
+		<%- end -%>			
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), <%= plural_table_name %>_path
 
 :javascript
-	$(".modal-trigger").leanModal();
 	$('.tooltipped').tooltip({delay: 1});

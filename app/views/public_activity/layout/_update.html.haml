@@ -2,15 +2,15 @@
 	= material_icon.md_24.create.css_class("circle") 
 	%b
 		= activity.owner.name if activity.owner
-	update 
+	= t('keppler.actions.update').downcase 
 	= activity.trackable_type.downcase 
 	- if activity.trackable
-		to 
+		= t('keppler.messages.to') 
 		%b
-			= activity.trackable.name
-		at
+			= activity.trackable.send(method)
+		= t('keppler.messages.at')
 		= activity.created_at
 	- else
-		at	
+		= t('keppler.messages.at')	
 		= activity.created_at
-		whitch has since been removed
+		= t('keppler.messages.since_been_removed')

@@ -2,7 +2,7 @@
 	= material_icon.md_24.delete.css_class("circle") 
 	%b
 		= activity.owner.name if activity.owner
-	delete a 
+	= t('keppler.actions.delete').downcase 
 	= activity.trackable_type.downcase 
-	at
+	= t('keppler.messages.at')
 	= activity.created_at

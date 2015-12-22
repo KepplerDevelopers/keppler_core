@@ -1,7 +1,11 @@
 module NavigationHelper
 
 	def current_navigation?(*args)
-		args.include? current_path.camelize	
+		args.include? current_path.first.camelize	
+	end
+
+	def current_tab?(*args)
+		args.include? current_path.first.camelize and args.include? current_path.last.camelize	
 	end
 
 	def tab(name, icon, link, current)	
@@ -34,9 +38,9 @@ module NavigationHelper
 		path = controller_path.split("/")
 		case path.size
 			when 1
-				path.first
+				path
 			when 2
-				path.first.camelize
+				path
 		end
 	end
 end

@@ -33,10 +33,10 @@ class UsersController < ApplicationController
       end
 
       if @user.update_attributes(update_attributes)    
-        if params.fetch(:commit).eql?("Asignar Rol")
-          format.html { redirect_to users_path, :notice => "Rol asignado satisfactoriamente" }
+        if params.fetch(:commit).eql?("Assign rol")
+          format.html { redirect_to users_path, :notice => t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.user").humanize) }
         else
-          format.html { redirect_to user_path(@user), :notice => "Usuario actualizado satisfactoriamente" }
+          format.html { redirect_to user_path(@user), :notice => t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.user").humanize) }
         end
       else
         format.html { render action: 'edit' }
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
-        format.html { redirect_to user_path(@user), notice: "Usuario creado satisfactoriamente" }
+        format.html { redirect_to user_path(@user), notice: t('keppler.messages.successfully.created', model: t("keppler.models.singularize.user").humanize) }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -62,12 +62,12 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: "Usuario eliminado satisfactoriamente" 
+    redirect_to users_path, notice: t('keppler.messages.successfully.deleted', model: t("keppler.models.singularize.user").humanize)
   end
 
   def destroy_multiple
     User.destroy redefine_ids(params[:multiple_ids])
-    redirect_to users_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
+    redirect_to users_path(page: @current_page, search: @query), notice: t('keppler.messages.successfully.removed', model: t("keppler.models.pluralize.user").humanize)
   end
 
   private

@@ -1,4 +1,4 @@
-= title("<%= plural_table_name.capitalize %> - Listado")
+= title(t('keppler.titles.index', model: "<%= plural_table_name.capitalize %>"))
 .listing.col.l9.m12.s12
 	- if can? :new, model
 		= link_to new_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
@@ -12,7 +12,7 @@
 				%tr
 					%td{colspan: "4"}
 						%center
-							No se han encontrado <%= plural_table_name %>.
+							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
