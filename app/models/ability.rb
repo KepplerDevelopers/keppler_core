@@ -8,13 +8,13 @@ class Ability
       # - user authorize -
       can [:delete, :show, :edit, :update, :create, :index, :destroy_multiple], User
       can :destroy, User do |u| !u.eql?(user) end
-      
+
+
+
     elsif user.has_role? :client
 
       # - user authorize -
-      can :read, User
-     
-      
+      can :read, User   
     end
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

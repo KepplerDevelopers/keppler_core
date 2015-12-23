@@ -38,6 +38,22 @@ module Rails
         end
       end 
 
+      def add_access
+        if arr_access_exits.empty?
+          line = "can :destroy, User do |u| !u.eql?(user) end"
+          gsub_file 'app/models/ability.rb', /(#{Regexp.escape(line)})/mi do |match|
+            "#{match}\n\n      can :manage, #{controller_file_name.singularize.humanize}"
+          end
+        else
+          arr_access_exits.each do |access|
+            line = access
+            gsub_file 'app/models/ability.rb', /(#{Regexp.escape(line)})/mi do |match|
+              ""
+            end
+          end         
+        end
+      end
+
       def create_controller_files
         template "controller.rb", File.join('app/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
       end
@@ -63,7 +79,32 @@ module Rails
       # Invoke the helper using the controller name (pluralized)
       hook_for :helper, as: :scaffold do |invoked|
         invoke invoked, [ controller_name ]
-      end           
+      end 
+
+      private
+
+        def arr_access_exits 
+          object = []        
+          open('app/models/ability.rb').each do |line|
+            if line.to_s.include? "#{controller_file_name.singularize.humanize}"
+              object << line
+            end
+          end
+          return object
+        end
+
+        def destination_path(path)
+          File.join(destination_root, path)
+        end
+
+        def gsub_file(relative_destination, regexp, *args, &block)
+          path = destination_path(relative_destination)
+          content = File.read(path).gsub(regexp, *args, &block)
+          File.open(path, 'wb') do |file| 
+            file.write(content) 
+          end
+        end
+
     end
   end
 end
