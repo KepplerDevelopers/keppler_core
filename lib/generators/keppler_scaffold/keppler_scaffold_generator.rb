@@ -54,15 +54,15 @@ module Rails
         end
       end
 
-      def add_locale_singularize
+      def add_locale_en
         if arr_exist('config/locales/en.yml', "#{controller_file_name.singularize}").empty?
           line = 'singularize:'
           gsub_file 'config/locales/en.yml', /(#{Regexp.escape(line)})/mi do |match|
-            "#{match}\n        #{controller_file_name.singularize}: #{controller_file_name.singularize}"
+            "#{match}\n        #{controller_file_name.singularize}: #{controller_file_name.singularize.humanize.downcase}"
           end
           line = 'pluralize:'
           gsub_file 'config/locales/en.yml', /(#{Regexp.escape(line)})/mi do |match|
-            "#{match}\n        #{controller_file_name}: #{controller_file_name}"
+            "#{match}\n        #{controller_file_name}: #{controller_file_name.humanize.downcase}"
           end
           line = 'modules:'
           gsub_file 'config/locales/en.yml', /(#{Regexp.escape(line)})/mi do |match|
@@ -82,7 +82,7 @@ module Rails
         if arr_exist('config/menu.yml', "#{controller_file_name.singularize}").empty?
           line = 'current: ["users"]'
           gsub_file 'config/menu.yml', /(#{Regexp.escape(line)})/mi do |match|
-            "#{match}\n  #{controller_file_name.singularize}:\n    name: #{controller_file_name}\n    url_path: /admin/#{controller_file_name}\n    icon: account_circle\n    current: ['#{controller_file_name}']"
+            "#{match}\n  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: account_circle\n    current: ['#{controller_file_name}']"
           end
         end
       end

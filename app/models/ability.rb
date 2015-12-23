@@ -15,6 +15,10 @@ class Ability
 
 
 
+
+
+
+
     elsif user.has_role? :client
 
       # - user authorize -
