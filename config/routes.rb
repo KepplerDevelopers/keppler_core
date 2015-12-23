@@ -6,16 +6,12 @@ Rails.application.routes.draw do
 
   resources :admin, only: :index
 
-  scope :admin do
-   
-  	resources :users do 
+  scope :admin do   
+    resources :users do 
       get '(page/:page)', action: :index, on: :collection, as: ''
       delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple
-    end
-    
-  end
-
-
+    end 
+  end   
   #errors
   match '/403', to: 'errors#not_authorized', via: :all, as: :not_authorized
   match '/404', to: 'errors#not_found', via: :all

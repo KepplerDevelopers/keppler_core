@@ -36,7 +36,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
 
     if @<%= orm_instance.save %>
-      redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully created.'" %>
+      redirect_to @<%= singular_table_name %>, notice: t('keppler.messages.successfully.created', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
     else
       render :new
     end
@@ -45,7 +45,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   def update
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully updated.'" %>
+      redirect_to @<%= singular_table_name %>, notice: t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
     else
       render :edit
     end
@@ -54,12 +54,12 @@ class <%= controller_class_name %>Controller < ApplicationController
   # DELETE <%= route_url %>/1
   def destroy
     @<%= orm_instance.destroy %>
-    redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully destroyed.'" %>
+    redirect_to <%= index_helper %>_url, notice: t('keppler.messages.successfully.deleted', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
   end
 
   def destroy_multiple
     <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-    redirect_to <%= plural_table_name %>_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
+    redirect_to <%= plural_table_name %>_path(page: @current_page, search: @query), notice: t('keppler.messages.successfully.removed', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
   end
 
   private

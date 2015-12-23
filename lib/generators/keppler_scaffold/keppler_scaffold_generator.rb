@@ -9,7 +9,7 @@ module Rails
       class_option :stylesheets, type: :boolean, desc: "Generate Stylesheets"
       class_option :stylesheet_engine, desc: "Engine for Stylesheets"
       #class_option :assets, type: :boolean
-      class_option :resource_route, type: :boolean
+      remove_class_option :resource_route, type: :boolean
 
       #def handle_skip
       #  @options = @options.merge(stylesheets: false) unless options[:assets]
@@ -25,6 +25,19 @@ module Rails
 
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
 
+      def add_routes
+        unless options[:skip_routes]
+          begin_scope = indent("scope :admin do\n", 0)
+          begin_resource = indent("    resource :#{controller_file_name} do\n", 0)
+          get_resource = indent("    get '(page/:page)', action: :index, on: :collection, as: ''\n", 2)
+          delete_resource = indent("    delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple\n", 2)
+          end_resouce =  indent("    end\n", 0)
+          end_scope =  indent("  end\n", 0)
+          
+          route begin_scope + begin_resource + get_resource + delete_resource + end_resouce + end_scope
+        end
+      end 
+
       def create_controller_files
         template "controller.rb", File.join('app/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
       end
@@ -38,11 +51,11 @@ module Rails
         template "_index_show.html.haml", File.join("app/views/#{controller_file_name}",  "_index_show.html.haml")
         template "_listing.html.haml", File.join("app/views/#{controller_file_name}",  "_listing.html.haml")
         template "show.js.haml", File.join("app/views/#{controller_file_name}",  "show.js.haml")
-        template "script.coffee", File.join("app/assets/javascripts/admin",  "#{controller_file_name}.coffee")
-        template "style.scss", File.join("app/assets/stylesheets/admin",  "#{controller_file_name}.scss")
       end
 
-      def create_assets_files
+      def create_assets_files        
+        template "script.coffee", File.join("app/assets/javascripts/admin",  "#{controller_file_name}.coffee")
+        template "style.scss", File.join("app/assets/stylesheets/admin",  "#{controller_file_name}.scss")
       end
 
       hook_for :template_engine, :test_framework, as: :scaffold
@@ -50,9 +63,7 @@ module Rails
       # Invoke the helper using the controller name (pluralized)
       hook_for :helper, as: :scaffold do |invoked|
         invoke invoked, [ controller_name ]
-      end
-
-      
+      end           
     end
   end
 end

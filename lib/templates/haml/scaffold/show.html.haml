@@ -3,20 +3,20 @@
 	.wrapper-body.container
 		.actions
 			- if can? :delete, <%= singular_table_name.capitalize %>
-				= link_to <%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => "Eliminar", method: :delete, data: { confirm: 'Are you sure?' } do
+				= link_to <%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
 					= material_icon.md_18.delete.css_class("md-dark")	
 			- if can? :update, <%= singular_table_name.capitalize %>
-				= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Editar" do
+				= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
 					= material_icon.md_18.create.css_class("md-dark")
-			= link_to <%= singular_table_name %>s_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Volver" do
+			= link_to <%= singular_table_name %>s_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
 				= material_icon.md_18.arrow_back.css_class("md-dark") 
 		.card			
 			%ul.list
 				%li.list-row
-					.display-label= t("model.#{controller_name.singularize}.attributes.id")
+					.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
 					.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id.to_s.humanize
 			<%- attributes.each do |attribute| -%>
 				%li.list-row
-					.display-label= t("model.#{controller_name.singularize}.attributes.<%= attribute.name%>")
+					.display-label= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute.name%>")
 					.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute.name%>.to_s.humanize
 			<%- end -%>
