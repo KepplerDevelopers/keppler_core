@@ -28,7 +28,7 @@ module Rails
       def add_routes
         unless options[:skip_routes]
           begin_scope = indent("scope :admin do\n", 0)
-          begin_resource = indent("    resource :#{controller_file_name} do\n", 0)
+          begin_resource = indent("    resources :#{controller_file_name} do\n", 0)
           get_resource = indent("    get '(page/:page)', action: :index, on: :collection, as: ''\n", 2)
           delete_resource = indent("    delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple\n", 2)
           end_resouce =  indent("    end\n", 0)
