@@ -70,28 +70,12 @@ Aqui algunos ejemplos para la creacion de inputs:
 
 Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
 
-`rails g keppler_scaffold <module_name> <attributes>`
+`rails g keppler_scaffold <module_name> <attributes> -f`
 
 Luego crea la tabla en base de datos.
 
 `rake db:migrate`
 
-Coloca la ruta en el admin desde el archivo `config/routes.rb`.
-
-```ruby
-  scope :admin do   
-  	resources :<module_name> do 
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple
-    end
-  end
-```
-
-Asignale permisos al modulo en el archivo `app/models/ability.rb`.
-
-```ruby
-  can :manage, <model_name>
-```
 Para configurar el buscador dentro del modulo solo se debe asignar los atributos en los que se tomaran en cuenta a la hora de realizar la busqueda en el modelo.
 
 ```ruby
@@ -108,4 +92,5 @@ La plataforma permite la adaptación de módulos con facil instalación, algunos
 * [Keppler blog](https://github.com/inyxtech/keppler_blog)
 * [Keppler catalogs](https://github.com/inyxtech/keppler_catalogs)
 * [Keppler contact](https://github.com/inyxtech/keppler_contact_us)
+
 

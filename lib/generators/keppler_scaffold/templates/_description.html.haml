@@ -3,14 +3,15 @@
 		= material_icon.md_24.account_circle.css_class("md-light") 
 		= t("model.singular.#{controller_name.singularize}")
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
-	.list{style: "padding: 0px;"}
-		.collection.with-header{style: "margin: 0px;"}
-			.collection-header
-				%h5
-					%i.fa.fa-clock-o
-					= t("keppler.titles.history")  		                                 
-			- @activities.each do |activity|
-				- if activity.trackable_type.eql? "Session"
-					= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "<attribute_name>" }
-				- else
-					= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "<attribute_name>" }
+	.card-content
+		.list{style: "padding: 0px;"}		
+			.collection.with-header{style: "margin: 0px;"}
+				.collection-header
+					%h5
+						%i.fa.fa-clock-o
+						= t("keppler.titles.history")  		                                 
+				- @activities.each do |activity|
+					- if activity.trackable_type.eql? "Session"
+						= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "<%= attributes.first.name %>" }
+					- else
+						= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "<%= attributes.first.name %>" }

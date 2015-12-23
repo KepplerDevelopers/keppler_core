@@ -9,12 +9,9 @@
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
 		%ul.list
-			%li.list-row
-				.display-label= t("model.#{controller_name.singularize}.attributes.id")
-				.display-value= @<%= singular_table_name %>.id
 		<%- attributes.each do |attribute| -%>
 			%li.list-row
-				.display-label= t("activerecord.attributes.<%= singular_table_name %>.#{attribute}")
+				.display-label= t("activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>")
 				.display-value= @<%= singular_table_name %>.<%= attribute.name %>
 		<%- end -%>			
 			%li.list-row

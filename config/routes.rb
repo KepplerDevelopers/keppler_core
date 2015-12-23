@@ -1,5 +1,5 @@
 Rails.application.routes.draw do 
-
+  
   root to: 'frontend#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise

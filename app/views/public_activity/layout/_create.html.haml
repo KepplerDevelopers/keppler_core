@@ -8,7 +8,7 @@
 	- if activity.trackable
 		= t('keppler.messages.to') 
 		%b
-			= activity.trackable.name
+			= activity.trackable.send(method)
 		= t('keppler.messages.at')
 		= activity.created_at
 	- else

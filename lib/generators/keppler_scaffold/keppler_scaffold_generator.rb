@@ -39,13 +39,13 @@ module Rails
       end 
 
       def add_access_to_ability
-        if arr_access_exits.empty?
+        if arr_exist('app/models/ability.rb', "#{controller_file_name.singularize.humanize}").empty?
           line = "can :destroy, User do |u| !u.eql?(user) end"
           gsub_file 'app/models/ability.rb', /(#{Regexp.escape(line)})/mi do |match|
             "#{match}\n\n      can :manage, #{controller_file_name.singularize.humanize}"
           end
         else
-          arr_access_exits.each do |access|
+          arr_exist('app/models/ability.rb', "#{controller_file_name.singularize.humanize}").each do |access|
             line = access
             gsub_file 'app/models/ability.rb', /(#{Regexp.escape(line)})/mi do |match|
               ""
@@ -54,8 +54,32 @@ module Rails
         end
       end
 
+      def add_locale_singularize
+        if arr_exist('config/locales/en.yml', "#{controller_file_name.singularize}").empty?
+          line = 'singularize:'
+          gsub_file 'config/locales/en.yml', /(#{Regexp.escape(line)})/mi do |match|
+            "#{match}\n        #{controller_file_name.singularize}: #{controller_file_name.singularize}"
+          end
+          line = 'pluralize:'
+          gsub_file 'config/locales/en.yml', /(#{Regexp.escape(line)})/mi do |match|
+            "#{match}\n        #{controller_file_name}: #{controller_file_name}"
+          end
+          line = 'modules:'
+          gsub_file 'config/locales/en.yml', /(#{Regexp.escape(line)})/mi do |match|
+            "#{match}\n      #{controller_file_name}: #{controller_file_name.humanize}"
+          end
+        else
+          arr_exist('app/models/ability.rb', "#{controller_file_name.singularize.humanize}").each do |access|
+            line = access
+            gsub_file 'app/models/ability.rb', /(#{Regexp.escape(line)})/mi do |match|
+              ""
+            end
+          end
+        end
+      end
+
       def add_menu
-        if arr_items_menu.empty?
+        if arr_exist('config/menu.yml', "#{controller_file_name.singularize}").empty?
           line = 'current: ["users"]'
           gsub_file 'config/menu.yml', /(#{Regexp.escape(line)})/mi do |match|
             "#{match}\n  #{controller_file_name.singularize}:\n    name: #{controller_file_name}\n    url_path: /admin/#{controller_file_name}\n    icon: account_circle\n    current: ['#{controller_file_name}']"
@@ -76,6 +100,11 @@ module Rails
         template "_index_show.html.haml", File.join("app/views/#{controller_file_name}",  "_index_show.html.haml")
         template "_listing.html.haml", File.join("app/views/#{controller_file_name}",  "_listing.html.haml")
         template "show.js.haml", File.join("app/views/#{controller_file_name}",  "show.js.haml")
+        template "_form.html.haml", File.join("app/views/#{controller_file_name}",  "_form.html.haml")
+        template "edit.html.haml", File.join("app/views/#{controller_file_name}",  "edit.html.haml")
+        template "new.html.haml", File.join("app/views/#{controller_file_name}",  "new.html.haml")
+        template "show.html.haml", File.join("app/views/#{controller_file_name}",  "show.html.haml")
+        template "index.html.haml", File.join("app/views/#{controller_file_name}",  "index.html.haml")
       end
 
       def create_assets_files        
@@ -92,25 +121,15 @@ module Rails
 
       private
 
-        def arr_access_exits 
+        def arr_exist(path, search)
           object = []        
-          open('app/models/ability.rb').each do |line|
-            if line.to_s.include? "#{controller_file_name.singularize.humanize}"
+          open(path).each do |line|
+            if line.to_s.include? search
               object << line
             end
           end
           return object
-        end
-
-        def arr_items_menu
-          object = []        
-          open('config/menu.yml').each do |line|
-            if line.to_s.include? "#{controller_file_name.singularize}"
-              object << line
-            end
-          end
-          return object
-        end
+        end       
 
         def destination_path(path)
           File.join(destination_root, path)

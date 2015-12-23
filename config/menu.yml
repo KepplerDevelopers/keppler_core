@@ -3,7 +3,7 @@ menu:
     name: dashboard
     url_path: /admin/dashboard
     icon: dashboard
-    current: ["keppler_ga_dashboard/dashboard"]  
+    current: ["keppler_ga_dashboard/dashboard"]
   blog:
     name: blog
     icon: library_books
