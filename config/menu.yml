@@ -3,12 +3,7 @@ menu:
     name: dashboard
     url_path: /admin/dashboard
     icon: dashboard
-    current: ["keppler_ga_dashboard/dashboard"]
-  user:
-    name: users
-    url_path: /admin/users
-    icon: account_circle
-    current: ["users"]
+    current: ["keppler_ga_dashboard/dashboard"]  
   blog:
     name: blog
     icon: library_books
@@ -22,3 +17,8 @@ menu:
           name: categories
           url_path: /admin/blog/categories
           current: ["keppler_blog/categories"]
+  user:
+    name: users
+    url_path: /admin/users
+    icon: account_circle
+    current: ["users"]

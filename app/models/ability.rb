@@ -10,8 +10,6 @@ class Ability
       can :destroy, User do |u| !u.eql?(user) end
 
 
-
-
     elsif user.has_role? :client
 
       # - user authorize -

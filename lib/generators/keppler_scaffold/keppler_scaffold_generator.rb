@@ -54,6 +54,15 @@ module Rails
         end
       end
 
+      def add_menu
+        if arr_items_menu.empty?
+          line = 'current: ["users"]'
+          gsub_file 'config/menu.yml', /(#{Regexp.escape(line)})/mi do |match|
+            "#{match}\n  #{controller_file_name.singularize}:\n    name: #{controller_file_name}\n    url_path: /admin/#{controller_file_name}\n    icon: account_circle\n    current: ['#{controller_file_name}']"
+          end
+        end
+      end
+
       def create_controller_files
         template "controller.rb", File.join('app/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
       end
@@ -87,6 +96,16 @@ module Rails
           object = []        
           open('app/models/ability.rb').each do |line|
             if line.to_s.include? "#{controller_file_name.singularize.humanize}"
+              object << line
+            end
+          end
+          return object
+        end
+
+        def arr_items_menu
+          object = []        
+          open('config/menu.yml').each do |line|
+            if line.to_s.include? "#{controller_file_name.singularize}"
               object << line
             end
           end
