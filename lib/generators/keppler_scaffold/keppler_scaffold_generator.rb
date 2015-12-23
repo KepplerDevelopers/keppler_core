@@ -38,7 +38,7 @@ module Rails
         end
       end 
 
-      def add_access
+      def add_access_to_ability
         if arr_access_exits.empty?
           line = "can :destroy, User do |u| !u.eql?(user) end"
           gsub_file 'app/models/ability.rb', /(#{Regexp.escape(line)})/mi do |match|
