@@ -8,7 +8,6 @@ es:
       not_saved:
         one: "1 error evitó que este %{resource} fuera guardado:"
         other: "%{count} errores evitaron que este %{resource} fuera guardado:"
-
   devise:
     failure:
       already_authenticated: 'Ya estás dentro del sistema.'
@@ -22,6 +21,8 @@ es:
     sessions:
       signed_in: 'Ingreso exitoso.'
       signed_out: 'Has salido del sistema.'
+      forgot_password: '¿Olvidaste tu contraseña?'
+      log_in: "Entrar"
     passwords:
       send_instructions: 'Recibirás un correo electrónico con instrucciones sobre cómo reiniciar tu contraseña en unos minutos.'
       updated: 'Tu contraseña fue cambiada exitosamente y has sido ingresado al sistema.'

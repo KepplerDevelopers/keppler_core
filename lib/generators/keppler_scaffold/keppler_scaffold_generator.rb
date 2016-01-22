@@ -112,7 +112,7 @@ module Rails
         template "style.scss", File.join("app/assets/stylesheets/admin",  "#{controller_file_name}.scss")
       end
 
-      hook_for :template_engine, :test_framework, as: :scaffold
+      hook_for :test_framework, as: :scaffold
 
       # Invoke the helper using the controller name (pluralized)
       hook_for :helper, as: :scaffold do |invoked|

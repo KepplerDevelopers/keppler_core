@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223215325) do
+ActiveRecord::Schema.define(version: 20160118154638) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20151223215325) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
+  create_table "employees", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "phone",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.integer  "resource_id",   limit: 4
@@ -40,13 +48,6 @@ ActiveRecord::Schema.define(version: 20151223215325) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-
-  create_table "tasks", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
