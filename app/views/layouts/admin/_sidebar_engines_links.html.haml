@@ -1,4 +1,0 @@
-= #render "layouts/keppler_ga_dashboard/links"
-- SidebarConfiguration.keppler_engines.each do |engine|
-	- if engine.name.underscore != 'keppler_ga_dashboard'
-		= render "layouts/#{engine.name.underscore}/links"
