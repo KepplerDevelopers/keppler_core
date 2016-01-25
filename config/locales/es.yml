@@ -3,11 +3,14 @@ es:
     models:
       singularize:
         user: usuario
+        setting: Ajuste
       pluralize: 
         user: usuarios
+        setting: Ajustes
     modules:
       keppler_ga_dashboard/dashboard: Dashboard
       users: Usuarios
+      settings: Ajustes
     messages:
       not_found_records: "No se han encontrado %{model}"
       data_confirm: ¿Estas seguro?
@@ -17,6 +20,9 @@ es:
         updated: "%{model} hha sido actualizado satisfactoriamente"
         deleted: "%{model} ha sido eliminado satisfactoriamente"
         removed: "%{model} han sido eliminados satisfactoriamente"
+    header_information:
+      setting:
+        basic_information: Información básica
     titles:
       index: "%{model} - Listado"
       show: "%{model} - Ver"
@@ -52,6 +58,11 @@ es:
         updated_at: Ultima actualización
         password: Contraseña
         password_confirmation: Confirmar contraseña
+      setting:
+        name: Nombre
+        description: Descripción
+        logo: Logo
+        favicon: Favicon
   date:
     abbr_day_names:
     - Dom

@@ -22,3 +22,14 @@ menu:
           name: categories
           url_path: /admin/blog/categories
           current: ["keppler_blog/categories"]
+  setting:
+    name: setting
+    current: ["settings"]
+    icon: settings
+    submenu:
+      - basic:
+          name: Basic information
+          url_path: /admin/settings/basic_information
+          current: ["basic_information"]
+
+        

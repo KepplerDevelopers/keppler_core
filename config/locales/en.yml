@@ -23,10 +23,16 @@ en:
   keppler:
     models:
       singularize:
+        setting: setting
+        configuration: configuration
         user: user
       pluralize:
+        settings: settings
+        configurations: configurations
         user: users
     modules:
+      settings: Settings
+      configurations: Configurations
       keppler_ga_dashboard/dashboard: Dashboard
       users: Users
     messages:
@@ -43,6 +49,9 @@ en:
         updated: "%{model} has been updated successfully"
         deleted: "%{model} has been deleted successfully"
         removed: "%{model} have been deleted successfully"
+    header_information:
+      setting:
+        basic_information: Basic Information
     titles:
       index: "%{model} - Listing"
       show: "%{model} - Show"

@@ -15,6 +15,10 @@ module ApplicationHelper
 		action_name.to_sym.eql?(:index)
 	end
 
+	def settings_path?
+		controller_name.eql?("settings")
+	end
+
 	def model
 		controller.controller_path.classify.constantize
 	end

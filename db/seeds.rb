@@ -13,5 +13,7 @@
 	puts "#{name} creado"
 end
 
+Setting.create name: "Keppler Admin", description: "Welcome to Keppler Admin"
+
 User.create name: "Admin", email: "admin@keppler.com", password: "12345678", password_confirmation: "12345678", role_ids: "1"
 puts "admin@keppler.com ha sido creado"

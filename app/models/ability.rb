@@ -9,6 +9,11 @@ class Ability
       can [:delete, :show, :edit, :update, :create, :index, :destroy_multiple], User
       can :destroy, User do |u| !u.eql?(user) end
 
+      # - Setting -
+      can :manage, Setting
+
+
+
     elsif user.has_role? :client
 
       # - user authorize -

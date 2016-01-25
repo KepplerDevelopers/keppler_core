@@ -23,6 +23,9 @@
                   - menu[key]["submenu"].each do |submenu|
                     - submenu.each do |name, val|
                       %li
-                        = link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}"
+                        - if settings_path?
+                          = link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}"
+                        - else
+                          = link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}"
 
 
