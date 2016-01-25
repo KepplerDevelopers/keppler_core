@@ -6,7 +6,7 @@
 		.wrapper-inputs
 			.card
 				.card-content
-					= simple_form_for @setting do |f|
+					= simple_form_for @setting, url: update_settings_path(@render), method: :put do |f|
 						.row
 							= render @render, f: f
 

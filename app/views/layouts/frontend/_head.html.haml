@@ -1,7 +1,7 @@
 %head
 	%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-	%title= content_for?(:title) ? yield(:title) : 'Keppler'
-	%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Keppler'}"}
+	%title= content_for?(:title) ? yield(:title) : @setting.name
+	%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : "#{@setting.description}"}"}
 	= stylesheet_link_tag 'frontend/application', media: 'all', 'data-turbolinks-track' => true
 	= javascript_include_tag 'frontend/application', 'data-turbolinks-track' => true
 	= render 'layouts/frontend/google_analytics'

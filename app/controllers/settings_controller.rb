@@ -12,7 +12,7 @@ class SettingsController < ApplicationController
   # PATCH/PUT /settings/1
   def update
     if @setting.update(setting_params)
-      redirect_to general_settings_path, notice: t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.setting").humanize) 
+      redirect_to settings_path(@render), notice: t('keppler.messages.successfully.updated', model: "#{t("keppler.header_information.setting.#{@render}")}") 
     else
       render :edit
     end

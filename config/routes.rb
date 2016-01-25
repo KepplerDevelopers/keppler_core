@@ -12,9 +12,10 @@ Rails.application.routes.draw do
       delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple
     end 
 
-    resources :settings, only: [:update] do
+    resources :settings, only: [] do
       collection do
-        get '/:config', to: 'settings#edit'
+        get '/:config', to: 'settings#edit', as: ""
+        put '/:config', to: 'settings#update', as: "update"
       end
     end
   end   
