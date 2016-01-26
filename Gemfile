@@ -27,17 +27,16 @@ gem 'mysql2', '~> 0.3.18'
 #SEO
 gem 'sitemap_generator'
 
-#websocket
-#gem 'faye'
-#gem 'thin'
-#gem 'sync'
-
 #history
 gem 'public_activity'
 
 #forms
 gem 'simple_form'
-#gem 'cocoon'
+gem 'cocoon'
+
+#upload
+gem 'carrierwave' #dependency (inyx_blog_rails, inyx_catalog_rails)
+gem 'rmagick'
 
 #desgin
 gem 'bootstrap-sass'
@@ -74,24 +73,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0' 
   gem 'commands'
 end
-
-#modules
-#gem 'acts-as-taggable-on', '~> 3.4' #dependency (inyx_blog_rails)
-#gem 'cocoon' #dependency (inyx_blog_rails, inyx_poll_rails)
-#gem 'tinymce-rails' #dependency #(inyx_blog_rails, inyx_employees_rails)
-#gem 'carrierwave' #dependency (inyx_blog_rails, inyx_catalog_rails)
-#gem 'rmagick' #dependency (inyx_blog_rails, inyx_catalog_rails)
-#gem 'soundcloud' #dependency (inyx_catalog_rails)
-
-#---- inyx_blog_rails ----
-#gem 'inyx_blog_rails', path: '../inyx_blog_rails'
-
-#---- contact_us -----
-#gem 'inyx_contact_us_rails', path: '../inyx_contact_us_rails'
-
-#---- inyx_catalogue_rails ----
-#gem 'keppler_contact_us', git: 'https://github.com/inyxtech/keppler_contact_us.git'
-#gem "recaptcha"
 
 #---- keppler_ga_dashboard ----
 gem 'keppler_ga_dashboard', git: 'https://github.com/inyxtech/keppler_ga_dashboard.git'

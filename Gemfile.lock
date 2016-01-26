@@ -66,6 +66,11 @@ GEM
     builder (3.2.2)
     byebug (8.2.1)
     cancancan (1.13.1)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     ckeditor (4.1.5)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -73,6 +78,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
+    cocoon (1.2.6)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -275,6 +281,7 @@ GEM
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     retriable (1.4.1)
+    rmagick (2.15.4)
     rolify (5.0.0)
     ruby_parser (3.7.2)
       sexp_processor (~> 4.1)
@@ -340,7 +347,9 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   cancancan
+  carrierwave
   ckeditor
+  cocoon
   coffee-rails (~> 4.0.0)
   commands
   devise
@@ -367,6 +376,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.0)
   rails_layout
+  rmagick
   rolify
   sass-rails
   sdoc (~> 0.4.0)
@@ -378,3 +388,6 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6
