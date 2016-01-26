@@ -10,10 +10,15 @@
 
 [:admin, :client].each do |name|
 	Role.create name: name
-	puts "#{name} creado"
+	puts "#{name} has been created"
 end
 
-Setting.create name: "Keppler Admin", description: "Welcome to Keppler Admin"
-
+#create user default
 User.create name: "Admin", email: "admin@keppler.com", password: "12345678", password_confirmation: "12345678", role_ids: "1"
-puts "admin@keppler.com ha sido creado"
+puts "admin@keppler.com has been created"
+
+#create setting deafult
+setting = Setting.new(name: "Keppler Admin", description: "Welcome to Keppler Admin", smtp_setting_attributes: { server_address: "test", port: "25", domain_name: "keppler.com", email: "info@keppler.com", password: "12345678" }, google_analytic_attributes: { ga_account_id: "60688852" })
+setting.google_analytic.properties << Property.new(name: "track 1", tracking_id: "UA-60688852-1", url: "http://keppler.com")
+setting.save
+puts "Setting default has been created"

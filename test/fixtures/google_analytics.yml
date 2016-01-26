@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ga_account_id: MyString
+  setting_id: 1
+
+two:
+  ga_account_id: MyString
+  setting_id: 1

@@ -52,6 +52,8 @@ en:
     header_information:
       setting:
         basic_information: Basic Information
+        email_setting: "Email setting (SMTP)"
+        google_analytics: "Google analytics"
     titles:
       index: "%{model} - Listing"
       show: "%{model} - Show"
@@ -79,3 +81,7 @@ en:
       select_rol: Select rol
       save: Save
       back_history: "Back to history"
+  activerecord:
+    attributes:
+      google_analytic:
+        ga_account_id: Account id

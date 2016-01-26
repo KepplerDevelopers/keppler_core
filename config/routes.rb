@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       collection do
         get '/:config', to: 'settings#edit', as: ""
         put '/:config', to: 'settings#update', as: "update"
+        put '/google_analitycs/property/update', to: "settings#property_update", as: "property_update"
       end
     end
   end   

@@ -1,0 +1,27 @@
+= f.simple_fields_for :google_analytic do |f|
+	= f.input :ga_account_id
+	%ul.collection.with-header
+		%li.collection-header
+			%h5 Properties
+		- f.object.properties.each do |property|
+			%li.collection-item
+				%div
+					= property.name
+					%a.secondary-content{:href => "#!"}
+						%i.material-icons delete
+					%a.secondary-content.modal-trigger{:href => "#modal1"}
+						%i.material-icons edit
+
+				#modal1.modal.bottom-sheet
+					= simple_form_for property, url: property_update_settings_path do |p|
+						.modal-content
+							%h5.center-align= "Edit - #{property.name}"
+							= p.input :name
+							= p.input :tracking_id
+							= p.input :url
+
+						.modal-footer
+							= p.button :submit, t("keppler.actions.save")
+
+
+	

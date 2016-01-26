@@ -5,6 +5,10 @@ class Setting < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller && controller.current_user }
+
+  has_one :smtp_setting
+  has_one :google_analytic
+  accepts_nested_attributes_for :smtp_setting, :google_analytic
   
   after_commit on: [:update] do
     puts __elasticsearch__.index_document

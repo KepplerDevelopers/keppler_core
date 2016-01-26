@@ -18,7 +18,13 @@ $(document).on 'ready page:load', () ->
 		#$('.dropdown-button').dropdown() #activar los dropdowns
 		#$('.tooltipped').tooltip({delay: 1}); #activar tooltips
 		#$('.collapsible').collapsible({accordion : false}); #activar collapse
-		$('select').material_select() #activar select material
+
+		#activar select material
+		$('select').material_select() 
+
+		#activar modal material
+		$('.modal-trigger').leanModal();
+
 		#activar datepicker material
 		$('.datepicker').pickadate({
 			selectMonths: true,

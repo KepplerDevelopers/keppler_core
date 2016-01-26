@@ -8,10 +8,10 @@
 				.card-content
 					= simple_form_for @setting, url: update_settings_path(@render), method: :put do |f|
 						.row
-							= render @render, f: f
+							= render partial: "settings/fields/#{@render}", locals: { f: f }
 
 							.form-actions.right
-								= f.button :submit, "Guardar", class: "btn"
+								= f.button :submit, t("keppler.actions.save")
 	.wrapper-menu
 		.card
 
