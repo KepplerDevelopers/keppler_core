@@ -1,0 +1,19 @@
+%li.collection-item.nested-fields
+	%div
+		%span#label_name
+			= f.object.name.blank? ? "New" : f.object.name
+		%span.teal-text.text-darken-2#label_tracking_id
+			= "- #{f.object.tracking_id}" unless f.object.tracking_id.blank? 
+		= link_to_remove_association "<i class = 'material-icons'>delete</i>".html_safe, f, class: "secondary-content"
+		%a.secondary-content.modal-trigger{:href => "#modal-#{f.object.id}"}
+			%i.material-icons edit
+
+	.modal.bottom-sheet{ id: "modal-#{f.object.id}"}
+		.modal-content
+			%h5.center-align= f.object.name.blank? ? "New" : "Edit - #{f.object.name}"
+			= f.input :name, input_html: { id: "field_name" }
+			= f.input :tracking_id, input_html: { id: "field_tracking_id" }
+			= f.input :url
+
+		.modal-footer
+			%a.modal-action.modal-close.waves-effect.waves-green.btn{ :href => "#" } Add

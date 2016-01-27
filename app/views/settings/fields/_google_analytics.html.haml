@@ -1,27 +1,33 @@
 = f.simple_fields_for :google_analytic do |f|
 	= f.input :ga_account_id
-	%ul.collection.with-header
+	
+	%ul.collection.with-header#properties
 		%li.collection-header
-			%h5 Properties
-		- f.object.properties.each do |property|
-			%li.collection-item
-				%div
-					= property.name
-					%a.secondary-content{:href => "#!"}
-						%i.material-icons delete
-					%a.secondary-content.modal-trigger{:href => "#modal1"}
-						%i.material-icons edit
+			%h5.align-center Properties
+		= f.simple_fields_for :properties do |property|
+			= render "property_fields", f: property
+		.links.center-align{ style: "padding: 10px;" }
+			= link_to_add_association 'Add Propperty', f, :properties, class: "white-text btn"
+		
 
-				#modal1.modal.bottom-sheet
-					= simple_form_for property, url: property_update_settings_path do |p|
-						.modal-content
-							%h5.center-align= "Edit - #{property.name}"
-							= p.input :name
-							= p.input :tracking_id
-							= p.input :url
+:javascript
+	$('#properties').on('cocoon:before-insert', function(e, insertedItem) {
+		item = $(insertedItem[0])
+		$(item).find(".modal-trigger").attr("href", "#"+e.timeStamp)
+		$(item).find(".modal-trigger").leanModal();
+		$(item).find(".modal").attr("id", e.timeStamp)
+		$(item).find(".modal").openModal({
+			dismissible: true,
+			complete: function() { 
+				$('body').css("overflow-y", "auto");
+				if($(item).find("#field_name").val() != 0)
+					$(item).find("#label_name").html($(item).find("#field_name").val());
 
-						.modal-footer
-							= p.button :submit, t("keppler.actions.save")
+				if($(item).find("#field_tracking_id").val() != 0)
+					$(item).find("#label_tracking_id").html("- "+$(item).find("#field_tracking_id").val());
+			}
+		});
+	});
 
 
 	

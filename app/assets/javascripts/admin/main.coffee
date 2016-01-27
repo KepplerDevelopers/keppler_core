@@ -23,13 +23,16 @@ $(document).on 'ready page:load', () ->
 		$('select').material_select() 
 
 		#activar modal material
-		$('.modal-trigger').leanModal();
+		$('.modal-trigger').leanModal({
+			complete: ->
+				$('body').css("overflow-y", "auto")
+		})
 
 		#activar datepicker material
 		$('.datepicker').pickadate({
 			selectMonths: true,
 			selectYears: 15
-		});
+		})
 
 		# inputs errors
 		$('.select-wrapper').click ->
