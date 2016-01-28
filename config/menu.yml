@@ -10,7 +10,7 @@ menu:
     icon: account_circle
     current: ["users"]
   google_analytics_track:
-    name: google analytics
+    name: google analytics tracks
     url_path: /admin/google_analytics_tracks
     icon: insert_chart
     current: ['google_analytics_tracks']
@@ -40,3 +40,7 @@ menu:
           name: Emial setting (SMTP)
           url_path: /admin/settings/email_setting
           current: ["email_setting"]
+      - google_analytics_setting:
+          name: Google analytics
+          url_path: /admin/settings/google_analytics_setting
+          current: ["google_analytics_setting"]

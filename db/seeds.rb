@@ -18,6 +18,6 @@ User.create name: "Admin", email: "admin@keppler.com", password: "12345678", pas
 puts "admin@keppler.com has been created"
 
 #create setting deafult
-setting = Setting.new(name: "Keppler Admin", description: "Welcome to Keppler Admin", ga_account_id: "60688852", smtp_setting_attributes: { server_address: "test", port: "25", domain_name: "keppler.com", email: "info@keppler.com", password: "12345678" })
+setting = Setting.new(name: "Keppler Admin", description: "Welcome to Keppler Admin", smtp_setting_attributes: { server_address: "test", port: "25", domain_name: "keppler.com", email: "info@keppler.com", password: "12345678" }, google_analytics_setting_attributes: { ga_account_id: "60688852", ga_tracking_id: "UA-60688852-1", ga_status: true })
 setting.save
 puts "Setting default has been created"

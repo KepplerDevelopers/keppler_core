@@ -5,7 +5,6 @@ class CreateSettings < ActiveRecord::Migration
       t.string :description
       t.string :logo
       t.string :favicon
-      t.string :ga_account_id
 
       t.timestamps null: false
     end

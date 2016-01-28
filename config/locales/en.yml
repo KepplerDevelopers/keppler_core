@@ -56,7 +56,7 @@ en:
       setting:
         basic_information: Basic Information
         email_setting: "Email setting (SMTP)"
-        google_analytics: "Google analytics"
+        google_analytics_setting: "Google analytics"
     titles:
       index: "%{model} - Listing"
       show: "%{model} - Show"
@@ -86,5 +86,7 @@ en:
       back_history: "Back to history"
   activerecord:
     attributes:
-      setting:
-        ga_account_id: Google analytics account id
+      google_analytics_setting:
+        ga_account_id: Account id
+        ga_tracking_id: Tracking id
+        ga_status: Enabled?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128131802) do
+ActiveRecord::Schema.define(version: 20160128151351) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20160128131802) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "google_analytics_settings", force: :cascade do |t|
+    t.string   "ga_account_id",  limit: 255
+    t.string   "ga_tracking_id", limit: 255
+    t.boolean  "ga_status",      limit: 1
+    t.integer  "setting_id",     limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "google_analytics_tracks", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -50,13 +59,12 @@ ActiveRecord::Schema.define(version: 20160128131802) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "settings", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "description",   limit: 255
-    t.string   "logo",          limit: 255
-    t.string   "favicon",       limit: 255
-    t.string   "ga_account_id", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.string   "logo",        limit: 255
+    t.string   "favicon",     limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "smtp_settings", force: :cascade do |t|

@@ -22,6 +22,10 @@ class GoogleAnalyticsTrack < ActiveRecord::Base
     { query: { multi_match:  { query: query, fields: [:name, :tracking_id, :url] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
   end
 
+  def self.get_tracking_id(request)
+    self.find_by_url(request.url)
+  end
+
   #armar indexado de elasticserch
   def as_indexed_json(options={})
     {

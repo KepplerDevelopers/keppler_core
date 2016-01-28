@@ -25,4 +25,4 @@
 					%li.list-row
 						.display-label= t("activerecord.attributes.#{controller_name.singularize}.url")
 						.display-value.fs-body-1.tc-black-2
-							= link_to "@google_analytics_track.url", @google_analytics_track.url, target: "_blank"
+							= link_to @google_analytics_track.url, @google_analytics_track.url, target: "_blank"
