@@ -1,4 +1,4 @@
-= title(t('keppler.titles.index', model: "<%= plural_table_name.capitalize %>"))
+= title(t('keppler.titles.index', model: "<%= plural_table_name.humanize %>"))
 .listing.col.l9.m12.s12
 	- if can? :new, model
 		= link_to new_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only" do
