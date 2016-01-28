@@ -4,6 +4,7 @@ class Setting < ActiveRecord::Base
 
   has_one :smtp_setting
   has_one :google_analytics_setting
-  accepts_nested_attributes_for :smtp_setting, :google_analytics_setting  
+  has_one :social_account
+  accepts_nested_attributes_for :smtp_setting, :google_analytics_setting, :social_account
 
 end

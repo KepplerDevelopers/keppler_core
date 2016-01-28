@@ -34,3 +34,7 @@ menu:
           name: Google analytics
           url_path: /admin/settings/google_analytics_setting
           current: ["google_analytics_setting"]
+      - social_account:
+          name: Social Accounts
+          url_path: /admin/settings/social_accounts
+          current: ["social_accounts"]

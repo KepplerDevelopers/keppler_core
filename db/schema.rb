@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128151351) do
+ActiveRecord::Schema.define(version: 20160128193740) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(version: 20160128151351) do
   create_table "settings", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
+    t.string   "phone",       limit: 255
+    t.string   "mobile",      limit: 255
+    t.string   "email",       limit: 255
     t.string   "logo",        limit: 255
     t.string   "favicon",     limit: 255
     t.datetime "created_at",              null: false
@@ -76,6 +79,28 @@ ActiveRecord::Schema.define(version: 20160128151351) do
     t.integer  "setting_id",     limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "social_accounts", force: :cascade do |t|
+    t.string   "facebook",    limit: 255
+    t.string   "twitter",     limit: 255
+    t.string   "instagram",   limit: 255
+    t.string   "google_plus", limit: 255
+    t.string   "tripadvisor", limit: 255
+    t.string   "pinterest",   limit: 255
+    t.string   "flickr",      limit: 255
+    t.string   "behance",     limit: 255
+    t.string   "dribbble",    limit: 255
+    t.string   "tumblr",      limit: 255
+    t.string   "github",      limit: 255
+    t.string   "linkedin",    limit: 255
+    t.string   "soundcloud",  limit: 255
+    t.string   "youtube",     limit: 255
+    t.string   "skype",       limit: 255
+    t.string   "vimeo",       limit: 255
+    t.integer  "setting_id",  limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: :cascade do |t|

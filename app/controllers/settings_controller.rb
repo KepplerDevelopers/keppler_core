@@ -29,7 +29,7 @@ class SettingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def setting_params
-      params.require(:setting).permit(:name, :description, :logo, :favicon, smpt_setting_attributes: [:server_address, :port, :domain_name, :email, :password], google_analytics_setting_attributes: [:ga_account_id, :ga_tracking_id, :ga_status])
+      params.require(:setting).permit(:name, :description, :email, :phone, :mobile, :logo, :favicon, smpt_setting_attributes: [:server_address, :port, :domain_name, :email, :password], google_analytics_setting_attributes: [:ga_account_id, :ga_tracking_id, :ga_status], social_account_attributes: [:facebook, :twitter, :instagram, :google_plus, :tripadvisor,:pinterest, :flickr, :behance, :dribbble, :tumblr, :github, :linkedin, :soundcloud, :youtube, :skype, :vimeo])
     end
 
     def show_history
