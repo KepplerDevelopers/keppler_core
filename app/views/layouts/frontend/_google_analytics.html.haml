@@ -1,4 +1,4 @@
-- if true && @setting.google_analytics_setting.ga_status
+- if Rails.env.production? && @setting.google_analytics_setting.ga_status
 	- if GoogleAnalyticsTrack.get_tracking_id(request)
 		- tracking = GoogleAnalyticsTrack.get_tracking_id(request).tracking_id
 	- unless tracking
