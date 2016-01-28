@@ -9,28 +9,18 @@ menu:
     url_path: /admin/users
     icon: account_circle
     current: ["users"]
+    model: User
   google_analytics_track:
     name: google analytics tracks
     url_path: /admin/google_analytics_tracks
     icon: insert_chart
     current: ['google_analytics_tracks']
-  blog:
-    name: blog
-    icon: library_books
-    current: ["keppler_blog/posts", "keppler_blog/categories"]
-    submenu:
-      - posts:
-          name: posts
-          url_path: /admin/blog/posts
-          current: ["keppler_blog/posts"]
-      - categories:
-          name: categories
-          url_path: /admin/blog/categories
-          current: ["keppler_blog/categories"]
+    model: GoogleAnalyticsTrack
   setting:
     name: setting
     current: ["settings"]
     icon: settings
+    model: Setting
     submenu:
       - basic_information:
           name: Basic information

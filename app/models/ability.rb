@@ -10,7 +10,7 @@ class Ability
       can :destroy, User do |u| !u.eql?(user) end
 
       # - GoogleAnalytics -
-      can :manage, GoogleAnalyticsTrack
+      can :manage, GoogleAnalyticsTrack if Setting.first.google_analytics_setting.ga_status
 
       # - Setting -
       can :manage, Setting
