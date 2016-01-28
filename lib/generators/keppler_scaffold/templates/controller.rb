@@ -78,12 +78,10 @@ class <%= controller_class_name %>Controller < ApplicationController
     end
 
     def show_history
-      current_user.roles.each do |role|
-        if role.name.eql?("admin")
-          @activities = PublicActivity::Activity.where(trackable_type: '<%= singular_table_name.humanize %>').order("created_at desc").limit(50)
-        else
-          @activities = PublicActivity::Activity.where("trackable_type = '<%= singular_table_name.humanize %>' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
-        end
+      if current_user.has_role? :admin
+        @activities = PublicActivity::Activity.where(trackable_type: '<%= singular_table_name.camelcase %>').order("created_at desc").limit(50)
+      else
+        @activities = PublicActivity::Activity.where("trackable_type = '<%= singular_table_name.camelcase %>' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
       end
     end
 end

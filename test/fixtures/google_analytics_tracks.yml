@@ -2,12 +2,10 @@
 
 one:
   name: MyString
-  tracing_id: MyString
+  tracking_id: MyString
   url: MyString
-  google_analytic_id: 1
 
 two:
   name: MyString
-  tracing_id: MyString
+  tracking_id: MyString
   url: MyString
-  google_analytic_id: 1

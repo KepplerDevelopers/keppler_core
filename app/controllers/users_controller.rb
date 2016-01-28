@@ -81,12 +81,10 @@ class UsersController < ApplicationController
   end
 
   def show_history
-    current_user.roles.each do |role|
-      if role.name.eql?("admin")
-        @activities = PublicActivity::Activity.where("trackable_type = 'User' or trackable_type = 'Session'").order("created_at desc").limit(50)
-      else
-        @activities = PublicActivity::Activity.where("(trackable_type = 'User' or trackable_type = 'Session') and owner_id=#{current_user.id}").order("created_at desc").limit(50)
-      end
+    if current_user.has_role? :admin
+      @activities = PublicActivity::Activity.where("trackable_type = 'User' or trackable_type = 'Session'").order("created_at desc").limit(50)
+    else
+      @activities = PublicActivity::Activity.where("(trackable_type = 'User' or trackable_type = 'Session') and owner_id=#{current_user.id}").order("created_at desc").limit(50)
     end
   end
 

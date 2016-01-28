@@ -1,0 +1,2 @@
+module GoogleAnalyticsTracksHelper
+end

@@ -1,5 +1,12 @@
 Rails.application.routes.draw do 
 
+  scope :admin do
+    resources :google_analytics_tracks do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple
+    end
+  end
+
   root to: 'frontend#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise

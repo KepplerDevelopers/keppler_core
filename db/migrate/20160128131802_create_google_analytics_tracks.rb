@@ -1,10 +1,9 @@
-class CreateProperties < ActiveRecord::Migration
+class CreateGoogleAnalyticsTracks < ActiveRecord::Migration
   def change
-    create_table :properties do |t|
+    create_table :google_analytics_tracks do |t|
       t.string :name
       t.string :tracking_id
       t.string :url
-      t.integer :google_analytic_id
 
       t.timestamps null: false
     end

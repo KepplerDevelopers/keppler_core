@@ -23,14 +23,17 @@ en:
   keppler:
     models:
       singularize:
+        google_analytics_track: google analytics track
         setting: setting
         configuration: configuration
         user: user
       pluralize:
+        google_analytics_tracks: google analytics tracks
         settings: settings
         configurations: configurations
         user: users
     modules:
+      google_analytics_tracks: Google analytics tracks
       settings: Settings
       configurations: Configurations
       keppler_ga_dashboard/dashboard: Dashboard
@@ -83,5 +86,5 @@ en:
       back_history: "Back to history"
   activerecord:
     attributes:
-      google_analytic:
-        ga_account_id: Account id
+      setting:
+        ga_account_id: Google analytics account id
