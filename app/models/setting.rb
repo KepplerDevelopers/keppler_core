@@ -7,4 +7,7 @@ class Setting < ActiveRecord::Base
   has_one :social_account
   accepts_nested_attributes_for :smtp_setting, :google_analytics_setting, :social_account
 
+  mount_uploader :favicon, AttachmentUploader
+  mount_uploader :logo, AttachmentUploader
+
 end
