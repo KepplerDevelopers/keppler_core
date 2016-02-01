@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128193740) do
+ActiveRecord::Schema.define(version: 20160201193758) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20160128193740) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
+  create_table "google_adwords", force: :cascade do |t|
+    t.string   "url",           limit: 255
+    t.string   "campaign_name", limit: 255
+    t.text     "description",   limit: 65535
+    t.text     "script",        limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "google_analytics_settings", force: :cascade do |t|
     t.string   "ga_account_id",  limit: 255
     t.string   "ga_tracking_id", limit: 255
@@ -45,6 +54,15 @@ ActiveRecord::Schema.define(version: 20160128193740) do
     t.string   "url",         limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "meta_tags", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.text     "meta_tags",   limit: 65535
+    t.string   "url",         limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "roles", force: :cascade do |t|

@@ -9,6 +9,11 @@ class Ability
       can [:delete, :show, :edit, :update, :create, :index, :destroy_multiple], User
       can :destroy, User do |u| !u.eql?(user) end
 
+
+      # - SEO -
+      can :manage, MetaTag
+      can :manage, GoogleAdword
+
       # - GoogleAnalytics -
       can :manage, GoogleAnalyticsTrack if Setting.first.google_analytics_setting.ga_status
 

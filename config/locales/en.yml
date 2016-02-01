@@ -23,16 +23,22 @@ en:
   keppler:
     models:
       singularize:
+        google_adword: google adword
+        meta_tag: meta tag
         google_analytics_track: google analytics track
         setting: setting
         configuration: configuration
         user: user
       pluralize:
+        google_adwords: google adwords
+        meta_tags: meta tags
         google_analytics_tracks: google analytics tracks
         settings: settings
         configurations: configurations
         user: users
     modules:
+      google_adwords: Google adwords
+      meta_tags: Meta tags
       google_analytics_tracks: Google analytics tracks
       settings: Settings
       configurations: Configurations
@@ -40,6 +46,7 @@ en:
       users: Users
     messages:
       not_found_records: "No %{model} found"
+      no_events: No activities
       data_confirm: Are you sure?
       records: records
       to: "to"

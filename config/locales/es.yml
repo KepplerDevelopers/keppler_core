@@ -13,6 +13,7 @@ es:
       settings: Ajustes
     messages:
       not_found_records: "No se han encontrado %{model}"
+      no_events: Sin actividades
       data_confirm: ¿Estas seguro?
       records: registros
       successfully:

@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :get_paginator_params
-  before_filter :setting
   before_action :can_multiple_destroy, only: [:destroy_multiple]
   include PublicActivity::StoreController
   
@@ -50,9 +49,4 @@ class ApplicationController < ActionController::Base
       "application"
     end
   end
-
-  def setting
-    @setting = Setting.first
-  end
-
 end

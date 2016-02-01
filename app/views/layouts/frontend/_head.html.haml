@@ -1,22 +1,18 @@
 %head
-	%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-	%title= content_for?(:title) ? yield(:title) : @setting.name
-	%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : "#{@setting.description}"}"}
+	// Title & Meta tags
+	= render "layouts/frontend/meta_tags"
+
+	// Stylesheets
 	= stylesheet_link_tag 'frontend/application', media: 'all', 'data-turbolinks-track' => true
+
+	// Javascripts
 	= javascript_include_tag 'frontend/application', 'data-turbolinks-track' => true
+	= render "layouts/frontend/google_adwords"
+
+	// Google Analytics
 	= render 'layouts/frontend/google_analytics'
-	= favicon_link_tag "frontend/favicon.png"
-	= csrf_meta_tags
-	:javascript
-		WebFontConfig = {
-			google: { families: [  'Raleway::latin' ] }
-		};
-		(function() {
-			var wf = document.createElement('script');
-			wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-			wf.type = 'text/javascript';
-			wf.async = 'true';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(wf, s);
-		})();
+
+	// Favicon
+	= favicon_link_tag @setting.favicon
+
+	

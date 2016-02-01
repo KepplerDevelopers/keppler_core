@@ -10,6 +10,6 @@
 					= t("keppler.titles.history")  		                                 
 			- @activities.each do |activity|
 				- if activity.trackable_type.eql? "Session"
-					= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "<%= attributes.first.name %>" }
+					= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "url" }
 				- else
-					= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "<%= attributes.first.name %>" }
+					= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "url" }

@@ -9,7 +9,25 @@ menu:
     url_path: /admin/users
     icon: account_circle
     current: ["users"]
-    model: User
+  google_adword:
+    name: google adwords
+    url_path: /admin/google_adwords
+    icon: account_circle
+    current: ['google_adwords']
+  meta_tag:
+    name: SEO
+    current: ["meta_tags", "google_adwords"]
+    icon: code
+    model: MetaTag
+    submenu:
+      - meta_tags:
+          name: Title & Metas
+          url_path: /admin/meta_tags
+          current: ["meta_tags"]
+      - google_adwords:
+          name: Google Adwords
+          url_path: /admin/google_adwords
+          current: ['google_adwords']
   google_analytics_track:
     name: google analytics tracks
     url_path: /admin/google_analytics_tracks

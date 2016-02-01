@@ -3,15 +3,13 @@
 		= material_icon.md_24.account_circle.css_class("md-light") 
 		= t("keppler.models.singularize.user").humanize
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
-	.card-content
-		.list
-			.collection.with-header
-				.collection-header
-					%h5
-						%i.fa.fa-clock-o
-						= t("keppler.titles.history")                                 
-				- @activities.each do |activity|
-					- if activity.trackable_type.eql? "Session"
-						= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "name" }
-					- else
-						= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "name" }
+	.list
+		.collection.with-header
+			.collection-header
+				%h5.center-align
+					= @activities.empty? ? t('keppler.messages.no_events') : t("keppler.titles.history") 		                               
+			- @activities.each do |activity|
+				- if activity.trackable_type.eql? "Session"
+					= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "name" }
+				- else
+					= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "name" }

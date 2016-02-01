@@ -1,0 +1,17 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			= link_to google_adwords_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs
+			.card
+				.card-content
+					= simple_form_for @google_adword do |f|
+						.row
+							= f.input :url
+							= f.input :campaign_name
+							= f.input :description, input_html: {class: "materialize-textarea"}
+							= f.input :script, input_html: {class: "materialize-textarea"}
+
+							.form-actions.right
+								= f.button :submit, "Guardar", class: "btn"

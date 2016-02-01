@@ -31,6 +31,17 @@
 			  padding-left: 28px;
 			  margin-left: 10px;
 			}
+
+			.input-field.ckeditor{
+				margin-top: 30px;
+				label.ckeditor{
+					top: -25px;
+				}
+				label.ckeditor.active{
+					font-size: 16px !important;
+					top: 0px;
+				}
+			}
 		}
 		.collection{
 	    margin: 10px;

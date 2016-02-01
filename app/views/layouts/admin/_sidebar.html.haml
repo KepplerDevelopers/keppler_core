@@ -2,9 +2,14 @@
 	%pageslide.card{ "ps-open"=>"sidebar", "ps-auto-close" => true }
 		.profile-menu.bgc-red-500
 			.profile-pic
-				= image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
+				= link_to "http://gravatar.com", target: "_blank" do
+					= image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
 			.profile-info
 				= current_user.name
+				.right
+					= link_to t("keppler.actions.edit_profile"), main_app.edit_user_path(current_user)
+					|
+					= link_to t("keppler.actions.sign_out"), main_app.destroy_user_session_path
 		%ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
 			- KepplerConfiguration.visible_models.each do |menu|
 				- menu.each do |key, value|
