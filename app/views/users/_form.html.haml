@@ -10,7 +10,7 @@
 						.row 
 							= f.input :name
 							= f.input :email
-							= f.input :role_ids, collection: Role.all.map { |rol| [rol.name.humanize, rol.id] }, label: false, include_blank: t("keppler.actions.select_rol")
+							= f.input :role_ids, collection: Role.all.map { |rol| [rol.name.humanize, rol.id] }, label: false, include_blank: t("keppler.actions.select_rol"), input_html: { class: "browser-default" }
 							= f.input :password
 							= f.input :password_confirmation
 							.form-actions.right

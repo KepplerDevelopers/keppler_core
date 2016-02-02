@@ -1,4 +1,5 @@
 $primary-color: #F44336;
+$secondary-color: #d32f2f;
 $nprogress-color: #009688;
 $nprogress-height: 4px;
 $nprogress-zindex: 10100;
@@ -101,7 +102,7 @@ body{
   overflow-x: hidden;
 }
 
-//spinner para peticiones turbolink
+//spinner request turbolink
 .rotate {
   -webkit-animation: rotate 0.6s linear infinite;
   animation: rotate 0.6s linear infinite;

@@ -9,11 +9,6 @@ menu:
     url_path: /admin/users
     icon: account_circle
     current: ["users"]
-  google_adword:
-    name: google adwords
-    url_path: /admin/google_adwords
-    icon: account_circle
-    current: ['google_adwords']
   meta_tag:
     name: SEO
     current: ["meta_tags", "google_adwords"]
