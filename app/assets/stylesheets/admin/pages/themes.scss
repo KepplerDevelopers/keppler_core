@@ -10,6 +10,9 @@ $themes: (
 
 @each $label, $primary-color, $darken-color, $accent-color in $themes {
 	.#{$label}-theme{
+		.devise-box-header{
+			background: $primary-color !important;
+		}
 		nav, .header-information{
 			background: $primary-color;
 		}
@@ -35,6 +38,11 @@ $themes: (
 		textarea.materialize-textarea:focus:not([readonly]) {
 		  border-bottom: 1px solid $accent-color;
 		  box-shadow: 0 1px 0 0 $accent-color;
+		}
+
+		.checkbox_material [type="checkbox"]:checked + label:before {
+	    border-right: 2px solid $accent-color;
+	    border-bottom: 2px solid $accent-color;
 		}
 
 		[type="checkbox"].filled-in:checked + label:after {

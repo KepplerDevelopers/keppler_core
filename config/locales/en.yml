@@ -62,9 +62,10 @@ en:
     header_information:
       setting:
         basic_information: Basic Information
-        email_setting: "Email setting (SMTP)"
-        google_analytics_setting: "Google analytics"
+        email_setting: Email setting (SMTP)
+        google_analytics_setting: Google analytics
         social_accounts: Social accounts
+        apparence: Apparence
     titles:
       index: "%{model} - Listing"
       show: "%{model} - Show"

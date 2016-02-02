@@ -1,7 +1,7 @@
 .col.s6
 	.card.small
 		.card-image
-			- if f.object.logo.file
+			- if f.object.logo?
 				= image_tag f.object.logo
 			- else
 				= image_tag "admin/profile-menu.jpg"
@@ -12,7 +12,7 @@
 .col.s6
 	.card.small
 		.card-image
-			- if f.object.favicon.file
+			- if f.object.favicon?
 				= image_tag f.object.favicon
 			- else
 				= image_tag "admin/profile-menu.jpg"
