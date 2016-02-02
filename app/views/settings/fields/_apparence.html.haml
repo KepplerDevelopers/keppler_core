@@ -4,7 +4,7 @@
 			.card-image
 				- if f.object.image_background?
 					= image_tag f.object.image_background_url
-					%span.card-title
+					.remove-field
 						= f.input :remove_image_background, as: :checkbox_material
 				- else
 					= image_tag "admin/profile-menu.jpg"
