@@ -1,7 +1,7 @@
 !!!
 %html
 	= render "layouts/admin/head"
-	%body{ 'ng-controller'=>'MainCtrl', class: "#{@setting.apparence.theme_name}-theme" }
+	%body{ 'ng-controller'=>'MainCtrl', class: "#{@setting.appearance.theme_name}-theme" }
 		#waiting 
 			= preloader
 
@@ -14,7 +14,7 @@
 				= yield
 				= #console
 		- else
-			%main#devise{ style: @setting.apparence.image_background? ? "background-image: url(#{@setting.apparence.image_background})" : nil  }
+			%main#devise{ style: @setting.appearance.image_background? ? "background-image: url(#{@setting.appearance.image_background})" : nil  }
 				= yield	
 		 
 

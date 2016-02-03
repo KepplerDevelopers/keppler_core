@@ -65,7 +65,7 @@ en:
         email_setting: Email setting (SMTP)
         google_analytics_setting: Google analytics
         social_accounts: Social accounts
-        apparence: Apparence
+        appearance: Appearance
     titles:
       index: "%{model} - Listing"
       show: "%{model} - Show"

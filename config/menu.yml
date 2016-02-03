@@ -51,7 +51,7 @@ menu:
           name: Social Accounts
           url_path: /admin/settings/social_accounts
           current: ["social_accounts"]
-      - apparence:
-          name: Apparence
-          url_path: /admin/settings/apparence
-          current: ["apparence"]
+      - appearance:
+          name: Appearance
+          url_path: /admin/settings/appearance
+          current: ["appearance"]
