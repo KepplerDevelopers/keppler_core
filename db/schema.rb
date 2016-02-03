@@ -97,14 +97,14 @@ ActiveRecord::Schema.define(version: 20160201210520) do
   end
 
   create_table "smtp_settings", force: :cascade do |t|
-    t.string   "server_address", limit: 255
-    t.string   "port",           limit: 255
-    t.string   "domain_name",    limit: 255
-    t.string   "email",          limit: 255
-    t.string   "password",       limit: 255
-    t.integer  "setting_id",     limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "address",     limit: 255
+    t.string   "port",        limit: 255
+    t.string   "domain_name", limit: 255
+    t.string   "email",       limit: 255
+    t.string   "password",    limit: 255
+    t.integer  "setting_id",  limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "social_accounts", force: :cascade do |t|

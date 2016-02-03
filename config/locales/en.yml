@@ -92,7 +92,7 @@ en:
       assing_rol: Assign rol
       select_rol: Select rol
       save: Save
-      save_and_add_other: Save and add other
+      save_and_add_another: Save and add another
       back_history: "Back to history"
   activerecord:
     attributes:

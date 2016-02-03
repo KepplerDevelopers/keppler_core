@@ -29,7 +29,7 @@ class SettingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def setting_params
-      params.require(:setting).permit(:name, :description, :email, :phone, :mobile, :logo, :favicon, :logo_cache, :favicon_cache, smpt_setting_attributes: [:server_address, :port, :domain_name, :email, :password], google_analytics_setting_attributes: [:ga_account_id, :ga_tracking_id, :ga_status], social_account_attributes: [:facebook, :twitter, :instagram, :google_plus, :tripadvisor,:pinterest, :flickr, :behance, :dribbble, :tumblr, :github, :linkedin, :soundcloud, :youtube, :skype, :vimeo], apparence_attributes: [:id, :theme_name, :image_background, :image_background_cache, :remove_image_background])
+      params.require(:setting).permit(:name, :description, :email, :phone, :mobile, :logo, :favicon, :logo_cache, :favicon_cache, smtp_setting_attributes: [:id, :address, :port, :domain_name, :email, :password], google_analytics_setting_attributes: [:ga_account_id, :ga_tracking_id, :ga_status], social_account_attributes: [:facebook, :twitter, :instagram, :google_plus, :tripadvisor,:pinterest, :flickr, :behance, :dribbble, :tumblr, :github, :linkedin, :soundcloud, :youtube, :skype, :vimeo], apparence_attributes: [:id, :theme_name, :image_background, :image_background_cache, :remove_image_background])
     end
 
     def show_history
