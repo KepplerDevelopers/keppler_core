@@ -31,7 +31,7 @@ class MetaTagsController < ApplicationController
     @meta_tag = MetaTag.new(meta_tag_params)
 
     if @meta_tag.save
-      redirect_to @meta_tag, notice: t('keppler.messages.successfully.created', model: t("keppler.models.singularize.meta_tag").humanize) 
+      redirect(@meta_tag, params)
     else
       render :new
     end
@@ -40,7 +40,7 @@ class MetaTagsController < ApplicationController
   # PATCH/PUT /meta_tags/1
   def update
     if @meta_tag.update(meta_tag_params)
-      redirect_to @meta_tag, notice: t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.meta_tag").humanize) 
+      redirect(@meta_tag, params)
     else
       render :edit
     end
@@ -58,21 +58,23 @@ class MetaTagsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meta_tag
-      @meta_tag = MetaTag.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def meta_tag_params
-      params.require(:meta_tag).permit(:title, :description, :meta_tags, :url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meta_tag
+    @meta_tag = MetaTag.find(params[:id])
+  end
 
-    def show_history
-      if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(trackable_type: 'MetaTag').order("created_at desc").limit(50)
-      else
-        @activities = PublicActivity::Activity.where("trackable_type = 'MetaTag' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
-      end
+  # Only allow a trusted parameter "white list" through.
+  def meta_tag_params
+    params.require(:meta_tag).permit(:title, :description, :meta_tags, :url)
+  end
+
+  def show_history
+    if current_user.has_role? :admin
+      @activities = PublicActivity::Activity.where(trackable_type: 'MetaTag').order("created_at desc").limit(50)
+    else
+      @activities = PublicActivity::Activity.where("trackable_type = 'MetaTag' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
     end
+  end
+  
 end

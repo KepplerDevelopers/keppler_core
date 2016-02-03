@@ -33,10 +33,10 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # POST <%= route_url %>
   def create
-    @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
+    @<%= orm_instance %> = <%= orm_class.build(class_name, "#{orm_instance}_params") %>
 
     if @<%= orm_instance.save %>
-      redirect_to @<%= singular_table_name %>, notice: t('keppler.messages.successfully.created', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
+      redirect(@<%= orm_instance %>, params)
     else
       render :new
     end
@@ -45,7 +45,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   def update
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      redirect_to @<%= singular_table_name %>, notice: t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
+      redirect(@<%= orm_instance %>, params)
     else
       render :edit
     end

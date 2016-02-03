@@ -8,6 +8,6 @@
 					= radio_button_tag "user[role_ids]", role.id, false, class: "radio-button__input", id: "radio#{role.id}", :type => "radio", :value => "#{role.id}", :checked => @user.has_role?(role.name)
 					= label_tag "user[role_ids]", role.name.humanize, class: "radio-button__label", :for => "radio#{role.id}"
 		.modal-footer
-			= button_tag t('keppler.actions.assign_rol'), :class => "waves-effect waves-light btn", name: 'commit', value: "Assign rol"
+			= button_tag t('keppler.actions.assign_rol'), :class => "waves-effect waves-light btn", name: '_assing_rol'
 			= link_to t('keppler.actions.cancel'), "", class: "modal-action modal-close waves-effect waves-light btn red"
 		

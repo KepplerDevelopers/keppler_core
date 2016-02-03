@@ -15,4 +15,5 @@
 							= f.input :meta_tags, input_html: { class: "materialize-textarea" }
 
 							.form-actions.right
-								= f.button :submit, "Guardar", class: "btn"
+								= f.button :submit, t("keppler.actions.save"), name: "_save"
+								= f.button :submit, t("keppler.actions.save_and_add_other"), name: "_add_other"

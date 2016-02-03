@@ -22,41 +22,30 @@ class UsersController < ApplicationController
   end
   
   def update
-    respond_to do |format|
-      update_attributes = user_params.delete_if do |attribute, value|
-        case attribute
-          when "password"
-            value.blank?
-          when "password_confirmation"
-            value.blank? if user_params.fetch("password").blank?
-        end
+    update_attributes = user_params.delete_if do |attribute, value|
+      case attribute
+        when "password"
+          value.blank?
+        when "password_confirmation"
+          value.blank? if user_params.fetch("password").blank?
       end
+    end
 
-      if @user.update_attributes(update_attributes)    
-        if params.fetch(:commit).eql?("Assign rol")
-          format.html { redirect_to users_path, :notice => t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.user").humanize) }
-        else
-          format.html { redirect_to user_path(@user), :notice => t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.user").humanize) }
-        end
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-
+    if @user.update_attributes(update_attributes)    
+      redirect(@user, params)
+    else
+      render action: 'edit'
     end
   end
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        @user.add_role Role.find(user_params.fetch(:role_ids)).name
-        format.html { redirect_to user_path(@user), notice: t('keppler.messages.successfully.created', model: t("keppler.models.singularize.user").humanize) }
-        format.json { render action: 'show', status: :created, location: @user }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+
+    if @user.save
+      @user.add_role Role.find(user_params.fetch(:role_ids)).name
+      redirect(@user, params)
+    else
+      render action: 'new'
     end
   end
 
@@ -71,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   private
-
+  
   def set_user
     @user = User.find(params[:id])
   end
@@ -79,13 +68,24 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_ids, :encrypted_password)
   end
-
+  
   def show_history
     if current_user.has_role? :admin
       @activities = PublicActivity::Activity.where("trackable_type = 'User' or trackable_type = 'Session'").order("created_at desc").limit(50)
     else
       @activities = PublicActivity::Activity.where("(trackable_type = 'User' or trackable_type = 'Session') and owner_id=#{current_user.id}").order("created_at desc").limit(50)
     end
+  end
+
+  # Get submit key to redirect, only [:create, :update]
+  def redirect(object, commit)
+    if commit.has_key?("_save")
+      redirect_to user_path(object), notice: t("keppler.messages.successfully.#{action_name}d", model: t("keppler.models.singularize.user").humanize)
+    elsif commit.has_key?("_add_other")
+      redirect_to new_user_path, notice: t("keppler.messages.successfully.#{action_name}d", model: t("keppler.models.singularize.user").humanize)
+    elsif commit.has_key?("_assing_rol")
+      redirect_to users_path, notice: t("keppler.messages.successfully.#{action_name}d", model: t("keppler.models.singularize.user").humanize)
+    end    
   end
 
 end

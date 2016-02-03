@@ -54,4 +54,14 @@ class ApplicationController < ActionController::Base
   def set_setting
     @setting = Setting.first    
   end
+
+  # Get submit key to redirect, only [:create, :update]
+  def redirect(object, commit)
+    if commit.has_key?("_save")
+      redirect_to object, notice: t("keppler.messages.successfully.#{action_name}d", model: t("keppler.models.singularize.#{object.class.to_s.underscore}").humanize)
+    elsif commit.has_key?("_add_other")
+      redirect_to eval("new_#{object.class.to_s.underscore}_path"), notice: t("keppler.messages.successfully.#{action_name}d", model: t("keppler.models.singularize.#{object.class.to_s.underscore}").humanize)
+    end    
+  end
+
 end

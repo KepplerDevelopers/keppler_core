@@ -31,7 +31,7 @@ class GoogleAnalyticsTracksController < ApplicationController
     @google_analytics_track = GoogleAnalyticsTrack.new(google_analytics_track_params)
 
     if @google_analytics_track.save
-      redirect_to @google_analytics_track, notice: t('keppler.messages.successfully.created', model: t("keppler.models.singularize.google_analytics_track").humanize) 
+      redirect(@google_analytics_track, params)
     else
       render :new
     end
@@ -40,7 +40,7 @@ class GoogleAnalyticsTracksController < ApplicationController
   # PATCH/PUT /google_analytics_tracks/1
   def update
     if @google_analytics_track.update(google_analytics_track_params)
-      redirect_to @google_analytics_track, notice: t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.google_analytics_track").humanize) 
+      redirect(@google_analytics_track, params)
     else
       render :edit
     end
@@ -58,21 +58,23 @@ class GoogleAnalyticsTracksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_google_analytics_track
-      @google_analytics_track = GoogleAnalyticsTrack.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_google_analytics_track
+    @google_analytics_track = GoogleAnalyticsTrack.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def google_analytics_track_params
-      params.require(:google_analytics_track).permit(:name, :tracking_id, :url)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def google_analytics_track_params
+    params.require(:google_analytics_track).permit(:name, :tracking_id, :url)
+  end
 
-    def show_history
-      if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(trackable_type: 'GoogleAnalyticsTrack').order("created_at desc").limit(50)
-      else
-        @activities = PublicActivity::Activity.where("trackable_type = 'GoogleAnalyticsTrack' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
-      end
+  def show_history
+    if current_user.has_role? :admin
+      @activities = PublicActivity::Activity.where(trackable_type: 'GoogleAnalyticsTrack').order("created_at desc").limit(50)
+    else
+      @activities = PublicActivity::Activity.where("trackable_type = 'GoogleAnalyticsTrack' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
     end
+  end
+
 end

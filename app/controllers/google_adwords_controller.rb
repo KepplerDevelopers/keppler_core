@@ -31,7 +31,7 @@ class GoogleAdwordsController < ApplicationController
     @google_adword = GoogleAdword.new(google_adword_params)
 
     if @google_adword.save
-      redirect_to @google_adword, notice: t('keppler.messages.successfully.created', model: t("keppler.models.singularize.google_adword").humanize) 
+      redirect(@google_adword, params)
     else
       render :new
     end
@@ -40,7 +40,7 @@ class GoogleAdwordsController < ApplicationController
   # PATCH/PUT /google_adwords/1
   def update
     if @google_adword.update(google_adword_params)
-      redirect_to @google_adword, notice: t('keppler.messages.successfully.updated', model: t("keppler.models.singularize.google_adword").humanize) 
+      redirect(@google_adword, params)
     else
       render :edit
     end
@@ -58,21 +58,23 @@ class GoogleAdwordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_google_adword
-      @google_adword = GoogleAdword.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_google_adword
+    @google_adword = GoogleAdword.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def google_adword_params
-      params.require(:google_adword).permit(:url, :campaign_name, :description, :script)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def google_adword_params
+    params.require(:google_adword).permit(:url, :campaign_name, :description, :script)
+  end
 
-    def show_history
-      if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(trackable_type: 'GoogleAdword').order("created_at desc").limit(50)
-      else
-        @activities = PublicActivity::Activity.where("trackable_type = 'GoogleAdword' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
-      end
+  def show_history
+    if current_user.has_role? :admin
+      @activities = PublicActivity::Activity.where(trackable_type: 'GoogleAdword').order("created_at desc").limit(50)
+    else
+      @activities = PublicActivity::Activity.where("trackable_type = 'GoogleAdword' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
     end
+  end
+
 end
