@@ -39,6 +39,7 @@ gem 'carrierwave' #dependency (inyx_blog_rails, inyx_catalog_rails)
 gem 'rmagick'
 
 #desgin
+gem 'bourbon'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'material_icons'
