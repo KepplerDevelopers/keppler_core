@@ -13,7 +13,7 @@
 
 @mixin orientation($position) {
 	@if $position == landscape {
-		@media only screen and (orientation : landscape) { @content; }
+		@media only screen and (orientation:landscape) { @content; }
 	}
 	@else if $position == portrait {
 		@media only screen and (orientation : portrait) { @content; }

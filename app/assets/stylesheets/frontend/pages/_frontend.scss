@@ -10,7 +10,11 @@
   @include justify-content(center);
 
   &-logo{
-
+  	img{
+  		@include respond-to(xs){
+  			width: 200px;
+  		}
+  	}
   }
 
   &-social{
