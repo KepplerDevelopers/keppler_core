@@ -1,10 +1,10 @@
 // Medias querys
 $breakpoints: (
-  'xs': 0px,
-  'sm': 767px,
-  'md': 1024px,
-  'lg': 1200px,
-  'xl': 1600px,
+  'xs': "(min-width: 0px) and (max-width: 480px)",
+  'sm': "(min-width: 481px) and (max-width: 768px)",
+  'md': "(min-width: 769px) and (max-width: 1024px)",
+  'lg': "(min-width: 1025px) and (max-width: 1600px)",
+  'xl': "(min-width: 1601px) and (max-width: 2048px)",
 ) !default;
 
 // Fonts

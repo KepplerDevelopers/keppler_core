@@ -20,9 +20,16 @@
 	  	li{
 	  		@include display(inline);
 	  		margin: 0px 20px;
+	  		@include respond-to(xs){
+	  			margin: 0px 7px;
+	  		}
+
 	  		a{
 	  			color: white;
 		  		font-size: 4rem;
+		  		@include respond-to(xs){
+		  			font-size: 2rem;
+		  		}
 	  		}
 
 	  		a:hover{

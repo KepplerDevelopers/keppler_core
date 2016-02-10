@@ -4,5 +4,8 @@
 	padding: 20px;
 	img{
 		width: 100px;
+		@include respond-to(xs){
+			width: 50px;
+		}		
 	}
 }
