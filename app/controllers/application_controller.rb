@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     ids.delete("[]").split(",").select { |id| id if controller_path.classify.constantize.exists? id }
   end
   
-  # verificar si el usuario tiene permisos para eliminar cada uno de los objects seleccionados
+  # Check whether the user has permission to delete each of the selected objects
   def can_multiple_destroy
     redefine_ids(params[:multiple_ids]).each do |id|
       authorize! :destroy, controller_path.classify.constantize.find(id)

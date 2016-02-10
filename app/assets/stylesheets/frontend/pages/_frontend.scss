@@ -12,7 +12,7 @@
   &-logo{
   	img{
   		@include respond-to(xs){
-  			width: 200px;
+  			width: 300px;
   		}
   	}
   }
