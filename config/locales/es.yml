@@ -12,6 +12,8 @@ es:
       users: Usuarios
       settings: Ajustes
     messages:
+      not_authorized_page: No estás autorizado para acceder a esta página
+      not_authorized_action: No estás autorizado para realizar esta acción
       not_found_records: "No se han encontrado %{model}"
       no_events: Sin actividades
       data_confirm: ¿Estas seguro?

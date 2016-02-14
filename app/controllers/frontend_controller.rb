@@ -1,7 +1,8 @@
+# FrontendController -> Controller out the back-office
 class FrontendController < ApplicationController
-	layout 'layouts/frontend/application'
-	before_filter :set_metas
-	
+  layout 'layouts/frontend/application'
+  before_filter :set_metas
+
   def index
   end
 

@@ -1,5 +1,5 @@
-#Generado con Keppler.
-class MetaTagsController < ApplicationController  
+# MetaTagController
+class MetaTagsController < ApplicationController
   before_filter :authenticate_user!
   layout 'admin/application'
   load_and_authorize_resource
@@ -9,8 +9,11 @@ class MetaTagsController < ApplicationController
   # GET /meta_tags
   def index
     meta_tags = MetaTag.searching(@query).all
-    @objects, @total = meta_tags.page(@current_page), meta_tags.size
-    redirect_to meta_tags_path(page: @current_page.to_i.pred, search: @query) if !@objects.first_page? and @objects.size.zero?
+    @objects = meta_tags.page(@current_page)
+    @total = meta_tags.size
+    if !@objects.first_page? && @objects.size.zero?
+      redirect_to meta_tags_path(page: @current_page.to_i.pred, search: @query)
+    end
   end
 
   # GET /meta_tags/1
@@ -49,12 +52,15 @@ class MetaTagsController < ApplicationController
   # DELETE /meta_tags/1
   def destroy
     @meta_tag.destroy
-    redirect_to meta_tags_url, notice: t('keppler.messages.successfully.deleted', model: t("keppler.models.singularize.meta_tag").humanize) 
+    redirect_to meta_tags_url, notice: actions_messages(@meta_tag)
   end
 
   def destroy_multiple
     MetaTag.destroy redefine_ids(params[:multiple_ids])
-    redirect_to meta_tags_path(page: @current_page, search: @query), notice: t('keppler.messages.successfully.removed', model: t("keppler.models.singularize.meta_tag").humanize) 
+    redirect_to(
+      meta_tags_path(page: @current_page, search: @query),
+      notice: actions_messages(@meta_tag)
+    )
   end
 
   private
@@ -71,10 +77,13 @@ class MetaTagsController < ApplicationController
 
   def show_history
     if current_user.has_role? :admin
-      @activities = PublicActivity::Activity.where(trackable_type: 'MetaTag').order("created_at desc").limit(50)
+      @activities = PublicActivity::Activity.where(
+        trackable_type: 'MetaTag'
+      ).order('created_at desc').limit(50)
     else
-      @activities = PublicActivity::Activity.where("trackable_type = 'MetaTag' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
+      @activities = PublicActivity::Activity.where(
+        "trackable_type = 'MetaTag' and owner_id=#{current_user.id}"
+      ).order('created_at desc').limit(50)
     end
   end
-  
 end

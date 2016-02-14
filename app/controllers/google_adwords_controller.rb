@@ -1,5 +1,5 @@
-#Generado con Keppler.
-class GoogleAdwordsController < ApplicationController  
+# GoogleAdwordsController
+class GoogleAdwordsController < ApplicationController
   before_filter :authenticate_user!
   layout 'admin/application'
   load_and_authorize_resource
@@ -9,8 +9,13 @@ class GoogleAdwordsController < ApplicationController
   # GET /google_adwords
   def index
     google_adwords = GoogleAdword.searching(@query).all
-    @objects, @total = google_adwords.page(@current_page), google_adwords.size
-    redirect_to google_adwords_path(page: @current_page.to_i.pred, search: @query) if !@objects.first_page? and @objects.size.zero?
+    @objects = google_adwords.page(@current_page)
+    @total = google_adwords.size
+    if !@objects.first_page? && @objects.size.zero?
+      redirect_to(
+        google_adwords_path(page: @current_page.to_i.pred, search: @query)
+      )
+    end
   end
 
   # GET /google_adwords/1
@@ -49,16 +54,19 @@ class GoogleAdwordsController < ApplicationController
   # DELETE /google_adwords/1
   def destroy
     @google_adword.destroy
-    redirect_to google_adwords_url, notice: t('keppler.messages.successfully.deleted', model: t("keppler.models.singularize.google_adword").humanize) 
+    redirect_to google_adwords_url, notice: actions_messages(@google_adword)
   end
 
   def destroy_multiple
     GoogleAdword.destroy redefine_ids(params[:multiple_ids])
-    redirect_to google_adwords_path(page: @current_page, search: @query), notice: t('keppler.messages.successfully.removed', model: t("keppler.models.singularize.google_adword").humanize) 
+    redirect_to(
+      google_adwords_path(page: @current_page, search: @query),
+      notice: actions_messages(@google_adword)
+    )
   end
 
   private
-  
+
   # Use callbacks to share common setup or constraints between actions.
   def set_google_adword
     @google_adword = GoogleAdword.find(params[:id])
@@ -66,15 +74,12 @@ class GoogleAdwordsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def google_adword_params
-    params.require(:google_adword).permit(:url, :campaign_name, :description, :script)
+    params.require(:google_adword).permit(
+      :url, :campaign_name, :description, :script
+    )
   end
 
   def show_history
-    if current_user.has_role? :admin
-      @activities = PublicActivity::Activity.where(trackable_type: 'GoogleAdword').order("created_at desc").limit(50)
-    else
-      @activities = PublicActivity::Activity.where("trackable_type = 'GoogleAdword' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
-    end
+    get_history(GoogleAdword)
   end
-
 end
