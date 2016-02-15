@@ -1,3 +1,4 @@
+# Ability Authorizate
 class Ability
   include CanCan::Ability
 
@@ -6,33 +7,35 @@ class Ability
     if user.has_role? :admin
 
       # - user authorize -
-      can [:delete, :show, :edit, :update, :create, :index, :destroy_multiple], User
-      can :destroy, User do |u| !u.eql?(user) end
-
+      can [:delete, :show, :edit, :update,
+           :create, :index, :destroy_multiple], User
+      can :destroy, User do |u|
+        !u.eql?(user)
+      end
 
       # - SEO -
       can :manage, MetaTag
       can :manage, GoogleAdword
 
       # - GoogleAnalytics -
-      can :manage, GoogleAnalyticsTrack if Setting.first.google_analytics_setting.ga_status
+      if Setting.first.google_analytics_setting.ga_status
+        can :manage, GoogleAnalyticsTrack
+      end
 
       # - Setting -
       can :manage, Setting
 
-
-
     elsif user.has_role? :client
 
       # - user authorize -
-      can :read, User   
+      can :read, User
     end
-    # The first argument to `can` is the action you are giving the user 
+    # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
     #
-    # The second argument is the resource the user can perform the action on. 
+    # The second argument is the resource the user can perform the action on.
     # If you pass :all it will apply to every resource. Otherwise pass a Ruby
     # class of the resource.
     #

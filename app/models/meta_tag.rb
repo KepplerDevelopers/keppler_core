@@ -1,40 +1,41 @@
-#Generado por keppler
 require 'elasticsearch/model'
+
+# MetaTag Model
 class MetaTag < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   include PublicActivity::Model
-  tracked owner: ->(controller, model) { controller && controller.current_user }
-  
+  tracked owner: ->(controller, _) { controller && controller.current_user }
+
   after_commit on: [:update] do
     __elasticsearch__.index_document
   end
-  
+
   def self.searching(query)
     if query
-      self.search(self.query query).records.order(id: :desc)
+      search(query(query)).records.order(id: :desc)
     else
-      self.order(id: :desc)
+      order(id: :desc)
     end
   end
 
   def self.query(query)
-    { query: { multi_match:  { query: query, fields: [:title, :description, :url] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
+    { query: { multi_match: {
+      query: query, fields: [:title, :description, :url], operator: :and }
+    }, sort: { id: 'desc' }, size: count }
   end
 
   def self.get_by_url(url)
     find_by_url(url)
   end
 
-  #armar indexado de elasticserch
-  def as_indexed_json(options={})
+  # Build index elasticsearch
+  def as_indexed_json
     {
-      id: self.id.to_s,
-      title:  self.title,
-      description:  self.description,
-      url:  self.url,
+      id: id.to_s,
+      title: title,
+      description: description,
+      url: url
     }.as_json
   end
-
 end
-#MetaTag.import

@@ -10,7 +10,7 @@ class SettingsController < ApplicationController
 
   def update
     if @setting.update(setting_params)
-      redirect_to settings_path(@render), actions_messages(@setting)
+      redirect_to settings_path(@render), notice: actions_messages(@setting)
     else
       render :edit
     end

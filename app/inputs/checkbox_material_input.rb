@@ -1,11 +1,13 @@
+# CheckboxMaterialInput
 class CheckboxMaterialInput < SimpleForm::Inputs::Base
   def input(wrapper_options = nil)
-    merged_input_options = merge_wrapper_options(input_html_options, wrapper_options)
+    merged_input_options =
+      merge_wrapper_options(input_html_options, wrapper_options)
 
     if nested_boolean_style?
       build_hidden_field_for_checkbox +
-      build_check_box_without_hidden_field(merged_input_options) +
-      inline_label
+        build_check_box_without_hidden_field(merged_input_options) +
+        inline_label
     else
       build_check_box(unchecked_value, merged_input_options)
     end
@@ -32,8 +34,13 @@ class CheckboxMaterialInput < SimpleForm::Inputs::Base
   # we need the hidden field to be *outside* the label (otherwise it
   # generates invalid html - html5 only).
   def build_hidden_field_for_checkbox
-    options = { value: unchecked_value, id: nil, disabled: input_html_options[:disabled] }
-    options[:name] = input_html_options[:name] if input_html_options.has_key?(:name)
+    options = {
+      value: unchecked_value,
+      id: nil,
+      disabled: input_html_options[:disabled]
+    }
+
+    options[:name] = input_html_options[:name] if input_html_options.key?(:name)
 
     @builder.hidden_field(attribute_name, options)
   end

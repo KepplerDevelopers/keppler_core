@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   include PublicActivity::Model
-  tracked owner: -> (controller, _model) { controller && controller.current_user }
+  tracked owner: ->(controller, _) { controller && controller.current_user }
   before_save :create_permalink, on: :create
   rolify
   validates_presence_of :name, :role_ids, :email
@@ -33,15 +33,19 @@ class User < ActiveRecord::Base
   end
 
   def self.query(query)
-    { query: { multi_match: { query: query, fields: [:rol, :name, :email, :id], operator: :and } }, sort: { id: 'desc' }, size: User.count }
+    { query: { multi_match: {
+      query: query, fields: [:rol, :name, :email, :id], operator: :and }
+    }, sort: { id: 'desc' }, size: count }
   end
 
-  # saber la pagina a la que pertenece
+  # Get the page number that the object belongs to
   def page(order = :id)
-    ((self.class.order(order => :desc).pluck(order).index(send(order)) + 1).to_f / self.class.default_per_page).ceil
+    ((self.class.order(order => :desc)
+      .pluck(order).index(send(order)) + 1)
+        .to_f / self.class.default_per_page).ceil
   end
 
-  # armar indexado de elasticserch
+  # Build index elasticsearch
   def as_indexed_json(_options = {})
     {
       id: id.to_s,
@@ -57,5 +61,3 @@ class User < ActiveRecord::Base
     self.permalink = name.downcase.parameterize + '-' + SecureRandom.hex(4)
   end
 end
-
-# User.import

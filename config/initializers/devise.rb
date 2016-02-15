@@ -239,7 +239,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-  
+
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.
@@ -253,5 +253,7 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.secret_key = '84ef9e3a3032d77467dc6d95e988f2f128e6acc7513661e3e6b67a875d99bebabf19571d02d2ddb9face07dc45cb9aba821b4e93c2619deb2fee55a23818292c'
+  config.secret_key =
+    '84ef9e3a3032d77467dc6d95e988f2f128e6acc7513661e3e6b67a875d99bebabf19571d0
+    2d2ddb9face07dc45cb9aba821b4e93c2619deb2fee55a23818292c'
 end
