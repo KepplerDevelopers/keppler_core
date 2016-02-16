@@ -1,4 +1,4 @@
-# <%= controller_class_name %>
+# <%= controller_class_name %>Controller
 <% if namespaced? -%>
 require_dependency "<%= namespaced_file_path %>/application_controller"
 
@@ -16,7 +16,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     <%= plural_table_name %> = <%= class_name %>.searching(@query).all
     @objects = <%= plural_table_name %>.page(@current_page)
     @total = <%= plural_table_name %>.size
-    if !@objects.first_page? and @objects.size.zero?
+    if !@objects.first_page? && @objects.size.zero?
       redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
     end
   end
@@ -36,10 +36,10 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # POST <%= route_url %>
   def create
-    @<%= orm_instance %> = <%= orm_class.build(class_name, "#{orm_instance}_params") %>
+    @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
 
     if @<%= orm_instance.save %>
-      redirect(@<%= orm_instance %>, params)
+      redirect(@<%= singular_table_name %>, params)
     else
       render :new
     end
@@ -48,7 +48,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   def update
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      redirect(@<%= orm_instance %>, params)
+      redirect(@<%= singular_table_name %>, params)
     else
       render :edit
     end
@@ -57,7 +57,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # DELETE <%= route_url %>/1
   def destroy
     @<%= orm_instance.destroy %>
-    redirect_to <%= index_helper %>_url, notice: actions_messages(@<%= orm_instance %>)
+    redirect_to <%= index_helper %>_url, notice: actions_messages(@<%= singular_table_name %>)
   end
 
   def destroy_multiple
@@ -69,30 +69,31 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_<%= singular_table_name %>
-      @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def <%= "#{singular_table_name}_params" %>
-      <%- if attributes_names.empty? -%>
-      params[:<%= singular_table_name %>]
-      <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
-      <%- end -%>
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_<%= singular_table_name %>
+    @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
+  end
 
-    def show_history
-      if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(
-          trackable_type: '<%= singular_table_name.camelcase %>'
-        ).order('created_at desc').limit(50)
-      else
-        @activities = PublicActivity::Activity.where(
-          "trackable_type = '<%= singular_table_name.camelcase %>' and owner_id=#{current_user.id}"
-        ).order("created_at desc").limit(50)
-      end
+  # Only allow a trusted parameter "white list" through.
+  def <%= "#{singular_table_name}_params" %>
+    <%- if attributes_names.empty? -%>
+    params[:<%= singular_table_name %>]
+    <%- else -%>
+    params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+    <%- end -%>
+  end
+
+  def show_history
+    if current_user.has_role? :admin
+      @activities = PublicActivity::Activity.where(
+        trackable_type: '<%= singular_table_name.camelcase %>'
+      ).order('created_at desc').limit(50)
+    else
+      @activities = PublicActivity::Activity.where(
+        "trackable_type = '<%= singular_table_name.camelcase %>' and owner_id=#{current_user.id}"
+      ).order('created_at desc').limit(50)
     end
+  end
 end
 <% end -%>
