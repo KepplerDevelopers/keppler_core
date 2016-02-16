@@ -3,8 +3,8 @@
 //= require_self
 
 @import 'bourbon';
-@import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import 'font-awesome-sprockets';
 @import 'materialize';
 @import 'utils/variables';
 @import 'utils/mixins';
@@ -12,8 +12,8 @@
 @import 'pages/devise';
 @import 'pages/navbar';
 @import 'pages/pageslide';
-@import 'pages/header_information';
-@import 'pages/index';
+@import 'pages/header';
+@import 'pages/listing';
 @import 'pages/show';
 @import 'pages/form';
 @import 'pages/search';
