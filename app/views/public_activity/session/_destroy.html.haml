@@ -1,0 +1,6 @@
+.collection-item.avatar
+	= material_icon.md_24.lock.css_class("circle")
+	%b
+		= activity.owner.name if activity.owner
+	= t('keppler.messages.logout_in_activity') 
+	= activity.created_at

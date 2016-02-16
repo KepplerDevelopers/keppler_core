@@ -1,0 +1,33 @@
+.navbar-fixed{ "ng-style" => listing? ? "{'max-width':'75%'}" : "{'min-width':'100%'}" }
+	%nav{ "ng-style" => listing? ? "{'max-width':'75%'}" : "{'min-width':'100%'}" }
+		.nav-wrapper			
+			%a.brand-logo.switch.animated{ "ng-click" => "sidebarSwitch()", class: "btn-floating waves-effect waves-light btn-flat switch-{{sidebar}}" }
+				= material_icon.md_24.menu.css_class "animated"
+			%a.brand-logo.title.hide-on-small-only.hide-on-med-and-down
+				Keppler
+			= render 'layouts/admin/search'
+			.actions.right				
+				- if listing?
+					= link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat hide-on-small-and-down", "ng-show" => "!inputSearch" } do
+						= material_icon.md_24.search
+
+					- if can? :destroy_multiple, model #helper
+						= link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids={{check}}#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "", "ng-show"=> "btnDelete", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), data: {confirm: "#{t("keppler.messages.data_confirm")}"} do
+							= material_icon.md_24.delete
+
+						- unless @objects.size.zero?
+							= link_to "", class: "btn-floating waves-effect waves-light btn-flat tooltipped", "ng-click" => "selectAll(#{@objects.to_json})", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.select_all") do
+								%i.mi.md-24 {{iconCheck}}
+
+					= link_to url_for(action: :index, controller: controller_name, page: @current_page, search: @query), class: "btn-floating waves-effect waves-light btn-flat spinner-refresh tooltipped hide-on-small-and-down", "ng-click" => "spinnerReload()", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.refresh")  do
+						= material_icon.md_24.refresh
+				= link_to "#", class: "btn-floating waves-effect waves-light btn-flat dropdown-button", "data-activates" => 'more-options' do
+					= material_icon.md_24.more_vert
+				%ul{ id: "more-options", class: "dropdown-content" }
+					%li
+						= link_to t("keppler.actions.go_to_web"), main_app.root_path
+					%li
+						= link_to t("keppler.actions.edit_profile"), main_app.edit_user_path(current_user)
+					%li.divider
+					%li
+						= link_to t("keppler.actions.sign_out"), main_app.destroy_user_session_path

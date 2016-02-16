@@ -1,0 +1,51 @@
+// Place all the styles related to the frontend controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.front {
+  @include align-items(center);
+  @include display(flex);
+  @include flex-direction(column);
+  @include justify-content(center);
+  height: 100%;
+
+  &-logo {
+    img {
+      @include respond-to(xs) {
+        width: 300px;
+      }
+    }
+  }
+
+  &-social {
+    margin-top: 30px;
+
+    ul {
+      margin: 0 20px;
+      padding: 0;
+    }
+
+    li {
+      @include display(inline);
+      margin: 0 20px;
+
+      @include respond-to(xs) {
+        margin: 0 7px;
+      }
+    }
+
+    a {
+      color: $white;
+      font-size: 4rem;
+
+      @include respond-to(xs) {
+        font-size: 2rem;
+      }
+    }
+
+    a:hover {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}

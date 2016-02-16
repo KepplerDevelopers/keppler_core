@@ -1,0 +1,28 @@
+.col.s6
+	.card.small
+		.card-image
+			- if f.object.logo?
+				= image_tag f.object.logo
+			- else
+				= image_tag "admin/profile-menu.jpg"
+				%span.card-title Upload Logo
+		.card-action
+			= f.input :logo, as: :file_material, label: false, wrapper_html: { class: "file-field" }
+
+.col.s6
+	.card.small
+		.card-image
+			- if f.object.favicon?
+				= image_tag f.object.favicon
+			- else
+				= image_tag "admin/profile-menu.jpg"
+				%span.card-title Upload Favicon
+		.card-action
+			= f.input :favicon, as: :file_material, label: false, wrapper_html: { class: "file-field" }
+
+
+= f.input :name
+= f.input :description
+= f.input :email
+= f.input :phone
+= f.input :mobile

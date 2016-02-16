@@ -1,0 +1,21 @@
+.listing-show-header
+	.actions
+		- if can? :update, <%= singular_table_name.camelcase %>
+			= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light") 
+		= t("model.singular.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%ul.list
+		<%- attributes.each do |attribute| -%>
+			%li.list-row
+				.display-label= t("activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>")
+				.display-value= @<%= singular_table_name %>.<%= attribute.name %>
+		<%- end -%>			
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), <%= plural_table_name %>_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

@@ -1,0 +1,120 @@
+@import 'bourbon';
+@import 'materialize';
+
+// Colors
+$black: #000;
+$gray: #edecec;
+$gray-darken: #5e5e5e;
+$primary-color: #f44336;
+$white: #fff;
+
+body,
+html {
+  min-height: 100vh;
+}
+
+body {
+  background: $white;
+  color: $gray-darken;
+  font-family: roboto;
+  font-size: 13px;
+  line-height: 1.42857;
+  margin: 0;
+  text-align: center;
+
+  &::before {
+    background: $gray;
+    content: '';
+    height: 50%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .dialog-error {
+    background: $primary-color;
+    border-radius: 2px;
+    box-shadow: 0 1px 11px rgba($black, .27);
+    color: $white;
+    height: 300px;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -150px;
+    padding: 15px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 500px;
+
+
+    @media #{$small-and-down} {
+      height: 225px;
+      left: 0;
+      margin-left: 10px;
+      margin-right: 10px;
+      top: 56%;
+      width: 94%;
+    }
+
+    h2 {
+      color: $white;
+      font-size: 100px;
+      font-weight: 300;
+      line-height: 100%;
+      margin-bottom: 9px;
+      margin-top: 45px;
+
+      @media #{$small-and-down} {
+        font-size: 50px;
+        margin-top: 35px;
+      }
+    }
+
+    small {
+      display: block;
+      font-size: 16px;
+      font-weight: 300;
+      margin-top: -10px;
+
+      @media #{$small-and-down} {
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+footer {
+  background: rgba($black, .13);
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+
+  a {
+    @include transition(all 300 ease-in-out);
+
+    background: rgba($black, .09);
+    border-radius: 50%;
+    color: $white;
+    display: inline-block;
+    font-size: 21px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 1px;
+    text-align: center;
+    width: 40px;
+
+
+    i {
+      position: relative;
+      top: 4px;
+    }
+  }
+
+  a:hover {
+    background: rgba($black, .2);
+  }
+}

@@ -1,0 +1,7 @@
+%h2 Not found
+%small 404
+%footer
+	- if !loggedin? or (loggedin? and current_user.has_role? :client)
+		= link_to material_icon.md_24.home, root_path
+	- else
+		= link_to material_icon.md_24.home, "/admin/dashboard"

@@ -1,0 +1,26 @@
+.container
+	.devise-horizontal
+		.devise-vertical
+			.devise-box.card
+				.devise-box-header
+					.devise-box-title Keppler
+				= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
+					.devise-box-body.row
+						.input-field.col.s12
+							= f.email_field :email, :autofocus => true, class: "validate #{'invalid' if flash[:alert]}"
+							= f.label :email
+						.input-field.col.s12
+							= f.password_field :password,  :autofocus => true, class: "validate #{'invalid' if flash[:alert]}"
+							= f.label :password
+						.devise-errors.center-align
+							- flash.each do |name, msg|
+								= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+					.devise-box-footer.row
+						.col.s9.m6.l6
+							- if devise_mapping.recoverable?
+								= link_to new_password_path(resource_name), class: "recoverable" do
+									= t("devise.sessions.forgot_password")
+						.col.s3.m6.l6
+							= f.submit t("devise.sessions.log_in"), :class => 'right btn'
+						.col.s12.devise-logo.center-align.hidden-xs
+							= image_tag 'admin/slice.png'
