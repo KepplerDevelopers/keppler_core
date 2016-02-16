@@ -13,7 +13,7 @@
 [:director, :project_manager, :developer,
  :designer, :supporting, :comunnity_manager, :billing].each do |name|
   Role.create name: name
-  puts '#{name} has been created'
+  puts "#{name} has been created"
 end
 
 User.create(
