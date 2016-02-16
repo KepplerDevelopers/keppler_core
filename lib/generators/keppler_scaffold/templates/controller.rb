@@ -1,10 +1,10 @@
-#Generado con Keppler.
+# <%= controller_class_name %>
 <% if namespaced? -%>
 require_dependency "<%= namespaced_file_path %>/application_controller"
 
 <% end -%>
 <% module_namespacing do -%>
-class <%= controller_class_name %>Controller < ApplicationController  
+class <%= controller_class_name %>Controller < ApplicationController
   before_filter :authenticate_user!
   layout 'admin/application'
   load_and_authorize_resource
@@ -14,8 +14,11 @@ class <%= controller_class_name %>Controller < ApplicationController
   # GET <%= route_url %>
   def index
     <%= plural_table_name %> = <%= class_name %>.searching(@query).all
-    @objects, @total = <%= plural_table_name %>.page(@current_page), <%= plural_table_name %>.size
-    redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query) if !@objects.first_page? and @objects.size.zero?
+    @objects = <%= plural_table_name %>.page(@current_page)
+    @total = <%= plural_table_name %>.size
+    if !@objects.first_page? and @objects.size.zero?
+      redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
+    end
   end
 
   # GET <%= route_url %>/1
@@ -54,12 +57,15 @@ class <%= controller_class_name %>Controller < ApplicationController
   # DELETE <%= route_url %>/1
   def destroy
     @<%= orm_instance.destroy %>
-    redirect_to <%= index_helper %>_url, notice: t('keppler.messages.successfully.deleted', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
+    redirect_to <%= index_helper %>_url, notice: actions_messages(@<%= orm_instance %>)
   end
 
   def destroy_multiple
     <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-    redirect_to <%= plural_table_name %>_path(page: @current_page, search: @query), notice: t('keppler.messages.successfully.removed', model: t("keppler.models.singularize.<%= singular_table_name %>").humanize) 
+    redirect_to(
+      <%= plural_table_name %>_path(page: @current_page, search: @query),
+      notice: actions_messages(<%= orm_class.build(class_name) %>)
+    )
   end
 
   private
@@ -79,9 +85,13 @@ class <%= controller_class_name %>Controller < ApplicationController
 
     def show_history
       if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(trackable_type: '<%= singular_table_name.camelcase %>').order("created_at desc").limit(50)
+        @activities = PublicActivity::Activity.where(
+          trackable_type: '<%= singular_table_name.camelcase %>'
+        ).order('created_at desc').limit(50)
       else
-        @activities = PublicActivity::Activity.where("trackable_type = '<%= singular_table_name.camelcase %>' and owner_id=#{current_user.id}").order("created_at desc").limit(50)
+        @activities = PublicActivity::Activity.where(
+          "trackable_type = '<%= singular_table_name.camelcase %>' and owner_id=#{current_user.id}"
+        ).order("created_at desc").limit(50)
       end
     end
 end

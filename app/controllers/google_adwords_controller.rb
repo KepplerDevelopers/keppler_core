@@ -61,7 +61,7 @@ class GoogleAdwordsController < ApplicationController
     GoogleAdword.destroy redefine_ids(params[:multiple_ids])
     redirect_to(
       google_adwords_path(page: @current_page, search: @query),
-      notice: actions_messages(@google_adword)
+      notice: actions_messages(GoogleAdword.new)
     )
   end
 

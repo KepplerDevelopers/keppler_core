@@ -1,18 +1,20 @@
-html, body, main{
-	height: 100%;
+html,
+body,
+main {
+  height: 100%;
 }
 
-html{
-	font-size: $base-font-size
+html {
+  font-size: $base-font-size;
 }
 
-body{
-	background: $primary-color;
-	font-size: 1.6rem;
+body {
+  background: $primary-color;
+  font-size: 1.6rem;
 
-	@include respond-to(xs) {
-		font-size: 1.2rem;
-	}
+  @include respond-to(xs) {
+    font-size: 1.2rem;
+  }
 }
 
 

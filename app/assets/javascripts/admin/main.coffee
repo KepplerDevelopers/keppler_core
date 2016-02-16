@@ -10,9 +10,9 @@ angular.module('keppler', [
 	]
 
 # iniciar ng-app mediante turbolinks
-$(document).on 'ready page:load', () ->		
+$(document).on 'ready page:load', () ->
 		angular.bootstrap document.body, [ 'keppler' ] #añadir ng-app al body
-		$("#waiting").hide()
+		$(".waiting").hide()
 		$('body').css('overflow-y', 'auto')
 		Waves.displayEffect() # agregar el efecto de olas de los botones
 		#$('.dropdown-button').dropdown() #activar los dropdowns
@@ -20,7 +20,7 @@ $(document).on 'ready page:load', () ->
 		#$('.collapsible').collapsible({accordion : false}); #activar collapse
 
 		#activar select material
-		$('select').material_select() 
+		$('select').material_select()
 
 		#activar modal material
 		$('.modal-trigger').leanModal({
@@ -42,12 +42,12 @@ $(document).on 'ready page:load', () ->
 			$(this).parent().removeClass 'error'
 			return
 
-		#capturar status de peticion del show-row
+		# capturar status de peticion del show-row
 		$('.show-row').on('ajax:success', (e, data, status, xhr) ->
-			#console.log status
+			# console.log status
 			return
 		).bind 'ajax:error', (e, xhr, status, error) ->
-			$(".listing-show-body").html("<p class='not_found'>Este registro no fue encontrado, por favor recargue la página para actualizar los datos.</p>")
+			$(".listing-show-body").html("<p class='not-found'>Este registro no fue encontrado, por favor recargue la página para actualizar los datos.</p>")
 			return
 
 		#config nprogress

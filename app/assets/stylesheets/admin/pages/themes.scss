@@ -1,58 +1,69 @@
 $themes: (
-	// [label, primary-color, darken-color, accent-color]
-	("keppler", #F44336, #d32f2f, #009688),
-	("pink", #E91E63, #C2185B, #448AFF),
-	("cyan", #00BCD4, #0097A7, #FF9800),
-	("grey", #607D8B, #455A64, #FF5722),
-	("amber", #FFC107, #FFA000, #7C4DFF),
-	("brown", #795548, #5D4037, #4CAF50)
+  // [label, primary-color, darken-color, accent-color]
+  ("keppler", $keppler-color, $keppler-darken, $keppler-accent),
+  ("pink", $pink-color, $pink-darken, $pink-accent),
+  ("cyan", $cyan-color, $cyan-darken, $cyan-accent),
+  ("grey", $grey-color, $grey-darken, $grey-accent),
+  ("amber", $amber-color, $amber-darken, $amber-accent),
+  ("brown", $brown-color, $brown-darken, $brown-accent)
 );
 
 @each $label, $primary-color, $darken-color, $accent-color in $themes {
-	.#{$label}-theme{
-		.devise-box-header{
-			background: $primary-color !important;
-		}
-		nav, .header-information{
-			background: $primary-color;
-		}
-		.listing-show-header{
-			background: $darken-color;
-		}
-		.control-label.active{
-			color: $accent-color !important;
-		}
-		.btn-add, .btn{
-			background: $accent-color;
-		}
-		input[type=text]:focus:not([readonly]),
-		input[type=password]:focus:not([readonly]),
-		input[type=email]:focus:not([readonly]),
-		input[type=url]:focus:not([readonly]),
-		input[type=time]:focus:not([readonly]),
-		input[type=date]:focus:not([readonly]),
-		input[type=datetime-local]:focus:not([readonly]),
-		input[type=tel]:focus:not([readonly]),
-		input[type=number]:focus:not([readonly]),
-		input[type=search]:focus:not([readonly]),
-		textarea.materialize-textarea:focus:not([readonly]) {
-		  border-bottom: 1px solid $accent-color;
-		  box-shadow: 0 1px 0 0 $accent-color;
-		}
+  .#{$label}-theme {
+    .devise-box-header {
+      background: $primary-color !important;
+    }
 
-		.checkbox_material [type="checkbox"]:checked + label:before {
-	    border-right: 2px solid $accent-color;
-	    border-bottom: 2px solid $accent-color;
-		}
+    .modal-header{
+      background: $primary-color;
+    }
 
-		[type="checkbox"].filled-in:checked + label:after {
-	    border: 2px solid $accent-color;
-	    background-color: $accent-color;
-		}
+    nav,
+    .header-information {
+      background: $primary-color;
+    }
 
-		#nprogress .bar {
-	  	background:  $accent-color;
-		}
-	}
+    .listing-show-header{
+      background: $darken-color;
+    }
+
+    .control-label.active {
+      color: $accent-color !important;
+    }
+
+    .btn-add,
+    .btn {
+      background: $accent-color;
+    }
+
+    input[type=text]:focus:not([readonly]),
+    input[type=password]:focus:not([readonly]),
+    input[type=email]:focus:not([readonly]),
+    input[type=url]:focus:not([readonly]),
+    input[type=time]:focus:not([readonly]),
+    input[type=date]:focus:not([readonly]),
+    input[type=datetime-local]:focus:not([readonly]),
+    input[type=tel]:focus:not([readonly]),
+    input[type=number]:focus:not([readonly]),
+    input[type=search]:focus:not([readonly]),
+    textarea.materialize-textarea:focus:not([readonly]) {
+      border-bottom: 1px solid $accent-color;
+      box-shadow: 0 1px 0 0 $accent-color;
+    }
+
+    .checkbox_material [type="checkbox"]:checked + label:before {
+      border-bottom: 2px solid $accent-color;
+      border-right: 2px solid $accent-color;
+    }
+
+    [type="checkbox"].filled-in:checked + label:after {
+      background-color: $accent-color;
+      border: 2px solid $accent-color;
+    }
+
+    #nprogress .bar {
+      background:  $accent-color;
+    }
+  }
 }
 

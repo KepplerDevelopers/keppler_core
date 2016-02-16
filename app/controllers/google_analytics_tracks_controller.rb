@@ -70,7 +70,7 @@ class GoogleAnalyticsTracksController < ApplicationController
 
     redirect_to(
       google_analytics_tracks_path(page: @current_page, search: @query),
-      notice: actions_messages(@google_analytics_track)
+      notice: actions_messages(GoogleAnalyticsTrack.new)
     )
   end
 

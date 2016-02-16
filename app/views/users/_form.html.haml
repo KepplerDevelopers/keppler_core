@@ -7,7 +7,7 @@
 			.card
 				.card-content
 					= simple_form_for @user do |f|
-						.row 
+						.row
 							= f.input :name
 							= f.input :email
 							= f.input :role_ids, collection: Role.all.map { |rol| [rol.name.humanize, rol.id] }, label: false, include_blank: t("keppler.actions.select_rol"), input_html: { class: "browser-default" }

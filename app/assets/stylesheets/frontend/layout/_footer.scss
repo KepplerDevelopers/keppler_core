@@ -1,15 +1,13 @@
-.front-footer{
-	text-align: center;
-	color: white;
-	padding: 20px;
-	@include respond-to(xs){
-	
-	}
+.front-footer {
+  color: $white;
+  padding: 20px;
+  text-align: center;
 
-	img{
-		width: 100px;
-		@include respond-to(xs){
-			width: 50px;
-		}		
-	}
+  img {
+    width: 100px;
+
+    @include respond-to(xs) {
+      width: 50px;
+    }
+  }
 }

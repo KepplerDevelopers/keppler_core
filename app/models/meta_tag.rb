@@ -30,7 +30,7 @@ class MetaTag < ActiveRecord::Base
   end
 
   # Build index elasticsearch
-  def as_indexed_json
+  def as_indexed_json(_options = {})
     {
       id: id.to_s,
       title: title,

@@ -59,7 +59,7 @@ class MetaTagsController < ApplicationController
     MetaTag.destroy redefine_ids(params[:multiple_ids])
     redirect_to(
       meta_tags_path(page: @current_page, search: @query),
-      notice: actions_messages(@meta_tag)
+      notice: actions_messages(MetaTag.new)
     )
   end
 

@@ -1,11 +1,12 @@
 require 'elasticsearch/model'
-# model user
+
+# User Model
 class User < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   include PublicActivity::Model
   tracked owner: ->(controller, _) { controller && controller.current_user }
-  before_save :create_permalink, on: :create
+  before_save :create_permalink, if: :new_record?
   rolify
   validates_presence_of :name, :role_ids, :email
 

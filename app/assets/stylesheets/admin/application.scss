@@ -2,18 +2,23 @@
 //= require animate
 //= require_self
 
-@import "materialize";
-@import "pages/layout";
-@import "pages/devise";
-@import "pages/navbar";
-@import "pages/pageslide";
-@import "pages/header_information";
-@import "pages/index";
-@import "pages/show";
-@import "pages/form";
-@import "pages/search";
-@import "pages/themes";
-@import "dashboard"; //dashboard gem
+@import 'bourbon';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'materialize';
+@import 'utils/variables';
+@import 'utils/mixins';
+@import 'pages/layout';
+@import 'pages/devise';
+@import 'pages/navbar';
+@import 'pages/pageslide';
+@import 'pages/header_information';
+@import 'pages/index';
+@import 'pages/show';
+@import 'pages/form';
+@import 'pages/search';
+@import 'pages/themes';
+@import 'dashboard'; //dashboard gem
 
 
 

@@ -1,123 +1,117 @@
-@import "font-awesome-sprockets";
-@import "font-awesome";
+.open {
+  overflow: hidden !important;
 
-@mixin icon-before($icon){
-  content: $icon;
-  font: normal 100 normal 12px/4 FontAwesome;
-  position: absolute;
-  color: #575757;
-  right: 10px;
-}
-
-//transition
-@mixin transition($transition) {
-  -webkit-transition: $transition;
-  -moz-transition: $transition;
-  -o-transition: $transition;
-  -ms-transition:$transition;
-  transition: $transition;
-}
-
-body.open{
-  .pageslide-background{
-    background: rgba(0, 0, 0, 0.65);
+  .pageslide-background {
+    @include transition(.25s);
+    background: rgba($black, .65);
     height: 100%;
-    width: 100%;
     position: fixed;
+    width: 100%;
     z-index: 9999;
-    @include transition(.25s);
-  }
-}
-body{
-  .pageslide-background{
-    @include transition(.25s);
   }
 }
 
 pageslide {
-  margin: 0px !important;
   height: 100% !important;
+  margin: 0 !important;
+
   &::-webkit-scrollbar {
     width: 0 !important;
   }
+
   .profile-menu {
-    width: 268px;
-    height: 129px;
-    background: url(profile-menu.jpg) center no-repeat;
+    background: url('profile-menu.jpg') center no-repeat;
     background-size: 268px 159px;
+    height: 129px;
+    width: 268px;
+
     .profile-pic {
       padding: 12px;
-      img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: 3px solid rgba(0, 0, 0, 0.14);
-        box-sizing: content-box;
-      }
     }
+
+    a {
+      color: $link-color;
+    }
+
+    img {
+      border: 3px solid rgba($black, .14);
+      border-radius: 50%;
+      box-sizing: content-box;
+      height: 60px;
+      width: 60px;
+    }
+
     .profile-info {
-      font-weight: 400;
-      font-size: 14px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 7px 14px;
-      color: white;
+      background: rgba($black, .6);
       bottom: 2px;
+      color: $white;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 7px 14px;
       position: relative;
     }
   }
 
-  ul.pageslide-menu {
+  .pageslide-menu {
+    border: 0;
     box-shadow: none;
-    border: 0px;
-    margin-top: 20px;
-    color: #4C4C4C;
+    color: $gray-darken;
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 0px;
-    li{
-      .collapsible-header{
-        border: 0px;
-      }
-      .collapsible-header:hover{
-        background: #F4F4F4;
-        color: #262626;
-        a{
-          color: #262626;
-        }
-      }
-      .collapsible-header.current{
-        background: #F4F4F4;
-      }
-      .collapsible-body{
-        border: 0px;
-        background: #F4F4F4;
-      }
-      a{
-        color: #4C4C4C;
-      }
-      .collapsable.collapsible-header:before{
-        @include icon-before("\f067")
-      }
-      .collapsable.collapsible-header.active:before{
-        @include icon-before("\f068")
-      }
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
 
-      .collapsible-body{
-        .pageslide-sub-menu{
-          padding: 10px 10px 10px 60px;
-          li{
-            margin-top: 5px;
-            margin-bottom: 5px;
-            a{
-              color: #7f7f7f;
-              font-weight: 600;
-            }
-            a.current, a:hover{
-              color: #262626;
-            }
-          }
-        }
-      }
+  .collapsible-header {
+    border: 0;
+  }
+
+  .collapsible-header:hover {
+    background: $gray-lighten;
+    color: $gray-darken;
+
+    a {
+      color: $gray-darken;
+    }
+  }
+
+  .current {
+    background: $gray-lighten;
+  }
+
+  .collapsible-body {
+    background: $gray-lighten;
+    border: 0;
+  }
+
+  a {
+    color: $gray-darken;
+  }
+
+  .collapsable.collapsible-header::before {
+    @include icon-before('\f067');
+  }
+
+  .collapsable.collapsible-header.active::before {
+    @include icon-before('\f068');
+  }
+
+  .pageslide-sub-menu {
+    padding: 10px 10px 10px 60px;
+
+    li {
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+
+    a {
+      color: $pageslide-link-color;
+      font-weight: 600;
+    }
+
+    .current,
+    a:hover {
+      color: $gray-darken;
     }
   }
 }

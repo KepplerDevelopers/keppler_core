@@ -1,0 +1,7 @@
+@mixin icon-before($icon) {
+  content: $icon;
+  font: normal 100 normal 12px/4 FontAwesome;
+  position: absolute;
+  color: $pageslide-icon-color;
+  right: 10px;
+}

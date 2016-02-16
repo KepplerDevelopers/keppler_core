@@ -51,11 +51,12 @@ en:
       no_events: No activities
       data_confirm: Are you sure?
       records: records
+      record_msg: "%{from} to %{to} of %{total}"
       to: "to"
       at: "at"
       since_been_removed: whitch has since been removed
-      login_in_activity: login to system at 
-      logout_in_activity: logout to system at 
+      login_in_activity: login to system at
+      logout_in_activity: logout to system at
       successfully:
         created: "%{model} has been created successfully"
         updated: "%{model} has been updated successfully"

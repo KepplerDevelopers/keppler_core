@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
-#javascript
+# Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
 gem 'nprogress-rails'
-gem "ckeditor"
+gem 'ckeditor'
 
-#documentation
-gem 'sdoc', '~> 0.4.0',          group: :doc
+# Documentation
+gem 'sdoc', '~> 0.4.0', group: :doc
 
-#utilities
+# Utilities
 gem 'haml-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails'
@@ -21,45 +21,45 @@ gem 'jbuilder', '~> 2.0'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 
-#database
+# Database
 gem 'mysql2', '~> 0.3.18'
 
-#SEO
+# SEO
 gem 'sitemap_generator'
 
-#history
+# History
 gem 'public_activity'
 
-#forms
+# Forms
 gem 'simple_form'
 gem 'cocoon'
 
-#upload
-gem 'carrierwave' #dependency (inyx_blog_rails, inyx_catalog_rails)
+# Upload
+gem 'carrierwave'
 gem 'rmagick'
 
-#desgin
+# Desgin
 gem 'bourbon'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'material_icons'
 gem 'materialize-sass'
 
-#authentication and authorization
+# Authentication and Authorization
 gem 'devise'
 gem 'devise-i18n'
 gem 'cancancan'
 gem 'rolify'
 
-#elasticsearch
+# Elasticsearch
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
-#pagination
+# Pagination
 gem 'kaminari-i18n'
 gem 'kaminari'
 
-#development
+# Development
 group :development, :test do
   gem 'better_errors'
   gem 'quiet_assets'
@@ -67,18 +67,18 @@ group :development, :test do
   gem 'table_print'
   gem 'spring'
   gem 'guard'
-  #gem 'guard-sass'
+  # gem 'guard-sass'
   gem 'guard-coffeescript'
   gem 'guard-livereload'
   gem 'byebug'
-  gem 'web-console', '~> 2.0' 
+  gem 'web-console', '~> 2.0'
   gem 'commands'
+  # Style guides
   gem 'rubocop', require: false
   gem 'haml-lint', require: false
+  gem 'scss_lint', require: false
 end
 
 #---- keppler_ga_dashboard ----
 gem 'keppler_ga_dashboard', git: 'https://github.com/inyxtech/keppler_ga_dashboard.git'
 gem 'google-api-client'
-
-

@@ -31,7 +31,7 @@ class GoogleAdword < ActiveRecord::Base
   end
 
   # Build index eslasticsearch
-  def as_indexed_json
+  def as_indexed_json(_options = {})
     {
       id: id.to_s,
       url:  url,
