@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
   include PublicActivity::StoreController
-  include ApplicationHelper
+  include AdminHelper
 
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message =

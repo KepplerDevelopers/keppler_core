@@ -4,12 +4,7 @@ menu:
     url_path: /admin/dashboard
     icon: dashboard
     current: ['keppler_ga_dashboard/dashboard']
-  user:
-    name: users
-    url_path: /admin/users
-    icon: account_circle
-    current: ["admin/users"]
-  meta_tag:
+  seo:
     name: SEO
     current: ['admin/meta_tags', 'admin/google_adwords']
     icon: code
@@ -29,6 +24,11 @@ menu:
     icon: insert_chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
+  user:
+    name: users
+    url_path: /admin/users
+    icon: account_circle
+    current: ["admin/users"]
   setting:
     name: setting
     current: ['admin/settings']

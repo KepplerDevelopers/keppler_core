@@ -1,15 +1,7 @@
-require 'elasticsearch/model'
-
 # GoogleAnayticsTrack Model
 class GoogleAnalyticsTrack < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-  include PublicActivity::Model
-  tracked owner: ->(controller, _) { controller && controller.current_user }
-
-  after_commit on: [:update] do
-    __elasticsearch__.index_document
-  end
+  include ElasticSearchable
+  include ActivityHistory
 
   def self.searching(query)
     if query
@@ -21,7 +13,10 @@ class GoogleAnalyticsTrack < ActiveRecord::Base
 
   def self.query(query)
     { query: { multi_match: {
-      query: query, fields: [:name, :tracking_id, :url], operator: :and }
+      query: query,
+      fields: [:name, :tracking_id, :url],
+      operator: :and,
+      lenient: true }
     }, sort: { id: 'desc' }, size: count }
   end
 
@@ -31,11 +26,8 @@ class GoogleAnalyticsTrack < ActiveRecord::Base
 
   # Build index elasticsearch
   def as_indexed_json(_options = {})
-    {
-      id: id.to_s,
-      name:  name,
-      tracking_id:  tracking_id,
-      url:  url
-    }.as_json
+    as_json(
+      only: [:id, :name, :tracking_id, :url]
+    )
   end
 end

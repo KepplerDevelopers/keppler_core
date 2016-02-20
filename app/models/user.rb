@@ -1,11 +1,8 @@
-require 'elasticsearch/model'
-
 # User Model
 class User < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-  include PublicActivity::Model
-  tracked owner: ->(controller, _) { controller && controller.current_user }
+  include ElasticSearchable
+  include ActivityHistory
+
   before_save :create_permalink, if: :new_record?
   rolify
   validates_presence_of :name, :role_ids, :email
@@ -17,25 +14,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_commit on: [:update] do
-    __elasticsearch__.index_document
-  end
-
   def rol
     roles.first.name
   end
 
-  def self.searching(query)
-    if query
-      search(self.query(query)).records.order(id: :desc)
-    else
-      order(id: :desc)
-    end
-  end
-
   def self.query(query)
     { query: { multi_match: {
-      query: query, fields: [:rol, :name, :email, :id], operator: :and }
+      query: query,
+      fields: [:rol, :name, :email, :id],
+      operator: :and,
+      lenient: true }
     }, sort: { id: 'desc' }, size: count }
   end
 
@@ -48,12 +36,10 @@ class User < ActiveRecord::Base
 
   # Build index elasticsearch
   def as_indexed_json(_options = {})
-    {
-      id: id.to_s,
-      email: email,
-      name: name,
-      rol: rol
-    }.as_json
+    as_json(
+      only: [:id, :name, :email],
+      methods: [:rol]
+    )
   end
 
   private

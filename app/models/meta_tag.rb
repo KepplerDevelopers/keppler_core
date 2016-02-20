@@ -1,27 +1,14 @@
-require 'elasticsearch/model'
-
 # MetaTag Model
 class MetaTag < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-  include PublicActivity::Model
-  tracked owner: ->(controller, _) { controller && controller.current_user }
-
-  after_commit on: [:update] do
-    __elasticsearch__.index_document
-  end
-
-  def self.searching(query)
-    if query
-      search(query(query)).records.order(id: :desc)
-    else
-      order(id: :desc)
-    end
-  end
+  include ElasticSearchable
+  include ActivityHistory
 
   def self.query(query)
     { query: { multi_match: {
-      query: query, fields: [:title, :description, :url], operator: :and }
+      query: query,
+      fields: [:title, :description, :url],
+      operator: :and,
+      lenient: true }
     }, sort: { id: 'desc' }, size: count }
   end
 
@@ -31,11 +18,8 @@ class MetaTag < ActiveRecord::Base
 
   # Build index elasticsearch
   def as_indexed_json(_options = {})
-    {
-      id: id.to_s,
-      title: title,
-      description: description,
-      url: url
-    }.as_json
+    as_json(
+      only: [:id, :title, :description, :url]
+    )
   end
 end
