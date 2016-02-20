@@ -1,0 +1,17 @@
+%head
+	// Title & Meta tags
+	= render "layouts/app/meta_tags"
+
+	// Stylesheets
+	= stylesheet_link_tag 'app/application', media: 'all', 'data-turbolinks-track' => true
+
+	// Javascripts
+	= javascript_include_tag 'app/application', 'data-turbolinks-track' => true
+	= render "layouts/app/google_adwords"
+
+	// Google Analytics
+	= render 'layouts/app/google_analytics'
+
+	// Favicon
+	= favicon_link_tag @setting.favicon
+
