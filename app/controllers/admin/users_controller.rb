@@ -73,16 +73,7 @@ module Admin
     end
 
     def show_history
-      if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(
-          "trackable_type = 'User' or trackable_type = 'Session'"
-        ).order('created_at desc').limit(50)
-      else
-        @activities = PublicActivity::Activity.where(
-          "(trackable_type = 'User' or trackable_type = 'Session')
-            and owner_id=#{current_user.id}"
-        ).order('created_at desc').limit(50)
-      end
+      get_history(User)
     end
 
     # Get submit key to redirect, only [:create, :update]

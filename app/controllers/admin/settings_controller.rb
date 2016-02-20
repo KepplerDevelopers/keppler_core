@@ -59,17 +59,5 @@ module Admin
         :image_background_cache, :remove_image_background
       ]
     end
-
-    def show_history
-      if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(
-          trackable_type: 'Setting'
-        ).order('created_at desc').limit(50)
-      else
-        @activities = PublicActivity::Activity.where(
-          "trackable_type = 'Setting' and owner_id=#{current_user.id}"
-        ).order('created_at desc').limit(50)
-      end
-    end
   end
 end

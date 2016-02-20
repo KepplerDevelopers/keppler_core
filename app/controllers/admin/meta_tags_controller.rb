@@ -76,15 +76,7 @@ module Admin
     end
 
     def show_history
-      if current_user.has_role? :admin
-        @activities = PublicActivity::Activity.where(
-          trackable_type: 'MetaTag'
-        ).order('created_at desc').limit(50)
-      else
-        @activities = PublicActivity::Activity.where(
-          "trackable_type = 'MetaTag' and owner_id=#{current_user.id}"
-        ).order('created_at desc').limit(50)
-      end
+      get_history(MetaTag)
     end
   end
 end
