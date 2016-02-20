@@ -1,0 +1,26 @@
+.listing-show-header
+	.actions
+		- if can? :update, User
+			= link_to "#modal-#{@user.id}", class: "btn-floating waves-effect waves-light btn-flat tooltipped modal-trigger", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.change_rol")  do
+				= material_icon.md_24.supervisor_account
+		- if can? :update, User
+			= link_to edit_admin_user_path(@user), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light")
+		= t("keppler.models.singularize.user").humanize
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%ul.list
+			- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
+				%li.list-row
+					.display-label= t("activerecord.attributes.user.#{attribute}")
+					.display-value= value
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), admin_users_path
+
+= render "admin/users/modal"
+
+:javascript
+	$(".modal-trigger").leanModal();
+	$('.tooltipped').tooltip({delay: 1});

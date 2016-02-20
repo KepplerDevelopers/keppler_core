@@ -1,0 +1,15 @@
+= f.simple_fields_for :appearance, html: {multipart: true} do |f|
+	.col.s12
+		.card.small
+			.card-image
+				- if f.object.image_background?
+					= image_tag f.object.image_background_url
+					.remove-field
+						= f.input :remove_image_background, as: :checkbox_material
+				- else
+					= image_tag "admin/profile-menu.jpg"
+					%span.card-title Upload Background
+			.card-action
+				= f.input :image_background, as: :file_material, label: false, wrapper_html: { class: "file-field" }
+				= f.input :image_background_cache, as: :hidden
+	= f.input :theme_name, collection: [["Keppler-theme", "keppler"], ["Cyan-theme", "cyan"], ["Brown-theme", "brown"], ["Pink-theme", "pink"], ["Amber-theme", "amber"], ["Grey-theme", "grey"]],input_html: { class: "browser-default"}, label: false, include_blank: "Select theme"

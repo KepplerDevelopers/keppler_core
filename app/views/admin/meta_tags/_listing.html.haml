@@ -1,0 +1,19 @@
+%tr{ id: "row-#{meta_tag.id}" }
+	- if can? :destroy_multiple, MetaTag
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_meta_tag_path(meta_tag), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{meta_tag.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{meta_tag.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{meta_tag.id}" }
+
+		%td{style:"width: 30%"}
+			= link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
+			%span
+				= meta_tag.title
+		%td{style:"width: 30%"}
+			= link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
+			%span
+				= meta_tag.url
+
+	%td{style:"width: 5%"}
+		= link_to admin_meta_tag_path(meta_tag), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

@@ -1,0 +1,29 @@
+.listing-show-header
+	.actions
+		- if can? :update, MetaTag
+			= link_to edit_admin_meta_tag_path(@meta_tag), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.code.css_class("md-light")
+		= t("model.singular.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%ul.list
+			%li.list-row
+				.display-label= t("activerecord.attributes.meta_tag.title")
+				.display-value= @meta_tag.title
+			%li.list-row
+				.display-label= t("activerecord.attributes.meta_tag.description")
+				.display-value= @meta_tag.description
+			%li.list-row
+				.display-label= t("activerecord.attributes.meta_tag.meta_tags")
+				.display-value= @meta_tag.meta_tags
+			%li.list-row
+				.display-label= t("activerecord.attributes.meta_tag.url")
+				.display-value= @meta_tag.url
+
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), admin_meta_tags_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

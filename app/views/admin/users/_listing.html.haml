@@ -1,0 +1,21 @@
+%tr{ id: "row-#{user.id}" }
+	- if can? :destroy_multiple, User
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_user_path(user), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{user.id}" }
+	%td.hide-on-small-and-down{style:"width: 30%"}
+		= link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
+		%span
+			= user.name
+	%td{style:"width: 35%"}
+		= link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
+		%span
+			= user.email
+	%td.hide-on-small-and-down{style:"width: 20%"}
+		= link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
+		%span
+			= user.rol.humanize
+	%td{style:"width: 5%"}
+		= link_to admin_user_path(user), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

@@ -1,0 +1,19 @@
+= title(t('keppler.titles.show', model: "Users"))
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, User
+				= link_to admin_user_path(@user), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, User
+				= link_to edit_admin_user_path(@user), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to admin_users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%ul.list
+					- @user.as_json(only: ["id", "name", "permalink", "email","created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
+						%li.list-row
+							.display-label= t("activerecord.attributes.user.#{attribute}")
+							.display-value.fs-body-1.tc-black-2= value.to_s.humanize

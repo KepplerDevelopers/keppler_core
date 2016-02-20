@@ -1,0 +1,29 @@
+.listing-show-header
+	.actions
+		- if can? :update, GoogleAdword
+			= link_to edit_admin_google_adword_path(@google_adword), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.code.css_class("md-light")
+		= t("model.singular.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%ul.list
+			%li.list-row
+				.display-label= t("activerecord.attributes.google_adword.url")
+				.display-value= @google_adword.url
+			%li.list-row
+				.display-label= t("activerecord.attributes.google_adword.campaign_name")
+				.display-value= @google_adword.campaign_name
+			%li.list-row
+				.display-label= t("activerecord.attributes.google_adword.description")
+				.display-value= @google_adword.description
+			%li.list-row
+				.display-label= t("activerecord.attributes.google_adword.script")
+				.display-value= @google_adword.script
+
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), admin_google_adwords_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

@@ -1,0 +1,19 @@
+%tr{ id: "row-#{google_adword.id}" }
+	- if can? :destroy_multiple, GoogleAdword
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_google_adword_path(google_adword), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{google_adword.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{google_adword.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{google_adword.id}" }
+
+		%td{style:"width: 30%"}
+			= link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
+			%span
+				= google_adword.url
+		%td{style:"width: 30%"}
+			= link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
+			%span
+				= google_adword.campaign_name
+
+	%td{style:"width: 5%"}
+		= link_to admin_google_adword_path(google_adword), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

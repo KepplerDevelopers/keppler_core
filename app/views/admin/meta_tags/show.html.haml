@@ -1,0 +1,30 @@
+= title(t('keppler.titles.show', model: "Meta tags"))
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, MetaTag
+				= link_to admin_meta_tag_path(@meta_tag), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, MetaTag
+				= link_to edit_admin_meta_tag_path(@meta_tag), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to admin_meta_tags_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%ul.list
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+						.display-value.fs-body-1.tc-black-2= @meta_tag.id.to_s.humanize
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.title")
+						.display-value.fs-body-1.tc-black-2= @meta_tag.title.to_s.humanize
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.description")
+						.display-value.fs-body-1.tc-black-2= @meta_tag.description.to_s.humanize
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.meta_tags")
+						.display-value.fs-body-1.tc-black-2= @meta_tag.meta_tags.to_s.humanize
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.url")
+						.display-value.fs-body-1.tc-black-2= @meta_tag.url.to_s.humanize

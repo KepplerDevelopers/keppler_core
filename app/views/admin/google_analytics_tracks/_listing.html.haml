@@ -1,0 +1,23 @@
+%tr{ id: "row-#{google_analytics_track.id}" }
+	- if can? :destroy_multiple, GoogleAnalyticsTrack
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_google_analytics_track_path(google_analytics_track), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{google_analytics_track.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{google_analytics_track.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{google_analytics_track.id}" }
+
+	%td{style:"width: 20%"}
+		= link_to "", admin_google_analytics_track_path(google_analytics_track, search: @query), remote: true, class: "show-row"
+		%span
+			= google_analytics_track.name
+	%td{style:"width: 20%"}
+		= link_to "", admin_google_analytics_track_path(google_analytics_track, search: @query), remote: true, class: "show-row"
+		%span
+			= google_analytics_track.tracking_id
+	%td{style:"width: 55%"}
+		= link_to "", admin_google_analytics_track_path(google_analytics_track, search: @query), remote: true, class: "show-row"
+		%span
+			= google_analytics_track.url.truncate(100)
+
+	%td{style:"width: 5%"}
+		= link_to admin_google_analytics_track_path(google_analytics_track), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

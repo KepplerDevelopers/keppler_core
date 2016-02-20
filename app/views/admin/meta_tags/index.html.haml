@@ -1,0 +1,23 @@
+= title(t('keppler.titles.index', model: "Meta tags"))
+.listing.col.l9.m12.s12
+	- if can? :new, model
+		= link_to new_admin_meta_tag_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
+			= material_icon.md_24.add
+	= entries(@total, @objects)
+	%table.bordered
+		%tbody
+			- @objects.each do |meta_tag|
+				= render 'listing', meta_tag: meta_tag
+			- if @objects.size.zero?
+				%tr
+					%td{colspan: "4"}
+						%center
+							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.meta_tags"))
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+- if can? :new, model
+	= link_to new_admin_meta_tag_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
+		= material_icon.md_24.add.css_class("md-light")

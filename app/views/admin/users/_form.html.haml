@@ -1,0 +1,18 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			= link_to admin_users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs
+			.card
+				.card-content
+					= simple_form_for [:admin, @user] do |f|
+						.row
+							= f.input :name
+							= f.input :email
+							= f.input :role_ids, collection: Role.all.map { |rol| [rol.name.humanize, rol.id] }, label: false, include_blank: t("keppler.actions.select_rol"), input_html: { class: "browser-default" }
+							= f.input :password
+							= f.input :password_confirmation
+							.form-actions.right
+								= f.button :submit, t("keppler.actions.save"), name: "_save"
+								= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"

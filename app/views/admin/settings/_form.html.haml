@@ -1,0 +1,17 @@
+.wrapper#settings
+	.wrapper-body.container
+		.actions
+			= #link_to settings_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+			= #material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs
+			.card
+				.card-content
+					= simple_form_for @setting, url: update_admin_settings_path(@render), method: :put do |f|
+						.row
+							= render partial: "admin/settings/fields/#{@render}", locals: { f: f }
+
+							.form-actions.right
+								= f.button :submit, t("keppler.actions.save")
+	.wrapper-menu
+		.card
+
