@@ -5,5 +5,5 @@
 	= raw @meta.meta_tags
 	%title= content_for?(:title) ? yield(:title) : @meta.title
 - else
-	%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : "#{@setting.description}"}"}
-	%title= content_for?(:title) ? yield(:title) : @setting.name
+	%meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : "#{@description}"}"}
+	%title= content_for?(:title) ? yield(:title) : @name

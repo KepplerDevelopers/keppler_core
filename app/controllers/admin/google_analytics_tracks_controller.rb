@@ -1,9 +1,6 @@
 module Admin
   # GoogleAnalyticsTracksController
-  class GoogleAnalyticsTracksController < ApplicationController
-    before_filter :authenticate_user!
-    layout 'admin/application'
-    load_and_authorize_resource
+  class GoogleAnalyticsTracksController < AdminController
     before_action :set_ga_track, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
 

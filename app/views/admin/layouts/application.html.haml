@@ -1,16 +1,16 @@
 !!!
 %html
-	= render "layouts/admin/head"
+	= render 'admin/layouts/head'
 	%body{ 'ng-controller'=>'MainCtrl', class: "#{@setting.appearance.theme_name}-theme" }
 		.waiting
 			= preloader
 
 		- if loggedin?
-			= render 'layouts/admin/sidebar'
-			= render 'layouts/admin/navigation'
-			= render 'layouts/admin/header'
-			= render 'layouts/admin/messages'
-			%main.row.admin{ role: 'main', "ng-click" => "sidebarClose()" }
+			= render 'admin/layouts/sidebar'
+			= render 'admin/layouts/navigation'
+			= render 'admin/layouts/header'
+			= render 'admin/layouts/messages'
+			%main.row.admin{ role: 'main', 'ng-click' => 'sidebarClose()' }
 				= yield
 		- else
 			%main.devise{ style: @setting.appearance.image_background? ? "background-image: url(#{@setting.appearance.image_background})" : nil  }

@@ -1,9 +1,6 @@
 module Admin
   # MetaTagController
-  class MetaTagsController < ApplicationController
-    before_filter :authenticate_user!
-    layout 'admin/application'
-    load_and_authorize_resource
+  class MetaTagsController < AdminController
     before_action :set_meta_tag, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
 

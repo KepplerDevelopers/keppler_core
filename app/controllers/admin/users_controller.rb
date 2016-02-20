@@ -1,9 +1,6 @@
 module Admin
   # UsersController
-  class UsersController < ApplicationController
-    before_filter :authenticate_user!
-    layout 'admin/application'
-    load_and_authorize_resource
+  class UsersController < AdminController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
 

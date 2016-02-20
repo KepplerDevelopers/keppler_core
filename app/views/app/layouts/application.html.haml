@@ -1,0 +1,13 @@
+!!!
+%html
+	= render 'app/layouts/head'
+	%body
+		%header
+			= #render 'app/layouts/navigation'
+		%main{:role => "main"}
+			= #render 'app/layouts/messages'
+			= yield
+		%footer
+			= render 'app/layouts/footer'
+
+

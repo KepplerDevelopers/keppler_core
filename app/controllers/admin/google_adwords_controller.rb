@@ -1,9 +1,6 @@
 module Admin
   # GoogleAdwordsController
-  class GoogleAdwordsController < ApplicationController
-    before_filter :authenticate_user!
-    layout 'admin/application'
-    load_and_authorize_resource
+  class GoogleAdwordsController < AdminController
     before_action :set_google_adword, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
 

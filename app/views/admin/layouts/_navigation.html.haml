@@ -5,7 +5,7 @@
 				= material_icon.md_24.menu.css_class "animated"
 			%a.brand-logo.title.hide-on-small-only.hide-on-med-and-down
 				Keppler
-			= render 'layouts/admin/search'
+			= render 'admin/layouts/search'
 			.actions.right
 				- if listing?
 					= link_to "", { "ng-click" => "searchSiwtch()", class: "btn-floating waves-effect waves-light btn-flat hide-on-small-and-down", "ng-show" => "!inputSearch" } do
