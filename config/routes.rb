@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  root to: 'frontend#index'
+  root to: 'app/app#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   resources :admin, only: :index
 
-  scope :admin do
+  namespace :admin do
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''
       delete(

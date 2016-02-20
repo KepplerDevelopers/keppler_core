@@ -32,14 +32,14 @@ class ApplicationController < ActionController::Base
 
   def redefine_ids(ids)
     ids.delete('[]').split(',').select do |id|
-      id if controller_path.classify.constantize.exists? id
+      id if controller_name.classify.constantize.exists? id
     end
   end
 
   # Check whether the user has permission to delete each of the selected objects
   def can_multiple_destroy
     redefine_ids(params[:multiple_ids]).each do |id|
-      authorize! :destroy, controller_path.classify.constantize.find(id)
+      authorize! :destroy, controller_name.classify.constantize.find(id)
     end
   end
 
@@ -82,10 +82,10 @@ class ApplicationController < ActionController::Base
   # Get submit key to redirect, only [:create, :update]
   def redirect(object, commit)
     if commit.key?('_save')
-      redirect_to(object, notice: actions_messages(object))
+      redirect_to([:admin, object], notice: actions_messages(object))
     elsif commit.key?('_add_other')
       redirect_to(
-        send("new_#{underscore(object)}_path"),
+        send("new_admin_#{underscore(object)}_path"),
         notice: actions_messages(object)
       )
     end

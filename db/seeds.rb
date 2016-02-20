@@ -10,15 +10,15 @@
 # user = CreateAdminService.new.call
 # puts 'CREATED ADMIN USER: ' << user.email
 
-[:admin, :client].each do |name|
-  Role.create name: name
-  puts "#{name} has been created"
-end
-
 User.create(
   name: 'Admin', email: 'admin@keppler.com', password: '12345678',
   password_confirmation: '12345678', role_ids: '1'
 )
+
+[:admin, :client].each do |name|
+  Role.create name: name
+  puts "#{name} has been created"
+end
 
 puts 'admin@keppler.com has been created'
 

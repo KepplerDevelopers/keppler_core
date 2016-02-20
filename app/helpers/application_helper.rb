@@ -32,7 +32,7 @@ module ApplicationHelper
 
   # Classify a model from a controller
   def model
-    controller.controller_path.classify.constantize
+    controller_name.classify.constantize
   end
 
   # Underscore class_name from a object
