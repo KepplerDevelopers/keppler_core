@@ -1,6 +1,6 @@
 .pageslide-background{ "ng-click" => "sidebarClose()"}
 	%pageslide.card{ "ps-open"=>"sidebar", "ps-auto-close" => true }
-		.profile-menu{ style: @setting.appearance.image_background? ? "background: url(#{@setting.appearance.image_background}) center no-repeat; background-size: 268px 159px;" : nil  }
+		.profile-menu{ style: @appearance.image_background? ? "background: url(#{@setting.appearance.image_background}) center no-repeat; background-size: 268px 159px;" : nil  }
 			.profile-pic
 				= link_to "http://gravatar.com", target: "_blank" do
 					= image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
@@ -17,12 +17,12 @@
 						- if menu[key]["model"] #links with cancancan validate
 							- if can?(:index, menu[key]["model"].constantize)
 								%li
-									= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}" do
+									= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
 										%i.material-icons.mi.md-18= menu[key]["icon"]
 										= t("keppler.menu.#{menu[key]['name']}")
 						- else #links without cancancan validate
 							%li
-								= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}" do
+								= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
 									%i.material-icons.mi.md-18= menu[key]["icon"]
 									= t("keppler.menu.#{menu[key]['name']}")
 					- else #tree sidebar links
@@ -37,8 +37,8 @@
 											- submenu.each do |name, val|
 												%li
 													- if settings_path?
-														= link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}"
+														= link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", 'data-no-turbolink': true
 													- else
-														= link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}"
+														= link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", 'data-no-turbolink': true
 
 
