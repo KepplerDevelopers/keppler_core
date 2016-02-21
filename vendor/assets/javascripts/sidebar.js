@@ -38,7 +38,7 @@ angular.module("pageslide-directive", [])
                 param.cloak = false;
                 param.squeeze = Boolean($scope.psSqueeze) || false;
                 param.push = Boolean($scope.psPush) || false;
-                
+
                 // Apply Class
                 el.addClass(param.className);
 
@@ -55,9 +55,9 @@ angular.module("pageslide-directive", [])
                     throw new Error('Pageslide can only be applied to <div> or <pageslide> elements');
 
                 // Check for content
-                if (slider.children.length === 0) 
+                if (slider.children.length === 0)
                     throw new Error('You have to content inside the <pageslide>');
-                
+
                 content = angular.element(slider.children);
 
                 /* Append */
@@ -81,7 +81,7 @@ angular.module("pageslide-directive", [])
 
                 switch (param.side){
                     case 'right':
-                        slider.style.height = attrs.psCustomHeight || '100%'; 
+                        slider.style.height = attrs.psCustomHeight || '100%';
                         slider.style.top = attrs.psCustomTop ||  '0px';
                         slider.style.bottom = attrs.psCustomBottom ||  '0px';
                         slider.style.right = attrs.psCustomRight ||  '0px';
@@ -92,13 +92,13 @@ angular.module("pageslide-directive", [])
                         slider.style.left = attrs.psCustomLeft || '-260px';
                         break;
                     case 'top':
-                        slider.style.width = attrs.psCustomWidth || '100%';   
+                        slider.style.width = attrs.psCustomWidth || '100%';
                         slider.style.left = attrs.psCustomLeft || '0px';
                         slider.style.top = attrs.psCustomTop || '0px';
                         slider.style.right = attrs.psCustomRight || '0px';
                         break;
                     case 'bottom':
-                        slider.style.width = attrs.psCustomWidth || '100%'; 
+                        slider.style.width = attrs.psCustomWidth || '100%';
                         slider.style.bottom = attrs.psCustomBottom || '0px';
                         slider.style.left = attrs.psCustomLeft || '0px';
                         slider.style.right = attrs.psCustomRight || '0px';
@@ -112,37 +112,37 @@ angular.module("pageslide-directive", [])
                         if (param.cloak) content.css('display', 'none');
                         switch (param.side){
                             case 'right':
-                                slider.style.width = '0px'; 
-                                if (param.squeeze) body.style.right = '0px'; 
+                                slider.style.width = '0px';
+                                if (param.squeeze) body.style.right = '0px';
                                 if (param.push) {
-                                    body.style.right = '0px'; 
-                                    body.style.left = '0px'; 
+                                    body.style.right = '0px';
+                                    body.style.left = '0px';
                                 }
                                 break;
                             case 'left':
                                  slider.style.left = '-268px';
                                  slider.style.opacity = '0';
                                  $("body").removeClass('open')
-                                if (param.squeeze) body.style.left = '0px'; 
+                                if (param.squeeze) body.style.left = '0px';
                                 if (param.push) {
-                                    body.style.left = '0px'; 
-                                    body.style.right = '0px'; 
+                                    body.style.left = '0px';
+                                    body.style.right = '0px';
                                 }
                                 break;
                             case 'top':
-                                slider.style.height = '0px'; 
-                                if (param.squeeze) body.style.top = '0px'; 
+                                slider.style.height = '0px';
+                                if (param.squeeze) body.style.top = '0px';
                                 if (param.push) {
-                                    body.style.top = '0px'; 
-                                    body.style.bottom = '0px'; 
+                                    body.style.top = '0px';
+                                    body.style.bottom = '0px';
                                 }
                                 break;
                             case 'bottom':
-                                slider.style.height = '0px'; 
-                                if (param.squeeze) body.style.bottom = '0px'; 
+                                slider.style.height = '0px';
+                                if (param.squeeze) body.style.bottom = '0px';
                                 if (param.push) {
-                                    body.style.bottom = '0px'; 
-                                    body.style.top = '0px'; 
+                                    body.style.bottom = '0px';
+                                    body.style.top = '0px';
                                 }
                                 break;
                         }
@@ -155,37 +155,37 @@ angular.module("pageslide-directive", [])
                     if (slider.style.width !== 0 && slider.style.width !== 0){
                         switch (param.side){
                             case 'right':
-                                slider.style.width = param.size; 
-                                if (param.squeeze) body.style.right = param.size; 
+                                slider.style.width = param.size;
+                                if (param.squeeze) body.style.right = param.size;
                                 if (param.push) {
-                                    body.style.right = param.size; 
-                                    body.style.left = "-" + param.size; 
+                                    body.style.right = param.size;
+                                    body.style.left = "-" + param.size;
                                 }
                                 break;
                             case 'left':
                                 slider.style.left = "0px"
                                 slider.style.opacity = '1';
                                 $("body").addClass('open')
-                                if (param.squeeze) body.style.left = param.size; 
+                                if (param.squeeze) body.style.left = param.size;
                                 if (param.push) {
-                                    body.style.left = param.size; 
-                                    body.style.right = "-" + param.size; 
+                                    body.style.left = param.size;
+                                    body.style.right = "-" + param.size;
                                 }
                                 break;
                             case 'top':
-                                slider.style.height = param.size; 
-                                if (param.squeeze) body.style.top = param.size; 
+                                slider.style.height = param.size;
+                                if (param.squeeze) body.style.top = param.size;
                                 if (param.push) {
-                                    body.style.top = param.size; 
-                                    body.style.bottom = "-" + param.size; 
+                                    body.style.top = param.size;
+                                    body.style.bottom = "-" + param.size;
                                 }
                                 break;
                             case 'bottom':
-                                slider.style.height = param.size; 
-                                if (param.squeeze) body.style.bottom = param.size; 
+                                slider.style.height = param.size;
+                                if (param.squeeze) body.style.bottom = param.size;
                                 if (param.push) {
-                                    body.style.bottom = param.size; 
-                                    body.style.top = "-" + param.size; 
+                                    body.style.bottom = param.size;
+                                    body.style.top = "-" + param.size;
                                 }
                                 break;
                         }
