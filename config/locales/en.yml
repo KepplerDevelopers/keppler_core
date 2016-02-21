@@ -37,12 +37,12 @@ en:
         configurations: configurations
         user: users
     modules:
-      admin/google_adwords: Google adwords
-      admin/meta_tags: Meta tags
-      admin/google_analytics_tracks: Google analytics tracks
-      admin/settings: Settings
-      admin/keppler_ga_dashboard/dashboard: Dashboard
-      admin/users: Users
+      admin/google_adwords: 'Google adwords'
+      admin/meta_tags: 'Meta tags'
+      admin/google_analytics_tracks: 'Google analytics tracks'
+      admin/settings: 'Settings'
+      admin/keppler_ga_dashboard/dashboard: 'Dashboard'
+      admin/users: 'Users'
     messages:
       not_authorized_page: You have no authorization to access this page
       not_authorized_action: You have no authorization to perform this action

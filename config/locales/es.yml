@@ -8,12 +8,12 @@ es:
         user: usuarios
         setting: Ajustes
     modules:
-      admin/google_adwords: Google adwords
-      admin/meta_tags: Meta tags
-      admin/google_analytics_tracks: Google analytics tracks
-      admin/settings: Settings
-      admin/keppler_ga_dashboard/dashboard: Dashboard
-      admin/users: Usuarios
+      admin/google_adwords: 'Google adwords'
+      admin/meta_tags: 'Meta tags'
+      admin/google_analytics_tracks: 'Google analytics tracks'
+      admin/settings: 'Ajustes'
+      admin/keppler_ga_dashboard/dashboard: 'Dashboard'
+      admin/users: 'Usuarios'
     messages:
       not_authorized_page: No estás autorizado para acceder a esta página
       not_authorized_action: No estás autorizado para realizar esta acción

@@ -4,30 +4,31 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
+
     if user.has_role? :admin
 
-      # - user authorize -
+      # - Seo authorize -
+      can :manage, MetaTag
+      can :manage, GoogleAdword
+
+      # - GoogleAnalytics authorize -
+      if Setting.first.google_analytics_setting.ga_status
+        can :manage, GoogleAnalyticsTrack
+      end
+
+      # - Setting authorize -
+      can :manage, Setting
+
+      # - User authorize -
       can [:delete, :show, :edit, :update,
            :create, :index, :destroy_multiple], User
       can :destroy, User do |u|
         !u.eql?(user)
       end
 
-      # - SEO -
-      can :manage, MetaTag
-      can :manage, GoogleAdword
-
-      # - GoogleAnalytics -
-      if Setting.first.google_analytics_setting.ga_status
-        can :manage, GoogleAnalyticsTrack
-      end
-
-      # - Setting -
-      can :manage, Setting
-
     elsif user.has_role? :client
 
-      # - user authorize -
+      # - User authorize -
       can :read, User
     end
     # The first argument to `can` is the action you are giving the user
