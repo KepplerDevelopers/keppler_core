@@ -5,9 +5,11 @@ class <%= class_name %> < ActiveRecord::Base
   include ActivityHistory
 
   def self.query(query)
-    { query: { multi_match:  {
+    { query: { multi_match: {
       query: query,
-      fields: [<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>], operator: :and }
+      fields: [<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>],
+      operator: :and,
+      lenient: true }
     }, sort: { id: 'desc' }, size: count }
   end
 

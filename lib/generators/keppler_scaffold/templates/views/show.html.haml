@@ -3,15 +3,15 @@
 	.wrapper-body.container
 		.actions
 			- if can? :delete, <%= singular_table_name.camelcase %>
-				= link_to <%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-					= material_icon.md_18.delete.css_class("md-dark")	
+				= link_to admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
 			- if can? :update, <%= singular_table_name.camelcase %>
-				= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+				= link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
 					= material_icon.md_18.create.css_class("md-dark")
-			= link_to <%= singular_table_name %>s_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark") 
+			= link_to admin_<%= singular_table_name %>s_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
 		.card
-			.card-content			
+			.card-content
 				%ul.list
 					%li.list-row
 						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")

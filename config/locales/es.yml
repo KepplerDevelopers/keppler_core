@@ -2,6 +2,7 @@ es:
   keppler:
     models:
       singularize:
+        orders: orders
         user: usuario
         setting: Ajuste
       pluralize:

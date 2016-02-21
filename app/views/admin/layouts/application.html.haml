@@ -1,7 +1,7 @@
 !!!
 %html
 	= render 'admin/layouts/head'
-	%body{ 'ng-controller'=>'MainCtrl', class: "#{@setting.appearance.theme_name}-theme" }
+	%body{ 'ng-controller'=>'MainCtrl', class: "#{@appearance.theme_name}-theme" }
 		.waiting
 			= preloader
 
@@ -13,7 +13,7 @@
 			%main.row.admin{ role: 'main', 'ng-click' => 'sidebarClose()' }
 				= yield
 		- else
-			%main.devise{ style: @setting.appearance.image_background? ? "background-image: url(#{@setting.appearance.image_background})" : nil  }
+			%main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
 				= yield
 
 

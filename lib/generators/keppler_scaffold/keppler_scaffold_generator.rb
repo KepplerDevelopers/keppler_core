@@ -128,9 +128,9 @@ module Rails
 
       def str_locales(switch)
         case switch
-        when 'pluralize'
-          "\n        #{controller_file_name.singularize}: #{controller_file_name.singularize.humanize.downcase}"
         when 'singularize'
+          "\n        #{controller_file_name.singularize}: #{controller_file_name.singularize.humanize.downcase}"
+        when 'pluralize'
           "\n        #{controller_file_name}: #{controller_file_name.humanize.downcase}"
         when 'modules'
           "\n      admin/#{controller_file_name}: '#{controller_file_name.humanize}'"

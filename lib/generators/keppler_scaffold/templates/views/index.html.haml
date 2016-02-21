@@ -1,7 +1,7 @@
 = title(t('keppler.titles.index', model: "<%= plural_table_name.humanize %>"))
 .listing.col.l9.m12.s12
 	- if can? :new, model
-		= link_to new_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
+		= link_to new_admin_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
 			= material_icon.md_24.add
 	= entries(@total, @objects)
 	%table.bordered
@@ -19,5 +19,5 @@
 	= render "description"
 
 - if can? :new, model
-	= link_to new_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
+	= link_to new_admin_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
 		= material_icon.md_24.add.css_class("md-light")

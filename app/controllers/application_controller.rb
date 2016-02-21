@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :appearance
   include PublicActivity::StoreController
   include AdminHelper
 
@@ -20,6 +21,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def appearance
+    @appearance = Setting.first.appearance
+  end
 
   def get_history(model)
     if current_user.has_role? :admin
@@ -47,7 +52,7 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if devise_controller?
-      'admin/application'
+      'admin/layouts/application'
     else
       'application'
     end
