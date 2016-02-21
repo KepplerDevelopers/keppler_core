@@ -1,6 +1,6 @@
 module Admin
   # AdminController
-  class AdminController < ApplicationController
+  class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
     before_filter :authenticate_user!
     load_and_authorize_resource

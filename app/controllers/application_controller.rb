@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :appearance
+  before_action :dashboard_access, only: [:analytics]
   include PublicActivity::StoreController
   include AdminHelper
 
@@ -17,10 +18,21 @@ class ApplicationController < ActionController::Base
       else
         t('keppler.messages.not_authorized_action')
       end
-    redirect_to not_authorized_path, flash: { message: exception.message }
+    redirect_to main_app.not_authorized_path, flash: {
+      message: exception.message
+    }
   end
 
   private
+
+  # block access dashboard
+  def dashboard_access
+    unless [:admin].include? current_user.rol.to_sym
+      raise CanCan::AccessDenied.new(
+        t('keppler.messages.not_authorized_page'), :index, :dashboard
+      )
+    end
+  end
 
   def appearance
     @appearance = Setting.first.appearance

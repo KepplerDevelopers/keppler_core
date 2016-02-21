@@ -29,6 +29,7 @@ menu:
     url_path: /admin/users
     icon: account_circle
     current: ["admin/users"]
+    model: User
   setting:
     name: setting
     current: ['admin/settings']
