@@ -1,5 +1,5 @@
 -# navigation styled for Bootstrap 3.0
-%nav.navbar.navbar-default.navbar-fixed-top.front-navbar
+%nav.navbar.navbar-default.navbar-fixed-top.app-navbar
   .container
     .navbar-header
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -10,4 +10,4 @@
       %span.brand-logo Keppler
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        = render 'layouts/app/navigation_links'
+        = render 'app/layouts/navigation_links'

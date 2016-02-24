@@ -16,7 +16,7 @@ class <%= class_name %> < ActiveRecord::Base
   # Build index elasticsearch
   def as_indexed_json(_options = {})
     as_json(
-      only: [<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>]
+      only: [:id, <%= attributes_names.map { |name| ":#{name}" }.join(', ') %>]
     )
   end
 end
