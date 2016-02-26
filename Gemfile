@@ -81,4 +81,4 @@ end
 
 #---- keppler_ga_dashboard ----
 gem 'keppler_ga_dashboard', git: 'https://github.com/inyxtech/keppler_ga_dashboard.git'
-gem 'google-api-client'
+gem 'google-api-client', '~> 0.7.1'

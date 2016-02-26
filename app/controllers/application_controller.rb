@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :appearance
-  before_action :dashboard_access, only: [:analytics]
   include PublicActivity::StoreController
   include AdminHelper
 
