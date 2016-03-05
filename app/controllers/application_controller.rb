@@ -62,10 +62,6 @@ class ApplicationController < ActionController::Base
   end
 
   def layout_by_resource
-    if devise_controller?
-      'admin/layouts/application'
-    else
-      'application'
-    end
+    'admin/layouts/application' if devise_controller?
   end
 end

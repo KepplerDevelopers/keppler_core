@@ -3,10 +3,18 @@ module Admin
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
     before_filter :authenticate_user!
-    load_and_authorize_resource
+    load_and_authorize_resource except: :root
     before_filter :paginator_params
     before_filter :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
+
+    def root
+      if current_user
+        redirect_to dashboard_path
+      else
+        redirect_to new_user_session_path
+      end
+    end
 
     def paginator_params
       @query = params[:search] unless params[:search].blank?

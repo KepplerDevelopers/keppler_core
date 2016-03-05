@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
-  resources :admin, only: :index
-
   namespace :admin do
+    root to: 'admin#root'
+
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''
       delete(
@@ -61,5 +61,5 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_server_error', via: :all
 
   # Dashboard route engine
-  mount KepplerGaDashboard::Engine, at: '/', as: 'dashboard'
+  mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'
 end
