@@ -48,13 +48,13 @@ module Admin
 
     def destroy
       @user.destroy
-      redirect_to users_path, notice: actions_messages(@user)
+      redirect_to admin_users_path, notice: actions_messages(@user)
     end
 
     def destroy_multiple
       User.destroy redefine_ids(params[:multiple_ids])
       redirect_to(
-        users_path(page: @current_page, search: @query),
+        admin_users_path(page: @current_page, search: @query),
         notice: actions_messages(User.new)
       )
     end
