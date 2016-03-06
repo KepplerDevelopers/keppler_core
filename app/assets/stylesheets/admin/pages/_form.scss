@@ -5,6 +5,10 @@
     }
   }
 
+  .control-label {
+    z-index: 1 !important;
+  }
+
   &-inputs {
     margin-bottom: 0;
 

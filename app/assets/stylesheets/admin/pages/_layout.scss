@@ -38,6 +38,14 @@ body {
     }
   }
 
+  .nav-wrapper,
+  .actions {
+    .btn-floating:hover {
+      background: transparent;
+      box-shadow: none !important;
+    }
+  }
+
   .material-tooltip{
     border-radius: 0 !important;
     height: 25px !important;

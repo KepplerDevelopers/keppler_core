@@ -51,7 +51,8 @@
     }
 
     .btn-floating:hover {
-      box-shadow: none;
+      background: transparent;
+      box-shadow: none !important;
     }
 
     .show-row {
