@@ -26,7 +26,11 @@ module AdminHelper
 
   # Classify a model from a controller
   def model
-    controller_path.classify.constantize
+    if controller_path.include?('admin')
+      controller_name.classify.constantize
+    else
+      controller_path.classify.constantize
+    end
   end
 
   # Underscore class_name from a object
