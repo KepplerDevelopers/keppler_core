@@ -2,8 +2,9 @@
 	= material_icon.md_24.create.css_class("circle")
 	%b
 		= activity.owner.name if activity.owner
+	= t('keppler.messages.has')
 	= t('keppler.actions.update').downcase
-	= activity.trackable_type.underscore.humanize
+	= t("keppler.models.singularize.#{activity.trackable_type.underscore}").humanize
 
 	- if activity.trackable
 		= t('keppler.messages.to')
