@@ -2,60 +2,86 @@ es:
   keppler:
     models:
       singularize:
-        orders: orders
+        catalog: catálogo
+        google_adword: google adword
+        meta_tag: meta tag
+        google_analytics_track: google analytics track
+        setting: configuración
+        configuration: configuración
         user: usuario
-        setting: Ajuste
       pluralize:
+        catalogs: catálogos
+        google_adwords: google adwords
+        meta_tags: meta tags
+        google_analytics_tracks: google analytics tracks
+        settings: configuraciones
+        configurations: configuraciones
         user: usuarios
-        setting: Ajustes
     modules:
+      admin/catalogs: 'Catálogos'
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
       admin/google_analytics_tracks: 'Google analytics tracks'
-      admin/settings: 'Ajustes'
-      admin/keppler_ga_dashboard/dashboard: 'Dashboard'
+      admin/settings: 'Configuraciones'
+      keppler_ga_dashboard/dashboard: 'Dashboard'
       admin/users: 'Usuarios'
     messages:
-      not_authorized_page: No estás autorizado para acceder a esta página
-      not_authorized_action: No estás autorizado para realizar esta acción
+      not_authorized_page: Usted no tiene autorización para acceder a esta página
+      not_authorized_action: Usted no tiene autorización para realizar esta acción
       not_found_records: "No se han encontrado %{model}"
-      no_events: Sin actividades
-      data_confirm: ¿Estas seguro?
+      no_events: Sin historial
+      data_confirm: ¿Estás seguro?
       records: registros
       record_msg: "%{from} al %{to} de %{total}"
+      to: "de"
+      has: ha
+      at: "a las"
+      y: Si
+      n: 'No'
+      since_been_removed: ha sido eliminado
+      login_in_activity: Inicio de sesión en
+      logout_in_activity: Salido del sistema en
       successfully:
-        created: "%{model} ha sido creado satisfactoriamente"
-        updated: "%{model} hha sido actualizado satisfactoriamente"
-        deleted: "%{model} ha sido eliminado satisfactoriamente"
-        removed: "%{model} han sido eliminados satisfactoriamente"
+        created: "%{model} se ha creado satisfactoriamente"
+        updated: "%{model} se ha actualizado satisfactoriamente"
+        deleted: "%{model} se ha eliminado satisfactoriamente"
+        removed: "%{model} se han eliminado satisfactoriamente"
     header_information:
       setting:
         basic_information: Información básica
-        email_setting: "Ajuste de mailers (SMTP)"
-        google_analytics: "Google analytics"
+        email_setting: Configuración de email via (SMTP)
+        google_analytics_setting: Google analytics
+        social_accounts: Cuentas de redes sociales
+        appearance: Aparencia
     titles:
       index: "%{model} - Listado"
       show: "%{model} - Ver"
       edit: "%{model} - Editar"
       new: "%{model} - Nuevo"
+      history: Historial
     actions:
+      created: Creado
+      updated: Actualizado
       edit: Editar
       show: Ver
       new: Nuevo
       delete: Eliminar
+      deleted: Eliminado
       index: Listado
       change_rol: Cambiar rol
       select_all: Seleccionar todo
       refresh: Refrescar
       search: Buscar
-      go_to_web: ir a web
+      go_to_web: Ir a la web
       edit_profile: Editar perfil
-      sign_out: Cerrar sesión
+      sign_out: Sign out
       back: Volver
       cancel: Cancelar
       assing_rol: Asignar rol
       select_rol: Seleccionar rol
       save: Guardar
+      save_and_add_another: Guardar y añadir otro
+      back_history: "Volver al historial"
   activerecord:
     attributes:
       user:
