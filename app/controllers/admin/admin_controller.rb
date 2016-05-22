@@ -41,7 +41,7 @@ module Admin
 
     def redefine_ids(ids)
       ids.delete('[]').split(',').select do |id|
-        id if controller_name.classify.constantize.exists? id
+        id if controller_path.classify.constantize.exists? id
       end
     end
 
@@ -49,7 +49,7 @@ module Admin
     # each of the selected objects
     def can_multiple_destroy
       redefine_ids(params[:multiple_ids]).each do |id|
-        authorize! :destroy, controller_name.classify.constantize.find(id)
+        authorize! :destroy, controller_path.classify.constantize.find(id)
       end
     end
   end
