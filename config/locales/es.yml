@@ -1,5 +1,25 @@
 es:
   keppler:
+    menu:
+      dashboard: Dashboard
+      users: Usuarios
+      catalogs: Catálogo
+      setting: Configuración
+      setting-submenu:
+        basic-information: 'Información básica'
+        email-setting-smtp: 'Configuración de email (SMTP)'
+        social-accounts: 'Redes sociales'
+        google-analytics: 'Google Analytics'
+        appearance: Apariencia
+      seo: Seo
+      seo-submenu:
+        title-metas: 'Títulos y Meta tagas'
+        google-adwords: 'Google Adwords'
+      blog: blog
+      blog-submenu:
+        posts: Posts
+        categories: Categorías
+      google-analytics-tracks: 'Google Analytics Tracks'
     models:
       singularize:
         catalog: catálogo
@@ -99,8 +119,16 @@ es:
         description: Descripción
         logo: Logo
         favicon: Favicon
-      google_analytic:
+      smtp_setting:
+        address: Dirección del servidor
+        port: Puerto
+        domain_name: Dominio
+        email: Email
+        password: Contraseña
+      google_analytics_setting:
         ga_account_id: Identificador de la cuenta
+        ga_tracking: Identificador de segumiento
+        ga_status: Habilitar Google Analytics
   date:
     abbr_day_names:
     - Dom
