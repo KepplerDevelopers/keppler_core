@@ -3,7 +3,7 @@
 	%b
 		= activity.owner.name if activity.owner
 	= t('keppler.messages.has')
-	= t('keppler.actions.delete').downcase
+	= t('keppler.actions.deleted').downcase
 	= activity.trackable_type.underscore.humanize
 	= t('keppler.messages.at')
 	= activity.created_at
