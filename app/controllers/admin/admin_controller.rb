@@ -40,16 +40,20 @@ module Admin
     end
 
     def redefine_ids(ids)
+      klass = controller_path.include?('admin') ? controller_name : controller_path
+
       ids.delete('[]').split(',').select do |id|
-        id if controller_path.classify.constantize.exists? id
+        id if klass.classify.constantize.exists? id
       end
     end
 
     # Check whether the user has permission to delete
     # each of the selected objects
     def can_multiple_destroy
+      klass = controller_path.include?('admin') ? controller_name : controller_path
+
       redefine_ids(params[:multiple_ids]).each do |id|
-        authorize! :destroy, controller_path.classify.constantize.find(id)
+        authorize! :destroy, klass.classify.constantize.find(id)
       end
     end
   end
