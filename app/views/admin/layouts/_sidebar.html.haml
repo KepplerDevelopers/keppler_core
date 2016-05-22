@@ -19,26 +19,26 @@
 								%li
 									= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
 										%i.material-icons.mi.md-18= menu[key]["icon"]
-										= t("keppler.menu.#{menu[key]['name']}")
+										= t("keppler.menu.#{menu[key]['name'].parameterize}")
 						- else #links without cancancan validate
 							%li
 								= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
 									%i.material-icons.mi.md-18= menu[key]["icon"]
-									= t("keppler.menu.#{menu[key]['name']}")
+									= t("keppler.menu.#{menu[key]['name'].parameterize}")
 					- else #tree sidebar links
 						- if menu[key]["model"] && can?(:index, menu[key]["model"].constantize)
 							%li
 								.collapsable.collapsible-header{ class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
 									%i.material-icons.mi.md-18= menu[key]['icon']
-									= t("keppler.menu.#{menu[key]['name']}")
+									= t("keppler.menu.#{menu[key]['name'].parameterize}")
 								.collapsible-body
 									%ul.pageslide-sub-menu
 										- menu[key]["submenu"].each do |submenu|
 											- submenu.each do |name, val|
 												%li
 													- if settings_path?
-														= link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", 'data-no-turbolink': true
+														= link_to t("keppler.menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", 'data-no-turbolink': true
 													- else
-														= link_to t("keppler.menu.#{menu[key]['name']}.submenu.#{submenu[name]['name']}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", 'data-no-turbolink': true
+														= link_to t("keppler.menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", 'data-no-turbolink': true
 
 
