@@ -18,7 +18,7 @@ gem 'sass-rails'
 gem 'therubyracer', '~> 0.11.4', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.0'
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks'
 
 # Database
