@@ -6,7 +6,8 @@ module Admin
 
     # GET /google_adwords
     def index
-      google_adwords = GoogleAdword.searching(@query).all
+      @q = GoogleAdword.ransack(params[:q])
+      google_adwords = @q.result(distinct: true)
       @objects = google_adwords.page(@current_page)
       @total = google_adwords.size
       if !@objects.first_page? && @objects.size.zero?

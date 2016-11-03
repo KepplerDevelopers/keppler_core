@@ -17,6 +17,7 @@ module Admin
     end
 
     def paginator_params
+      @search_field = model.search_field if listing?
       @query = params[:search] unless params[:search].blank?
       @current_page = params[:page] unless params[:page].blank?
     end

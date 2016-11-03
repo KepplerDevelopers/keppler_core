@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/activerecord-hackery/ransack
+  revision: d9f516f9185cf7eb7c9853a942493460e304857e
+  branch: rails-4.2
+  specs:
+    ransack (1.2.4)
+      actionpack (~> 4.2.0)
+      activerecord (~> 4.2.0)
+      activesupport (~> 4.2.0)
+      i18n
+      polyamorous (~> 1.1)
+
+GIT
   remote: https://github.com/inyxtech/keppler_ga_dashboard.git
   revision: b0bb28193d82c9fe7e79b0fea8f30e202ef4bc9b
   specs:
@@ -102,19 +114,6 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-i18n (0.12.1)
-    elasticsearch (1.0.15)
-      elasticsearch-api (= 1.0.15)
-      elasticsearch-transport (= 1.0.15)
-    elasticsearch-api (1.0.15)
-      multi_json
-    elasticsearch-model (0.1.8)
-      activesupport (> 3)
-      elasticsearch (> 0.4)
-      hashie
-    elasticsearch-rails (0.1.8)
-    elasticsearch-transport (1.0.15)
-      faraday
-      multi_json
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -172,7 +171,6 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
-    hashie (3.4.3)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -230,6 +228,8 @@ GEM
     orm_adapter (0.5.0)
     parser (2.3.0.6)
       ast (~> 2.2)
+    polyamorous (1.3.1)
+      activerecord (>= 3.0)
     powerpack (0.1.1)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -368,8 +368,6 @@ DEPENDENCIES
   commands
   devise
   devise-i18n
-  elasticsearch-model
-  elasticsearch-rails
   font-awesome-sass (~> 4.3.0)
   google-api-client (~> 0.7.1)
   guard
@@ -391,6 +389,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.0)
   rails_layout
+  ransack!
   rmagick
   rolify
   rubocop
@@ -402,9 +401,9 @@ DEPENDENCIES
   spring
   table_print
   therubyracer (~> 0.11.4)
-  turbolinks
+  turbolinks (~> 2.5.3)
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

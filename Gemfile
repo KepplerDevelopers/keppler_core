@@ -51,9 +51,9 @@ gem 'devise-i18n'
 gem 'cancancan'
 gem 'rolify'
 
-# Elasticsearch
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+# Search
+gem 'ransack', git: 'https://github.com/activerecord-hackery/ransack',
+               branch: 'rails-4.2'
 
 # Pagination
 gem 'kaminari-i18n'

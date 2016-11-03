@@ -6,7 +6,8 @@ module Admin
 
     # GET /meta_tags
     def index
-      meta_tags = MetaTag.searching(@query).all
+      @q = MetaTag.ransack(params[:q])
+      meta_tags = @q.result(distinct: true)
       @objects = meta_tags.page(@current_page)
       @total = meta_tags.size
       if !@objects.first_page? && @objects.size.zero?

@@ -6,7 +6,8 @@ module Admin
 
     # GET /google_analytics_tracks
     def index
-      google_analytics_tracks = GoogleAnalyticsTrack.searching(@query).all
+      @q = GoogleAnalyticsTrack.ransack(params[:q])
+      google_analytics_tracks = @q.result(distinct: true)
       @objects = google_analytics_tracks.page(@current_page)
       @total = google_analytics_tracks.size
 

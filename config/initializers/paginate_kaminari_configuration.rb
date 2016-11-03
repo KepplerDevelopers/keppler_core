@@ -1,8 +1,5 @@
 # Support for elasticsearch
 Kaminari::Hooks.init
-Elasticsearch::Model::Response::Response.__send__(
-  :include, Elasticsearch::Model::Response::Pagination::Kaminari
-)
 
 Kaminari.configure do |config|
   config.default_per_page = KepplerConfiguration.default_per_page
