@@ -61,6 +61,7 @@ module Rails
           add_str_locales(locale, 'singularize')
           add_str_locales(locale, 'pluralize')
           add_str_locales(locale, 'modules')
+          add_str_locales(locale, 'sidebar-menu')
         end
       end
 
@@ -133,7 +134,9 @@ module Rails
         when 'pluralize'
           "\n        #{controller_file_name}: #{controller_file_name.humanize.downcase}"
         when 'modules'
-          "\n      admin/#{controller_file_name}: '#{controller_file_name.humanize}'"
+          "\n      admin/#{controller_file_name}: #{controller_file_name.humanize}"
+        when 'sidebar-menu'
+          "\n      #{controller_file_name}: #{controller_file_name.humanize}"
         end
       end
 

@@ -10,7 +10,8 @@ module Admin
 
     # GET <%= route_url %>
     def index
-      <%= plural_table_name %> = <%= class_name %>.searching(@query).all
+      @q = <%= class_name %>.ransack(params[:q])
+      <%= plural_table_name %> = @q.result(distinct: true)
       @objects = <%= plural_table_name %>.page(@current_page)
       @total = <%= plural_table_name %>.size
       if !@objects.first_page? && @objects.size.zero?
