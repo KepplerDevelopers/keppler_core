@@ -1,44 +1,44 @@
 .pageslide-background{ "ng-click" => "sidebarClose()"}
-	%pageslide.card{ "ps-open"=>"sidebar", "ps-auto-close" => true }
-		.profile-menu{ style: @appearance.image_background? ? "background: url(#{@setting.appearance.image_background}) center no-repeat; background-size: 268px 159px;" : nil  }
-			.profile-pic
-				= link_to "http://gravatar.com", target: "_blank" do
-					= image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
-			.profile-info
-				= current_user.name
-				.right
-					= link_to t("keppler.actions.edit_profile"), main_app.edit_admin_user_path(current_user)
-					|
-					= link_to t("keppler.actions.sign_out"), main_app.destroy_user_session_path
-		%ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
-			- KepplerConfiguration.visible_models.each do |menu|
-				- menu.each do |key, value|
-					- unless menu[key]["submenu"] #ontetab sidebar link
-						- if menu[key]["model"] #links with cancancan validate
-							- if can?(:index, menu[key]["model"].constantize)
-								%li
-									= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
-										%i.material-icons.mi.md-18= menu[key]["icon"]
-										= t("keppler.menu.#{menu[key]['name'].parameterize}")
-						- else #links without cancancan validate
-							%li
-								= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
-									%i.material-icons.mi.md-18= menu[key]["icon"]
-									= t("keppler.menu.#{menu[key]['name'].parameterize}")
-					- else #tree sidebar links
-						- if menu[key]["model"] && can?(:index, menu[key]["model"].constantize)
-							%li
-								.collapsable.collapsible-header{ class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
-									%i.material-icons.mi.md-18= menu[key]['icon']
-									= t("keppler.menu.#{menu[key]['name'].parameterize}")
-								.collapsible-body
-									%ul.pageslide-sub-menu
-										- menu[key]["submenu"].each do |submenu|
-											- submenu.each do |name, val|
-												%li
-													- if settings_path?
-														= link_to t("keppler.menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", 'data-no-turbolink': true
-													- else
-														= link_to t("keppler.menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", 'data-no-turbolink': true
+  %pageslide.card{ "ps-open"=>"sidebar", "ps-auto-close" => true }
+    .profile-menu{ style: @appearance.image_background? ? "background: url(#{@setting.appearance.image_background}) center no-repeat; background-size: 268px 159px;" : nil  }
+      .profile-pic
+        = link_to "http://gravatar.com", target: "_blank" do
+          = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
+      .profile-info
+        = current_user.name
+        .right
+          = link_to t("keppler.actions.edit_profile"), main_app.edit_admin_user_path(current_user)
+          |
+          = link_to t("keppler.actions.sign_out"), main_app.destroy_user_session_path
+    %ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
+      - KepplerConfiguration.visible_models.each do |menu|
+        - menu.each do |key, value|
+          - unless menu[key]["submenu"] #ontetab sidebar link
+            - if menu[key]["model"] #links with cancancan validate
+              - if can?(:index, menu[key]["model"].constantize)
+                %li
+                  = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", :'data-no-turbolink'=> true do
+                    %i.material-icons.mi.md-18= menu[key]["icon"]
+                    = t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+            - else #links without cancancan validate
+              %li
+                = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", :'data-no-turbolink'=> true do
+                  %i.material-icons.mi.md-18= menu[key]["icon"]
+                  = t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+          - else #tree sidebar links
+            - if menu[key]["model"] && can?(:index, menu[key]["model"].constantize)
+              %li
+                .collapsable.collapsible-header{ class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
+                  %i.material-icons.mi.md-18= menu[key]['icon']
+                  = t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+                .collapsible-body
+                  %ul.pageslide-sub-menu
+                    - menu[key]["submenu"].each do |submenu|
+                      - submenu.each do |name, val|
+                        %li
+                          - if settings_path?
+                            = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true
+                          - else
+                            = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true
 
 

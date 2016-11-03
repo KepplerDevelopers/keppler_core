@@ -41,7 +41,7 @@ menu:
           url_path: /admin/settings/basic_information
           current: ['basic_information']
       - smtp_setting:
-          name: Emial setting (SMTP)
+          name: Email setting (SMTP)
           url_path: /admin/settings/email_setting
           current: ['email_setting']
       - google_analytics_setting:

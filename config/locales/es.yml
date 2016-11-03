@@ -1,6 +1,6 @@
 es:
   keppler:
-    menu:
+    sidebar-menu:
       dashboard: Dashboard
       users: Usuarios
       setting: Configuración
