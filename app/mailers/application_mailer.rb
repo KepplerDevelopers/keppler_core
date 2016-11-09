@@ -13,14 +13,16 @@ class ApplicationMailer < ActionMailer::Base
 
   def set_smtp
     setting = Setting.first.smtp_setting
-    mail.delivery_method.settings.merge!(
-      address: setting.address,
-      port: setting.port,
-      domain: setting.domain_name,
-      user_name: setting.email,
-      password: setting.password
-    )
+    unless setting.address == 'test'
+      mail.delivery_method.settings.merge!(
+        address: setting.address,
+        port: setting.port,
+        domain: setting.domain_name,
+        user_name: setting.email,
+        password: setting.password
+      )
 
-    ApplicationMailer.default_url_options.merge!(host: setting.domain_name)
+      ApplicationMailer.default_url_options.merge!(host: setting.domain_name)
+    end
   end
 end

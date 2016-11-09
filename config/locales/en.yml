@@ -14,11 +14,12 @@ en:
       seo-submenu:
         title-metas: 'Titles & Meta Tags'
         google-adwords: 'Google Adwords'
-      blog: Blog
-      blog-submenu:
+      google-analytics-tracks: 'Google Analytics Tracks'
+      keppler-messages: Messages
+      keppler-blog: Blog
+      keppler-blog-submenu:
         posts: Posts
         categories: Categories
-      google-analytics-tracks: 'Google Analytics Tracks'
     models:
       singularize:
         google_adword: google adword

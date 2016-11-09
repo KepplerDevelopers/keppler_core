@@ -50,6 +50,17 @@ module Admin
       end
     end
 
+
+    def clone
+      @meta_tag = MetaTag.clone_record params[:meta_tag_id]
+
+      if @meta_tag.save
+        redirect_to admin_meta_tag_path(@meta_tag)
+      else
+        render :new
+      end
+    end
+
     # DELETE /meta_tags/1
     def destroy
       @meta_tag.destroy
