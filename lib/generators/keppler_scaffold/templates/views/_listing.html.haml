@@ -13,6 +13,10 @@
 				= <%= singular_table_name %>.<%= attribute.name %>
 	<%- end -%>
 	<%- end -%>
+	- if can? :clone, <%= singular_table_name.camelcase %>
+		%td{style:"width: 5%"}
+			= link_to admin_<%= singular_table_name %>_clone_path(<%= singular_table_name %>), class: "btn-floating waves-effect btn-flat" do
+				= material_icon.md_24.content_copy.css_class("md-dark")
 	%td{style:"width: 5%"}
 		= link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "btn-floating waves-effect btn-flat" do
 			= material_icon.md_24.more_horiz.css_class("md-dark")

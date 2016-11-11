@@ -52,6 +52,16 @@ module Admin
       end
     end
 
+    def clone
+      @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
+
+      if @<%= singular_table_name %>.save
+        redirect_to admin_<%= index_helper %>_path
+      else
+        render :new
+      end
+    end
+
     # DELETE <%= route_url %>/1
     def destroy
       @<%= orm_instance.destroy %>
