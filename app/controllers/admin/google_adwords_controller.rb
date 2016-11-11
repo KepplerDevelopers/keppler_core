@@ -50,6 +50,16 @@ module Admin
       end
     end
 
+    def clone
+      @google_adword = GoogleAdword.clone_record params[:google_adword_id]
+
+      if @google_adword.save
+        redirect_to admin_meta_tags_path
+      else
+        render :new
+      end
+    end
+
     # DELETE /google_adwords/1
     def destroy
       @google_adword.destroy
