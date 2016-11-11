@@ -50,12 +50,11 @@ module Admin
       end
     end
 
-
     def clone
       @meta_tag = MetaTag.clone_record params[:meta_tag_id]
 
       if @meta_tag.save
-        redirect_to admin_meta_tag_path(@meta_tag)
+        redirect_to admin_meta_tags_path
       else
         render :new
       end
