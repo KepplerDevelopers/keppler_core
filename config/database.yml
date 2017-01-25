@@ -5,13 +5,13 @@
 #port: 5432
 
 default: &default
-  host: <%= Rails.application.secrets.database.fetch :host %>
+  host: <%= Rails.application.secrets.database['host'] %>
   adapter: mysql2
   encoding: utf8
-  database: <%= Rails.application.secrets.database.fetch :name %>
+  database: <%= Rails.application.secrets.database['name'] %>
   pool: 5
-  username: <%= Rails.application.secrets.database.fetch :username %>
-  password: <%= Rails.application.secrets.database.fetch :password %>
+  username: <%= Rails.application.secrets.database['username'] %>
+  password: <%= Rails.application.secrets.database['password'] %>
   template: template0
 
 development:
