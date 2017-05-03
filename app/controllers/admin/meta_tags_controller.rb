@@ -6,7 +6,8 @@ module Admin
 
     # GET /meta_tags
     def index
-      meta_tags = MetaTag.searching(@query).all
+      @q = MetaTag.ransack(params[:q])
+      meta_tags = @q.result(distinct: true)
       @objects = meta_tags.page(@current_page)
       @total = meta_tags.size
       if !@objects.first_page? && @objects.size.zero?
@@ -46,6 +47,16 @@ module Admin
         redirect(@meta_tag, params)
       else
         render :edit
+      end
+    end
+
+    def clone
+      @meta_tag = MetaTag.clone_record params[:meta_tag_id]
+
+      if @meta_tag.save
+        redirect_to admin_meta_tags_path
+      else
+        render :new
       end
     end
 

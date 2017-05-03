@@ -5,7 +5,8 @@ module Admin
     before_action :show_history, only: [:index]
 
     def index
-      users = User.searching(@query).where('id != ?', current_user.id)
+      @q = User.ransack(params[:q])
+      users = @q.result(distinct: true).where('id != ?', current_user.id)
       @objects = users.page(@current_page)
       @total = users.size
       if !@objects.first_page? && @objects.size.zero?

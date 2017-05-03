@@ -9,7 +9,6 @@ html {
 }
 
 body {
-  background: $primary-color;
   font-size: 1.6rem;
 
   @include respond-to(xs) {

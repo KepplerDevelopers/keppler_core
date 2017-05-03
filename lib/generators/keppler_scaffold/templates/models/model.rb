@@ -1,23 +1,12 @@
 # <%= class_name %> Model
 <% module_namespacing do -%>
 class <%= class_name %> < ActiveRecord::Base
-  include ElasticSearchable
   include ActivityHistory
+  include CloneRecord
 
-  def self.query(query)
-    { query: { multi_match: {
-      query: query,
-      fields: [<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>],
-      operator: :and,
-      lenient: true }
-    }, sort: { id: 'desc' }, size: count }
-  end
-
-  # Build index elasticsearch
-  def as_indexed_json(_options = {})
-    as_json(
-      only: [:id, <%= attributes_names.map { |name| ":#{name}" }.join(', ') %>]
-    )
+  # Fields for the search form in the navbar
+  def self.search_field
+    <%= ":#{attributes_names.map { |name| name }.join('_or_')}_cont" %>
   end
 end
 <% end -%>

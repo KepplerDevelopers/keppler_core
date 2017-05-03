@@ -7,6 +7,7 @@
   @include display(flex);
   @include flex-direction(column);
   @include justify-content(center);
+  background: $primary-color;
   height: 100%;
 
   &-logo {

@@ -1,6 +1,6 @@
 es:
   keppler:
-    menu:
+    sidebar-menu:
       dashboard: Dashboard
       users: Usuarios
       setting: Configuración
@@ -14,11 +14,12 @@ es:
       seo-submenu:
         title-metas: 'Títulos y Meta tagas'
         google-adwords: 'Google Adwords'
-      blog: blog
-      blog-submenu:
+      google-analytics-tracks: 'Google Analytics Tracks'
+      keppler-messages: Mensajes
+      keppler-blog: Blog
+      keppler-blog-submenu:
         posts: Posts
         categories: Categorías
-      google-analytics-tracks: 'Google Analytics Tracks'
     models:
       singularize:
         google_adword: google adword

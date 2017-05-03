@@ -6,7 +6,8 @@ module Admin
 
     # GET /google_adwords
     def index
-      google_adwords = GoogleAdword.searching(@query).all
+      @q = GoogleAdword.ransack(params[:q])
+      google_adwords = @q.result(distinct: true)
       @objects = google_adwords.page(@current_page)
       @total = google_adwords.size
       if !@objects.first_page? && @objects.size.zero?
@@ -46,6 +47,16 @@ module Admin
         redirect(@google_adword, params)
       else
         render :edit
+      end
+    end
+
+    def clone
+      @google_adword = GoogleAdword.clone_record params[:google_adword_id]
+
+      if @google_adword.save
+        redirect_to admin_meta_tags_path
+      else
+        render :new
       end
     end
 

@@ -14,4 +14,8 @@ module ApplicationHelper
   def loggedin?
     current_user
   end
+
+  def landing?
+    controller_name.eql?('front') && action_name.eql?('index')
+  end
 end

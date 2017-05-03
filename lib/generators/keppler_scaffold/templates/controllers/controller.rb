@@ -10,7 +10,8 @@ module Admin
 
     # GET <%= route_url %>
     def index
-      <%= plural_table_name %> = <%= class_name %>.searching(@query).all
+      @q = <%= class_name %>.ransack(params[:q])
+      <%= plural_table_name %> = @q.result(distinct: true)
       @objects = <%= plural_table_name %>.page(@current_page)
       @total = <%= plural_table_name %>.size
       if !@objects.first_page? && @objects.size.zero?
@@ -48,6 +49,16 @@ module Admin
         redirect(@<%= singular_table_name %>, params)
       else
         render :edit
+      end
+    end
+
+    def clone
+      @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
+
+      if @<%= singular_table_name %>.save
+        redirect_to admin_<%= index_helper %>_path
+      else
+        render :new
       end
     end
 
