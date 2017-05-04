@@ -81,7 +81,7 @@ Para configurar el buscador dentro del modulo solo se debe asignar los atributos
 ```ruby
  def self.query(query)
    { query: { multi_match:  { query: query, fields: [<attributes>] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
- end 
+ end
 ```
 
 ### Plugins (Módulos)
@@ -92,6 +92,3 @@ La plataforma permite la adaptación de módulos con facil instalación, algunos
 * [Keppler blog](https://github.com/inyxtech/keppler_blog)
 * [Keppler catalogs](https://github.com/inyxtech/keppler_catalogs)
 * [Keppler contact](https://github.com/inyxtech/keppler_contact_us)
-
-
-# analodesign-w
