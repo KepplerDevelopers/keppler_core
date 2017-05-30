@@ -53,13 +53,27 @@ class ApplicationController < ActionController::Base
 
 
 
-   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+  def configure_permitted_parameters
+    RUBY_VERSION < "2.2.0" ? devise_old : devise_new
   end
 
   def layout_by_resource
     'admin/layouts/application' if devise_controller?
   end
 
-end
+  def devise_new
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :password, :password_confirmation])
+  end
 
+  def devise_old
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:name, :email, :password, :password_confirmation)
+    end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:name, :email, :password, :password_confirmation,
+               :current_password)
+    end
+  end
+
+end
