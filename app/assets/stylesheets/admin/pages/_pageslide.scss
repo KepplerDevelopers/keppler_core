@@ -83,6 +83,9 @@ pageslide {
   .collapsible-body {
     background: $gray-lighten;
     border: 0;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   a {
@@ -98,7 +101,6 @@ pageslide {
   }
 
   .pageslide-sub-menu {
-    padding: 10px 10px 10px 60px;
 
     li {
       margin-bottom: 5px;
@@ -116,4 +118,3 @@ pageslide {
     }
   }
 }
-

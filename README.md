@@ -76,19 +76,11 @@ Luego crea la tabla en base de datos.
 
 `rake db:migrate`
 
-Para configurar el buscador dentro del modulo solo se debe asignar los atributos en los que se tomaran en cuenta a la hora de realizar la busqueda en el modelo.
-
-```ruby
- def self.query(query)
-   { query: { multi_match:  { query: query, fields: [<attributes>] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
- end
-```
-
 ### Plugins (Módulos)
 
 La plataforma permite la adaptación de módulos con facil instalación, algunos de los módulos desarrollados son:
 
-* [Keppler google analytics dashboard](https://github.com/inyxtech/keppler_ga_dashboard) - *ya viene integrado*
+* [Keppler google analytics dashboard](https://github.com/SliceDevelopers/keppler_ga_dashboard) - *ya viene integrado*
 * [Keppler blog](https://github.com/inyxtech/keppler_blog)
 * [Keppler catalogs](https://github.com/inyxtech/keppler_catalogs)
 * [Keppler contact](https://github.com/inyxtech/keppler_contact_us)
