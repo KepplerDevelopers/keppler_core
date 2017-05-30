@@ -11,7 +11,7 @@ KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya i
 * Integración para autorizaciones con [CanCanCan](https://github.com/CanCanCommunity/cancancan)
 * Inegración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
 * Integración para helpers de formularios con [SimpleForm](https://github.com/RolifyCommunity/rolify)
-* Integración para búsquedas full-text con [ElasticSearch](https://github.com/elastic/elasticsearch-rails)
+* Integración para búsquedas full-text con [Ransack](https://github.com/activerecord-hackery/ransack)
 * Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
 * Integración con framework javascript [AngularJs](https://angularjs.org/)
 * Integración sitemap dinamicos con [sitemap_generator](https://github.com/kjvarga/sitemap_generator)
