@@ -123,8 +123,8 @@ GEM
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    font-awesome-sass (4.3.2.1)
-      sass (~> 3.2)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -388,7 +388,7 @@ DEPENDENCIES
   commands
   devise
   devise-i18n
-  font-awesome-sass (~> 4.3.0)
+  font-awesome-sass (~> 4.7.0)
   google-api-client (~> 0.7.1)
   guard
   guard-coffeescript

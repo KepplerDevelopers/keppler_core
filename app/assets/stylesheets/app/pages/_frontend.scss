@@ -7,7 +7,9 @@
   @include display(flex);
   @include flex-direction(column);
   @include justify-content(center);
-  background: $primary-color;
+  background-image: url("Home_Keppler.png");
+  background-size: cover;
+  background-position: 100% 90%;
   height: 100%;
 
   &-logo {
