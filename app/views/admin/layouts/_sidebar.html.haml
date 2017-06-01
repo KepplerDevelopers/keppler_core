@@ -1,6 +1,6 @@
 .pageslide-background{ "ng-click" => "sidebarClose()"}
   %pageslide.card{ "ps-open"=>"sidebar", "ps-auto-close" => true }
-    .profile-menu{ style: @appearance.image_background? ? "background: url(#{@setting.appearance.image_background}) center no-repeat; background-size: 268px 159px;" : nil  }
+    .profile-menu{ style: @appearance.image_background? ? "background: url(#{Setting.first.appearance.image_background}) center no-repeat; background-size: 268px 159px;" : nil  }
       .profile-pic
         = link_to "http://gravatar.com", target: "_blank" do
           = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
@@ -40,5 +40,3 @@
                             = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true
                           - else
                             = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true
-
-
