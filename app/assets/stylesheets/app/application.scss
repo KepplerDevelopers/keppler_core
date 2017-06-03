@@ -9,6 +9,7 @@
 // Utils
 @import 'utils/variables';
 @import 'utils/mixins';
+@import 'plugins/keppler';
 
 // Base
 @import 'base/base_project';
@@ -24,4 +25,4 @@
 @import 'components/inputs';
 
 // Pages
-@import 'pages/frontend';
+@import 'pages/*';
