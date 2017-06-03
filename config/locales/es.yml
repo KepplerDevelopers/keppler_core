@@ -1,6 +1,7 @@
 es:
   keppler:
     sidebar-menu:
+      customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
       setting: Configuración
@@ -22,6 +23,7 @@ es:
         categories: Categorías
     models:
       singularize:
+        customize: customize
         google_adword: google adword
         meta_tag: meta tag
         google_analytics_track: google analytics track
@@ -29,6 +31,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
         google_analytics_tracks: google analytics tracks
@@ -36,6 +39,7 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
+      admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
       admin/google_analytics_tracks: 'Google analytics tracks'

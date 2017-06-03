@@ -7,6 +7,11 @@ class Ability
 
     if user.has_role? :admin
 
+      # - Customize authorize -
+      can [:delete, :update,
+           :new, :create, :install_default,
+           :index, :destroy, :destroy_multiple], Customize
+
       # - Seo authorize -
       can :manage, MetaTag
       can :manage, GoogleAdword

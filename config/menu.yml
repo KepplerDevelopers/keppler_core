@@ -30,6 +30,12 @@ menu:
     icon: account_circle
     current: ["admin/users"]
     model: User
+  customize:
+    name: templates
+    url_path: /admin/customizes
+    icon: color_lens
+    current: ['admin/customizes']
+    model: Customize
   setting:
     name: setting
     current: ['admin/settings']

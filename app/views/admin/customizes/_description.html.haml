@@ -1,0 +1,15 @@
+.listing-show-header
+	%h5
+		= material_icon.md_24.account_circle.css_class('md-light')
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: 'height: {{windowHeight}}px;' }
+	.list
+		.collection.with-header
+			.collection-header
+				%h5
+					= t('keppler.titles.history')
+			- @activities.each do |activity|
+				- if activity.trackable_type.eql? 'Session'
+					= render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: 'id' }
+				- else
+					= render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: 'id' }

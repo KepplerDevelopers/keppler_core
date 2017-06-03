@@ -22,6 +22,8 @@ User.create(
 
 puts 'admin@keppler.com has been created'
 
+Customize.create(file: "", installed: true)
+puts 'Keppler Template has been created'
 # Create setting deafult
 setting = Setting.new(
   name: 'Keppler Admin', description: 'Welcome to Keppler Admin',

@@ -1,0 +1,16 @@
+.listing-show-header
+	.actions
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%ul.list
+			%li.list-row
+				.display-label= t("activerecord.attributes.customize.file")
+				.display-value= @customize.file
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), admin_customizes_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

@@ -7,10 +7,10 @@
 
 	<%- attributes.each do |attribute| -%>
 	<%- unless attribute.type.to_s == "text" -%>
-		%td{style:"width: 30%"}
-			= link_to "", admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: "show-row"
-			%span
-				= <%= singular_table_name %>.<%= attribute.name %>
+	%td{style:"width: 30%"}
+		= link_to "", admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: "show-row"
+		%span
+			= <%= singular_table_name %>.<%= attribute.name %>
 	<%- end -%>
 	<%- end -%>
 	- if can? :clone, <%= singular_table_name.camelcase %>
