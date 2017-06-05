@@ -1,17 +1,15 @@
-%head
-	// Title & Meta tags
-	= render "app/layouts/meta_tags"
+// Title & Meta tags
+= render "app/layouts/meta_tags"
 
-	// Stylesheets
-	= stylesheet_link_tag 'app/application', media: 'all', 'data-turbolinks-track' => true
+// Stylesheets
+= stylesheet_link_tag 'app/application', media: 'all', 'data-turbolinks-track' => true
 
-	// Javascripts
-	= javascript_include_tag 'app/application', 'data-turbolinks-track' => true
-	= render "app/layouts/google_adwords"
+// Javascripts
+= javascript_include_tag 'app/application', 'data-turbolinks-track' => true
+= render "app/layouts/google_adwords"
 
-	// Google Analytics
-	= render 'app/layouts/google_analytics'
+// Google Analytics
+= render 'app/layouts/google_analytics'
 
-	// Favicon
-	= favicon_link_tag @favicon
-
+// Favicon
+= favicon_link_tag @favicon

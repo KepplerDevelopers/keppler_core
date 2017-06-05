@@ -1,7 +1,9 @@
 module App
   # FrontsController
   class FrontController < AppController
-      def index
-      end
+    layout 'layouts/templates/application'
+
+    def index
+    end
   end
 end

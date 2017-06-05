@@ -46,14 +46,9 @@ module Admin
       @customizes.each { |customize| customize.update(installed: false) }
       if @customize.update(customize_params)
         if @customize.installed?
-          clear_template
-          unzip_template
-          install_template_html
-          install_template_css
-          install_template_images
-          install_template_javascript
+          @customize.install
         else
-          clear_template
+          @customize.uninstall
         end
         redirect_to :back
       else
@@ -67,7 +62,7 @@ module Admin
         @customizes = Customize.all
         @customizes.each { |customize| customize.update(installed: false) }
         if @customize.update(customize_params)
-          clear_template
+          @customize.uninstall
           redirect_to :back
         else
           render :edit
@@ -90,7 +85,7 @@ module Admin
     # DELETE /customizes/1
     def destroy
       if @customize.installed?
-        clear_template
+        @customize.install
       end
       @customize.destroy
       redirect_to admin_customizes_path, notice: actions_messages(@customize)
@@ -118,101 +113,6 @@ module Admin
 
     def show_history
       get_history(Customize)
-    end
-
-################################################################################
-    def clear_template
-      file_name =  Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first
-      template_name = file_name.split("/").last if file_name
-      names = build_array_html_files_names(template_name, "html")
-      system "rails d keppler_front front #{names.join(' ')}"
-      system "rm -rf #{Rails.root}/app/views/app/front/"
-      system "rm -rf #{Rails.root}/public/templates"
-      system "mkdir #{Rails.root}/public/templates"
-      clear_assets("#{Rails.root}/app/assets/stylesheets/app/pages")
-      clear_assets("#{Rails.root}/app/assets/javascripts/app/pages")
-      clear_assets("#{Rails.root}/app/assets/images/img")
-      system "touch #{Rails.root}/app/assets/stylesheets/app/pages/_front.scss"
-      system "rails g keppler_front front index --skip-migration -f"
-    end
-
-    def unzip_template
-      system "unzip #{Rails.root}/public/#{@customize.file} -d #{Rails.root}/public/templates"
-    end
-
-    def build_array_html_files_names(template_name, extention)
-      names = []
-      Dir[File.join("#{Rails.root}/public/templates/#{template_name}", '**', '*')].each do |file|
-        if File.file?(file)
-          name = file.to_s.split("/").last.split(".").first
-          extentions = file.to_s.split("/").last.split(".").second
-          if extentions.eql?(extention)
-            names << name
-          end
-        end
-      end
-      return names
-    end
-
-    def build_array_assets_files_names(template_name, extention)
-      names = []
-      Dir[File.join("#{Rails.root}/public/templates/#{template_name}/assets/#{extention}", '**', '*')].each do |file|
-        if File.file?(file)
-          name = file.to_s.split("/").last
-          names << name
-        end
-      end
-      return names
-    end
-
-    def install_template_html
-      system "rails d keppler_front front index"
-      folder = "#{Rails.root}/app/views/app/front"
-      template_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first.split("/").last
-      names = build_array_html_files_names(template_name,  "html")
-      system "rails g keppler_front front #{names.join(' ')} --skip-migration -f"
-      names.each do |name|
-        system "rm -rf #{folder}/#{name}.html.haml"
-        system "cp #{Rails.root}/public/templates/#{template_name}/#{name}.html #{folder}/#{name}.html"
-        system "html2haml #{folder}/#{name}.html #{folder}/#{name}.html.haml"
-        system "rm -rf #{folder}/#{name}.html"
-      end
-    end
-
-    def clear_assets(folder)
-      system "rm -rf #{folder}"
-      system "mkdir #{folder}"
-    end
-
-    def install_template_css
-      folder = "#{Rails.root}/app/assets/stylesheets/app/pages"
-      clear_assets(folder)
-      system "touch #{folder}/_front.scss"
-      template_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first.split("/").last
-      names = build_array_assets_files_names(template_name, 'css')
-      names.each do |name|
-        system "cp #{Rails.root}/public/templates/#{template_name}/assets/css/#{name} #{folder}/_#{name.split('.').first}.scss"
-      end
-    end
-
-    def install_template_images
-      folder = "#{Rails.root}/app/assets/images/img"
-      clear_assets(folder)
-      template_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first.split("/").last
-      names = build_array_assets_files_names(template_name, 'img')
-      names.each do |name|
-        system "cp #{Rails.root}/public/templates/#{template_name}/assets/img/#{name} #{folder}/#{name}"
-      end
-    end
-
-    def install_template_javascript
-      folder = "#{Rails.root}/app/assets/javascripts/app/pages"
-      clear_assets(folder)
-      template_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first.split("/").last
-      names = build_array_assets_files_names(template_name, 'js')
-      names.each do |name|
-        system "cp #{Rails.root}/public/templates/#{template_name}/assets/js/#{name} #{folder}/#{name}"
-      end
     end
 
   end
