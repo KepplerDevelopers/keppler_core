@@ -2,7 +2,6 @@ module Admin
   # SettingsController
   class SettingsController < AdminController
     before_action :set_setting, only: [:edit, :update, :appearance_default]
-    before_action :set_apparience_colors
 
     def edit
     end
@@ -26,14 +25,6 @@ module Admin
     end
 
     private
-
-    def set_apparience_colors
-      variables_file = File.readlines(style_file)
-      @color, @darken, @accent = ""
-      variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
-      variables_file.each { |line| @darken = line[16..22] if line.include?('$keppler-darken') }
-      variables_file.each { |line| @accent = line[16..22] if line.include?('$keppler-accent') }
-    end
 
     def get_apparience_colors(values)
       variables_file = File.readlines(style_file)
