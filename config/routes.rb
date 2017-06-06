@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       collection do
         get '/:config', to: 'settings#edit', as: ''
         put '/:config', to: 'settings#update', as: 'update'
+        put '/:config/appearance_default', to: 'settings#appearance_default', as: 'appearance_default'
       end
     end
   end

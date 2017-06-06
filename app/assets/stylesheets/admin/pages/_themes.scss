@@ -36,6 +36,12 @@ $themes: (
       background: $accent-color;
     }
 
+    .btn-white {
+      margin-right: 1rem;
+      background: #dedede;
+      color: $accent-color;
+    }
+
     input[type=text]:focus:not([readonly]),
     input[type=password]:focus:not([readonly]),
     input[type=email]:focus:not([readonly]),
@@ -66,4 +72,3 @@ $themes: (
     }
   }
 }
-

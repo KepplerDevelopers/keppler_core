@@ -103,6 +103,8 @@ es:
       save: Guardar
       save_and_add_another: Guardar y añadir otro
       back_history: "Volver al historial"
+      appearance_defaut: Por defecto
+      apply: Aplicar
   activerecord:
     attributes:
       user:

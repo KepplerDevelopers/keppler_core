@@ -101,6 +101,8 @@ en:
       save: Save
       save_and_add_another: Save and add another
       back_history: "Back to history"
+      appearance_defaut: Set default
+      apply: Apply
   activerecord:
     attributes:
       google_analytics_setting:
