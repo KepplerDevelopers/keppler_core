@@ -31,11 +31,19 @@ menu:
     current: ["admin/users"]
     model: User
   customize:
-    name: templates
-    url_path: /admin/customizes
+    name: keppler design
     icon: color_lens
     current: ['admin/customizes']
     model: Customize
+    submenu:
+      - customize:
+          name: frontend templates
+          url_path: /admin/customizes
+          current: ['admin/customizes']
+      - appearance:
+          name: admin appearance
+          url_path: /admin/settings/appearance
+          current: ['appearance']
   setting:
     name: setting
     current: ['admin/settings']
@@ -58,7 +66,3 @@ menu:
           name: Social Accounts
           url_path: /admin/settings/social_accounts
           current: ['social_accounts']
-      - appearance:
-          name: Appearance
-          url_path: /admin/settings/appearance
-          current: ['appearance']

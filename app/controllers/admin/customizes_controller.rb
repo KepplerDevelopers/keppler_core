@@ -48,6 +48,7 @@ module Admin
         if @customize.installed?
           @customize.install
         else
+          #@customizes.each { |customize| customize.update(installed: false) }
           @customize.uninstall
         end
         redirect_to :back
@@ -62,7 +63,7 @@ module Admin
         @customizes = Customize.all
         @customizes.each { |customize| customize.update(installed: false) }
         if @customize.update(customize_params)
-          @customize.uninstall
+          @customize.install_keppler_template
           redirect_to :back
         else
           render :edit

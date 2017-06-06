@@ -31,6 +31,10 @@ class Customize < ActiveRecord::Base
     clear_template
   end
 
+  def install_keppler_template
+    clear_template
+  end
+
   private
 
   def clear_template
