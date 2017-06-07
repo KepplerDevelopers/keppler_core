@@ -12,5 +12,5 @@
 #= require ckeditor/init
 #= require cocoon
 #= require turbolinks
+#= require jquery.minicolors
 #= require_tree .
-		

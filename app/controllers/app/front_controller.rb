@@ -1,7 +1,9 @@
 module App
-  # FrontController
+  # FrontsController
   class FrontController < AppController
+
     def index
     end
+
   end
 end

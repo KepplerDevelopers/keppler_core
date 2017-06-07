@@ -33,6 +33,7 @@ gem 'public_activity'
 # Forms
 gem 'simple_form'
 gem 'cocoon'
+gem 'jquery-minicolors-rails'
 
 # Upload
 gem 'carrierwave'

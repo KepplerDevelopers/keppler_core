@@ -11,7 +11,9 @@
 							= render partial: "admin/settings/fields/#{@render}", locals: { f: f }
 
 							.form-actions.right
-								= f.button :submit, t("keppler.actions.save")
+								- if @render.eql?('appearance')
+									= link_to appearance_default_admin_settings_path(@render), class: "btn btn-white", method: :put do
+										= t("keppler.actions.appearance_defaut")
+								= f.button :submit, t("keppler.actions.apply")
 	.wrapper-menu
 		.card
-

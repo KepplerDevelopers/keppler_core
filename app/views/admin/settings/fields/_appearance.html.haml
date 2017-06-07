@@ -12,4 +12,15 @@
 			.card-action
 				= f.input :image_background, as: :file_material, label: false, wrapper_html: { class: "file-field" }
 				= f.input :image_background_cache, as: :hidden
-	= f.input :theme_name, collection: [["Keppler-theme", "keppler"], ["Cyan-theme", "cyan"], ["Brown-theme", "brown"], ["Pink-theme", "pink"], ["Amber-theme", "amber"], ["Grey-theme", "grey"]],input_html: { class: "browser-default"}, label: false, include_blank: "Select theme"
+	/= f.input :theme_name, collection: [["Keppler-theme", "keppler"], ["Cyan-theme", "cyan"], ["Brown-theme", "brown"], ["Pink-theme", "pink"], ["Amber-theme", "amber"], ["Grey-theme", "grey"]],input_html: { class: "browser-default"}, label: false, include_blank: "Select theme"
+	.col.s4
+		= f.label "Principal"
+		= text_field_tag :color, nil, placeholder: "Color", value: @color, class: "color-input"
+	.col.s4
+		= f.label "Darken"
+		= text_field_tag :darken, nil, placeholder: "Darken", value: @darken, class: "color-input"
+	.col.s4
+		= f.label "Accent"
+		= text_field_tag :accent, nil, placeholder: "Accent", value: @accent, class: "color-input"
+:javascript
+	$('.color-input').minicolors()

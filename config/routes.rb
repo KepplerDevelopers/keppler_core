@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
+   get '/index', to: 'app/front#index', as: :app_index
   root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
+    resources :customizes do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
+      post '/install_default', action: 'install_default'
+      delete(
+        action: :destroy_multiple,
+        on: :collection,
+        as: :destroy_multiple
+      )
+    end
+
     root to: 'admin#root'
 
     resources :users do
@@ -50,6 +62,7 @@ Rails.application.routes.draw do
       collection do
         get '/:config', to: 'settings#edit', as: ''
         put '/:config', to: 'settings#update', as: 'update'
+        put '/:config/appearance_default', to: 'settings#appearance_default', as: 'appearance_default'
       end
     end
   end

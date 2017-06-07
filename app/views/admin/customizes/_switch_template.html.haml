@@ -1,0 +1,14 @@
+= simple_form_for [:admin, customize] do |f|
+  .switch
+    %label
+      - if customize.installed == false
+        No installed
+        %input{name: "customize[installed]", type: "hidden", value: "true"}
+        %input{name: "customize[installed]", type: "checkbox", onclick: "$('#edit_customize_#{customize.id}').submit()"}
+          %span.lever
+
+      - else
+        Installed
+        %input{name: "customize[installed]", type: "hidden", value: "false"}
+        %input{name: "customize[installed]", type: "checkbox", onclick: "$('#edit_customize_#{customize.id}').submit()", checked: "true"}
+          %span.lever

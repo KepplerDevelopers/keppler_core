@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :appearance
+  before_action :set_apparience_colors
   include PublicActivity::StoreController
   include AdminHelper
 
@@ -35,6 +36,18 @@ class ApplicationController < ActionController::Base
 
   def appearance
     @appearance = Setting.first.appearance
+  end
+
+  def set_apparience_colors
+    variables_file = File.readlines(style_file)
+    @color, @darken, @accent = ""
+    variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
+    variables_file.each { |line| @darken = line[16..22] if line.include?('$keppler-darken') }
+    variables_file.each { |line| @accent = line[16..22] if line.include?('$keppler-accent') }
+  end
+
+  def style_file
+    "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
   end
 
   def get_history(model)

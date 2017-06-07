@@ -1,13 +1,14 @@
 module Admin
   # SettingsController
   class SettingsController < AdminController
-    before_action :set_setting, only: [:edit, :update]
+    before_action :set_setting, only: [:edit, :update, :appearance_default]
 
     def edit
     end
 
     def update
       if @setting.update(setting_params)
+        get_apparience_colors([params[:color], params[:darken], params[:accent]])
         redirect_to(
           admin_settings_path(@render), notice: actions_messages(@setting)
         )
@@ -16,12 +17,34 @@ module Admin
       end
     end
 
+    def appearance_default
+      get_apparience_colors(["#f44336", "#d32f2f", "#009688"])
+      redirect_to(
+        admin_settings_path(@render), notice: actions_messages(@setting)
+      )
+    end
+
     private
+
+    def get_apparience_colors(values)
+      variables_file = File.readlines(style_file)
+      indx = 0
+      [:color, :darken, :accent].each_with_index do |attribute, i|
+        variables_file.map { |line| indx = variables_file.find_index(line) if line.include?("$keppler-#{attribute}") }
+        variables_file[indx] = "$keppler-#{attribute}:#{values[i]};\n"
+      end
+      variables_file = variables_file.join("")
+      File.write(style_file, variables_file)
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_setting
       @setting = Setting.first
       @render = params[:config]
+    end
+
+    def style_file
+      "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
     end
 
     # Only allow a trusted parameter "white list" through.
