@@ -10,6 +10,7 @@ module App
     <%- attributes.each do |attribute| -%>
     def <%= attribute.name %>
     end
+
     <%- end -%>
   end
 end
