@@ -4,11 +4,17 @@
       - if customize.installed == false
         No installed
         %input{name: "customize[installed]", type: "hidden", value: "true"}
-        %input{name: "customize[installed]", type: "checkbox", onclick: "$('#edit_customize_#{customize.id}').submit()"}
+        %input{name: "customize[installed]", type: "checkbox", onclick: "installTemplate(#{customize.id})"}
           %span.lever
 
       - else
         Installed
         %input{name: "customize[installed]", type: "hidden", value: "false"}
-        %input{name: "customize[installed]", type: "checkbox", onclick: "$('#edit_customize_#{customize.id}').submit()", checked: "true"}
+        %input{name: "customize[installed]", type: "checkbox", onclick: "installTemplate(#{customize.id})", checked: "true"}
           %span.lever
+
+:javascript
+  function installTemplate(customize_id) {
+    $('.waiting').css('display', 'block')
+    $('#edit_customize_'+customize_id).submit()
+  }

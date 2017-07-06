@@ -60,11 +60,14 @@ pageslide {
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 0;
+    height: 75%;
     margin-top: 20px;
+    overflow: auto;
   }
 
   .collapsible-header {
     border: 0;
+    position: relative;
   }
 
   .collapsible-header:hover {
@@ -94,6 +97,8 @@ pageslide {
 
   .collapsable.collapsible-header::before {
     @include icon-before('\f067');
+    position: absolute;
+    top: 0;
   }
 
   .collapsable.collapsible-header.active::before {
