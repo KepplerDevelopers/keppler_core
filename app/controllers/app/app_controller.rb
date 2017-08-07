@@ -9,7 +9,7 @@ module App
       @title = @setting.name
       @description = @setting.description
       @favicon = @setting.favicon
-      @meta = MetaTag.get_by_url(request.url)
+      @meta = MetaTag.first
       @google_adword = GoogleAdword.get_by_url(request.url)
     end
   end
