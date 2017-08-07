@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-   get '/index', to: 'app/front#index', as: :app_index
+  get '/index', to: 'app/front#index', as: :app_index
   root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise

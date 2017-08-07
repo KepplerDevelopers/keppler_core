@@ -14,10 +14,6 @@
 			%span
 				= google_adword.campaign_name
 
-	- if can? :clone, GoogleAdword
-		%td{style:"width: 5%"}
-			= link_to admin_google_adword_clone_path(google_adword), class: "btn-floating waves-effect btn-flat" do
-				= material_icon.md_24.content_copy.css_class("md-dark")
 	%td{style:"width: 5%"}
 		= link_to admin_google_adword_path(google_adword), class: "btn-floating waves-effect btn-flat" do
 			= material_icon.md_24.more_horiz.css_class("md-dark")
