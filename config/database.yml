@@ -14,6 +14,7 @@ default: &default
   password: <%= Rails.application.secrets.database[RUBY_VERSION < "2.2.0" ? 'password' : :password] %>
   template: template0
 
+
 development:
   <<: *default
 
