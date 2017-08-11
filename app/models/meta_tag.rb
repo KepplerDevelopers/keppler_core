@@ -6,6 +6,7 @@ class MetaTag < ActiveRecord::Base
   validates_uniqueness_of :url
 
   def self.get_by_url(url)
+    url = url.split('//').last.split('/').join('/')
     find_by_url(url)
   end
 
