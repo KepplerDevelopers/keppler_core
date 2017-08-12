@@ -12,7 +12,7 @@ gem 'ckeditor'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Utilities
-gem 'haml-rails'
+gem 'haml-rails', '0.9.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails'
 gem 'therubyracer', '~> 0.11.4', platforms: :ruby
