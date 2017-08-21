@@ -11,6 +11,7 @@ module App
       @favicon = @setting.favicon
       @meta = MetaTag.get_by_url(request.url)
       @google_adword = GoogleAdword.get_by_url(request.url)
+      @social = SocialAccount.last
     end
   end
 end
