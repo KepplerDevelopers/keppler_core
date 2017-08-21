@@ -31,6 +31,12 @@
                 .collapsable.collapsible-header{ class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
                   %i.material-icons.mi.md-18= menu[key]['icon']
                   = t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+                  - if menu[key]["model"].eql?('KepplerContactUs::Message')
+                    - msg_count = KepplerContactUs::Message.all.where(read: false).count
+                    - unless msg_count.zero?
+                      %a.collection-item.new-message
+                        %span.new.badge
+                          = msg_count
                 .collapsible-body
                   %ul.pageslide-sub-menu
                     - menu[key]["submenu"].each do |submenu|
