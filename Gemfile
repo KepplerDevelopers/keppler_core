@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks'
+gem 'to_xls-rails'
 
 # Database
 gem 'mysql2', '~> 0.3.18'
@@ -39,7 +40,7 @@ gem 'jquery-minicolors-rails'
 gem 'carrierwave'
 # gem 'rmagick'
 
-# Desgin
+# Design
 gem 'bourbon'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.7.0'
