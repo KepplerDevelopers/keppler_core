@@ -68,8 +68,8 @@ module Rails
       def add_config_xls
         inject_into_file(
           'config/initializers/mime_types.rb',
-          str_ability,
-          after: '    if user.has_role? :admin'
+          str_xls,
+          after: '# ActiveRecords to save as .xls'
         )
       end
 
