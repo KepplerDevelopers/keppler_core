@@ -136,17 +136,7 @@ module Rails
       end
 
       def str_xls
-        "\n@#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n
-        @#{controller_file_name.pluralize}.to_xls(\n
-          only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n
-          except: [:id],\n
-          header: false,\n
-          prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n
-          column_width: [17, 15, 15, 40, 25, 37]\n
-        )\n
-        @#{controller_file_name.pluralize}.to_xls do |column, value, row_index\n|
-          column == :salutation ? t(value) + \" at #{row_index}\" : value\n
-        end\n"
+        "\nif #{controller_file_name.singularize.camelcase}.table_exists?\n  @#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n  @#{controller_file_name.pluralize}.to_xls(\n    only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n    except: [:id],\n    header: false,\n    prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n    column_width: [17, 15, 15, 40, 25, 37]\n  )\n  @#{controller_file_name.pluralize}.to_xls do |column, value|\n    column == :salutation ? t(value) : value\n  end\nend\n"
       end
 
       def str_locales(switch)
