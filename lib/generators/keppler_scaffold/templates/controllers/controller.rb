@@ -17,6 +17,11 @@ module Admin
       if !@objects.first_page? && @objects.size.zero?
         redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
       end
+      @<%= plural_table_name %> = <%= class_name %>.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
+      end
     end
 
     # GET <%= route_url %>/1
