@@ -3,6 +3,11 @@
 class <%= class_name %> < ActiveRecord::Base
   include ActivityHistory
   include CloneRecord
+  <%- attributes_names.each do |attribute| -%>
+    <%- if @attachments.include?(attribute) -%>
+  mount_uploader :<%=attribute%>, AttachmentUploader
+    <%- end -%>
+  <%- end -%>
 
   # Fields for the search form in the navbar
   def self.search_field

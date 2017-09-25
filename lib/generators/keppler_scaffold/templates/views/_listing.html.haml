@@ -6,17 +6,29 @@
 			%label{ for: "checkbox-#{<%= singular_table_name %>.id}" }
 
 	<%- attributes.each do |attribute| -%>
-	<%- unless attribute.type.to_s == "text" -%>
+		<%- unless attribute.type.to_s == "text" -%>
 	%td{style:"width: 30%"}
 		= link_to "", admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: "show-row"
 		%span
-			= <%= singular_table_name %>.<%= attribute.name %>
+			<%- if @attachments.include?(attribute.name) -%>
+			= image_tag <%= singular_table_name %>.<%= attribute.name %>, style: 'height: 50px'
+			<%- else -%>
+			= <%= singular_table_name %>.<%= attribute.name %>.to_s.humanize
+			<%- end -%>
+		<%- end -%>
 	<%- end -%>
-	<%- end -%>
+	%td{style:"width: 5%"}
+		= link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.remove_red_eye.css_class("md-dark")
+	- if can? :update, <%= singular_table_name.camelcase %>
+		%td{style:"width: 5%"}
+			= link_to edit_admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+				= material_icon.md_18.create.css_class("md-dark")
 	- if can? :clone, <%= singular_table_name.camelcase %>
 		%td{style:"width: 5%"}
 			= link_to admin_<%= singular_table_name %>_clone_path(<%= singular_table_name %>), class: "btn-floating waves-effect btn-flat" do
 				= material_icon.md_24.content_copy.css_class("md-dark")
-	%td{style:"width: 5%"}
-		= link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "btn-floating waves-effect btn-flat" do
-			= material_icon.md_24.more_horiz.css_class("md-dark")
+	- if can? :delete, <%= singular_table_name.camelcase %>
+		%td{style:"width: 5%"}
+			= link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+				= material_icon.md_18.delete.css_class("md-dark")
