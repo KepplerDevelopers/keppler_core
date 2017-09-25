@@ -7,9 +7,6 @@ class Ability
 
     if user.has_role? :admin
 
-      # - Developer authorize -
-      can :manage, Developer
-
       # - Customize authorize -
       can [:delete, :update,
            :new, :create, :install_default,

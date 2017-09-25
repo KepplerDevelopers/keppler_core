@@ -1,7 +1,6 @@
 es:
   keppler:
     sidebar-menu:
-      developers: Developers
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
@@ -24,7 +23,6 @@ es:
         categories: Categorías
     models:
       singularize:
-        developer: developer
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -33,7 +31,6 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
-        developers: developers
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -42,7 +39,6 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
-      admin/developers: Developers
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
