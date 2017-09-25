@@ -15,7 +15,7 @@
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
 							<%- elsif attribute.type.to_s == "boolean" -%>
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :checkbox_material
-							<%- elsif ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute.name) -%>
+							<%- elsif @attachments.include?(attribute.name) -%>
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
 							<%- else -%>
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>

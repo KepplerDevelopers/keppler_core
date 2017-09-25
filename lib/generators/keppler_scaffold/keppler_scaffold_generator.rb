@@ -84,6 +84,7 @@ module Rails
       end
 
       def create_model_files
+        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture']
         template(
           'models/model.rb',
           File.join(
@@ -95,6 +96,8 @@ module Rails
       end
 
       def create_views_files
+        @names = ['name', 'title', 'first_name', 'full_name']
+        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment']
         template_keppler_views('_description.html.haml')
         template_keppler_views('_index_show.html.haml')
         template_keppler_views('_listing.html.haml')

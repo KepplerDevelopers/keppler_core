@@ -9,12 +9,12 @@
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
 		<%- attributes_names.each do |attribute| -%>
-			<%- if ['name', 'title', 'first_name', 'full_name'].include?(attribute) -%>
+			<%- if @names.include?(attribute) -%>
 		%center.color-title= @<%= singular_table_name %>.<%= attribute %>.to_s.humanize
 			<%- end -%>
 		<%- end -%>
 		<%- attributes_names.each do |attribute| -%>
-			<%- if ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute) -%>
+			<%- if @attachments.include?(attribute) -%>
 		%center= image_tag @<%= singular_table_name %>.<%= attribute %>
 			<%- end -%>
 		<%- end -%>
@@ -26,7 +26,7 @@
 					%td
 						.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id.to_s.humanize
 		<%- attributes_names.each do |attribute| -%>
-			<%- unless ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute) -%>
+			<%- unless @attachments.include?(attribute) -%>
 				%tr
 					%th
 						.display-label= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")

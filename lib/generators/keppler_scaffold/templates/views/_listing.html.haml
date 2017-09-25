@@ -10,7 +10,7 @@
 	%td{style:"width: 30%"}
 		= link_to "", admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: "show-row"
 		%span
-			<%- if ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute.name) -%>
+			<%- if @attachments.include?(attribute.name) -%>
 			= image_tag <%= singular_table_name %>.<%= attribute.name %>, style: 'height: 50px'
 			<%- else -%>
 			= <%= singular_table_name %>.<%= attribute.name %>.to_s.humanize

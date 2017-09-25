@@ -4,7 +4,7 @@ class <%= class_name %> < ActiveRecord::Base
   include ActivityHistory
   include CloneRecord
   <%- attributes_names.each do |attribute| -%>
-    <%- if ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute) -%>
+    <%- if @attachments.include?(attribute) -%>
   mount_uploader :<%=attribute%>, AttachmentUploader
     <%- end -%>
   <%- end -%>
