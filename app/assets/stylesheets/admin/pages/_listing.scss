@@ -17,6 +17,10 @@
     z-index: 3;
   }
 
+  .btn-tool-right {
+    margin: 5px;
+  }
+
   .entries {
     border: 1px solid $gray-lighten;
     float: right;
@@ -141,6 +145,10 @@
 
     .card-content {
       padding: 10px;
+      .color-title{
+        font-weight: 600;
+        color: $keppler-accent;
+      }
     }
 
     .list {

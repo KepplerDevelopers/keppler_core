@@ -1,0 +1,30 @@
+%tr{ id: "row-#{developer.id}" }
+	- if can? :destroy_multiple, Developer
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_developer_path(developer), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{developer.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{developer.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{developer.id}" }
+
+	%td{style:"width: 30%"}
+		= link_to "", admin_developer_path(developer, search: @query), remote: true, class: "show-row"
+		%span
+			= image_tag developer.avatar, style: 'height: 50px'
+	%td{style:"width: 30%"}
+		= link_to "", admin_developer_path(developer, search: @query), remote: true, class: "show-row"
+		%span
+			= developer.name.to_s.humanize
+	%td{style:"width: 5%"}
+		= link_to admin_developer_path(developer), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.remove_red_eye.css_class("md-dark")
+	- if can? :update, Developer
+		%td{style:"width: 5%"}
+			= link_to edit_admin_developer_path(developer), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+				= material_icon.md_18.create.css_class("md-dark")
+	- if can? :clone, Developer
+		%td{style:"width: 5%"}
+			= link_to admin_developer_clone_path(developer), class: "btn-floating waves-effect btn-flat" do
+				= material_icon.md_24.content_copy.css_class("md-dark")
+	- if can? :delete, Developer
+		%td{style:"width: 5%"}
+			= link_to admin_developer_path(developer), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+				= material_icon.md_18.delete.css_class("md-dark")

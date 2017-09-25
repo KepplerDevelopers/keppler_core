@@ -8,14 +8,37 @@
 		= t("keppler.models.singularize.#{controller_name.singularize}")
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
-		%ul.list
-		<%- attributes.each do |attribute| -%>
-			%li.list-row
-				.display-label= t("activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>")
-				.display-value= @<%= singular_table_name %>.<%= attribute.name %>
+		<%- attributes_names.each do |attribute| -%>
+			<%- if ['name', 'title', 'first_name', 'full_name'].include?(attribute) -%>
+		%center.color-title= @<%= singular_table_name %>.<%= attribute %>.to_s.humanize
+			<%- end -%>
 		<%- end -%>
-			%li.list-row
-				= link_to t('keppler.actions.back_history'), admin_<%= plural_table_name %>_path
+		<%- attributes_names.each do |attribute| -%>
+			<%- if ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute) -%>
+		%center= image_tag @<%= singular_table_name %>.<%= attribute %>
+			<%- end -%>
+		<%- end -%>
+		%table.bordered
+			%tbody
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+					%td
+						.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id.to_s.humanize
+		<%- attributes_names.each do |attribute| -%>
+			<%- unless ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute) -%>
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")
+					%td
+						.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>.to_s.humanize
+			<%- end -%>
+		<%- end -%>
+		%table.bordered
+			%tbody
+				%td
+					%center
+						= link_to t('keppler.actions.back_history'), admin_<%= plural_table_name %>_path
 
 :javascript
 	$('.tooltipped').tooltip({delay: 1});

@@ -25,6 +25,19 @@
   &-body {
     .card {
       margin-bottom: 40px;
+      .card-content {
+        .color-title{
+          font-weight: 400;
+          font-size: xx-large;
+          color: $keppler-accent;
+          letter-spacing: 5px;
+        }
+        .color-subtitle{
+            font-style: oblique;
+            font-size: larger;
+            font-weight: 300;
+        }
+      }
     }
   }
 

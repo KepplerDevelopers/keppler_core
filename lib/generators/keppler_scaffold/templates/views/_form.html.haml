@@ -9,15 +9,17 @@
 					= simple_form_for [:admin, @<%= singular_table_name %>] do |f|
 						.row
 						<%- attributes.each do |attribute| -%>
-						<%- if attribute.type.to_s == "text" -%>
+							<%- if attribute.type.to_s == "text" -%>
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
-						<%- elsif attribute.type.to_s == "date" -%>
+							<%- elsif attribute.type.to_s == "date" -%>
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
-						<%- elsif attribute.type.to_s == "boolean" -%>
+							<%- elsif attribute.type.to_s == "boolean" -%>
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :checkbox_material
-						<%- else -%>
+							<%- elsif ['logo', 'brand', 'photo', 'avatar', 'cover', 'image'].include?(attribute.name) -%>
+							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+							<%- else -%>
 							= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
-						<%- end -%>
+							<%- end -%>
 						<%- end -%>
 
 							.form-actions.right
