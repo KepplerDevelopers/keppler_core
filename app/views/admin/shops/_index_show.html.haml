@@ -1,0 +1,25 @@
+.listing-show-header
+	.actions
+		- if can? :update, Shop
+			= link_to edit_admin_category_shop_path(@shop, @category_shop), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%ul.list
+			%li.list-row
+				.display-label= t("activerecord.attributes.shop.image")
+				.display-value= @shop.image
+			%li.list-row
+				.display-label= t("activerecord.attributes.shop.name")
+				.display-value= @shop.name
+			%li.list-row
+				.display-label= t("activerecord.attributes.shop.category")
+				.display-value= @shop.category
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), admin_shops_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

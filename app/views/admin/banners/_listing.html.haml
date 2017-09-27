@@ -1,0 +1,22 @@
+%tr{ id: "row-#{banner.id}" }
+	- if can? :destroy_multiple, Banner
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_banner_path(banner), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{banner.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{banner.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{banner.id}" }
+
+	%td{style:"width: 30%"}
+		= link_to "", admin_banner_path(banner, search: @query), remote: true, class: "show-row"
+		%span
+			= banner.cover
+	%td{style:"width: 30%"}
+		= link_to "", admin_banner_path(banner, search: @query), remote: true, class: "show-row"
+		%span
+			= banner.category
+	- if can? :clone, Banner
+		%td{style:"width: 5%"}
+			= link_to admin_banner_clone_path(banner), class: "btn-floating waves-effect btn-flat" do
+				= material_icon.md_24.content_copy.css_class("md-dark")
+	%td{style:"width: 5%"}
+		= link_to admin_banner_path(banner), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

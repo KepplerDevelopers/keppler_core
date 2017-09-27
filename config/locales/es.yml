@@ -1,6 +1,9 @@
 es:
   keppler:
     sidebar-menu:
+      banners: Banners
+      shops: Shops
+      categories: Categories
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
@@ -23,6 +26,9 @@ es:
         categories: Categorías
     models:
       singularize:
+        banner: banner
+        shop: shop
+        category: category
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -31,6 +37,9 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        banners: banners
+        shops: shops
+        categories: categories
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -39,6 +48,9 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
+      admin/banners: Banners
+      admin/shops: Shops
+      admin/categories: Categories
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'

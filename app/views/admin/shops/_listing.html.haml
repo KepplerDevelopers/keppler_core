@@ -1,0 +1,26 @@
+%tr{ id: "row-#{shop.id}" }
+	- if can? :destroy_multiple, Shop
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_category_shop_path(shop, @category_shop ), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{shop.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{shop.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{shop.id}" }
+
+	%td{style:"width: 30%"}
+		= link_to "", admin_category_shop_path(shop, @category_shop , search: @query), remote: true, class: "show-row"
+		%span
+			= shop.image
+	%td{style:"width: 30%"}
+		= link_to "", admin_category_shop_path(shop, @category_shop , search: @query), remote: true, class: "show-row"
+		%span
+			= shop.name
+	%td{style:"width: 30%"}
+		= link_to "", admin_category_shop_path(shop, @category_shop , search: @query), remote: true, class: "show-row"
+		%span
+			= shop.category
+	- if can? :clone, Shop
+		%td{style:"width: 5%"}
+			= link_to admin_shop_clone_path(shop, @category_shop ), class: "btn-floating waves-effect btn-flat" do
+				= material_icon.md_24.content_copy.css_class("md-dark")
+	%td{style:"width: 5%"}
+		= link_to admin_category_shop_path(shop, @category_shop ), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.more_horiz.css_class("md-dark")

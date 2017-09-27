@@ -1,0 +1,22 @@
+.listing-show-header
+	.actions
+		- if can? :update, Category
+			= link_to edit_admin_category_path(@category), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%ul.list
+			%li.list-row
+				.display-label= t("activerecord.attributes.category.icon")
+				.display-value= @category.icon
+			%li.list-row
+				.display-label= t("activerecord.attributes.category.name")
+				.display-value= @category.name
+			%li.list-row
+				= link_to t('keppler.actions.back_history'), admin_categories_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

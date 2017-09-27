@@ -1,0 +1,27 @@
+= title(t('keppler.titles.show', model: "Shops"))
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, Shop
+				= link_to admin_category_shop_path(@shop, @category_shop), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, Shop
+				= link_to edit_admin_category_shop_path(@shop, @category_shop), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to admin_shops_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%ul.list
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+						.display-value.fs-body-1.tc-black-2= @shop.id.to_s.humanize
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.image")
+						.display-value.fs-body-1.tc-black-2= @shop.image.to_s.humanize
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
+						.display-value.fs-body-1.tc-black-2= @shop.name.to_s.humanize
+					%li.list-row
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.category")
+						.display-value.fs-body-1.tc-black-2= @shop.category.to_s.humanize
