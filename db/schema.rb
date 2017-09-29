@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926131620) do
+ActiveRecord::Schema.define(version: 20170929191526) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -37,15 +37,6 @@ ActiveRecord::Schema.define(version: 20170926131620) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
-
-  create_table "banners", force: :cascade do |t|
-    t.string   "cover",       limit: 255
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "banners", ["category_id"], name: "index_banners_on_category_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "icon",       limit: 255
@@ -190,6 +181,5 @@ ActiveRecord::Schema.define(version: 20170926131620) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  add_foreign_key "banners", "categories"
   add_foreign_key "shops", "categories"
 end

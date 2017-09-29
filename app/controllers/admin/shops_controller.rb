@@ -6,12 +6,10 @@ module Admin
     before_action :set_category
 
 
-
-
     # GET /shops
     def index
-      @q = Shop.ransack(params[:q])
-      shops = @q.result(distinct: true)
+      @q = Shop.ransack(@category_shop)
+      shops = @q.result(distinct: true).where(category_id: @category_shop)
       @objects = shops.page(@current_page)
       @total = shops.size
       if !@objects.first_page? && @objects.size.zero?
@@ -42,7 +40,11 @@ module Admin
       @shop = Shop.new(shop_params)
 
       if @shop.save
-        redirect(@shop, params)
+        if params.key?('_add_other')
+          redirect_to new_admin_category_shop_path, notice: actions_messages(@shop)
+        else
+          redirect_to admin_category_shops_path
+        end
       else
         render :new
       end
@@ -51,7 +53,11 @@ module Admin
     # PATCH/PUT /shops/1
     def update
       if @shop.update(shop_params)
-        redirect(@shop, params)
+        if params.key?('_add_other')
+          redirect_to new_admin_category_shop_path, notice: actions_messages(@shop)
+        else
+          redirect_to admin_category_shops_path
+        end
       else
         render :edit
       end
@@ -61,7 +67,7 @@ module Admin
       @shop = Shop.clone_record params[:shop_id]
 
       if @shop.save
-        redirect_to admin_shops_path
+        redirect_to admin_category_shops_path
       else
         render :new
       end
@@ -70,13 +76,13 @@ module Admin
     # DELETE /shops/1
     def destroy
       @shop.destroy
-      redirect_to admin_shops_path, notice: actions_messages(@shop)
+      redirect_to admin_category_shops_path, notice: actions_messages(@shop)
     end
 
     def destroy_multiple
       Shop.destroy redefine_ids(params[:multiple_ids])
       redirect_to(
-        admin_shops_path(page: @current_page, search: @query),
+        admin_category_shops_path(page: @current_page, search: @query),
         notice: actions_messages(Shop.new)
       )
     end

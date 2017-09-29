@@ -8,18 +8,30 @@
 		= t("keppler.models.singularize.#{controller_name.singularize}")
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
-		%ul.list
-			%li.list-row
-				.display-label= t("activerecord.attributes.shop.image")
-				.display-value= @shop.image
-			%li.list-row
-				.display-label= t("activerecord.attributes.shop.name")
-				.display-value= @shop.name
-			%li.list-row
-				.display-label= t("activerecord.attributes.shop.category")
-				.display-value= @shop.category
-			%li.list-row
-				= link_to t('keppler.actions.back_history'), admin_category_shops_path
+		%center.color-title= @shop.name.to_s.humanize
+		%center= image_tag @shop.image
+		%table.bordered
+			%tbody
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+					%td
+						.display-value.fs-body-1.tc-black-2= @shop.id.to_s.humanize
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
+					%td
+						.display-value.fs-body-1.tc-black-2= @shop.name.blank? ? '----------' : @shop.name.to_s.humanize
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.category_id")
+					%td
+						.display-value.fs-body-1.tc-black-2= @shop.category_id.blank? ? '----------' : @shop.category_id.to_s.humanize
+		%table.bordered
+			%tbody
+				%td
+					%center
+						= link_to t('keppler.actions.back_history'), admin_category_shops_path
 
 :javascript
 	$('.tooltipped').tooltip({delay: 1});

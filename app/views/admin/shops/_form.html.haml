@@ -8,7 +8,7 @@
 				.card-content
 					= simple_form_for [:admin, @category_shop, @shop] do |f|
 						.row
-							= f.input :image
+							= f.input :image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
 							= f.input :name
 							= f.association :category
 

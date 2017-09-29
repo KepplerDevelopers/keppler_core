@@ -8,7 +8,7 @@ module Rails
       def modify_models
         inject_into_file(
           "app/models/#{name}.rb",
-          "\n  has_many :#{args[0].pluralize}",
+          "\n  has_many :#{args[0].pluralize}, :dependent => :delete_all",
           after: 'include CloneRecord'
         )
         inject_into_file(
@@ -19,11 +19,13 @@ module Rails
       end
 
       def nest_routes
+        gsub_file 'config/routes.rb', commented_route(args[0]), '    #Route deleted'
         inject_into_file(
           "config/routes.rb",
           str_route(args[0]),
           after:"    resources :#{name.pluralize} do\n      get '(page/:page)', action: :index, on: :collection, as: ''\n      get '/clone', action: 'clone'\n      delete(\n        action: :destroy_multiple,\n        on: :collection,\n        as: :destroy_multiple\n      )\n"
         )
+
       end
 
       def modify_views_path
@@ -70,13 +72,6 @@ module Rails
           before: str_last_button(name)
         )
       end
-      def controller_paths
-        inject_into_file(
-          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
-          "_#{name.underscore}",
-          before: "_#{args[0].pluralize}_path"
-        )
-      end
 
       def new_params
         inject_into_file(
@@ -87,9 +82,40 @@ module Rails
 
       end
 
+      def controller_paths
+        gsub_file(
+          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
+          "admin_#{args[0].pluralize}_path",
+          "admin_#{name.underscore}_#{args[0].pluralize}_path"
+        )
+
+        gsub_file(
+          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
+          "redirect(@#{args[0].underscore}, params)",
+          redirect_path(name, args[0])
+        )
+      end
+
+      def index_controller
+        gsub_file(
+          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
+          "params[:q]",
+          "@#{name.underscore}_#{args[0].underscore}"
+        )
+        inject_into_file(
+          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
+          ".where(#{name}_id: @#{name.underscore}_#{args[0].underscore})",
+          after: "#{args[0].pluralize} = @q.result(distinct: true)"
+        )
+
+      end
 
 
       private
+
+      def redirect_path(father,son)
+        "if params.key?('_add_other')\n          redirect_to new_admin_#{father.underscore}_#{son.underscore}_path, notice: actions_messages(@#{son})\n        else\n          redirect_to admin_#{father.underscore}_#{son.pluralize}_path\n        end"
+      end
 
       def singular_path(father,son,file)
         inject_into_file(
@@ -115,7 +141,9 @@ module Rails
         )
       end
 
-
+      def commented_route(path)
+        "    resources :#{path.pluralize(2)} do\n      get '(page/:page)', action: :index, on: :collection, as: ''\n      get '/clone', action: 'clone'\n      delete(\n        action: :destroy_multiple,\n        on: :collection,\n        as: :destroy_multiple\n      )\n    end\n"
+      end
 
 
       def str_route(path)

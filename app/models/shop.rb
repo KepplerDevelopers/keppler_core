@@ -3,6 +3,7 @@ class Shop < ActiveRecord::Base
   include ActivityHistory
   include CloneRecord
   belongs_to :category
+  mount_uploader :image, AttachmentUploader
 
   # Fields for the search form in the navbar
   def self.search_field

@@ -36,12 +36,6 @@ menu:
     icon: insert_chart
     current: ['admin/shops']
     model: Shop
-  banner:
-    name: banners
-    url_path: /admin/banners
-    icon: insert_chart
-    current: ['admin/banners']
-    model: Banner
   user:
     name: users
     url_path: /admin/users

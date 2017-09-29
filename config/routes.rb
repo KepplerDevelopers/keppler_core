@@ -5,26 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
-    # resources :banners do
-    #   get '(page/:page)', action: :index, on: :collection, as: ''
-    #   get '/clone', action: 'clone'
-    #   delete(
-    #     action: :destroy_multiple,
-    #     on: :collection,
-    #     as: :destroy_multiple
-    #   )
-    # end
-    #
-    # resources :shops do
-    #   get '(page/:page)', action: :index, on: :collection, as: ''
-    #   get '/clone', action: 'clone'
-    #   delete(
-    #     action: :destroy_multiple,
-    #     on: :collection,
-    #     as: :destroy_multiple
-    #   )
-    # end
-
+    #Route deleted
     resources :categories do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'

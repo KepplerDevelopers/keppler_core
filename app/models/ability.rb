@@ -7,9 +7,6 @@ class Ability
 
     if user.has_role? :admin
 
-      # - Banner authorize -
-      can :manage, Banner
-
       # - Shop authorize -
       can :manage, Shop
 

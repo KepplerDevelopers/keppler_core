@@ -12,16 +12,22 @@
 				= material_icon.md_18.arrow_back.css_class("md-dark")
 		.card
 			.card-content
-				%ul.list
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
-						.display-value.fs-body-1.tc-black-2= @shop.id.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.image")
-						.display-value.fs-body-1.tc-black-2= @shop.image.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
-						.display-value.fs-body-1.tc-black-2= @shop.name.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.category")
-						.display-value.fs-body-1.tc-black-2= @shop.category.to_s.humanize
+				%center.color-title= @shop.name.to_s.humanize
+				%center= image_tag @shop.image, style: "max-width:100%;height: 200px;"
+				%table.bordered
+					%tbody
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+							%td
+								.display-value.fs-body-1.tc-black-2= @shop.id.to_s.humanize
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
+							%td
+								.display-value.fs-body-1.tc-black-2= @shop.name.blank? ? '----------' : @shop.name.to_s.humanize
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.category_id")
+							%td
+								.display-value.fs-body-1.tc-black-2= @shop.category_id.blank? ? '----------' : @shop.category_id.to_s.humanize

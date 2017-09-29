@@ -1,7 +1,6 @@
 es:
   keppler:
     sidebar-menu:
-      banners: Banners
       shops: Shops
       categories: Categories
       customizes: Customizes
@@ -26,7 +25,6 @@ es:
         categories: Categorías
     models:
       singularize:
-        banner: banner
         shop: shop
         category: category
         customize: customize
@@ -37,7 +35,6 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
-        banners: banners
         shops: shops
         categories: categories
         customizes: customizes
@@ -48,7 +45,6 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
-      admin/banners: Banners
       admin/shops: Shops
       admin/categories: Categories
       admin/customizes: Customizes
