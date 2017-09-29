@@ -3,6 +3,10 @@ module Admin
   class ShopsController < AdminController
     before_action :set_shop, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
+    before_action :set_category
+
+
+
 
     # GET /shops
     def index
@@ -26,7 +30,7 @@ module Admin
 
     # GET /shops/new
     def new
-      @shop = Shop.new
+      @shop = Shop.new(category_id: params[:category_id])
     end
 
     # GET /shops/1/edit
@@ -80,7 +84,7 @@ module Admin
     private
 
     def set_category
-      @category_shop = Category.find(params[:id])
+      @category_shop = Category.find(params[:category_id])
     end
 
 

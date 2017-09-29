@@ -13,6 +13,10 @@
 		= link_to "", admin_category_path(category, search: @query), remote: true, class: "show-row"
 		%span
 			= category.name
+
+	%td{style:'width: 5%'}
+		= link_to admin_category_shops_path(category), class: 'btn-floating waves-effect btn-flat' do
+			= material_icon.md_24.store.css_class('md-dark')
 	- if can? :clone, Category
 		%td{style:"width: 5%"}
 			= link_to admin_category_clone_path(category), class: "btn-floating waves-effect btn-flat" do

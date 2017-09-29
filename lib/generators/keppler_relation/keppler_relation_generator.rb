@@ -28,22 +28,11 @@ module Rails
 
       def modify_views_path
         ["_listing", "index", "_form", "_index_show", "show"].each do |view|
-          inject_into_file(
-            "app/views/admin/#{args[0].pluralize}/#{view}.html.haml",
-            "_#{name}",
-            before: "_#{args[0]}_path"
-          )
-          inject_into_file(
-            "app/views/admin/#{args[0].pluralize}/#{view}.html.haml",
-            "_#{name}",
-            before: "_#{args[0]}_clone_path"
-          )
-          inject_into_file(
-            "app/views/admin/#{args[0].pluralize}/#{view}.html.haml",
-            "_#{name}",
-            before: "_#{args[0].pluralize}_path"
-          )
-          inject_listing(name, args[0], view) if view == '_listing'
+          singular_path(name,args[0],view)
+          if view == '_listing'
+            clone_path(name,args[0],view)
+            inject_listing(name, args[0], view)
+          end
           inject_variable(name, args[0], view)
         end
       end
@@ -57,6 +46,14 @@ module Rails
         )
       end
 
+      def add_callback
+        inject_into_file(
+          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
+          str_callback_ctrl(name),
+          after: "    before_action :show_history, only: [:index]"
+        )
+      end
+
       #Inject the variables in the simple_form_for of the form partial
       def inject_var_form
         inject_into_file(
@@ -67,18 +64,72 @@ module Rails
       end
 
       def nested_button
+        inject_into_file(
+          "app/views/admin/#{name.pluralize}/_listing.html.haml",
+          str_btn(name, args[0]),
+          before: str_last_button(name)
+        )
+      end
+      def controller_paths
+        inject_into_file(
+          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
+          "_#{name.underscore}",
+          before: "_#{args[0].pluralize}_path"
+        )
+      end
+
+      def new_params
+        inject_into_file(
+          "app/controllers/admin/#{args[0].pluralize}_controller.rb",
+          "(#{name.underscore}_id: params[:#{name.underscore}_id])",
+          after: "    def new\n      @#{args[0]} = #{args[0].camelcase}.new"
+        )
 
       end
 
+
+
       private
+
+      def singular_path(father,son,file)
+        inject_into_file(
+          "app/views/admin/#{son.pluralize}/#{file}.html.haml",
+          "_#{father.underscore}",
+          before: "_#{son}"
+        )
+      end
+
+      # def pluralize_path(father,son,file)
+      #   inject_into_file(
+      #     "app/views/admin/#{son.pluralize}/#{file}.html.haml",
+      #     "_#{father.underscore}",
+      #     before: "_#{son.pluralize}_path"
+      #   )
+      # end
+
+      def clone_path(father,son,file)
+        inject_into_file(
+          "app/views/admin/#{son.pluralize}/#{file}.html.haml",
+          "_#{father.underscore}",
+          before: "_#{son}_clone_path"
+        )
+      end
+
+
+
 
       def str_route(path)
         "      resources :#{path.pluralize(2)} do\n        get '(page/:page)', action: :index, on: :collection, as: ''\n        get '/clone', action: 'clone'\n        delete(\n          action: :destroy_multiple,\n          on: :collection,\n          as: :destroy_multiple\n        )\n      end\n"
       end
 
       def str_ctrl_method(father, son)
-        "\n\n    def set_#{father}\n      @#{father}_#{son} = #{father.camelcase}.find(params[:id])\n    end\n"
+        "\n\n    def set_#{father}\n      @#{father}_#{son} = #{father.camelcase}.find(params[:#{father.underscore}_id])\n    end\n"
       end
+
+      def str_callback_ctrl(father)
+        "\n    before_action :set_#{father.underscore}\n"
+      end
+
 
       def inject_variable(father, son, file)
         if file.eql?("_form")
@@ -101,6 +152,14 @@ module Rails
           ", @#{father.underscore}_#{son.underscore} ",
           after: "(#{son.underscore}"
         )
+      end
+
+      def str_last_button(father)
+        "	- if can? :clone, #{father.capitalize}"
+      end
+
+      def str_btn(father, son)
+        "\n\t%td{style:'width: 5%'}\n\t\t= link_to admin_#{father}_#{son.pluralize}_path(#{father}), class: 'btn-floating waves-effect btn-flat' do\n\t\t\t= material_icon.md_24.store.css_class('md-dark')\n"
       end
     end
   end

@@ -1,10 +1,10 @@
 = title(t('keppler.titles.index', model: "Shops"))
 .listing.col.l9.m12.s12
 	- if can? :new, model
-		= link_to new_admin_category_shop_path(@shop, @category_shop), class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
+		= link_to new_admin_category_shop_path(@category_shop), class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
 			= material_icon.md_24.add
 	= entries(@total, @objects)
-	= link_to admin_shops_path(:format => :xls), class: "btn-floating btn-flat tooltipped right", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.save") do
+	= link_to admin_category_shops_path(:format => :xls), class: "btn-floating btn-flat tooltipped right", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.save") do
 		= material_icon.md_18.save.css_class("md-dark")
 	%table.bordered
 		%tbody

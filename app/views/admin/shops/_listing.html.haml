@@ -19,7 +19,7 @@
 			= shop.category
 	- if can? :clone, Shop
 		%td{style:"width: 5%"}
-			= link_to admin_shop_clone_path(shop, @category_shop ), class: "btn-floating waves-effect btn-flat" do
+			= link_to admin_category_shop_clone_path(shop, @category_shop ), class: "btn-floating waves-effect btn-flat" do
 				= material_icon.md_24.content_copy.css_class("md-dark")
 	%td{style:"width: 5%"}
 		= link_to admin_category_shop_path(shop, @category_shop ), class: "btn-floating waves-effect btn-flat" do
