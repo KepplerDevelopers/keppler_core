@@ -35,6 +35,6 @@
 							%th
 								.display-label= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")
 							%td
-								.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>.to_s.humanize
+								.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
 					<%- end -%>
 				<%- end -%>

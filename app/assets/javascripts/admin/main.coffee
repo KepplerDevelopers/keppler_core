@@ -57,5 +57,3 @@ $(document).on 'ready page:load', () ->
 			speed: 500
 
 	return
-
-
