@@ -1,0 +1,34 @@
+%tr{ id: "row-#{shop.id}" }
+	- if can? :destroy_multiple, Shop
+		%td.item-check{style:"width: 10%"}
+			= link_to "", admin_category_shop_path(shop, @category_shop ), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{shop.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{shop.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{shop.id}" }
+
+	%td{style:"width: 30%"}
+		= link_to "", admin_category_shop_path(shop, @category_shop , search: @query), remote: true, class: "show-row"
+		%span
+			= image_tag shop.image, style: 'height: 50px'
+	%td{style:"width: 30%"}
+		= link_to "", admin_category_shop_path(shop, @category_shop , search: @query), remote: true, class: "show-row"
+		%span
+			= shop.name.to_s.humanize
+	%td{style:"width: 30%"}
+		= link_to "", admin_category_shop_path(shop, @category_shop , search: @query), remote: true, class: "show-row"
+		%span
+			= shop.category.to_s.humanize
+	%td{style:"width: 5%"}
+		= link_to admin_category_shop_path(shop, @category_shop ), class: "btn-floating waves-effect btn-flat" do
+			= material_icon.md_24.remove_red_eye.css_class("md-dark")
+	- if can? :update, Shop
+		%td{style:"width: 5%"}
+			= link_to edit_admin_category_shop_path(shop, @category_shop ), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+				= material_icon.md_18.create.css_class("md-dark")
+	- if can? :clone, Shop
+		%td{style:"width: 5%"}
+			= link_to admin_category_shop_clone_path(shop, @category_shop ), class: "btn-floating waves-effect btn-flat" do
+				= material_icon.md_24.content_copy.css_class("md-dark")
+	- if can? :delete, Shop
+		%td{style:"width: 5%"}
+			= link_to admin_category_shop_path(shop, @category_shop ), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+				= material_icon.md_18.delete.css_class("md-dark")

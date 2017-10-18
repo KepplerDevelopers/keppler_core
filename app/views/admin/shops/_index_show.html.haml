@@ -1,0 +1,37 @@
+.listing-show-header
+	.actions
+		- if can? :update, Shop
+			= link_to edit_admin_category_shop_path(@shop, @category_shop), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%center.color-title= @shop.name.to_s.humanize
+		%center= image_tag @shop.image
+		%table.bordered
+			%tbody
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+					%td
+						.display-value.fs-body-1.tc-black-2= @shop.id.to_s.humanize
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
+					%td
+						.display-value.fs-body-1.tc-black-2= @shop.name.blank? ? '----------' : @shop.name.to_s.humanize
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.category_id")
+					%td
+						.display-value.fs-body-1.tc-black-2= @shop.category_id.blank? ? '----------' : @shop.category_id.to_s.humanize
+		%table.bordered
+			%tbody
+				%td
+					%center
+						= link_to t('keppler.actions.back_history'), admin_category_shops_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});
