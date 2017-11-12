@@ -6,13 +6,25 @@
 	= entries(@total, @objects)
 	%table.bordered
 		%tbody
-			- @objects.each do |user|
-				= render 'listing', user: user
 			- if @objects.size.zero?
 				%tr
 					%td{colspan: "4"}
 						%center
 							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+			- else
+				%tr.white-hover
+					%td
+					%th.center Name
+					%th.center Email
+					%th.center Rol
+					- if can? :show, User
+						%th
+					- if can? :update, User
+						%th
+					- if can? :delete, User
+						%th
+			- @objects.each do |user|
+				= render 'listing', user: user
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down

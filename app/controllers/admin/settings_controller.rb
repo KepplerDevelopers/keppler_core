@@ -4,6 +4,13 @@ module Admin
     before_action :set_setting, only: [:edit, :update, :appearance_default]
 
     def edit
+      @social_medias =
+        [
+          :facebook, :twitter, :instagram, :google_plus,
+          :tripadvisor, :pinterest, :flickr, :behance,
+          :dribbble, :tumblr, :github, :linkedin,
+          :soundcloud, :youtube, :skype, :vimeo
+        ]
     end
 
     def update
@@ -61,7 +68,7 @@ module Admin
         :favicon, :logo_cache, :favicon_cache,
         smtp_setting_attributes: smpt_setting_permit_attributes,
         google_analytics_setting_attributes: ga_setting_permit_attributes,
-        social_account_attributes: social_account_permit_attrubutes,
+        social_account_attributes: social_account_permit_attributes,
         appearance_attributes: apparence_permit_attributes
       )
     end
@@ -74,7 +81,7 @@ module Admin
       [:ga_account_id, :ga_tracking_id, :ga_status]
     end
 
-    def social_account_permit_attrubutes
+    def social_account_permit_attributes
       [
         :facebook, :twitter, :instagram, :google_plus,
         :tripadvisor, :pinterest, :flickr, :behance,
