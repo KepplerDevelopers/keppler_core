@@ -1,27 +1,10 @@
 = f.simple_fields_for :social_account do |f|
-	- @social_medias.each do |media|
+	- @social_medias.each do |social|
 		.row
 			.col.s12
-				= f.input media, input_html: {id: "setting_media_account_attributes_#{media}"}
-				-# .input-field.col.s12
-				-# 	%i.material-icons.prefix.fa{class: "fa-#{media.to_s.split('_').join('-')}"}
-				-# 	%input{ id: "setting_media_account_attributes_#{media}",class:"input-field col s12 string optional setting_media_account_#{media}",name: "setting[media_account_attributes][#{media}]",type:"text",value: @setting.social_account.facebook}
-				-# 	%label{for:"icon_prefix"}= media.capitalize
+				= f.input social
 		:javascript
-			$("#setting_media_account_attributes_#{media}").before(`<i class="material-icons prefix fa fa-#{media.to_s.split('_').join('-')}"></i>`)
-	-# = f.input :facebook
-	-# = f.input :twitter
-	-# = f.input :instagram
-	-# = f.input :google_plus
-	-# = f.input :tripadvisor
-	-# = f.input :pinterest
-	-# = f.input :flickr
-	-# = f.input :behance
-	-# = f.input :dribbble
-	-# = f.input :tumblr
-	-# = f.input :github
-	-# = f.input :skype
-	-# = f.input :linkedin
-	-# = f.input :soundcloud
-	-# = f.input :youtube
-	-# = f.input :vimeo
+			$("#setting_social_account_attributes_#{social}").before(`<i class="material-icons prefix fa fa-#{social.to_s.split('_').join('-')}"></i>`)
+:sass
+	i
+		opacity: .7
