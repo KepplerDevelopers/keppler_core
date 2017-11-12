@@ -4,13 +4,8 @@ module Admin
     before_action :set_setting, only: [:edit, :update, :appearance_default]
 
     def edit
-      @social_medias =
-        [
-          :facebook, :twitter, :instagram, :google_plus,
-          :tripadvisor, :pinterest, :flickr, :behance,
-          :dribbble, :tumblr, :github, :linkedin,
-          :soundcloud, :youtube, :skype, :vimeo
-        ]
+      @social_medias = social_account_permit_attributes
+      @colors = social_account_colors
     end
 
     def update
@@ -87,6 +82,15 @@ module Admin
         :tripadvisor, :pinterest, :flickr, :behance,
         :dribbble, :tumblr, :github, :linkedin,
         :soundcloud, :youtube, :skype, :vimeo
+      ]
+    end
+
+    def social_account_colors
+      [
+        '#3b5998', '#4099ff', '#c5236b', '#dc4000',
+        '#d2c30e', '#b90000', '#008bb9', '#075771',
+        '#dc7b10', '#3f7490', '#252525', '#2d69a0',
+        '#ef5100', '#e01515', '#00cbd8', '#24595d'
       ]
     end
 
