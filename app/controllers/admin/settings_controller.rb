@@ -4,6 +4,8 @@ module Admin
     before_action :set_setting, only: [:edit, :update, :appearance_default]
 
     def edit
+      @social_medias = social_account_permit_attributes
+      @colors = social_account_colors
     end
 
     def update
@@ -61,7 +63,7 @@ module Admin
         :favicon, :logo_cache, :favicon_cache,
         smtp_setting_attributes: smpt_setting_permit_attributes,
         google_analytics_setting_attributes: ga_setting_permit_attributes,
-        social_account_attributes: social_account_permit_attrubutes,
+        social_account_attributes: social_account_permit_attributes,
         appearance_attributes: apparence_permit_attributes
       )
     end
@@ -74,12 +76,21 @@ module Admin
       [:ga_account_id, :ga_tracking_id, :ga_status]
     end
 
-    def social_account_permit_attrubutes
+    def social_account_permit_attributes
       [
         :facebook, :twitter, :instagram, :google_plus,
         :tripadvisor, :pinterest, :flickr, :behance,
         :dribbble, :tumblr, :github, :linkedin,
         :soundcloud, :youtube, :skype, :vimeo
+      ]
+    end
+
+    def social_account_colors
+      [
+        '#3b5998', '#4099ff', '#c5236b', '#dc4000',
+        '#d2c30e', '#b90000', '#008bb9', '#075771',
+        '#dc7b10', '#3f7490', '#252525', '#2d69a0',
+        '#ef5100', '#e01515', '#00cbd8', '#24595d'
       ]
     end
 
