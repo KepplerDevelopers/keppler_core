@@ -10,9 +10,12 @@
 						.row
 							= f.input :name
 							= f.input :email
-							= f.input :role_ids, collection: Role.all.map { |rol| [rol.name.humanize, rol.id] }, label: false, include_blank: t("keppler.actions.select_rol"), input_html: { class: "browser-default" }
+							= f.input :role_ids, collection: @roles, label: 'Rol', include_blank: t("keppler.actions.select_rol"), input_html: { class: "input-field" }
 							= f.input :password
 							= f.input :password_confirmation
 							.form-actions.right
 								= f.button :submit, t("keppler.actions.save"), name: "_save"
 								= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+:javascript
+	op1 = $('option').first()
+	op1.attr('disabled', 'disabled')
