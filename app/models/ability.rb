@@ -7,12 +7,6 @@ class Ability
 
     if user.has_role? :admin
 
-      # - Shop authorize -
-      can :manage, Shop
-
-      # - Category authorize -
-      can :manage, Category
-
       # - Customize authorize -
       can [:delete, :update,
            :new, :create, :install_default,

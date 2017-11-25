@@ -24,18 +24,6 @@ menu:
     icon: insert_chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
-  category:
-    name: categories
-    url_path: /admin/categories
-    icon: insert_chart
-    current: ['admin/categories']
-    model: Category
-  shop:
-    name: shops
-    url_path: /admin/shops
-    icon: insert_chart
-    current: ['admin/shops']
-    model: Shop
   user:
     name: users
     url_path: /admin/users
