@@ -134,7 +134,7 @@ module Rails
 
       # String to delete the menu.yml menu (son_module)
       def sub_menu_deleted(son)
-        "  #{son}:\n    name: #{son.pluralize}\n    url_path: /admin/#{son.pluralize}\n    icon: insert_chart\n    current: ['admin/#{son.pluralize}']\n    model: #{son.camelcase}"
+        "  #{son}:\n    name: #{son.split('_').join(" ").pluralize}\n    url_path: /admin/#{son.pluralize}\n    icon: insert_chart\n    current: ['admin/#{son.pluralize}']\n    model: #{son.camelcase}"
       end
 
       #
@@ -206,7 +206,7 @@ module Rails
 
       #References to add nest button in father_module's listing
       def str_last_button(father)
-        "	- if can? :clone, #{father.capitalize}"
+        "	- if can? :clone, #{father.camelcase}"
       end
 
       #String of the button to add in father_module's listing

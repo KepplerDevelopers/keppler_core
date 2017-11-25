@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929191526) do
+ActiveRecord::Schema.define(version: 20171125015706) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -78,6 +78,13 @@ ActiveRecord::Schema.define(version: 20170929191526) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "itinerary_lists", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "meta_tags", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -86,6 +93,15 @@ ActiveRecord::Schema.define(version: 20170929191526) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "official_categories", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.integer  "itinerary_list_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "official_categories", ["itinerary_list_id"], name: "index_official_categories_on_itinerary_list_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -181,5 +197,6 @@ ActiveRecord::Schema.define(version: 20170929191526) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "official_categories", "itinerary_lists"
   add_foreign_key "shops", "categories"
 end
