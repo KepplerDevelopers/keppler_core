@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
+
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
