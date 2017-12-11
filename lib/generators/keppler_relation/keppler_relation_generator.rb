@@ -2,6 +2,7 @@ require 'rails/generators/rails/resource/resource_generator'
 require 'rails/generators/resource_helpers'
 module Rails
   module Generators
+    # KepplerRelation
     class KepplerRelationGenerator < Rails::Generators::NamedBase
       source_root File.expand_path('../templates', __FILE__)
       #Modify models (add has_many and belongs_to relation)
