@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_history(model)
-    if current_user.has_role? :admin
+    if current_user.has_role? :keppler_admin
       @activities = PublicActivity::Activity.where(
         trackable_type: model.to_s
       ).order('created_at desc').limit(50)
