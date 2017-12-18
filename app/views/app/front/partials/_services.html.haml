@@ -1,6 +1,9 @@
 %section#servicios
   #izquierdo
+    %i.material-icons.chevron chevron_left
+
   #derecho
+    %i.material-icons.chevron chevron_right
   #carrusel
 
     = link_to branding_path do
@@ -57,3 +60,18 @@
                   Hacemos visible tu empresa
                   %br>/
                   en internet y redes sociales
+
+:scss
+  .chevron {
+    font-size: 80px !important;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+  }
+
+  #derecho i {
+    right: 0;
+  }

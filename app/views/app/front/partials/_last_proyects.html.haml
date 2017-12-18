@@ -2,19 +2,18 @@
   %section#web-ejemplos
     .columna1
       .item.card-hover
-        %img.img-fondo.img-responsive{:alt => "Ejemplo1", :src => "#{@proyect.first.banner}", style: "height: 707px"}/
+        %img.img-fondo.img-responsive{:alt => "Ejemplo1", :src => "#{@proyect.first.banner}", style: "height: 708px!important; object-fit: cover"}/
         #mascara1
         .item-texto
           .cont
             %p.texto-2_5.color-blanco.sfreg= @proyect.first.headline
             %p.texto-5.color-blanco.sfpro
               = @proyect.first.name
-      / /.item card-hover
-    / /.columna1
+      
     .columna2
       .columna2-1
         .item.card-hover
-          %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "#{@proyect.second.banner}", style: "height: 354px; width: 100%"}/
+          %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "#{@proyect.second.banner}", style: "height: 354px; width: 100%!important; object-fit: cover"}/
           #mascara3
           .item-texto
             .cont
@@ -24,7 +23,7 @@
 
       .columna2-2
         .item.card-hover
-          %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "#{@proyect.last.banner}", style: "height: 354px; width: 100%"}/
+          %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "#{@proyect.last.banner}", style: "height: 354px; width: 100%!important; object-fit: cover"}/
           #mascara2
           .item-texto
             .cont
