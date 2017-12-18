@@ -1,0 +1,57 @@
+.listing-show-header
+	.actions
+		- if can? :update, Branding
+			= link_to edit_admin_branding_path(@branding), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%center.color-title= @branding.title.to_s.humanize
+		%center= image_tag @branding.banner
+		%table.bordered
+			%tbody
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+					%td
+						.display-value.fs-body-1.tc-black-2= @branding.id
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.headline_text")
+					%td
+						.display-value.fs-body-1.tc-black-2= @branding.headline_text.blank? ? '----------' : @branding.headline_text
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.headline_image")
+					%td
+						.display-value.fs-body-1.tc-black-2= @branding.headline_image.blank? ? '----------' : @branding.headline_image
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.headline_type")
+					%td
+						.display-value.fs-body-1.tc-black-2= @branding.headline_type.blank? ? '----------' : @branding.headline_type
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.style_type")
+					%td
+						.display-value.fs-body-1.tc-black-2= @branding.style_type.blank? ? '----------' : @branding.style_type
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.title")
+					%td
+						.display-value.fs-body-1.tc-black-2= @branding.title.blank? ? '----------' : @branding.title
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.description")
+					%td
+						.display-value.fs-body-1.tc-black-2= @branding.description.blank? ? '----------' : @branding.description
+		%table.bordered
+			%tbody
+				%td
+					%center
+						= link_to t('keppler.actions.back_history'), admin_brandings_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

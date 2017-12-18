@@ -1,0 +1,16 @@
+%nav.navbar#navbar-categories.hidden-xs
+	.container-fluid
+		.collapse.navbar-collapse
+			%ul.nav.navbar-nav
+				- @categories.each do |category|
+					- unless category.posts.count.zero?
+						%li.dropdown
+							= link_to filter_path('category', category.permalink), class: "dropdown-toggle #{'active' if category.permalink.eql?(params[:permalink]) or category.permalink.eql?(params[:category])}" ,"aria-expanded" => false, "aria-haspopup" => true, "data-toggle" => "dropdown disabled", :role => "button" do
+								= category.name.titleize
+								%span.caret
+							- unless category.subcategories.empty?
+								%ul.dropdown-menu
+									- category.subcategories.each do |subcategory|
+										- unless subcategory.posts.count.zero?
+											%li
+												= link_to subcategory.name, filter_subcategory_path(category.permalink, subcategory.permalink), class: "#{'active' if category.permalink.eql?(params[:category]) and subcategory.permalink.eql?(params[:subcategory])}"
