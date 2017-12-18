@@ -81,7 +81,8 @@
           %br/
           %span.color-amarillo entre marcas, productos y
           %span.color-verde humanos
-        %a.link-rojo-azul{:href => "success.html", :target => "_top"} Ver todos los proyectos web realizados
+        =link_to success_path do
+          .link-rojo-azul Ver todos los proyectos web realizados
 
     = render "app/front/partials/last_proyects"
 

@@ -26,11 +26,12 @@
           Notas para la Comunidad
         %br
         %a.link-menu{"data-original-title" => "", "data-target" => "#contact", "data-toggle" => "modal"} Contactos
+        -# %a.link-menu{"data-original-title" => "", "data-target" => "#contact", "data-toggle" => "modal"} Contactos
         %br
         #menu-redes
-          %a.link-menu{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} INSTAGRAM
-          %a.link-menu{:href => "https://www.facebook.com/grupobrieva", :target => "_blank"} FACEBOOK
-          %a.link-menu{:href => "https://plus.google.com/+juancarlosbrievadesigners", :target => "_blank"} GOOGLE+
+          %a.link-menu{:href => "#{@social.instagram}", :target => "_blank"} INSTAGRAM
+          %a.link-menu{:href => "#{@social.facebook}", :target => "_blank"} FACEBOOK
+          %a.link-menu{:href => "#{@social.google_plus}", :target => "_blank"} GOOGLE+
       / /.menu de navegación
       / DATOS
       #datos.col-sm-6
