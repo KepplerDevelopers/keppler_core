@@ -37,6 +37,8 @@ setting = Setting.new(
     ga_status: true
   }
 )
+
+TermsAndCondition.create(content: '')
 setting.social_account = SocialAccount.new
 setting.appearance = Appearance.new(theme_name: 'keppler')
 setting.save

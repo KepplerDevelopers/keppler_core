@@ -1,0 +1,36 @@
+- if !@proyect.blank?
+  %section#web-ejemplos
+    .columna1
+      .item.card-hover
+        %img.img-fondo.img-responsive{:alt => "Ejemplo1", :src => "#{@proyect.first.banner}", style: "height: 707px"}/
+        #mascara1
+        .item-texto
+          .cont
+            %p.texto-2_5.color-blanco.sfreg= @proyect.first.headline
+            %p.texto-5.color-blanco.sfpro
+              = @proyect.first.name
+      / /.item card-hover
+    / /.columna1
+    .columna2
+      .columna2-1
+        .item.card-hover
+          %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "#{@proyect.second.banner}", style: "height: 354px; width: 100%"}/
+          #mascara3
+          .item-texto
+            .cont
+              %p.texto-1_7.color-blanco.sfreg= @proyect.second.headline
+              %p.texto-3_5.color-blanco.sfpro
+                = @proyect.second.name
+
+      .columna2-2
+        .item.card-hover
+          %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "#{@proyect.last.banner}", style: "height: 354px; width: 100%"}/
+          #mascara2
+          .item-texto
+            .cont
+              -# %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "#{@proyect.last.banner}", style: "height: 354px"}/
+              %p
+              %p.texto-1_7.color-blanco.sfreg
+                = @proyect.last.name
+              %p.texto-3_5.color-blanco.sfpro
+                = @proyect.last.headline

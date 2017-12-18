@@ -1,0 +1,21 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			= link_to admin_briefins_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs
+			.card
+				.card-content
+					= simple_form_for [:admin, @briefing] do |f|
+						.row
+							= f.input :name
+							= f.input :email
+							= f.input :phone
+							= f.input :company
+							= f.input :services_type
+							= f.input :other
+							= f.input :about, input_html: {class: "materialize-textarea"}
+
+							.form-actions.right
+								= f.button :submit, t("keppler.actions.save"), name: '_save'
+								= f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'

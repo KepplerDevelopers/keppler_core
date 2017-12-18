@@ -1,0 +1,2 @@
+module BrandingsHelper
+end
