@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217054834) do
+ActiveRecord::Schema.define(version: 20171218152547) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171217054834) do
     t.text     "description",    limit: 65535
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "headline_color", limit: 255
   end
 
   create_table "briefings", force: :cascade do |t|
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(version: 20171217054834) do
     t.text     "description",    limit: 65535
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "headline_color", limit: 255
   end
 
   create_table "meta_tags", force: :cascade do |t|

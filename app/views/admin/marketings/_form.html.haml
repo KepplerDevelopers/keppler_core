@@ -10,15 +10,18 @@
 						.row
 							= f.input :banner, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
 							= f.input :name
+							= f.input :headline_type, as: :checkbox_material, label: "Headline Imagen", wrapper_html: { class: "check" }
 
 							- if !@marketing.headline_text.nil? && @marketing.headline_text.blank?
 								= f.input :headline_text, wrapper_html: { class: "hidden" }
 								= f.input :headline_image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
 							- else
-								= f.input :headline_text
+								.col.s9
+									= f.input :headline_text
+								.col.s2#color{style: "margin-top: 15px"}
+									= f.input :headline_color, input_html: {class: "color-input" }, label: false
 								= f.input :headline_image, :as => :file_material, label: false, wrapper_html: { class: "file-field hidden" }
 
-							= f.input :headline_type, as: :checkbox_material, label: "Headline Imagen", wrapper_html: { class: "check" }
 							= f.input :style_type, collection: ['Parallax', 'Bloque a la derecha', 'Bloque a la izquierda'], label: false, include_blank: "Seleciona un estilo para el servicio"
 							= f.input :title
 							= f.input :description, input_html: {class: "materialize-textarea"}
@@ -41,5 +44,7 @@
 		$('#marketing_headline_image').val('')
 		$('.marketing_headline_text').toggleClass('hidden')
 		$('.marketing_headline_image').toggleClass('hidden').val('')
-
+		$('#color').toggleClass('hidden')
+		$('.color-input').val('')
 	})
+	$('.color-input').minicolors()

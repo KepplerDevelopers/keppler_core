@@ -57,9 +57,9 @@
       - if marketing.style_type.eql?('Parallax')
         %section#cta1.mercadeo{id: "marketing-#{marketing.id}" ,style: "background: url(#{marketing.banner}) center no-repeat; background-size: cover; background-attachment: fixed;"}
           .container
-            .cta1-branding-cont.row
+            .cta1-marketing-cont.row
               - if marketing.headline_type.to_i == 0
-                %p.sfreg.texto-1_7.color-verde.col-sm-12= marketing.headline_text
+                %p.sfreg.texto-2.col-sm-12{style: "color: #{marketing.headline_color}"}= marketing.headline_text.upcase
               - else
                 %img.img-responsive{:alt => "Google AdWords", :src => "#{marketing.headline_image}", style: "margin: 0"}/
               %p.sfpro.texto-4.color-blanco.mt-2.col-sm-7=marketing.title
@@ -81,7 +81,7 @@
                 .mercadeo2-cont
                   %div
                     - if marketing.headline_type.to_i == 0
-                      %p.sfreg.texto-1_7.color-verde.col-sm-12= marketing.headline_text
+                      %p.sfreg.texto-1_7.col-sm-12{style: "color: #{marketing.headline_color}"}= marketing.headline_text.upcase
                     - else
                       %img.img-responsive{:alt => "Google AdWords", :src => "#{marketing.headline_image}", style: "margin: 0"}/
 
@@ -102,7 +102,7 @@
                 .mercadeo2-cont
                   %div
                     - if marketing.headline_type.to_i == 0
-                      %p.sfreg.texto-1_7.color-verde.col-sm-12= branding.headline_text.upcase
+                      %p.sfreg.texto-1_7.col-sm-12{style: "color: #{marketing.headline_color}"}= marketing.headline_text.upcase
                     - else
                       %img.img-responsive{:alt => "Google AdWords", :src => "#{marketing.headline_image}"}/
                     %p.sfpro.texto-4.color-azul.mt-2= marketing.title
@@ -148,7 +148,7 @@
                 %i.fa.fa-instagram{"aria-hidden" => "true"}
 
           = render "app/front/partials/contact"
-          
+
     %footer
       .container
         .footer-cont
