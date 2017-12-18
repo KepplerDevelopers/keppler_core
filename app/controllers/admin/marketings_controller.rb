@@ -86,7 +86,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def marketing_params
-      params.require(:marketing).permit(:banner, :name, :headline_text, :headline_image, :headline_type, :style_type, :title, :description)
+      params.require(:marketing).permit(:banner, :name, :headline_text, :headline_image, :headline_type, :style_type, :title, :description, :headline_color)
     end
 
     def show_history

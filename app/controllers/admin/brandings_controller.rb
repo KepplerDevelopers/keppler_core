@@ -86,7 +86,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def branding_params
-      params.require(:branding).permit(:banner, :headline_text, :headline_image, :headline_type, :style_type, :title, :description, :name)
+      params.require(:branding).permit(:banner, :headline_text, :headline_image, :headline_type, :style_type, :title, :description, :name, :headline_color)
     end
 
     def show_history

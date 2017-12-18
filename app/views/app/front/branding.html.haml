@@ -61,7 +61,7 @@
           .container
             .cta1-branding-cont.row
               - if branding.headline_type.to_i == 0
-                %p.sfreg.texto-1_7.color-verde.col-sm-12= branding.headline_text.upcase
+                %p.sfreg.texto-1_7.col-sm-12{style: "color: #{branding.headline_color}"}= branding.headline_text.upcase
               - else
                 %img.img-responsive{:alt => "Google AdWords", :src => "#{branding.headline_image}", style: "margin: 0"}/
               %p.sfpro.texto-4.color-blanco.mt-2.col-sm-6.col-xs-12= branding.title
@@ -80,7 +80,7 @@
                 .branding2-cont
                   #branding2-cont-texto
                     - if branding.headline_type.to_i == 0
-                      %p.sfpro.texto-4.color-verde.mt-2= branding.headline_text
+                      %p.sfpro.texto-4.mt-2{style: "color: #{branding.headline_color}"}= branding.headline_text.upcase
                     - else
                       %img.img-responsive{:alt => "Google AdWords", :src => "#{branding.headline_image}", style: "margin: 0"}/
                     %p.sfreg.texto-2_5.color-333.mt-2= branding.description
@@ -98,7 +98,7 @@
                 .branding2-cont
                   #branding2-cont-texto
                     - if branding.headline_type.to_i == 0
-                      %p.sfpro.texto-4.color-verde.mt-2= branding.headline_text
+                      %p.sfpro.texto-4.mt-2{style: "color: #{branding.headline_color}"}= branding.headline_text.upcase
                     - else
                       %img.img-responsive{:alt => "Google AdWords", :src => "#{branding.headline_image}", style: "margin: 0"}/
                     %p.sfpro.texto-4.color-verde.mt-2= raw branding.headline_text
@@ -106,26 +106,6 @@
                     .botones.mt-3
                       %a.btn.btn-azul{:href => "#contactos"} Solicitar Más Información
                       %a.btn.btn-transparente.color-verde{:href => "success.html", :target => "_top"} Ver casos de éxito
-
-    -# %section#cta1-3.branding3
-    -#   .container
-    -#     .cta1-branding-cont
-    -#       %p.sfreg.texto-1_7.color-verde GANA TIEMPO, INVIERTE LO NECESARIO, IDEAS UNIFICADAS
-    -#       %p.sfpro.texto-4.color-blanco.mt-2
-    -#         Diseño gráfico mensual
-    -#         %br>/
-    -#         para empresas
-    -#       %p.sfreg.texto-2_5.color-blanco.mt-2
-    -#         Cuenta con el apoyo constante y asesoría profesional de nuestros
-    -#         %br/
-    -#         creativos para el diseño de piezas corporativas y publicitarias
-    -#         %br/
-    -#         que a diario tu empresa necesita. Diseñamos arte digital semanal
-    -#         %br/
-    -#         por medio de paquetes de diseño mensual para empresas.
-    -#       .botones.mt-6
-    -#         %a.btn.btn-azul.btn-lg{:href => "#contactos"} Solicitar Más Información
-    -#         %a.btn.btn-transparente.btn-lg{:href => ""} Ver casos de éxito
 
     %section#cta-clientes
       .container.mt-17.mb-7
