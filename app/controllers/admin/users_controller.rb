@@ -68,7 +68,7 @@ module Admin
     end
 
     def set_roles
-      @roles = Role.all.map { |rol| [rol.name.humanize, rol.id] }
+      @roles = Role.all.map { |rol| [rol.name.humanize, rol.id] unless rol.name.eql?(:keppler_admin) }
     end
 
     def user_params

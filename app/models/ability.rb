@@ -5,7 +5,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-    if user.has_role? :admin
+    if user.has_role? :keppler_admin
 
       # - Customize authorize -
       can [:delete, :update,
@@ -23,6 +23,15 @@ class Ability
 
       # - Setting authorize -
       can :manage, Setting
+
+      # - User authorize -
+      can [:delete, :show, :edit, :update,
+           :create, :index, :destroy_multiple], User
+      can :destroy, User do |u|
+        !u.eql?(user)
+      end
+
+    elsif user.has_role? :admin
 
       # - User authorize -
       can [:delete, :show, :edit, :update,
