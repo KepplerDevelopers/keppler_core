@@ -52,6 +52,11 @@ module Rails
         inject_into_file(
           'app/models/ability.rb',
           str_ability,
+          after: '    if user.has_role? :keppler_admin'
+        )
+        inject_into_file(
+          'app/models/ability.rb',
+          str_ability,
           after: '    if user.has_role? :admin'
         )
       end
@@ -67,7 +72,7 @@ module Rails
 
       # Se usa para configurar la exportación del ActiveRecords a .xls,
       # pero da problemas al borrar el KepplerScaffold
-      
+
       # def add_config_xls
       #   inject_into_file(
       #     'config/initializers/mime_types.rb',

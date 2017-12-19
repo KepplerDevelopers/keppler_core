@@ -5,35 +5,8 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-    can :manage, KepplerContactUs::Message
-    can :manage, KepplerContactUs::MessageSetting
-
-    if user.has_role? :admin
-
-      # - TermsAndCondition authorize -
-      can [:show, :edit, :update,
-           :index], TermsAndCondition
-
-      # - Briefing authorize -
-      can [:delete, :show, :edit, :update,
-           :index, :destroy_multiple], Briefing
-
-
-      can :manage, KepplerBlog::Post
-      can :manage, KepplerBlog::Category
-      # - Web authorize -
-      can :manage, Web
-      can :manage, KepplerContactUs::Message
-      can :manage, KepplerContactUs::MessageSetting
-      # - Proyect authorize -
-      can :manage, Proyect
-
-      # - Marketing authorize -
-      can :manage, Marketing
-
-      # - Branding authorize -
-      can :manage, Branding
-
+    if user.has_role? :keppler_admin
+      
       # - Customize authorize -
       can [:delete, :update,
            :new, :create, :install_default,
@@ -59,11 +32,17 @@ class Ability
         !u.eql?(user)
       end
 
+    elsif user.has_role? :admin
+
+      # - User authorize -
+      can [:delete, :show, :edit, :update,
+           :create, :index, :destroy_multiple], User
+      can :destroy, User do |u|
+        !u.eql?(user)
+      end
+
     elsif user.has_role? :client
-    elsif user.has_role? :autor
-      can :manage, KepplerBlog::Post, :user_id => user.id
-    elsif user.has_role? :editor
-      can [:index, :update, :edit, :show]
+      
     end
     # The first argument to `can` is the action you are giving the user
     # permission to do.
