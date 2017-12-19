@@ -1,9 +1,13 @@
 %tr{ id: "row-#{user.id}" }
 	- if can? :destroy_multiple, User
 		%td.center.item-check{style:"width: 10%"}
-			= link_to "", admin_user_path(user), remote: true, class: "show-row"
-			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
-			%label{ for: "checkbox-#{user.id}" }
+			- if user.id.eql?(current_user.id)
+				= link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
+					%i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
+			- else
+				= link_to "", admin_user_path(user), remote: true, class: "show-row"
+				%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+				%label{ for: "checkbox-#{user.id}" }
 	%td.center.hide-on-small-and-down{style:"width: 30%"}
 		= link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
 		%span= user.name
@@ -24,5 +28,9 @@
 				= material_icon.md_18.create.css_class("md-dark")
 	- if can? :delete, User
 		%td.center{style:"width: 5%"}
-			= link_to admin_user_path(user), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-				= material_icon.md_18.delete.css_class("md-dark")
+			- if user.id.eql?(current_user.id)
+				%a.not-allowed.btn-floating.btn-flat.right{ href: '#' }
+					%i.material-icons.md-18 delete
+			- else
+				= link_to admin_user_path(user), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")

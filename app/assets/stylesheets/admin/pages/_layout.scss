@@ -58,6 +58,16 @@ body {
     }
   }
 
+  .not-allowed {
+    cursor: not-allowed;
+    &:hover {
+      background: #eee !important;
+    }
+    i {
+      color: #ccc !important;
+    }
+  }
+
   .pagination {
     padding-bottom: 30px;
     padding-top: 30px;
