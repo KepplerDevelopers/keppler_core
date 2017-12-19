@@ -21,10 +21,8 @@
 		%table.bordered
 			%tbody
 				%tr
-					%th
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
-					%td
-						.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id
+					%th.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+					%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id
 		<%- attributes_names.each do |attribute| -%>
 			<%- unless @attachments.include?(attribute) -%>
 				%tr

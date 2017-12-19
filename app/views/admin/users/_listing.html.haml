@@ -6,16 +6,13 @@
 			%label{ for: "checkbox-#{user.id}" }
 	%td.center.hide-on-small-and-down{style:"width: 30%"}
 		= link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
-		%span
-			= user.name
+		%span= user.name
 	%td.center{style:"width: 35%"}
 		= link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
-		%span
-			= user.email
+		%span= user.email
 	%td.center.hide-on-small-and-down{style:"width: 20%"}
 		= link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
-		%span
-			= user.rol.humanize
+		%span= user.rol.humanize
 
 	- if can? :show, User
 		%td.center{style:"width: 5%"}

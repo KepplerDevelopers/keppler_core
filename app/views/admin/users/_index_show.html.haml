@@ -11,13 +11,18 @@
 		= t("keppler.models.singularize.user").humanize
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
-		%ul.list
-			- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
-				%li.list-row
-					.display-label= t("activerecord.attributes.user.#{attribute}")
-					.display-value= value
-			%li.list-row
-				= link_to t('keppler.actions.back_history'), admin_users_path
+		%center.color-title= @user.name
+		%table.list.bordered
+			%tbody
+				- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.user.#{attribute}")
+						%td.display-value= value
+
+		%table.list.bordered
+			%tbody
+				%td.list-row.center
+					= link_to t('keppler.actions.back_history'), admin_users_path
 
 = render "admin/users/modal"
 

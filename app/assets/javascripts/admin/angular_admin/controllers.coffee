@@ -18,10 +18,7 @@ app.controller 'MainCtrl', [
 
 		scope.searchSiwtch = ->
 			scope.inputSearch = !scope.inputSearch
-			return
-
-		scope.searchSiwtch = ->
-			scope.inputSearch = !scope.inputSearch
+			$('#nav-search').focus()
 			return
 
 		scope.spinnerReload = ->
@@ -42,15 +39,14 @@ app.controller 'MainCtrl', [
 		scope.compiledHTML = (el) ->
 			$compile(el)(scope)
 			scope.$apply
-			return 
+			return
 
 		#Configuración de progress bar con turbolinks
 		jQuery(document).on 'page:fetch', ->
-			 
+
 			return
 
 		jQuery(document).on 'page:receive', ->
-			 
+
 			return
 ]
-
