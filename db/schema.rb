@@ -12,7 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20171218152547) do
-
+  
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
     t.string   "trackable_type", limit: 255
@@ -38,51 +38,9 @@ ActiveRecord::Schema.define(version: 20171218152547) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "brandings", force: :cascade do |t|
-    t.string   "banner",         limit: 255
-    t.string   "name",           limit: 255
-    t.string   "headline_text",  limit: 255
-    t.string   "headline_image", limit: 255
-    t.string   "headline_type",  limit: 255
-    t.string   "style_type",     limit: 255
-    t.string   "title",          limit: 255
-    t.text     "description",    limit: 65535
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "headline_color", limit: 255
-  end
-
-  create_table "briefings", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "email",         limit: 255
-    t.string   "phone",         limit: 255
-    t.string   "company",       limit: 255
-    t.string   "services_type", limit: 255
-    t.string   "other",         limit: 255
-    t.text     "about",         limit: 65535
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
-  create_table "ckeditor_assets", force: :cascade do |t|
-    t.string   "data_file_name",    limit: 255, null: false
-    t.string   "data_content_type", limit: 255
-    t.integer  "data_file_size",    limit: 4
-    t.integer  "assetable_id",      limit: 4
-    t.string   "assetable_type",    limit: 30
-    t.string   "type",              limit: 30
-    t.integer  "width",             limit: 4
-    t.integer  "height",            limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
-
   create_table "customizes", force: :cascade do |t|
     t.string   "file",       limit: 255
-    t.boolean  "installed",  limit: 1
+    t.boolean  "installed"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -99,7 +57,7 @@ ActiveRecord::Schema.define(version: 20171218152547) do
   create_table "google_analytics_settings", force: :cascade do |t|
     t.string   "ga_account_id",  limit: 255
     t.string   "ga_tracking_id", limit: 255
-    t.boolean  "ga_status",      limit: 1
+    t.boolean  "ga_status"
     t.integer  "setting_id",     limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -113,69 +71,6 @@ ActiveRecord::Schema.define(version: 20171218152547) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "keppler_blog_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "permalink",  limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "keppler_blog_posts", force: :cascade do |t|
-    t.string   "title",          limit: 255
-    t.text     "body",           limit: 65535
-    t.integer  "user_id",        limit: 4
-    t.integer  "category_id",    limit: 4
-    t.integer  "subcategory_id", limit: 4
-    t.string   "image",          limit: 255
-    t.boolean  "public",         limit: 1
-    t.boolean  "comments_open",  limit: 1
-    t.boolean  "shared_enabled", limit: 1
-    t.boolean  "main",           limit: 1
-    t.string   "permalink",      limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
-  create_table "keppler_blog_subcategories", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "permalink",   limit: 255
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "keppler_contact_us_message_settings", force: :cascade do |t|
-    t.string   "mailer_to",   limit: 255
-    t.string   "mailer_from", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "keppler_contact_us_messages", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "subject",    limit: 255
-    t.string   "email",      limit: 255
-    t.text     "content",    limit: 65535
-    t.string   "phone",      limit: 255
-    t.boolean  "read",       limit: 1
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  create_table "marketings", force: :cascade do |t|
-    t.string   "banner",         limit: 255
-    t.string   "name",           limit: 255
-    t.string   "headline_text",  limit: 255
-    t.string   "headline_image", limit: 255
-    t.string   "headline_type",  limit: 255
-    t.string   "style_type",     limit: 255
-    t.string   "title",          limit: 255
-    t.text     "description",    limit: 65535
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "headline_color", limit: 255
-  end
-
   create_table "meta_tags", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -183,18 +78,6 @@ ActiveRecord::Schema.define(version: 20171218152547) do
     t.string   "url",         limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-  end
-
-  create_table "proyects", force: :cascade do |t|
-    t.string   "banner",       limit: 255
-    t.string   "headline",     limit: 255
-    t.string   "service_type", limit: 255
-    t.text     "description",  limit: 65535
-    t.string   "name",         limit: 255
-    t.boolean  "share",        limit: 1
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "brand",        limit: 255
   end
 
   create_table "roles", force: :cascade do |t|
@@ -306,12 +189,5 @@ ActiveRecord::Schema.define(version: 20171218152547) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
-
-  create_table "webs", force: :cascade do |t|
-    t.string   "headline",   limit: 255
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
 
 end
