@@ -1,0 +1,26 @@
+= title(t('keppler.titles.show', model: "Terms and conditions"))
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, TermsAndCondition
+				= link_to admin_terms_and_condition_path(@terms_and_condition), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, TermsAndCondition
+				= link_to edit_admin_terms_and_condition_path(@terms_and_condition), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to admin_terms_and_conditions_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%table.bordered
+					%tbody
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+							%td
+								.display-value.fs-body-1.tc-black-2= @terms_and_condition.id.to_s.humanize
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.content")
+							%td
+								.display-value.fs-body-1.tc-black-2= @terms_and_condition.content.blank? ? '----------' : @terms_and_condition.content

@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
+gem 'keppler_contact_us', git: "https://github.com/SliceDevelopers/keppler_contact_us.git", tag: '1.0.0'
+gem "recaptcha", require: "recaptcha/rails"
+gem 'whois'
+gem 'whois-parser'
 # Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
@@ -21,6 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks'
 gem 'to_xls-rails'
+gem 'vuejs-rails'
 
 # Database
 gem 'mysql2', '~> 0.3.18'
@@ -80,6 +85,13 @@ group :development, :test do
   gem 'haml-lint', require: false
   gem 'scss_lint', require: false
 end
+
+gem 'keppler_blog', git: 'https://github.com/SliceDevelopers/keppler_blog.git', tag: "1.1.0"
+gem 'cocoon'
+gem 'acts-as-taggable-on', '~> 3.4'
+gem 'carrierwave'
+gem 'social-share-button'
+
 
 #---- keppler_ga_dashboard ----
 gem 'keppler_ga_dashboard', git: 'https://github.com/SliceDevelopers/keppler_ga_dashboard.git', tag: "1.0.0"

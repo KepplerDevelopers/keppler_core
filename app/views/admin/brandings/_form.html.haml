@@ -1,0 +1,52 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			= link_to admin_brandings_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs
+			.card
+				.card-content
+					= simple_form_for [:admin, @branding] do |f|
+						.row
+							= f.input :banner, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+							= f.input :name
+							= f.input :headline_type, as: :checkbox_material, label: "Headline Image", wrapper_html: { class: "check", id: "toggle" }
+							- if !@branding.headline_text.nil? && @branding.headline_text.blank?
+								.col.s6
+									= f.input :headline_text, wrapper_html: { class: "hidden" }
+								= f.input :headline_image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+							- else
+								.col.s9
+									= f.input :headline_text
+								.col.s2#color{style: "margin-top: 15px"}
+									= f.input :headline_color, input_html: {class: "color-input" }, label: false
+									-# %input.color-input{name: "[branding][headline_color]"}
+								= f.input :headline_image, :as => :file_material, label: false, wrapper_html: { class: "file-field hidden" }
+
+							= f.input :style_type, collection: ['Parallax', 'Bloque a la derecha', 'Bloque a la izquierda'], label: false, include_blank: "Seleciona un estilo para el servicio"
+							= f.input :title
+							= f.input :description, input_html: {class: "materialize-textarea"}
+
+							.form-actions.right
+								= f.button :submit, t("keppler.actions.save"), name: '_save'
+								= f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
+
+-# , :as => :ckeditor, label: false, input_html: { :ckeditor => { :toolbar => 'mini'} }
+:scss
+	.hidden {
+		display: none;
+	}
+	.check {
+		margin-bottom: 20px;
+	}
+:javascript
+	$('#branding_headline_type').click(function() {
+		$('#branding_headline_text').val('')
+		$('#branding_headline_image').val('')
+		$('.branding_headline_text').toggleClass('hidden')
+		$('.branding_headline_image').toggleClass('hidden')
+		$('#color').toggleClass('hidden')
+		$('.color-input').val('')
+	})
+
+	$('.color-input').minicolors()
