@@ -2,4 +2,8 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require bootstrap-sprockets
+#= require keppler_blog/frontend/application
+#= require keppler_contact_us/application
+#= require vue
+#= require vue-resource
 #= require_tree .
