@@ -1,0 +1,29 @@
+- social.each_with_index do |proyect, index|
+  = link_to success_detail_path(proyect) do
+    .redes.filter.wow.animated.fadeInUp.hidden-xs{"v-if" => "#{index+1} <= showSocial"}
+      %img.img-responsive{:alt => "Foto caso de exito", :src => "#{proyect.banner}"}/
+      .cont
+        %div
+
+        -# %img{:alt => "...", :src => "#{proyect.banner}", :style => "width: 21.8rem; height: auto;"}/
+        .texto
+          %p.texto-2_5.sfreg.color-blanco= proyect.headline
+          %p.texto-5.sfpro.color-blanco{style: "width: 500px"}
+            = proyect.name
+        %div
+          %img.pull-right{:alt => "Logotipo", :src => "#{proyect.brand}", :style => "width: 21.8rem; height: auto;"}/
+
+  -# .visible-xs.hidden
+  -#   = link_to success_detail_path(proyect) do
+  -#     .redes.filter.wow.animated.fadeInUp{"v-if" => "#{index+1} <= showSocialXs"}
+  -#       %img.img-responsive{:alt => "Foto caso de exito", :src => "#{proyect.banner}"}/
+  -#       .cont
+  -#         %div
+  -#
+  -#         -# %img{:alt => "...", :src => "#{proyect.banner}", :style => "width: 21.8rem; height: auto;"}/
+  -#         .texto
+  -#           %p.texto-2_5.sfreg.color-blanco= proyect.headline
+  -#           %p.texto-5.sfpro.color-blanco{style: "width: 500px"}
+  -#             = proyect.name
+  -#         %div
+  -#           %img.pull-right{:alt => "Logotipo", :src => "#{proyect.brand}", :style => "width: 21.8rem; height: auto;"}/
