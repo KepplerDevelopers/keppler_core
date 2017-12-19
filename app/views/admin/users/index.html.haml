@@ -1,6 +1,6 @@
 .listing.col.l9.m12.s12
 	= link_to new_admin_user_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-		= material_icon.md_24.add
+		= material_icon.md_24.person_add
 	= entries(@total, @objects)
 	%table.bordered
 		%tbody
@@ -13,8 +13,8 @@
 				%tr.white-hover
 					%td
 					%th.center Name
-					%th.center Email
-					%th.center Role
+					%th.center.hide-on-small-and-down Email
+					%th.center.hide-on-small-and-down Role
 					- if can? :show, User
 						%th
 					- if can? :update, User

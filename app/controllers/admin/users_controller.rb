@@ -7,7 +7,7 @@ module Admin
 
     def index
       @q = User.ransack(params[:q])
-      users = @q.result(distinct: true).where('id != ?', current_user.id)
+      users = @q.result(distinct: true).where('id != ?', User.first.id)
       @objects = users.page(@current_page)
       @total = users.size
       if !@objects.first_page? && @objects.size.zero?

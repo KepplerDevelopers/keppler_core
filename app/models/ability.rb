@@ -37,9 +37,7 @@ class Ability
       # - User authorize -
       can [:delete, :show, :edit, :update,
            :create, :index, :destroy_multiple], User
-      can :destroy, User do |u|
-        !u.eql?(user)
-      end
+      cannot :delete, user
 
     elsif user.has_role? :client
       
