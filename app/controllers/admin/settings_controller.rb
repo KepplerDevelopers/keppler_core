@@ -77,12 +77,7 @@ module Admin
     end
 
     def social_account_permit_attributes
-      [
-        :facebook, :twitter, :instagram, :google_plus,
-        :tripadvisor, :pinterest, :flickr, :behance,
-        :dribbble, :tumblr, :github, :linkedin,
-        :soundcloud, :youtube, :skype, :vimeo
-      ]
+      [ :facebook, :instagram, :google_plus, :youtube]
     end
 
     def social_account_colors

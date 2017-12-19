@@ -1,0 +1,116 @@
+= title @post.title
+= meta_description sanitize(@post.body, tags: []).truncate(150)
+
+%header#header-blog{style: "background: url(#{@post.image}); background-size: cover; background-position: center top; height: 486px"}
+	%section.container{:style => "position: relative; min-height: 50vh; height: auto;"}
+		#cont-logotipo
+			#logotipo
+
+				#marca
+					= link_to "/" do
+						%img{:src => "/assets/img/logo_peq.png"}/
+
+				#burger-button
+					#bars
+						%span.top
+						%span.middle
+						%span.bottom
+			/ /.logotipo
+			#hora.hidden-xs
+				#icono-hora
+					%img{:src => "/assets/img/icono_sol.png"}/
+				#texto-hora
+					%span 3.39 PM. Abierto ahora
+
+		%nav#menu.menu
+			/ menu
+			.container
+				%p#tu-dominio
+					%a.link-menu{:href => "search.html", :target => "_top"} Encuentra tu dominio
+				.row
+					/ MENU DE NAVEGACION
+					#menu-agencia.col-sm-6
+						%a.link-menu{:href => "", :target => "_top"} Nuestra Agencia
+						%br/
+						%a.link-menu{:href => "success.html", :target => "_top"} Proyectos con éxito
+						%br/
+						%a.link-menu{:href => "webdesing.html", :target => "_top"} Diseño de Páginas Web
+						%br/
+						%a.link-menu{:href => "digital.html", :target => "_top"} Mercadeo Digital
+						%br/
+						%a.link-menu{:href => "services.html", :target => "_top"} Servicios
+						%br/
+						%a.link-menu{:href => "blog.html", :target => "_top"} Notas para la Comunidad
+						%br/
+						%a.link-menu{:href => "#contactos"} Contactos
+						%br/
+						#menu-redes
+							%a.link-menu{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} INSTAGRAM
+							%a.link-menu{:href => "https://www.facebook.com/grupobrieva", :target => "_blank"} FACEBOOK
+							%a.link-menu{:href => "https://plus.google.com/+juancarlosbrievadesigners", :target => "_blank"} GOOGLE+
+					/ /.menu de navegación
+					/ DATOS
+					#datos.col-sm-6
+						#datos1.mt-8
+							%p.color-blanco.sfpro.texto-2_5 Sede Cartagena
+							(57 5) 643 0188
+							%br/
+							+57 301 324 5468
+							%br/
+							%a{:href => "mailto:contacto@grupobrieva.com"} contacto@grupobrieva.com
+							%br/
+							%address Manga, Cl. 20 #25-82
+							%a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+						#datos2.mt-8
+							%p.color-blanco.sfpro.texto-2_5 Sede Medellín
+							+57 301 795 7845
+							%br/
+							%a{:href => "mailto:antonio@grupobrieva.com"} antonio@grupobrieva.com
+							%br/
+							%address Centro comercial Río Sur
+							%a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+
+		%p.sfpro.color-blanco.texto-5.mt-10= @post.title
+		%p.sfpro.color-blanco.texto-3
+			= @post.user.name
+			,
+			= @post.created_at.strftime("%d %b. %Y")
+		%p.sfpro.color-blanco.texto-3
+			= @post.category.name
+
+
+.container.keppler-blog#keppler-blog
+	-# = render 'categories'
+	.visible-xs
+		= render 'search'
+	.row
+		.col-lg-8.col-xs-12
+			= @post.body.html_safe
+		
+			-# .posts-wrapper
+				-# .post
+				-# 	-# %h2.post-title
+					-# 	= link_to @post.title, blog_show_post_path(@post.permalink, popup: "true")
+
+					-# .post-attributes
+					-# 	%ul
+					-# 		%li
+					-# 			%span
+					-# 				%i.fa.fa-calendar
+					-# 				= @post.created_at.strftime("%d %b. %Y")
+					-# 		%li
+					-# 			%i.fa.fa-user
+					-# 			= link_to @post.user.name, filter_path('autor', @post.user.permalink)
+					-# 		%li
+					-# 			%i.fa.fa-tags
+					-# 			= link_to @post.category.name, filter_path('category', @post.category.permalink)
+					-# .post-image
+						-# = link_to blog_show_post_path(@post.permalink) do
+						-# 	= image_tag @post.image
+					= @post.shared_enabled ? social_share_button_tag(@post.title) : "<br>".html_safe
+					.post-body
+
+
+				= render 'facebook_comments'
+
+		= render "sidebar"
