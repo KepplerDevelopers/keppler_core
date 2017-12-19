@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  banner: MyString
+  headline: MyString
+  service_type: MyString
+  description: MyText
+  name: MyString
+  share: false
+
+two:
+  banner: MyString
+  headline: MyString
+  service_type: MyString
+  description: MyText
+  name: MyString
+  share: false

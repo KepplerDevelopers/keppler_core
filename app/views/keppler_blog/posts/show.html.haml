@@ -1,0 +1,52 @@
+= title(t('keppler.titles.show', model: t("keppler.models.pluralize.posts")))
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, model
+				= link_to post_path(@post), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, model
+				= link_to edit_post_path(@post), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit"), "data-no-turbolink" => true do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to posts_path class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card{ style: "padding: 0px;"}
+			.card-image
+				= image_tag @post.image
+			.card-content
+				%ul.list{ style: "margin:0px;"}
+					%li.list-row
+						.display-label= model.human_attribute_name(:title)
+						.display-value.fs-body-1.tc-black-2= @post.title.to_s.humanize
+					%li.list-row
+						.display-label= model.human_attribute_name(:permalink)
+						.display-value.fs-body-1.tc-black-2= @post.permalink.to_s.humanize
+					%li.list-row
+						.display-label= model.human_attribute_name(:body)
+						.display-value.fs-body-1.tc-black-2=  @post.body.html_safe
+					%li.list-row
+						.display-label= model.human_attribute_name(:user_id)
+						.display-value.fs-body-1.tc-black-2= @post.user.name
+					%li.list-row
+						.display-label= model.human_attribute_name(:category_id)
+						.display-value.fs-body-1.tc-black-2= @post.category.name
+					- unless @post.subcategory.blank?
+						%li.list-row
+							.display-label= model.human_attribute_name(:subcategory_id)
+							.display-value.fs-body-1.tc-black-2= @post.subcategory
+					%li.list-row
+						.display-label= model.human_attribute_name(:public)
+						.display-value.fs-body-1.tc-black-2= @post.public ? t("keppler.messages.y") : t("keppler.messages.n")
+					%li.list-row
+						.display-label= model.human_attribute_name(:comments_open)
+						.display-value.fs-body-1.tc-black-2= @post.comments_open ? t("keppler.messages.y") : t("keppler.messages.n")
+					%li.list-row
+						.display-label= model.human_attribute_name(:shared_enabled)
+						.display-value.fs-body-1.tc-black-2= @post.shared_enabled ? t("keppler.messages.y") : t("keppler.messages.n")
+					%li.list-row
+						.display-label= model.human_attribute_name(:created_at)
+						.display-value= @post.created_at.strftime("%d/%m/%Y %H:%M:%S")
+					%li.list-row
+						.display-label= model.human_attribute_name(:updated_at)
+						.display-value= @post.updated_at.strftime("%d/%m/%Y %H:%M:%S")
+
