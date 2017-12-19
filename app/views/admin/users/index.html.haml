@@ -1,5 +1,3 @@
-= title(t('keppler.titles.index', model: "Users"))
-
 .listing.col.l9.m12.s12
 	= link_to new_admin_user_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
 		= material_icon.md_24.add
@@ -16,7 +14,7 @@
 					%td
 					%th.center Name
 					%th.center Email
-					%th.center Rol
+					%th.center Role
 					- if can? :show, User
 						%th
 					- if can? :update, User
@@ -29,7 +27,6 @@
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
 	= render "description"
-
 
 = link_to new_admin_user_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
 	= material_icon.md_24.add.css_class("md-light")

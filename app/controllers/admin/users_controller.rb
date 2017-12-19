@@ -2,7 +2,7 @@ module Admin
   # UsersController
   class UsersController < AdminController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :set_roles, only: [:new, :edit]
+    before_action :set_roles, only: [:index, :new, :edit]
     before_action :show_history, only: [:index]
 
     def index
@@ -68,7 +68,8 @@ module Admin
     end
 
     def set_roles
-      @roles = Role.all.map { |rol| [rol.name.humanize, rol.id] unless rol.name.eql?(:keppler_admin) }
+      all_roles = Role.all.map { |rol| [rol.name.humanize, rol.id] }
+      @roles = all_roles.drop(1)
     end
 
     def user_params
