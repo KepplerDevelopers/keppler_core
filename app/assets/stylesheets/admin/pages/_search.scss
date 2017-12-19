@@ -14,7 +14,7 @@
     margin-left: 0;
   }
 
-  .nav-search {
+  #nav-search {
     background-color: rgba($black, .16);
     background-image: url('search.png');
     background-position: 10px center;
@@ -48,7 +48,7 @@
 
   }
 
-  .nav-search:focus {
+  #nav-search:focus {
     background-color: rgba($black, .25);
     border-bottom: 0 !important;
     box-shadow: none !important;

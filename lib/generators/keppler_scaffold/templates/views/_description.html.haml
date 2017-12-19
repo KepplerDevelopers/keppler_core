@@ -6,7 +6,7 @@
 	.list
 		.collection.with-header
 			.collection-header
-				%h5
+				%h5.center-align
 					= t('keppler.titles.history')
 			- @activities.each do |activity|
 				- if activity.trackable_type.eql? 'Session'

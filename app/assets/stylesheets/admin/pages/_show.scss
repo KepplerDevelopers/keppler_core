@@ -33,9 +33,10 @@
           letter-spacing: 5px;
         }
         .color-subtitle{
-            font-style: oblique;
-            font-size: larger;
-            font-weight: 300;
+          font-weight: 400;
+          font-size: larger;
+          font-style: oblique;
+          color: $keppler-accent;
         }
       }
     }

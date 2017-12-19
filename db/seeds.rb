@@ -12,11 +12,11 @@
 
 [:keppler_admin, :admin, :client].each do |name|
   Role.create name: name
-  puts "#{name} has been created"
+  puts "Role #{name} has been created"
 end
 
 User.create(
-  name: 'Admin', email: 'admin@keppler.com', password: '12345678',
+  name: 'Keppler Admin', email: 'admin@keppler.com', password: '12345678',
   password_confirmation: '12345678', role_ids: '1'
 )
 
