@@ -1,0 +1,11 @@
+.blog-widget
+	.blog-widget--header
+		%h3.widget-title
+			Tags
+	.blog-widget--body
+		%ul.widget-list#tags
+			- ActsAsTaggableOn::Tag.most_used(9).each do |tag|
+				%li
+					= link_to filter_path("tag", tag.name.parameterize), class: "tag #{'active' if params[:permalink] and tag.name.downcase.eql?(params[:permalink].gsub("-", " ").downcase)}" do
+						%i.fa.fa-tags
+						= tag.name

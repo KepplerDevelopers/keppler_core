@@ -1,0 +1,9 @@
+<%- unless @subcategories.empty? %>
+	$('#post_subcategory_id').prop('disabled', false)
+	$('#post_subcategory_id').show()
+	$('#post_subcategory_id').html('<%= escape_javascript(options_for_select(@subcategories.map { |s| [s.name, s.id] }))%>');
+<%- else %>
+	$('#post_subcategory_id').html('<%= escape_javascript(options_for_select(["", "No hay opciones"]))%>');
+	$('#post_subcategory_id').prop('disabled', true)
+	$('#post_subcategory_id').hide()
+<%- end %>
