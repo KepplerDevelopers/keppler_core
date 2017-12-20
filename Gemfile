@@ -21,7 +21,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks'
 gem 'to_xls-rails'
-gem 'vuejs-rails'
 
 # Database
 gem 'mysql2', '~> 0.3.18'
