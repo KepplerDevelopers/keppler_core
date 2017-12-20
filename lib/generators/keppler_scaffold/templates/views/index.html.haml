@@ -12,19 +12,27 @@
 					%th{style: 'padding-left: 20px'}
 					<%- attributes.each do |attribute| -%>
 						<%- if @attachments.include?(attribute.name) -%>
-					%th.center <%= attribute.name.singularize.camelcase %>
+					%th.center= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")
 						<%- end -%>
 					<%- end -%>
 					<%- attributes.each_with_index do |attribute, index| -%>
 						<%- if index < 6 -%>
 							<%- unless @attachments.include?(attribute.name) -%>
 								<%- unless attribute.type.to_s == "text" -%>
-					%th.center <%= attribute.name.singularize.camelcase %>
+					%th.center= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")
 								<%- end -%>
 							<%- end -%>
 						<%- end -%>
 					<%- end -%>
-					%th{ colspan: 4}
+					- if can? :show, <%= singular_table_name.camelcase %>
+						%th.center
+					- if can? :update, <%= singular_table_name.camelcase %>
+						%th.center
+					- if can? :clone, <%= singular_table_name.camelcase %>
+						%th.center
+					- if can? :delete, <%= singular_table_name.camelcase %>
+						%th.center
+
 			- @objects.each do |<%= singular_table_name %>|
 				= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
 			- if @objects.size.zero?
