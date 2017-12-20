@@ -25,7 +25,7 @@ puts 'admin@keppler.com has been created'
 Customize.create(file: "", installed: true)
 puts 'Keppler Template has been created'
 # Create setting deafult
-setting = Setting.new(
+setting = Setting.create(
   name: 'Keppler Admin', description: 'Welcome to Keppler Admin',
   smtp_setting_attributes: {
     address: 'test', port: '25', domain_name: 'keppler.com',
@@ -37,24 +37,6 @@ setting = Setting.new(
     ga_status: true
   }
 )
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of d9050ea... first commit
-setting.social_account = SocialAccount.new
->>>>>>> parent of d9050ea... first commit
-=======
-TermsAndCondition.create(content: '')
-setting.social_account = SocialAccount.new
->>>>>>> parent of 852c7c2... features
-=======
-TermsAndCondition.create(content: '')
-setting.social_account = SocialAccount.new
->>>>>>> parent of 852c7c2... features
-setting.appearance = Appearance.new(theme_name: 'keppler')
-setting.save
+setting.appearance = Appearance.create(theme_name: 'keppler')
 puts 'Setting default has been created'
