@@ -1,6 +1,12 @@
 es:
   keppler:
     sidebar-menu:
+      terms_and_conditions: Terms and conditions
+      briefings: Briefings
+      webs: Webs
+      proyects: Proyects
+      marketings: Marketings
+      brandings: Brandings
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
@@ -23,6 +29,12 @@ es:
         categories: Categorías
     models:
       singularize:
+        terms_and_condition: terms and condition
+        briefing: briefing
+        web: web
+        proyect: proyect
+        marketing: marketing
+        branding: branding
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -31,6 +43,12 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        terms_and_conditions: terms and conditions
+        briefings: briefings
+        webs: webs
+        proyects: proyects
+        marketings: marketings
+        brandings: brandings
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -39,6 +57,12 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
+      admin/terms_and_conditions: Terms and conditions
+      admin/briefings: Briefings
+      admin/webs: Webs
+      admin/proyects: Proyects
+      admin/marketings: Marketings
+      admin/brandings: Brandings
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'

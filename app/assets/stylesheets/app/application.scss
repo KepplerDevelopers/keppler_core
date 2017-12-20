@@ -1,3 +1,5 @@
+//= require material_icons
+//= require animate
 //= require_self
 
 // Plugins
@@ -23,6 +25,7 @@
 @import 'components/navbar';
 @import 'components/buttons';
 @import 'components/inputs';
+@import 'keppler_blog/frontend/blog';
 
 // Pages
 @import 'pages/*';

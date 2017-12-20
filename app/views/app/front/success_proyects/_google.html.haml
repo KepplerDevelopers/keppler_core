@@ -1,0 +1,26 @@
+- google.each_with_index do |proyect, index|
+  = link_to success_detail_path(proyect) do
+    .google.filter.wow.animated.fadeInUp.hidden-xs{"v-if" => "#{index+1} <= showGoogle"}
+      %img.img-responsive{:alt => "Foto caso de exito", :src => "#{proyect.banner}"}/
+      .cont
+        %div
+
+        .texto
+          %p.texto-2_5.sfreg.color-blanco= proyect.headline
+          %p.texto-5.sfpro.color-blanco{style: "width: 500px"}
+            = proyect.name
+        %div
+          %img.pull-right{:alt => "Logotipo", :src => "#{proyect.brand}", :style => "width: 21.8rem; height: auto;"}/
+
+  -# = link_to success_detail_path(proyect) do
+  -#   .google.filter.wow.animated.fadeInUp.hidden-sm.hidden-md.hidden-lg.visible-xs{"v-if" => "#{index+1} <= showGoogleXs"}
+  -#     %img.img-responsive{:alt => "Foto caso de exito", :src => "#{proyect.banner}"}/
+  -#     .cont
+  -#       %div
+  -#
+  -#       .texto
+  -#         %p.texto-2_5.sfreg.color-blanco= proyect.headline
+  -#         %p.texto-5.sfpro.color-blanco{style: "width: 500px"}
+  -#           = proyect.name
+  -#       %div
+  -#         %img.pull-right{:alt => "Logotipo", :src => "#{proyect.brand}", :style => "width: 21.8rem; height: auto;"}/
