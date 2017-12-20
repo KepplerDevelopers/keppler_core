@@ -38,8 +38,11 @@ setting = Setting.new(
   }
 )
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> parent of d9050ea... first commit
 setting.social_account = SocialAccount.new
 >>>>>>> parent of d9050ea... first commit
 setting.appearance = Appearance.new(theme_name: 'keppler')
