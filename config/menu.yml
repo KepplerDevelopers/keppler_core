@@ -52,42 +52,6 @@ menu:
           name: Message Settings
           url_path: /admin/message_settings
           current: ['keppler_contact_us/message_settings']
-  branding:
-    name: brandings
-    url_path: /admin/brandings
-    icon: insert_chart
-    current: ['admin/brandings']
-    model: Branding
-  marketing:
-    name: marketings
-    url_path: /admin/marketings
-    icon: insert_chart
-    current: ['admin/marketings']
-    model: Marketing
-  proyect:
-    name: proyects
-    url_path: /admin/proyects
-    icon: insert_chart
-    current: ['admin/proyects']
-    model: Proyect
-  web:
-    name: webs
-    url_path: /admin/webs
-    icon: insert_chart
-    current: ['admin/webs']
-    model: Web
-  briefing:
-    name: briefings
-    url_path: /admin/briefings
-    icon: insert_chart
-    current: ['admin/briefings']
-    model: Briefing
-  terms_and_condition:
-    name: terms and conditions
-    url_path: /admin/terms_and_conditions
-    icon: insert_chart
-    current: ['admin/terms_and_conditions']
-    model: TermsAndCondition
   user:
     name: users
     url_path: /admin/users

@@ -38,15 +38,6 @@ setting = Setting.new(
   }
 )
 
-
-TermsAndCondition.create(content: '')
-setting.social_account = SocialAccount.create(
-  facebook: "https://www.facebook.com/grupobrieva",
-  google_plus: "https://plus.google.com/+juancarlosbrievadesigners",
-  youtube: "https://www.youtube.com/channel/UC_oGhL9WuCYSEAVVOweHV7Q",
-  instagram: "https://www.instagram.com/grupobrieva/"
-)
-
 setting.appearance = Appearance.new(theme_name: 'keppler')
 setting.save
 puts 'Setting default has been created'

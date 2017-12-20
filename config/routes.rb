@@ -1,81 +1,9 @@
 Rails.application.routes.draw do
   root to: 'app/front#index'
 
-  get '/mercadeo_digital', to: 'app/front#digital', as: :digital_marketing
-  get '/diseño_web', to: 'app/front#web', as: :web_design
-  get '/nuestra_agencia', to: 'app/front#about', as: :about
-  get '/proyectos_con_exito', to: 'app/front#success', as: :success
-  get '/proyectos_con_exito/:id', to: 'app/front#success_ej', as: :success_detail
-  get '/servicios', to: 'app/front#services', as: :services
-  get '/notas_para_la_comunidad', to: 'app/front#notices', as: :notices
-  get '/branding', to: 'app/front#branding', as: :branding
-  get '/briefing', to: 'app/front#briefing', as: :briefing
-  get '/search', to: 'app/front#search', as: :search
-  get '/show_more/:type/:quantity', to: 'app/front#show_more', as: :show_more
-
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
-    resources :terms_and_conditions do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
-    resources :briefings do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
-    resources :webs do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
-    resources :proyects do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
-    resources :marketings do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
-    resources :brandings do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
 
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -147,6 +75,4 @@ Rails.application.routes.draw do
 
   # Dashboard route engine
   mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'
-  mount KepplerBlog::Engine, :at => '/', as: :blog
-  mount KepplerContactUs::Engine, :at => '/', as: 'messages'
 end
