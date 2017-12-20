@@ -13,10 +13,4 @@
 #= require cocoon
 #= require turbolinks
 #= require jquery.minicolors
-#= require ckeditor/init
-#= require cocoon
-#= require keppler_blog/admin/application
-#= require keppler_contact_us/application
-#= require vue
-#= require vue-resource
 #= require_tree .

@@ -6,7 +6,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     if user.has_role? :keppler_admin
-      
+
       # - Customize authorize -
       can [:delete, :update,
            :new, :create, :install_default,
@@ -27,7 +27,6 @@ class Ability
       # - User authorize -
       can [:delete, :show, :edit, :update,
            :create, :index, :destroy_multiple], User
-
       can :destroy, User do |u|
         !u.eql?(user)
       end
@@ -40,7 +39,7 @@ class Ability
       cannot :delete, user
 
     elsif user.has_role? :client
-      
+
     end
     # The first argument to `can` is the action you are giving the user
     # permission to do.
