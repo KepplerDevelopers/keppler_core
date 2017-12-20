@@ -3,10 +3,13 @@
 
 // Stylesheets
 = stylesheet_link_tag 'app/application', media: 'all', 'data-turbolinks-track' => true
+%link{href:'http://fonts.googleapis.com/css?family=Patua+One', rel:'stylesheet', type:'text/css'}
+%link{:href => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css", :rel => "stylesheet"}/
 
 // Javascripts
 = javascript_include_tag 'app/application', 'data-turbolinks-track' => true
 = render "app/layouts/google_adwords"
+%script{:src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"}
 
 // Google Analytics
 = render 'app/layouts/google_analytics'
