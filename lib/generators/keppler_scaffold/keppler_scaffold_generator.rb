@@ -67,6 +67,7 @@ module Rails
           add_str_locales(locale, 'pluralize')
           add_str_locales(locale, 'modules')
           add_str_locales(locale, 'sidebar-menu')
+          add_str_locales(locale, 'attributes')
         end
       end
 
@@ -160,6 +161,12 @@ module Rails
           "\n      admin/#{controller_file_name}: #{controller_file_name.humanize}"
         when 'sidebar-menu'
           "\n      #{controller_file_name}: #{controller_file_name.humanize}"
+        when 'attributes'
+          array = ["\n      #{controller_file_name.singularize}:"]
+          attributes_names.each do |attribute|
+            array.push("\n        #{attribute}: #{attribute.humanize}")
+          end
+          array.join
         end
       end
 

@@ -29,7 +29,7 @@
 	- if can? :delete, User
 		%td.center{style:"width: 5%"}
 			- if user.id.eql?(current_user.id)
-				%a.not-allowed.btn-floating.btn-flat.right{ href: '#' }
+				%a.not-allowed.btn-floating.btn-flat.right{ href: '#', data: { confirm: t("activerecord.errors.messages.restrict_destroy") } }
 					%i.material-icons.md-18 delete
 			- else
 				= link_to admin_user_path(user), class: "btn-floating btn-flat right", title: t("keppler.actions.delete"), "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do

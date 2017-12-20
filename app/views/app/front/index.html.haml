@@ -9,7 +9,7 @@
 			= #render 'app/layouts/messages'
 			.front
 				.front-logo
-					= image_tag "app/keppler-front.png", class: "front-logo img-responsive"
+					= image_tag "app/keppler-front.png", class: "img-responsive"
 				.front-social
 					%ul
 						%li
@@ -24,6 +24,197 @@
 						%li
 							=	link_to "https://github.com/SliceDevelopers", target:"_blank" do
 								= icon 'github'
-
 			%footer
 				= render 'app/layouts/footer'
+
+
+			%section.description{ style: 'height:100vh' }
+				%h3 KEPPLER ADMIN
+
+				%p KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
+
+
+				%h3 Características
+
+				%ul
+					%li Base de datos por defecto MySQL
+					%li Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
+					%li Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
+					%li Integración para autorizaciones con [CanCanCan](https://github.com/CanCanCommunity/cancancan)
+					%li Inegración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
+					%li Integración para helpers de formularios con [SimpleForm](https://github.com/RolifyCommunity/rolify)
+					%li Integración para búsquedas full-text con [Ransack](https://github.com/activerecord-hackery/ransack)
+					%li Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
+					%li Integración con framework javascript [AngularJs](https://angularjs.org/)
+					%li Integración sitemap dinamicos con [sitemap_generator](https://github.com/kjvarga/sitemap_generator)
+
+				%h3 Instalación
+
+				%pre
+					%code.shell
+						git clone git@github.com:SliceDevelopers/keppler_admin.git
+						bundle install
+
+				%p Luego debe configurar el archivo `config/secrets.yml` [ver archivo](https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example) de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
+
+				%pre
+					%code.shell
+						rake db:create
+						rake db:migrate
+						rake db:seed
+
+				%h3 SimpleForm con Materialize
+
+				%p Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en `config/initializers/simple_form_materialize.rb`
+
+				%p Aqui algunos ejemplos para la creacion de inputs:
+
+				%pre
+					%code.haml
+						:preserve
+							# inputs de tipo text
+							= f.input :name
+
+							# inputs de tipo boolean
+							= f.input :public, as: :checkbox_material
+
+							# inputs de tipo textarea
+							= f.input :description, input_html: { class: "materialize-textarea" }
+
+							# inputs de tipo file
+							= f.input :image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+
+							# inputs de tipo select
+							= f.input :role_ids, collection: Role.all, label: false, include_blank: "Selecione un rol"
+
+							# inputs de tipo radio buttons
+							= f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
+
+							# inputs de tipo check_boxes
+							= f.collection_check_boxes :options, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
+
+							# inputs de tipo date
+							= f.input :date, input_html: {class: "datepicker"}
+
+				%strong
+					Nota:
+				%p Puede revisar la documentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
+
+
+				%h3 Keppler scaffolds
+
+				%p Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
+
+				%pre rails g keppler_scaffold <module_name> <attributes> -f
+
+				%p Luego crea la tabla en base de datos.
+
+				%pre rake db:migrate
+
+				%h3 Plugins (Módulos)
+
+				%p La plataforma permite la adaptación de módulos con facil instalación, algunos de los módulos desarrollados son:
+
+				%ul
+					%li [Keppler google analytics dashboard](https://github.com/SliceDevelopers/keppler_ga_dashboard) - *ya viene integrado*
+					%li [Keppler blog](https://github.com/SliceDevelopers/keppler_blog)
+					%li [Keppler catalogs](https://github.com/inyxtech/keppler_catalogs)
+					%li [Keppler contact](https://github.com/SliceDevelopers/keppler_contact_us)
+
+
+
+:javascript
+	Keppler = $('.front-logo img')
+	Social = $('.front-social li')
+	Slice = $('.front-footer')
+	MinY = 10
+	MedY = 60
+	MaxY = 100
+	Delay = 0.7
+	function scrollFunction(){
+		scroll = $('html').scrollTop()
+		if (scroll <= 10) {
+			Keppler.css({
+				transform: 'scale(1)'
+			})
+			Social.css('opacity', '1')
+		}
+		if (scroll > 10 && scroll <= 60) {
+			Keppler.css({
+				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+				top: ((180-scroll)/4)/2+'vh'
+			})
+			Social.css('opacity', 1-('0.'+scroll))
+			Slice.css({
+				opacity: 1-('0.'+scroll),
+				transform: 'scale('+(1-('0.'+scroll))+')'
+			})
+		}
+		if (scroll > 60 && scroll < 100) {
+			Keppler.css({
+				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+				top: ((180-scroll)/4)/2+'vh'
+			})
+			Social.css('opacity', 1-('0.'+scroll))
+			Slice.css({
+				opacity: 1-('0.'+scroll),
+				transform: 'scale('+(1-('0.'+scroll))+')'
+			})
+		}
+		if (scroll > 100 && scroll <= 559) {
+			Keppler.css({
+				transform: 'translate(-50%, -'+(scroll-(60-18))*0.43+'px) scale('+(1-('0.'+scroll)*1.2)+')'
+			})
+			Social.css({
+				display: 'none',
+				opacity: 0
+			})
+			Slice.css({
+				display: 'none',
+				opacity: 0
+			})
+		}
+		if (scroll > 559) {
+			$('.front').css({
+				position: 'fixed',
+				width: '100%',
+				top: '-90vh'
+			})
+			Keppler.css({
+				transform: 'translate(-50%, -222.31px) scale(0.3292)'
+			})
+			$('.description').css({
+				'margin-top': '100vh'
+			})
+		}
+		else {
+			Social.css('display', 'inline')
+			Slice.css('display', 'inline')
+			$('.front').css({
+				position: 'relative',
+				width: '100%',
+				top: '0'
+			})
+			$('.description').css({
+				'margin-top': '0'
+			})
+		}
+		// console.log(scroll)
+	}
+	$(document).ready(function() {
+	  $('pre code').each(function(i, block) {
+	    hljs.highlightBlock(block);
+	  });
+		scrollFunction()
+	});
+	$( window ).scroll(function() {
+		scrollFunction()
+	})
+:sass
+	.front-logo
+		img
+			position: fixed
+			top: 30vh
+	.front-social
+		position: fixed
+		top: 50vh

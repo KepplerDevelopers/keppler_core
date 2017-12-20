@@ -132,6 +132,13 @@ es:
         ga_account_id: Identificador de la cuenta
         ga_tracking: Identificador de segumiento
         ga_status: Habilitar Google Analytics
+    errors:
+      messages:
+        record_invalid: "Validación fallida: %{errors}"
+        restrict_destroy: "No se puede borrar el registro"
+        restrict_dependent_destroy:
+          has_one: "No se puede borrar el registro porque un registro dependiente %{record} existe"
+          has_many: "No se puede borrar el registro porque registros dependientes %{record} existen"
   date:
     abbr_day_names:
     - Dom
