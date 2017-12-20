@@ -37,7 +37,11 @@ setting = Setting.new(
     ga_status: true
   }
 )
+<<<<<<< HEAD
 
+=======
+setting.social_account = SocialAccount.new
+>>>>>>> parent of d9050ea... first commit
 setting.appearance = Appearance.new(theme_name: 'keppler')
 setting.save
 puts 'Setting default has been created'

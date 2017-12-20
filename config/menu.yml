@@ -24,6 +24,7 @@ menu:
     icon: insert_chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
+<<<<<<< HEAD
   keppler_blog:
     name: keppler blog
     current: ['admin/blog/posts', 'admin/blog/categories']
@@ -52,6 +53,8 @@ menu:
           name: Message Settings
           url_path: /admin/message_settings
           current: ['keppler_contact_us/message_settings']
+=======
+>>>>>>> parent of d9050ea... first commit
   user:
     name: users
     url_path: /admin/users
