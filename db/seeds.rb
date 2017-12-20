@@ -41,11 +41,16 @@ setting = Setting.new(
 <<<<<<< HEAD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of d9050ea... first commit
 setting.social_account = SocialAccount.new
 >>>>>>> parent of d9050ea... first commit
+=======
+TermsAndCondition.create(content: '')
+setting.social_account = SocialAccount.new
+>>>>>>> parent of 852c7c2... features
 =======
 TermsAndCondition.create(content: '')
 setting.social_account = SocialAccount.new
