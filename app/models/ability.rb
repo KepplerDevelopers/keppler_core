@@ -5,15 +5,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     if user.has_role? :keppler_admin
-=======
-    if user.has_role? :admin
->>>>>>> parent of d9050ea... first commit
-=======
-    if user.has_role? :admin
->>>>>>> parent of d9050ea... first commit
 
       # - Customize authorize -
       can [:delete, :update,
