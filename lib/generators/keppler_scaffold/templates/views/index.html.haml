@@ -9,7 +9,8 @@
 		%tbody
 			- unless @objects.blank?
 				%tr{style:"background: #fff;"}
-					%th{style: 'padding-left: 20px'}
+					- if can? :destroy_multiple, <%= singular_table_name.camelcase %>
+						%th{style: 'padding-left: 20px'}
 					<%- attributes.each do |attribute| -%>
 						<%- if @attachments.include?(attribute.name) -%>
 					%th.center= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")

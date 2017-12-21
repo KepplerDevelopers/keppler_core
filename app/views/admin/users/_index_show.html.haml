@@ -11,7 +11,9 @@
 		= t("keppler.models.singularize.user").humanize
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
-		%center.color-title= @user.name
+		%center
+			%h5.color-title= @user.name
+			%h6.color-title= @user.rol.humanize
 		%table.list.bordered
 			%tbody
 				- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
