@@ -51,7 +51,7 @@ menu:
       - message_settings:
           name: Message Settings
           url_path: /admin/message_settings
-          current: ['keppler_contact_us/message_settings'
+          current: ['keppler_contact_us/message_settings']
   user:
     name: users
     url_path: /admin/users

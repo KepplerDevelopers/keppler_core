@@ -25,12 +25,12 @@
 						%li
 							=	link_to "https://github.com/SliceDevelopers", target:"_blank" do
 								= icon 'github'
-								
-			%footer
-				= render 'app/layouts/footer'
+
+				%footer
+					= render 'app/layouts/footer'
 
 
-			%section.description{ style: 'height:100vh' }
+			%section.description
 				%h3 KEPPLER ADMIN
 
 				%p KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
@@ -125,98 +125,98 @@
 
 
 
-:javascript
-	Keppler = $('.front-logo img')
-	Social = $('.front-social li')
-	Slice = $('.front-footer')
-	MinY = 10
-	MedY = 60
-	MaxY = 100
-	Delay = 0.7
-	function scrollFunction(){
-		scroll = $('html').scrollTop()
-		if (scroll <= 10) {
-			Keppler.css({
-				transform: 'scale(1)'
-			})
-			Social.css('opacity', '1')
-		}
-		if (scroll > 10 && scroll <= 60) {
-			Keppler.css({
-				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
-				top: ((180-scroll)/4)/2+'vh'
-			})
-			Social.css('opacity', 1-('0.'+scroll))
-			Slice.css({
-				opacity: 1-('0.'+scroll),
-				transform: 'scale('+(1-('0.'+scroll))+')'
-			})
-		}
-		if (scroll > 60 && scroll < 100) {
-			Keppler.css({
-				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
-				top: ((180-scroll)/4)/2+'vh'
-			})
-			Social.css('opacity', 1-('0.'+scroll))
-			Slice.css({
-				opacity: 1-('0.'+scroll),
-				transform: 'scale('+(1-('0.'+scroll))+')'
-			})
-		}
-		if (scroll > 100 && scroll <= 559) {
-			Keppler.css({
-				transform: 'translate(-50%, -'+(scroll-(60-18))*0.43+'px) scale('+(1-('0.'+scroll)*1.2)+')'
-			})
-			Social.css({
-				display: 'none',
-				opacity: 0
-			})
-			Slice.css({
-				display: 'none',
-				opacity: 0
-			})
-		}
-		if (scroll > 559) {
-			$('.front').css({
-				position: 'fixed',
-				width: '100%',
-				top: '-90vh'
-			})
-			Keppler.css({
-				transform: 'translate(-50%, -222.31px) scale(0.3292)'
-			})
-			$('.description').css({
-				'margin-top': '100vh'
-			})
-		}
-		else {
-			Social.css('display', 'inline')
-			Slice.css('display', 'inline')
-			$('.front').css({
-				position: 'relative',
-				width: '100%',
-				top: '0'
-			})
-			$('.description').css({
-				'margin-top': '0'
-			})
-		}
-		// console.log(scroll)
-	}
-	$(document).ready(function() {
-	  $('pre code').each(function(i, block) {
-	    hljs.highlightBlock(block);
-	  });
-		scrollFunction()
-	});
-	$( window ).scroll(function() {
-		scrollFunction()
-	})
-:sass
-	.front-logo
-		img
-			position: fixed
-			top: 30vh
-	.front-social
-		position: fixed
-		top: 50vh
+// :javascript
+// 	Keppler = $('.front-logo img')
+// 	Social = $('.front-social li')
+// 	Slice = $('.front-footer')
+// 	MinY = 10
+// 	MedY = 60
+// 	MaxY = 100
+// 	Delay = 0.7
+// 	function scrollFunction(){
+// 		scroll = $('html').scrollTop()
+// 		if (scroll <= 10) {
+// 			Keppler.css({
+// 				transform: 'scale(1)'
+// 			})
+// 			Social.css('opacity', '1')
+// 		}
+// 		if (scroll > 10 && scroll <= 60) {
+// 			Keppler.css({
+// 				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+// 				top: ((180-scroll)/4)/2+'vh'
+// 			})
+// 			Social.css('opacity', 1-('0.'+scroll))
+// 			Slice.css({
+// 				opacity: 1-('0.'+scroll),
+// 				transform: 'scale('+(1-('0.'+scroll))+')'
+// 			})
+// 		}
+// 		if (scroll > 60 && scroll < 100) {
+// 			Keppler.css({
+// 				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+// 				top: ((180-scroll)/4)/2+'vh'
+// 			})
+// 			Social.css('opacity', 1-('0.'+scroll))
+// 			Slice.css({
+// 				opacity: 1-('0.'+scroll),
+// 				transform: 'scale('+(1-('0.'+scroll))+')'
+// 			})
+// 		}
+// 		if (scroll > 100 && scroll <= 559) {
+// 			Keppler.css({
+// 				transform: 'translate(-50%, -'+(scroll-(60-18))*0.43+'px) scale('+(1-('0.'+scroll)*1.2)+')'
+// 			})
+// 			Social.css({
+// 				display: 'none',
+// 				opacity: 0
+// 			})
+// 			Slice.css({
+// 				display: 'none',
+// 				opacity: 0
+// 			})
+// 		}
+// 		if (scroll > 559) {
+// 			$('.front').css({
+// 				position: 'fixed',
+// 				width: '100%',
+// 				top: '-90vh'
+// 			})
+// 			Keppler.css({
+// 				transform: 'translate(-50%, -222.31px) scale(0.3292)'
+// 			})
+// 			$('.description').css({
+// 				'margin-top': '100vh'
+// 			})
+// 		}
+// 		else {
+// 			Social.css('display', 'inline')
+// 			Slice.css('display', 'inline')
+// 			$('.front').css({
+// 				position: 'relative',
+// 				width: '100%',
+// 				top: '0'
+// 			})
+// 			$('.description').css({
+// 				'margin-top': '0'
+// 			})
+// 		}
+// 		// console.log(scroll)
+// 	}
+// 	$(document).ready(function() {
+// 	  $('pre code').each(function(i, block) {
+// 	    hljs.highlightBlock(block);
+// 	  });
+// 		scrollFunction()
+// 	});
+// 	$( window ).scroll(function() {
+// 		scrollFunction()
+// 	})
+// :sass
+// 	.front-logo
+// 		img
+// 			position: fixed
+// 			top: 30vh
+// 	.front-social
+// 		position: fixed
+// 		top: 50vh
