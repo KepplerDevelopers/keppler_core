@@ -24,34 +24,6 @@ menu:
     icon: insert_chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
-  keppler_blog:
-    name: keppler blog
-    current: ['admin/blog/posts', 'admin/blog/categories']
-    icon: list
-    model: KepplerBlog::Post
-    submenu:
-      - meta_tags:
-          name: Posts
-          url_path: /admin/blog/posts
-          current: ['admin/blog/posts']
-      - google_adwords:
-          name: Categories
-          url_path: /admin/blog/categories
-          current: ['admin/blog/categories']
-  keppler_messages:
-    name: keppler messages
-    current: ['keppler_contact_us/messages', 'keppler_contact_us/message_settings']
-    icon: email
-    model: KepplerContactUs::Message
-    submenu:
-      - messages:
-          name: Messages
-          url_path: /admin/messages
-          current: ['keppler_contact_us/messages']
-      - message_settings:
-          name: Message Settings
-          url_path: /admin/message_settings
-          current: ['keppler_contact_us/message_settings']
   user:
     name: users
     url_path: /admin/users
