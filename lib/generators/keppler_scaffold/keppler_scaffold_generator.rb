@@ -51,13 +51,18 @@ module Rails
       def add_access_ability
         inject_into_file(
           'app/models/ability.rb',
-          str_ability,
+          str_ability_admin,
           after: '    if user.has_role? :keppler_admin'
         )
         inject_into_file(
           'app/models/ability.rb',
-          str_ability,
-          after: '    if user.has_role? :admin'
+          str_ability_admin,
+          after: '    elsif user.has_role? :admin'
+        )
+        inject_into_file(
+          'app/models/ability.rb',
+          str_ability_client,
+          after: '    elsif user.has_role? :client'
         )
       end
 
@@ -143,8 +148,12 @@ module Rails
         "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: insert_chart\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
       end
 
-      def str_ability
+      def str_ability_admin
         "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
+      end
+
+      def str_ability_client
+        "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can [:index, :show], #{controller_file_name.singularize.camelcase}"
       end
 
       def str_xls

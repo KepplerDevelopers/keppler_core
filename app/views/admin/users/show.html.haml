@@ -13,7 +13,7 @@
 		.card
 			.card-content
 				%center.color-title= @user.name
-				%center.color-subtitle= @user.roles.first.name.humanize
+				%center.color-subtitle= @user.rol.humanize
 				%table.list
 					%tbody
 						- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
