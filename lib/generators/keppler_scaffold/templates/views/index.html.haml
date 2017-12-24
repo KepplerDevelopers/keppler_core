@@ -61,6 +61,7 @@
 	$('#<%= singular_table_name %>').click(function() {
 		$('#import_file_<%= singular_table_name %>').click()
 		$('#import_file_<%= singular_table_name %>').change(function() {
+			$('.waiting').css('display', 'block')
 			$('#import_form_<%= singular_table_name %>').submit()
 		})
 	})
