@@ -81,6 +81,15 @@ module Admin
       )
     end
 
+    def import
+      <%= class_name %>.import(params[:file])
+
+      redirect_to(
+        admin_<%= index_helper %>_path(page: @current_page, search: @query),
+        notice: actions_messages(<%= orm_class.build(class_name) %>)
+      )
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
