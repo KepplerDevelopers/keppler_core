@@ -1,0 +1,73 @@
+#development
+	.wrapper
+		.wrapper-body.container
+			.actions
+				= link_to admin_scaffolds_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+					= material_icon.md_18.arrow_back.css_class("md-dark")
+			.wrapper-inputs
+				.col.s8
+					.card
+						.card-content
+							= simple_form_for [:admin, @scaffold] do |f|
+								{{ $data }}
+								.row
+									.col.s12
+										= f.input :name, input_html: {"v-model" => "name" }
+									.col.s12
+										%input{type: "text", "v-model" => "temp[0]", "v-bind:disabled" => "!name"}
+									.col.s12
+										%input{type: "text", "v-model" => "fields", name: "fields", "v-bind:disabled" => "!name"}
+
+									.col.s12
+										%h6{style: "margin-bottom: 50px"} type
+										.switch
+											%label
+												String
+												%input{name: "post", type: "hidden", value: "false"}
+												%input{name: "string", type: "checkbox", "v-model" => "temp", value: "string"}
+													%span.lever
+											%label
+												Integer
+												%input{name: "post", type: "hidden", value: "false"}
+												%input{name: "integer", type: "checkbox", "v-model" => "temp", value: "integer"}
+													%span.lever
+											%label
+												Text
+												%input{name: "post", type: "hidden", value: "false"}
+												%input{name: "text", type: "checkbox", "v-model" => "temp", value: "text"}
+													%span.lever
+											%label
+												Boolean
+												%input{name: "post", type: "hidden", value: "false"}
+												%input{name: "boolean", type: "checkbox", "v-model" => "temp", value: "boolean"}
+													%span.lever
+
+									.col.s12{style: "margin-top: 80px"}
+										.form-actions.right
+											%button{type: "button", "v-on:click" => "addField"} Añadir Otro
+											= f.button :submit, t("keppler.actions.save"), name: '_save'
+											= f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
+
+				.col.s4
+					.card
+						.card-content
+
+
+:javascript
+	new Vue({
+		el: '#development',
+		data: {
+			name: '',
+			fields: [],
+			temp: [],
+			type: ''
+		},
+		methods: {
+			addField() {
+				if (this.temp) {
+					this.fields.push(this.temp[0] + ':' + this.temp[1])
+					this.temp = []
+				}
+			}
+		}
+	})

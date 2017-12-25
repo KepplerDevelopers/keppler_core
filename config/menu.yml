@@ -24,6 +24,12 @@ menu:
     icon: insert_chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
+  web:
+    name: webs
+    url_path: /admin/webs
+    icon: insert_chart
+    current: ['admin/webs']
+    model: Web
   user:
     name: users
     url_path: /admin/users
