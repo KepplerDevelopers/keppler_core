@@ -5,11 +5,11 @@
 				= link_to admin_scaffolds_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
 					= material_icon.md_18.arrow_back.css_class("md-dark")
 			.wrapper-inputs
-				.col.s8
+				.col.s7
 					.card
 						.card-content
 							= simple_form_for [:admin, @scaffold] do |f|
-								{{ $data }}
+								-# {{ $data }}
 								.row
 									.col.s12
 										= f.input :name, input_html: {"v-model" => "name" }
@@ -44,13 +44,26 @@
 
 									.col.s12{style: "margin-top: 80px"}
 										.form-actions.right
-											%button{type: "button", "v-on:click" => "addField"} Añadir Otro
-											= f.button :submit, t("keppler.actions.save"), name: '_save'
-											= f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
+											%button.btn{type: "button", "v-on:click" => "addField"} Añadir Otro
+											= f.button :submit, "Guardar", name: '_save'
+											-# = f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
 
-				.col.s4
-					.card
+				.col.s5
+					.card{style: "padding: 0"}
 						.card-content
+							%table.bordered
+								%tbody
+									%thead
+										%tr.center-align{style:"background: #fff;"}
+											%th {{ scaffoldName }}
+									%th.center-align Fields
+									%th.center-align Type
+								%tr#trs
+									%td.center-align
+										{{ temp[0]}}
+									%td.center-align
+										{{temp[1]}}
+
 
 
 :javascript
@@ -68,6 +81,11 @@
 					this.fields.push(this.temp[0] + ':' + this.temp[1])
 					this.temp = []
 				}
+			}
+		},
+		computed: {
+			scaffoldName() {
+				return this.name ? this.name : 'Name'
 			}
 		}
 	})
