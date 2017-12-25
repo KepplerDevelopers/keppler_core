@@ -7,9 +7,6 @@ class Ability
 
     if user.has_role? :keppler_admin
 
-      # - Web authorize -
-      can :manage, Web
-
       can :manage, Scaffold
       # - Customize authorize -
       can [:delete, :update,
@@ -43,9 +40,6 @@ class Ability
       cannot :delete, user
 
     elsif user.has_role? :client
-
-      # - Web authorize -
-      can [:index, :show], Web
 
     end
     # The first argument to `can` is the action you are giving the user

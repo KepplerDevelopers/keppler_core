@@ -1,7 +1,6 @@
 en:
   keppler:
     sidebar-menu:
-      webs: Webs
       customizes: Customizes
       dashboard: Dashboard
       users: Users
@@ -24,7 +23,6 @@ en:
         categories: Categories
     models:
       singularize:
-        web: web
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -33,7 +31,6 @@ en:
         configuration: configuration
         user: user
       pluralize:
-        webs: webs
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -42,7 +39,6 @@ en:
         configurations: configurations
         user: users
     modules:
-      admin/webs: Webs
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
@@ -110,11 +106,6 @@ en:
       apply: Apply
   activerecord:
     attributes:
-      web:
-        name: Name
-        description: Description
-        date: Date
-        pay: Pay
       google_analytics_setting:
         ga_account_id: Account id
         ga_tracking_id: Tracking id
