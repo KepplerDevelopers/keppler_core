@@ -14,41 +14,64 @@
 				.front-social
 					%ul
 						%li
-							=	link_to "https://twitter.com/slicegroupxyz", target:"_blank" do
+							=	link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
 								= icon 'twitter'
 						%li
-							=	link_to "https://www.facebook.com/slicegroupxyz/", target:"_blank" do
+							=	link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
 								= icon 'facebook'
 						%li
-							=	link_to "https://www.instagram.com/slicegroupxyz/", target:"_blank" do
+							=	link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
 								= icon 'instagram'
 						%li
-							=	link_to "https://github.com/SliceDevelopers", target:"_blank" do
+							=	link_to "https://github.com/SliceDevelopers", target: '_blank' do
 								= icon 'github'
-
-				%footer
+				.mouse-scroll
+					.mouse
+						.scroll
+				%footer.front-footer
 					= render 'app/layouts/footer'
 
 
 			%section.description
 				%h3 KEPPLER ADMIN
 
-				%p KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
-
+				%p
+					KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de
+					gemas ya integradas, de tal forma que acelerará el desarrollo de
+					aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
 
 				%h3 Características
 
 				%ul
-					%li Base de datos por defecto MySQL
-					%li Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
-					%li Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
-					%li Integración para autorizaciones con [CanCanCan](https://github.com/CanCanCommunity/cancancan)
-					%li Inegración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
-					%li Integración para helpers de formularios con [SimpleForm](https://github.com/RolifyCommunity/rolify)
-					%li Integración para búsquedas full-text con [Ransack](https://github.com/activerecord-hackery/ransack)
-					%li Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
-					%li Integración con framework javascript [AngularJs](https://angularjs.org/)
-					%li Integración sitemap dinamicos con [sitemap_generator](https://github.com/kjvarga/sitemap_generator)
+					%li
+						Base de datos por defecto MySQL
+					%li
+						Integración para autenticación de usuarios con
+						= link_to 'Devise', 'https://github.com/plataformatec/devise', target: '_blank'
+					%li
+						Integración para roles de usuarios con
+						= link_to 'Rolify', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
+					%li
+						Integración para autorizaciones con
+						= link_to 'CanCanCan', 'https://github.com/CanCanCommunity/cancancan', target: '_blank'
+					%li
+						Inegración para el manejo de de paginación con
+						= link_to 'Kaminari', 'https://github.com/amatsuda/kaminari', target: '_blank'
+					%li
+						Integración para helpers de formularios con
+						= link_to 'SimpleForm', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
+					%li
+						Integración para búsquedas full-text con
+						= link_to 'Ransack', 'https://github.com/activerecord-hackery/ransack', target: '_blank'
+					%li
+						Integración con framework fronte-end para el administrativo con
+						= link_to 'Materialize', 'http://materializecss.com/', target: '_blank'
+					%li
+						Integración con framework javascript
+						= link_to 'AngularJs', 'https://angularjs.org/', target: '_blank'
+					%li
+						Integración sitemap dinamicos con
+						= link_to 'sitemap_generator', 'https://github.com/kjvarga/sitemap_generator', target: '_blank'
 
 				%h3 Instalación
 
@@ -57,7 +80,13 @@
 						git clone git@github.com:SliceDevelopers/keppler_admin.git
 						bundle install
 
-				%p Luego debe configurar el archivo `config/secrets.yml` [ver archivo](https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example) de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
+				%p
+					Luego debe configurar el archivo
+					%pre
+						%code.ruby
+							config/secrets.yml
+					= link_to '[ver archivo]', 'https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example'
+					de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
 
 				%pre
 					%code.shell
@@ -67,9 +96,14 @@
 
 				%h3 SimpleForm con Materialize
 
-				%p Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en `config/initializers/simple_form_materialize.rb`
+				%p
+					Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en
+					%pre
+						%code.ruby
+							config/initializers/simple_form_materialize.rb
 
-				%p Aqui algunos ejemplos para la creacion de inputs:
+
+				%p Aquí algunos ejemplos para la creación de inputs:
 
 				%pre
 					%code.haml
@@ -100,123 +134,175 @@
 
 				%strong
 					Nota:
-				%p Puede revisar la documentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
+				%p
+					Puede revisar la documentación de
+					= link_to 'Materialize', 'http://materializecss.com/'
+				para agregar nuevas integraciones para sus formularios a través de los
+				= link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
+				de simpleform.
 
 
 				%h3 Keppler scaffolds
 
-				%p Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
+				%p
+					Keppler ofrece la posibilidad de realizar tareas de scaffolds
+					totalmente configurados para adaptarse de una vez al administrativo.
+					Para crear un nuevo modulo solo tienes que llamar al siguiente
+					comando desde la consola:
 
-				%pre rails g keppler_scaffold <module_name> <attributes> -f
+				%pre
+					%code.shell
+						rails g keppler_scaffold <module_name> <attributes> -f
 
 				%p Luego crea la tabla en base de datos.
 
-				%pre rake db:migrate
+				%pre
+					%code.shell
+						rake db:migrate
 
 				%h3 Plugins (Módulos)
 
-				%p La plataforma permite la adaptación de módulos con facil instalación, algunos de los módulos desarrollados son:
+				%p
+					La plataforma permite la adaptación de módulos con facil instalación,
+					algunos de los módulos desarrollados son:
 
 				%ul
-					%li [Keppler google analytics dashboard](https://github.com/SliceDevelopers/keppler_ga_dashboard) - *ya viene integrado*
-					%li [Keppler blog](https://github.com/SliceDevelopers/keppler_blog)
-					%li [Keppler catalogs](https://github.com/inyxtech/keppler_catalogs)
-					%li [Keppler contact](https://github.com/SliceDevelopers/keppler_contact_us)
+					%li
+						= link_to 'Keppler google analytics dashboard', 'https://github.com/SliceDevelopers/keppler_ga_dashboard'
+					%strong ya viene integrado
+					%li
+						= link_to 'Keppler blog', 'https://github.com/SliceDevelopers/keppler_blog'
+					%li
+						= link_to 'Keppler catalogs', 'https://github.com/inyxtech/keppler_catalogs'
+					%li
+						= link_to 'Keppler contact', 'https://github.com/SliceDevelopers/keppler_contact_us'
 
 
 
-// :javascript
-// 	Keppler = $('.front-logo img')
-// 	Social = $('.front-social li')
-// 	Slice = $('.front-footer')
-// 	MinY = 10
-// 	MedY = 60
-// 	MaxY = 100
-// 	Delay = 0.7
-// 	function scrollFunction(){
-// 		scroll = $('html').scrollTop()
-// 		if (scroll <= 10) {
-// 			Keppler.css({
-// 				transform: 'scale(1)'
-// 			})
-// 			Social.css('opacity', '1')
-// 		}
-// 		if (scroll > 10 && scroll <= 60) {
-// 			Keppler.css({
-// 				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
-// 				top: ((180-scroll)/4)/2+'vh'
-// 			})
-// 			Social.css('opacity', 1-('0.'+scroll))
-// 			Slice.css({
-// 				opacity: 1-('0.'+scroll),
-// 				transform: 'scale('+(1-('0.'+scroll))+')'
-// 			})
-// 		}
-// 		if (scroll > 60 && scroll < 100) {
-// 			Keppler.css({
-// 				transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
-// 				top: ((180-scroll)/4)/2+'vh'
-// 			})
-// 			Social.css('opacity', 1-('0.'+scroll))
-// 			Slice.css({
-// 				opacity: 1-('0.'+scroll),
-// 				transform: 'scale('+(1-('0.'+scroll))+')'
-// 			})
-// 		}
-// 		if (scroll > 100 && scroll <= 559) {
-// 			Keppler.css({
-// 				transform: 'translate(-50%, -'+(scroll-(60-18))*0.43+'px) scale('+(1-('0.'+scroll)*1.2)+')'
-// 			})
-// 			Social.css({
-// 				display: 'none',
-// 				opacity: 0
-// 			})
-// 			Slice.css({
-// 				display: 'none',
-// 				opacity: 0
-// 			})
-// 		}
-// 		if (scroll > 559) {
-// 			$('.front').css({
-// 				position: 'fixed',
-// 				width: '100%',
-// 				top: '-90vh'
-// 			})
-// 			Keppler.css({
-// 				transform: 'translate(-50%, -222.31px) scale(0.3292)'
-// 			})
-// 			$('.description').css({
-// 				'margin-top': '100vh'
-// 			})
-// 		}
-// 		else {
-// 			Social.css('display', 'inline')
-// 			Slice.css('display', 'inline')
-// 			$('.front').css({
-// 				position: 'relative',
-// 				width: '100%',
-// 				top: '0'
-// 			})
-// 			$('.description').css({
-// 				'margin-top': '0'
-// 			})
-// 		}
-// 		// console.log(scroll)
-// 	}
-// 	$(document).ready(function() {
-// 	  $('pre code').each(function(i, block) {
-// 	    hljs.highlightBlock(block);
-// 	  });
-// 		scrollFunction()
-// 	});
-// 	$( window ).scroll(function() {
-// 		scrollFunction()
-// 	})
-// :sass
-// 	.front-logo
-// 		img
-// 			position: fixed
-// 			top: 30vh
-// 	.front-social
-// 		position: fixed
-// 		top: 50vh
+:javascript
+	Keppler = $('.front-logo img')
+	Social = $('.front-social li')
+	Slice = $('.front-footer')
+	Mouse = $('.mouse-scroll')
+	function scrollFunction(){
+		scroll = $('html').scrollTop()
+		if (scroll <= 559) {
+			$('.front').css({
+				position: 'relative',
+				top: 0,
+				height: '616px'
+			})
+			// Keppler.css({
+			// 	transform: 'translate(0%, -186.96px) scale(0.3328)'
+			// })
+			Social.css({
+				display: 'inline',
+				opacity: 1
+			})
+			Slice.css({
+				display: 'inline',
+				opacity: 1
+			})
+			Mouse.css({
+				display: 'block',
+				opacity: 1
+			})
+			// $('.description').css({
+			// 	'margin-top': '100vh'
+			// })
+			if (scroll <= 10) {
+				Keppler.css({
+					transform: 'scale(1)'
+				})
+				Social.css('opacity', '1')
+			}
+			if (scroll > 10 && scroll <= 60) {
+				Keppler.css({
+					transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+					top: ((180-scroll)/4)/2+'vh'
+				})
+				Social.css('opacity', 1-('0.'+scroll))
+				Mouse.css('opacity', 1-('0.'+scroll))
+				Slice.css({
+					opacity: 1-('0.'+scroll),
+					transform: 'scale('+(1-('0.'+scroll))+')'
+				})
+			}
+			if (scroll > 60 && scroll <= 99) {
+				Keppler.css({
+					transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+					top: ((180-scroll)/4)/2+'vh'
+				})
+				Social.css('opacity', 1-('0.'+scroll))
+				Mouse.css('opacity', 1-('0.'+scroll))
+				Slice.css({
+					opacity: 1-('0.'+scroll),
+					transform: 'scale('+(1-('0.'+scroll))+')'
+				})
+			}
+			if (scroll > 99 && scroll <= 559) {
+				Keppler.css({
+					transform: 'translate(0%, -'+(scroll-(100))*0.41+'px) scale('+(1-('0.'+scroll)*1.2)+')'
+				})
+				Social.css({
+					display: 'none',
+					opacity: 0
+				})
+				Mouse.css({
+					display: 'none',
+					opacity: 0
+				})
+				Slice.css({
+					display: 'none',
+					opacity: 0
+				})
+			}
+			$('.description').css({
+				'margin-top': '0',
+				position: 'relative'
+			})
+		}
+		else {
+			$('.front').css({
+				position: 'fixed',
+				width: '100%',
+				top: '-554.4px'
+			})
+			Keppler.css({
+				transform: 'translate(0%, -186.96px) scale(0.3328)'
+			})
+			Social.css({
+				display: 'none',
+				opacity: 0
+			})
+			Mouse.css({
+				display: 'none',
+				opacity: 0
+			})
+			Slice.css({
+				display: 'none',
+				opacity: 0
+			})
+			$('.description').css({
+				'margin-top': '616px'
+			})
+		}
+		console.log(scroll)
+	}
+	$(document).ready(function() {
+		$('pre code').each(function(i, block) {
+			// hljs.highlightBlock(block);
+		});
+		scrollFunction()
+		Mouse = $('.mouse-scroll')
+		Mouse.click(function(){
+			for(i=0;i<616;i++) {
+				setTimeout(function(){
+					$('html').scrollTop(i);
+				}, 200)
+			}
+		})
+	});
+	$( window ).scroll(function() {
+		scrollFunction()
+	})
