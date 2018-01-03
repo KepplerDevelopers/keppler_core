@@ -1,14 +1,14 @@
 .listing.col.l9.m12.s12
 	- if can? :new, model
-		= link_to new_admin_<%= singular_table_name %>_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only", title: 'New' do
+		= link_to new_admin_<%= singular_table_name %>_path, class: 'btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only', title: 'New' do
 			= material_icon.md_24.add
 	= entries(@total, @objects)
-	= link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
-		= material_icon.md_18.save.css_class("md-dark")
+	= link_to admin_<%= plural_table_name %>_path(:format => :xls), class: 'btn-tool-right btn-floating btn-flat tooltipped right', title: 'Save as .xls' do
+		= material_icon.md_18.save.css_class('md-dark')
 	%table.bordered
 		%tbody
 			- unless @objects.blank?
-				%tr{style:"background: #fff;"}
+				%tr{ width: 5, style: 'background: #fff;' }
 					- if can? :destroy_multiple, <%= singular_table_name.camelcase %>
 						%th{style: 'padding-left: 20px'}
 					<%- attributes.each do |attribute| -%>
@@ -19,26 +19,19 @@
 					<%- attributes.each_with_index do |attribute, index| -%>
 						<%- if index < 6 -%>
 							<%- unless @attachments.include?(attribute.name) -%>
-								<%- unless attribute.type.to_s == "text" -%>
+								<%- unless attribute.type.to_s == 'text' -%>
 					%th.center= t("activerecord.attributes.<%= controller_name.singularize %>.<%= attribute.name %>")
 								<%- end -%>
 							<%- end -%>
 						<%- end -%>
 					<%- end -%>
-					- if can? :show, <%= singular_table_name.camelcase %>
-						%th.center
-					- if can? :update, <%= singular_table_name.camelcase %>
-						%th.center
-					- if can? :clone, <%= singular_table_name.camelcase %>
-						%th.center
-					- if can? :delete, <%= singular_table_name.camelcase %>
-						%th.center
+					%th.center
 
 			- @objects.each do |<%= singular_table_name %>|
 				= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
 			- if @objects.size.zero?
 				%tr
-					%td{colspan: "4"}
+					%td{ colspan: '4' }
 						%center
 							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
 	= paginate @objects, window: 1
@@ -48,4 +41,20 @@
 
 - if can? :new, model
 	= link_to new_admin_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		= material_icon.md_24.add.css_class("md-light")
+		= material_icon.md_24.add.css_class('md-light')
+
+:javascript
+	$(document).ready(function(){
+		$('.tooltipped').tooltip({delay: 50});
+		$( '.action-btn' ).closeFAB();
+		$('.action-btn.toolbar').closeToolbar();
+		$( '.action-btn' ).hover(
+			function() {
+				$( this ).openFAB();
+				$('.action-btn.toolbar').openToolbar();
+			}, function() {
+				$( this ).closeFAB();
+				$('.action-btn.toolbar').closeToolbar();
+			}
+		);
+	})

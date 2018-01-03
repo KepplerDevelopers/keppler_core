@@ -180,8 +180,8 @@
 
 
 :javascript
-	Keppler = $('.front-logo img')
-	Social = $('.front-social li')
+	Keppler = $('.front-logo')
+	Social = $('.front-social')
 	Slice = $('.front-footer')
 	Mouse = $('.mouse-scroll')
 	function scrollFunction(){
@@ -231,7 +231,7 @@
 			if (scroll > 60 && scroll <= 99) {
 				Keppler.css({
 					transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
-					top: ((180-scroll)/4)/2+'vh'
+					top: ((180-scroll)/2)/2+'vh'
 				})
 				Social.css('opacity', 1-('0.'+scroll))
 				Mouse.css('opacity', 1-('0.'+scroll))
@@ -269,7 +269,8 @@
 				top: '-554.4px'
 			})
 			Keppler.css({
-				transform: 'translate(0%, -186.96px) scale(0.3328)'
+				transform: 'translate(0%, -186.96px) scale(0.3328)',
+				top: '150px'
 			})
 			Social.css({
 				display: 'none',
