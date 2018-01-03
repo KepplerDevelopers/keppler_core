@@ -39,6 +39,8 @@ gem 'jquery-minicolors-rails'
 # Upload
 gem 'carrierwave'
 # gem 'rmagick'
+# gem 'axlsx', '~> 2.0.1'
+# gem 'axlsx_rails', '~> 0.2.0'
 
 # Design
 gem 'bourbon'
