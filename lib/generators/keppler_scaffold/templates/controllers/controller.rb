@@ -17,7 +17,7 @@ module Admin
       if !@objects.first_page? && @objects.size.zero?
         redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
       end
-      @<%= plural_table_name %> = <%= class_name %>.all.reverse
+      @<%= plural_table_name %> = <%= class_name %>.order(:position)
       respond_to do |format|
         format.html
         format.xls { send_data(@<%= plural_table_name %>.to_xls) }
@@ -79,6 +79,13 @@ module Admin
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
+    end
+
+    def sort
+      params[:row].each_with_index do |id, index| 
+        <%= class_name %>.find(id).update(position: index.to_i+1)
+      end
+      render :index
     end
 
     private
