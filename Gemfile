@@ -21,6 +21,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks'
 gem 'to_xls-rails'
+gem 'jquery-ui-rails'
+gem 'acts_as_list', '~> 0.9.10'
 
 # Database
 gem 'mysql2', '~> 0.3.18'
