@@ -6,7 +6,7 @@
 	= link_to admin_<%= plural_table_name %>_path(:format => :xls), class: 'btn-tool-right btn-floating btn-flat tooltipped right', title: 'Save as .xls' do
 		= material_icon.md_18.save.css_class('md-dark')
 	%table.bordered
-		%tbody
+		%tbody#draggable{ 'data-update-url' => "#{admin_sorting_<%= plural_table_name %>_path}" }
 			- unless @objects.blank?
 				%tr{ width: 5, style: 'background: #fff;' }
 					- if can? :destroy_multiple, <%= singular_table_name.camelcase %>
@@ -27,7 +27,7 @@
 					<%- end -%>
 					%th.center
 
-			- @objects.each do |<%= singular_table_name %>|
+			- @<%= plural_table_name %>.each do |<%= singular_table_name %>|
 				= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
 			- if @objects.size.zero?
 				%tr
