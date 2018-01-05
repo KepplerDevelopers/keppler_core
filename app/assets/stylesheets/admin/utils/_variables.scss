@@ -53,3 +53,24 @@ $amber-accent: #7c4dff;
 $brown-color: #795548;
 $brown-darken: #5d4037;
 $brown-accent: #4caf50;
+
+$breakpoints: (
+  'xs': "(min-width: 0px) and (max-width: 767px)",
+  'sm': "(min-width: 768px) and (max-width: 991px)",
+  'md': "(min-width: 992px) and (max-width: 1199px)",
+  'lg': "(min-width: 1200px) and (max-width: 1600px)",
+  'xl': "(min-width: 1601px) and (max-width: 2048px)",
+) !default;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+
+$font-primary: 'Roboto', sans-serif;
+
+$font-size: 10px;
+$color-primary: #ff5300; // Orange primary
+$color-secundary: #ff005e;
+$color-border: #ff2534;
+
+
+$color-btn-ks: #ff2534;
+$color-btn-ks-hover: #f50e1e;

@@ -1,27 +1,62 @@
-.wrapper
-	.wrapper-body.container
-		.actions
-			= link_to admin_users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.wrapper-inputs
-			.card
-				.card-content
-					= simple_form_for [:admin, @user] do |f|
-						.row
-							.col.s12
-								= f.input :name
-							.col.s12
-								= f.input :email
-							.col.s12
-								= f.input :role_ids, collection: @roles, label: 'Rol', include_blank: t("keppler.actions.select_rol"), input_html: { class: "input-field" }
-							.col.s12
-								= f.input :password
-							.col.s12
-								= f.input :password_confirmation
-							.col.s12
-								.form-actions.right
-									= f.button :submit, t("keppler.actions.save"), name: "_save"
-									= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+= simple_form_for [:admin, @user] do |f|
+	.container
+		.row
+			.col-lg-2
+				= link_to admin_users_path, class: "tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+					%i.fa.fa-arrow-left
+		.form-section
+			.row
+				.col-lg-6
+					.form-group
+						
+						= f.input :name, input_html: {class: "form-control"}, :required => true
+						
+				.col-lg-6
+					.form-group
+						
+						= f.input :email, input_html: {class: "form-control"}, :required => true
+						
+			.row
+				.col-lg-12
+					.form-group
+						
+						= f.input :role_ids, collection: @roles, include_blank: t("keppler.actions.select_rol"), input_html: { class: "form-control" }, :required => true
+			.row
+				.col-lg-6
+					.form-group
+						
+						= f.input :password, input_html: {class: "form-control"}, :required => true
+				.col-lg-6
+					.form-group
+						
+						= f.input :password_confirmation, input_html: {class: "form-control"}, :required => true
+			
+
+
+-# .wrapper
+-# 	.wrapper-body.container
+-# 		.actions
+-# 			= link_to admin_users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+-# 				-# = material_icon.md_18.arrow_back.css_class("md-dark")
+-# 		.wrapper-inputs
+-# 			.card
+-# 				.card-content
+-# 					= simple_form_for [:admin, @user] do |f|
+-# 						.row
+-# 							.col.s12
+-# 								= f.input :name
+-# 							.col.s12
+-# 								= f.input :email
+-# 							.col.s12
+-# 								= f.input :role_ids, collection: @roles, label: 'Rol', include_blank: t("keppler.actions.select_rol"), input_html: { class: "input-field" }
+-# 							.col.s12
+-# 								= f.input :password
+-# 							.col.s12
+-# 								= f.input :password_confirmation
+-# 							.col.s12
+-# 								.form-actions.right
+-# 									= f.button :submit, t("keppler.actions.save"), name: "_save"
+-# 									= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
 :javascript
 	op1 = $('option').first()
 	op1.attr('disabled', 'disabled')

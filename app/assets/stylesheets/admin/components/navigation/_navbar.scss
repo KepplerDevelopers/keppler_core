@@ -1,0 +1,37 @@
+.skin-blue{
+  .main-header {
+    position: fixed;
+    width: 100%;
+
+    a.logo {
+      background: linear-gradient(154deg, $color-secundary 0, $color-primary 100%) !important;
+      color: #ffffff;
+      border-bottom: 0 solid transparent;
+      z-index: 9;
+    }
+
+  	.navbar-static-top {
+  		background: white !important;
+      box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+
+      a {
+        color: #949494 !important;
+      }
+  	}
+
+    li.user-header {
+      background-color: #353535 !important;
+      border-bottom: 2px solid $color-border;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #e8e8e8 !important;
+    }
+  }
+}
+.navbar.navbar-static-top{
+  h3{
+    display: inline-block;
+    margin: 10px 0;
+  }
+}
