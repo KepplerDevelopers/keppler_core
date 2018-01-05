@@ -1,4 +1,4 @@
-//= require material_icons
+
 //= require animate
 //= require jquery.minicolors
 //= require_self
@@ -6,18 +6,29 @@
 @import 'bourbon';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import 'materialize';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "adminlte";
+@import "vendor/admin-lte/skin-blue";
+
+// @import 'materialize';
 @import 'utils/variables';
 @import 'utils/mixins';
-@import 'pages/layout';
-@import 'pages/devise';
-@import 'pages/navbar';
-@import 'pages/sidebar';
-@import 'pages/pageslide';
-@import 'pages/header';
-@import 'pages/listing';
-@import 'pages/show';
+@import 'utils/theme';
+@import 'utils/base';
+// @import 'pages/layout';
+// @import 'pages/devise';
+// @import 'pages/navbar';
+// @import 'pages/sidebar';
+// @import 'pages/pageslide';
+// @import 'pages/header';
+// @import 'pages/listing';
+// @import 'pages/show';
 @import 'pages/form';
-@import 'pages/search';
-@import 'pages/themes';
-@import 'dashboard'; //dashboard gem
+// @import 'pages/search';
+// @import 'pages/themes';
+//@import 'dashboard'; //dashboard gem
+@import "components/navigation/navbar";
+@import "components/navigation/sidebar";
+@import "components/layouts/footer";
+@import 'icheck/square/green'

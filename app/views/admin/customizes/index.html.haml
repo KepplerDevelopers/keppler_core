@@ -5,7 +5,7 @@
 .listing.col.l9.m12.s12
 	- if can? :new, model
 		= link_to new_admin_customize_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-			= material_icon.md_24.add
+			-# = material_icon.md_24.add
 	= entries(@total, @objects)
 	%table.bordered
 		%tbody
@@ -23,4 +23,4 @@
 
 - if can? :new, model
 	= link_to new_admin_customize_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		= material_icon.md_24.add.css_class("md-light")
+		-# = material_icon.md_24.add.css_class("md-light")

@@ -1,0 +1,28 @@
+.skin-blue {
+  .main-sidebar{
+    position: fixed;
+    background-color: #353535 !important;
+
+    li.header {
+      color: #848383 !important;
+      background: #353535 !important;
+    }
+  }
+
+  .sidebar-menu > li:hover > a,
+  .sidebar-menu > li.active > a {
+    color: #ffffff;
+    background: #353535 !important;
+    border-left-color: $color-border !important;
+  }
+
+  .sidebar-menu > li > .treeview-menu {
+    margin: 0 1px;
+    background: #292929 !important;
+    color: #848383 !important;
+  }
+
+  .sidebar a {
+    color: #a0a0a0;
+  }
+}

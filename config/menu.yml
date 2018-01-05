@@ -21,13 +21,13 @@ menu:
   google_analytics_track:
     name: google analytics tracks
     url_path: /admin/google_analytics_tracks
-    icon: insert_chart
+    icon: area-chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
   user:
     name: users
     url_path: /admin/users
-    icon: account_circle
+    icon: user
     current: ["admin/users"]
     model: User
   customize:
@@ -47,7 +47,7 @@ menu:
   setting:
     name: setting
     current: ['admin/settings']
-    icon: settings
+    icon: gear
     model: Setting
     submenu:
       - basic_information:

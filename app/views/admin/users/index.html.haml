@@ -1,32 +1,98 @@
-.listing.col.l9.m12.s12
-	= link_to new_admin_user_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-		= material_icon.md_24.person_add
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- if @objects.size.zero?
-				%tr
-					%td{colspan: "4"}
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-			- else
-				%tr.white-hover
-					%td
-					%th.center Name
-					%th.center.hide-on-small-and-down Email
-					%th.center.hide-on-small-and-down Role
-					- if can? :show, User
-						%th
-					- if can? :update, User
-						%th
-					- if can? :delete, User
-						%th
-			- @objects.each do |user|
-				= render 'listing', user: user
-	= paginate @objects, window: 1
+.listing.col-xs-12
+  -# = link_to new_admin_user_path, class: "" do
+  -#   -# = material_icon.md_24.person_add
+  -#   add
+  = entries(@total, @objects)
+
+  .box-body.table-responsive.no-padding
+    - if @objects.size.zero?
+      
+      .row 
+        .col-xs-4.col-lg-offset-4
+          -# .callout.callout-info
+          -# 	%h4 Tip!
+          .callout.callout-warning
+            %h4= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+    - else
+      %table.table.table-striped
+        %thead
+          %tr
+            %td
+            %th
+              Name
+            %th
+              Email
+            %th
+              Role
+        %tbody
+          - @objects.each do |user|
+            = render 'listing', user: user
+  -# %table.bordered
+  -# 	%tbody
+  -# 		- if @objects.size.zero?
+  -# 			%tr
+  -# 				%td{colspan: "4"}
+  -# 					%center
+  -# 						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+  -# 		- else
+  -# 			%tr.white-hover
+  -# 				%td
+  -# 				%th.center Name
+  -# 				%th.center.hide-on-small-and-down Email
+  -# 				%th.center.hide-on-small-and-down Role
+  -# 				- if can? :show, User
+  -# 					%th
+  -# 				- if can? :update, User
+  -# 					%th
+  -# 				- if can? :delete, User
+  -# 					%th
+  -# 		- @objects.each do |user|
+  -# 			= render 'listing', user: user
+  -# = paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
-
-= link_to new_admin_user_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
-	= material_icon.md_24.add.css_class("md-light")
+  = render "description"
+.mixed-btn
+  = link_to new_admin_user_path, class: "btn-float" do
+    %i.fa.fa-plus
+  -# = material_icon.md_24.add.css_class("md-light")
+:sass
+  .mixed-btn
+    position: fixed 
+    right: 23px
+    bottom: 110px
+    padding-top: 15px
+    margin-bottom: 0
+    z-index: 997
+  
+  .callout.callout-warning
+    background-color: white
+    color: #252525
+  .btn-float
+    display: inline-block
+    color: #fff
+    position: relative
+    overflow: hidden
+    z-index: 1
+    width: 70px
+    height: 70px
+    line-height: 40px
+    background-color: #ff5300
+    border-radius: 50%
+    -webkit-transition: .3s
+    transition: .3s
+    cursor: pointer
+    vertical-align: middle
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)
+    padding-top: 16px
+    font-size: 3rem
+    
+    i
+      width: inherit
+      display: inline-block
+      text-align: center
+      color: #fff
+    &:hover
+      box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3)
+      transition: .3s
+      color: white
