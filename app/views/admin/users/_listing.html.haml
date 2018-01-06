@@ -20,11 +20,11 @@
     = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
     %span= user.rol.humanize
   %td.center{ style:"width: 35%" }
-    %a.dropdown-toggle{"data-toggle"=>"collapse", "aria-expanded"=>"false", "aria-controls"=>"menu-#{user.id}", :href => "#menu-#{user.id}"}
+    %a.coll{"data-toggle"=>"collapse", "aria-expanded"=>"false", "aria-controls"=>"menu-#{user.id}", :href => "#menu-#{user.id}"}
       -# %span.caret
       %i.fa.fa-bars
     .custom-collapse.collapse{id: "menu-#{user.id}"}
-      .btn-group
+      .panel-body
         - if can? :show, User
           
           = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do

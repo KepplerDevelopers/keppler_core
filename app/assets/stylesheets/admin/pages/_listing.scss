@@ -225,3 +225,17 @@
   padding: 12px;
   
 }
+a.coll{
+  &:active{
+    color: red;
+  }
+  &:link{
+    color: red;
+  }
+  &:focus{
+    color: red;
+  }
+}
+.fa-bars{
+  color: #252525;
+}
