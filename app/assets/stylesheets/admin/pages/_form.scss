@@ -23,7 +23,7 @@
     padding: 0 20px;
     margin-bottom: 75px;
     position: relative;
-    
+
     input[type='text'],
     input[type="email"],
     input[type="number"],
@@ -58,7 +58,7 @@
         transition: .3s
       }
     }
-    
+
   }
   .action-btn{
     padding: 0 20px;
@@ -78,8 +78,8 @@
       }
     }
   }
-  
-  
+
+
 }
 .hvr-sweep-to-right {
   display: inline-block;
@@ -121,3 +121,24 @@
   transform: scaleX(1);
 }
 
+
+
+.btn-primary {
+  padding: 5px 21px;
+  font-weight: 100;
+  background-color: $color-btn-ks-hover;
+  border: none;
+  color: #fff;
+  transition: .4s;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #f50e1eb5;
+  }
+}
+
+.form-control:focus {
+  border-color: $color-btn-ks-hover;
+  box-shadow: none;
+}

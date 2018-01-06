@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Utilities
 gem 'haml-rails'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '4.0.1'
 gem 'sass-rails'
 gem 'therubyracer', '~> 0.11.4', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
@@ -51,7 +51,7 @@ gem 'carrierwave'
 # gem 'axlsx_rails', '~> 0.2.0'
 
 # Design
-gem 'bourbon'
+gem 'bourbon', '4.2.0'
 gem 'bootstrap-sass', '3.3.6'
 gem 'font-awesome-sass', '~> 4.7.0'
 #gem 'material_icons'

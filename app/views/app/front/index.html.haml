@@ -1,11 +1,11 @@
 !!!
 %html
-	%header
+	%head
 		= render 'app/layouts/head'
 	%body
 		%header
 			= #render 'app/layouts/navigation'
-		%main{:role => "main"}
+		%main#keppler{:role => "main"}
 			= #render 'app/layouts/messages'
 			.front
 				.front-logo
@@ -137,9 +137,9 @@
 				%p
 					Puede revisar la documentación de
 					= link_to 'Materialize', 'http://materializecss.com/'
-				para agregar nuevas integraciones para sus formularios a través de los
-				= link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
-				de simpleform.
+					para agregar nuevas integraciones para sus formularios a través de los
+					= link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
+					de simpleform.
 
 
 				%h3 Keppler scaffolds
@@ -169,7 +169,7 @@
 				%ul
 					%li
 						= link_to 'Keppler google analytics dashboard', 'https://github.com/SliceDevelopers/keppler_ga_dashboard'
-					%strong ya viene integrado
+						%strong (ya viene integrado)
 					%li
 						= link_to 'Keppler blog', 'https://github.com/SliceDevelopers/keppler_blog'
 					%li
@@ -177,133 +177,4 @@
 					%li
 						= link_to 'Keppler contact', 'https://github.com/SliceDevelopers/keppler_contact_us'
 
-
-
-:javascript
-	Keppler = $('.front-logo')
-	Social = $('.front-social')
-	Slice = $('.front-footer')
-	Mouse = $('.mouse-scroll')
-	function scrollFunction(){
-		scroll = $('html').scrollTop()
-		if (scroll <= 559) {
-			$('.front').css({
-				position: 'relative',
-				top: 0,
-				height: '616px'
-			})
-			// Keppler.css({
-			// 	transform: 'translate(0%, -186.96px) scale(0.3328)'
-			// })
-			Social.css({
-				display: 'inline',
-				opacity: 1
-			})
-			Slice.css({
-				display: 'inline',
-				opacity: 1
-			})
-			Mouse.css({
-				display: 'block',
-				opacity: 1
-			})
-			// $('.description').css({
-			// 	'margin-top': '100vh'
-			// })
-			if (scroll <= 10) {
-				Keppler.css({
-					transform: 'scale(1)'
-				})
-				Social.css('opacity', '1')
-			}
-			if (scroll > 10 && scroll <= 60) {
-				Keppler.css({
-					transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
-					top: ((180-scroll)/4)/2+'vh'
-				})
-				Social.css('opacity', 1-('0.'+scroll))
-				Mouse.css('opacity', 1-('0.'+scroll))
-				Slice.css({
-					opacity: 1-('0.'+scroll),
-					transform: 'scale('+(1-('0.'+scroll))+')'
-				})
-			}
-			if (scroll > 60 && scroll <= 99) {
-				Keppler.css({
-					transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
-					top: ((180-scroll)/2)/2+'vh'
-				})
-				Social.css('opacity', 1-('0.'+scroll))
-				Mouse.css('opacity', 1-('0.'+scroll))
-				Slice.css({
-					opacity: 1-('0.'+scroll),
-					transform: 'scale('+(1-('0.'+scroll))+')'
-				})
-			}
-			if (scroll > 99 && scroll <= 559) {
-				Keppler.css({
-					transform: 'translate(0%, -'+(scroll-(100))*0.41+'px) scale('+(1-('0.'+scroll)*1.2)+')'
-				})
-				Social.css({
-					display: 'none',
-					opacity: 0
-				})
-				Mouse.css({
-					display: 'none',
-					opacity: 0
-				})
-				Slice.css({
-					display: 'none',
-					opacity: 0
-				})
-			}
-			$('.description').css({
-				'margin-top': '0',
-				position: 'relative'
-			})
-		}
-		else {
-			$('.front').css({
-				position: 'fixed',
-				width: '100%',
-				top: '-554.4px'
-			})
-			Keppler.css({
-				transform: 'translate(0%, -186.96px) scale(0.3328)',
-				top: '150px'
-			})
-			Social.css({
-				display: 'none',
-				opacity: 0
-			})
-			Mouse.css({
-				display: 'none',
-				opacity: 0
-			})
-			Slice.css({
-				display: 'none',
-				opacity: 0
-			})
-			$('.description').css({
-				'margin-top': '616px'
-			})
-		}
-		console.log(scroll)
-	}
-	$(document).ready(function() {
-		$('pre code').each(function(i, block) {
-			// hljs.highlightBlock(block);
-		});
-		scrollFunction()
-		Mouse = $('.mouse-scroll')
-		Mouse.click(function(){
-			for(i=0;i<616;i++) {
-				setTimeout(function(){
-					$('html').scrollTop(i);
-				}, 200)
-			}
-		})
-	});
-	$( window ).scroll(function() {
-		scrollFunction()
-	})
+		%script{ src: '/assets/app/front.js' }
