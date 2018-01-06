@@ -23,89 +23,34 @@
 .container
 	.row
 		.col-lg-2
-			.arrow-back
-				= link_to admin_users_path, class: "hvr-sweep-to-right", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-					%i.fa.fa-arrow-left
+			.arrow-back.btn.btn-default
+				= link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+					%i.fa.fa-chevron-left
+					Volver
+					.clearfix
 	.show-section
 		.row
-			.col-lg-12
+			.col-lg-3
+				.box.slice-box
+					.box-body.box-profile
+						%img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+						%h3.profile-username.text-center= @user.name
+						%p.text-muted.text-center= @user.rol.humanize
+			.col-lg-9
 				.box.slice-box
 					.box-header.with-border
-						%h3.box-title Bordered Table
+						%h3.box-title Users
 						.box-tools.pull-right
-							%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-								%i.fa.fa-minus
-							.btn-group
-								%button.btn.btn-box-tool.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-									%i.fa.fa-wrench
-								%ul.dropdown-menu{:role => "menu"}
-									%li
-										%a{:href => "#"} Action
-									%li
-										%a{:href => "#"} Another action
-									%li
-										%a{:href => "#"} Something else here
-									%li.divider
-									%li
-										%a{:href => "#"} Separated link
-							-# %button.btn.btn-box-tool{"data-widget" => "remove", :type => "button"}
-							-# 	%i.fa.fa-times
-							
+							%a.btn.btn-box-tool{title: "#{t('keppler.actions.edit') }"}
+								%i.fa.fa-pencil
+							%a.btn.btn-box-tool{title: "#{t('keppler.actions.delete')}"}
+								%i.fa.fa-trash
+
 					/ /.box-header
-					.box-body
-						%table.table.table-bordered
+					.box-body.box-body-no-padding
+						%table.table.table-striped
 							%tbody
 								- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
 									%tr.list-row
 										%th.display-label= t("activerecord.attributes.user.#{attribute}")
 										%td.display-value.fs-body-1.tc-black-2= value.to_s.humanize
-								-# %tr
-								-# 	%th{:style => "width: 10px"} #
-								-# 	%th Task
-								-# 	%th Progress
-								-# 	%th{:style => "width: 40px"} Label
-								-# %tr
-								-# 	%td 1.
-								-# 	%td Update software
-								-# 	%td
-								-# 		.progress.progress-xs
-								-# 			.progress-bar.progress-bar-danger{:style => "width: 55%"}
-								-# 	%td
-								-# 		%span.badge.bg-red 55%
-								-# %tr
-								-# 	%td 2.
-								-# 	%td Clean database
-								-# 	%td
-								-# 		.progress.progress-xs
-								-# 			.progress-bar.progress-bar-yellow{:style => "width: 70%"}
-								-# 	%td
-								-# 		%span.badge.bg-yellow 70%
-								-# %tr
-								-# 	%td 3.
-								-# 	%td Cron job running
-								-# 	%td
-								-# 		.progress.progress-xs.progress-striped.active
-								-# 			.progress-bar.progress-bar-primary{:style => "width: 30%"}
-								-# 	%td
-								-# 		%span.badge.bg-light-blue 30%
-								-# %tr
-								-# 	%td 4.
-								-# 	%td Fix and squish bugs
-								-# 	%td
-								-# 		.progress.progress-xs.progress-striped.active
-								-# 			.progress-bar.progress-bar-success{:style => "width: 90%"}
-								-# 	%td
-								-# 		%span.badge.bg-green 90%
-					/ /.box-body
-					.box-footer.clearfix
-						%ul.pagination.pagination-sm.no-margin.pull-right
-							%li
-								%a{:href => "#"} «
-							%li
-								%a{:href => "#"} 1
-							%li
-								%a{:href => "#"} 2
-							%li
-								%a{:href => "#"} 3
-							%li
-								%a{:href => "#"} »

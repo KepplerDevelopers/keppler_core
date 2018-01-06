@@ -32,7 +32,7 @@ menu:
     model: User
   customize:
     name: keppler design
-    icon: color_lens
+    icon: magic
     current: ['admin/customizes']
     model: Customize
     submenu:
