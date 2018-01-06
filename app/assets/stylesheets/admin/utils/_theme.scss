@@ -1,0 +1,58 @@
+.skin-blue .content-header {
+  background: transparent;
+  margin-top: 50px !important;
+}
+
+.btn-ks {
+  border: 1px solid $color-btn-ks;
+  background: $color-btn-ks;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-ks:hover {
+  border: 1px solid $color-btn-ks-hover;
+  background: $color-btn-ks-hover;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-ks-inverse {
+  border: 1px solid $color-btn-ks;
+  color: $color-btn-ks;
+  transition: .5s all;
+}
+
+.btn-ks-inverse:hover {
+  border: 1px solid $color-btn-ks;
+  background: $color-btn-ks;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr {
+  border: 1px solid #353535;
+  background: #353535;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr:hover {
+  border: 1px solid #353535;
+  background: #1d1d1d;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr-inverse {
+  border: 1px solid #353535;
+  color: #353535;
+  transition: .5s all;
+}
+
+.btn-gr-inverse:hover {
+  border: 1px solid #353535;
+  background: #353535;
+  color: white;
+  transition: .5s all;
+}

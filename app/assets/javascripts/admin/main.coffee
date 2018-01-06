@@ -8,7 +8,6 @@ angular.module('keppler', [
 		provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 		return
 	]
-
 # iniciar ng-app mediante turbolinks
 $(document).on 'ready page:load', () ->
 		angular.bootstrap document.body, [ 'keppler' ] #añadir ng-app al body
@@ -49,11 +48,11 @@ $(document).on 'ready page:load', () ->
 		).bind 'ajax:error', (e, xhr, status, error) ->
 			$(".listing-show-body").html("<p class='not-found'>Este registro no fue encontrado, por favor recargue la página para actualizar los datos.</p>")
 			return
-
 		#config nprogress
 		NProgress.configure
 			showSpinner: false
 			easing: 'ease'
 			speed: 500
+		
 
 	return

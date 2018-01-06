@@ -33,6 +33,12 @@ gem 'sitemap_generator'
 # History
 gem 'public_activity'
 
+#admin lte
+source 'https://rails-assets.org/' do
+  gem 'rails-assets-adminlte'
+end
+# gem 'icheck-rails'
+
 # Forms
 gem 'simple_form'
 gem 'cocoon'
@@ -46,10 +52,10 @@ gem 'carrierwave'
 
 # Design
 gem 'bourbon'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '3.3.6'
 gem 'font-awesome-sass', '~> 4.7.0'
-gem 'material_icons'
-gem 'materialize-sass', '0.98.2'
+#gem 'material_icons'
+#gem 'materialize-sass', '0.98.2'
 
 # Authentication and Authorization
 gem 'devise'

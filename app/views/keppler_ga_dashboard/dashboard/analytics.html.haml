@@ -1,39 +1,39 @@
-= title "Dashboard"
+-# = title "Dashboard"
 
-= library_analytics
+-# = library_analytics
 
-%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"}
-%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"}
-%script{:src => "/assets/keppler_ga_dashboard/view-selector2.js?body=1"}
-%script{:src => "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1"}
-%script{:src => "/assets/keppler_ga_dashboard/active-users.self.js?body=1"}
+-# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"}
+-# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"}
+-# %script{:src => "/assets/keppler_ga_dashboard/view-selector2.js?body=1"}
+-# %script{:src => "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1"}
+-# %script{:src => "/assets/keppler_ga_dashboard/active-users.self.js?body=1"}
 
-.dashboard
-	.row
-		.col.s12
-			.card
-				.dashboard-head
-					#view-name.hide-on-small-only
-					#active-users-container
-					#view-selector-container.hide-on-small-only
-		.col.s12
-			.card
-				#chart-1-container{ style: "height: 200px;"}
-				#legend-1-container.charts-legend
-		.col.s12
-			.card
-				#chart-2-container{ style: "height: 200px;"}
-				#legend-2-container.charts-legend
-		.col.s12.m6.l6
-			.card
-				#chart-4-container{ style: "height: 300px;"}
-				#legend-4-container.charts-legend
-		.col.s12.m6.l6
-			.card
-				#chart-3-container{ style: "height: 300px;"}
-				#legend-3-container.charts-legend
+-# .dashboard
+-# 	.row
+-# 		.col.s12
+-# 			.card
+-# 				.dashboard-head
+-# 					#view-name.hide-on-small-only
+-# 					#active-users-container
+-# 					#view-selector-container.hide-on-small-only
+-# 		.col.s12
+-# 			.card
+-# 				#chart-1-container{ style: "height: 200px;"}
+-# 				#legend-1-container.charts-legend
+-# 		.col.s12
+-# 			.card
+-# 				#chart-2-container{ style: "height: 200px;"}
+-# 				#legend-2-container.charts-legend
+-# 		.col.s12.m6.l6
+-# 			.card
+-# 				#chart-4-container{ style: "height: 300px;"}
+-# 				#legend-4-container.charts-legend
+-# 		.col.s12.m6.l6
+-# 			.card
+-# 				#chart-3-container{ style: "height: 300px;"}
+-# 				#legend-3-container.charts-legend
 
-:javascript
+-#:javascript
 	gapi.analytics.ready(function() {
 
 		/*Authorize the user immediately if the user has already granted access.*/
