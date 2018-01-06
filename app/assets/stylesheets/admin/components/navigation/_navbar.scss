@@ -4,7 +4,7 @@
     width: 100%;
 
     a.logo {
-      background: linear-gradient(154deg, $color-secundary 0, $color-primary 100%) !important;
+      background: #f50e1e !important;
       color: #ffffff;
       border-bottom: 0 solid transparent;
       z-index: 9;
@@ -20,7 +20,9 @@
   	}
 
     li.user-header {
-      background-color: #353535 !important;
+      background-image: url('profile-menu.jpg');
+      background-position: center;
+      background-size: cover;
       border-bottom: 2px solid $color-border;
     }
 
@@ -30,6 +32,8 @@
   }
 }
 .navbar.navbar-static-top{
+  height: 50px !important;
+  
   h3{
     display: inline-block;
     margin: 10px 0;
