@@ -51,23 +51,14 @@
   / sidebar: style can be found in sidebar.less
   %section.sidebar{:style => ""}
     / Sidebar user panel
-    .user-panel
+    .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
       .pull-left.image
         -# = link_to "http://gravatar.com", target: "_blank" do
         -#   = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "img-circle"
         %img.img-circle{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
       .pull-left.info
         %p= current_user.name
-        %a{:href => "#"}
-          %i.fa.fa-circle.text-success
-          Online
-    / search form
-    %form.sidebar-form{:action => "#", :method => "get"}
-      .input-group
-        %input.form-control{:name => "q", :placeholder => "Search...", :type => "text"}/
-        %span.input-group-btn
-          %button#search-btn.btn.btn-flat{:name => "search", :type => "submit"}
-            %i.fa.fa-search
+        %small= current_user.rol.humanize
     / /.search form
     / sidebar menu: : style can be found in sidebar.less
     %ul.sidebar-menu.tree{"data-widget" => "tree"}
@@ -103,7 +94,7 @@
                   -#         = msg_count
                   %span.pull-right-container
                     %i.fa.fa-angle-left.pull-right
-                
+
                 %ul.treeview-menu
                   - menu[key]["submenu"].each do |submenu|
                     - submenu.each do |name, val|
@@ -117,7 +108,7 @@
 :sass
   ::-webkit-scrollbar
     display: none
-  
+
   .sidebar-menu.tree
     .fa
       color: #a0a0a0

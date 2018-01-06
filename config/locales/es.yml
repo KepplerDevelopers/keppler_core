@@ -2,6 +2,8 @@ es:
   keppler:
     login_message: Ingresa tus datos para entrar
     powered: Desarrollado por
+    navigation:
+      last_session: Ultima sesión 
     sidebar-menu:
       customizes: Customizes
       dashboard: Dashboard
