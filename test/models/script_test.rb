@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GoogleAnalyticsTrackTest < ActiveSupport::TestCase
+class ScriptTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

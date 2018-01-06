@@ -10,7 +10,7 @@
 				= render 'listing', google_adword: google_adword
 			- if @objects.size.zero?
 				%tr
-					%td{colspan: "4"}
+					%td.center{colspan: "4"}
 						%center
 							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.google_adwords"))
 	= paginate @objects, window: 1

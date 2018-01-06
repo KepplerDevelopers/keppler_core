@@ -1,0 +1,34 @@
+.listing.col.l9.m12.s12
+	- if can? :new, model
+		= link_to new_admin_script_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
+			= material_icon.md_24.add
+	= entries(@total, @objects)
+	%table.bordered
+		%tbody
+			- if @objects.size.zero?
+				%tr
+					%td.center{ colspan: '4' }
+						%center
+							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.scripts"))
+			- else
+				%tr.white-hover
+					%th.center
+					%th.center= t('activerecord.attributes.name')
+					%th.center= t('activerecord.attributes.script')
+					%th.center= t('activerecord.attributes.url')
+					- if can? :show, Script
+						%th.center
+					- if can? :update, Script
+						%th.center
+					- if can? :delete, Script
+						%th.center
+				- @objects.each do |script|
+					= render 'listing', script: script
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+- if can? :new, model
+	= link_to new_admin_script_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
+		= material_icon.md_24.add.css_class("md-light")

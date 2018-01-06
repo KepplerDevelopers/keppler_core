@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.0'
 
 # Javascript
 gem 'jquery-rails'
@@ -45,7 +45,7 @@ gem 'carrierwave'
 # gem 'axlsx_rails', '~> 0.2.0'
 
 # Design
-gem 'bourbon'
+gem 'bourbon', '4.2.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'material_icons'

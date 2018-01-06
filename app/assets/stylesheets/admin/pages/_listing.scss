@@ -1,8 +1,5 @@
 // Listing index
-.drag{
-	cursor: move;
-}
-		
+
 .listing.col {
 	background: $white;
 	box-shadow: 0 1px 2px rgba($black, .3);
@@ -56,14 +53,38 @@
 			top: 4.9px;
 		}
 
-		td {
-			font-weight: 300;
-			position: relative;
+		tr {
+			background: #fff;
+			td {
+				font-weight: 300;
+				position: relative;
+				span {
+					img {
+						height: 35px;
+					}
+				}
+			}
+		}
+		
+		.text-overflow {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 
 		.btn-floating:hover {
 			background: #d3d3d3;
 			box-shadow: none !important;
+		}
+
+		.draggable, .draggable a {
+			cursor: -webkit-grab !important;
+			&:hover {
+				// background: #f4f4f4 !important;
+			}
+			&:active {
+				cursor: -webkit-grabbing !important;
+			}
 		}
 
 		.btn-w5 {
@@ -78,14 +99,16 @@
 			width: 100%;
 		}
 
-		tr:hover,
-		.active {
+		tr:hover, .active {
 			background: $gray-lighten;
 		}
 
 
 		.action-btn {
 			&:hover {
+				a {
+					cursor: default;
+				}
 				.expanded-menu {
 					background: linear-gradient(to right, transparent 0%, #f4f4f4 20%);
 					transition: .3s;
@@ -100,16 +123,23 @@
 				background: transparent;
 				// transition: .3s;
 				.icons {
-					padding-right: 30px;
+					padding-right: 20px;
 					li {
 						display: inline-block;
+						a {
+							opacity: 0;
+							cursor: pointer;
+						}
 					}
 				}
 			}
 		}
 	}
 }
-
+tr.ui-sortable-helper {
+	display: table;
+	width: 100%;
+}
 // Listing show
 .listing-show.col {
 	padding: 0;
@@ -177,7 +207,7 @@
 
 		img {
 			max-width: 100%;
-			max-height: 300px;
+			max-height: 500px;
 		}
 
 		.card-content {
@@ -201,13 +231,13 @@
 			margin-bottom: 10px;
 		}
 
-		.display-label {
+		%th.display-label {
 			color: $gray-darken;
 			font-size: 13px;
 			font-weight: 600;
 		}
 
-		.display-value {
+		%td.display-value {
 			font-size: 13px;
 			font-weight: 300;
 		}
