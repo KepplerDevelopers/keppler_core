@@ -28,7 +28,7 @@ puts 'Keppler Template has been created'
 setting = Setting.create(
   name: 'Keppler Admin', description: 'Welcome to Keppler Admin',
   smtp_setting_attributes: {
-    address: 'test', port: '25', domain_name: 'keppler.com',
+    server_address: 'test', port: '25', domain_name: 'keppler.com',
     email: 'info@keppler.com', password: '12345678'
   },
   google_analytics_setting_attributes: {

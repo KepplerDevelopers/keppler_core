@@ -6,9 +6,9 @@
 	= link_to admin_<%= plural_table_name %>_path(:format => :xls), class: 'btn-tool-right btn-floating btn-flat tooltipped right', title: 'Save as .xls' do
 		= material_icon.md_18.save.css_class('md-dark')
 	%table.bordered
-		%tbody#draggable{ 'data-update-url' => "#{admin_sorting_<%= plural_table_name %>_path}" }
-			- unless @objects.blank?
-				%tr{ width: 5, style: 'background: #fff;' }
+		- unless @objects.blank?
+			%tbody
+				%tr.white-hover{ width: 5 }
 					- if can? :destroy_multiple, <%= singular_table_name.camelcase %>
 						%th{style: 'padding-left: 20px'}
 					<%- attributes.each do |attribute| -%>
@@ -25,15 +25,15 @@
 							<%- end -%>
 						<%- end -%>
 					<%- end -%>
-					%th.center
-
-			- @<%= plural_table_name %>.each do |<%= singular_table_name %>|
-				= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
-			- if @objects.size.zero?
-				%tr
-					%td{ colspan: '4' }
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
+					%th.center{ colspan: 2 }
+			%tbody#draggable{ 'data-update-url' => "#{admin_sorting_<%= plural_table_name %>_path}" }
+				- @objects.each do |<%= singular_table_name %>|
+					= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
+		- else
+			%tr
+				%td.center{ colspan: '4' }
+					%center
+						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down

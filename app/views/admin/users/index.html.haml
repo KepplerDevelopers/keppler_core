@@ -6,7 +6,7 @@
 		%tbody
 			- if @objects.size.zero?
 				%tr
-					%td{colspan: "4"}
+					%td.center{ colspan: '4' }
 						%center
 							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
 			- else

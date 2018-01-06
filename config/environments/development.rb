@@ -31,7 +31,7 @@ Rails.application.configure do
   config.time_zone = 'Caracas'
 
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
+    server_address: 'smtp.gmail.com',
     port: 587,
     domain: Rails.application.secrets.domain_name,
     authentication: 'plain',

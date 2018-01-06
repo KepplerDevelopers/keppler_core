@@ -1,5 +1,5 @@
 # GoogleAnayticsTrack Model
-class GoogleAnalyticsTrack < ActiveRecord::Base
+class Script < ActiveRecord::Base
   include ActivityHistory
 
   def self.get_tracking_id(request)
@@ -7,6 +7,6 @@ class GoogleAnalyticsTrack < ActiveRecord::Base
   end
 
   def self.search_field
-    :name_or_tracking_id_cont
+    :name_or_script_cont
   end
 end

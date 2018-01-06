@@ -18,7 +18,7 @@ class Ability
 
       # - GoogleAnalytics authorize -
       if Setting.first.google_analytics_setting.ga_status
-        can :manage, GoogleAnalyticsTrack
+        can :manage, Script
       end
 
       # - Setting authorize -

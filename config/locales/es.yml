@@ -15,7 +15,7 @@ es:
       seo-submenu:
         title-metas: 'Títulos y Meta tagas'
         google-adwords: 'Google Adwords'
-      google-analytics-tracks: 'Google Analytics Tracks'
+      google-analytics-tracks: 'Scripts'
       keppler-messages: Mensajes
       keppler-blog: Blog
       keppler-blog-submenu:
@@ -26,7 +26,7 @@ es:
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
-        google_analytics_track: google analytics track
+        script: script
         setting: configuración
         configuration: configuración
         user: usuario
@@ -34,7 +34,7 @@ es:
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
-        google_analytics_tracks: google analytics tracks
+        scripts: scripts
         settings: configuraciones
         configurations: configuraciones
         user: usuarios
@@ -42,7 +42,7 @@ es:
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
-      admin/google_analytics_tracks: 'Google analytics tracks'
+      admin/scripts: 'Scripts'
       admin/settings: 'Configuraciones'
       keppler_ga_dashboard/dashboard: 'Dashboard'
       admin/users: 'Usuarios'
@@ -107,31 +107,71 @@ es:
       apply: Aplicar
   activerecord:
     attributes:
-      user:
-        id: Identificador
-        name: Nombre
-        permalink: Permalink
-        email: Email
-        sign_in_count: Veces logeado
-        created_at: Fecha de creación
-        updated_at: Ultima actualización
-        password: Contraseña
-        password_confirmation: Confirmar contraseña
-      setting:
-        name: Nombre
-        description: Descripción
-        logo: Logo
-        favicon: Favicon
-      smtp_setting:
-        address: Dirección del servidor
-        port: Puerto
-        domain_name: Dominio
-        email: Email
-        password: Contraseña
-      google_analytics_setting:
-        ga_account_id: Identificador de la cuenta
-        ga_tracking: Identificador de segumiento
-        ga_status: Habilitar Google Analytics
+      id: Identificador
+      name: Nombre
+      first_name: 'Primer Nombre'
+      last_name: 'Último Nombre'
+      full_name: 'Nombre Completo'
+      email: Correo
+      phone: Teléfono
+      phone_number: 'Número de Teléfono'
+      phone_number: 'Código de Area'
+      area_number: 'Código de Area'
+      phone_one: 'Teléfono #1'
+      phone_two: 'Teléfono #2'
+      age: Edad
+      image: Imagen
+      photo: Foto
+      attachment: Adjunto
+      file: Archivo
+      pdf: PDF
+      avatar: Avatar
+      brand: Logo
+      logo: Logo
+      favicon: Favicon
+      icon: Icono
+      country: País
+      state: Estado
+      city: Ciudad
+      company: Empresa
+      product: Producto
+      client: Cliente
+      partner: Socio
+      code: Código
+      alliance: Aliados
+      category: Categoría
+      service: Servicio
+      project: Proyecto
+      type: Tipo
+      address: Dirección
+      size: Tamaño
+      distance: Distancia
+      description: Descripción
+      short_description: 'Descripción Corta'
+      long_description: 'Descripción Larga'
+      details: Detalles
+      message: Mensaje
+      check_in: Entrada
+      check_out: Salida
+      title: Título
+      subtitle: Subtítulo
+      permalink: Permalink
+      sign_in_count: Veces logeado
+      created_at: Fecha de creación
+      updated_at: Ultima actualización
+      password: Contraseña
+      password_confirmation: Confirmar contraseña
+      server_address: Dirección del servidor
+      port: Puerto
+      domain_name: Dominio
+      url: Url
+      meta_tags: 'Meta Tags'
+      script: 'Tracking Id'
+      campaign_name: Campaña
+      script: Script
+      ga_account_id: Identificador de la cuenta
+      ga_tracking: Identificador de segumiento
+      ga_status: Habilitar Google Analytics
     errors:
       messages:
         record_invalid: "Validación fallida: %{errors}"
