@@ -57,9 +57,9 @@
         -#   = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "img-circle"
         %img.img-circle{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
       .pull-left.info
-        %p Alexander Pierce
+        %p= current_user.name
         %a{:href => "#"}
-          %i.fa.fa-circle.text-success>
+          %i.fa.fa-circle.text-success
           Online
     / search form
     %form.sidebar-form{:action => "#", :method => "get"}

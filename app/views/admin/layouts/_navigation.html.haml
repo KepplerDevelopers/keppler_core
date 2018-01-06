@@ -6,7 +6,7 @@
       %b K
     / logo for regular state and mobile devices
     %span.logo-lg
-      %b Keppler Admin
+      %b Keppler
   / Header Navbar: style can be found in header.less
   %nav.navbar.navbar-static-top
     / Sidebar toggle button
@@ -169,13 +169,13 @@
         %li.dropdown.user.user-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
             %img.user-image{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
-            %span.hidden-xs Alexander Pierce
+            %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             / User image
             %li.user-header
               %img.img-circle{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
               %p
-                Alexander Pierce
+                = current_user.name
                 %small Member since Nov. 2012
             / Menu Body
             %li.user-body
