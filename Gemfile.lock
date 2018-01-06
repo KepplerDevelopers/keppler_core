@@ -80,9 +80,9 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bourbon (5.0.0)
+    bourbon (4.2.0)
       sass (~> 3.4)
-      thor (~> 0.19)
+      thor
     builder (3.2.3)
     byebug (9.1.0)
     cancancan (2.1.2)
@@ -397,13 +397,13 @@ DEPENDENCIES
   angularjs-rails
   better_errors
   bootstrap-sass (= 3.3.6)
-  bourbon
+  bourbon (= 4.2.0)
   byebug
   cancancan
   carrierwave
   ckeditor
   cocoon
-  coffee-rails (~> 4.0.0)
+  coffee-rails (= 4.0.1)
   commands
   devise
   devise-i18n
