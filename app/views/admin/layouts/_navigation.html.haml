@@ -3,10 +3,11 @@
   %a.logo{:href => "#"}
     / mini logo for sidebar mini 50x50 pixels
     %span.logo-mini
-      %b K
+      %span K
     / logo for regular state and mobile devices
     %span.logo-lg
-      %b Keppler
+      %span Keppler
+      Admin
   / Header Navbar: style can be found in header.less
   %nav.navbar.navbar-static-top
     / Sidebar toggle button
@@ -17,6 +18,7 @@
     / Navbar Right Menu
     .navbar-custom-menu
       %ul.nav.navbar-nav
+
         / Messages: style can be found in dropdown.less
         %li.dropdown.messages-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -172,23 +174,18 @@
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             / User image
-            %li.user-header
+            %li.user-header{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
               %img.img-circle{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
               %p
                 = current_user.name
-                %small Member since Nov. 2012
-            / Menu Body
-            %li.user-body
-              / /.row
-            / Menu Footer
+                %small
+                  = "#{t('keppler.navigation.last_session')} #{current_user.updated_at.strftime("%d %b %Y")}"
             %li.user-footer
               .pull-left
                 %a.btn.btn-default.btn-flat{:href => "#"} Profile
               .pull-right
-                / = link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, class: " btn btn-default btn-flat"
+                = link_to t('devise.sign_out'), destroy_user_session_path, class: " btn btn-default btn-flat"
         - if action_name == 'index'
           %li
             %a{:href=>"#", "data-toggle" => "control-sidebar"}
-              %i.fa.fa-gear
-
-
+              %i.fa.fa-history

@@ -1,10 +1,6 @@
 %aside.control-sidebar.control-sidebar-light
   .tab-content
-    %h4.control-sidebar-heading
-      = t("keppler.models.singularize.user").humanize
-    %hr/
-    
-    %h4.control-sidebar-heading
+    %p.control-sidebar-heading
       = @activities.empty? ? t('keppler.messages.no_events') : t("keppler.titles.history")
     %ul.timeline
       - @activities.each do |activity|

@@ -1,23 +1,14 @@
 .arrow-back{
-  padding: 20px 20px 0px 10px;
+  margin-bottom:  1rem;
   a{
-    padding: 12px;
     background-color: transparent;
     border-radius: 5%;
     transition: .3s;
-    color: #252525;
-    &:hover{
-      background-color: lightgray;
-      transition: .3s;
-      // transform: scale(1.1);
-      // color: white;
-    }
-    &:active{
-      color: inherit;
-    }
+    font-weight: 400;
+    color: #000;
   }
 }
-.form-section, .show-section{
+.form-section{
   padding: 40px 40px 30px 30px;
   .form-group{
     padding: 0 20px;
@@ -121,11 +112,13 @@
   transform: scaleX(1);
 }
 
-
+.form-padding {
+  padding: 2rem;
+}
 
 .btn-primary {
-  padding: 5px 21px;
-  font-weight: 100;
+  padding: 7px 21px;
+  font-weight: 400;
   background-color: $color-btn-ks-hover;
   border: none;
   color: #fff;
@@ -141,4 +134,8 @@
 .form-control:focus {
   border-color: $color-btn-ks-hover;
   box-shadow: none;
+}
+
+.box-body-no-padding {
+  padding: 0 !important;
 }
