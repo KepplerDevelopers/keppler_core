@@ -1,5 +1,7 @@
 es:
   keppler:
+    login_message: Ingresa tus datos para entrar
+    powered: Desarrollado por
     sidebar-menu:
       customizes: Customizes
       dashboard: Dashboard
