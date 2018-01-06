@@ -1,17 +1,35 @@
 !!!
 %html
-	= render 'admin/layouts/head'
-	%body{ 'ng-controller'=>'MainCtrl', class: "#{@appearance.theme_name}-theme" }
-		.waiting
-			= preloader
+  = render 'admin/layouts/head'
+  %body.sidebar-mini.skin-blue{style: "height: auto; min-height: 100%;" }
+    .wrapper{style:"height: auto; min-height: 100%;"}
+      = render 'admin/layouts/navigation'
+      = render 'admin/layouts/sidebar'
+        
+      .content-wrapper{ style: "min-height: 901px;" }
+        = yield
+    .waiting
+      = preloader
 
-		- if loggedin?
-			= render 'admin/layouts/sidebar'
-			= render 'admin/layouts/navigation'
-			= render 'admin/layouts/header'
-			= render 'admin/layouts/messages'
-			%main.row.admin{ role: 'main', 'ng-click' => 'sidebarClose()' }
-				= yield
-		- else
-			%main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
-				= yield
+    - if loggedin?
+      
+      =# render 'admin/layouts/header'
+      =# render 'admin/layouts/messages'
+      
+    - else
+      %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
+        = yield
+    = render 'admin/layouts/footer'
+:sass
+  .wrapper
+    .content-wrapper
+      padding-top: 60px
+      min-height: 92vh !important
+      thead
+        border-bottom: 3px solid #ff5300
+
+  
+
+
+      
+
