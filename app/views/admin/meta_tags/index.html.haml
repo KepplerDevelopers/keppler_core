@@ -6,13 +6,19 @@
 	= entries(@total, @objects)
 	%table.bordered
 		%tbody
-			- @objects.each do |meta_tag|
-				= render 'listing', meta_tag: meta_tag
 			- if @objects.size.zero?
 				%tr
-					%td{colspan: "4"}
+					%td.center{ colspan: '4' }
 						%center
 							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.meta_tags"))
+			- else
+				%tr.white-hover
+					%th.center
+					%th.center= t('activerecord.attributes.name')
+					%th.center= t('activerecord.attributes.url')
+					%th.center
+				- @objects.each do |meta_tag|
+					= render 'listing', meta_tag: meta_tag
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down

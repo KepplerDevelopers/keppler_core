@@ -7,7 +7,7 @@ menu:
   seo:
     name: SEO
     current: ['admin/meta_tags', 'admin/google_adwords']
-    icon: code
+    icon: trending_up
     model: MetaTag
     submenu:
       - meta_tags:
@@ -18,12 +18,13 @@ menu:
           name: Google Adwords
           url_path: /admin/google_adwords
           current: ['admin/google_adwords']
-  google_analytics_track:
-    name: google analytics tracks
-    url_path: /admin/google_analytics_tracks
-    icon: insert_chart
-    current: ['admin/google_analytics_tracks']
-    model: GoogleAnalyticsTrack
+  script:
+    name: Scripts
+    url_path: /admin/scripts
+    icon: settings_ethernet
+    current: ['admin/scripts']
+    model: Script
+  #Another deleted
   user:
     name: users
     url_path: /admin/users

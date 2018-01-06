@@ -12,19 +12,19 @@
 				= material_icon.md_18.arrow_back.css_class("md-dark")
 		.card
 			.card-content
-				%ul.list
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
-						.display-value.fs-body-1.tc-black-2= @google_adword.id.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.url")
-						.display-value.fs-body-1.tc-black-2= @google_adword.url.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.campaign_name")
-						.display-value.fs-body-1.tc-black-2= @google_adword.campaign_name.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.description")
-						.display-value.fs-body-1.tc-black-2= @google_adword.description.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.script")
-						.display-value.fs-body-1.tc-black-2= @google_adword.script.to_s.humanize
+				%table.list.bordered
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.id")
+						%td.display-value.fs-body-1.tc-black-2= @google_adword.id.to_s.humanize
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.url")
+						%td.display-value.fs-body-1.tc-black-2= @google_adword.url.to_s.humanize
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.campaign_name")
+						%td.display-value.fs-body-1.tc-black-2= @google_adword.campaign_name.to_s.humanize
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.description")
+						%td.display-value.fs-body-1.tc-black-2= @google_adword.description.to_s.humanize
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.script")
+						%td.display-value.fs-body-1.tc-black-2= @google_adword.script.to_s.humanize
