@@ -37,7 +37,7 @@ gem 'public_activity'
 source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
 end
-gem 'icheck-rails'
+# gem 'icheck-rails'
 
 # Forms
 gem 'simple_form'

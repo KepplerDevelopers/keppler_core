@@ -9,7 +9,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "adminlte";
-@import "vendor/admin-lte/skin-blue";
+
 
 // @import 'materialize';
 @import 'utils/variables';
@@ -22,7 +22,7 @@
 // @import 'pages/sidebar';
 // @import 'pages/pageslide';
 // @import 'pages/header';
-// @import 'pages/listing';
+@import 'pages/listing';
 // @import 'pages/show';
 @import 'pages/form';
 // @import 'pages/search';
@@ -31,4 +31,9 @@
 @import "components/navigation/navbar";
 @import "components/navigation/sidebar";
 @import "components/layouts/footer";
-@import 'icheck/square/green'
+@import "components/module/index";
+@import "components/module/show";
+// @import 'icheck/square/green';
+// @import 'icheck/square/_all';
+@import "vendor/admin-lte/skin-blue";
+// @import '~pretty-checkbox/src/pretty-checkbox.scss';

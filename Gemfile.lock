@@ -187,10 +187,6 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
-    icheck-rails (1.0.2.2)
-      jquery-rails
-      rails (>= 3.1.0)
-      sass-rails
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -413,7 +409,6 @@ DEPENDENCIES
   guard-livereload
   haml-lint
   haml-rails
-  icheck-rails
   jbuilder (~> 2.0)
   jquery-minicolors-rails
   jquery-rails

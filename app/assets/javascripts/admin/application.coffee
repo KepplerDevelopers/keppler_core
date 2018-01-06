@@ -13,6 +13,6 @@
 #= require bootstrap-sprockets
 #= require adminlte/app
 #= require turbolinks
-#= require icheck
 #= require jquery.minicolors
+
 #= require_tree .

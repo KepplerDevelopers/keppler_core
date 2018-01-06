@@ -4,6 +4,6 @@
   %title= content_for?(:title) ? yield(:title) : 'Keppler Admin'
   = stylesheet_link_tag 'admin/application', media: 'all'
   = javascript_include_tag 'admin/application', 'data-turbolinks-track' => true
-  
+  %link{:rel=>"stylesheet", :href=>"https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"}
   = csrf_meta_tags
   = favicon_link_tag "admin/favicon.png"
