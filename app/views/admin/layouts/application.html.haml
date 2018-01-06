@@ -1,46 +1,33 @@
 !!!
 %html
   = render 'admin/layouts/head'
-  %body.skin-blue.sidebar-mini{ 'ng-controller'=>'MainCtrl', class: "#{@appearance.theme_name}-theme", style: "height: auto; min-height: 100vh;" }
+  %body.sidebar-mini.skin-blue{style: "height: auto; min-height: 100%;" }
+    .wrapper{style:"height: auto; min-height: 100%;"}
+      = render 'admin/layouts/navigation'
+      = render 'admin/layouts/sidebar'
+        
+      .content-wrapper{ style: "min-height: 901px;" }
+        = yield
     .waiting
       = preloader
 
     - if loggedin?
-      = render 'admin/layouts/sidebar'
-      = render 'admin/layouts/navigation'
+      
       =# render 'admin/layouts/header'
       =# render 'admin/layouts/messages'
-      .wrapper{style:""}	
-        .content-wrapper{ style: "" }
-          = yield
+      
     - else
       %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
         = yield
     = render 'admin/layouts/footer'
 :sass
-  html
-    width: 100% !important
   .wrapper
-    width: 100% !important
     .content-wrapper
       padding-top: 60px
-      min-height: 600px !important
+      min-height: 92vh !important
       thead
         border-bottom: 3px solid #ff5300
--#:javascript
-  $(document).ready(function(){
-    $('input').focus(function(ev){
-      var label = $("label[for='"+$(this).attr('id')+"']");
-      label.addClass('better-label');
-    })
-    $('input').blur(function(ev){
-      if($(this).val() == ""){
-        var label = $("label[for='"+$(this).attr('id')+"']");
-        label.removeClass('better-label');
-      }
-      
-    })
-  });
+
   
 
 
