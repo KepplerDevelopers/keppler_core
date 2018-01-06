@@ -18,5 +18,5 @@
 					%tbody
 						- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
 							%tr.list-row
-								%th.display-label= t("activerecord.attributes.user.#{attribute}")
+								%th.display-label= t("activerecord.attributes.#{attribute}")
 								%td.display-value.fs-body-1.tc-black-2= value.to_s.humanize

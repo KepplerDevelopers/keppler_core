@@ -9,13 +9,14 @@
 	= entries(@total, @objects)
 	%table.bordered
 		%tbody
-			- @objects.each do |customize|
-				= render 'listing', customize: customize
 			- if @objects.size.zero?
 				%tr
-					%td{colspan: "4"}
+					%td.center{colspan: "4"}
 						%center
 							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
+			- else
+				- @objects.each do |customize|
+					= render 'listing', customize: customize
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
