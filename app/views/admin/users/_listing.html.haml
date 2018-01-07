@@ -1,6 +1,6 @@
 %tr{ id: "row-#{user.id}" }
   - if can? :destroy_multiple, User
-    %td.center.item-check{style:"width: 10%"}
+    %td.item-check{style:"width: 10%"}
       - if user.id.eql?(current_user.id)
         = link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
           %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
@@ -10,40 +10,46 @@
           %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
           .state.p-danger-o
             %label{ for: "checkbox-#{user.id}" }
-  %td.center.hide-on-small-and-down{style:"width: 30%"}
+  %td.hide-on-small-and-down
     = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
     %span= user.name
-  %td.center{style:"width: 35%"}
+  %td
     = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
     %span= user.email
-  %td.center.hide-on-small-and-down{style:"width: 20%"}
+  %td.hide-on-small-and-down
     = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
     %span= user.rol.humanize
-  %td.center{ style:"width: 35%" }
+  %td{:style => "float: right;padding-right: 30px;"}
     %a.coll{"data-toggle"=>"collapse", "aria-expanded"=>"false", "aria-controls"=>"menu-#{user.id}", :href => "#menu-#{user.id}"}
       -# %span.caret
-      %i.fa.fa-bars
+      %i.material-icons menu
     .custom-collapse.collapse{id: "menu-#{user.id}"}
       .panel-body
         - if can? :show, User
           
           = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-            %i.fa.fa-eye
+            %i.material-icons remove_red_eye
         - if can? :update, User
           
           = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Edit' do
-            %i.fa.fa-pencil
+            %i.material-icons create
         - if can? :clone, User
           
           = link_to admin_user_clone_path(user), class: 'new-menu', title: 'Clone' do
-            %i.fa.fa-clone
+            %i.material-icons clone
         - if can? :delete, User
           
           = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
-            %i.fa.fa-trash-o
+            %i.material-icons delete
 
 
-
+:scss
+  .panel-body{
+    .material-icons{
+      font-size: 1.6rem;
+    }
+  }
+  
 :javascript
   $(document).ready(function(){
     
