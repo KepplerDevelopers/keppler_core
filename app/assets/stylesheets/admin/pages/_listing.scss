@@ -226,16 +226,14 @@
   
 }
 a.coll{
+  color: gray;
   &:active{
-    color: red;
+    color: inherit;
   }
   &:link{
-    color: red;
+    color: inherit;
   }
   &:focus{
-    color: red;
+    color: inherit;
   }
-}
-.fa-bars{
-  color: #252525;
 }

@@ -27,14 +27,14 @@
               %table.table.table-striped
                 %tbody
                   %tr
-                    %td{width: 30}
-                    %th{width: 30}
+                    %td
+                    %th
                       Name
-                    %th{width: 30}
+                    %th
                       Email
-                    %th{width: 30}
+                    %th
                       Role
-                    %td{colspan: "4"}
+                    %th{:style => "text-align: center;padding-right: 30px;"}
                       Actions
                 
                   - @objects.each do |user|
@@ -78,7 +78,7 @@
     });
     $(".custom-collapse").each(function(idx){
       //console.log(40 + (35 * idx) + "px");
-      $(this).css('top', 40 + (37 * idx) + "px")
+      $(this).css('top', 40 + (47 * idx) + "px")
     });
   })
   
