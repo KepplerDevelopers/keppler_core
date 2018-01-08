@@ -3,8 +3,15 @@
 		= link_to new_admin_<%= singular_table_name %>_path, class: 'btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only', title: 'New' do
 			= material_icon.md_24.add
 	= entries(@total, @objects)
-	= link_to admin_<%= plural_table_name %>_path(:format => :xls), class: 'btn-tool-right btn-floating btn-flat tooltipped right', title: t('keppler.actions.download_records') do
-		= material_icon.md_18.save.css_class('md-dark')
+	= link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
+		= material_icon.md_18.cloud_download.css_class("md-dark")
+	= link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "<%= singular_table_name %>" do
+		= material_icon.md_18.cloud_upload.css_class("md-dark")
+
+	.hide
+		= form_tag admin_<%= singular_table_name %>_import_path(@objects), id: "import_form_<%= singular_table_name %>", multipart: true, method: :post do
+			= file_field_tag :file, id: "import_file_<%= singular_table_name %>"
+
 	%table.bordered
 		- unless @objects.blank?
 			%tbody
@@ -45,7 +52,7 @@
 
 - if can? :new, model
 	= link_to new_admin_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		= material_icon.md_24.add.css_class('md-light')
+		= material_icon.md_24.add.css_class("md-light")
 
 :javascript
 	$(document).ready(function(){
@@ -61,4 +68,11 @@
 				$('.action-btn.toolbar').closeToolbar();
 			}
 		);
+
+		$('#<%= singular_table_name %>').click(function() {
+			$('#import_file_<%= singular_table_name %>').click()
+			$('#import_file_<%= singular_table_name %>').change(function() {
+				$('.waiting').css('display', 'block')
+				$('#import_form_<%= singular_table_name %>').submit()
+			})
 	})
