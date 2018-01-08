@@ -213,7 +213,7 @@ module Rails
 
       #String of the button to add in father_module's listing
       def str_btn(father, son)
-        "\n					%li.center\n						= link_to admin_#{father}_#{son.pluralize}_path(#{father}), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.sidebar-menu.#{son.pluralize}') do\n							= material_icon.md_24.subdirectory_arrow_right.css_class('md-dark')\n"
+        "\n					%li.center\n						= link_to admin_#{father}_#{son.pluralize}_path(#{father}), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.sidebar-menu.#{son.pluralize}') do\n							= material_icon.md_24.add_circle_outline.css_class('md-dark')\n"
       end
     end
   end

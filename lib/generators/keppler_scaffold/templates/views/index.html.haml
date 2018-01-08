@@ -20,20 +20,24 @@
 						%th{style: 'padding-left: 20px'}
 					<%- attributes.each do |attribute| -%>
 						<%- if @attachments.include?(attribute.name) -%>
-					%th.center= t("activerecord.attributes.<%= controller_name.singularize %>.<%= attribute.name %>")
+					%th.center= t("activerecord.attributes.<%= attribute.name %>")
 						<%- end -%>
 					<%- end -%>
 					<%- attributes.each_with_index do |attribute, index| -%>
 						<%- if index < 6 -%>
 							<%- unless @attachments.include?(attribute.name) -%>
 								<%- unless attribute.type.to_s == 'text' -%>
-					%th.center= t("activerecord.attributes.<%= controller_name.singularize %>.<%= attribute.name %>")
+									<%- if index < 2 -%>
+					%th.center= t("activerecord.attributes.<%= attribute.name %>")
+									<%- else -%>
+					%th.center.hide-on-small-and-down= t("activerecord.attributes.<%= attribute.name %>")
+									<%- end -%>
 								<%- end -%>
 							<%- end -%>
 						<%- end -%>
 					<%- end -%>
 					%th.center{ colspan: 2 }
-			%tbody#draggable{ 'data-update-url' => "#{admin_sorting_<%= plural_table_name %>_path}" }
+			%tbody#draggable{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
 				- @objects.each do |<%= singular_table_name %>|
 					= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
 		- else
@@ -64,7 +68,6 @@
 				$('.action-btn.toolbar').closeToolbar();
 			}
 		);
-
 
 		$('#<%= singular_table_name %>').click(function() {
 			$('#import_file_<%= singular_table_name %>').click()

@@ -84,9 +84,10 @@ en:
       create: Create
       update: Update
       deleted: Deleted
-      edit: Edit
-      show: Show
       new: New
+      show: Show
+      edit: Edit
+      clone: Clone
       delete: Delete
       index: List
       change_rol: Change role
@@ -108,11 +109,15 @@ en:
   activerecord:
     attributes:
       id: Id
+      title: Title
+      subtitle: Subtitle
+      tags: Etiquetas
       name: Name
       first_name: 'First Name'
       last_name: 'Last Name'
       full_name: 'Full Name'
       email: Email
+      role: Role
       phone: Phone
       phone_number: 'Phone Number'
       phone_code: 'Phone Code'
@@ -135,6 +140,7 @@ en:
       partner: Partner
       code: Code
       alliance: Alliance
+      ally: Ally
       category: Category
       service: Service
       project: Project
@@ -147,10 +153,14 @@ en:
       long_description: 'Long Description'
       details: Details
       message: Message
+      content: Content
+      date: Date
+      date_begin: 'Date Begin'
+      date_end: 'Date End'
+      begin: Inicio
+      end: Fin
       check_in: 'Check In'
       check_out: 'Check Out'
-      title: Title
-      subtitle: Subtitle
       google_analytics_setting:
         ga_account_id: Account id
         ga_tracking_id: Tracking id
