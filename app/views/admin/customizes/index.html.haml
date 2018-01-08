@@ -1,26 +1,26 @@
-= title(t('keppler.titles.index', model: "Templates"))
-= header_information do
-	= "Templates"
 
-.listing.col.l9.m12.s12
-	- if can? :new, model
-		= link_to new_admin_customize_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-			-# = material_icon.md_24.add
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- @objects.each do |customize|
-				= render 'listing', customize: customize
-			- if @objects.size.zero?
-				%tr
-					%td{colspan: "4"}
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
-	= paginate @objects, window: 1
+.col-lg-6
+	.box.slice-box
+		.box-header.with-border
+			%h3.box-title Preview
 
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
+		/ /.box-header
+		.box-body.box-body-no-padding.hidden-xs{style:"height: 325px;flow:hidden;overflow:hidden;"}
+			%iframe{src: "#{root_path}", frameborder:"0", style:"height:250%;width:250%;zoom:1.8;transform:scale(0.4);transform-origin:0 0;"}
+.col-lg-6
+	.box.slice-box
+		.box-header.with-border
+			%h3.box-title Frontend Theme
 
-- if can? :new, model
-	= link_to new_admin_customize_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		-# = material_icon.md_24.add.css_class("md-light")
+		/ /.box-header
+		.box-body
+			%table.bordered
+				%tbody
+					- @objects.each do |customize|
+						= render 'listing', customize: customize
+					- if @objects.size.zero?
+						%tr
+							%td{colspan: "4"}
+								%center
+									= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
+			= paginate @objects, window: 1
