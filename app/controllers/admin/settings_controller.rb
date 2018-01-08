@@ -22,7 +22,9 @@ module Admin
     end
 
     def appearance_default
-      get_apparience_colors(["#f44336", "#d32f2f", "#009688"])
+      appearance = Appearance.last
+      appearance.update(image_background: nil)
+      get_apparience_colors(["#f50e1e", "#d32f2f", "#d11421"])
       redirect_to(
         admin_settings_path(@render), notice: actions_messages(@setting)
       )
