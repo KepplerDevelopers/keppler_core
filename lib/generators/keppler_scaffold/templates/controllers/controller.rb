@@ -80,11 +80,13 @@ module Admin
       )
     end
 
-    def sort
-      params[:row].each_with_index do |id, index|
-        <%= class_name %>.find(id).update(position: index.to_i+1)
-      end
-      redirect_to admin_<%= index_helper %>_path
+    def import
+      <%= class_name %>.import(params[:file])
+
+      redirect_to(
+        admin_<%= index_helper %>_path(page: @current_page, search: @query),
+        notice: actions_messages(<%= orm_class.build(class_name) %>)
+      )
     end
 
     private

@@ -7,6 +7,7 @@ class Ability
 
     if user.has_role? :keppler_admin
 
+      can :manage, Scaffold
       # - Customize authorize -
       can [:delete, :update,
            :new, :create, :install_default,

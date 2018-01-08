@@ -1,0 +1,31 @@
+%tr{ id: "row-#{scaffold.id}" }
+	- if can? :destroy_multiple, Scaffold
+		%td.center.item-check
+			= link_to '', admin_scaffold_path(scaffold), remote: true, class: 'show-row'
+			%input{ type:'checkbox', class: 'filled-in', id: "checkbox-#{scaffold.id}", 'checklist-model'=>'check', 'checklist-value'=>"#{scaffold.id}", 'ng-click'=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{scaffold.id}" }
+
+	%td.center
+		= link_to '', admin_scaffold_path(scaffold, search: @query), remote: true, class: 'show-row'
+		%span
+			= scaffold.name
+	%td.center
+		= link_to '', admin_scaffold_path(scaffold, search: @query), remote: true, class: 'show-row'
+		%span
+			= scaffold.fields
+	- if can? :show, Scaffold
+		%td.center.btn-w5
+			= link_to admin_scaffold_path(scaffold), class: 'btn-floating waves-effect btn-flat', title: 'Show' do
+				= material_icon.md_24.remove_red_eye.css_class('md-dark')
+	- if can? :update, Scaffold
+		%td.center.btn-w5
+			= link_to edit_admin_scaffold_path(scaffold), class: 'btn-floating btn-flat tooltipped', title: 'Edit' do
+				= material_icon.md_18.create.css_class('md-dark')
+	- if can? :clone, Scaffold
+		%td.center.btn-w5
+			= link_to admin_scaffold_clone_path(scaffold), class: 'btn-floating waves-effect btn-flat', title: 'Clone' do
+				= material_icon.md_24.content_copy.css_class('md-dark')
+	- if can? :delete, Scaffold
+		%td.center.btn-w5{style:'padding-right: 20px'}
+			= link_to admin_scaffold_path(scaffold), class: 'btn-floating btn-flat tooltipped', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+				= material_icon.md_18.delete.css_class('md-dark')

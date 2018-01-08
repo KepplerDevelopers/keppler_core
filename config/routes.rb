@@ -7,28 +7,16 @@ Rails.application.routes.draw do
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
-    post '/sorting', to: 'anothers#sort', as: :sorting_anothers
-    #Route deleted
-    post '/sorting', to: 'names#sort', as: :sorting_names
-    resources :names do
+    resources :scaffolds do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
+      post '/import', action: 'import', as: 'import'
       delete(
         action: :destroy_multiple,
         on: :collection,
         as: :destroy_multiple
       )
-      resources :anothers do
-        get '(page/:page)', action: :index, on: :collection, as: ''
-        get '/clone', action: 'clone'
-        delete(
-          action: :destroy_multiple,
-          on: :collection,
-          as: :destroy_multiple
-        )
-      end
     end
-
 
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
