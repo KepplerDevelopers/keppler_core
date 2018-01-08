@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+   get '/index', to: 'app/front#index', as: :app_index
 
   root to: 'app/front#index'
 

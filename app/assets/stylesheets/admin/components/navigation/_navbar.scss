@@ -4,7 +4,7 @@
     width: 100%;
 
     a.logo {
-      background: #f50e1e !important;
+      background: $keppler-color !important;
       color: #ffffff;
       border-bottom: 0 solid transparent;
       z-index: 9;
@@ -23,7 +23,7 @@
       background-image: url('profile-menu.jpg');
       background-position: center;
       background-size: cover;
-      border-bottom: 2px solid $color-border;
+      border-bottom: 2px solid $keppler-color;
     }
 
     .sidebar-toggle:hover {
@@ -33,7 +33,7 @@
 }
 .navbar.navbar-static-top{
   height: 50px !important;
-  
+
   h3{
     display: inline-block;
     margin: 10px 0;
