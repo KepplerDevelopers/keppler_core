@@ -41,9 +41,9 @@
 					.box-header.with-border
 						%h3.box-title Users
 						.box-tools.pull-right
-							%a.btn.btn-box-tool{title: "#{t('keppler.actions.edit') }"}
+							= link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
 								%i.fa.fa-pencil
-							%a.btn.btn-box-tool{title: "#{t('keppler.actions.delete')}"}
+							= link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
 								%i.fa.fa-trash
 
 					/ /.box-header

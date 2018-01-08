@@ -1,180 +1,513 @@
 !!!
-%html
-	%head
-		= render 'app/layouts/head'
-	%body
-		%header
-			= #render 'app/layouts/navigation'
-		%main#keppler{:role => "main"}
-			= #render 'app/layouts/messages'
-			.front
-				.front-logo
-					= image_tag "app/keppler-front.png", class: "img-responsive"
+%html{:lang => "en"}
+  %head
+    = render 'app/layouts/head'
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %title Smart Medical Alliance
+    %meta{:content => "Smart Medical Alliance would like to introduce ourselves as the leading Independent Management Services Organization. As a visionary leader in the industry, SMA specializes in guiding health care providers to develop strategies to improve workflows in different sections, identifying current and future information needs.", :name => "description"}/
+    %meta{:content => "Medical, Outsourced, Clinical, Services", :name => "keywords"}/
+    %meta{:content => "http://slicegroup.xyz/", :name => "author"}/
+    / Favicons (created with http://realfavicongenerator.net/)
+    %link{:href => "assets/img/favicons/apple-touch-icon-57x57.png", :rel => "apple-touch-icon", :sizes => "57x57"}/
+    %link{:href => "assets/img/favicons/apple-touch-icon-60x60.png", :rel => "apple-touch-icon", :sizes => "60x60"}/
+    %link{:href => "assets/img/favicons/favicon-32x32.png", :rel => "icon", :sizes => "32x32", :type => "image/png"}/
+    %link{:href => "assets/img/favicons/favicon-16x16.png", :rel => "icon", :sizes => "16x16", :type => "image/png"}/
+    %link{:href => "assets/img/favicons/manifest.json", :rel => "manifest"}/
+    %link{:href => "assets/img/favicons/favicon.ico", :rel => "shortcut icon"}/
+    %meta{:content => "#00a8ff", :name => "msapplication-TileColor"}/
+    %meta{:content => "assets/img/favicons/browserconfig.xml", :name => "msapplication-config"}/
+    %meta{:content => "#ffffff", :name => "theme-color"}/
+    / Normalize
+    %link{:href => "assets/css/normalize.css", :rel => "stylesheet", :type => "text/css"}/
+    / Bootstrap
+    %link{:href => "assets/css/bootstrap.css", :rel => "stylesheet", :type => "text/css"}/
+    / Owl
+    %link{:href => "assets/css/owl.css", :rel => "stylesheet", :type => "text/css"}/
+    / Animate.css
+    %link{:href => "assets/css/animate.css", :rel => "stylesheet", :type => "text/css"}/
+    / Font Awesome
+    %link{:href => "assets/fonts/font-awesome-4.1.0/css/font-awesome.min.css", :rel => "stylesheet", :type => "text/css"}/
+    / Elegant Icons
+    %link{:href => "assets/fonts/eleganticons/et-icons.css", :rel => "stylesheet", :type => "text/css"}/
+    / Main style
+    %link{:href => "assets/css/cardio.css", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    .preloader
+      %img{:alt => "Preloader image", :src => "assets/img/loader.gif"}/
+    %nav.navbar
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+          %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => "#"}
+            %img{:alt => "Logo", "data-active-url" => "assets/img/logo-active.png", :src => "assets/img/logo.png"}/
+        / Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right.main-nav
+            %li
+              %a{:href => "#intro"} Home
+            %li
+              %a{:href => "#aboutus"} About Us
+            / <li><a href="#pricing">Departments</a></li>
+            %li
+              %a{:href => "#services"} Services
+            / <li><a href="#team">Team</a></li>
+            %li
+              %a{:href => "#contac"} Contact Us
+            %li
+              %a.btn.btn-blue{"data-target" => "#modal1", "data-toggle" => "modal", :href => "#"} Sign Up
+        / /.navbar-collapse
+      / /.container-fluid
+    %header#intro
+      .container
+        .table
+          .header-text
+            .row
+              .col-md-12.text-center
+                .center-block.logofill
+                  %img{:alt => "Logo fullcolor", :src => "assets/img/logo_full.png"}/
+                %br/
+                %h4.light.white We are the premiere Outsourced Clinical and Management Services Partner.
+                %h1.white.typed Our number one goal is to serve you
+                %span.typed-cursor |
+                #aboutus
+                %center
+                  %h4.languaje
+                    %a{:href => ""} EN
+                    %span{:style => "color: white"} |
+                    %a{:href => "es/index.html"} ES
+    / ABOUT US
+    %section
+      .cut.cut-top
+      .container
+        .row.intro-tables
+          .col-md-4
+            .intro-table.intro-table-first
+              %h5.white.heading An Introduction
+              .owl-carousel.owl-schedule.bottom
+                .item
+                  .schedule-row.row
+                    .col-xs-12
+                      %h5.regular.white
+                        %big Smart Medical Alliance
+                        would like to introduce ourselves as the leading Independent Management Services Organization. As a visionary leader in the industry, SMA specializes in guiding health care providers to develop strategies to improve workflows in different sections, identifying current and future information needs.
+                .item
+                  .schedule-row.row
+                    .col-xs-12
+                      %h5.regular.white Our goal at Smart Medical Alliance is to meet legal, professional, ethical and administrative records-keeping requirements of health care delivery. One of the core tenants of our highly professional work is based on clinical, demographic, financial healthcare data, a value-added benefit which has been said to "play a critical role" in the delivery of healthcare in the United States.
+                .item
+                  .schedule-row.row
+                    .col-xs-12
+                      %h5.regular.white
+                        In addition, SMA applies the science of informatics to the collection, storage, analysis, use, and transmission of information across all aspect of the healthcare delivery system.
+                        %br/
+                        %br/
+          .col-md-4
+            .intro-table.intro-table-third
+              %h5.white.heading Preventive Care
+              .owl-testimonials.bottom
+                .item
+                  %h5.white.heading.content At SMA we believe in building relationships with our clients. Understanding our clients’ needs and long term goals is essential to developing a successful partnership.  We would like to propose the incorporation of new services for each provider group.
+                .item
+                  %h5.white.heading.content As a progressive organization, SMA understands that one pricing solution doesn't fit all, and as such, SMA will work with your company to provide to the most aggressive pricing possible to match the specific needs of the company.
+          .col-md-4
+            .intro-table.intro-table-hover
+              %h5.white.heading.hide-hover Smart Medical App...
+              .bottom
+                %h4.white.heading.small-heading.no-margin.regular
+                  %small{:style => "color: white"} Our commitment is to satisfy the customer. Check out our web app and stay connected to your health.
+                %a.btn.btn-white-fill.expand{"data-target" => "#modal2", "data-toggle" => "modal", :href => "#"} Log In
+    / /* END ABOUT US
+    %section{:style => "background-color: #0575BC; padding: 20px; margin-top: -100px"}
+      .container
+        %center
+          %h2.white.heading.hide-hover We are here for you...
+          %p.white.lead We specialize in guiding providers to develop strategies to improve workflows in different sections identifying current and future information need.
+          %a.btn.btn-white-fill.expand{:href => "#contac"} Contact Us Now
+    / SERVICES
+    %section#services.section.section-padded
+      .container
+        .row.text-center.title
+          %h2 Services
+        .row.services
+          .col-md-4
+            .service
+              .icon-holder
+                %img.icon{:alt => "", :src => "assets/img/admon-blue.png"}/
+              %h4.heading Administration Services
+              %p.description At Smart Medical Alliance, we strive to provide complete and total support services for all of our clients’ administrative needs.
+              %br/
+              %a.lead{"data-target" => "#modal3", "data-toggle" => "modal", :href => "#"} See more...
+          .col-md-4
+            .service
+              .icon-holder
+                %img.icon{:alt => "", :src => "assets/img/bar-blue.png"}/
+              %h4.heading Data Information Management
+              %p.description Data Information Management is crucial to the proper delivery of healthcare services, and SMA works hard to provide these important services to our clients.
+              %a.lead{"data-target" => "#modal4", "data-toggle" => "modal", :href => "#"} See more...
+          .col-md-4
+            .service
+              .icon-holder
+                %img.icon{:alt => "", :src => "assets/img/invoice-blue.png"}/
+              %h4.heading Unlimited Electronic Billing Submission
+              %p.description Unlimited electronic billing is the cornerstone of any successful healthcare provider.
+              %br/
+              %a.lead{"data-target" => "#modal5", "data-toggle" => "modal", :href => "#"} See more...
+          .col-md-4
+            .service
+              .icon-holder
+                %img.icon{:alt => "", :src => "assets/img/audit-blue.png"}/
+              %h4.heading Internal Audit Services
+              %p.description SMA also ensures that each of our clients stays informed about current legal and ethical internal operations.
+              %br/
+              %a.lead{"data-target" => "#modal6", "data-toggle" => "modal", :href => "#"} See more...
+          .col-md-4
+            .service
+              .icon-holder
+                %img.icon{:alt => "", :src => "assets/img/seg-blue.png"}/
+              %h4.heading Risk Improvement Services
+              %p.description Risk management is not primarily about avoiding or mitigating claims, rather, it is a tool for improving the quality of care delivered by providers.
+              %a.lead{"data-target" => "#modal7", "data-toggle" => "modal", :href => "#"} See more...
+          .col-md-4
+            .service
+              .icon-holder
+                %img.icon{:alt => "", :src => "assets/img/doc-blue.png"}/
+              %h4.heading Clinical Documentation Improvement Program
+              %p.description Clinical documentation is at the core of every patient encounter.
+              %br/
+              %a.lead{"data-target" => "#modal8", "data-toggle" => "modal", :href => "#"} See more...
+          .col-md-4.col-md-offset-4
+            .service
+              .icon-holder
+                %img.icon{:alt => "", :src => "assets/img/staff-blue.png"}/
+              %h4.heading Staffing Services
+              %p.description We knows just how vital the proper staffing is to ensure that each aspect of the healthcare delivery systems carried out accurately.
+              %br/
+              %a.lead{"data-target" => "#modal9", "data-toggle" => "modal", :href => "#"} See more...
+      .cut.cut-bottom
+    / /* END SERVICES
+    %section.section.section-padded.blue-bg
+    / MODAL 1
+    #modal1.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog
+        .modal-content.modal-popup
+          %a.close-link{:href => "#"}
+            %i.icon_close_alt2
+          %h3.white Sign Up
+          %form{:role => "form"}
+            .row
+              .col-xs-12.col-sm-6.col-md-6
+                .form-group
+                  %input#first_name.form-control.form-white{:name => "first_name", :placeholder => "First Name", :tabindex => "1", :type => "text"}/
+              .col-xs-12.col-sm-6.col-md-6
+                .form-group
+                  %input#last_name.form-control.form-white{:name => "last_name", :placeholder => "Last Name", :tabindex => "2", :type => "text"}/
+            .form-group
+              %input#phone.form-control.form-white{:name => "phone", :placeholder => "Phone number", :tabindex => "3", :type => "phone"}/
+            .form-group
+              %input#email.form-control.form-white{:name => "email", :placeholder => "Email Address", :tabindex => "4", :type => "email"}/
+            .row
+              .col-xs-12.col-sm-6.col-md-6
+                .form-group
+                  %input#password.form-control.form-white{:name => "password", :placeholder => "Password", :tabindex => "5", :type => "password"}/
+              .col-xs-12.col-sm-6.col-md-6
+                .form-group
+                  %input#password_confirmation.form-control.form-white{:name => "password_confirmation", :placeholder => "Confirm Password", :tabindex => "6", :type => "password"}/
+            .row
+              .col-xs-4.col-sm-3.col-md-3
+                %span.button-checkbox
+                  %button#btn-agree.btn{"data-color" => "info", :tabindex => "7", :type => "button"}  I Agree
+                  %input#t_and_c.hidden{:name => "t_and_c", :type => "checkbox", :value => "1"}/
+              .col-xs-8.col-sm-9.col-md-9
+                %span.white
+                  By clicking
+                  = succeed "," do
+                    %strong.label.label-primary Sign In
+                  %a{"data-target" => "#t_and_c_m", "data-toggle" => "modal", :href => "#"} Terms and Conditions
+                  set out by this site, including our Cookie Use.
+            .row
+              .col-xs-12.col-md-6.col-md-6.col-md-offset-6
+                %input.btn.btn-blue.ripple.trial-button{:tabindex => "7", :type => "submit", :value => "Sign In"}/
+    / /* END MODAL 1
+    / MODAL 1B
+    #t_and_c_m.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} X
+            %h4#myModalLabel.modal-title Terms &amp; Conditions
+          .modal-body
+            %p In construction.
+        / /.modal-content
+      / /.modal-dialog
+    / /.MODAL 1B
+    / MODAL 2
+    #modal2.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Log In
+          .modal-body
+            %form{:role => "form"}
+              .form-group
+                %label.white{:for => "exampleInputEmail1"} Username or Email
+                %input#exampleInputEmail1.form-control.form-white{:placeholder => "Enter email", :type => "email"}/
+              .form-group
+                %label.white{:for => "exampleInputPassword1"}
+                  Password
+                  %a{:href => ""} (forgot password)
+                %input#exampleInputPassword1.form-control.form-white{:placeholder => "Password", :type => "password"}/
+              .checkbox
+                %label.pull-left
+                  %input{:name => "remember", :type => "checkbox", :value => "Remember Me"}/
+                  %span.white   Remember Me
+              .clearfix
+              %button.btn.btn-white-fill{:type => "submit"} Log in
+    / /* END MODAL 2
+    / MODAL 3
+    #modal3.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Administration Services
+          .modal-body
+            %p.pservice At Smart Medical Alliance, we strive to provide complete and total support services for all of our clients’ administrative needs. We provide the following support: administration and practice management; developing, implementing, and monitoring practice policies and procedures; inventory management; preparing budgets and financial statements; managing overhead and revenue; accounting and auditing; developing and managing practice protocols and clinical policies;administration of a physician income distribution model; negotiating, monitoring, and managing contracts; business development and marketing, sales, public relations, and provider relations; obtaining insurance/reinsurance, risk management, Utilization Management / Quality Assurance.
+          .modal-footer
+            %button.btn.btn-white-fill{"data-dismiss" => "modal", :type => "button"} Close
+    / /* END MODAL 3
+    / MODAL 4
+    #modal4.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Data Information Management Services
+          .modal-body
+            %p.pservice Data Information Management is crucial to the proper delivery of healthcare services, and SMA works hard to provide these important services to our clients. We provide EHR Implementation assessing and strategic planning regarding monitoring, and training on systems and practice management software; providing, implementing,integrating, and updating hardware, software; providing IT personnel and support; data conversion; document management and scanning.
+          .modal-footer
+            %button.btn.btn-white-fill{"data-dismiss" => "modal", :type => "button"} Close
+    / /* END MODAL 4
+    / MODAL 5
+    #modal5.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Unlimited Electronic Billing Submission
+          .modal-body
+            %p.pservice Unlimited electronic billing is the cornerstone of any successful healthcare provider. SMA ensures that you, as the provider, can bill accurately and timely so that your reimbursements arrive in a timely and consistent manner. We provide such services as:monitoring and implementing policies and programs for proper billing and coding; providing billing systems, coding personnel; monitoring and training on regulatory compliance, claims submission,and claims timeliness guidelines;monitoring claims status; managing accounts receivable; establishing and maintaining lockbox; collections or collection agency coordination; monitoring and educating on reimbursement changes; monitoring and assistance with eligibility determinations and prior authorization, third party liability, coordination of benefits, and overpayments; providing billing support; reporting; claims audits;appealing denials; pursuing claims recoveries; maintaining payment logs;providing customized billing reports.
+          .modal-footer
+            %button.btn.btn-white-fill{"data-dismiss" => "modal", :type => "button"} Close
+    / /* END MODAL 5
+    / MODAL 6
+    #modal6.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Internal Audit Services
+          .modal-body
+            %p.pservice SMA also ensures that each of our clients stays informed about current legal and ethical internal operations by providing Workflow Evaluation; preparing, implementing, and monitoring policies for compliance with requirements such as fraud and abuse, HIPAA Privacy and Security, disaster planning, CLIA, OSHA, FMLA, and other federal and state statutes and regulations.
+          .modal-footer
+            %button.btn.btn-white-fill{"data-dismiss" => "modal", :type => "button"} Close
+    / /* END MODAL 6
+    / MODAL 7
+    #modal7.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Risk Improvement Services
+          .modal-body
+            %p.pservice Risk management is not primarily about avoiding or mitigating claims, rather, it is a tool for improving the quality of care delivered by providers. SMA provides providers with risk improvement services to assist with risk analysis and evaluation and risk treatments. The cost of prevention is compared with the  individualized risk analysis to control the use of health-care resources in chronic disease treatments.
+          .modal-footer
+            %button.btn.btn-white-fill{"data-dismiss" => "modal", :type => "button"} Close
+    / /* END MODAL 7
+    / MODAL 8
+    #modal8.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Clinical Documentation Improvement program
+          .modal-body
+            %p.pservice Clinical documentation is at the core of every patient encounter. In order to be meaningful, it must always be accurate, timely, and reflect the scope of services provided.Successful clinical documentation improvement (CDI) programs facilitate the accurate representation of a patient’s clinical status, which translates into coded data. Coded data is then translated into quality reporting, physician report cards, reimbursement, public health data, and disease tracking and trending.
+            %p.pservice The convergence of clinical documentation and coding processes is vital to a healthy revenue cycle, and more important, to a healthy patient. To that end, CDI has a direct impact on patient care by providing information to all members of the care team, as well as those downstream who may be treating the patient at a later date.A CDI program involves a myriad of people, processes, and technology that must all work in sync to ensure success. Organizations need a well-rounded individual who can effectively articulate all the pieces, including documentation requirements, code assignment, coding guidelines, and quality reporting.
+          .modal-footer
+            %button.btn.btn-white-fill{"data-dismiss" => "modal", :type => "button"} Close
+    / /* END MODAL 8
+    / MODAL 9
+    #modal9.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content.modal-popup
+          .modal-header
+            %a.close-link{"data-dismiss" => "modal", :href => "#"}
+              %i.icon_close_alt2
+            %h4.modal-title.white Staffing Services
+          .modal-body
+            %p.pservice SMA knows just how vital the proper staffing is to ensure that each aspect of the healthcare delivery systems carried out accurately. As part of our unique approach to making this possible, we provide: trained staff,each of which is thoroughly screened prior to hiring (both clinical and nonclinical); Medical Assistant and Front desk employees; customer service representative; billing and coding personnel, as well as IT personnel. SMA will also provide each client with  human resources policies and/or perform human resources functions, leadership training, staff training, and educational staffing programs.
+          .modal-footer
+            %button.btn.btn-white-fill{"data-dismiss" => "modal", :type => "button"} Close
+    / /* END MODAL 9
+    %footer#contac
+      .container
+        .row
+          .col-sm-6.text-center-mobile
+            %h3.white
+              Contact Us
+              %span.open-blink
+            %h5.light.regular.light-white Get in touch and we'll get back to you as soon as we can.  We look forward to hearing from you!
+            %form{:action => ""}
+              %p.small.white Fields marked with an * are required
+              %input#name.form-control.form-white{:placeholder => "Full Name *", :required => "", :type => "text"}/
+              %br/
+              %input#email.form-control.form-white{:placeholder => "Enter email *", :required => "", :type => "email"}/
+              %br/
+              %textarea#message.form-control.form-white{:name => "message", :placeholder => "Enter message *", :required => ""}
+              %button.btn.btn-blue.ripple.trial-button{:style => "max-width: 250px", :type => "submit"} Submit
+          .col-sm-1
+          .col-sm-5.text-center-mobile
+            %p
+              %span.light.regular.light-white
+                %i.fa.fa-envelope{"aria-hidden" => "true"}
+                 Email
+              %br/
+              %a{:href => "mailto:info@smartmedicalalliance.com"}
+                %span.white info@smartmedicalalliance.com
+            %p
+              %span.light.regular.light-white
+                %i.fa.fa-phone-square{"aria-hidden" => "true"}
+                 Phone
+              %br/
+              %span.white 05-760-2053
+            %p
+              %span.light.regular.light-white
+                %i.fa.fa-fax{"aria-hidden" => "true"}
+                 Fax
+              %br/
+              %span.white 786-657-2904
+            %p
+              %span.light.regular.light-white
+                %i.fa.fa-map-marker{"aria-hidden" => "true"}
+                 Address
+              %br/
+              %span.white
+                633 NE 167th Street, Suite 425,
+                %br/
+                North Miami Beach, FL 33162
+        .row.bottom-footer.text-center-mobile
+          .col-sm-8
+            %p
+              © 2017 All Rights Reserved. Powered by
+              %a{:href => "http://slicegroup.xyz/"} Slice Group
+          .col-sm-4.text-right.text-center-mobile
+            %ul.social-footer
+              %li
+                %a{:href => "https://www.facebook.com/SMARTMEDICALVENEZUELA/", :target => "_blank"}
+                  %i.fa.fa-facebook
+              %li
+                %a{:href => "https://www.instagram.com/smartmedicalgroup/", :target => "_blank"}
+                  %i.fa.fa-instagram
+    / Holder for mobile navigation
+    .mobile-nav
+      %ul
+      %a.close-link{:href => "#"}
+        %i.arrow_up
+    / Scripts
+    %script{:src => "assets/js/jquery-1.11.1.min.js"}
+    %script{:src => "assets/js/owl.carousel.min.js"}
+    %script{:src => "assets/js/bootstrap.min.js"}
+    %script{:src => "assets/js/wow.min.js"}
+    %script{:src => "assets/js/typewriter.js"}
+    %script{:src => "assets/js/jquery.onepagenav.js"}
+    %script{:src => "assets/js/main.js"}
+    :javascript
+      $(function () {
+          $('.button-checkbox').each(function () {
 
-				.front-social
-					%ul
-						%li
-							=	link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
-								= icon 'twitter'
-						%li
-							=	link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
-								= icon 'facebook'
-						%li
-							=	link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
-								= icon 'instagram'
-						%li
-							=	link_to "https://github.com/SliceDevelopers", target: '_blank' do
-								= icon 'github'
-				.mouse-scroll
-					.mouse
-						.scroll
-				%footer.front-footer
-					= render 'app/layouts/footer'
+              // Settings
+              var $widget = $(this),
+                  $button = $widget.find('button'),
+                  $checkbox = $widget.find('input:checkbox'),
+                  color = $button.data('color'),
+                  settings = {
+                      on: {
+                          icon: 'fa fa-check-square-o'
+                      },
+                      off: {
+                          icon: 'fa fa-square-o'
+                      }
+                  };
 
+              // Event Handlers
+              $button.on('click', function () {
+                  $checkbox.prop('checked', !$checkbox.is(':checked'));
+                  $checkbox.triggerHandler('change');
+                  updateDisplay();
+              });
+              $checkbox.on('change', function () {
+                  updateDisplay();
+              });
 
-			%section.description
-				%h3 KEPPLER ADMIN
+              // Actions
+              function updateDisplay() {
+                  var isChecked = $checkbox.is(':checked');
 
-				%p
-					KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de
-					gemas ya integradas, de tal forma que acelerará el desarrollo de
-					aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
+                  // Set the button's state
+                  $button.data('state', (isChecked) ? "on" : "off");
 
-				%h3 Características
+                  // Set the button's icon
+                  $button.find('.state-icon')
+                      .removeClass()
+                      .addClass('state-icon ' + settings[$button.data('state')].icon);
 
-				%ul
-					%li
-						Base de datos por defecto MySQL
-					%li
-						Integración para autenticación de usuarios con
-						= link_to 'Devise', 'https://github.com/plataformatec/devise', target: '_blank'
-					%li
-						Integración para roles de usuarios con
-						= link_to 'Rolify', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
-					%li
-						Integración para autorizaciones con
-						= link_to 'CanCanCan', 'https://github.com/CanCanCommunity/cancancan', target: '_blank'
-					%li
-						Inegración para el manejo de de paginación con
-						= link_to 'Kaminari', 'https://github.com/amatsuda/kaminari', target: '_blank'
-					%li
-						Integración para helpers de formularios con
-						= link_to 'SimpleForm', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
-					%li
-						Integración para búsquedas full-text con
-						= link_to 'Ransack', 'https://github.com/activerecord-hackery/ransack', target: '_blank'
-					%li
-						Integración con framework fronte-end para el administrativo con
-						= link_to 'Materialize', 'http://materializecss.com/', target: '_blank'
-					%li
-						Integración con framework javascript
-						= link_to 'AngularJs', 'https://angularjs.org/', target: '_blank'
-					%li
-						Integración sitemap dinamicos con
-						= link_to 'sitemap_generator', 'https://github.com/kjvarga/sitemap_generator', target: '_blank'
+                  // Update the button's color
+                  if (isChecked) {
+                      $button
+                          .removeClass('btn-default')
+                          .addClass('btn-' + color + ' active');
+                  }
+                  else {
+                      $button
+                          .removeClass('btn-' + color + ' active')
+                          .addClass('btn-default');
+                  }
+              }
 
-				%h3 Instalación
+              // Initialization
+              function init() {
 
-				%pre
-					%code.shell
-						git clone git@github.com:SliceDevelopers/keppler_admin.git
-						bundle install
+                  updateDisplay();
 
-				%p
-					Luego debe configurar el archivo
-					%pre
-						%code.ruby
-							config/secrets.yml
-					= link_to '[ver archivo]', 'https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example'
-					de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
-
-				%pre
-					%code.shell
-						rake db:create
-						rake db:migrate
-						rake db:seed
-
-				%h3 SimpleForm con Materialize
-
-				%p
-					Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en
-					%pre
-						%code.ruby
-							config/initializers/simple_form_materialize.rb
-
-
-				%p Aquí algunos ejemplos para la creación de inputs:
-
-				%pre
-					%code.haml
-						:preserve
-							# inputs de tipo text
-							= f.input :name
-
-							# inputs de tipo boolean
-							= f.input :public, as: :checkbox_material
-
-							# inputs de tipo textarea
-							= f.input :description, input_html: { class: "materialize-textarea" }
-
-							# inputs de tipo file
-							= f.input :image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
-
-							# inputs de tipo select
-							= f.input :role_ids, collection: Role.all, label: false, include_blank: "Selecione un rol"
-
-							# inputs de tipo radio buttons
-							= f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
-
-							# inputs de tipo check_boxes
-							= f.collection_check_boxes :options, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
-
-							# inputs de tipo date
-							= f.input :date, input_html: {class: "datepicker"}
-
-				%strong
-					Nota:
-				%p
-					Puede revisar la documentación de
-					= link_to 'Materialize', 'http://materializecss.com/'
-					para agregar nuevas integraciones para sus formularios a través de los
-					= link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
-					de simpleform.
-
-
-				%h3 Keppler scaffolds
-
-				%p
-					Keppler ofrece la posibilidad de realizar tareas de scaffolds
-					totalmente configurados para adaptarse de una vez al administrativo.
-					Para crear un nuevo modulo solo tienes que llamar al siguiente
-					comando desde la consola:
-
-				%pre
-					%code.shell
-						rails g keppler_scaffold <module_name> <attributes> -f
-
-				%p Luego crea la tabla en base de datos.
-
-				%pre
-					%code.shell
-						rake db:migrate
-
-				%h3 Plugins (Módulos)
-
-				%p
-					La plataforma permite la adaptación de módulos con facil instalación,
-					algunos de los módulos desarrollados son:
-
-				%ul
-					%li
-						= link_to 'Keppler google analytics dashboard', 'https://github.com/SliceDevelopers/keppler_ga_dashboard'
-						%strong (ya viene integrado)
-					%li
-						= link_to 'Keppler blog', 'https://github.com/SliceDevelopers/keppler_blog'
-					%li
-						= link_to 'Keppler catalogs', 'https://github.com/inyxtech/keppler_catalogs'
-					%li
-						= link_to 'Keppler contact', 'https://github.com/SliceDevelopers/keppler_contact_us'
-
-		%script{ src: '/assets/app/front.js' }
+                  // Inject the icon if applicable
+                  if ($button.find('.state-icon').length == 0) {
+                      $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
+                  }
+              }
+              init();
+          });
+      });

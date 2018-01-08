@@ -5,10 +5,10 @@
 			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{customize.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{customize.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
 			%label{ for: "checkbox-#{customize.id}" }
 
-	%td{style:"width: 55%"}
+	%td{style:"width: 35%"}
 		%span
 			= customize.name
-	%td{style:"width: 5%"}
+	%td{style:"width: 15%"}
 		%span
 			- if customize.file?
 				= render 'admin/customizes/switch_template', customize: customize
