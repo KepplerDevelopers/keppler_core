@@ -4,9 +4,9 @@
 			= material_icon.md_24.add
 	= entries(@total, @objects)
 	= link_to admin_scaffolds_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
-		= material_icon.md_18.save.css_class("md-dark")
+		= material_icon.md_18.cloud_download.css_class("md-dark")
 	= link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "scaffold" do
-		= material_icon.md_18.save.css_class("md-dark")
+		= material_icon.md_18.cloud_upload.css_class("md-dark")
 
 	.hide
 		= form_tag admin_scaffold_import_path(@objects), id: "import_form_scaffold", multipart: true, method: :post do
