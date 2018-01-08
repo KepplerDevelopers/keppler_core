@@ -2,33 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'app/front#index'
 
-  get '/new', to: 'app/front#new', as: :app_new
-
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
-    post '/sorting', to: 'anothers#sort', as: :sorting_anothers
-    #Route deleted
-    post '/sorting', to: 'names#sort', as: :sorting_names
-    resources :names do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-      resources :anothers do
-        get '(page/:page)', action: :index, on: :collection, as: ''
-        get '/clone', action: 'clone'
-        delete(
-          action: :destroy_multiple,
-          on: :collection,
-          as: :destroy_multiple
-        )
-      end
-    end
 
+    root to: 'admin#root'
 
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -40,8 +18,6 @@ Rails.application.routes.draw do
         as: :destroy_multiple
       )
     end
-
-    root to: 'admin#root'
 
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''

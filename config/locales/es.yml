@@ -83,9 +83,10 @@ es:
     actions:
       created: Creado
       updated: Actualizado
-      edit: Editar
-      show: Ver
       new: Nuevo
+      show: Ver
+      edit: Editar
+      clone: Clonar
       delete: Eliminar
       deleted: Eliminado
       index: Listado
@@ -105,14 +106,20 @@ es:
       back_history: "Volver al historial"
       appearance_defaut: Por defecto
       apply: Aplicar
+      download_records: Descargar registros
+      upload_records: Cargar registros
   activerecord:
     attributes:
       id: Identificador
+      title: Título
+      subtitle: Subtítulo
+      tags: Etiquetas
       name: Nombre
       first_name: 'Primer Nombre'
       last_name: 'Último Nombre'
       full_name: 'Nombre Completo'
       email: Correo
+      role: Rol
       phone: Teléfono
       phone_number: 'Número de Teléfono'
       phone_number: 'Código de Area'
@@ -138,7 +145,8 @@ es:
       client: Cliente
       partner: Socio
       code: Código
-      alliance: Aliados
+      alliance: Alianza
+      ally: Aliado
       category: Categoría
       service: Servicio
       project: Proyecto
@@ -151,10 +159,14 @@ es:
       long_description: 'Descripción Larga'
       details: Detalles
       message: Mensaje
+      content: Contenido
+      date: Fecha
+      date_begin: 'Fecha Inicial'
+      date_end: 'Fecha Final'
+      begin: Inicio
+      end: Fin
       check_in: Entrada
       check_out: Salida
-      title: Título
-      subtitle: Subtítulo
       permalink: Permalink
       sign_in_count: Veces logeado
       created_at: Fecha de creación
