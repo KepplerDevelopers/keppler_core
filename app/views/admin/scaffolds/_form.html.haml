@@ -5,66 +5,73 @@
 				= link_to admin_scaffolds_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
 					= material_icon.md_18.arrow_back.css_class("md-dark")
 			.wrapper-inputs
-				.col.s7
+				.col.s6
 					.card
 						.card-content
 							= simple_form_for [:admin, @scaffold] do |f|
 								-# {{ $data }}
+								-# {{disabelAddOther}} - {{disabledSave}}
 								.row
 									.col.s12
 										= f.input :name, input_html: {"v-model" => "name" }
 									.col.s12
 										%input{type: "text", "v-model" => "temp[0]", "v-bind:disabled" => "!name"}
 									.col.s12
-										%input{type: "text", "v-model" => "fields", name: "fields", "v-bind:disabled" => "!name"}
+										%input{type: "hidden", "v-model" => "fields", name: "[scaffold][fields]", "v-bind:disabled" => "!name"}
 
 									.col.s12
 										%h6{style: "margin-bottom: 50px"} type
-										.switch
+
+									.col.s6
+										.switch{style: "margin-bottom: 20px"}
 											%label
 												String
 												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "string", type: "checkbox", "v-model" => "temp", value: "string"}
+												%input{name: "string", type: "checkbox", "v-model" => "type", value: "string", "v-on:click" => "toggleType('string')"}
 													%span.lever
+									.col.s6
+										.switch{style: "margin-bottom: 20px"}
 											%label
 												Integer
 												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "integer", type: "checkbox", "v-model" => "temp", value: "integer"}
+												%input{name: "integer", type: "checkbox", "v-model" => "type", value: "integer", "v-on:click" => "toggleType('integer')"}
 													%span.lever
+									.col.s6
+										.switch
 											%label
 												Text
 												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "text", type: "checkbox", "v-model" => "temp", value: "text"}
+												%input{name: "text", type: "checkbox", "v-model" => "type", value: "text", "v-on:click" => "toggleType('text')"}
 													%span.lever
+									.col.s6
+										.switch
 											%label
 												Boolean
 												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "boolean", type: "checkbox", "v-model" => "temp", value: "boolean"}
+												%input{name: "boolean", type: "checkbox", "v-model" => "type", value: "boolean", "v-on:click" => "toggleType('boolean')"}
 													%span.lever
 
 									.col.s12{style: "margin-top: 80px"}
 										.form-actions.right
-											%button.btn{type: "button", "v-on:click" => "addField"} Añadir Otro
-											= f.button :submit, "Guardar", name: '_save'
+											%button.btn{type: "button", "v-on:click" => "addField", "v-bind:disabled" => "disabelAddOther"} Añadir Otro
+											= f.button :submit, "Guardar", name: '_save', "v-bind:disabled" => "disabledSave"
 											-# = f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
 
-				.col.s5
-					.card{style: "padding: 0"}
+				.col.s6
+					.card
 						.card-content
-							%table.bordered
+							%table.bordered{style: "margin-top: 15px"}
+								%thead
+									%tr{style:"background: #fff;"}
+										%span{style: "font-weight: bold"}{{ scaffoldName }}
 								%tbody
-									%thead
-										%tr.center-align{style:"background: #fff;"}
-											%th {{ scaffoldName }}
-									%th.center-align Fields
-									%th.center-align Type
-								%tr#trs
-									%td.center-align
-										{{ temp[0]}}
-									%td.center-align
-										{{temp[1]}}
-
-
+									%th.center Field
+									%th.center Type
+									%tr{"v-for" => "t in fields"}
+										%td.center-align
+											{{ t.split(':').shift() }}
+										%td.center-align
+											{{ t.split(':').pop() }}
 
 :javascript
 	new Vue({
@@ -73,19 +80,39 @@
 			name: '',
 			fields: [],
 			temp: [],
-			type: ''
+			type: []
 		},
 		methods: {
 			addField() {
 				if (this.temp) {
-					this.fields.push(this.temp[0] + ':' + this.temp[1])
+					this.fields.push(this.temp[0] + ':' + this.type)
 					this.temp = []
+					this.type = []
 				}
+			},
+			toggleType(type) {
+				this.type = []
+				this.type.push(type)
 			}
 		},
 		computed: {
 			scaffoldName() {
 				return this.name ? this.name : 'Name'
-			}
-		}
+			},
+			// disabelAddOther() {
+			// 	if (this.temp == [''] && this.type == ['']) {
+			// 		return false
+			// 	} else {
+			// 		return true
+			// 	}
+			// },
+			// disabledSave() {
+			// 	if (this.fields == []) {
+			// 		return false
+			// 	} else {
+			// 		return true
+			// 	}
+			// }
+		},
+
 	})
