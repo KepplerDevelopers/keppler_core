@@ -39,10 +39,10 @@
 								.form-padding
 									.row
 										.col-lg-6
-											= f.input :url, label: false, placeholder: "Name", input_html: {class: "form-control"}, :required => true
+											= f.input :title, input_html: {class: "form-control"}
 
 										.col-lg-6
-											= f.input :title, label: false, placeholder: "Email", input_html: {class: "form-control"}, :required => true
+											= f.input :url, input_html: {class: "form-control"}
 									.row
 										.col-lg-12
 											= f.input :description, input_html: { class: "materialize-textarea" }
