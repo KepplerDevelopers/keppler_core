@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
-gem 'vuejs-rails'
 
->>>>>>> ec7fd18f060734426eeaa5bda82a213c8eb6c4f0
 # Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
+gem 'vuejs-rails'
 gem 'nprogress-rails'
 gem 'ckeditor'
 
