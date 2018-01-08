@@ -12,9 +12,9 @@
 			- else
 				%tr.white-hover
 					%td
-					%th.center Name
-					%th.center.hide-on-small-and-down Email
-					%th.center.hide-on-small-and-down Role
+					%th.center= t('activerecord.attributes.name')
+					%th.center.hide-on-small-and-down= t('activerecord.attributes.email')
+					%th.center.hide-on-small-and-down= t('activerecord.attributes.role')
 					- if can? :show, User
 						%th
 					- if can? :update, User

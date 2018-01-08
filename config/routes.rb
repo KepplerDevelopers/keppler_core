@@ -2,11 +2,12 @@ Rails.application.routes.draw do
 
   root to: 'app/front#index'
 
-  get '/new', to: 'app/front#new', as: :app_new
-
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
+
+    root to: 'admin#root'
+
     resources :scaffolds do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
@@ -28,8 +29,6 @@ Rails.application.routes.draw do
         as: :destroy_multiple
       )
     end
-
-    root to: 'admin#root'
 
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''
