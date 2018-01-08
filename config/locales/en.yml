@@ -43,6 +43,7 @@ en:
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
+      admin/scaffolds: 'Scaffolds'
       admin/settings: 'Settings'
       keppler_ga_dashboard/dashboard: 'Dashboard'
       admin/users: 'Users'
