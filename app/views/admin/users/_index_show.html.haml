@@ -18,7 +18,7 @@
 			%tbody
 				- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
 					%tr.list-row
-						%th.display-label= t("activerecord.attributes.user.#{attribute}")
+						%th.display-label= t("activerecord.attributes.#{attribute}")
 						%td.display-value= value
 
 		%table.list.bordered

@@ -1,14 +1,14 @@
-%tr{ id: "row-#{customize.id}" }
+%tr.center{ id: "row-#{customize.id}" }
 	%td.item-check{style:"width: 5%"}
 		- if can? :destroy_multiple, Customize and customize.file?
 			= link_to "", admin_customize_path(customize), remote: true, class: "show-row"
 			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{customize.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{customize.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
 			%label{ for: "checkbox-#{customize.id}" }
 
-	%td{style:"width: 55%"}
+	%td.center
 		%span
 			= customize.name
-	%td{style:"width: 5%"}
+	%td.center
 		%span
 			- if customize.file?
 				= render 'admin/customizes/switch_template', customize: customize

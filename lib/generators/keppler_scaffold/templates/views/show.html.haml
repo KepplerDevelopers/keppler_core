@@ -25,15 +25,15 @@
 					%tbody
 						%tr
 							%th
-								.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+								%th.display-label= t("activerecord.attributes.id")
 							%td
-								.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id.to_s.humanize
+								%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id.to_s.humanize
 				<%- attributes_names.each do |attribute| -%>
 					<%- unless @attachments.include?(attribute) -%>
 						%tr
 							%th
-								.display-label= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")
+								%th.display-label= t("activerecord.attributes.<%= attribute %>")
 							%td
-								.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
+								%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
 					<%- end -%>
 				<%- end -%>

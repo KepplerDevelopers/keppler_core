@@ -12,12 +12,11 @@ module Admin
     def index
       @q = <%= class_name %>.ransack(params[:q])
       <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page)
+      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
       @total = <%= plural_table_name %>.size
       if !@objects.first_page? && @objects.size.zero?
         redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
       end
-      @<%= plural_table_name %> = <%= class_name %>.all.reverse
       respond_to do |format|
         format.html
         format.xls { send_data(@<%= plural_table_name %>.to_xls) }

@@ -38,14 +38,6 @@ ActiveRecord::Schema.define(version: 20171228161106) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "create_roles", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "modules",     limit: 255
-    t.string   "permissions", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
   create_table "customizes", force: :cascade do |t|
     t.string   "file",       limit: 255
     t.boolean  "installed"
@@ -71,21 +63,6 @@ ActiveRecord::Schema.define(version: 20171228161106) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "google_analytics_tracks", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "tracking_id", limit: 255
-    t.string   "url",         limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "install_gems", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.boolean  "installed"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "meta_tags", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -105,6 +82,7 @@ ActiveRecord::Schema.define(version: 20171228161106) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
 
   create_table "scaffolds", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -126,14 +104,14 @@ ActiveRecord::Schema.define(version: 20171228161106) do
   end
 
   create_table "smtp_settings", force: :cascade do |t|
-    t.string   "address",     limit: 255
-    t.string   "port",        limit: 255
-    t.string   "domain_name", limit: 255
-    t.string   "email",       limit: 255
-    t.string   "password",    limit: 255
-    t.integer  "setting_id",  limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "server_address", limit: 255
+    t.string   "port",           limit: 255
+    t.string   "domain_name",    limit: 255
+    t.string   "email",          limit: 255
+    t.string   "password",       limit: 255
+    t.integer  "setting_id",     limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "social_accounts", force: :cascade do |t|
