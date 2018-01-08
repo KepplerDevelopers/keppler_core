@@ -21,8 +21,8 @@
       - @activities.each do |activity|
         - if activity.trackable_type.eql? "Session"
           %li
-            = render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "name" }
+            = render partial: "public_activity/session/#{activity.key.split(".").second}", locals: { activity: activity, method: "title" }
         - else
           %li
-            = render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "name" }
+            = render partial: "public_activity/layout/#{activity.key.split(".").second}", locals: { activity: activity, method: "title" }
 .control-sidebar-bg
