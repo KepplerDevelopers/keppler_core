@@ -15,30 +15,32 @@
       
       =# entries(@total, @objects)
 
-      .box-body.no-padding
-        - if @objects.size.zero?
-          .row 
-            .col-xs-4.col-lg-offset-4
-              .callout.callout-warning
-                %h4= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-        - else
-          .box.slice-box
-            .box-body.no-padding
-              %table.table.table-striped
-                %tbody
-                  %tr
-                    %td
-                    %th
-                      Name
-                    %th
-                      Email
-                    %th
-                      Role
-                    %th{:style => "text-align: center;padding-right: 30px;"}
-                      Actions
-                
-                  - @objects.each do |user|
-                    = render 'listing', user: user
+      .box.slice-box
+        .box-body.no-padding
+          %table.table.table-striped
+            %tbody
+              - if @objects.size.zero?
+                %tr
+                  %th{:style => 'text-align: center;'}
+                    %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+                -# .row 
+                -#   .col-xs-4.col-lg-offset-4
+                -#     .callout.callout-warning
+                -#       %h4= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+              - else
+                %tr
+                  %td
+                  %th
+                    Name
+                  %th
+                    Email
+                  %th
+                    Role
+                  %th{:style => "text-align: center;padding-right: 30px;"}
+                    Actions
+              
+                - @objects.each do |user|
+                  = render 'listing', user: user
   -# %table.bordered
   -# 	%tbody
   -# 		- if @objects.size.zero?
