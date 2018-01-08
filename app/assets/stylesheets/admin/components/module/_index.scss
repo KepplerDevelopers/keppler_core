@@ -42,7 +42,7 @@
 .mixed-btn{
   position: fixed; 
   right: 35px;
-  bottom: 70px;
+  bottom: 40px;
   padding-top: 15px;
   margin-bottom: 0;
   z-index: 997;
@@ -113,7 +113,11 @@
     }
   }
 }
-
+.cut-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   
 /*!
  * Hover.css (http://ianlunn.github.io/Hover/)
