@@ -26,10 +26,8 @@
 		<%- attributes_names.each do |attribute| -%>
 			<%- unless @attachments.include?(attribute) -%>
 				%tr
-					%th
-						%th.display-label= t("activerecord.attributes.<%= attribute %>")
-					%td
-						%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
+					%th.display-label= t("activerecord.attributes.<%= attribute %>")
+					%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
 			<%- end -%>
 		<%- end -%>
 		%table.bordered
