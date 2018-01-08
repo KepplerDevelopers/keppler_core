@@ -9,10 +9,10 @@
 				= material_icon.md_18.arrow_back.css_class("md-dark")
 		.card
 			.card-content
-				%ul.list
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
-						.display-value.fs-body-1.tc-black-2= @customize.id.to_s.humanize
-					%li.list-row
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.file")
-						.display-value.fs-body-1.tc-black-2= @customize.file.to_s.humanize
+				%table.list.bordered
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.id")
+						%td.display-value.fs-body-1.tc-black-2= @customize.id.to_s.humanize
+					%tr.list-row
+						%th.display-label= t("activerecord.attributes.file")
+						%td.display-value.fs-body-1.tc-black-2= @customize.file.to_s.humanize

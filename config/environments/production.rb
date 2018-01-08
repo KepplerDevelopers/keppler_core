@@ -64,7 +64,7 @@ Rails.application.configure do
   #   in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
 
-  # Ignore bad email addresses and do not raise email delivery errors.
+  # Ignore bad email server_addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate
   #   delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -85,7 +85,7 @@ Rails.application.configure do
   config.action_mailer.default charset: 'utf-8'
 
   config.action_mailer.smtp_settings = {
-    address:              Rails.application.secrets.address,
+    server_address:              Rails.application.secrets.server_address,
     port:                 Rails.application.secrets.port,
     domain:               Rails.application.secrets.domain_name,
     user_name:            Rails.application.secrets.email,

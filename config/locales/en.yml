@@ -15,7 +15,7 @@ en:
       seo-submenu:
         title-metas: 'Titles & Meta Tags'
         google-adwords: 'Google Adwords'
-      google-analytics-tracks: 'Google Analytics Tracks'
+      google-analytics-tracks: 'Scripts'
       keppler-messages: Messages
       keppler-blog: Blog
       keppler-blog-submenu:
@@ -26,7 +26,7 @@ en:
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
-        google_analytics_track: google analytics track
+        script: Script
         setting: setting
         configuration: configuration
         user: user
@@ -34,7 +34,7 @@ en:
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
-        google_analytics_tracks: google analytics tracks
+        scripts: Scripts
         settings: settings
         configurations: configurations
         user: users
@@ -42,7 +42,7 @@ en:
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
-      admin/google_analytics_tracks: 'Google analytics tracks'
+      admin/scripts: 'Scripts'
       admin/settings: 'Settings'
       keppler_ga_dashboard/dashboard: 'Dashboard'
       admin/users: 'Users'
@@ -106,6 +106,50 @@ en:
       apply: Apply
   activerecord:
     attributes:
+      id: Id
+      name: Name
+      first_name: 'First Name'
+      last_name: 'Last Name'
+      full_name: 'Full Name'
+      email: Email
+      phone: Phone
+      phone_number: 'Phone Number'
+      phone_code: 'Phone Code'
+      area_code: 'Phone Code'
+      phone_one: 'Phone One'
+      phone_two: 'Phone Two'
+      age: Age
+      image: Image
+      photo: Photo
+      attachment: Attachment
+      pdf: PDF
+      avatar: Avatar
+      brand: Brand
+      country: Country
+      state: State
+      city: City
+      company: Company
+      product: Product
+      client: Client
+      partner: Partner
+      code: Code
+      alliance: Alliance
+      category: Category
+      service: Service
+      project: Project
+      type: Type
+      address: Address
+      size: Size
+      distance: Distance
+      description: Description
+      short_description: 'Short Description'
+      long_description: 'Long Description'
+      details: Details
+      message: Message
+      check_in: 'Check In'
+      check_out: 'Check Out'
+      title: Title
+      subtitle: Subtitle
       google_analytics_setting:
         ga_account_id: Account id
         ga_tracking_id: Tracking id

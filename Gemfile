@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.0'
 gem 'vuejs-rails'
+
+>>>>>>> ec7fd18f060734426eeaa5bda82a213c8eb6c4f0
 # Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
@@ -21,6 +23,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks'
 gem 'to_xls-rails'
+gem 'jquery-ui-rails'
+gem 'acts_as_list', '~> 0.9.10'
 
 # Database
 gem 'mysql2', '~> 0.3.18'
@@ -39,9 +43,11 @@ gem 'jquery-minicolors-rails'
 # Upload
 gem 'carrierwave'
 # gem 'rmagick'
+# gem 'axlsx', '~> 2.0.1'
+# gem 'axlsx_rails', '~> 0.2.0'
 
 # Design
-gem 'bourbon'
+gem 'bourbon', '4.2.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'material_icons'

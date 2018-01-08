@@ -9,19 +9,25 @@
 					= simple_form_for [:admin, @<%= singular_table_name %>] do |f|
 						.row
 						<%- attributes.each do |attribute| -%>
+							<%- if @attachments.include?(attribute.name) -%>
 							.col.s12
-							<%- if attribute.type.to_s == "text" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
-							<%- elsif attribute.type.to_s == "date" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
-							<%- elsif attribute.type.to_s == "boolean" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :checkbox_material
-							<%- elsif attribute.type.to_s == "integer" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {min: 0}
-							<%- elsif @attachments.include?(attribute.name) -%>
 								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
-							<%- else -%>
+							<%- end -%>
+						<%- end -%>
+						<%- attributes.each do |attribute| -%>
+							.col.s12
+							<%- unless @attachments.include?(attribute.name) -%>
+								<%- if attribute.type.to_s == "text" -%>
+								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
+								<%- elsif attribute.type.to_s == "date" -%>
+								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
+								<%- elsif attribute.type.to_s == "boolean" -%>
+								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :checkbox_material
+								<%- elsif attribute.type.to_s == "integer" -%>
+								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {min: 0}
+								<%- else -%>
 								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+								<%- end -%>
 							<%- end -%>
 						<%- end -%>
 							.col.s12

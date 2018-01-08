@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get '/index', to: 'app/front#index', as: :app_index
+
   root to: 'app/front#index'
+
+  get '/new', to: 'app/front#new', as: :app_new
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
@@ -15,7 +17,6 @@ Rails.application.routes.draw do
         as: :destroy_multiple
       )
     end
-
 
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -60,7 +61,7 @@ Rails.application.routes.draw do
       )
     end
 
-    resources :google_analytics_tracks do
+    resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
       delete(
         '/destroy_multiple',
