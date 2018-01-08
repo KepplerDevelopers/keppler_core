@@ -24,6 +24,12 @@ menu:
     icon: insert_chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
+  establishment:
+    name: establishments
+    url_path: /admin/establishments
+    icon: insert_chart
+    current: ['admin/establishments']
+    model: Establishment
   user:
     name: users
     url_path: /admin/users

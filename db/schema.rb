@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225023933) do
+ActiveRecord::Schema.define(version: 20180108004134) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -38,9 +38,25 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "create_roles", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "modules",     limit: 255
+    t.string   "permissions", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "customizes", force: :cascade do |t|
     t.string   "file",       limit: 255
     t.boolean  "installed"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "establishments", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "city",       limit: 255
+    t.string   "email",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -69,6 +85,13 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.string   "url",         limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "install_gems", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "installed"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "meta_tags", force: :cascade do |t|

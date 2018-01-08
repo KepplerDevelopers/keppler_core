@@ -7,6 +7,9 @@ class Ability
 
     if user.has_role? :keppler_admin
 
+      # - Establishment authorize -
+      can :manage, Establishment
+
       can :manage, Scaffold
       # - Customize authorize -
       can [:delete, :update,
@@ -40,6 +43,9 @@ class Ability
       cannot :delete, user
 
     elsif user.has_role? :client
+
+      # - Establishment authorize -
+      can [:index, :show], Establishment
 
     end
     # The first argument to `can` is the action you are giving the user

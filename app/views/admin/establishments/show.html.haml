@@ -1,0 +1,36 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, Establishment
+				= link_to admin_establishment_path(@establishment), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, Establishment
+				= link_to edit_admin_establishment_path(@establishment), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to admin_establishments_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%center.color-title= @establishment.name.to_s.humanize
+				%table.bordered
+					%tbody
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+							%td
+								.display-value.fs-body-1.tc-black-2= @establishment.id.to_s.humanize
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
+							%td
+								.display-value.fs-body-1.tc-black-2= @establishment.name.blank? ? '----------' : @establishment.name
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.city")
+							%td
+								.display-value.fs-body-1.tc-black-2= @establishment.city.blank? ? '----------' : @establishment.city
+						%tr
+							%th
+								.display-label= t("activerecord.attributes.#{controller_name.singularize}.email")
+							%td
+								.display-value.fs-body-1.tc-black-2= @establishment.email.blank? ? '----------' : @establishment.email

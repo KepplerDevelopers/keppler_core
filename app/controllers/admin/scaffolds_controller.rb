@@ -35,8 +35,8 @@ module Admin
 
     # POST /scaffolds
     def create
-      fields = params[:fields].split(',').join(' ')
-      system "rails g keppler_scaffold #{params[:scaffold][:name]} #{fields}"
+      fields = params[:scaffold][:fields].split(',').join(' ')
+      system "rails g keppler_scaffold #{params[:scaffold][:name]} #{fields} -f"
       system "rake db:migrate"
 
       @scaffold = Scaffold.new(scaffold_params)

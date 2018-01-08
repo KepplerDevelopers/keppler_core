@@ -1,0 +1,39 @@
+.listing-show-header
+	.actions
+		- if can? :update, Establishment
+			= link_to edit_admin_establishment_path(@establishment), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.account_circle.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%center.color-title= @establishment.name.to_s.humanize
+		%table.bordered
+			%tbody
+				%tr
+					%th.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+					%td.display-value.fs-body-1.tc-black-2= @establishment.id
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
+					%td
+						.display-value.fs-body-1.tc-black-2= @establishment.name.blank? ? '----------' : @establishment.name
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.city")
+					%td
+						.display-value.fs-body-1.tc-black-2= @establishment.city.blank? ? '----------' : @establishment.city
+				%tr
+					%th
+						.display-label= t("activerecord.attributes.#{controller_name.singularize}.email")
+					%td
+						.display-value.fs-body-1.tc-black-2= @establishment.email.blank? ? '----------' : @establishment.email
+		%table.bordered
+			%tbody
+				%td
+					%center
+						= link_to t('keppler.actions.back_history'), admin_establishments_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});
