@@ -10,7 +10,7 @@
   position: absolute;
   z-index: 1000;
   float: left;
-  right: 75px;
+  right: 60px;
   min-width: 0px;
   padding: 2px;
   margin: 2px 0 0;
@@ -23,14 +23,26 @@
   border: 1px solid #ccc;
   border: 1px solid rgba(0,0,0,.15);
   border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  -webkit-box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.175);
+  .panel-body{
+    padding: 3px;
+    a{
+      color: gray;
+      transition: .2s;
+      padding: 0px 12px 0 12px;
+      &:hover{
+        color: inherit;
+        transition: .2s;
+      }
+    }
+  }
 }
   
 .mixed-btn{
   position: fixed; 
-  right: 23px;
-  bottom: 70px;
+  right: 35px;
+  bottom: 40px;
   padding-top: 15px;
   margin-bottom: 0;
   z-index: 997;
@@ -40,8 +52,8 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     line-height: 40px;
     background-color: $keppler-color;
     border-radius: 50%;
@@ -50,7 +62,7 @@
     cursor: pointer;
     vertical-align: middle;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-    padding-top: 16px;
+    padding-top: 11px;
     font-size: 3rem;
     i{
       width: inherit;
@@ -101,7 +113,11 @@
     }
   }
 }
-
+.cut-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   
 /*!
  * Hover.css (http://ianlunn.github.io/Hover/)

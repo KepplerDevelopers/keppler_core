@@ -100,9 +100,9 @@
                     - submenu.each do |name, val|
                       %li
                         - if settings_path?
-                          = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true
+                          = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true, :class => (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
                         - else
-                          = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true
+                          = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true, :class => (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
   / /.sidebar
 / Content Wrapper. Contains page content
 :sass
