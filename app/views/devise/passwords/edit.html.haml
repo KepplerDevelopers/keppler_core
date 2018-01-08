@@ -1,0 +1,27 @@
+.container
+  .devise-horizontal
+    .devise-vertical
+      .devise-box.card
+        .devise-box-header
+          .devise-box-title Keppler
+        = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+          .devise-box-body.row
+            .col.s12
+              %h5 Ya puedes cambiar tu contraseña.
+              %p Recuerda agregar una contraseña suficientemente segura
+            = f.hidden_field :reset_password_token
+            .input-field.col.s12
+              = f.password_field :password, autofocus: true, autocomplete: 'off', class: "validate #{'invalid' if resource.errors.messages[:password]}"
+              %label{for: "password"} Contraseña
+              .input-errors
+                = resource.errors.messages.fetch(:password).first
+            .input-field.col.s12
+              = f.password_field :password_confirmation, autocomplete: 'off', class: "validate #{'invalid' if resource.errors.messages[:password_confirmation]}"
+              %label{for: "password"} Confirmar contraseña
+              .input-errors
+                = resource.errors.messages.fetch(:password_confirmation).first
+          .devise-box-footer.row
+            .col.s12
+              = f.submit 'Cambiar contraseña', :class => 'right btn'
+            .col.s12.devise-logo.center-align.hidden-xs
+              = image_tag "admin/slice.png"

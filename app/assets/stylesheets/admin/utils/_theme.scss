@@ -1,0 +1,72 @@
+.skin-blue .content-header {
+  background: transparent;
+  margin-top: 50px !important;
+}
+
+.btn-ks {
+  border: 1px solid $keppler-color;
+  background: $keppler-color;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-ks:hover {
+  border: 1px solid $keppler-accent;
+  background: $keppler-accent;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-ks-inverse {
+  border: 1px solid $keppler-color;
+  color: $keppler-color;
+  transition: .5s all;
+}
+
+.btn-ks-inverse:hover {
+  border: 1px solid $keppler-color;
+  background: $keppler-color;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr {
+  border: 1px solid #353535;
+  background: #353535;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr:hover {
+  border: 1px solid #353535;
+  background: #1d1d1d;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr-inverse {
+  border: 1px solid #353535;
+  color: #353535;
+  transition: .5s all;
+}
+
+.btn-gr-inverse:hover {
+  border: 1px solid #353535;
+  background: #353535;
+  color: white;
+  transition: .5s all;
+}
+
+.appearance-img {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 350px;
+}
+
+.minicolors-theme-default .minicolors-input {
+    height: 30px;
+    width: auto;
+    display: inline-block;
+    padding-left: 26px;
+}

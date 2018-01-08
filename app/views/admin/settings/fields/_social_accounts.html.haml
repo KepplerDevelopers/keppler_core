@@ -1,0 +1,23 @@
+= f.simple_fields_for :social_account do |f|
+	- @social_medias.each_with_index do |social, color|
+		.row
+			.col.s12
+				= f.input social
+
+		-# To show a social media icon before input
+		:javascript
+			var input = $("#setting_social_account_attributes_#{social}")
+			input.before(
+				`<i style="color:#9e9e9e" class="material-icons prefix fa fa-#{social.to_s.split('_').join('-')}"></i>`
+				)
+
+		-# To activate colors in social media inputs
+		:sass
+			.setting_social_account_#{social}
+				i.active
+					color: #{@colors[color]} !important
+				input:focus:not([readonly])
+					border-bottom: 1px solid #{@colors[color]} !important
+					box-shadow: 0 1px 0 0 #{@colors[color]} !important
+				.control-label.active
+					color: #{@colors[color]} !important

@@ -1,0 +1,22 @@
+- flash.each do |name, msg|
+	- if msg.is_a?(String)
+		:javascript
+			noty({
+				text: "#{msg}", 
+				layout: 'bottomRight',
+				type: 'alert',
+				dismissQueue: true,
+				animation: {
+					open: 'animated tada',
+					close: 'bounceOutRight',
+					easing: 'swing',
+					speed: 500 },
+				timeout: 5000,
+				callback: {
+					afterShow: 
+						function() {
+							$.noty.closeAll()
+						}
+				}
+			});
+			

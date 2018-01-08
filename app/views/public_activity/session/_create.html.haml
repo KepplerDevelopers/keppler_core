@@ -1,0 +1,12 @@
+.timeline-item
+	%span.time
+		%i.fa.fa-clock-o
+		%b
+			= activity.created_at
+	%h6.timeline-header.no-border
+		%small
+			%b
+				= activity.owner.name if activity.owner
+		%small
+			= t('keppler.messages.login_in_activity') 
+	

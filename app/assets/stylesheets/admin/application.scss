@@ -1,0 +1,45 @@
+
+//= require animate
+//= require jquery.minicolors
+//= require_self
+
+@import 'bourbon';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "adminlte";
+
+
+// @import 'materialize';
+@import 'utils/variables';
+@import 'utils/mixins';
+@import 'utils/theme';
+@import 'utils/base';
+// @import 'pages/layout';
+
+// @import 'pages/devise';
+@import 'pages/navbar';
+
+@import 'pages/devise';
+// @import 'pages/navbar';
+
+// @import 'pages/sidebar';
+// @import 'pages/pageslide';
+// @import 'pages/header';
+@import 'pages/listing';
+// @import 'pages/show';
+@import 'pages/form';
+// @import 'pages/search';
+// @import 'pages/themes';
+//@import 'dashboard'; //dashboard gem
+@import "components/navigation/navbar";
+@import "components/navigation/sidebar";
+@import "components/layouts/footer";
+@import "components/layouts/settings";
+@import "components/module/index";
+@import "components/module/show";
+// @import 'icheck/square/green';
+// @import 'icheck/square/_all';
+@import "vendor/admin-lte/skin-blue";
+// @import '~pretty-checkbox/src/pretty-checkbox.scss';

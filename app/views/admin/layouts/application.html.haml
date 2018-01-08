@@ -1,0 +1,29 @@
+!!!
+%html
+  = render 'admin/layouts/head'
+  %body.sidebar-mini.skin-blue{style: "height: auto; min-height: 100%;" }
+
+    - if loggedin?
+      .wrapper{style:"height: auto; min-height: 100%;"}
+        = render 'admin/layouts/navigation'
+        = render 'admin/layouts/sidebar'
+
+        .content-wrapper{ style: "min-height: 901px;" }
+          = yield
+      .waiting
+        = preloader
+
+      =# render 'admin/layouts/header'
+      =# render 'admin/layouts/messages'
+
+      = render 'admin/layouts/footer'
+    - else
+      %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
+        = yield
+:sass
+  .wrapper
+    .content-wrapper
+      padding-top: 60px
+      min-height: 100vh !important
+      thead
+        border-bottom: 3px solid #ff5300

@@ -1,0 +1,68 @@
+menu:
+  dashboard:
+    name: dashboard
+    url_path: /admin/dashboard
+    icon: dashboard
+    current: ['keppler_ga_dashboard/dashboard']
+  seo:
+    name: SEO
+    current: ['admin/meta_tags', 'admin/google_adwords']
+    icon: code
+    model: MetaTag
+    submenu:
+      - meta_tags:
+          name: 'Title & Metas'
+          url_path: /admin/meta_tags
+          current: ['admin/meta_tags']
+      - google_adwords:
+          name: Google Adwords
+          url_path: /admin/google_adwords
+          current: ['admin/google_adwords']
+  google_analytics_track:
+    name: google analytics tracks
+    url_path: /admin/google_analytics_tracks
+    icon: area-chart
+    current: ['admin/google_analytics_tracks']
+    model: GoogleAnalyticsTrack
+  user:
+    name: users
+    url_path: /admin/users
+    icon: user
+    current: ["admin/users"]
+    model: User
+  customize:
+    name: keppler design
+    icon: magic
+    current: ['admin/customizes']
+    model: Customize
+    submenu:
+      - customize:
+          name: frontend templates
+          url_path: /admin/customizes
+          current: ['admin/customizes']
+      - appearance:
+          name: admin appearance
+          url_path: /admin/settings/appearance
+          current: ['appearance']
+  setting:
+    name: setting
+    current: ['admin/settings']
+    icon: gear
+    model: Setting
+    submenu:
+      - basic_information:
+          name: Basic information
+          url_path: /admin/settings/basic_information
+          current: ['basic_information']
+      - smtp_setting:
+          name: Email setting (SMTP)
+          url_path: /admin/settings/email_setting
+          current: ['email_setting']
+      - google_analytics_setting:
+          name: Google analytics
+          url_path: /admin/settings/google_analytics_setting
+          current: ['google_analytics_setting']
+      - social_account:
+          name: Social Accounts
+          url_path: /admin/settings/social_accounts
+          current: ['social_accounts']

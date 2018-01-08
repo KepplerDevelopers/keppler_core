@@ -1,0 +1,125 @@
+.open {
+  overflow: hidden !important;
+
+  .pageslide-background {
+    @include transition(.25s);
+    background: rgba($black, .65);
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+  }
+}
+
+pageslide {
+  height: 100% !important;
+  margin: 0 !important;
+  opacity: 0;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
+  .profile-menu {
+    background: url('profile-menu.jpg') center no-repeat;
+    background-size: 268px 159px;
+    height: 129px;
+    width: 268px;
+
+    .profile-pic {
+      padding: 12px;
+    }
+
+    a {
+      color: $link-color;
+    }
+
+    img {
+      border: 3px solid rgba($black, .14);
+      border-radius: 50%;
+      box-sizing: content-box;
+      height: 60px;
+      width: 60px;
+    }
+
+    .profile-info {
+      background: rgba($black, .6);
+      bottom: 2px;
+      color: $white;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 7px 14px;
+      position: relative;
+    }
+  }
+
+  .pageslide-menu {
+    border: 0;
+    box-shadow: none;
+    color: $gray-darken;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 0;
+    height: 75%;
+    margin-top: 20px;
+    overflow: auto;
+  }
+
+  .collapsible-header {
+    border: 0;
+    position: relative;
+  }
+
+  .collapsible-header:hover {
+    background: $gray-lighten;
+    color: $gray-darken;
+
+    a {
+      color: $gray-darken;
+    }
+  }
+
+  .current {
+    background: $gray-lighten;
+  }
+
+  .collapsible-body {
+    background: $gray-lighten;
+    border: 0;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  a {
+    color: $gray-darken;
+  }
+
+  .collapsable.collapsible-header::before {
+    @include icon-before('\f067');
+    position: absolute;
+    top: 0;
+  }
+
+  .collapsable.collapsible-header.active::before {
+    @include icon-before('\f068');
+  }
+
+  .pageslide-sub-menu {
+
+    li {
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+
+    a {
+      color: $pageslide-link-color;
+      font-weight: 600;
+    }
+
+    .current,
+    a:hover {
+      color: $gray-darken;
+    }
+  }
+}

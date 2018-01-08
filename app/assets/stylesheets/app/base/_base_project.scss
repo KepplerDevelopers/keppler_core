@@ -1,0 +1,17 @@
+html,
+body,
+main {
+  height: auto;
+}
+
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  font-size: 1.6rem;
+
+  @include respond-to(xs) {
+    font-size: 1.2rem;
+  }
+}

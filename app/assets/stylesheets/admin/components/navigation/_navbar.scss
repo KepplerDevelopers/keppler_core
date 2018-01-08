@@ -1,0 +1,41 @@
+.skin-blue{
+  .main-header {
+    position: fixed;
+    width: 100%;
+
+    a.logo {
+      background: $keppler-color !important;
+      color: #ffffff;
+      border-bottom: 0 solid transparent;
+      z-index: 9;
+    }
+
+  	.navbar-static-top {
+  		background: white !important;
+      box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+
+      a {
+        color: #949494 !important;
+      }
+  	}
+
+    li.user-header {
+      background-image: url('profile-menu.jpg');
+      background-position: center;
+      background-size: cover;
+      border-bottom: 2px solid $keppler-color;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #e8e8e8 !important;
+    }
+  }
+}
+.navbar.navbar-static-top{
+  height: 50px !important;
+
+  h3{
+    display: inline-block;
+    margin: 10px 0;
+  }
+}
