@@ -1,6 +1,6 @@
 %header.main-header
   / Logo
-  %a.logo{:href => "#"}
+  %a.logo{:href => "/admin/dashboard"}
     / mini logo for sidebar mini 50x50 pixels
     %span.logo-mini
       %span K
@@ -184,7 +184,7 @@
               .pull-left
                 %a.btn.btn-default.btn-flat{:href => "#"} Profile
               .pull-right
-                = link_to t('devise.sign_out'), destroy_user_session_path, class: " btn btn-default btn-flat"
+                = link_to t('devise.sign_out'), destroy_session_path(current_user), class: " btn btn-default btn-flat"
         - if action_name == 'index'
           %li
             %a{:href=>"#", "data-toggle" => "control-sidebar"}

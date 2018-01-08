@@ -21,7 +21,7 @@
 		
 		%span.time
 			%i.fa.fa-clock-o
-			= t('keppler.messages.to')
+			-# = t('keppler.messages.to')
 			%b
 				= activity.trackable.send(method)
 			= t('keppler.messages.at')
@@ -37,6 +37,7 @@
 		%small
 			%b
 				= activity.owner.name if activity.owner
-		= t('keppler.messages.has')
-		= t('keppler.actions.updated').downcase
-		= t("keppler.models.singularize.#{activity.trackable_type.underscore}").humanize
+		%small
+			= t('keppler.messages.has')
+			= t('keppler.actions.updated').downcase
+			= t("keppler.models.singularize.#{activity.trackable_type.underscore}").humanize
