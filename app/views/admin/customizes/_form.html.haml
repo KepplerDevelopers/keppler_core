@@ -8,7 +8,7 @@
 				.card-content
 					= simple_form_for [:admin, @customize] do |f|
 						.row
-							= f.input :file, label: false
+							= f.input :file, label: false, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
 
 							.form-actions.right
 								= f.button :submit, t("keppler.actions.save"), name: '_save'
