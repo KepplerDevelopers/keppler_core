@@ -1,0 +1,56 @@
+.listing.col.l9.m12.s12
+	- if can? :new, model
+		= link_to new_admin_establishment_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only", title: 'New' do
+			= material_icon.md_24.add
+	= entries(@total, @objects)
+	= link_to admin_establishments_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
+		= material_icon.md_18.cloud_download.css_class("md-dark")
+	= link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "establishment" do
+		= material_icon.md_18.cloud_upload.css_class("md-dark")
+
+	.hide
+		= form_tag admin_establishment_import_path(@objects), id: "import_form_establishment", multipart: true, method: :post do
+			= file_field_tag :file, id: "import_file_establishment"
+
+	%table.bordered
+		%tbody
+			- unless @objects.blank?
+				%tr{style:"background: #fff;"}
+					- if can? :destroy_multiple, Establishment
+						%th{style: 'padding-left: 20px'}
+					%th.center= t("activerecord.attributes.establishment.name")
+					%th.center= t("activerecord.attributes.establishment.city")
+					%th.center= t("activerecord.attributes.establishment.email")
+					- if can? :show, Establishment
+						%th.center
+					- if can? :update, Establishment
+						%th.center
+					- if can? :clone, Establishment
+						%th.center
+					- if can? :delete, Establishment
+						%th.center
+
+			- @objects.each do |establishment|
+				= render 'listing', establishment: establishment
+			- if @objects.size.zero?
+				%tr
+					%td{colspan: "4"}
+						%center
+							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.establishments"))
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+- if can? :new, model
+	= link_to new_admin_establishment_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
+		= material_icon.md_24.add.css_class("md-light")
+
+:javascript
+	$('#establishment').click(function() {
+		$('#import_file_establishment').click()
+		$('#import_file_establishment').change(function() {
+			$('.waiting').css('display', 'block')
+			$('#import_form_establishment').submit()
+		})
+	})

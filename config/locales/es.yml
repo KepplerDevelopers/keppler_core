@@ -1,6 +1,7 @@
 es:
   keppler:
     sidebar-menu:
+      establishments: Establishments
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
@@ -23,6 +24,7 @@ es:
         categories: Categorías
     models:
       singularize:
+        establishment: establishment
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -31,6 +33,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        establishments: establishments
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -39,6 +42,7 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
+      admin/establishments: Establishments
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
@@ -107,6 +111,10 @@ es:
       apply: Aplicar
   activerecord:
     attributes:
+      establishment:
+        name: Name
+        city: City
+        email: Email
       user:
         id: Identificador
         name: Nombre
