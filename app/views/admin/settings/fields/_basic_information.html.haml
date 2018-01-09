@@ -25,6 +25,8 @@
       = f.input :email, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Email"
       = f.input :phone, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Phone number"
       = f.input :mobile, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Mobile"
+      .pull-right
+        = f.button :submit, t("keppler.actions.apply"), :class => "btn-primary"
     -# .card-image
     -# 	- if f.object.favicon?
     -# 		= image_tag f.object.favicon
