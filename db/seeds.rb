@@ -37,6 +37,7 @@ setting = Setting.create(
     ga_status: true
   }
 )
-
-setting.appearance = Appearance.create(theme_name: 'keppler')
+setting.social_account = SocialAccount.new
+setting.appearance = Appearance.new(theme_name: 'keppler')
+setting.save
 puts 'Setting default has been created'
