@@ -14,5 +14,5 @@
 #= require adminlte/app
 #= require turbolinks
 #= require jquery.minicolors
-
+#= require vue
 #= require_tree .

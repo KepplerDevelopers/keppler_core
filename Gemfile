@@ -5,6 +5,7 @@ gem 'rails', '4.2.7.1'
 # Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
+gem 'vuejs-rails'
 gem 'nprogress-rails'
 gem 'ckeditor'
 
