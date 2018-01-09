@@ -2,10 +2,10 @@
 #= require jquery.turbolinks
 #= require jquery-ui
 #= require jquery_ujs
-#= require angular
+# require angular
 #= require noty
 #= require checklist-model
-#= require angular-local-storage
+# require angular-local-storage
 #= require nprogress
 #= require nprogress-turbolinks
 #= require ckeditor/init
