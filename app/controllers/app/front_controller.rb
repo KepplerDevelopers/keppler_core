@@ -6,5 +6,8 @@ module App
     def index
     end
 
+    def new
+    end
+
   end
 end

@@ -106,9 +106,11 @@
 
   #sidebar-footer
     .pull-left
-      %a{:href=>"http://slicegroup.xyz", target: "_blank"}© Slice Group
+      -# %a{:href=>"http://slicegroup.xyz", target: "_blank"}© Slice Group
+      = image_tag 'admin/slice.png', height: 30
     .pull-right
       %span v 2.0.0
+
   / /.sidebar
 / Content Wrapper. Contains page content
 :sass

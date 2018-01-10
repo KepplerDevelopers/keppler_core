@@ -15,7 +15,7 @@
 -# 				= meta_tag.url
 -# 	%td{style:"width: 5%"}
 -# 		= link_to admin_meta_tag_path(meta_tag), class: "btn-floating waves-effect btn-flat" do
--# 			-# = material_icon.md_24.more_horiz.css_class("md-dark")
+-# 			-# -# = material_icon.md_24.more_horiz.css_class("md-dark")
 %tr{ id: "row-#{meta_tag.id}" }
   - if can? :destroy_multiple, MetaTag
     %td.item-check{style:"width: 10%"}
@@ -39,18 +39,18 @@
       .custom-collapse.collapse{id: "menu-#{meta_tag.id}"}
         .panel-body
           - if can? :show, MetaTag
-            
+
             = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Show' do
               %i.material-icons remove_red_eye
           - if can? :update, MetaTag
-            
+
             = link_to edit_admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Edit' do
               %i.material-icons create
           -# - if can? :clone, MetaTag
-            
+
           -#   = link_to admin_meta_tag_clone_path(meta_tag), class: 'new-menu', title: 'Clone' do
           -#     %i.material-icons clone
           - if can? :delete, MetaTag
-            
+
             = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
               %i.material-icons delete

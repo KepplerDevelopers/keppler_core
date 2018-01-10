@@ -1,6 +1,6 @@
 jQuery ->
   $('#draggable').sortable
     axis: 'y'
-    handler: '.drag'
+    handler: '.draggable'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))

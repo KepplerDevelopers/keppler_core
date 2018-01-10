@@ -13,9 +13,9 @@ class ApplicationMailer < ActionMailer::Base
 
   def set_smtp
     setting = Setting.first.smtp_setting
-    unless setting.address == 'test'
+    unless setting.server_address == 'test'
       mail.delivery_method.settings.merge!(
-        address: setting.address,
+        server_address: setting.server_address,
         port: setting.port,
         domain: setting.domain_name,
         user_name: setting.email,
