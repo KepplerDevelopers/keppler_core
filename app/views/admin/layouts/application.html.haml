@@ -19,7 +19,7 @@
         %center
           %svg.spinner{:height => "65px", :viewbox => "0 0 66 66", :width => "65px", :xmlns => "http://www.w3.org/2000/svg"}
             %circle.path{:cx => "33", :cy => "33", :fill => "none", :r => "30", "stroke-linecap" => "round", "stroke-width" => "6"}
-      
+
       = render 'admin/layouts/footer'
     - else
       %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
@@ -33,7 +33,7 @@
         border-bottom: 3px solid #ff5300
 :scss
   #spinner {
-    
+
     position: fixed;
     top: 0;
     left: 0;
@@ -147,4 +147,3 @@
       }
     }
   }
-      

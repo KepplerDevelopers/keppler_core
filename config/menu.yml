@@ -7,7 +7,7 @@ menu:
   seo:
     name: SEO
     current: ['admin/meta_tags', 'admin/google_adwords']
-    icon: code
+    icon: graph
     model: MetaTag
     submenu:
       - meta_tags:
@@ -21,7 +21,7 @@ menu:
   google_analytics_track:
     name: google analytics tracks
     url_path: /admin/google_analytics_tracks
-    icon: area-chart
+    icon: chart
     current: ['admin/google_analytics_tracks']
     model: GoogleAnalyticsTrack
   user:
@@ -32,7 +32,7 @@ menu:
     model: User
   customize:
     name: keppler design
-    icon: magic
+    icon: pencil
     current: ['admin/customizes']
     model: Customize
     submenu:
@@ -47,7 +47,7 @@ menu:
   setting:
     name: setting
     current: ['admin/settings']
-    icon: gear
+    icon: settings
     model: Setting
     submenu:
       - basic_information:
