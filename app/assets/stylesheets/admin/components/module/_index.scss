@@ -1,6 +1,6 @@
 .content-header.index-header{
   margin: 10px 0 !important;
-  
+
 }
 .callout.callout-warning{
   background-color: white;
@@ -38,11 +38,11 @@
     }
   }
 }
-  
+
 .mixed-btn{
-  position: fixed; 
+  position: fixed;
   right: 35px;
-  bottom: 40px;
+  bottom: 20px;
   padding-top: 15px;
   margin-bottom: 0;
   z-index: 997;
@@ -70,17 +70,17 @@
       text-align: center;
       color: #fff;
     }
-      
+
     &:hover{
       box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
       transition: .3s;
       color: white;
     }
-      
+
   }
-    
-    
-    
+
+
+
 }
 
 .dropdown-menu{
@@ -118,7 +118,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-  
+
 /*!
  * Hover.css (http://ianlunn.github.io/Hover/)
  * Version: 2.2.1
