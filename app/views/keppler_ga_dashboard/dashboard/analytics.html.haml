@@ -1,46 +1,87 @@
--# = title "Dashboard"
+= title "Dashboard"
 
--# = library_analytics
+= library_analytics
 
 -# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"}
--# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"}
--# %script{:src => "/assets/keppler_ga_dashboard/view-selector2.js?body=1"}
--# %script{:src => "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1"}
--# %script{:src => "/assets/keppler_ga_dashboard/active-users.self.js?body=1"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"}
+%script{:src => "/assets/keppler_ga_dashboard/view-selector2.js?body=1"}
+%script{:src => "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1"}
+%script{:src => "/assets/keppler_ga_dashboard/active-users.self.js?body=1"}
 
--# .dashboard
--# 	.row
--# 		.col.s12
--# 			.card
--# 				.dashboard-head
--# 					#view-name.hide-on-small-only
--# 					#active-users-container
--# 					#view-selector-container.hide-on-small-only
--# 		.col.s12
--# 			.card
--# 				#chart-1-container{ style: "height: 200px;"}
--# 				#legend-1-container.charts-legend
--# 		.col.s12
--# 			.card
--# 				#chart-2-container{ style: "height: 200px;"}
--# 				#legend-2-container.charts-legend
--# 		.col.s12.m6.l6
--# 			.card
--# 				#chart-4-container{ style: "height: 300px;"}
--# 				#legend-4-container.charts-legend
--# 		.col.s12.m6.l6
--# 			.card
--# 				#chart-3-container{ style: "height: 300px;"}
--# 				#legend-3-container.charts-legend
+.container
+	.dashboard
+		.row
+			.col-lg-12
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Información
+					.box-body.pure-input
+						.dashboard-head
+							#view-name.hide-on-small-only
+							#active-users-container
+							#view-selector-container.hide-on-small-only
+		.row
+			.col-lg-6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Uso por semana
+						-# .box-tools.pull-right
+						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+						-# 		%i.fa.fa-minus
+					.box-body.pure-input
+						%canvas#chart-1-container{:height => "200", :width => "200"}
+						-# #chart-1-container{ style: "height: 200px;"}
+						#legend-1-container.charts-legend
 
--#:javascript
+			.col-lg-6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Uso al mes
+						-# .box-tools.pull-right
+						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+						-# 		%i.fa.fa-minus
+					.box-body.pure-input
+						#chart-2-container{ style: "height: 200px;"}
+						#legend-2-container.charts-legend
+		.row
+			.col-lg-6.m6.l6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Usuarios por países
+						-# .box-tools.pull-right
+						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+						-# 		%i.fa.fa-minus
+					.box-body.pure-input
+						#chart-4-container{ style: "height: 300px;"}
+						#legend-4-container.charts-legend
+
+			.col-lg-6.m6.l6
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title
+							Usuarios por navegador
+						-# .box-tools.pull-right
+						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+						-# 		%i.fa.fa-minus
+					.box-body.pure-input
+						#chart-3-container{ style: "height: 300px;"}
+						#legend-3-container.charts-legend
+
+
+:javascript
+
 	gapi.analytics.ready(function() {
 
 		/*Authorize the user immediately if the user has already granted access.*/
 		gapi.analytics.auth.authorize({
 			serverAuth: {
-		    access_token: "#{@access_token}" /*Se agrega el access token desde la api de ruby para analitycs*/
-		  }
+				access_token: "#{@access_token}" /*Se agrega el access token desde la api de ruby para analitycs*/
+			}
 		});
 
 
@@ -96,9 +137,9 @@
 
 			// Aqui se deben agregar los ids de las vistas de la pagina.
 			renderWeekOverWeekChart(data.ids);
-			renderYearOverYearChart(data.ids);
-			renderTopBrowsersChart(data.ids);
-			renderTopCountriesChart(data.ids);
+			// renderYearOverYearChart(data.ids);
+			// renderTopBrowsersChart(data.ids);
+			// renderTopCountriesChart(data.ids);
 		});
 
 
@@ -134,39 +175,77 @@
 				var data2 = results[1].rows.map(function(row) { return +row[2]; });
 				var labels = results[1].rows.map(function(row) { return +row[0]; });
 
-				labels = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"]
-
-				var data = {
-					labels : labels,
-					datasets : [
-						{
-							label: 'Semana pasada',
-							fillColor : '#e3e3e3',
-							strokeColor : '#e3e3e3',
-							pointColor : '#e3e3e3',
-							pointStrokeColor : '#e3e3e3',
-							pointHighlightFill: "#fff",
-							pointHighlightStroke: '#e3e3e3',
-							data : data2
+				// Chart line fill
+				var config = {
+						type: 'line',
+						data: {
+								labels: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+								datasets: [{
+										label: "Esta semana",
+										backgroundColor: 'rgba(245, 14, 30, 0.2)',
+										borderColor: [
+												'rgba(255,99,132,1)',
+												'rgba(54, 162, 235, 1)',
+												'rgba(255, 206, 86, 1)',
+												'rgba(75, 192, 192, 1)',
+												'rgba(153, 102, 255, 1)',
+												'rgba(255, 159, 64, 1)'
+										],
+										// borderWidth: 1,
+										fill: true,
+										data: data1,
+								}, {
+										label: "Semana Pasada",
+										fill: true,
+										// backgroundColor: "rgba(255, 99, 132, 0.2)",
+										// borderColor: "rgba(255, 99, 132, 0.2)",
+										data: data2,
+										// borderWidth: 1
+								}]
 						},
-						{
-							label: 'Esta semana',
-							fillColor : "#{@accent}",
-							strokeColor : "#{@accent}",
-							pointColor : "#{@accent}",
-							pointStrokeColor : "#{@accent}",
-							pointHighlightFill: "#fff",
-							pointHighlightStroke: "#{@accent}",
-							data : data1
+						options: {
+								responsive: true,
+								title:{
+										display:true,
+										text:' Semana a Semana'
+								},
+								tooltips: {
+										mode: 'index',
+										intersect: false,
+								},
+								hover: {
+										mode: 'nearest',
+										intersect: true
+								},
+								scales: {
+										xAxes: [{
+												display: true,
+												scaleLabel: {
+														display: true,
+														labelString: 'Dias'
+												}
+										}],
+										yAxes: [{
+												display: true,
+												scaleLabel: {
+														display: true,
+														labelString: 'Visitas'
+												},
+												// ticks: {
+												// 		min: 0,
+												// 		max: 100,
+												//
+												// 		// forces step size to be 5 units
+												// 		stepSize: 5
+												// }
+										}]
+								}
 						}
-					]
 				};
 
-				new Chart(makeCanvas('chart-1-container')).Line(data, {
-					scaleShowHorizontalLines: false,
-					scaleShowVerticalLines: false
-				});
-				generateLegend('legend-1-container', data.datasets);
+				var ctx = document.getElementById("chart-1-container");
+				window.myLine = new Chart(ctx, config);
+
 			});
 		}
 
@@ -220,8 +299,8 @@
 						},
 						{
 							label: 'Este año',
-							fillColor : "#{@accent}",
-							strokeColor : "#{@accent}",
+							fillColor : "#{@color}",
+							strokeColor : "#{@color}",
 							data : data1
 						}
 					]
@@ -255,7 +334,7 @@
 			.then(function(response) {
 
 				var data = [];
-				var colors = ["#{@accent}",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
+				var colors = ["#{@color}",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
 
 				response.rows.forEach(function(row, i) {
 					data.push({ value: +row[1], color: colors[i], label: row[0] });
@@ -283,7 +362,7 @@
 			.then(function(response) {
 
 				var data = [];
-				var colors = ["#{@accent}",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
+				var colors = ["#{@color}",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
 
 				response.rows.forEach(function(row, i) {
 					data.push({
@@ -342,13 +421,13 @@
 		 * @param {Array.} items A list of labels and colors for the legend.
 		 */
 		function generateLegend(id, items) {
-	    var legend = document.getElementById(id);
-	    legend.innerHTML = items.map(function(item) {
-	      var color = item.color || item.fillColor;
-	      var label = item.label;
-	      return '<li><i style="background:' + color + '"></i>' + label + '</li>';
-	    }).join('');
-	  }
+			var legend = document.getElementById(id);
+			legend.innerHTML = items.map(function(item) {
+				var color = item.color || item.fillColor;
+				var label = item.label;
+				return '<li><i style="background:' + color + '"></i>' + label + '</li>';
+			}).join('');
+		}
 
 
 		// Set some global Chart.js defaults.
