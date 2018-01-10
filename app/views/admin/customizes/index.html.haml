@@ -26,6 +26,9 @@
 								%center
 									= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
 			= paginate @objects, window: 1
+.mixed-btn
+	= link_to new_admin_customize_path, class: "btn-float" do
+		%i.material-icons add
 
 :scss
 	.box-tools {
