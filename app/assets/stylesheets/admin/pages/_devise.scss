@@ -6,6 +6,80 @@
 
   .container {
     height: 100%;
+    background: rgba(0, 0, 0, 1);
+    animation: animationContainer 1.5s forwards;
+    position: absolute;
+  }
+
+  @keyframes animationContainer {
+    0% {
+      background: rgba(0, 0, 0, 1);
+    }
+    100% {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .login-footer {
+    text-align: center;
+    color: #e4e4e4;
+    position: relative;
+    bottom: 3rem;
+
+    span{
+      color: $keppler-color;
+    }
+  }
+
+  .login-container {
+    width: 100%;
+  }
+
+  .login-box {
+    height: 70%;
+  }
+
+  .login-box-body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    position: relative;
+    top: 2rem;
+    animation: animationBody 2.5s forwards;
+  }
+
+  @keyframes animationBody {
+    0% {
+      top: 2rem;
+    }
+    100% {
+      top: 0rem;
+    }
+  }
+
+
+  .login-logo {
+    position: relative;
+    top: 2rem;
+    opacity: 0;
+    animation: animationLogo 1.5s forwards;
+    a {
+      color: #e4e4e4;
+
+      span {
+        color: $keppler-color;
+      }
+    }
+  }
+
+  @keyframes animationLogo {
+    0% {
+      top: 2rem;
+      opacity: 0;
+    }
+    100% {
+      top: 0rem;
+      opacity: 1;
+    }
   }
 
   .recoverable {
@@ -45,10 +119,10 @@
     p {
       font-weight: 300;
     }
-
-    @media #{$small-and-down} {
-      width: 100%;
-    }
+    //
+    // @media #{$small-and-down} {
+    //   width: 100%;
+    // }
 
     &-header {
       color: $white;

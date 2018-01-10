@@ -1,27 +1,59 @@
-= title(t('keppler.titles.index', model: "Templates"))
-= header_information do
-	= "Templates"
 
-.listing.col.l9.m12.s12
-	- if can? :new, model
-		= link_to new_admin_customize_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-			= material_icon.md_24.add
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- if @objects.size.zero?
-				%tr
-					%td.center{colspan: "4"}
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
-			- else
-				- @objects.each do |customize|
-					= render 'listing', customize: customize
-	= paginate @objects, window: 1
+.col-lg-6
+	.box.slice-box
+		.box-header.with-border
+			%h3.box-title Preview
+			.box-tools.pull-right#tools
+				%i.material-icons#xs smartphone
+				%i.material-icons#md tablet
+				%i.material-icons#lg laptop
+		.box-body.box-body-no-padding.hidden-xs#box-body{style:"height: 325px;flow:hidden;overflow:hidden; margin: 0 auto"}
+			%iframe{src: "#{root_path}", frameborder:"0", style:"height:250%;width:250%;zoom:1.8;transform:scale(0.4);transform-origin:0 0;"}
+.col-lg-6
+	.box.slice-box
+		.box-header.with-border
+			%h3.box-title Frontend Theme
 
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
+		/ /.box-header
+		.box-body
+			%table.bordered
+				%tbody
+					- @objects.each do |customize|
+						= render 'listing', customize: customize
+					- if @objects.size.zero?
+						%tr
+							%td{colspan: "4"}
+								%center
+									= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
+			= paginate @objects, window: 1
+.mixed-btn
+	= link_to new_admin_customize_path, class: "btn-float" do
+		%i.material-icons add
 
-- if can? :new, model
-	= link_to new_admin_customize_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		= material_icon.md_24.add.css_class("md-light")
+:scss
+	.box-tools {
+		i {
+			padding: 0 10px;
+			font-size: 25px;
+			color: #d2d2d2;
+			transition: all ease .3s;
+			cursor: pointer;
+			&:hover {
+				color: #555;
+				transition: all ease .3s;
+			}
+		}
+	}
+
+:javascript
+	$('#xs').click(function() {
+		$('#box-body').animate({ 'width': '35%' }, 300)
+	})
+
+	$('#md').click(function() {
+		$('#box-body').animate({ 'width': '70%' }, 300)
+	})
+
+	$('#lg').click(function() {
+		$('#box-body').animate({ 'width': '100%' }, 300)
+	})

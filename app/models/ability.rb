@@ -9,9 +9,7 @@ class Ability
 
       can :manage, Scaffold
       # - Customize authorize -
-      can [:delete, :update,
-           :new, :create, :install_default,
-           :index, :destroy, :destroy_multiple], Customize
+      can [:manage], Customize
 
       # - Seo authorize -
       can :manage, MetaTag

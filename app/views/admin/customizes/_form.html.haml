@@ -1,14 +1,117 @@
-.wrapper
-	.wrapper-body.container
-		.actions
-			= link_to admin_customizes_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.wrapper-inputs
-			.card
-				.card-content
-					= simple_form_for [:admin, @customize] do |f|
-						.row
-							= f.input :file, label: false, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+= simple_form_for [:admin, @customize] do |f|
+	.container
+		.row
+			.col-lg-2
+				.arrow-back.btn.btn-default
+					= link_to admin_customizes_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+						%i.fa.fa-chevron-left
+						Volver
+						.clearfix
+			.clearfix
+		.row
+			.col-lg-12
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title User
 
-							.form-actions.right
-								= f.button :submit, t("keppler.actions.save"), name: '_save'
+					.box-body
+						%table.table.table-bordered
+							%tbody
+								.form-padding
+									.row
+										.col-lg-12
+											.container
+												.row
+													.col-md-12
+														.form-group.files
+															%label Upload Your File
+															%i.material-icons.files-icon#file add
+															%input{type: "hidden", name: "customize[file]"}
+															= f.input :file, label: false
+
+
+									.row
+										.col-lg-12
+											.pull-right
+												= f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
+												= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+
+:scss
+	.box-tools {
+		i {
+			padding: 0 10px;
+			font-size: 25px;
+			color: #d2d2d2;
+			transition: all ease .3s;
+			cursor: pointer;
+			&:hover {
+				color: #555;
+				transition: all ease .3s;
+			}
+		}
+	}
+
+:javascript
+	$('#xs').click(function() {
+		$('#box-body').animate({ 'width': '35%' }, 300)
+	})
+
+	$('#md').click(function() {
+		$('#box-body').animate({ 'width': '70%' }, 300)
+	})
+
+	$('#lg').click(function() {
+		$('#box-body').animate({ 'width': '100%' }, 300)
+	})
+
+	$('#customize_file').change(function() {
+		$('#file').html('check')
+	})
+:scss
+	.files input {
+		outline: 2px dashed #92b0b3;
+		outline-offset: -10px;
+		-webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+		transition: outline-offset .15s ease-in-out, background-color .15s linear;
+		padding: 120px 0px 85px 35%;
+		text-align: center !important;
+		margin: 0;
+		width: 100% !important;
+	}
+	.files input:focus{
+		outline: 2px dashed #92b0b3;  outline-offset: -10px;
+		-webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+		transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+	}
+	.files{ position:relative}
+	.files-icon {  pointer-events: none;
+		position: absolute;
+		top: 60px;
+		font-size: 60px;
+		left: 0;
+		width: 50px;
+		right: 0;
+		height: 56px;
+		content: "";
+		// background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+		display: block;
+		margin: 0 auto;
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+	.color input{ background-color:#f1f1f1;}
+	.files:before {
+		position: absolute;
+		bottom: 5px;
+		left: 0;  pointer-events: none;
+		width: 100%;
+		right: 0;
+		height: 57px;
+		content: "O arrastralos hasta aquí.";
+		display: block;
+		margin: 0 auto;
+		color: #2ea591;
+		font-weight: 600;
+		text-transform: capitalize;
+		text-align: center;
+	}

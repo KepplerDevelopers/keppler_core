@@ -1,12 +1,7 @@
 # AdminHelper Backoffice
 module AdminHelper
   def preloader
-    content_tag :div, class: 'preloader-wrapper big active' do
-      concat spinner_layer('blue')
-      concat spinner_layer('red')
-      concat spinner_layer('yellow')
-      concat spinner_layer('green')
-    end
+    render "admin/layouts/preloader"
   end
 
   # Header information dinamic in keppler back-office
@@ -43,8 +38,10 @@ module AdminHelper
 
   def entries(total, objects)
     unless total.zero?
-      content_tag :div, class: 'entries hidden-xs' do
-        message(total, objects)
+      content_tag :div, class: 'btn-group', style: "margin-bottom: 10px" do
+        content_tag :button, class: 'btn btn-default' do
+          message(total, objects)
+        end
       end
     end
   end
