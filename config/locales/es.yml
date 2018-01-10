@@ -3,7 +3,7 @@ es:
     login_message: Ingresa tus datos para entrar
     powered: Desarrollado por
     navigation:
-      last_session: Ultima sesión 
+      last_session: Ultima sesión
     sidebar-menu:
       customizes: Customizes
       dashboard: Dashboard
@@ -42,6 +42,7 @@ es:
         settings: configuraciones
         configurations: configuraciones
         user: usuarios
+        script: scripts
     modules:
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
