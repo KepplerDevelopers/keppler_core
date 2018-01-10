@@ -26,30 +26,30 @@
     .custom-collapse.collapse{id: "menu-#{user.id}"}
       .panel-body
         - if can? :show, User
-          
+
           = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
             %i.material-icons remove_red_eye
         - if can? :update, User
-          
+
           = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Edit' do
             %i.material-icons create
         - if can? :clone, User
-          
+
           = link_to admin_user_clone_path(user), class: 'new-menu', title: 'Clone' do
             %i.material-icons clone
         - if can? :delete, User
-          
+
           = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
             %i.material-icons delete
-  
+
 :javascript
   $(document).ready(function(){
-    
+
 
 
     $('.collapse').on('show.bs.collapse', function () {
       $('.collapse.in').collapse('hide');
     });
-    
+
     
   });
