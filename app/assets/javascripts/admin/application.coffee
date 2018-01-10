@@ -1,5 +1,4 @@
 #= require jquery
-#= require jquery.turbolinks
 #= require jquery-ui
 #= require jquery_ujs
 # require angular
@@ -12,7 +11,6 @@
 #= require cocoon
 #= require bootstrap-sprockets
 #= require adminlte/app
-#= require turbolinks
 #= require jquery.minicolors
 #= require vue
 #= require_tree .

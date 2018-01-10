@@ -53,7 +53,7 @@
 # 			showSpinner: false
 # 			easing: 'ease'
 # 			speed: 500
-		
+
 
 # 	return
 $(window).load ->
