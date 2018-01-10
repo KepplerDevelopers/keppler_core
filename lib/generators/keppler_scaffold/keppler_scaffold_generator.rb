@@ -35,7 +35,7 @@ module Rails
           inject_into_file(
             'config/routes.rb',
             "\n #{indent(str_route)}",
-            after: 'namespace :admin do'
+            after: "root to: 'admin#root'"
           )
         end
       end
@@ -72,7 +72,7 @@ module Rails
           add_str_locales(locale, 'pluralize')
           add_str_locales(locale, 'modules')
           add_str_locales(locale, 'sidebar-menu')
-          add_str_locales(locale, 'attributes')
+          # add_str_locales(locale, 'attributes')
         end
       end
 
@@ -98,7 +98,7 @@ module Rails
       end
 
       def create_model_files
-        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture']
+        attachments
         template(
           'models/model.rb',
           File.join(
@@ -110,8 +110,8 @@ module Rails
       end
 
       def create_views_files
-        @names = ['name', 'title', 'first_name', 'full_name']
-        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment']
+        names
+        attachments
         template_keppler_views('_description.html.haml')
         template_keppler_views('_index_show.html.haml')
         template_keppler_views('_listing.html.haml')
@@ -140,9 +140,15 @@ module Rails
         )
       end
 
-
-
       private
+
+      def names
+        @names = ['name', 'title', 'first_name', 'full_name']
+      end
+
+      def attachments
+        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
+      end
 
       def add_str_locales(locale, switch)
         inject_into_file(
@@ -153,11 +159,11 @@ module Rails
       end
 
       def str_route
-        " post '/sorting', to: '#{controller_file_name}#sort', as: :sorting_#{controller_file_name}\n  resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
+        "resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/sort', action: 'sort'\n    delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
       end
 
       def str_menu
-        "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: insert_chart\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
+        "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: help_outline\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
       end
 
       def str_ability_admin
@@ -182,12 +188,12 @@ module Rails
           "\n      admin/#{controller_file_name}: #{controller_file_name.humanize}"
         when 'sidebar-menu'
           "\n      #{controller_file_name}: #{controller_file_name.humanize}"
-        when 'attributes'
-          array = ["\n      #{controller_file_name.singularize}:"]
-          attributes_names.each do |attribute|
-            array.push("\n        #{attribute}: #{attribute.humanize}")
-          end
-          array.join
+        # when 'attributes'
+        #   array = ["\n      #{controller_file_name.singularize}:"]
+        #   attributes_names.each do |attribute|
+        #     array.push("\n        #{attribute}: #{attribute.humanize}")
+        #   end
+        #   array.join
         end
       end
 

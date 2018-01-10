@@ -4,11 +4,11 @@
 		= t("keppler.models.singularize.#{controller_name.singularize}")
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
-		%ul.list
-			%li.list-row
-				.display-label= t("activerecord.attributes.customize.file")
-				.display-value= @customize.file
-			%li.list-row
+		%table.list.bordered
+			%tr.list-row
+				%th.display-label= t("activerecord.attributes.file")
+				%td.display-value= @customize.file
+			%tr.list-row
 				= link_to t('keppler.actions.back_history'), admin_customizes_path
 
 -#:javascript

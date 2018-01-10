@@ -7,6 +7,7 @@ class Ability
 
     if user.has_role? :keppler_admin
 
+      can :manage, Scaffold
       # - Customize authorize -
       can [:manage], Customize
 
@@ -16,7 +17,7 @@ class Ability
 
       # - GoogleAnalytics authorize -
       if Setting.first.google_analytics_setting.ga_status
-        can :manage, GoogleAnalyticsTrack
+        can :manage, Script
       end
 
       # - Setting authorize -

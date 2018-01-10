@@ -12,7 +12,7 @@
           -# %li
           -#   %a{:href => "#"} UI
           -# %li.active General
-      
+
       =# entries(@total, @objects)
 
       .box.slice-box
@@ -23,7 +23,7 @@
                 %tr
                   %th{:style => 'text-align: center;'}
                     %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-                -# .row 
+                -# .row
                 -#   .col-xs-4.col-lg-offset-4
                 -#     .callout.callout-warning
                 -#       %h4= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
@@ -38,7 +38,7 @@
                     Role
                   %th{:style => "text-align: center;padding-right: 30px;"}
                     Actions
-              
+
                 - @objects.each do |user|
                   = render 'listing', user: user
   -# %table.bordered
@@ -70,7 +70,7 @@
   = link_to new_admin_user_path, class: "btn-float" do
     %i.material-icons add
     -# %i.fa.fa-plus
-    -# = material_icon.md_24.add.css_class("md-light")
+    -# -# = material_icon.md_24.add.css_class("md-light")
 
 
 :javascript
@@ -83,6 +83,3 @@
       $(this).css('top', 40 + (47 * idx) + "px")
     });
   })
-  
-  
-  
