@@ -10,15 +10,9 @@
 
         .content-wrapper{ style: "min-height: 901px;" }
           = yield
-      -# .waiting
-      -#   = preloader
 
-      =# render 'admin/layouts/header'
-      =# render 'admin/layouts/messages'
       #spinner
-        %center
-          %svg.spinner{:height => "65px", :viewbox => "0 0 66 66", :width => "65px", :xmlns => "http://www.w3.org/2000/svg"}
-            %circle.path{:cx => "33", :cy => "33", :fill => "none", :r => "30", "stroke-linecap" => "round", "stroke-width" => "6"}
+        = preloader
 
       = render 'admin/layouts/footer'
     - else
@@ -33,7 +27,6 @@
         border-bottom: 3px solid #ff5300
 :scss
   #spinner {
-
     position: fixed;
     top: 0;
     left: 0;
@@ -41,6 +34,7 @@
     bottom: 0;
     background-color: #000000bd;
     z-index: 999999;
+
     center{
       width: 120px;
       height: 120px;
