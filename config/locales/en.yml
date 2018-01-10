@@ -1,5 +1,6 @@
 en:
   keppler:
+    login_message: Sign in to start your session
     sidebar-menu:
       customizes: Customizes
       dashboard: Dashboard

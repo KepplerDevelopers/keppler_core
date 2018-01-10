@@ -1,6 +1,12 @@
-.collection-item.avatar
-	= material_icon.md_24.lock_open.css_class("circle")
-	%b
-		= activity.owner.name if activity.owner
-	= t('keppler.messages.login_in_activity') 
-	= activity.created_at
+.timeline-item
+	%span.time
+		%i.fa.fa-clock-o
+		%b
+			= activity.created_at
+	%h6.timeline-header.no-border
+		%small
+			%b
+				= activity.owner.name if activity.owner
+		%small
+			= t('keppler.messages.login_in_activity') 
+	

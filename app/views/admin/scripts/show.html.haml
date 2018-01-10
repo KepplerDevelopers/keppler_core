@@ -3,12 +3,12 @@
 		.actions
 			- if can? :delete, Script
 				= link_to admin_script_path(@script), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-					= material_icon.md_18.delete.css_class("md-dark")
+					-# = material_icon.md_18.delete.css_class("md-dark")
 			- if can? :update, Script
 				= link_to edit_admin_script_path(@script), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
-					= material_icon.md_18.create.css_class("md-dark")
+					-# = material_icon.md_18.create.css_class("md-dark")
 			= link_to admin_scripts_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
+				-# = material_icon.md_18.arrow_back.css_class("md-dark")
 		.card
 			.card-content
 				%table.list.bordered
