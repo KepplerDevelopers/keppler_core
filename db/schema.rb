@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171225023933) do
 
   create_table "customizes", force: :cascade do |t|
     t.string   "file",       limit: 255
-    t.boolean  "installed"
+    t.boolean  "installed",  limit: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20171225023933) do
   create_table "google_analytics_settings", force: :cascade do |t|
     t.string   "ga_account_id",  limit: 255
     t.string   "ga_tracking_id", limit: 255
-    t.boolean  "ga_status"
+    t.boolean  "ga_status",      limit: 1
     t.integer  "setting_id",     limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
