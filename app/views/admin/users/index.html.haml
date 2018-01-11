@@ -1,88 +1,105 @@
-.container
-  .row
-    .listing.col-lg-12.col-xs-12
-      %section.content-header.index-header
-        %h1
-          = t("keppler.modules.#{controller_path.underscore}")
-        %ol.breadcrumb
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-dashboard
-              = t("keppler.modules.#{action_name.underscore}")
-          -# %li
-          -#   %a{:href => "#"} UI
-          -# %li.active General
-      
-      =# entries(@total, @objects)
+#index-container
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1
+            = t("keppler.modules.#{controller_path.underscore}")
+          %ol.breadcrumb
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-dashboard
+                = t("keppler.modules.#{action_name.underscore}")
+            
+            %li{ "v-show" => "checks" }
+                  
+              = link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids=[").concat("]#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, data: {confirm: "#{t("keppler.messages.data_confirm")}"} do
+                {{deleteUser}}
+                
+        .box.slice-box
+          .box-body.no-padding
+            %table#index.table.table-striped
+              %tbody
+                - if @objects.size.zero?
+                  %tr
+                    %th{:style => 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+                - else
+                  %tr
+                    %td
+                    %th
+                      Name
+                    %th
+                      Email
+                    %th
+                      Role
+                    %th{:style => "text-align: center;padding-right: 30px;"}
+                      Actions
+                
+                  - @objects.each do |user|
+                    = render 'listing', user: user
 
-      .box.slice-box
-        .box-body.no-padding
-          %table.table.table-striped
-            %tbody
-              - if @objects.size.zero?
-                %tr
-                  %th{:style => 'text-align: center;'}
-                    %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-                -# .row 
-                -#   .col-xs-4.col-lg-offset-4
-                -#     .callout.callout-warning
-                -#       %h4= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-              - else
-                %tr
-                  %td
-                  %th
-                    Name
-                  %th
-                    Email
-                  %th
-                    Role
-                  %th{:style => "text-align: center;padding-right: 30px;"}
-                    Actions
-              
-                - @objects.each do |user|
-                  = render 'listing', user: user
-  -# %table.bordered
-  -# 	%tbody
-  -# 		- if @objects.size.zero?
-  -# 			%tr
-  -# 				%td{colspan: "4"}
-  -# 					%center
-  -# 						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-  -# 		- else
-  -# 			%tr.white-hover
-  -# 				%td
-  -# 				%th.center Name
-  -# 				%th.center.hide-on-small-and-down Email
-  -# 				%th.center.hide-on-small-and-down Role
-  -# 				- if can? :show, User
-  -# 					%th
-  -# 				- if can? :update, User
-  -# 					%th
-  -# 				- if can? :delete, User
-  -# 					%th
-  -# 		- @objects.each do |user|
-  -# 			= render 'listing', user: user
-  -# = paginate @objects, window: 1
-
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-  = render "description"
-.mixed-btn
-  = link_to new_admin_user_path, class: "btn-float" do
-    %i.material-icons add
-    -# %i.fa.fa-plus
-    -# = material_icon.md_24.add.css_class("md-light")
-
+  .listing-show
+    = render "description"
+  .mixed-btn
+    = link_to new_admin_user_path, class: "btn-float" do
+      %i.material-icons add
 
 :javascript
+  var app = new Vue({
+    el: "#index-container",
+    data: {
+      users: [],
+      deleteUser:[]
+    },
+    mounted: function(){
+      var that;
+      that = this;
+      console.log("It's ready!!");
+      $.ajax({
+        url: '/admin/users.json',
+        success: function(res){
+          that.users = res
+        }
+      });
+    },
+    computed:{
+      checks: function(){
+        return this.deleteUser.length > 0
+      }
+    },
+    methods: {
+      listDelete: function(user_id){
+        var that = this;
+        if(that.deleteUser.includes(user_id)){
+          removeA(that.deleteUser, user_id)
+        }else{
+          that.deleteUser.push(user_id)
+        }
+        console.log(that.deleteUser);
+      },
+      deleteThem: function(){
+        var that = this;
+        //$.ajax({
+        //  method: 'DELETE',
+        //  url: "/admin/users?multiple_ids=[" + that.deleteUser + "]",
+        //  success: function(res){
+        //    that.$el.$remove()
+        //  }
+        //})
+      }
+    }
+  })
   $(document).ready(function(){
     $('body, html').click(function(){
       $('.collapse.in').collapse('hide');
     });
     $(".custom-collapse").each(function(idx){
-      //console.log(40 + (35 * idx) + "px");
       $(this).css('top', 40 + (47 * idx) + "px")
     });
-  })
+  });
+
+  
   
   
   
