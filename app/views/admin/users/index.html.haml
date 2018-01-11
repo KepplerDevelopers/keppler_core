@@ -10,12 +10,12 @@
               %a{:href => "#"}
                 %i.fa.fa-dashboard
                 = t("keppler.modules.#{action_name.underscore}")
-            
+
             %li{ "v-show" => "checks" }
-                  
+
               = link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids=[").concat("]#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, data: {confirm: "#{t("keppler.messages.data_confirm")}"} do
                 {{deleteUser}}
-                
+
         .box.slice-box
           .box-body.no-padding
             %table#index.table.table-striped
@@ -35,7 +35,7 @@
                       Role
                     %th{:style => "text-align: center;padding-right: 30px;"}
                       Actions
-                
+
                   - @objects.each do |user|
                     = render 'listing', user: user
 
@@ -98,8 +98,3 @@
       $(this).css('top', 40 + (47 * idx) + "px")
     });
   });
-
-  
-  
-  
-  

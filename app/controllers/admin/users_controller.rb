@@ -11,7 +11,7 @@ module Admin
       @objects = users.page(@current_page)
       @total = users.size
       @users = User.all.reverse
-      
+
       if !@objects.first_page? && @objects.size.zero?
         redirect_to users_path(page: @current_page.to_i.pred, search: @query)
       end
@@ -67,7 +67,7 @@ module Admin
         # end
 
       # end
-      
+
     end
 
     def destroy
