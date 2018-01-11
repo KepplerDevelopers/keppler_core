@@ -19,9 +19,15 @@
 							Información
 					.box-body.pure-input
 						.dashboard-head
-							#view-name.hide-on-small-only
-							#active-users-container
-							#view-selector-container.hide-on-small-only
+							.form-group
+								%select.form-control
+									%option Opción 1
+							.row
+								.col-lg-3
+									#view-name.hide-on-small-only
+									#active-users-container
+								.col-lg-3
+									#view-selector-container.hide-on-small-only
 		.row
 			.col-lg-6
 				.box.slice-box
@@ -32,8 +38,7 @@
 						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
 						-# 		%i.fa.fa-minus
 					.box-body.pure-input
-						%canvas#chart-1-container{:height => "200", :width => "200"}
-						-# #chart-1-container{ style: "height: 200px;"}
+						%canvas#chart-1-container{:height => "300", :width => "350"}
 						#legend-1-container.charts-legend
 
 			.col-lg-6
@@ -41,36 +46,27 @@
 					.box-header.with-border
 						%h3.box-title
 							Uso al mes
-						-# .box-tools.pull-right
-						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-						-# 		%i.fa.fa-minus
 					.box-body.pure-input
-						%canvas#chart-2-container{:height => "200", :width => "200"}
+						%canvas#chart-2-container{:height => "300", :width => "350"}
 						#legend-2-container.charts-legend
 		.row
 			.col-lg-6.m6.l6
 				.box.slice-box
 					.box-header.with-border
 						%h3.box-title
-							Usuarios por países
-						-# .box-tools.pull-right
-						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-						-# 		%i.fa.fa-minus
+							Usuarios por navegador
 					.box-body.pure-input
-						#chart-4-container{ style: "height: 300px;"}
-						#legend-4-container.charts-legend
+						#canvas-holder{:height => "300", :width => "350"}
+							%canvas#chart-3-container{:height => "300", :width => "350"}
 
 			.col-lg-6.m6.l6
 				.box.slice-box
 					.box-header.with-border
 						%h3.box-title
-							Usuarios por navegador
-						-# .box-tools.pull-right
-						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-						-# 		%i.fa.fa-minus
+							Usuarios por países
 					.box-body.pure-input
-						#chart-3-container{ style: "height: 300px;"}
-						#legend-3-container.charts-legend
+						#canvas-holder{:height => "300", :width => "350"}
+							%canvas#chart-4-container{:height => "300", :width => "350"}
 
 
 :javascript
@@ -138,8 +134,8 @@
 			// Aqui se deben agregar los ids de las vistas de la pagina.
 			renderWeekOverWeekChart(data.ids);
 			renderYearOverYearChart(data.ids);
-			// renderTopBrowsersChart(data.ids);
-			// renderTopCountriesChart(data.ids);
+			renderTopCountriesChart(data.ids);
+			renderTopBrowsersChart(data.ids);
 		});
 
 
@@ -197,8 +193,8 @@
 								}, {
 										label: "Semana Pasada",
 										fill: true,
-										// backgroundColor: "rgba(255, 99, 132, 0.2)",
-										// borderColor: "rgba(255, 99, 132, 0.2)",
+										backgroundColor:'rgba(33, 150, 243, 0.29)',
+										borderColor: '#2196f3',
 										data: data2,
 										// borderWidth: 1
 								}]
@@ -284,8 +280,8 @@
 				// Ensure the data arrays are at least as long as the labels array.
 				// Chart.js bar charts don't (yet) accept sparse datasets.
 				for (var i = 0, len = labels.length; i < len; i++) {
-					if (data1[i] === undefined) data1[i] = null;
-					if (data2[i] === undefined) data2[i] = null;
+					if (data1[i] === undefined) data1[i] = 0;
+					if (data2[i] === undefined) data2[i] = 0;
 				}
 
 				// Chart line fill
@@ -296,24 +292,17 @@
 								datasets: [{
 										label: "Año pasado",
 										backgroundColor: 'rgba(245, 14, 30, 0.2)',
-										borderColor: [
-												'rgba(255,99,132,1)',
-												'rgba(54, 162, 235, 1)',
-												'rgba(255, 206, 86, 1)',
-												'rgba(75, 192, 192, 1)',
-												'rgba(153, 102, 255, 1)',
-												'rgba(255, 159, 64, 1)'
-										],
-										// borderWidth: 1,
+										borderColor: 'rgba(255,99,132,1)',
+										borderWidth: 2,
 										fill: true,
-										data: data1,
-								}, {
-										label: "",
-										fill: true,
-										// backgroundColor: "rgba(255, 99, 132, 0.2)",
-										// borderColor: "rgba(255, 99, 132, 0.2)",
 										data: data2,
-										// borderWidth: 1
+								}, {
+										label: "Año actual",
+										fill: true,
+										backgroundColor:'rgba(33, 150, 243, 0.29)',
+										borderColor: '#2196f3',
+										data: data1,
+										borderWidth: 2
 								}]
 						},
 						options: {
@@ -359,30 +348,6 @@
 				var ctx = document.getElementById("chart-2-container");
 				window.myLine = new Chart(ctx, config);
 
-
-				// var data = {
-				// 	labels : labels,
-				// 	datasets : [
-				// 		{
-				// 			label: 'Año pasado',
-				// 			fillColor : '#e3e3e3',
-				// 			strokeColor : '#e3e3e3',
-				// 			data : data2
-				// 		},
-				// 		{
-				// 			label: 'Este año',
-				// 			fillColor : "#{@color}",
-				// 			strokeColor : "#{@color}",
-				// 			data : data1
-				// 		}
-				// 	]
-				// };
-				//
-				// new Chart(makeCanvas('chart-2-container')).Bar(data, {
-				// 	scaleShowHorizontalLines: false,
-				// 	scaleShowVerticalLines: false
-				// });
-				// generateLegend('legend-2-container', data.datasets);
 			})
 			.catch(function(err) {
 				console.error(err.stack);
@@ -406,14 +371,54 @@
 			.then(function(response) {
 
 				var data = [];
-				var colors = ["#{@color}",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
+				var colors = ["rgba(245, 14, 30, 0.2)",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
 
 				response.rows.forEach(function(row, i) {
-					data.push({ value: +row[1], color: colors[i], label: row[0] });
+					data.push({
+						label: row[0],
+						value: +row[1],
+						color: colors[i]
+					});
 				});
 
-				new Chart(makeCanvas('chart-3-container')).Doughnut(data);
-				generateLegend('legend-3-container', data);
+				var data_label = [];
+				var data_value = [];
+
+				for ( let i = 0 ; i < data.length; i++){
+					data_label.push(data[i].label);
+					data_value.push(data[i].value);
+				}
+
+				var config = {
+						type: 'doughnut',
+						data: {
+								datasets: [{
+										data: data_value,
+										backgroundColor: [
+											'rgba(245, 14, 30, 0.2)',
+											'rgba(4, 208, 7, 0.22)',
+											'rgba(33, 150, 243, 0.29)',
+											'rgba(241, 221, 48, 0.26)',
+											'rgba(205, 133, 63, 0.3)'
+											],
+										borderColor: [
+											'rgba(255,99,132,1)',
+											'#04d007',
+											'#2196f3',
+											'#f1dd30',
+											'peru',
+										],
+										label: 'Browser'
+								}],
+								labels: data_label
+						},
+						options: {
+								responsive: true
+						}
+				};
+
+				var ctx = document.getElementById("chart-3-container");
+				window.myPie = new Chart(ctx, config);
 			});
 		}
 
@@ -444,8 +449,44 @@
 					});
 				});
 
-				new Chart(makeCanvas('chart-4-container')).Pie(data);
-				generateLegend('legend-4-container', data);
+				var data_label = [];
+				var data_value = [];
+
+				for ( let i = 0 ; i < data.length; i++){
+					data_label.push(data[i].label);
+					data_value.push(data[i].value);
+				}
+
+				var config = {
+						type: 'pie',
+						data: {
+								datasets: [{
+										data: data_value,
+										backgroundColor: [
+											'rgba(245, 14, 30, 0.2)',
+											'rgba(4, 208, 7, 0.22)',
+											'rgba(33, 150, 243, 0.29)',
+											'rgba(241, 221, 48, 0.26)',
+											'rgba(205, 133, 63, 0.3)'
+											],
+										borderColor: [
+											'rgba(255,99,132,1)',
+											'#04d007',
+											'#2196f3',
+											'#f1dd30',
+											'peru',
+										],
+										label: 'Country'
+								}],
+								labels: data_label
+						},
+						options: {
+								responsive: true
+						}
+				};
+
+				var ctx = document.getElementById("chart-4-container");
+				window.myPie = new Chart(ctx, config);
 			});
 		}
 
