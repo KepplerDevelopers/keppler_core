@@ -5,13 +5,16 @@
         %section.content-header.index-header
           %h1
             = t("keppler.modules.#{controller_path.underscore}")
+            
           %ol.breadcrumb
             %li
               %a{:href => "#"}
                 %i.fa.fa-dashboard
                 = t("keppler.modules.#{action_name.underscore}")
 
+
             %li{ "v-show" => "checks" }
+
               -# %a{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "/admin//destroy_multiple?multiple_ids=", :rel => "nofollow"}
               %a{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow"}
                 Delete
