@@ -70,7 +70,7 @@ Aqui algunos ejemplos para la creacion de inputs:
 
 Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
 
-`rails g keppler_scaffold <module_name> <attributes> -f`
+`rails g keppler_scaffold [module_name] [attributes] -f`
 
 Luego crea la tabla en base de datos.
 

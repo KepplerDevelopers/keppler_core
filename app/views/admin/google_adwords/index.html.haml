@@ -2,7 +2,7 @@
 .listing.col.l9.m12.s12
 	- if can? :new, model
 		= link_to new_admin_google_adword_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-			-# = material_icon.md_24.add
+			-# -# = material_icon.md_24.add
 	= entries(@total, @objects)
 	%table.bordered
 		%tbody
@@ -10,7 +10,7 @@
 				= render 'listing', google_adword: google_adword
 			- if @objects.size.zero?
 				%tr
-					%td{colspan: "4"}
+					%td.center{colspan: "4"}
 						%center
 							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.google_adwords"))
 	= paginate @objects, window: 1
@@ -20,4 +20,4 @@
 
 - if can? :new, model
 	= link_to new_admin_google_adword_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
-		-# = material_icon.md_24.add.css_class("md-light")
+		-# -# = material_icon.md_24.add.css_class("md-light")

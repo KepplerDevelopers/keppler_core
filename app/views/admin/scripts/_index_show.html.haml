@@ -1,0 +1,27 @@
+.listing-show-header
+	.actions
+		- if can? :update, Script
+			= link_to edit_admin_script_path(@script), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
+				-# = material_icon.md_24.create
+	%h5
+		-# = material_icon.md_24.settings_ethernet.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_name.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		%table.list.bordered
+			%tr.list-row
+				%th.display-label= t("activerecord.attributes.name")
+				%td.display-value= @script.name
+			%tr.list-row
+				%th.display-label= t("activerecord.attributes.script")
+				%td.display-value= @script.script
+			%tr.list-row
+				%th.display-label= t("activerecord.attributes.url")
+				%td.display-value
+					= link_to @script.url, @script.url, target: "_blank"
+
+			%tr.list-row
+				= link_to t('keppler.actions.back_history'), admin_scripts_path
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

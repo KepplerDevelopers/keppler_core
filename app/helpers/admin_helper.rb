@@ -1,12 +1,7 @@
 # AdminHelper Backoffice
 module AdminHelper
   def preloader
-    content_tag :div, class: 'preloader-wrapper big active' do
-      concat spinner_layer('blue')
-      concat spinner_layer('red')
-      concat spinner_layer('yellow')
-      concat spinner_layer('green')
-    end
+    render "admin/layouts/preloader"
   end
 
   # Header information dinamic in keppler back-office

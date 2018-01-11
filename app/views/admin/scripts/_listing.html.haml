@@ -1,0 +1,46 @@
+%tr{ id: "row-#{script.id}" }
+  - if can? :destroy_multiple, User
+    %td.item-check{style:"width: 10%"}
+      = link_to "", admin_script_path(script), remote: true, class: "show-row"
+      .pretty.p-default.p-thick.p-pulse
+        %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{script.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{script.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+        .state.p-danger-o
+          %label{ for: "checkbox-#{script.id}" }
+  %td.hide-on-small-and-down
+    = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
+    %span= script.name
+  %td.text-overflow{ style: 'max-width: 200px'}
+    = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
+    %span= script.script
+  %td.hide-on-small-and-down
+    = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
+    %span= script.url
+  %td{:style => "float: right;padding-right: 30px;"}
+    %a.coll{"data-toggle"=>"collapse", "aria-expanded"=>"false", "aria-controls"=>"menu-#{script.id}", :href => "#menu-#{script.id}"}
+      -# %span.caret
+      %i.material-icons menu
+    .custom-collapse.collapse{id: "menu-#{script.id}"}
+      .panel-body
+        - if can? :show, User
+
+          = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
+            %i.material-icons remove_red_eye
+        - if can? :update, User
+
+          = link_to edit_admin_script_path(script), class: 'new-menu', title: 'Edit' do
+            %i.material-icons create
+        - if can? :clone, User
+
+          = link_to admin_script_clone_path(script), class: 'new-menu', title: 'Clone' do
+            %i.material-icons clone
+        - if can? :delete, User
+
+          = link_to admin_script_path(script), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+            %i.material-icons delete
+
+:javascript
+  $(document).ready(function(){
+    $('.collapse').on('show.bs.collapse', function () {
+      $('.collapse.in').collapse('hide');
+    });
+  });

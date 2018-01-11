@@ -16,3 +16,8 @@
 
 // Favicon
 = favicon_link_tag @favicon
+
+- scripts = @scripts.select{|x| x.url == request.env['PATH_INFO']}
+- unless scripts.empty?
+  - scripts.each do |script|
+    = raw script.script

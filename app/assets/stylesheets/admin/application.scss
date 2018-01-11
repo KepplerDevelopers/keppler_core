@@ -1,4 +1,4 @@
-
+ //= require simple-line-icons
 //= require animate
 //= require jquery.minicolors
 //= require_self
@@ -9,7 +9,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "adminlte";
-
+@import "simple-line-icons";
 
 // @import 'materialize';
 @import 'utils/variables';
@@ -30,6 +30,8 @@
 @import 'pages/listing';
 // @import 'pages/show';
 @import 'pages/form';
+@import 'pages/preloader';
+
 // @import 'pages/search';
 // @import 'pages/themes';
 //@import 'dashboard'; //dashboard gem

@@ -3,37 +3,38 @@
 		.actions
 			- if can? :delete, <%= singular_table_name.camelcase %>
 				= link_to admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-					= material_icon.md_18.delete.css_class("md-dark")
+					-# = material_icon.md_18.delete.css_class("md-dark")
 			- if can? :update, <%= singular_table_name.camelcase %>
 				= link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
-					= material_icon.md_18.create.css_class("md-dark")
+					-# = material_icon.md_18.create.css_class("md-dark")
 			= link_to admin_<%= plural_table_name %>_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
+				-# = material_icon.md_18.arrow_back.css_class("md-dark")
 		.card
 			.card-content
+				%center
 				<%- attributes_names.each do |attribute| -%>
 					<%- if @names.include?(attribute) -%>
-				%center.color-title= @<%= singular_table_name %>.<%= attribute %>.to_s.humanize
+					.color-title= @<%= singular_table_name %>.<%= attribute %>
 					<%- end -%>
 				<%- end -%>
 				<%- attributes_names.each do |attribute| -%>
 					<%- if @attachments.include?(attribute) -%>
-				%center= image_tag @<%= singular_table_name %>.<%= attribute %>, style: "max-width:100%;height: 200px;"
+					= image_tag @<%= singular_table_name %>.<%= attribute %>
 					<%- end -%>
 				<%- end -%>
 				%table.bordered
 					%tbody
 						%tr
 							%th
-								.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+								%th.display-label= t("activerecord.attributes.id")
 							%td
-								.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id.to_s.humanize
+								%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id
 				<%- attributes_names.each do |attribute| -%>
 					<%- unless @attachments.include?(attribute) -%>
 						%tr
 							%th
-								.display-label= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")
+								%th.display-label= t("activerecord.attributes.<%= attribute %>")
 							%td
-								.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
+								%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
 					<%- end -%>
 				<%- end -%>
