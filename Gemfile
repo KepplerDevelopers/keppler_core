@@ -5,6 +5,7 @@ gem 'rails', '4.2.7.1'
 # Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
+gem 'vuejs-rails'
 gem 'nprogress-rails'
 gem 'ckeditor'
 
@@ -54,6 +55,7 @@ gem 'carrierwave'
 gem 'bourbon', '4.2.0'
 gem 'bootstrap-sass', '3.3.6'
 gem 'font-awesome-sass', '~> 4.7.0'
+gem 'simple-line-icons-rails'
 #gem 'material_icons'
 #gem 'materialize-sass', '0.98.2'
 
