@@ -18,6 +18,57 @@
     - else
       %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
         = yield
+  :javascript
+    var app = new Vue({
+      el: "#index-container",
+      data: {
+        items: [],
+        deleteList:[],
+        controller: "#{controller_name}",
+        action: "#{action_name}"
+      },
+      mounted: function(){
+        var that;
+        that = this;
+
+        $.ajax({
+          url: `/admin/${that.controller}.json`,
+          success: function(res){
+            that.items = res;
+            console.log("It's ready!!");
+          }
+        });
+      },
+      computed:{
+        checks: function(){
+          return this.deleteList.length > 0
+        },
+        link: function(){
+          return `/admin/${this.controller}/destroy_multiple?multiple_ids=[${this.deleteList}]`
+        }
+      },
+      methods: {
+        listDelete: function(user_id){
+          var that = this;
+          if(that.deleteList.includes(user_id)){
+            removeA(that.deleteList, user_id)
+          }else{
+            that.deleteList.push(user_id)
+          }
+          console.log(that.deleteList);
+        },
+        // deleteThem: function(){
+        //   var that = this;
+        //   //$.ajax({
+        //   //  method: 'DELETE',
+        //   //  url: "/admin/users?multiple_ids=[" + that.deleteList + "]",
+        //   //  success: function(res){
+        //   //    that.$el.$remove()
+        //   //  }
+        //   //})
+        // }
+      }
+    });
 :sass
   .wrapper
     .content-wrapper
