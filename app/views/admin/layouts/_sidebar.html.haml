@@ -107,8 +107,8 @@
   #sidebar-footer
     .pull-left
       -# %a{:href=>"http://slicegroup.xyz", target: "_blank"}© Slice Group
-      = image_tag 'admin/slice.png', height: 30
-    .pull-right
+      = image_tag 'admin/slice_white.png', height: 30
+    .pull-right{:style => 'padding-top: 5px;'}
       %span v 2.0.0
 
   / /.sidebar
@@ -117,7 +117,7 @@
   #sidebar-footer
     width: 100%
     padding: 10px
-    position: absolute
+    position: relative
     bottom: 0px
 
     a, span
