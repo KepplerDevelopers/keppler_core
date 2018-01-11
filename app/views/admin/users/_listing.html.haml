@@ -7,7 +7,7 @@
       - else
         = link_to "", admin_user_path(user), remote: true, class: "show-row"
         .pretty.p-default.p-thick.p-pulse
-          %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+          %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
           .state.p-danger-o
             %label{ for: "checkbox-#{user.id}" }
   %td.hide-on-small-and-down
@@ -41,15 +41,5 @@
 
           = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
             %i.material-icons delete
+  
 
-:javascript
-  $(document).ready(function(){
-
-
-
-    $('.collapse').on('show.bs.collapse', function () {
-      $('.collapse.in').collapse('hide');
-    });
-
-
-  });
