@@ -63,17 +63,6 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.datetime "updated_at",                 null: false
   end
 
-<<<<<<< HEAD
-=======
-  create_table "google_analytics_tracks", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "tracking_id", limit: 255
-    t.string   "url",         limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
->>>>>>> 04dab9839c2191eb29bb9ac5debfc26d392688c3
   create_table "meta_tags", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -101,7 +90,6 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.datetime "updated_at",             null: false
   end
 
-<<<<<<< HEAD
   create_table "scripts", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.text     "script",     limit: 65535
@@ -110,8 +98,6 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.datetime "updated_at",               null: false
   end
 
-=======
->>>>>>> 04dab9839c2191eb29bb9ac5debfc26d392688c3
   create_table "settings", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
@@ -125,7 +111,6 @@ ActiveRecord::Schema.define(version: 20171225023933) do
   end
 
   create_table "smtp_settings", force: :cascade do |t|
-<<<<<<< HEAD
     t.string   "server_address", limit: 255
     t.string   "port",           limit: 255
     t.string   "domain_name",    limit: 255
@@ -134,16 +119,6 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.integer  "setting_id",     limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-=======
-    t.string   "address",     limit: 255
-    t.string   "port",        limit: 255
-    t.string   "domain_name", limit: 255
-    t.string   "email",       limit: 255
-    t.string   "password",    limit: 255
-    t.integer  "setting_id",  limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
->>>>>>> 04dab9839c2191eb29bb9ac5debfc26d392688c3
   end
 
   create_table "social_accounts", force: :cascade do |t|
