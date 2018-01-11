@@ -1,12 +1,12 @@
 .col-lg-6
   .info-box
-    %span.info-box-img.info-box-icon{:style => "background-image: url(#{f.object.logo? ? f.object.logo : '/assets/admin/profile-menu.jpg'})"}
+    %span#logo.info-box-img.info-box-icon{:style => "background-image: url(#{f.object.logo? ? f.object.logo : '/assets/admin/profile-menu.jpg'})"}
     .info-box-content
       %span.info-box-text
         = f.input :logo
 
   .info-box
-    %span.info-box-img.info-box-icon{:style => "background-image: url(#{f.object.favicon? ? f.object.favicon : '/assets/admin/profile-menu.jpg'})"}
+    %span#favicon.info-box-img.info-box-icon{:style => "background-image: url(#{f.object.favicon? ? f.object.favicon : '/assets/admin/profile-menu.jpg'})"}
     .info-box-content
       %span.info-box-text
         = f.input :favicon
@@ -35,7 +35,17 @@
     -# 		%span.card-title Upload Favicon
     -# .card-action
     -# 	= f.input :favicon, as: :file_material, label: false, wrapper_html: { class: "file-field" }
-
+:javascript
+  $(document).ready(function(){
+    $("#setting_logo").change(function(){
+      $('#logo').css('background-image', "url(" + $(this).val() + ")");
+      $('#edit_setting_1').submit();
+    });
+    $("#setting_favicon").change(function(){
+      $('#favicon').css('background-image', "url(" + $(this).val() + ")");
+      $('#edit_setting_1').submit();
+    })
+  });
   
       
       
