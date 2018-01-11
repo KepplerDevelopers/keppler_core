@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 20170603145521) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "avatar",                 limit: 255
     t.string   "name",                   limit: 255
     t.string   "permalink",              limit: 255
     t.string   "username",               limit: 255
