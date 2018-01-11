@@ -22,7 +22,7 @@
     var app = new Vue({
       el: "#index-container",
       data: {
-        users: [],
+        items: [],
         deleteList:[],
         controller: "#{controller_name}",
         action: "#{action_name}"
@@ -34,7 +34,7 @@
         $.ajax({
           url: `/admin/${that.controller}.json`,
           success: function(res){
-            that.users = res;
+            that.items = res;
             console.log("It's ready!!");
           }
         });
@@ -44,7 +44,7 @@
           return this.deleteList.length > 0
         },
         link: function(){
-          return "/admin/" + this.controller + "/destroy_multiple?multiple_ids=[" + this.deleteList + "]"
+          return `/admin/${this.controller}/destroy_multiple?multiple_ids=[${this.deleteList}]`
         }
       },
       methods: {

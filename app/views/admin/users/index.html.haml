@@ -12,9 +12,9 @@
                 = t("keppler.modules.#{action_name.underscore}")
 
             %li{ "v-show" => "checks" }
-              -# %a{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "/admin/#{}/destroy_multiple?multiple_ids=", :rel => "nofollow"}
+              -# %a{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "/admin//destroy_multiple?multiple_ids=", :rel => "nofollow"}
               %a{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow"}
-
+                Delete
               -# = link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids={{deleteList}}#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, data: {confirm: "#{t("keppler.messages.data_confirm")}"} do
         .box.slice-box
           .box-body.no-padding
