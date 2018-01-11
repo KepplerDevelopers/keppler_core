@@ -24,4 +24,3 @@
 #       scope.$apply()
 #       return
 #     return
-
