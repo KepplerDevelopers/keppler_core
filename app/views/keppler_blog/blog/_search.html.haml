@@ -1,8 +1,0 @@
-.blog-widget
-  .blog-widget--header.hidden-xs
-    %h3.widget-title
-      Búsqueda
-  .blog-widget--body
-    .widget-list#search
-      = search_form_for @q, url: '/blog', html: { method: :get } do |f|
-        = f.search_field :title_or_body_cont, placeholder: 'Buscar..'

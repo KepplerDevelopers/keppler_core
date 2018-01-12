@@ -9,45 +9,6 @@ Rails.application.routes.draw do
 
     root to: 'admin#root'
 
-   resources :galleries do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      post '/import', action: 'import', as: 'import'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-      resources :photos do
-        get '(page/:page)', action: :index, on: :collection, as: ''
-        get '/clone', action: 'clone'
-        post '/import', action: 'import'
-        delete(
-          action: :destroy_multiple,
-          on: :collection,
-          as: :destroy_multiple
-        )
-      end
-    end
-
-
-    # resources :blog do
-    #   get '(page/:page)', to: 'blog#index', as: :blog_listing
-    #   get ":type/:permalink", to: 'blog#filter', as: :filter
-    #   get "category/:category/subcategory/:subcategory", to: 'blog#filter_subcategory', as: :filter_subcategory
-    #   get '/:permalink', to: 'blog#show', as: :blog_show_post
-    #   resources :categories do
-    #     get '(page/:page)', action: :index, on: :collection, as: 'search'
-    #     delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple
-    #    resources :posts do
-    #      get 'find/subcategories', action: :subcategories_of_cagegory, on: :collection
-    #      get '(page/:page)', action: :index, on: :collection, as: 'search'
-    #      get '/clone', action: 'clone'
-    #      delete '/destroy_multiple', action: :destroy_multiple, on: :collection, as: :destroy_multiple
-    #    end
-    #   end
-    # end
-
     resources :scaffolds do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
@@ -127,11 +88,5 @@ Rails.application.routes.draw do
 
   # Dashboard route engine
   mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'
-
-  # Keppler Contact Us
-  mount KepplerContactUs::Engine, :at => '/', as: 'messages'
-
-  # Keppler Blog
-  mount KepplerBlog::Engine, :at => '/', as: 'blog'
 
 end

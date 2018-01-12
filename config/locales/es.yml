@@ -1,8 +1,6 @@
 es:
   keppler:
     sidebar-menu:
-      photos: Photos
-      galleries: Galleries
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
@@ -28,8 +26,6 @@ es:
         categories: Categorías
     models:
       singularize:
-        photo: photo
-        gallery: gallery
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -38,8 +34,6 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
-        photos: photos
-        galleries: galleries
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -48,8 +42,6 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
-      admin/photos: Photos
-      admin/galleries: Galleries
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
@@ -123,7 +115,6 @@ es:
       upload_records: Cargar registros
   activerecord:
     attributes:
-      gallery_id: Galería
       id: Identificador
       title: Título
       subtitle: Subtítulo

@@ -24,18 +24,6 @@ menu:
     icon: settings_ethernet
     current: ['admin/scripts']
     model: Script
-  gallery:
-    name: galleries
-    url_path: /admin/galleries
-    icon: help_outline
-    current: ['admin/galleries']
-    model: Gallery
-  photo:
-    name: photos
-    url_path: /admin/photos
-    icon: help_outline
-    current: ['admin/photos']
-    model: Photo
   user:
     name: users
     url_path: /admin/users
