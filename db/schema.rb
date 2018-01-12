@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20171225023933) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+
   create_table "scaffolds", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "fields",     limit: 255
@@ -144,6 +145,7 @@ ActiveRecord::Schema.define(version: 20171225023933) do
   end
 
   create_table "users", force: :cascade do |t|
+
     t.string   "name",                   limit: 255
     t.string   "permalink",              limit: 255
     t.string   "username",               limit: 255
