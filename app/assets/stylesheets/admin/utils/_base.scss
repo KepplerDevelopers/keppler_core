@@ -24,3 +24,9 @@ body {
   justify-content: center;
   height: 100%;
 }
+
+.text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

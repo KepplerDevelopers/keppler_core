@@ -80,7 +80,8 @@ module Rails
         inject_into_file(
           "app/views/admin/#{name.pluralize}/_listing.html.haml",
           str_btn(name, args[0]),
-          before: str_last_button(name)
+          # before: str_last_button(name)
+          after: '				.icons.right'
         )
       end
 
@@ -126,7 +127,7 @@ module Rails
       def return_btn
         inject_into_file(
           "app/views/admin/#{args[0].underscore.pluralize}/index.html.haml",
-          "\n\t= link_to admin_#{name.underscore.pluralize}_path, class: 'btn-floating btn-flat' do\n\t\t= material_icon.md_18.arrow_back.css_class('md-dark')",
+          "\n\t= link_to admin_#{name.underscore.pluralize}_path, class: 'btn-floating btn-flat' do\n\t\t-# = material_icon.md_18.arrow_back.css_class('md-dark')",
           after: "= entries(@total, @objects)"
         )
       end
@@ -135,7 +136,7 @@ module Rails
 
       # String to delete the menu.yml menu (son_module)
       def sub_menu_deleted(son)
-        "  #{son}:\n    name: #{son.split('_').join(" ").pluralize}\n    url_path: /admin/#{son.pluralize}\n    icon: insert_chart\n    current: ['admin/#{son.pluralize}']\n    model: #{son.camelcase}"
+        "  #{son}:\n    name: #{son.split('_').join(" ").pluralize}\n    url_path: /admin/#{son.pluralize}\n    icon: code\n    current: ['admin/#{son.pluralize}']\n    model: #{son.camelcase}"
       end
 
       #
@@ -207,12 +208,12 @@ module Rails
 
       #References to add nest button in father_module's listing
       def str_last_button(father)
-        "	- if can? :clone, #{father.camelcase}"
+        "	- if can? :show, #{father.camelcase}"
       end
 
       #String of the button to add in father_module's listing
       def str_btn(father, son)
-        "\n\t%td{style:'width: 5%'}\n\t\t= link_to admin_#{father}_#{son.pluralize}_path(#{father}), class: 'btn-floating waves-effect btn-flat' do\n\t\t\t= material_icon.md_24.store.css_class('md-dark')\n"
+        "\n					%li.center\n						= link_to admin_#{father}_#{son.pluralize}_path(#{father}), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.sidebar-menu.#{son.pluralize}') do\n							-# = material_icon.md_24.add_circle_outline.css_class('md-dark')\n"
       end
     end
   end

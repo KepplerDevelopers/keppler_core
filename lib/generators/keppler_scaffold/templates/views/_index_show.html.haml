@@ -2,9 +2,9 @@
 	.actions
 		- if can? :update, <%= singular_table_name.camelcase %>
 			= link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
-				= material_icon.md_24.create
+				-# = material_icon.md_24.create
 	%h5
-		= material_icon.md_24.account_circle.css_class("md-light")
+		-# = material_icon.md_24.account_circle.css_class("md-light")
 		= t("keppler.models.singularize.#{controller_name.singularize}")
 .listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
 	.card-content
@@ -21,15 +21,13 @@
 		%table.bordered
 			%tbody
 				%tr
-					%th.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+					%th.display-label= t("activerecord.attributes.id")
 					%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.id
 		<%- attributes_names.each do |attribute| -%>
 			<%- unless @attachments.include?(attribute) -%>
 				%tr
-					%th
-						.display-label= t("activerecord.attributes.#{controller_name.singularize}.<%= attribute %>")
-					%td
-						.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
+					%th.display-label= t("activerecord.attributes.<%= attribute %>")
+					%td.display-value.fs-body-1.tc-black-2= @<%= singular_table_name %>.<%= attribute %>.blank? ? '----------' : @<%= singular_table_name %>.<%= attribute%>
 			<%- end -%>
 		<%- end -%>
 		%table.bordered
