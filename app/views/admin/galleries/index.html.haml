@@ -1,0 +1,69 @@
+.listing.col.l9.m12.s12
+	- if can? :new, model
+		= link_to new_admin_gallery_path, class: 'btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only', title: 'New' do
+			= material_icon.md_24.add
+	= entries(@total, @objects)
+	-# = link_to admin_galleries_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
+	-# 	= material_icon.md_18.cloud_download.css_class("md-dark")
+	-# = link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "gallery" do
+	-# 	= material_icon.md_18.cloud_upload.css_class("md-dark")
+
+	.hide
+		= form_tag admin_gallery_import_path(@objects), id: "import_form_gallery", multipart: true, method: :post do
+			= file_field_tag :file, id: "import_file_gallery"
+
+	%table.bordered
+		- unless @objects.blank?
+			%tbody
+				%tr.white-hover{ width: 5 }
+					- if can? :destroy_multiple, Gallery
+						%th{style: 'padding-left: 20px'}
+					%th.center= t("activerecord.attributes.name")
+					%th.center
+					- if can? :show, Gallery
+						%td.center{ width: 5 }
+					- if can? :update, Gallery
+						%td.center{ width: 5 }
+					-# - if can? :clone, Gallery
+					-# 	%td.center{ width: 5 }
+					- if can? :delete, Gallery
+						%td.center{ width: 5, style:'padding-right: 20px'}
+			-# %tbody#draggable{ 'data-update-url' => "#{sort_admin_galleries_path}" }
+			- @objects.each do |gallery|
+				= render 'listing', gallery: gallery
+		- else
+			%tr
+				%td.center{ colspan: '4' }
+					%center
+						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.galleries"))
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+- if can? :new, model
+	= link_to new_admin_gallery_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
+		= material_icon.md_24.add.css_class("md-light")
+
+:javascript
+	$(document).ready(function(){
+		$('.tooltipped').tooltip({delay: 50});
+		$( '.action-btn' ).closeFAB();
+		$('.action-btn.toolbar').closeToolbar();
+		$( '.action-btn' ).hover(
+			function() {
+				$( this ).openFAB();
+				$('.action-btn.toolbar').openToolbar();
+			}, function() {
+				$( this ).closeFAB();
+				$('.action-btn.toolbar').closeToolbar();
+			}
+		);
+
+		$('#gallery').click(function() {
+			$('#import_file_gallery').click()
+			$('#import_file_gallery').change(function() {
+				$('.waiting').css('display', 'block')
+				$('#import_form_gallery').submit()
+			})
+	})

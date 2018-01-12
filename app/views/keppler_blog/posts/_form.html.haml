@@ -1,0 +1,67 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			= link_to posts_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Volver" do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.wrapper-inputs
+			.card
+				.card-content
+					= simple_form_for @post do |f|
+						.row
+							= f.input :image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+							#form
+								{{ writePermalink }}
+								= f.input :title, input_html: { 'v-model' => 'title'}
+								.col.s12
+									%label{ for: "post_permalink", class: "string optional disabled control-label active" } Permalink (No utilices caracteres especiales)
+									%input{ autofocus: "autofocus", type: "text", name: "post[permalink]", id: "post_permalink", class: "validate string optional", 'v-model' => 'permalink', autofocus: true }
+							= f.input :body, :as => :ckeditor, label: false, input_html: { :ckeditor => { :toolbar => 'mini'} }
+							= f.input :category_id, collection: @categories, label: false, include_blank: t('activerecord.attributes.keppler_blog/post.category'), input_html: { class: "browser-default" }
+							= f.input :subcategory_id, collection: f.object.created_at? ? f.object.category.subcategories : [], label: false, include_blank: t('activerecord.attributes.keppler_blog/post.subcategory'), input_html: { class: "browser-default" }
+							= f.input :tag_list, label: false, input_html: { data:{role:'tagsinput'}, value:  f.object.tag_list.reverse.join(", "), placeholder: t('activerecord.attributes.keppler_blog/post.tags') }
+							= f.input :public, as: :checkbox_material
+							= f.input :comments_open, as: :checkbox_material
+							= f.input :shared_enabled, as: :checkbox_material
+
+							.form-actions.right
+								= f.button :submit, t("keppler.actions.save"), name: "_save"
+								= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+
+- unless @post.subcategory_id
+	:javascript
+		$('#post_subcategory_id').prop('disabled', true)
+		$('#post_subcategory_id').hide()
+
+- if @post.image.file
+	:javascript
+		$('.file-path').val("#{@post.image.file.filename}")
+
+:javascript
+	new Vue({
+		el: '#form',
+		data: {
+			permalink: 'asdad',
+			title: ''
+		},
+		computed: {
+			writePermalink() {
+				this.permalink = this.title
+					.toLowerCase()
+					.split(' ').join('-')
+					.split('/').join('-')
+					.split('.').join('-')
+					.split('*').join('-')
+					.split('#').join('-')
+					.split(';').join('-')
+					.split(':').join('-')
+					.split('&').join('y')
+					.split('%').join('-')
+					.split('á').join('a')
+					.split('é').join('e')
+					.split('í').join('i')
+					.split('ó').join('o')
+					.split('ú').join('u')
+					.split('ü').join('u')
+			}
+		}
+	})

@@ -24,13 +24,52 @@ menu:
     icon: settings_ethernet
     current: ['admin/scripts']
     model: Script
-  #Another deleted
+  gallery:
+    name: galleries
+    url_path: /admin/galleries
+    icon: help_outline
+    current: ['admin/galleries']
+    model: Gallery
+  photo:
+    name: photos
+    url_path: /admin/photos
+    icon: help_outline
+    current: ['admin/photos']
+    model: Photo
   user:
     name: users
     url_path: /admin/users
     icon: account_circle
     current: ["admin/users"]
     model: User
+  keppler_messages:
+    name: keppler messages
+    current: ['keppler_contact_us/messages', 'keppler_contact_us/message_settings']
+    icon: email
+    model: KepplerContactUs::Message
+    submenu:
+      - messages:
+          name: Messages
+          url_path: /admin/messages
+          current: ['keppler_contact_us/messages']
+      - message_settings:
+          name: Message Settings
+          url_path: /admin/message_settings
+          current: ['keppler_contact_us/message_settings']
+  keppler_blog:
+    name: keppler blog
+    current: ['admin/blog/posts', 'admin/blog/categories']
+    icon: list
+    model: KepplerBlog::Post
+    submenu:
+      - meta_tags:
+          name: Posts
+          url_path: /admin/blog/posts
+          current: ['admin/blog/posts']
+      - google_adwords:
+          name: Categories
+          url_path: /admin/blog/categories
+          current: ['admin/blog/categories']
   customize:
     name: keppler design
     icon: color_lens

@@ -1,0 +1,35 @@
+= title @post.title
+= meta_description sanitize(@post.body, tags: []).truncate(150)
+
+.container.keppler-blog#keppler-blog
+	= render 'categories'
+	.visible-xs
+		= render 'search'
+	.row
+		.col-lg-8.col-xs-12
+			.posts-wrapper
+				.post
+					%h2.post-title
+						= link_to @post.title, blog_show_post_path(@post.permalink, popup: "true")
+					.post-attributes
+						%ul
+							%li
+								%span
+									%i.fa.fa-calendar
+									= @post.created_at.strftime("%d %b. %Y")
+							%li
+								%i.fa.fa-user
+								= link_to @post.user.name, filter_path('autor', @post.user.permalink)
+							%li
+								%i.fa.fa-tags
+								= link_to @post.category.name, filter_path('category', @post.category.permalink)
+					.post-image
+						= link_to blog_show_post_path(@post.permalink) do
+							= image_tag @post.image
+					= @post.shared_enabled ? social_share_button_tag(@post.title) : "<br>".html_safe
+					.post-body
+						= @post.body.html_safe
+
+				= render 'facebook_comments'
+
+		= render "sidebar"

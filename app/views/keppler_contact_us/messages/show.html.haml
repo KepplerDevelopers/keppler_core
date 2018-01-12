@@ -1,0 +1,23 @@
+= title(t('keppler.titles.show', model: t("keppler.models.pluralize.messages")))
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, KepplerContactUs::Message
+				= link_to message_path(@message), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			= link_to messages_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%table.list.bordered
+					%tr.list-row
+						%th.display-label= model.human_attribute_name(:name)
+						%td.display-value.fs-body-1.tc-black-2= @message.name.humanize
+					%tr.list-row
+						%th.display-label= model.human_attribute_name(:subject)
+						%td.display-value.fs-body-1.tc-black-2= @message.subject.humanize
+					%tr.list-row
+						%th.display-label= model.human_attribute_name(:email)
+						%td.display-value.fs-body-1.tc-black-2= @message.email
+					%hr
+					%td.display-value.fs-body-1.tc-black-2= @message.content.humanize

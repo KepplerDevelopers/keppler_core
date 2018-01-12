@@ -1,0 +1,12 @@
+.wrapper
+  .wrapper-body.container
+    .wrapper-inputs
+      .card
+        .card-content
+          = simple_form_for @message_setting, url: update_message_settings_path, method: :patch do |f|
+            .row
+              = f.input :mailer_to, as: :email
+              = f.input :mailer_from, as: :email
+            .row
+              .form-actions.right
+                = f.button :submit, "Guardar", class: "btn"
