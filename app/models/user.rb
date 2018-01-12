@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   include ActivityHistory
 
+  mount_uploader :avatar, TemplateUploader
   before_save :create_permalink, if: :new_record?
   rolify
   validates_presence_of :name, :role_ids, :email
