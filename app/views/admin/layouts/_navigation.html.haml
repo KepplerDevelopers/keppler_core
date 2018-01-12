@@ -169,7 +169,8 @@
         / User Account: style can be found in dropdown.less
         %li.dropdown.user.user-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            %img.user-image{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+            .small-profile-img{ :style => "background-image: url(#{current_user.avatar.nil? ? 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg' : current_user.avatar})" }
+            -# %img.user-image{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             / User image
