@@ -24,7 +24,7 @@
 //           arr.push(item);
 //       }
 //     return arr;
-//   }  
+//   }
 
 //   // remove
 //   function remove(arr, item, comparator) {
@@ -61,9 +61,9 @@
 
 //     // watch UI checked change
 //     scope.$watch('checked', function(newValue, oldValue) {
-//       if (newValue === oldValue) { 
+//       if (newValue === oldValue) {
 //         return;
-//       } 
+//       }
 //       var current = getter(scope.$parent);
 //       if (newValue === true) {
 //         setter(scope.$parent, add(current, value, comparator));
@@ -75,7 +75,7 @@
 //         checklistChange(scope);
 //       }
 //     });
-    
+
 //     // declare one function to be used for both $watch functions
 //     function setChecked(newArr, oldArr) {
 //         scope.checked = contains(newArr, value, comparator);
@@ -106,7 +106,7 @@
 
 //       // exclude recursion
 //       tElement.removeAttr('checklist-model');
-      
+
 //       // local scope var storing individual checkbox model
 //       tElement.attr('ng-model', 'checked');
 
