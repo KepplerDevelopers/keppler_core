@@ -35,8 +35,8 @@
             %i.material-icons create
         - if can? :clone, User
 
-          = link_to admin_user_clone_path(user), class: 'new-menu', title: 'Clone' do
-            %i.material-icons clone
+          -# = link_to admin_user_clone_path(user), class: 'new-menu', title: 'Clone' do
+          -#   %i.material-icons clone
         - if can? :delete, User
 
           = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do

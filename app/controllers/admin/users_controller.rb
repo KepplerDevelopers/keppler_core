@@ -48,27 +48,14 @@ module Admin
     end
 
     def create
-      puts "**************************************** #{params[:user][:avatar]}"
       @user = User.new(user_params)
-      # respond_to do |format|
-      #   format.json do
-      #     if @user.save
-      #       render :json => @user
-      #     else
-      #       render :json => { :errors => @user.errors.messages }, :status => 422
-      #     end
-      #   end
-      #   format.html do
       if @user.save
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
+        byebug
         redirect(@user, params)
       else
         render action: 'new'
       end
-        # end
-
-      # end
-
     end
 
     def destroy
@@ -86,7 +73,8 @@ module Admin
     end
 
     def change_avatar
-      redirect_to :back
+      Cache.destroy_all
+      @cache = Cache.create(image: params[:user][:avatar])
     end
 
     private

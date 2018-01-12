@@ -1,26 +1,31 @@
+.hidden
+	= simple_form_for @user, url: admin_user_upload_avatar_path(1), method: :post, remote: true do |f|
+		= f.input :avatar, label: false
+
 = simple_form_for [:admin, @user] do |f|
 	.container
+
 		.row
 			.col-lg-2
 				.arrow-back.btn.btn-default
 					= link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
 						%i.fa.fa-chevron-left
-						Volver
+							Volver
 						.clearfix
 			.clearfix
 		.row
 			.col-lg-3
 				.box.slice-box
 					.box-body.box-profile
-						%center
-							.form-group.outline.files#trigger
+						%center#image
+							-# - if @user
+							-# 	= render "admin/users/avatar", image: Cache.last.image
+							-# - else
+							.form-group.outline.files.trigger{style: "height: 195px"}
 								%i.material-icons.files-icon#icon-file add
-								-# .hidden
-								= f.input :avatar, label: false
-							#loader
-								%svg.spinner{:height => "65px", :viewbox => "0 0 66 66", :width => "65px", :xmlns => "http://www.w3.org/2000/svg"}
-									%circle.path{:cx => "33", :cy => "33", :fill => "none", :r => "30", "stroke-linecap" => "round", "stroke-width" => "6"}
+								= f.input :avatar, label: false	
 						%h3.profile-username.text-center Selecciona o arrastra una imagen hasta aquí
+
 
 			.col-lg-9
 				.box.slice-box
@@ -46,14 +51,6 @@
 											= f.input :password, label: false, placeholder: "Password", input_html: {class: "form-control"}, :required => true
 										.col-lg-6
 											= f.input :password_confirmation, label: false, placeholder: "Password Confirmation", input_html: {class: "form-control"}, :required => true
-										-# .row
-										-# 	.col-lg-12
-										-# 		.col-md-12
-										-# 			.form-group.files
-										-# 				%label Upload Your File
-										-# 				%i.material-icons.files-icon#file add
-										-# 				-# %input#user_file{type: "file", name: "user[avatar]"}
-										-# 				= f.input :avatar, label: false
 
 									.row
 										.col-lg-12
@@ -66,7 +63,7 @@
 	op1 = $('option').first()
 	op1.attr('disabled', 'disabled')
 
-	$('#trigger').click(function() {
+	$('.trigger').click(function() {
 		$('#user_avatar').click()
 		$('#user_avatar').change(function() {
 			$('.simple_form').first().submit()
