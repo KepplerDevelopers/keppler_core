@@ -34,7 +34,7 @@
 				.box.slice-box
 					.box-body.box-profile
 						-# %img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => "#{@user.avatar}"}/
-						.profile-user-img.img-responsive.bg-profile{:style => "background-image: url(#{@user.avatar})"}
+						.profile-user-img.img-responsive.bg-profile{:style => "background-image: url(#{@user.avatar? ? @user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
 						%h3.profile-username.text-center= @user.name
 						%p.text-muted.text-center= @user.rol.humanize
 			.col-lg-9
