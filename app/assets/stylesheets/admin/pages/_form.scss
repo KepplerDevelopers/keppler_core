@@ -13,7 +13,7 @@
 }
 
 .social-medias-setting {
-  input {
+  input:not([type='submit']) {
     padding-left: 35px;
   }
   .social-icons {
