@@ -15,8 +15,13 @@
 			.col-lg-3
 				.box.slice-box
 					.box-body.box-profile
-						%center.add
-							%i.material-icons#trigger add
+						%center
+							-# %i.material-icons#trigger add
+							.form-group.files
+								-# %i.material-icons.files-icon#file add
+								-# %input#user_file{type: "file", name: "user[avatar]"}
+
+								= f.input :avatar, label: false
 						-# %img.profile-user-img.img-responsive.img-circle#trigger{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
 						%h3.profile-username.text-center Selecciona una imagen
 
