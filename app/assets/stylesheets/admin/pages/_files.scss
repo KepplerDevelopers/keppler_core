@@ -1,4 +1,4 @@
-.files input {
+.files  {
   outline: 2px dashed #92b0b3;
   outline-offset: -10px;
   -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -16,7 +16,8 @@
 .files{ position:relative}
 .files-icon {  pointer-events: none;
   position: absolute;
-  top: 60px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 60px;
   left: 0;
   width: 50px;
@@ -37,7 +38,7 @@
   width: 100%;
   right: 0;
   height: 57px;
-  content: "O arrastralos hasta aquí.";
+  // content: "O arrastralos hasta aquí.";
   display: block;
   margin: 0 auto;
   color: #2ea591;

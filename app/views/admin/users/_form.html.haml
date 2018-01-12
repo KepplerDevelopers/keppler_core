@@ -1,6 +1,3 @@
-.hidden#hidden
-	= simple_form_for @user, id: "avatar", url: admin_user_change_avatar_path(0), method: :post, remote: true do |f|
-		= f.input :avatar
 = simple_form_for [:admin, @user] do |f|
 	.container
 		.row
@@ -16,14 +13,12 @@
 				.box.slice-box
 					.box-body.box-profile
 						%center
-							-# %i.material-icons#trigger add
-							.form-group.files
-								-# %i.material-icons.files-icon#file add
-								-# %input#user_file{type: "file", name: "user[avatar]"}
+							.form-group.files#trigger
+								%i.material-icons.files-icon add
 
 								= f.input :avatar, label: false
 						-# %img.profile-user-img.img-responsive.img-circle#trigger{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
-						%h3.profile-username.text-center Selecciona una imagen
+						%h3.profile-username.text-center Selecciona o arrastra una imagen hasta aquí
 
 			.col-lg-9
 				.box.slice-box
