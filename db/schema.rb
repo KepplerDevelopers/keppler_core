@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.datetime "updated_at",               null: false
   end
 
-
   create_table "settings", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255

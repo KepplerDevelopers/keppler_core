@@ -21,7 +21,7 @@
 
 // // Modules
 // angular.module('vAccordion.directives', []);
-// angular.module('vAccordion', 
+// angular.module('vAccordion',
 //   [
 //     'vAccordion.config',
 //     'vAccordion.directives'
@@ -50,7 +50,7 @@
 //       transclude(scope.$parent, function(clone) {
 //         iElement.append(clone);
 //       });
-      
+
 //       var protectedApiMethods = ['toggle', 'expand', 'collapse', 'expandAll', 'collapseAll'];
 
 //       function checkCustomControlAPIMethods () {
@@ -76,7 +76,7 @@
 
 //         var mergedControl = angular.extend({}, scope.internalControl, scope.control);
 //         scope.control = scope.internalControl = mergedControl;
-//       } 
+//       }
 //       else {
 //         scope.control = scope.internalControl;
 //       }
@@ -91,10 +91,10 @@
 //   var isDisabled = false;
 
 //   $scope.panes = [];
-	
+
 // 	$scope.expandCb = (angular.isFunction($scope.expandCb)) ? $scope.expandCb : angular.noop;
 // 	$scope.collapseCb = (angular.isFunction($scope.collapseCb)) ? $scope.collapseCb : angular.noop;
-	
+
 //   ctrl.hasExpandedPane = function () {
 //     var bool = false;
 
@@ -109,7 +109,7 @@
 
 //     return bool;
 //   };
-  
+
 //   ctrl.getPaneByIndex = function (index) {
 //     return $scope.panes[index];
 //   };
@@ -131,7 +131,7 @@
 //     if (!$scope.allowMultiple) {
 //       if (ctrl.hasExpandedPane() && paneToAdd.isExpanded) {
 //         throw new Error('The `multiple` attribute can\'t be found');
-//       } 
+//       }
 //     }
 
 //     $scope.panes.push(paneToAdd);
@@ -214,7 +214,7 @@
 
 //   ctrl.collapse = function (paneToCollapse) {
 //     if (isDisabled || !paneToCollapse) { return; }
-    
+
 //     if (paneToCollapse.isExpanded) {
 //       paneToCollapse.isExpanded = false;
 //       $scope.collapseCb({ index: ctrl.getPaneIndex(paneToCollapse) });
@@ -377,7 +377,7 @@
 //       scope.paneElement = iElement;
 //       scope.paneContentElement = paneContent;
 //       scope.paneInnerElement = paneInner;
-      
+
 //       scope.accordionCtrl = accordionCtrl;
 
 //       function expand () {
@@ -449,7 +449,7 @@
 //       scope.$watch('isExpanded', function (newValue, oldValue) {
 //         if (newValue === oldValue) { return true; }
 //         if (newValue) { expand(); }
-//         else { collapse(); }            
+//         else { collapse(); }
 //       });
 //     }
 //   };
