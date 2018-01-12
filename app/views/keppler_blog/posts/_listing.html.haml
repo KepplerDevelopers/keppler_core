@@ -1,0 +1,38 @@
+%tr{ id: "row-#{post.id}" }
+	- if can? :destroy_multiple, model
+		%td.center.item-check
+			= link_to "", post_path(post), remote: true, class: "show-row"
+			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{post.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{post.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+			%label{ for: "checkbox-#{post.id}" }
+	%td.center
+		= link_to "", post_path(post, search: @query), remote: true, class: "show-row tooltipped", "data-position" => "bottom", "data-tooltip" => "#{post.title}"
+		%span
+			= post.title.truncate(70)
+	%td.center.hide-on-small-and-down
+		= link_to "", post_path(post, search: @query), remote: true, class: "show-row"
+		%span
+			= post.user.name
+	%td.center.hide-on-small-and-down
+		= link_to "", post_path(post, search: @query), remote: true, class: "show-row"
+		%span
+			= post.category.name
+	%td.center.hide-on-small-and-down
+		= link_to "", post_path(post, search: @query), remote: true, class: "show-row"
+		%span
+			= post.public ? t('activerecord.attributes.keppler_blog/post.published') : t('activerecord.attributes.keppler_blog/post.no_published')
+	-# - if can? :clone, model
+	-# 	%td.center{style:"width: 5%"}
+	-# 		= link_to post_clone_path(post), class: "btn-floating waves-effect btn-flat" do
+	-# 			= material_icon.md_24.content_copy.css_class("md-dark")
+	- if can? :show, KepplerBlog::Post
+		%td.center{ width: 5 }
+			= link_to post_path(post), class: "btn-floating waves-effect btn-flat", title: t("keppler.actions.show") do
+				= material_icon.md_24.remove_red_eye.css_class("md-dark")
+	- if can? :update, KepplerBlog::Post
+		%td.center{ width: 5 }
+			= link_to edit_post_path(post), class: "right btn-floating btn-flat", title: t("keppler.actions.edit") do
+				= material_icon.md_18.create.css_class("md-dark")
+	- if can? :delete, KepplerBlog::Post
+		%td.center{ width: 5 }
+			= link_to post_path(post), class: "btn-floating btn-flat right", title: t("keppler.actions.delete"), "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+				= material_icon.md_18.delete.css_class("md-dark")

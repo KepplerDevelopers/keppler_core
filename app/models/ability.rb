@@ -5,7 +5,25 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
+      can [:index, :show], KepplerContactUs::Message
+      can [:index, :show], KepplerContactUs::MessageSetting
+
+      can [:new, :create], KepplerBlog::Post
+      can [:new, :create], KepplerBlog::Category
+
     if user.has_role? :keppler_admin
+
+      # - Photo authorize -
+      can :manage, Photo
+
+      # - Gallery authorize -
+      can :manage, Gallery
+
+      can :manage, KepplerContactUs::Message
+      can :manage, KepplerContactUs::MessageSetting
+
+      can :manage, KepplerBlog::Post
+      can :manage, KepplerBlog::Category
 
       can :manage, Scaffold
       # - Customize authorize -
@@ -34,12 +52,33 @@ class Ability
 
     elsif user.has_role? :admin
 
+      can [:index, :show, :edit, :update, :delete, :destroy_multiple],
+        KepplerContactUs::Message
+      can [:index, :show, :edit, :update, :delete, :destroy_multiple],
+        KepplerContactUs::MessageSetting
+
+      can :manage, KepplerBlog::Post
+      can :manage, KepplerBlog::Category
+
+
       # - User authorize -
       can [:delete, :show, :edit, :update,
            :create, :index, :destroy_multiple], User
       cannot :delete, user
 
     elsif user.has_role? :client
+
+      # - Photo authorize -
+      can [:index, :show], Photo
+
+      # - Gallery authorize -
+      can [:index, :show], Gallery
+
+    elsif user.has_role? :author
+      can :manage, KepplerBlog::Post, :user_id => user.id
+
+    elsif user.has_role? :editor
+      can [:index, :update, :edit, :show]
 
     end
     # The first argument to `can` is the action you are giving the user

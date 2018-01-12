@@ -1,0 +1,11 @@
+.blog-widget
+	.blog-widget--header
+		%h3.widget-title
+			Recientes
+	.blog-widget--body
+		%ul.widget-list#recents
+			- @posts_recents.each do |post|
+				%li
+					%i.fa.fa-sign-out
+					= link_to post.title, blog_show_post_path(post.permalink)
+

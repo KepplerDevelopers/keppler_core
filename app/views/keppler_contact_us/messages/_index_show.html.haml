@@ -1,0 +1,27 @@
+.listing-show-header
+	.actions
+	%h5
+		= material_icon.md_24.email.css_class("md-light")
+		= t("keppler.models.singularize.#{controller_path.singularize}")
+.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
+	%table.list.bordered
+		.card-content
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:name)
+				%td.display-value= @message.name
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:subject)
+				%td.display-value= @message.subject
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:email)
+				%td.display-value= @message.email
+			%hr
+			%td.display-value{align: "justify"}= @message.content
+			%br/
+			%br/
+			%tr.list-row
+				= link_to t('keppler.actions.back_history'), messages_path
+
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

@@ -1,6 +1,8 @@
 es:
   keppler:
     sidebar-menu:
+      photos: Photos
+      galleries: Galleries
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
@@ -17,12 +19,17 @@ es:
         google-adwords: 'Google Adwords'
       google-analytics-tracks: 'Scripts'
       keppler-messages: Mensajes
+      keppler-messages-submenu:
+        messages: Mensajes
+        message-settings: Configuración de mensajes
       keppler-blog: Blog
       keppler-blog-submenu:
         posts: Posts
         categories: Categorías
     models:
       singularize:
+        photo: photo
+        gallery: gallery
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -31,6 +38,8 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        photos: photos
+        galleries: galleries
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -39,14 +48,17 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
+      admin/photos: Photos
+      admin/galleries: Galleries
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
       admin/scaffolds: 'Scaffolds'
       admin/settings: 'Configuraciones'
-      keppler_ga_dashboard/dashboard: 'Dashboard'
       admin/users: 'Usuarios'
+      keppler_ga_dashboard/dashboard: 'Dashboard'
+      keppler_contact_us/message_settings: 'Configuración de mensajes'
     messages:
       not_authorized_page: Usted no tiene autorización para acceder a esta página
       not_authorized_action: Usted no tiene autorización para realizar esta acción
@@ -111,6 +123,7 @@ es:
       upload_records: Cargar registros
   activerecord:
     attributes:
+      gallery_id: Galería
       id: Identificador
       title: Título
       subtitle: Subtítulo
@@ -148,7 +161,9 @@ es:
       code: Código
       alliance: Alianza
       ally: Aliado
+      author: Autor
       category: Categoría
+      subcategory: Subcategoría
       service: Servicio
       project: Proyecto
       type: Tipo
@@ -182,6 +197,8 @@ es:
       script: 'Tracking Id'
       campaign_name: Campaña
       script: Script
+      mailer_from: 'Enviar desde'
+      mailer_to: 'Hacia'
       ga_account_id: Identificador de la cuenta
       ga_tracking: Identificador de segumiento
       ga_status: Habilitar Google Analytics

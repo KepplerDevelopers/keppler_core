@@ -1,0 +1,9 @@
+.blog-widget
+	.blog-widget--header
+		%h3.widget-title
+			Twitter timeline
+	.blog-widget--body
+		%a.twitter-timeline{ href:"https://twitter.com/#{KepplerBlog.twitter_username}", "data-widget-id"=>"#{KepplerBlog.widget_twitter_id}", "data-chrome"=>"header" } 
+			= "Tweets por @#{KepplerBlog.twitter_username}"
+		
+

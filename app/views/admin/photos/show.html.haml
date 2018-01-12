@@ -1,0 +1,27 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, Photo
+				= link_to admin_gallery_photo_path(@gallery_photo, @photo), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, Photo
+				= link_to edit_admin_gallery_photo_path(@gallery_photo, @photo), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to admin_gallery_photos_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%center
+					= image_tag @photo.photo
+				%table.bordered
+					%tbody
+						%tr
+							%th
+								%th.display-label= t("activerecord.attributes.id")
+							%td
+								%td.display-value.fs-body-1.tc-black-2= @photo.id
+						%tr
+							%th
+								%th.display-label= t("activerecord.attributes.gallery_id")
+							%td
+								%td.display-value.fs-body-1.tc-black-2= @photo.gallery_id.blank? ? '----------' : @photo.gallery_id
