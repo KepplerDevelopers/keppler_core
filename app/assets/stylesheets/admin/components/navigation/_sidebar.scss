@@ -22,9 +22,13 @@
     color: #848383 !important;
   }
 
-  .sidebar a {
-    color: #a0a0a0;
+  .sidebar{
+    min-height: 84vh;
+    a {
+      color: #a0a0a0;
+    }
   }
+
 
   .user-panel {
     background-image: url('profile-menu.jpg');
