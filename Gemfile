@@ -2,15 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
-# Keppler Contact Us
-gem 'keppler_contact_us', git: "https://github.com/SliceDevelopers/keppler_contact_us.git", tag: '1.0.0'
-gem "recaptcha", require: "recaptcha/rails"
-
-# Keppler Blog
-gem 'keppler_blog', git: 'https://github.com/SliceDevelopers/keppler_blog.git', tag: "1.1.0"
-gem 'acts-as-taggable-on', '~> 3.4'
-gem 'social-share-button'
-
 # Javascript
 gem 'jquery-rails'
 gem 'angularjs-rails'
@@ -33,7 +24,6 @@ gem 'jquery-turbolinks'
 gem 'to_xls-rails'
 gem 'jquery-ui-rails'
 gem 'acts_as_list', '~> 0.9.10'
-gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
 # Database
 gem 'mysql2', '~> 0.3.18'
