@@ -169,19 +169,21 @@
         / User Account: style can be found in dropdown.less
         %li.dropdown.user.user-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            %img.user-image{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+            .small-profile-img{ :style => "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
+            -# %img.user-image{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             / User image
             %li.user-header{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
-              %img.img-circle{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+              .img-circle.nav-profile-img{:alt => "User Image", :style => "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
               %p
                 = current_user.name
                 %small
                   = "#{t('keppler.navigation.last_session')} #{current_user.updated_at.strftime("%d %b %Y")}"
             %li.user-footer
               .pull-left
-                %a.btn.btn-default.btn-flat{:href => "#"} Profile
+                = link_to "Profile", admin_user_path(current_user), class: "btn btn-default btn-flat"
+                -# %a.btn.btn-default.btn-flat{:href => ""} Profile
               .pull-right
                 = link_to t('devise.sign_out'), destroy_session_path(current_user), class: " btn btn-default btn-flat"
         - if action_name == 'index'

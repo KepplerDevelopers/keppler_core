@@ -69,3 +69,10 @@ $font-primary: 'Source Sans Pro', sans-serif;
 $font-size: 10px;
 $color-primary: #ff5300; // Orange primary
 $color-secundary: #ff005e;
+
+%circle-img{
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

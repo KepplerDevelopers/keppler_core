@@ -20,24 +20,65 @@
     = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
     %span= user.rol.humanize
   %td{:style => "float: right;padding-right: 30px;"}
-    %a.coll{"data-toggle"=>"collapse", "aria-expanded"=>"false", "aria-controls"=>"menu-#{user.id}", :href => "#menu-#{user.id}"}
-      -# %span.caret
+    %a.drop{:id => "menu-#{user.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
       %i.material-icons menu
-    .custom-collapse.collapse{id: "menu-#{user.id}"}
-      .panel-body
-        - if can? :show, User
-
+    %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{user.id}"}
+      - if can? :show, User
+        %li
           = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
             %i.material-icons remove_red_eye
-        - if can? :update, User
-
-          = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Edit' do
+            Show
+      - if can? :update, User
+        %li
+          = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
             %i.material-icons create
-        - if can? :clone, User
-
-          = link_to admin_user_clone_path(user), class: 'new-menu', title: 'Clone' do
+            Edit
+      - if can? :clone, User
+        %li
+          = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
             %i.material-icons clone
-        - if can? :delete, User
-
-          = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+            Clone
+      - if can? :delete, User
+        %li
+          = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
             %i.material-icons delete
+            Delete
+      -# %li
+      -#   %a{:href => "#"}
+      -#     %i.fa.fa-users.text-aqua>
+      -#     5 new members joined today
+      -# %li
+      -#   %a{:href => "#"}
+      -#     %i.fa.fa-users.text-aqua>
+      -#     5 new members joined today
+      -# %li
+      -#   %a{:href => "#"}
+      -#     %i.fa.fa-users.text-aqua>
+      -#     5 new members joined today
+      -# %li
+      -#   %a{:href => "#"}
+      -#     %i.fa.fa-users.text-aqua>
+      -#     5 new members joined today
+
+
+    -# %a.coll{"data-toggle"=>"collapse", "aria-expanded"=>"false", "aria-controls"=>"menu-#{user.id}", :href => "#menu-#{user.id}"}
+    -#   -# %span.caret
+    -#   %i.material-icons menu
+    -# .custom-collapse.collapse{id: "menu-#{user.id}"}
+    -#   .panel-body
+    -#     - if can? :show, User
+    -#
+    -#       = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+    -#         %i.material-icons remove_red_eye
+    -#     - if can? :update, User
+    -#
+    -#       = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Edit' do
+    -#         %i.material-icons create
+    -#     - if can? :clone, User
+    -#
+    -#       = link_to admin_user_clone_path(user), class: 'new-menu', title: 'Clone' do
+    -#         %i.material-icons clone
+    -#     - if can? :delete, User
+    -#
+    -#       = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+    -#         %i.material-icons delete
