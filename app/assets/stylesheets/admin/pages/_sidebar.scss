@@ -4,3 +4,31 @@
   z-index: 1;
   margin-top: -45px;
 }
+body{
+  #sidebar-footer{
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    bottom: 0px;
+    transition: .2s;
+    a, span{
+      color: #fff !important;
+      font-family: Patua One;
+    }
+  }
+
+  ::-webkit-scrollbar{
+    display: none
+  }
+  &.sidebar-collapse{
+    .main-sidebar{
+      #sidebar-footer{
+        padding: 4px;
+        transition: .2s;
+        .pull-right{
+          display: none;
+        }
+      }
+    }
+  }
+}

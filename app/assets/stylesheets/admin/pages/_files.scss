@@ -1,8 +1,12 @@
-.files  {
+.outline  {
   outline: 2px dashed #92b0b3;
-  outline-offset: -10px;
-  -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-  transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  padding: 10px;
+  text-align: center !important;
+  width: 100% !important;
+}
+.files input  {
+  opacity: 0;
+
   padding: 120px 0px 85px 35%;
   text-align: center !important;
   margin: 0;

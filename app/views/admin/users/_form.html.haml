@@ -13,11 +13,13 @@
 				.box.slice-box
 					.box-body.box-profile
 						%center
-							.form-group.files#trigger
-								%i.material-icons.files-icon add
-
+							.form-group.outline.files#trigger
+								%i.material-icons.files-icon#icon-file add
+								-# .hidden
 								= f.input :avatar, label: false
-						-# %img.profile-user-img.img-responsive.img-circle#trigger{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+							#loader
+								%svg.spinner{:height => "65px", :viewbox => "0 0 66 66", :width => "65px", :xmlns => "http://www.w3.org/2000/svg"}
+									%circle.path{:cx => "33", :cy => "33", :fill => "none", :r => "30", "stroke-linecap" => "round", "stroke-width" => "6"}
 						%h3.profile-username.text-center Selecciona o arrastra una imagen hasta aquí
 
 			.col-lg-9
@@ -68,16 +70,14 @@
 		$('#user_avatar').click()
 		$('#user_avatar').change(function() {
 			$('.simple_form').first().submit()
+			$('#file').html('check')
 		})
 	})
 
-	$('#user_file').change(function() {
-		$('#file').html('check')
+	$('#user_avatar').change(function() {
+		$('#icon-file').html('check')
 	})
 
-	new Vue({
-
-	})
 :scss
 	.add {
 		width: 100px;
