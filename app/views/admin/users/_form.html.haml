@@ -1,3 +1,6 @@
+.hidden#hidden
+	= simple_form_for @user, id: "avatar", url: admin_user_change_avatar_path(0), method: :post, remote: true do |f|
+		= f.input :avatar
 = simple_form_for [:admin, @user] do |f|
 	.container
 		.row
@@ -12,14 +15,17 @@
 			.col-lg-3
 				.box.slice-box
 					.box-body.box-profile
-						%img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+						%center.add
+							%i.material-icons#trigger add
+						-# %img.profile-user-img.img-responsive.img-circle#trigger{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
 						%h3.profile-username.text-center Selecciona una imagen
+
 			.col-lg-9
 				.box.slice-box
 					.box-header.with-border
 						%h3.box-title User
 
-					/ /.box-header
+
 					.box-body
 						%table.table.table-bordered
 							%tbody
@@ -38,6 +44,15 @@
 											= f.input :password, label: false, placeholder: "Password", input_html: {class: "form-control"}, :required => true
 										.col-lg-6
 											= f.input :password_confirmation, label: false, placeholder: "Password Confirmation", input_html: {class: "form-control"}, :required => true
+										-# .row
+										-# 	.col-lg-12
+										-# 		.col-md-12
+										-# 			.form-group.files
+										-# 				%label Upload Your File
+										-# 				%i.material-icons.files-icon#file add
+										-# 				-# %input#user_file{type: "file", name: "user[avatar]"}
+										-# 				= f.input :avatar, label: false
+
 									.row
 										.col-lg-12
 											.pull-right
@@ -45,30 +60,44 @@
 												= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
 
 
--# .wrapper
--# 	.wrapper-body.container
--# 		.actions
--# 			= link_to admin_users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
--# 				-# -# = material_icon.md_18.arrow_back.css_class("md-dark")
--# 		.wrapper-inputs
--# 			.card
--# 				.card-content
--# 					= simple_form_for [:admin, @user] do |f|
--# 						.row
--# 							.col.s12
--# 								= f.input :name
--# 							.col.s12
--# 								= f.input :email
--# 							.col.s12
--# 								= f.input :role_ids, collection: @roles, label: 'Rol', include_blank: t("keppler.actions.select_rol"), input_html: { class: "input-field" }
--# 							.col.s12
--# 								= f.input :password
--# 							.col.s12
--# 								= f.input :password_confirmation
--# 							.col.s12
--# 								.form-actions.right
--# 									= f.button :submit, t("keppler.actions.save"), name: "_save"
--# 									= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
 :javascript
 	op1 = $('option').first()
 	op1.attr('disabled', 'disabled')
+
+	$('#trigger').click(function() {
+		$('#user_avatar').click()
+		$('#user_avatar').change(function() {
+			$('.simple_form').first().submit()
+		})
+	})
+
+	$('#user_file').change(function() {
+		$('#file').html('check')
+	})
+
+	new Vue({
+
+	})
+:scss
+	.add {
+		width: 100px;
+		height: 100px;
+		margin: 0 auto;
+		// background: red;
+		border: 2px dashed #555;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: all ease .3s;
+		margin-bottom: 20px;
+		margin-top: 10px;
+
+		&:hover {
+			background: #eee;
+			transition: all ease .3s;
+		}
+
+		i {
+			font-size: 30px;
+			padding: 30px 20px;
+		}
+	}

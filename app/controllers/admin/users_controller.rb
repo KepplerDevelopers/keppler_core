@@ -38,6 +38,7 @@ module Admin
     end
 
     def create
+      puts "**************************************** #{params[:user][:avatar]}"
       @user = User.new(user_params)
 
       if @user.save
@@ -61,6 +62,10 @@ module Admin
       )
     end
 
+    def change_avatar
+      redirect_to :back
+    end
+
     private
 
     def set_user
@@ -75,7 +80,7 @@ module Admin
     def user_params
       params.require(:user).permit(
         :name, :email, :password, :password_confirmation,
-        :role_ids, :encrypted_password
+        :role_ids, :encrypted_password, :avatar
       )
     end
 

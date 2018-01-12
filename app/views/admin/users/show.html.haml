@@ -33,7 +33,7 @@
 			.col-lg-3
 				.box.slice-box
 					.box-body.box-profile
-						%img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+						%img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => "#{@user.avatar}"}/
 						%h3.profile-username.text-center= @user.name
 						%p.text-muted.text-center= @user.rol.humanize
 			.col-lg-9
