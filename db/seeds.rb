@@ -42,4 +42,4 @@ setting.appearance = Appearance.new(theme_name: 'keppler')
 setting.save
 puts 'Setting default has been created'
 
-KepplerContactUs::MessageSetting.create(mailer_from: '', mailer_to: '')
+# KepplerContactUs::MessageSetting.create(mailer_from: '', mailer_to: '')

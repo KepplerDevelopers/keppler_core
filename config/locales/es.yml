@@ -142,6 +142,7 @@ es:
       logo: Logo
       favicon: Favicon
       icon: Icono
+      image_background: 'Imagen de fondo'
       country: País
       state: Estado
       city: Ciudad

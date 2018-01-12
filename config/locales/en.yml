@@ -130,6 +130,8 @@ en:
       attachment: Attachment
       pdf: PDF
       avatar: Avatar
+      icon: Icon
+      image_background: 'Background Image'
       brand: Brand
       country: Country
       state: State
