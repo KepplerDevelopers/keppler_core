@@ -4,6 +4,12 @@ menu:
     url_path: /admin/dashboard
     icon: pie-chart
     current: ['keppler_ga_dashboard/dashboard']
+  script:
+    name: scripts
+    url_path: /admin/scripts
+    icon: chart
+    current: ['admin/scripts']
+    model: Script
   seo:
     name: SEO
     current: ['admin/meta_tags', 'admin/google_adwords']

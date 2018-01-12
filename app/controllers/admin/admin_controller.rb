@@ -7,7 +7,7 @@ module Admin
     before_filter :paginator_params
     before_filter :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
-
+    before_action :get_tables_name
     def root
       if current_user
         redirect_to dashboard_path
@@ -27,7 +27,9 @@ module Admin
     end
 
     private
-
+    def get_tables_name
+      @models = ActiveRecord::Base.connection.tables.map{|model| model.capitalize.singularize.camelize}
+    end
     # Get submit key to redirect, only [:create, :update]
     def redirect(object, commit)
       if commit.key?('_save')
