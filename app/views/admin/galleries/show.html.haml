@@ -1,0 +1,27 @@
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, Gallery
+				= link_to admin_gallery_path(@gallery), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			- if can? :update, Gallery
+				= link_to edit_admin_gallery_path(@gallery), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
+					= material_icon.md_18.create.css_class("md-dark")
+			= link_to admin_galleries_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+				= material_icon.md_18.arrow_back.css_class("md-dark")
+		.card
+			.card-content
+				%center
+					.color-title= @gallery.name
+				%table.bordered
+					%tbody
+						%tr
+							%th
+								%th.display-label= t("activerecord.attributes.id")
+							%td
+								%td.display-value.fs-body-1.tc-black-2= @gallery.id
+						%tr
+							%th
+								%th.display-label= t("activerecord.attributes.name")
+							%td
+								%td.display-value.fs-body-1.tc-black-2= @gallery.name.blank? ? '----------' : @gallery.name

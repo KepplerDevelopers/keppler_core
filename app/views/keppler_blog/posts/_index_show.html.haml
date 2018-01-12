@@ -1,0 +1,50 @@
+.listing-show-header
+	.actions
+		- if can? :update, model
+			= link_to edit_post_path(@post), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit"), "data-no-turbolink" => true do
+				= material_icon.md_24.create
+	%h5
+		= material_icon.md_24.library_books.css_class("md-light")
+		= t("model.singular.#{controller_name.singularize}")
+.listing-show-body.card#blog-listing--show-body{ resize: true , style: "height: {{windowHeight}}px;" }
+	.card-content
+		= image_tag @post.image
+		%table.list.bordered
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:title)
+				%td.display-value.fs-body-1.tc-black-2= @post.title.to_s.humanize
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:permalink)
+				%td.display-value.fs-body-1.tc-black-2= @post.permalink.to_s.humanize
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:body)
+				%td.display-value.fs-body-1.tc-black-2=  @post.body.html_safe
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:user_id)
+				%td.display-value.fs-body-1.tc-black-2= @post.user.name
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:category_id)
+				%td.display-value.fs-body-1.tc-black-2= @post.category.name
+			- unless @post.subcategory.blank?
+				%tr.list-row
+					%th.display-label= model.human_attribute_name(:subcategory_id)
+					%td.display-value.fs-body-1.tc-black-2= @post.subcategory.name
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:public)
+				%td.display-value.fs-body-1.tc-black-2= @post.public ? t("keppler.messages.y") : t("keppler.messages.n")
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:comments_open)
+				%td.display-value.fs-body-1.tc-black-2= @post.comments_open ? t("keppler.messages.y") : t("keppler.messages.n")
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:shared_enabled)
+				%td.display-value.fs-body-1.tc-black-2= @post.shared_enabled ? t("keppler.messages.y") : t("keppler.messages.n")
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:created_at)
+				%td.display-value= @post.created_at.strftime("%d/%m/%Y %H:%M:%S")
+			%tr.list-row
+				%th.display-label= model.human_attribute_name(:updated_at)
+				%td.display-value= @post.updated_at.strftime("%d/%m/%Y %H:%M:%S")
+
+
+:javascript
+	$('.tooltipped').tooltip({delay: 1});

@@ -1,0 +1,36 @@
+= title(t('keppler.titles.index', model: t("keppler.models.pluralize.posts")))
+
+.listing.col.l9.m12.s12
+	- if can? :new, model
+		= link_to new_post_path, class: "btn-floating btn-large waves-effect waves-light teal btn-new hide-on-small-only", "data-no-turbolink" => true do
+			= material_icon.md_24.add
+	= entries(@total, @objects)
+	%table.bordered
+		%tbody
+			%tr.white-hover
+				%th.center
+				%th.center= t('activerecord.attributes.name')
+				%th.center= t('activerecord.attributes.author')
+				%th.center= t('activerecord.attributes.category')
+				%th.center
+				- if can? :show, KepplerBlog::Post
+					%th.center{ width: 5 }
+				- if can? :update, KepplerBlog::Post
+					%th.center{ width: 5 }
+				- if can? :delete, KepplerBlog::Post
+					%th.center{ width: 5 }
+			- @objects.each do |post|
+				= render 'listing', post: post
+			- if @objects.size.zero?
+				%tr
+					%td{colspan: "4"}
+						%center
+							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.posts"))
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+- if can? :new, model
+	= link_to new_post_path, class: "btn-index-add btn-floating btn-large teal waves-effect waves-light red" do
+		= material_icon.md_24.add.css_class("md-light")

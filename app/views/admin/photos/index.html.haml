@@ -1,0 +1,59 @@
+.listing.col.l9.m12.s12
+	- if can? :new, model
+		= link_to new_admin_gallery_photo_path, class: 'btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only', title: 'New' do
+			= material_icon.md_24.add
+	= entries(@total, @objects)
+	= link_to admin_galleries_path, class: 'btn-floating btn-flat' do
+		= material_icon.md_18.arrow_back.css_class('md-dark')
+	-# = link_to admin_gallery_photos_path(@gallery_photo, :format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
+	-# 	= material_icon.md_18.cloud_download.css_class("md-dark")
+	-# = link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "photo" do
+	-# 	= material_icon.md_18.cloud_upload.css_class("md-dark")
+
+	.hide
+		= form_tag admin_gallery_photo_import_path(@gallery_photo, @objects), id: "import_form_gallery_photo", multipart: true, method: :post do
+			= file_field_tag :file, id: "import_file_gallery_photo"
+
+	%table.bordered
+		- unless @objects.blank?
+			%tbody
+				%tr.white-hover{ width: 5 }
+					- if can? :destroy_multiple, Photo
+						%th{style: 'padding-left: 20px'}
+					%th.center= t("activerecord.attributes.photo")
+					%th.center= t("activerecord.attributes.gallery_id")
+					- if can? :show, Photo
+						%td.center{ width: 5 }
+					- if can? :update, Photo
+						%td.center{ width: 5 }
+					-# - if can? :clone, Photo
+					-# 	%td.center{ width: 5 }
+					- if can? :delete, Photo
+						%td.center{ width: 5, style:'padding-right: 20px'}
+			-# %tbody#draggable{ 'data-update-url' => "#{sort_admin_gallery_photos_path}" }
+			- @objects.each do |photo|
+				= render 'listing', photo: photo
+		- else
+			%tr
+				%td.center{ colspan: '4' }
+					%center
+						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.photos"))
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+- if can? :new, model
+	= link_to new_admin_gallery_photo_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
+		= material_icon.md_24.add.css_class("md-light")
+
+:javascript
+	$(document).ready(function(){
+		$('#photo').click(function() {
+			$('#import_file_gallery_photo').click()
+			$('#import_file_gallery_photo').change(function() {
+				$('.waiting').css('display', 'block')
+				$('#import_form_gallery_photo').submit()
+			})
+		})
+	})
