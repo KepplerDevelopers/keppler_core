@@ -14,7 +14,7 @@
 
 .social-medias-setting {
   input {
-    padding-left: 35px;
+    padding-left: 40px;
   }
   .social-icons {
     position: absolute;
@@ -105,4 +105,14 @@
   label {
     font-weight: bold !important;
   }
+  input:checked~.state.p-danger-o label:before, .pretty.p-toggle .state.p-danger-o label:before {
+    border-color: $keppler-color !important;
+  }
+  input:checked~.state.p-danger-o label:before, .pretty.p-toggle .state.p-danger-o label:after {
+    border-color: $keppler-color !important;
+  }
+}
+
+.pretty.p-default:not(.p-fill) input:checked~.state.p-danger-o label:after {
+    background-color: $keppler-color !important;
 }

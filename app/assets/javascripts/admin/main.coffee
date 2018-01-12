@@ -63,6 +63,30 @@ $(window).load ->
     preloader.fadeOut preloaderFadeOutTime
     return
 
+  toggleMenu = ->
+    img = $('#sidebar-footer img')
+    $('.sidebar-toggle').click ->
+      if $('body').hasClass 'sidebar-collapse'
+        img.attr 'src', '/assets/admin/slice_white.png'
+        img.css {
+          height: 30,
+          margin: 0
+        }
+      else
+        img.attr 'src', '/assets/admin/slice-icon.png'
+        img.css {
+          height: 20,
+          margin: '0 7px'
+        }
+      return
+
   preloaderFadeOutTime = 500
   hidePreloader()
+  toggleMenu()
   return
+    # if $('body').hasClass('sidebar-collapse')
+    #   $('#sidebar-footer').find('img').attr('src', 'admin/slice.png')
+    #   alert($('#sidebar-footer').find('img').attr('src'))
+    # else
+    #   $('#sidebar-footer').find('img').attr('src', 'admin/slice-icon.png')
+    #   alert($('#sidebar-footer').find('img').attr('src'))

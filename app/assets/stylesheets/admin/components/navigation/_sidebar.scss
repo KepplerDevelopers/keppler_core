@@ -1,11 +1,28 @@
 .skin-blue {
   .main-sidebar{
-    // position: fixed;
+    position: fixed;
+    min-height: 100vh;
     background-color: #353535 !important;
 
     li.header {
       color: #848383 !important;
       background: #353535 !important;
+    }
+    #sidebar-footer {
+      width: 100%;
+      padding: 10px;
+      position: absolute;
+      bottom: 0px;
+      filter: brightness(30%);
+      background: #b1b1b1;
+      &-brand {
+        background-image: url('profile-menu.png')
+      }
+      span {
+        margin: 10px 0 0;
+        color: #fff !important;
+        font-family: 'Patua One';
+      }
     }
   }
 
@@ -24,6 +41,14 @@
 
   .sidebar a {
     color: #a0a0a0;
+  }
+
+  .sidebar-menu.tree {
+    i {
+      color: #a0a0a0;
+      font-size: 16px;
+      padding-right: 10px;
+    }
   }
 
   .user-panel {
@@ -46,5 +71,12 @@
 
   .text-success {
     color: #2ade2e !important;
+  }
 }
+.sidebar-collapse {
+  #sidebar-footer {
+    opacity: 1;
+    &-brand {
+    }
+  }
 }
