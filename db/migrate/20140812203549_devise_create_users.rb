@@ -5,6 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :permalink
       t.string :username
+      t.string :avatar
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

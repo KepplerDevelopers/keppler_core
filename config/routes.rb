@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      post '/upload_avatar', action: :change_avatar, as: 'change_avatar'
       delete(
         '/destroy_multiple',
         action: :destroy_multiple,
