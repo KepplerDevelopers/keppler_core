@@ -55,7 +55,7 @@
       .pull-left.image
         -# = link_to "http://gravatar.com", target: "_blank" do
         -#   = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "img-circle"
-        %img.img-circle{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+        .img-circle.side-img-profile{:alt => "User Image", :style => "background-image: url(#{current_user.avatar.nil? ? 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg' : current_user.avatar})"}
       .pull-left.info
         %p= current_user.name
         %small= current_user.rol.humanize

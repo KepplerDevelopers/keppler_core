@@ -15,11 +15,11 @@
             .box-body.box-profile
               %img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
               %h3.profile-username.text-center Selecciona una imagen
-              = f.input :avatar, label: false
+              = f.input :avatar, label: false 
         .col-lg-9
           .box.slice-box
             .box-header.with-border
-              %h3.box-title 
+              %h3.box-title
                 User
             / /.box-header
             .box-body
@@ -28,18 +28,18 @@
                   .form-padding
                     .row
                       .col-lg-6
-                        = f.input :name, label: false, placeholder: "Name", input_html: {class: "form-control"}, :required => true
+                        = f.input :name, placeholder: "Name", input_html: {class: "form-control"}, :required => true
 
                       .col-lg-6
-                        = f.input :email, label: false, placeholder: "Email", input_html: {class: "form-control"}, :required => true
+                        = f.input :email, placeholder: "Email", input_html: {class: "form-control"}, :required => true
                     .row
                       .col-lg-12
-                        = f.input :role_ids, label: false, collection: @roles, include_blank: t("keppler.actions.select_rol"), input_html: { class: "form-control" }, :required => true
+                        = f.input :role_ids, label: "Rol", collection: @roles, include_blank: t("keppler.actions.select_rol"), input_html: { class: "form-control" }, :required => true
                     .row
                       .col-lg-6
-                        = f.input :password, label: false, placeholder: "Password", input_html: {class: "form-control"}, :required => true
+                        = f.input :password, placeholder: "Password", input_html: {class: "form-control"}, :required => true
                       .col-lg-6
-                        = f.input :password_confirmation, label: false, placeholder: "Password Confirmation", input_html: {class: "form-control"}, :required => true
+                        = f.input :password_confirmation, placeholder: "Password Confirmation", input_html: {class: "form-control"}, :required => true
                     .row
                       .col-lg-12
                         .pull-right
