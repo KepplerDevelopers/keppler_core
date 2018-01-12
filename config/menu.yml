@@ -2,12 +2,12 @@ menu:
   dashboard:
     name: dashboard
     url_path: /admin/dashboard
-    icon: dashboard
+    icon: pie-chart
     current: ['keppler_ga_dashboard/dashboard']
   seo:
     name: SEO
     current: ['admin/meta_tags', 'admin/google_adwords']
-    icon: code
+    icon: graph
     model: MetaTag
     submenu:
       - meta_tags:
@@ -18,12 +18,12 @@ menu:
           name: Google Adwords
           url_path: /admin/google_adwords
           current: ['admin/google_adwords']
-  google_analytics_track:
-    name: google analytics tracks
-    url_path: /admin/google_analytics_tracks
-    icon: area-chart
-    current: ['admin/google_analytics_tracks']
-    model: GoogleAnalyticsTrack
+  script:
+    name: scripts
+    url_path: /admin/scripts
+    icon: chart
+    current: ['admin/scripts']
+    model: Script
   user:
     name: users
     url_path: /admin/users
@@ -32,7 +32,7 @@ menu:
     model: User
   customize:
     name: keppler design
-    icon: magic
+    icon: pencil
     current: ['admin/customizes']
     model: Customize
     submenu:
@@ -44,10 +44,20 @@ menu:
           name: admin appearance
           url_path: /admin/settings/appearance
           current: ['appearance']
+  development:
+    name: Development
+    current: ['admin/scaffolds']
+    icon: screen-desktop
+    model: Scaffold
+    submenu:
+      - scaffolds:
+          name: Keppler scaffolds
+          url_path: /admin/scaffolds
+          current: ['/admin/scaffolds']
   setting:
     name: setting
     current: ['admin/settings']
-    icon: gear
+    icon: settings
     model: Setting
     submenu:
       - basic_information:

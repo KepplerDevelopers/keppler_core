@@ -1,17 +1,18 @@
 = simple_form_for [:admin, customize] do |f|
-  .switch
-    %label
-      - if customize.installed == false
-        No installed
+  %label
+    - if customize.installed == false
+      %span.status No installed
+      .switch.pull-right
         %input{name: "customize[installed]", type: "hidden", value: "true"}
-        %input{name: "customize[installed]", type: "checkbox", onclick: "installTemplate(#{customize.id})"}
-          %span.lever
+        %input#default_switch{:name => "customize[installed]", :type => "checkbox", value: "true"}/
+        %label.label-default{:for => "default_switch", onclick: "installTemplate(#{customize.id})"}
 
-      - else
-        Installed
+    - else
+      %span.status Installed
+      .switch.pull-right
         %input{name: "customize[installed]", type: "hidden", value: "false"}
-        %input{name: "customize[installed]", type: "checkbox", onclick: "installTemplate(#{customize.id})", checked: "true"}
-          %span.lever
+        %input#default_switch{:name => "customize[installed]", :type => "checkbox", value: "false", checked: "checked"}/
+        %label.label-default{:for => "default_switch", onclick: "installTemplate(#{customize.id})"}
 
 :javascript
   function installTemplate(customize_id) {

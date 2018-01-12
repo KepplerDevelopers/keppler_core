@@ -3,7 +3,7 @@ Social = $('#keppler .front-social')
 Slice = $('#keppler .front-footer')
 Mouse = $('#keppler .mouse-scroll')
 function scrollFunction(){
-  scroll = $('html').scrollTop()
+  scroll = $(window).scrollTop()
   if (scroll <= 559) {
     $('.front').css({
       position: 'relative',
@@ -25,7 +25,7 @@ function scrollFunction(){
       display: 'block',
       opacity: 1
     })
-    // $('.description').css({
+    // $('#documentation').css({
     // 	'margin-top': '100vh'
     // })
     if (scroll <= 10) {
@@ -33,6 +33,10 @@ function scrollFunction(){
         transform: 'scale(1)'
       })
       Social.css('opacity', '1')
+      Slice.css({
+        opacity: 1,
+        transform: 'scale(1)'
+      })
     }
     if (scroll > 10 && scroll <= 60) {
       Keppler.css({
@@ -73,7 +77,7 @@ function scrollFunction(){
         opacity: 0
       })
     }
-    $('.description').css({
+    $('#documentation').css({
       'margin-top': '0',
       position: 'relative'
     })
@@ -99,7 +103,7 @@ function scrollFunction(){
       display: 'none',
       opacity: 0
     })
-    $('.description').css({
+    $('#documentation').css({
       'margin-top': '616px'
     })
   }
@@ -119,6 +123,7 @@ $(document).ready(function() {
     }
   })
 });
+
 $( window ).scroll(function() {
   scrollFunction()
 })

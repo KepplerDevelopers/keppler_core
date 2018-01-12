@@ -1,4 +1,4 @@
-var app = angular.module('admin', [
-	'checklist-model', 
-	'LocalStorageModule'
-])
+// var app = angular.module('admin', [
+// 	'checklist-model',
+// 	'LocalStorageModule'
+// ])

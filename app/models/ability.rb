@@ -7,10 +7,9 @@ class Ability
 
     if user.has_role? :keppler_admin
 
+      can :manage, Scaffold
       # - Customize authorize -
-      can [:delete, :update,
-           :new, :create, :install_default,
-           :index, :destroy, :destroy_multiple], Customize
+      can [:manage], Customize
 
       # - Seo authorize -
       can :manage, MetaTag
@@ -18,7 +17,7 @@ class Ability
 
       # - GoogleAnalytics authorize -
       if Setting.first.google_analytics_setting.ga_status
-        can :manage, GoogleAnalyticsTrack
+        can :manage, Script
       end
 
       # - Setting authorize -
