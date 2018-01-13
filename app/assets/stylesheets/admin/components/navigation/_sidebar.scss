@@ -1,0 +1,54 @@
+.skin-blue {
+  .main-sidebar{
+    // position: fixed;
+    background-color: #353535 !important;
+
+    li.header {
+      color: #848383 !important;
+      background: #353535 !important;
+    }
+  }
+
+  .sidebar-menu > li:hover > a,
+  .sidebar-menu > li.active > a {
+    color: #ffffff;
+    background: #353535 !important;
+    border-left-color: $keppler-color !important;
+  }
+
+  .sidebar-menu > li > .treeview-menu {
+    margin: 0 1px;
+    background: #292929 !important;
+    color: #848383 !important;
+  }
+
+  .sidebar{
+    min-height: 84vh;
+    a {
+      color: #a0a0a0;
+    }
+  }
+
+
+  .user-panel {
+    background-image: url('profile-menu.jpg');
+    background-position: center;
+    background-size: cover;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .user-panel > .info > p {
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+
+  .user-panel > .info > small {
+    color: #c0c0c0;
+    margin-bottom: 9px !important;
+}
+
+  .text-success {
+    color: #2ade2e !important;
+}
+}

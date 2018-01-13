@@ -1,27 +1,24 @@
-.wrapper
-	.wrapper-body.container
-		.actions
-			- if can? :delete, Script
-				= link_to admin_script_path(@script), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-					= material_icon.md_18.delete.css_class("md-dark")
-			- if can? :update, Script
-				= link_to edit_admin_script_path(@script), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
-					= material_icon.md_18.create.css_class("md-dark")
-			= link_to admin_scripts_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.card
-			.card-content
-				%table.list.bordered
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.id")
-						%td.display-value.fs-body-1.tc-black-2= @script.id
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.name")
-						%td.display-value.fs-body-1.tc-black-2= @script.name.humanize
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.script")
-						%td.display-value.fs-body-1.tc-black-2= @script.script
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.url")
-						%td.display-value.fs-body-1.tc-black-2
-							= link_to @script.url, @script.url, target: "_blank"
+.container
+	.row
+		.col-lg-2
+			.arrow-back.btn.btn-default
+				= link_to admin_scripts_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+					%i.fa.fa-chevron-left
+					Volver
+					.clearfix
+		.clearfix
+  .row
+    .listing.col-lg-12.col-xs-12
+      %section.content-header.index-header
+        %h1
+          = t("keppler.modules.#{controller_path.underscore}")
+        %ol.breadcrumb
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-dashboard
+              = t("keppler.modules.#{action_name.underscore}")
+
+      .box.slice-box
+        .box-body.no-padding
+          %table.table.table-striped
+            %tbody

@@ -1,8 +1,8 @@
-# GoogleAnayticsTrack Model
+# Script Model
 class Script < ActiveRecord::Base
   include ActivityHistory
 
-  def self.get_tracking_id(request)
+  def self.get_script(request)
     find_by_url(request.url)
   end
 

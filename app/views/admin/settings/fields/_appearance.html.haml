@@ -1,52 +1,58 @@
-#appearance
-	{{ changeColor }}
+#colors
+	{{ changeColors }}
 	= f.simple_fields_for :appearance, html: {multipart: true} do |f|
-		.col.s12
-			.card.small
-				.card-image
+		.col-lg-6
+			.box.slice-box
+				.box-header.with-border
+					%h3.box-title Preview
+
+				/ /.box-header
+				.box-body.box-body-no-padding
 					- if f.object.image_background?
-						= image_tag f.object.image_background_url
-						.remove-field
-							= f.input :remove_image_background, as: :checkbox_material
+						.appearance-img{style: "background-image:url(#{f.object.image_background_url})"}
+							= render "admin/settings/components/preview"
 					- else
-						= image_tag "admin/profile-menu.jpg"
-						%span.card-title Upload Background
-				.card-action
-					= f.input :image_background, as: :file_material, label: false, wrapper_html: { class: "file-field" }
+						-# %iframe{src:"http://localhost:3000", frameborder:"0", style:"zoom: 0.75; transform: scale(0.75); transform-origin: 0 0;"}
+						.appearance-img{style: "background-image:url('/assets/admin/profile-menu.jpg')"}
+							= render "admin/settings/components/preview"
+		.col-lg-6
+			.box.slice-box
+				.box-header.with-border
+					%h3.box-title Admin Theme
+
+				.box-body
+					= f.input :image_background, as: :file, label: false, input_html: {class: "form-control"}
 					= f.input :image_background_cache, as: :hidden
-		/= f.input :theme_name, collection: [["Keppler-theme", "keppler"], ["Cyan-theme", "cyan"], ["Brown-theme", "brown"], ["Pink-theme", "pink"], ["Amber-theme", "amber"], ["Grey-theme", "grey"]],input_html: { class: "browser-default"}, label: false, include_blank: "Select theme"
-		.col.s4
-			= f.label "Principal"
-			%input{type: "color", "v-model" => "color", name: "color", "v-bind:value": "color"}
-			-# = text_field_tag :color, nil, placeholder: "Color", value: @color, class: "color-input", "v-model" => "color"
-		.col.s4
-			= f.label "Darken"
-			%input{type: "color", "v-model" => "darken", name: "darken", "v-bind:value": "darken"}
-			-# = text_field_tag :darken, nil, placeholder: "Darken", value: @darken, class: "color-input"
-		.col.s4
-			= f.label "Accent"
-			%input{type: "color", "v-model" => "accent", name: "accent", "v-bind:value": "accent"}
-			-# = text_field_tag :accent, nil, placeholder: "Accent", value: @accent, class: "color-input"
+					%p Principal
+					%input{type: "color", name: "color", placeholder: "Color", value: "#{@color}", "v-model" => "main"}
+					-# = text_field_tag :color, nil, placeholder: "Color", value: @color
+					%br
+					%br
+					%p Hover
+					= text_field_tag :accent, nil, placeholder: "Accent", value: @accent, class: "color-input"
+					.hidden
+						= text_field_tag :darken, nil, placeholder: "Darken", value: @darken, class: "color-input"
+					.clearfix
+					.pull-right
+						- if @render.eql?('appearance')
+							= link_to appearance_default_admin_settings_path(@render), class: "btn btn-default", method: :put do
+								= t("keppler.actions.appearance_defaut")
+						= f.button :submit, t("keppler.actions.apply"), class: "btn btn-primary change-color", style: "margin-left:10px"
+
 :javascript
 	new Vue({
-		el: '#appearance',
+		el: '#colors',
 		data: {
-			color: "#{@color}",
-			darken: "#{@darken}",
-			accent: "#{@accent}"
+			main: "#{@color}"
 		},
 		computed: {
-			changeColor() {
-				if (this.color) {
-					$('.header-information').css('background', this.color)
-					$('nav').css('background', this.color)
-				}
-
-				if(this.accent) {
-					$('.btn').not('.btn-white').css('background', this.accent)
-					$('.btn-white').css('color', this.accent)
+			changeColors() {
+				if (this.main) {
+					$('.logo').css('background', this.main)
+					$('.btn-primary').css('background', this.main)
+					$('.slice-box').css('border-top-color', this.main)
+					$('#span').css('color', this.main)
 				}
 			}
 		}
 	})
-	$('.color-input').minicolors()

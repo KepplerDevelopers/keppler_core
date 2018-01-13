@@ -2,12 +2,18 @@ menu:
   dashboard:
     name: dashboard
     url_path: /admin/dashboard
-    icon: dashboard
+    icon: pie-chart
     current: ['keppler_ga_dashboard/dashboard']
+  script:
+    name: scripts
+    url_path: /admin/scripts
+    icon: chart
+    current: ['admin/scripts']
+    model: Script
   seo:
     name: SEO
     current: ['admin/meta_tags', 'admin/google_adwords']
-    icon: trending_up
+    icon: graph
     model: MetaTag
     submenu:
       - meta_tags:
@@ -19,19 +25,19 @@ menu:
           url_path: /admin/google_adwords
           current: ['admin/google_adwords']
   script:
-    name: Scripts
+    name: scripts
     url_path: /admin/scripts
-    icon: settings_ethernet
+    icon: chart
     current: ['admin/scripts']
     model: Script
   user:
     name: users
     url_path: /admin/users
-    icon: account_circle
+    icon: user
     current: ["admin/users"]
   customize:
     name: keppler design
-    icon: color_lens
+    icon: pencil
     current: ['admin/customizes']
     model: Customize
     submenu:
@@ -46,7 +52,7 @@ menu:
   development:
     name: Development
     current: ['admin/scaffolds']
-    icon: code
+    icon: screen-desktop
     model: Scaffold
     submenu:
       - scaffolds:

@@ -1,32 +1,58 @@
-.listing.col.l9.m12.s12
-	= link_to new_admin_user_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-		= material_icon.md_24.person_add
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- if @objects.size.zero?
-				%tr
-					%td.center{ colspan: '4' }
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-			- else
-				%tr.white-hover
-					%td
-					%th.center= t('activerecord.attributes.name')
-					%th.center.hide-on-small-and-down= t('activerecord.attributes.email')
-					%th.center.hide-on-small-and-down= t('activerecord.attributes.role')
-					- if can? :show, User
-						%th
-					- if can? :update, User
-						%th
-					- if can? :delete, User
-						%th
-			- @objects.each do |user|
-				= render 'listing', user: user
-	= paginate @objects, window: 1
+#index-container
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1
+            = t("keppler.modules.#{controller_path.underscore}")
 
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
+          %ol.breadcrumb
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-dashboard
+                = t("keppler.modules.#{action_name.underscore}")
 
-= link_to new_admin_user_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
-	= material_icon.md_24.add.css_class("md-light")
+
+            %li{ "v-show" => "checks" }
+
+              -# %a{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "/admin//destroy_multiple?multiple_ids=", :rel => "nofollow"}
+              %a{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow"}
+                Delete
+              -# = link_to url_for(action: :destroy_multiple, controller: controller_name).concat("?multiple_ids={{deleteList}}#{'&search='+@query if @query}#{'&page='+@current_page if @current_page}"), method: :delete, data: {confirm: "#{t("keppler.messages.data_confirm")}"} do
+        .box.slice-box
+          .box-body.no-padding
+            %table.table.table-striped
+              %tbody
+                - if @objects.size.zero?
+                  %tr
+                    %th{:style => 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+                - else
+                  %tr
+                    %td
+                    %th
+                      Name
+                    %th
+                      Email
+                    %th
+                      Role
+                    %th{:style => "text-align: center;padding-right: 30px;"}
+                      Actions
+
+                  - @objects.each do |user|
+                    = render 'listing', user: user
+
+  .listing-show
+    = render "description"
+  .mixed-btn
+    = link_to new_admin_user_path, class: "btn-float" do
+      %i.material-icons add
+:javascript
+  $(document).ready(function(){
+    $('body, html').click(function(){
+      $('.collapse.in').collapse('hide');
+    });
+    $(".actions.dropdown-menu").each(function(idx){
+      $(this).css('top', 40 + (47 * idx) + "px")
+    });
+  });
