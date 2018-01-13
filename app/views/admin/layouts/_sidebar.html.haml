@@ -13,7 +13,9 @@
     %ul.sidebar-menu.tree{"data-widget" => "tree"}
       %li.header MAIN NAVIGATION
       %li
-        / = link_to dashboard_path do i.fa.fa-dashboard /!span= t('dashboard.sidebar')
+        = link_to '/admin/dashboard' do
+          %i.icon-pie-chart
+          %span= t('keppler.sidebar-menu.dashboard')
       - KepplerConfiguration.visible_models.each do |menu|
         - menu.each do |key, value|
           - unless menu[key]["submenu"] #ontetab sidebar link

@@ -6,6 +6,8 @@ en:
       dashboard: Dashboard
       users: Users
       setting: Settings
+      keppler-design: 'Keppler Design'
+      development: 'Development'
       setting-submenu:
         basic-information: Basic Information
         email-setting-smtp: 'Email setup (SMTP)'

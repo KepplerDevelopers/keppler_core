@@ -8,6 +8,8 @@ es:
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
+      keppler-design: 'Keppler Design'
+      development: 'Development'
       setting: Configuración
       setting-submenu:
         basic-information: 'Información básica'
