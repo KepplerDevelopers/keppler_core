@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20171225023933) do
-=======
 ActiveRecord::Schema.define(version: 20180112185419) do
->>>>>>> 7136084eb2e929c2c3ae544b10d3117007ce9de1
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -42,15 +38,12 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.datetime "updated_at",                   null: false
   end
 
-<<<<<<< HEAD
-=======
   create_table "caches", force: :cascade do |t|
     t.string   "image",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
->>>>>>> 7136084eb2e929c2c3ae544b10d3117007ce9de1
   create_table "customizes", force: :cascade do |t|
     t.string   "file",       limit: 255
     t.boolean  "installed",  limit: 1
@@ -76,17 +69,23 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.datetime "updated_at",                 null: false
   end
 
-<<<<<<< HEAD
-  create_table "google_analytics_tracks", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "tracking_id", limit: 255
-    t.string   "url",         limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+  create_table "keppler_contact_us_message_settings", force: :cascade do |t|
+    t.string   "mailer_to",   limit: 255, default: "info@keppler.com"
+    t.string   "mailer_from", limit: 255, default: "info@keppler.com"
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
-=======
->>>>>>> 7136084eb2e929c2c3ae544b10d3117007ce9de1
+  create_table "keppler_contact_us_messages", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "subject",    limit: 255
+    t.string   "email",      limit: 255
+    t.text     "content",    limit: 65535
+    t.boolean  "read",       limit: 1
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "meta_tags", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -114,8 +113,6 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.datetime "updated_at",             null: false
   end
 
-<<<<<<< HEAD
-=======
   create_table "scripts", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.text     "script",     limit: 65535
@@ -124,7 +121,6 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.datetime "updated_at",               null: false
   end
 
->>>>>>> 7136084eb2e929c2c3ae544b10d3117007ce9de1
   create_table "settings", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
@@ -138,16 +134,6 @@ ActiveRecord::Schema.define(version: 20180112185419) do
   end
 
   create_table "smtp_settings", force: :cascade do |t|
-<<<<<<< HEAD
-    t.string   "address",     limit: 255
-    t.string   "port",        limit: 255
-    t.string   "domain_name", limit: 255
-    t.string   "email",       limit: 255
-    t.string   "password",    limit: 255
-    t.integer  "setting_id",  limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-=======
     t.string   "server_address", limit: 255
     t.string   "port",           limit: 255
     t.string   "domain_name",    limit: 255
@@ -156,7 +142,6 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.integer  "setting_id",     limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
->>>>>>> 7136084eb2e929c2c3ae544b10d3117007ce9de1
   end
 
   create_table "social_accounts", force: :cascade do |t|
@@ -182,10 +167,6 @@ ActiveRecord::Schema.define(version: 20180112185419) do
   end
 
   create_table "users", force: :cascade do |t|
-<<<<<<< HEAD
-=======
-    t.string   "avatar",                 limit: 255
->>>>>>> 7136084eb2e929c2c3ae544b10d3117007ce9de1
     t.string   "name",                   limit: 255
     t.string   "permalink",              limit: 255
     t.string   "username",               limit: 255
