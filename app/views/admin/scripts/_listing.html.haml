@@ -6,10 +6,15 @@
         %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{script.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{script.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{script.id})"}
         .state.p-danger-o
           %label{ for: "checkbox-#{script.id}" }
-  - script.as_json(except: [:created_at, :updated_at]).each_with_index do |attribute, value|
-    %td.hide-on-small-and-down
-      = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
-      %span= value
+  %td.hide-on-small-and-down
+    = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
+    %span= script.name
+  %td
+    = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
+    %span= script.script
+  %td.hide-on-small-and-down
+    = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
+    %span= script.url
   %td{:style => "float: right;padding-right: 30px;"}
     %a.drop{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
       %i.material-icons menu
