@@ -16,16 +16,16 @@
 					%tbody
 						%tr
 							%th
-								.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
+								%th.display-label= t("activerecord.attributes.#{controller_name.singularize}.id")
 							%td
-								.display-value.fs-body-1.tc-black-2= @scaffold.id.to_s.humanize
+								%td.display-value.fs-body-1.tc-black-2= @scaffold.id.to_s.humanize
 						%tr
 							%th
-								.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
+								%th.display-label= t("activerecord.attributes.#{controller_name.singularize}.name")
 							%td
-								.display-value.fs-body-1.tc-black-2= @scaffold.name.blank? ? '----------' : @scaffold.name
+								%td.display-value.fs-body-1.tc-black-2= @scaffold.name.blank? ? '----------' : @scaffold.name
 						%tr
 							%th
-								.display-label= t("activerecord.attributes.#{controller_name.singularize}.fields")
+								%th.display-label= t("activerecord.attributes.#{controller_name.singularize}.fields")
 							%td
-								.display-value.fs-body-1.tc-black-2= @scaffold.fields.blank? ? '----------' : @scaffold.fields
+								%td.display-value.fs-body-1.tc-black-2= @scaffold.fields.blank? ? '----------' : @scaffold.fields

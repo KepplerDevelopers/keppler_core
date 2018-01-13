@@ -18,10 +18,15 @@ body{
     padding: 10px;
     position: relative;
     bottom: 0px;
+    opacity: .1;
     transition: .2s;
-    a, span{
+    span{
       color: #fff !important;
       font-family: Patua One;
+      top: 10px;
+      position: absolute;
+      right: 0;
+      margin: 5px 5px 0;
     }
   }
 
