@@ -10,10 +10,9 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   include AdminHelper
 
-  # rescue_from Faraday::ConnectionFailed do |error|
-  #   # byebug
-  #   redirect_to "/admin/dashboard?all=true"
-  # end
+  rescue_from Faraday::ConnectionFailed do |error|
+    redirect_to main_app.admin_users_path, notice: "Sin conexión a internet"
+  end
 
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message =
