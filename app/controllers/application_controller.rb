@@ -10,9 +10,10 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   include AdminHelper
 
-  rescue_from Faraday::ConnectionFailed do |var1, var2, var3, var4|
-    redirect_to main_app.not_authorized_path
-  end
+  # rescue_from Faraday::ConnectionFailed do |error|
+  #   # byebug
+  #   redirect_to "/admin/dashboard?all=true"
+  # end
 
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message =
