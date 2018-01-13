@@ -35,6 +35,7 @@ menu:
     url_path: /admin/users
     icon: user
     current: ["admin/users"]
+    model: User
   customize:
     name: keppler design
     icon: pencil

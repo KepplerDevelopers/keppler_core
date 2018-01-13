@@ -179,7 +179,7 @@
                   = "#{t('keppler.navigation.last_session')} #{current_user.updated_at.strftime("%d %b %Y")}"
             %li.user-footer
               .pull-left
-                = link_to "Profile", admin_user_path(current_user), class: "btn btn-default btn-flat"
+                = link_to "Profile", "/admin/users/#{current_user.id}", class: "btn btn-default btn-flat"
                 -# %a.btn.btn-default.btn-flat{:href => ""} Profile
               .pull-right
                 = link_to t('devise.sign_out'), destroy_session_path(current_user), class: " btn btn-default btn-flat"
