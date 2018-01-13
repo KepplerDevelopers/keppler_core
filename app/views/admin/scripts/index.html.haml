@@ -23,8 +23,9 @@
               - else
                 %tr
                   %th
-                  - Script.attribute_names.as_json(only: [:created_at, :updated_at]).each_with_index do |attribute, value|
-                    %th= t("activerecord.attributes.#{attribute}")
+                  %th= t("activerecord.attributes.name")
+                  %th= t("activerecord.attributes.script")
+                  %th= t("activerecord.attributes.url")
                   %th{:style => "text-align: center;padding-right: 30px;"}
                     Actions
 
