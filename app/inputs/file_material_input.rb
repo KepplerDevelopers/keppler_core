@@ -13,7 +13,7 @@ class FileMaterialInput < SimpleForm::Inputs::Base
   private
 
   def file_input
-    template.content_tag(:span, "#{attribute_name}..".humanize) +
+    template.content_tag(:span, t("activerecord.attributes.#{attribute_name}").humanize) +
       @builder.file_field(attribute_name)
   end
 

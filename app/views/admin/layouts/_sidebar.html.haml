@@ -13,7 +13,9 @@
     %ul.sidebar-menu.tree{"data-widget" => "tree"}
       %li.header MAIN NAVIGATION
       %li
-        / = link_to dashboard_path do i.fa.fa-dashboard /!span= t('dashboard.sidebar')
+        = link_to '/admin/dashboard' do
+          %i.icon-pie-chart
+          %span= t('keppler.sidebar-menu.dashboard')
       - KepplerConfiguration.visible_models.each do |menu|
         - menu.each do |key, value|
           - unless menu[key]["submenu"] #ontetab sidebar link
@@ -47,28 +49,10 @@
                           = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true, :class => (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
 
   #sidebar-footer
-    .pull-left
-      = image_tag 'admin/slice_white.png', height: 30
-    .pull-right{:style => 'padding-top: 5px;'}
-      %span v 2.0.0
+    %a{:href=>"http://slicegroup.xyz", target: "_blank"}
+      #sidebar-footer-brand.pull-left
+        = image_tag 'admin/slice_white.png', height: 30
+    %span.pull-right v 2.0
 
   / /.sidebar
 / Content Wrapper. Contains page content
-:sass
-  #sidebar-footer
-    width: 100%
-    padding: 10px
-    position: relative
-    bottom: 0px
-
-    a, span
-      color: #fff !important
-      font-family: Patua One
-  ::-webkit-scrollbar
-    display: none
-
-  .sidebar-menu.tree
-    i
-      color: #a0a0a0
-      font-size: 16px
-      padding-right: 10px

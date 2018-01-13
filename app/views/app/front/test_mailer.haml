@@ -1,0 +1,70 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    :sass
+      .brand
+        background: #f44336
+        padding: 20px
+        img
+          height: 50px
+      .table-container
+        width: 60%
+        margin: 0 auto
+        min-width: 350px
+        table
+          width: 100%
+          border-collapse: collapse
+          // padding: 20px
+          font-family: sans-serif
+          color: #333
+
+        .bordered tr
+          border-bottom: 1px solid #d0d0d0
+        th, td
+          padding: 10px
+        .text
+          &-left
+            text-align: left
+          &-center
+            text-align: center
+          &-right
+            text-align: right
+        .footer
+          padding: 100px 0 0
+          img
+            height: 50px
+            margin: 0 10px
+
+  %body
+    %header.brand
+      %center= image_tag 'app/keppler-front.png'
+    %center.table-container
+      %table
+        %tr
+          %th
+            %h3 Datos personales:
+      %table.bordered
+        %tr
+          %th.text-left Nombre
+          %td= @client.name
+        %tr
+          %th.text-left Email
+          %td= @client.email
+        %tr
+          %th.text-left Asunto
+          %td= @client.subject
+        %tr
+          %th.text-left Contenido
+          %td= @client.content
+    %center.table-container
+      %table
+        %tr
+          %td.footer
+            %center
+              %p
+                Todos los derechos reservados
+                &reg; 2018
+                | Desarrollado por
+              = link_to 'http://slicegroup.xyz' do
+                = image_tag 'admin/slice.png'

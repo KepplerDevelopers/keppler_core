@@ -80,7 +80,7 @@ en:
         domain_name: Dominio
         url: Url
         meta_tags: 'Meta Tags'
-        script: 'Tracking Id'
+        script: 'Script'
         campaign_name: Campaña
         script: Script
       user:

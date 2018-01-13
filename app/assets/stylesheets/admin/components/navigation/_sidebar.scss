@@ -22,10 +22,13 @@
     color: #848383 !important;
   }
 
-  .sidebar{
+  .sidebar {
     min-height: 84vh;
     a {
       color: #a0a0a0;
+      span {
+        margin-left: 10px;
+      }
     }
   }
 

@@ -8,6 +8,8 @@ es:
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
+      keppler-design: 'Keppler Design'
+      development: 'Development'
       setting: Configuración
       setting-submenu:
         basic-information: 'Información básica'
@@ -19,8 +21,11 @@ es:
       seo-submenu:
         title-metas: 'Títulos y Meta tags'
         google-adwords: 'Google Adwords'
-      google-analytics-tracks: 'Scripts'
+      scripts: 'Scripts'
       keppler-messages: Mensajes
+      keppler-messages-submenu:
+        messages: Mensajes
+        message-settings: Configuración de mensajes
       keppler-blog: Blog
       keppler-blog-submenu:
         posts: Posts
@@ -50,8 +55,9 @@ es:
       admin/scripts: 'Scripts'
       admin/scaffolds: 'Scaffolds'
       admin/settings: 'Configuraciones'
-      keppler_ga_dashboard/dashboard: 'Dashboard'
       admin/users: 'Usuarios'
+      keppler_ga_dashboard/dashboard: 'Dashboard'
+      keppler_contact_us/message_settings: 'Configuración de mensajes'
     messages:
       not_authorized_page: Usted no tiene autorización para acceder a esta página
       not_authorized_action: Usted no tiene autorización para realizar esta acción
@@ -143,6 +149,7 @@ es:
       logo: Logo
       favicon: Favicon
       icon: Icono
+      image_background: 'Imagen de fondo'
       country: País
       state: Estado
       city: Ciudad
@@ -153,7 +160,9 @@ es:
       code: Código
       alliance: Alianza
       ally: Aliado
+      author: Autor
       category: Categoría
+      subcategory: Subcategoría
       service: Servicio
       project: Proyecto
       type: Tipo
@@ -184,9 +193,11 @@ es:
       domain_name: Dominio
       url: Url
       meta_tags: 'Meta Tags'
-      script: 'Tracking Id'
+      script: 'Script'
       campaign_name: Campaña
       script: Script
+      mailer_from: 'Enviar desde'
+      mailer_to: 'Hacia'
       ga_account_id: Identificador de la cuenta
       ga_tracking: Identificador de segumiento
       ga_status: Habilitar Google Analytics

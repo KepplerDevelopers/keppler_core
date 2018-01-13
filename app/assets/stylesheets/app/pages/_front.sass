@@ -36,11 +36,16 @@ main
 		padding: 50px
 		font-family: $raleway
 		color: #fff
-		background: linear-gradient(to right, rgb(246, 129, 123), rgb(247, 147, 140), rgb(246, 125, 118))
+		// background: linear-gradient(to right, rgb(246, 129, 123), rgb(247, 147, 140), rgb(246, 125, 118))
+		background: linear-gradient(to right, #2a3d5b, #445b7a, #516b8a, #425978, #2a3d5b)
+		@include respond-to(sm)
+			background: linear-gradient(to right, #354a69, #516b8a, #354a67)
+		@include respond-to(xs)
+			background: linear-gradient(to right, #445b7a, #516b8a, #425978)
 		h3
 			font-family: $putua
 		a, a:focus, a:hover
-			color: #ffc9c6
+			color: #04baf3
 
 	@keyframes scroll-down
 		0%
