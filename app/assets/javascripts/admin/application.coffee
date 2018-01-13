@@ -13,4 +13,5 @@
 #= require adminlte/app
 #= require jquery.minicolors
 #= require vue
+#= require jquery.remotipart
 #= require_tree .
