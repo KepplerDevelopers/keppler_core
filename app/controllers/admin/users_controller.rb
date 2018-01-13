@@ -10,13 +10,23 @@ module Admin
       users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
       @objects = users.page(@current_page)
       @total = users.size
+      @users = User.all.reverse
+
       if !@objects.first_page? && @objects.size.zero?
         redirect_to users_path(page: @current_page.to_i.pred, search: @query)
+      end
+      respond_to do |format|
+        format.html
+        format.json { render :json => @objects }
       end
     end
 
     def new
       @user = User.new
+      respond_to do |format|
+        format.html
+        format.json { render :json => @user }
+      end
     end
 
     def show
@@ -39,9 +49,9 @@ module Admin
 
     def create
       @user = User.new(user_params)
-
       if @user.save
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
+        byebug
         redirect(@user, params)
       else
         render action: 'new'
@@ -54,11 +64,17 @@ module Admin
     end
 
     def destroy_multiple
+      # byebug
       User.destroy redefine_ids(params[:multiple_ids])
       redirect_to(
         admin_users_path(page: @current_page, search: @query),
         notice: actions_messages(User.new)
       )
+    end
+
+    def change_avatar
+      Cache.destroy_all
+      @cache = Cache.create(image: params[:user][:avatar])
     end
 
     private
@@ -75,7 +91,7 @@ module Admin
     def user_params
       params.require(:user).permit(
         :name, :email, :password, :password_confirmation,
-        :role_ids, :encrypted_password
+        :role_ids, :encrypted_password, :avatar
       )
     end
 

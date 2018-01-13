@@ -1,6 +1,25 @@
-.panel-body{
-  .material-icons{
-    font-size: 1.6rem;
+.form-group {
+  .control-label {
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+      color: #f50e1e;
+    }
+  }
+  textarea {
+    resize: vertical;
+    min-height: 35px;
+  }
+}
+
+.social-medias-setting {
+  input:not([type='submit']) {
+    padding-left: 35px;
+  }
+  .social-icons {
+    position: absolute;
+    left: 0;
+    margin: 35px 0 0 25px;
   }
 }
 
@@ -13,70 +32,6 @@
     font-weight: 400;
     color: #000;
   }
-}
-.form-section{
-  padding: 40px 40px 30px 30px;
-  .form-group{
-    padding: 0 20px;
-    margin-bottom: 75px;
-    position: relative;
-
-    input[type='text'],
-    input[type="email"],
-    input[type="number"],
-    input[type="password"],
-    input[type="tel"],
-    input[type="url"]{
-      + label{
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        transition: all 200ms;
-        padding-left: 2px;
-      }
-    }
-    select + label{
-      display: none;
-    }
-    input{
-      font-size: 1.6rem;
-      background-color: transparent;
-      border: none;
-      border-bottom: 1px solid #bdbdbd;
-      border-radius: 0;
-      outline: 0;
-      width: 100%;
-      &:focus + label{
-        color: blue;
-      }
-      &:valid + label, &[type='email']:focus + label {
-        transform: translate3d(0, -110%, 0);
-        opacity: 1;
-        transition: .3s
-      }
-    }
-
-  }
-  .action-btn{
-    padding: 0 20px;
-    float: right;
-    input[type='submit']{
-      padding: 10px 15px;
-      font-weight: 800;
-      border: 2px solid $keppler-accent;
-      background-color: transparent;
-      color: $keppler-accent;
-      transition: .4s;
-      margin-left: 10px;
-      &:hover{
-        background-color: $keppler-accent;
-        color: white;
-        transition: .4s;
-      }
-    }
-  }
-
-
 }
 .hvr-sweep-to-right {
   display: inline-block;
@@ -144,4 +99,10 @@
 
 .box-body-no-padding {
   padding: 0 !important;
+}
+
+.pretty {
+  label {
+    font-weight: bold !important;
+  }
 }

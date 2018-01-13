@@ -4,3 +4,57 @@
   z-index: 1;
   margin-top: -45px;
 }
+
+body{
+  .side-img-profile{
+    @extend %circle-img;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    transition: .2s;
+  }
+  #sidebar-footer{
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    bottom: 0px;
+    opacity: .1;
+    transition: .2s;
+    span{
+      color: #fff !important;
+      font-family: Patua One;
+      top: 10px;
+      position: absolute;
+      right: 0;
+      margin: 5px 5px 0;
+    }
+  }
+
+  ::-webkit-scrollbar{
+    display: none
+  }
+  &.sidebar-collapse{
+    .user-panel{
+      padding: {
+        left: 4px;
+        right: 2px;
+      }
+      transition: .2s;
+      .side-img-profile{
+        width: 40px;
+        height: 40px;
+        transition: .2s;
+      }
+    }
+
+    .main-sidebar{
+      #sidebar-footer{
+        padding: 4px;
+        transition: .2s;
+        .pull-right{
+          display: none;
+        }
+      }
+    }
+  }
+}

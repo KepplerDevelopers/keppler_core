@@ -8,8 +8,9 @@
 	%td.center
 		%span
 			.pull-left
-				= link_to admin_customize_path(customize), method: :delete do
-					%i.material-icons.icon-delete delete
+				- unless customize.id.eql?(1)
+					= link_to admin_customize_path(customize), method: :delete do
+						%i.material-icons.icon-delete delete
 			= customize.name
 	%td.center
 		%span

@@ -1,4 +1,4 @@
- //= require simple-line-icons
+//= require simple-line-icons
 //= require animate
 //= require jquery.minicolors
 //= require_self
@@ -24,13 +24,16 @@
 @import 'pages/devise';
 // @import 'pages/navbar';
 
-// @import 'pages/sidebar';
+@import 'pages/sidebar';
 // @import 'pages/pageslide';
 // @import 'pages/header';
 @import 'pages/listing';
+@import 'pages/files';
 // @import 'pages/show';
+@import 'pages/show';
 @import 'pages/form';
 @import 'pages/preloader';
+@import 'pages/switchs';
 
 // @import 'pages/search';
 // @import 'pages/themes';
