@@ -8,6 +8,7 @@ gem 'angularjs-rails'
 gem 'vuejs-rails'
 gem 'nprogress-rails'
 gem 'ckeditor'
+gem 'remotipart', '~> 1.2'
 
 # Documentation
 gem 'sdoc', '~> 0.4.0', group: :doc

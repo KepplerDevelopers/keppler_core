@@ -33,7 +33,7 @@
 			.col-lg-3
 				.box.slice-box
 					.box-body.box-profile
-						%img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+						.profile-user-img.img-responsive.bg-profile{:style => "background-image: url(#{@user.avatar? ? @user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
 						%h3.profile-username.text-center= @user.name
 						%p.text-muted.text-center= @user.rol.humanize
 			.col-lg-9
@@ -42,9 +42,10 @@
 						%h3.box-title Users
 						.box-tools.pull-right
 							= link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
-								%i.fa.fa-pencil
-							= link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-								%i.fa.fa-trash
+								%i.material-icons create
+							- unless current_user == @user
+								= link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+									%i.material-icons delete
 
 					/ /.box-header
 					.box-body.box-body-no-padding
