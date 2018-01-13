@@ -1,5 +1,9 @@
 es:
   keppler:
+    login_message: Ingresa tus datos para entrar
+    powered: Desarrollado por
+    navigation:
+      last_session: Ultima sesión
     sidebar-menu:
       customizes: Customizes
       dashboard: Dashboard
@@ -13,9 +17,9 @@ es:
         appearance: Apariencia
       seo: Seo
       seo-submenu:
-        title-metas: 'Títulos y Meta tagas'
+        title-metas: 'Títulos y Meta tags'
         google-adwords: 'Google Adwords'
-      google-analytics-tracks: 'Scripts'
+      scripts: 'Scripts'
       keppler-messages: Mensajes
       keppler-messages-submenu:
         messages: Mensajes
@@ -41,6 +45,7 @@ es:
         settings: configuraciones
         configurations: configuraciones
         user: usuarios
+        script: scripts
     modules:
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
@@ -186,7 +191,7 @@ es:
       domain_name: Dominio
       url: Url
       meta_tags: 'Meta Tags'
-      script: 'Tracking Id'
+      script: 'Script'
       campaign_name: Campaña
       script: Script
       mailer_from: 'Enviar desde'

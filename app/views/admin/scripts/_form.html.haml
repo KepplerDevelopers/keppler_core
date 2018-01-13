@@ -1,17 +1,27 @@
-.wrapper
-	.wrapper-body.container
-		.actions
-			= link_to admin_scripts_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.wrapper-inputs
-			.card
-				.card-content
-					= simple_form_for [:admin, @script] do |f|
-						.row
-							= f.input :name
-							= f.input :script, input_html: { class: "materialize-textarea" }
-							= f.input :url
+= simple_form_for [:admin, @script] do |f|
+	.container
+		.row
+			.col-xs-12
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title Script
 
-							.form-actions.right
-								= f.button :submit, t("keppler.actions.save"), name: "_save"
-								= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+					/ /.box-header
+					.box-body
+						%table.table.table-bordered
+							%tbody
+								.form-padding
+									.row
+										.col-xs-12
+											= f.input :name, required: true, autofocus: true
+
+										.col-xs-12
+											= f.input :script, required: true, autofocus: true
+									.row
+										.col-xs-12
+											= f.input :url, required: true, autofocus: true
+									.row
+										.col-xs-12
+											.pull-right
+												= f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
+												= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"

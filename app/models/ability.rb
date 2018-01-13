@@ -9,9 +9,7 @@ class Ability
 
       can :manage, Scaffold
       # - Customize authorize -
-      can [:delete, :update,
-           :new, :create, :install_default,
-           :index, :destroy, :destroy_multiple], Customize
+      can [:manage], Customize
 
       # - Seo authorize -
       can :manage, MetaTag
@@ -26,8 +24,11 @@ class Ability
       can :manage, Setting
 
       # - User authorize -
-      can [:delete, :show, :edit, :update,
-           :create, :index, :destroy_multiple], User
+      # can [:delete, :show, :edit, :update,
+      #      :create, :index, :destroy_multiple], User
+
+      can [:manage], User
+
       can :destroy, User do |u|
         !u.eql?(user)
       end
@@ -35,8 +36,9 @@ class Ability
     elsif user.has_role? :admin
 
       # - User authorize -
-      can [:delete, :show, :edit, :update,
-           :create, :index, :destroy_multiple], User
+      # can [:delete, :show, :edit, :update,
+      #      :create, :index, :destroy_multiple], User
+      can [:manage], User
       cannot :delete, user
 
     elsif user.has_role? :client
