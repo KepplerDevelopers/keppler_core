@@ -5,20 +5,14 @@
       .switch.pull-right
         %input{name: "customize[installed]", type: "hidden", value: "true"}
         %input#default_switch{:name => "customize[installed]", :type => "checkbox", value: "true"}/
-        %label.label-default{:for => "default_switch", onclick: "$('#edit_customize_#{customize.id}').submit()"}
+        %label.label-default{:for => "default_switch", onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}
 
     - else
       %span.status Installed
       .switch.pull-right
         %input{name: "customize[installed]", type: "hidden", value: "false"}
         %input#default_switch{:name => "customize[installed]", :type => "checkbox", value: "false", checked: "checked"}/
-        %label.label-default{:for => "default_switch", onclick: "$('#edit_customize_#{customize.id}').submit()"}
-
-:javascript
-  function installTemplate(customize_id) {
-    $('.waiting').css('display', 'block')
-    $('#edit_customize_'+customize_id).submit()
-  }
+        %label.label-default{:for => "default_switch", onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}
 
 :scss
   .switch > input[type="checkbox"] {
