@@ -1,61 +1,10 @@
--# .pageslide-background{ "ng-click" => "sidebarClose()"}
--# 	%pageslide.card{ "ps-open"=>"sidebar", "ps-auto-close" => true }
--# 		.profile-menu{ style: @appearance.image_background? ? "background: url(#{Setting.first.appearance.image_background}) center no-repeat; background-size: 268px 159px;" : nil  }
--# 			.profile-pic
--# 				= link_to "http://gravatar.com", target: "_blank" do
--# 					= image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "avatar"
--# 			.profile-info
--# 				= current_user.name
--# 				.right
--# 					= link_to t("keppler.actions.edit_profile"), main_app.edit_admin_user_path(current_user)
--# 					|
--# 					= link_to t("keppler.actions.sign_out"), main_app.destroy_user_session_path
--# 		%ul.pageslide-menu.collapsible{"data-collapsible" => "accordion"}
--# 			- KepplerConfiguration.visible_models.each do |menu|
--# 				- menu.each do |key, value|
--# 					- unless menu[key]["submenu"] #ontetab sidebar link
--# 						- if menu[key]["model"] #links with cancancan validate
--# 							- if can?(:index, menu[key]["model"].constantize)
--# 								%li
--# 									= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", :'data-no-turbolink'=> true do
--# 										%i.material-icons.mi.md-18= menu[key]["icon"]
--# 										= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
--# 						- else #links without cancancan validate
--# 							%li
--# 								= link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", :'data-no-turbolink'=> true do
--# 									%i.material-icons.mi.md-18= menu[key]["icon"]
--# 									= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
--# 					- else #tree sidebar links
--# 						- if menu[key]["model"] && can?(:index, menu[key]["model"].constantize)
--# 							%li
--# 								.collapsable.collapsible-header{ class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
--# 									%i.material-icons.mi.md-18= menu[key]['icon']
--# 									= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
--# 									-# BADGE DE NOTIFICACIONES DE MENSAJES NUEVOS (CON BUG)
--# 									-# - if menu[key]["model"].eql?('KepplerContactUs::Message')
--# 									-#   - msg_count = KepplerContactUs::Message.all.where(read: false).count
--# 									-#   - unless msg_count.zero?
--# 									-#     %a.collection-item.new-message
--# 									-#       %span.new.badge
--# 									-#         = msg_count
--# 								.collapsible-body
--# 									%ul.pageslide-sub-menu
--# 										- menu[key]["submenu"].each do |submenu|
--# 											- submenu.each do |name, val|
--# 												%li
--# 													- if settings_path?
--# 														= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true
--# 													- else
--# 														= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true
 %aside.main-sidebar
   / sidebar: style can be found in sidebar.less
   %section.sidebar{:style => ""}
     / Sidebar user panel
     .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
       .pull-left.image
-        -# = link_to "http://gravatar.com", target: "_blank" do
-        -#   = image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}?s=60", class: "img-circle"
-        %img.img-circle{:alt => "User Image", :src => "https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg"}/
+        .img-circle.side-img-profile{:alt => "User Image", :style => "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
       .pull-left.info
         %p= current_user.name
         %small= current_user.rol.humanize
@@ -64,7 +13,9 @@
     %ul.sidebar-menu.tree{"data-widget" => "tree"}
       %li.header MAIN NAVIGATION
       %li
-        / = link_to dashboard_path do i.fa.fa-dashboard /!span= t('dashboard.sidebar')
+        = link_to '/admin/dashboard' do
+          %i.icon-pie-chart
+          %span= t('keppler.sidebar-menu.dashboard')
       - KepplerConfiguration.visible_models.each do |menu|
         - menu.each do |key, value|
           - unless menu[key]["submenu"] #ontetab sidebar link
@@ -85,13 +36,6 @@
                 %a{ :href => "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}"}
                   %i{ :class => "icon-#{menu[key]['icon']}" }
                   %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
-                  -# BADGE DE NOTIFICACIONES DE MENSAJES NUEVOS (CON BUG)
-                  -# - if menu[key]["model"].eql?('KepplerContactUs::Message')
-                  -#   - msg_count = KepplerContactUs::Message.all.where(read: false).count
-                  -#   - unless msg_count.zero?
-                  -#     %a.collection-item.new-message
-                  -#       %span.new.badge
-                  -#         = msg_count
                   %span.pull-right-container
                     %i.fa.fa-angle-left.pull-right
 
@@ -105,29 +49,10 @@
                           = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true, :class => (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
 
   #sidebar-footer
-    .pull-left
-      -# %a{:href=>"http://slicegroup.xyz", target: "_blank"}© Slice Group
-      = image_tag 'admin/slice.png', height: 30
-    .pull-right
-      %span v 2.0.0
+    %a{:href=>"http://slicegroup.xyz", target: "_blank"}
+      #sidebar-footer-brand.pull-left
+        = image_tag 'admin/slice_white.png', height: 30
+    %span.pull-right v 2.0
 
   / /.sidebar
 / Content Wrapper. Contains page content
-:sass
-  #sidebar-footer
-    width: 100%
-    padding: 10px
-    position: absolute
-    bottom: 0px
-
-    a, span
-      color: #fff !important
-      font-family: Patua One
-  ::-webkit-scrollbar
-    display: none
-
-  .sidebar-menu.tree
-    i
-      color: #a0a0a0
-      font-size: 16px
-      padding-right: 10px

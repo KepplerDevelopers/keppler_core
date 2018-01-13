@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FrontTest < ActiveSupport::TestCase
+class CacheTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

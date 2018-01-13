@@ -2,11 +2,12 @@
 class User < ActiveRecord::Base
   include ActivityHistory
 
+  mount_uploader :avatar, TemplateUploader
   before_save :create_permalink, if: :new_record?
   rolify
   validates_presence_of :name, :role_ids, :email
-
-  # has_many :posts, dependent: :destroy relation posts
+  mount_uploader :avatar, AttachmentUploader
+  # has_many :posts, dependent:  :destroy relation posts
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -15,7 +15,7 @@
 # 			else
 # 				scope.btnDelete = false
 # 				scope.iconCheck = "check_box_outline_blank"
-# 				scope.tooltipCheck = "Seleccionar todo"				
+# 				scope.tooltipCheck = "Seleccionar todo"
 # 			return
 
 # 		this.selectAllService = (scope, users)->
