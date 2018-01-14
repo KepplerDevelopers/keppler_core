@@ -4,6 +4,7 @@ class Customize < ActiveRecord::Base
   include CloneRecord
   mount_uploader :file, TemplateUploader
 
+  # validates :file, uniqueness: true
   # Fields for the search form in the navbar
   def self.search_field
     :file_cont

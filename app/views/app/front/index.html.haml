@@ -1,180 +1,505 @@
 !!!
-%html
-	%header
-		= render 'app/layouts/head'
-	%body
-		%header
-			= #render 'app/layouts/navigation'
-		%main#keppler{:role => "main"}
-			= #render 'app/layouts/messages'
-			.front
-				.front-logo
-					= image_tag "app/keppler-front.png", class: "img-responsive"
-
-				.front-social
-					%ul
-						%li
-							=	link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
-								= icon 'twitter'
-						%li
-							=	link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
-								= icon 'facebook'
-						%li
-							=	link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
-								= icon 'instagram'
-						%li
-							=	link_to "https://github.com/SliceDevelopers", target: '_blank' do
-								= icon 'github'
-				.mouse-scroll
-					.mouse
-						.scroll
-				%footer.front-footer
-					= render 'app/layouts/footer'
-
-
-			%section#documentation
-				%h3 KEPPLER ADMIN
-
-				%p
-					KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de
-					gemas ya integradas, de tal forma que acelerará el desarrollo de
-					aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
-
-				%h3 Características
-
-				%ul
-					%li
-						Base de datos por defecto MySQL
-					%li
-						Integración para autenticación de usuarios con
-						= link_to 'Devise', 'https://github.com/plataformatec/devise', target: '_blank'
-					%li
-						Integración para roles de usuarios con
-						= link_to 'Rolify', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
-					%li
-						Integración para autorizaciones con
-						= link_to 'CanCanCan', 'https://github.com/CanCanCommunity/cancancan', target: '_blank'
-					%li
-						Inegración para el manejo de de paginación con
-						= link_to 'Kaminari', 'https://github.com/amatsuda/kaminari', target: '_blank'
-					%li
-						Integración para helpers de formularios con
-						= link_to 'SimpleForm', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
-					%li
-						Integración para búsquedas full-text con
-						= link_to 'Ransack', 'https://github.com/activerecord-hackery/ransack', target: '_blank'
-					%li
-						Integración con framework fronte-end para el administrativo con
-						= link_to 'Materialize', 'http://materializecss.com/', target: '_blank'
-					%li
-						Integración con framework javascript
-						= link_to 'AngularJs', 'https://angularjs.org/', target: '_blank'
-					%li
-						Integración sitemap dinamicos con
-						= link_to 'sitemap_generator', 'https://github.com/kjvarga/sitemap_generator', target: '_blank'
-
-				%h3 Instalación
-
-				%pre
-					%code.shell
-						git clone git@github.com:SliceDevelopers/keppler_admin.git
-						bundle install
-
-				%p
-					Luego debe configurar el archivo
-					%pre
-						%code.ruby
-							config/secrets.yml
-					= link_to '[ver archivo]', 'https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example'
-					de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
-
-				%pre
-					%code.shell
-						rake db:create
-						rake db:migrate
-						rake db:seed
-
-				%h3 SimpleForm con Materialize
-
-				%p
-					Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en
-					%pre
-						%code.ruby
-							config/initializers/simple_form_materialize.rb
-
-
-				%p Aquí algunos ejemplos para la creación de inputs:
-
-				%pre
-					%code.haml
-						:preserve
-							# inputs de tipo text
-							= f.input :name
-
-							# inputs de tipo boolean
-							= f.input :public, as: :checkbox_material
-
-							# inputs de tipo textarea
-							= f.input :description, input_html: { class: "materialize-textarea" }
-
-							# inputs de tipo file
-							= f.input :image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
-
-							# inputs de tipo select
-							= f.input :role_ids, collection: Role.all, label: false, include_blank: "Selecione un rol"
-
-							# inputs de tipo radio buttons
-							= f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
-
-							# inputs de tipo check_boxes
-							= f.collection_check_boxes :options, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
-
-							# inputs de tipo date
-							= f.input :date, input_html: {class: "datepicker"}
-
-				%strong
-					Nota:
-				%p
-					Puede revisar la documentación de
-					= link_to 'Materialize', 'http://materializecss.com/'
-				para agregar nuevas integraciones para sus formularios a través de los
-				= link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
-				de simpleform.
-
-
-				%h3 Keppler scaffolds
-
-				%p
-					Keppler ofrece la posibilidad de realizar tareas de scaffolds
-					totalmente configurados para adaptarse de una vez al administrativo.
-					Para crear un nuevo modulo solo tienes que llamar al siguiente
-					comando desde la consola:
-
-				%pre
-					%code.shell
-						rails g keppler_scaffold [module_name] [attributes] -f
-
-				%p Luego crea la tabla en base de datos.
-
-				%pre
-					%code.shell
-						rake db:migrate
-
-				%h3 Plugins (Módulos)
-
-				%p
-					La plataforma permite la adaptación de módulos con facil instalación,
-					algunos de los módulos desarrollados son:
-
-				%ul
-					%li
-						= link_to 'Keppler google analytics dashboard', 'https://github.com/SliceDevelopers/keppler_ga_dashboard'
-					%strong ya viene integrado
-					%li
-						= link_to 'Keppler blog', 'https://github.com/SliceDevelopers/keppler_blog'
-					%li
-						= link_to 'Keppler catalogs', 'https://github.com/inyxtech/keppler_catalogs'
-					%li
-						= link_to 'Keppler contact', 'https://github.com/SliceDevelopers/keppler_contact_us'
-
-		%script{ src: '/assets/app/front.js' }
+%html{:lang => "es"}
+  %head
+    = render 'app/layouts/head'
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Grupo Brieva
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "Grandes Creativos que sabemos Hacer Marcas Exitosas", :name => "description"}/
+    %meta{:content => "slicegroup.xyz", :name => "author"}/
+    %link{:href => "assets/img/favicon.ico", :rel => "shortcut icon"}/
+    / CORE CSS
+    %link{:href => "assets/css/bootstrap.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/font-awesome.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick-theme.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/animate.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/style.css", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    / /////// Botón para ir al principio
+    %a.ir-arriba-cont.hidden-xs{:href => "#inicio"}
+      / <i class="fa fa-chevron-circle-up fa-2x ir-arriba"></i>
+      %span.ir-arriba
+        %img{:alt => "...", :src => "assets/img/flecha2.png"}/
+    / */Botón para ir al principio
+    /
+      ********************
+      *************************
+      HEADER
+      *********************
+    %header#header.header-home
+      %section.container{:style => "position: relative;"}
+        #cont-logotipo
+          #logotipo
+            / MARCA
+            #marca
+              %a{:href => "index.html"}
+                %img{:src => "assets/img/logo_peq.png"}/
+            / BURGER BUTTON
+            #burger-button
+              #bars
+                %span.top
+                %span.middle
+                %span.bottom
+          / /.logotipo
+          #hora.hidden-xs
+            #icono-hora
+              %img{:src => "assets/img/icono_sol.png"}/
+            #texto-hora
+              %span 3.39 PM. Abierto ahora
+          / /.hora
+        / /.cont-logotipo
+        %nav#menu.menu
+          / menu
+          .container
+            %p#tu-dominio
+              %a.link-menu{:href => "search.html", :target => "_top"} Encuentra tu dominio
+            .row
+              / MENU DE NAVEGACION
+              #menu-agencia.col-sm-6
+                %a.link-menu{:href => "aboutus.html", :target => "_top"} Nuestra Agencia
+                %br/
+                %a.link-menu{:href => "success.html", :target => "_top"} Proyectos con éxito
+                %br/
+                %a.link-menu{:href => "webdesing.html", :target => "_top"} Diseño de Páginas Web
+                %br/
+                %a.link-menu{:href => "digital.html", :target => "_top"} Mercadeo Digital
+                %br/
+                %a.link-menu{:href => "services.html", :target => "_top"} Servicios
+                %br/
+                %a.link-menu{:href => "blog.html", :target => "_top"} Notas para la Comunidad
+                %br/
+                %a.link-menu{"data-original-title" => "", "data-target" => "#contact", "data-toggle" => "modal"} Contactos
+                %br/
+                #menu-redes
+                  %a.link-menu{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} INSTAGRAM
+                  %a.link-menu{:href => "https://www.facebook.com/grupobrieva", :target => "_blank"} FACEBOOK
+                  %a.link-menu{:href => "https://plus.google.com/+juancarlosbrievadesigners", :target => "_blank"} GOOGLE+
+              / /.menu de navegación
+              / DATOS
+              #datos.col-sm-6
+                #datos1.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Cartagena
+                  (57 5) 643 0188
+                  %br/
+                  +57 301 324 5468
+                  %br/
+                  %a{:href => "mailto:contacto@grupobrieva.com"} contacto@grupobrieva.com
+                  %br/
+                  %address Manga, Cl. 20 #25-82
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+                #datos2.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Medellín
+                  +57 301 795 7845
+                  %br/
+                  %a{:href => "mailto:antonio@grupobrieva.com"} antonio@grupobrieva.com
+                  %br/
+                  %address Centro comercial Río Sur
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+              / /.datos
+        .visible-xs{:style => "height: 5rem"}
+        #cont-texto
+          %p Somos una Agencia de Publicidad Digital
+          %p#grande
+            Grandes Creativos
+            %br/
+            que sabemos
+            %br/
+            Hacer Marcas Exitosas
+          %div{:style => "height: 40px"}
+          .botones
+            %a.btn.btn-azul.btn-lg{:href => "briefing.html", :target => "_top"} Empecemos a trabajar
+            %a.btn.btn-transparente.btn-lg{:href => "success.html", :target => "_top"} Ver Proyectos Realizados
+      / /.container
+      %video.hidden-xs{:autoplay => "true", :loop => "true", :poster => "assets/img/video.jpg"}
+        %source{:src => "assets/videos/video.webm", :type => "video/webm"}
+          %source{:src => "assets/videos/video.mp4", :type => "video/mp4"}
+            Tu navegador no soporta video con HTML5
+    / /.HEADER
+    %section.container{:style => "position: relative; height: 50px;"}
+      %a.mover1
+        #cont-flecha
+          %img#flecha.center-block{:src => "assets/img/flecha.png"}/
+    %section#cta1.cta.container
+      .cta-cont
+        .cta-texto
+          %p.negrita-2rem
+            %span.color-rojo Nos apasiona crear marcas exitosas, arte digital y muchas campañas.
+            %span.color-verde Todo con un propósito.
+          %p.regular-5rem
+            Diseñamos
+            %span.color-azul piezas digitales
+            promocionales y campañas de mercadeo digital por una mejor
+            %span.color-verde experiencia del usuario
+            con las marcas y empresas.
+    %section#servicios
+      #izquierdo
+      #derecho
+      #carrusel
+        / Slide1
+        .img-slick
+          .grid
+            %figure.effect-duke
+              %img{:alt => "Branding", :src => "assets/img/servicio-branding.jpg"}/
+              %figcaption
+                %div
+                  %p.texto1 Servicio
+                  %p.texto2
+                    Branding y
+                    %br>/
+                    creación
+                    %br>/
+                    de marca
+                  %p.texto3
+                    Diseñamos piezas publicitarias
+                    %br>/
+                    tradicionales y digitales
+        / /.Slide1
+        / Slide2
+        .img-slick
+          .grid
+            %figure.effect-duke
+              %img{:alt => "Web", :src => "assets/img/servicio-diseno-web.jpg"}/
+              %figcaption
+                %div
+                  %p.texto1 Servicio
+                  %p.texto2
+                    Diseño de
+                    %br>/
+                    Páginas web
+                    %br>/
+                    y aplicaciones web
+                  %p.texto3
+                    Creamos una experiencia digital
+                    %br>/
+                    entre tu empresa y cliente
+        / /.Slide2
+        / Slide3
+        .img-slick
+          .grid
+            %figure.effect-duke
+              %img{:alt => "Mercadeo", :src => "assets/img/servicio-mercadeo.jpg"}/
+              %figcaption
+                %div
+                  %p.texto1 Servicio
+                  %p.texto2
+                    Mercadeo
+                    %br>/
+                    Digital
+                  %p.texto3
+                    Hacemos visible tu empresa
+                    %br>/
+                    en internet y redes sociales
+        / /.Slide3
+        / Slide4
+        .img-slick
+          .grid
+            %figure.effect-duke
+              %img{:alt => "Branding", :src => "assets/img/servicio-branding.jpg"}/
+              %figcaption
+                %div
+                  %p.texto1 Servicio
+                  %p.texto2
+                    Branding y
+                    %br>/
+                    creación
+                    %br>/
+                    de marca
+                  %p.texto3
+                    Diseñamos piezas publicitarias
+                    %br>/
+                    tradicionales y digitales
+        / /.Slide4
+        / Slide5
+        .img-slick
+          .grid
+            %figure.effect-duke
+              %img{:alt => "Web", :src => "assets/img/servicio-diseno-web.jpg"}/
+              %figcaption
+                %div
+                  %p.texto1 Servicio
+                  %p.texto2
+                    Diseño de
+                    %br>/
+                    Páginas web
+                    %br>/
+                    y aplicaciones web
+                  %p.texto3
+                    Creamos una experiencia digital
+                    %br>/
+                    entre tu empresa y cliente
+        / /.Slide5
+        / Slide6
+        .img-slick
+          .grid
+            %figure.effect-duke
+              %img{:alt => "Mercadeo", :src => "assets/img/servicio-mercadeo.jpg"}/
+              %figcaption
+                %div
+                  %p.texto1 Servicio
+                  %p.texto2
+                    Mercadeo
+                    %br>/
+                    Digital
+                  %p.texto3
+                    Hacemos visible tu empresa
+                    %br>/
+                    en internet y redes sociales
+        / /.Slide6
+      / /.carrusel
+    / /.servicios
+    %section.cta.container
+      .cta-cont
+        .cta-texto
+          %p.regular-4rem
+            Un
+            %span.color-rojo Grupo
+            de creativos con ideas
+            %span.color-verde gigantes
+          %p.regular-2rem Con diseño funcional, estrategia y experiencia diseñamos y desarrollamos campañas de mercadeo digital, páginas web inteligentes y concepto visual de marca #branding
+          %br/
+          %br/
+          %a.link-azul-rojo{:href => "success.html", :target => "_top"} Ver Proyectos de Éxito
+    %section#logo-clientes
+      .container.hidden-xs
+        .row
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/cocacola.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/bonsai.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/sangyoong.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/delipostres.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/nao.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/lazarp.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/hotlcaribe.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/arismendy.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/evoca.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/riosur.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/barugrande.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/mujeres.png"}/
+          .col-md-3.col-sm-4.logo-cliente
+            %img.img-responsive.center-block{:src => "assets/img/clinton.png"}/
+        / /.row
+      / Carrusel de Clientes
+      .clientes-branding.mt-8.mb-2.visible-xs
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/cocacola.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/bonsai.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/sangyoong.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/delipostres.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/nao.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/lazarp.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/hotlcaribe.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/arismendy.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/evoca.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/riosur.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/barugrande.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/mujeres.png"}/
+        .logo-cliente
+          %img.img-responsive.center-block{:src => "assets/img/clinton.png"}/
+      / /.Carrusel de Clientes
+    / /.logo-clientes
+    %section#cta3
+      .container{:style => "position: relative;"}
+        .cta3-contenedor
+          .col-md-6.col-sm-7.col-xs-12
+            %p.cta3-titulo Creamos productos enfocados en la experiencia del usuario
+            %p.cta3-texto
+              Diseñamos con pasión.
+              %br/
+              Analizamos el comportamiento del público objetivo con respecto a tu marca, sus intereses y búsquedas para luego comunicar a través del diseño digital.
+            %p
+            %a{:href => "aboutus.html", :target => "_top"} Más acerca de nosotros
+        / /.cta3-contenedor
+        .tarjeta.hidden-xs
+          .tarjeta-img
+            %p PROYECTOS REALIZADOS
+            %img.img-responsive{:alt => "Imagen diseñador", :src => "assets/img/img-exito.jpg"}/
+            .tarjeta-img-texto
+              %span.tarjeta-img-texto-titulo
+                Hacemos
+                %br>/
+                Marcas
+                %br>/
+                Exitosas
+              %br/
+              %br/
+              %span.tarjeta-img-texto-contenido Diseñamos páginas web y productos digitales que inspiran a mejorar el diseño de imagen corporativa de tu negocio
+        / /.tarjeta
+      / /.container
+    / /.cta3
+    %section#exito
+      #exito-carrusel
+        #exito-carrusel-slide1
+          .container
+            .row
+              .col-sm-6.hidden-xs
+              .col-sm-6.exito-carrusel-cont-texto
+                %p.exito-carrusel-titulo1 DISEÑO SITIO WEB UI/UX
+                .exito-carrusel-titulo2
+                  %span.previo
+                    %i.glyphicon.glyphicon-chevron-left
+                  %span Evoca Hotels
+                  %span.siguiente
+                    %i.glyphicon.glyphicon-chevron-right
+                %p.exito-carrusel-texto
+                  “Crear una insuperable y elegante
+                  %br>/
+                  plataforma de Check-in
+                  %br>/
+                  con diseño experimental
+                %br/
+                %br/
+                %a.btn.exito-carrusel-link{:href => "success.html", :target => "_top"} Ver todas las historias de éxito
+                %a.btn.exito-carrusel-boton{:href => "success_ej.html", :target => "_top"} Ver Más
+            / /.row
+          / /.container
+        / /.exito-carrusel-slide1
+        #exito-carrusel-slide2
+          .container
+            .row
+              .col-sm-6
+              .col-sm-6.exito-carrusel-cont-texto
+                %p.exito-carrusel-titulo1 Lorem ipsum dolor sit amet!
+                .exito-carrusel-titulo2
+                  %span.previo
+                    %i.glyphicon.glyphicon-chevron-left
+                  %span Delipostres
+                  %span.siguiente
+                    %i.glyphicon.glyphicon-chevron-right
+                %p.exito-carrusel-texto
+                  “Consectetur adipisicing elit
+                  %br>/
+                  deleniti unde doloremque
+                  %br>/
+                  tempora maxime
+                %br/
+                %br/
+                %a.btn.exito-carrusel-link{:href => "success.html"} Ver todas las historias de éxito
+                %a.btn.exito-carrusel-boton{:href => "success_ej.html"} Ver Más
+            / /.row
+          / /.container
+      / /.exito-carrusel
+    / /.exito
+    %section#contactos
+      .contactos-img1.hidden-xs
+      .contactos-img2
+        .contactos-im2-tarjeta
+          %span.contactos-img2-label TELÉFONOS / PERFILES Y REDES
+          %h3 Tarjeta de contacto
+          .contactos-img2-carrusel
+            #slide1
+              %address.contactos-img2-direccion Sede Cartagena
+              %p.contactos-img2-label DIRECCIÓN
+              %address.contactos-img2-direccion Manga, Cl. 20 #25-82
+              %a.contactos-img2-mapa{:href => "#"} Ver ubicación en mapa
+              %br/
+              %br/
+              %p.contactos-img2-label TELÉFONOS
+              %span.contactos-img2-telefono
+                (57 5) 643 0188
+                %br>/
+                +57 301 324 5468
+                %br/
+            / /.slide1
+            #slide2
+              %address.contactos-img2-direccion Sede Medellín
+              %p.contactos-img2-label DIRECCIÓN
+              %address.contactos-img2-direccion Centro comercial Río Sur
+              %a.contactos-img2-mapa{:href => "#"} Ver ubicación en mapa
+              %br/
+              %br/
+              %p.contactos-img2-label TELÉFONO
+              %span.contactos-img2-telefono
+                +57 301 795 7845
+                %br/
+                %br/
+            / /.slide2
+          / /.contactos-img2-carrusel
+          .contactos-menu-redes
+            %span.contactos-img2-label SOCIAL
+            %br/
+            %a{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} INSTAGRAM
+            %a{:href => "https://www.facebook.com/grupobrieva", :target => "_blank"} FACEBOOK
+            %a{:href => "https://plus.google.com/+juancarlosbrievadesigners", :target => "_blank"} GOOGLE+
+            %a{:href => "https://www.youtube.com/channel/UC_oGhL9WuCYSEAVVOweHV7Q", :target => "_blank"} YOUTUBE
+          / /.contactos-menu-redes
+        / /.contactos-im2-tarjeta
+        %img.img-responsive{:alt => "...", :src => "assets/img/bg-contactos2.jpg"}/
+    / /.contactos
+    /
+      ************************
+      FOOTER
+      ************************
+    %footer
+      .container
+        .footer-cont
+          %img{:alt => "...", :src => "assets/img/icono.png"}/
+          %p
+            Agencia de Publicidad Digital / Diseño Gráfico y Diseño de páginas web. Teléfono (5) 643 0188 - +57 301 324 5468 - contacto@grupobrieva
+            %br/
+            = succeed "\u{a0}\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "legal.html"} Cookies y Politica de privacidad
+            = succeed "\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "http://www.grupobrieva.com/"} Diseñado por Grupo Brieva
+            %a{:href => "http://slicegroup.xyz/"} Desarrollado por Slice group
+        / /.footer-cont
+      / /.container
+    / FOOTER
+    /
+      ************************
+      MODAL CONTACTOS
+      ************************
+    / Modal
+    #contact.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content
+          .modal-header
+            %button.close{"data-dismiss" => "modal", :type => "button"} ×
+            %h4.modal-title
+              Empecemos a
+              = succeed "construir" do
+                %br/
+            %p
+              Gana tiempo y compártenos la siguiente información.
+              %br>/
+              Te contactaremos de inmediato.
+          .modal-body
+            %p Some text in the modal.
+          .modal-footer
+    / MODAL CONTACTOS
+    /
+      *******************
+      Core JS
+      *********************
+    %script{:src => "assets/js/jquery-3.2.1.min.js", :type => "text/javascript"}
+    %script{:src => "assets/js/bootstrap.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick-custom.js", :type => "text/javascript"}
+    %script{:src => "assets/js/brieva.js", :type => "text/javascript"}
+    %script{:src => "assets/js/wow.js", :type => "text/javascript"}
+    / <script type="text/javascript" src="assets/js/npm.js"></script>

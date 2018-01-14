@@ -13,10 +13,8 @@
 	.box.slice-box
 		.box-header.with-border
 			%h3.box-title Frontend Theme
-
-
-		.box-body
-			%table.bordered
+		.box-body.no-padding
+			%table.table.table-striped
 				%tbody
 					- @objects.each do |customize|
 						= render 'listing', customize: customize
@@ -25,7 +23,7 @@
 							%td{colspan: "4"}
 								%center
 									= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
-			= paginate @objects, window: 1
+						= paginate @objects, window: 1
 .mixed-btn
 	= link_to new_admin_customize_path, class: "btn-float" do
 		%i.material-icons add

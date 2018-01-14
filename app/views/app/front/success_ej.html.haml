@@ -1,0 +1,210 @@
+!!!
+%html{:lang => "es"}
+  %head
+    = render 'app/layouts/head'
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Grupo Brieva - Detalle caso de éxito
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "Grandes Creativos que sabemos Hacer Marcas Exitosas", :name => "description"}/
+    %meta{:content => "slicegroup.xyz", :name => "author"}/
+    %link{:href => "assets/img/favicon.ico", :rel => "shortcut icon"}/
+    / CORE CSS
+    %link{:href => "assets/css/bootstrap.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/font-awesome.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick-theme.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/animate.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/style.css", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    / /////// Botón para ir al principio
+    %a.ir-arriba-cont.hidden-xs{:href => "#inicio"}
+      / <i class="fa fa-chevron-circle-up fa-2x ir-arriba"></i>
+      %span.ir-arriba
+        %img{:alt => "...", :src => "assets/img/flecha2.png"}/
+    / */Botón para ir al principio
+    /
+      ********************
+      *************************
+      HEADER
+      *********************
+    %header#header-ejemplo
+      %section.container{:style => "position: relative; min-height: 55vh; height: auto;"}
+        #cont-logotipo
+          #logotipo
+            / MARCA
+            #marca
+              %a{:href => "index.html"}
+                %img{:src => "assets/img/logo_peq.png"}/
+            / BURGER BUTTON
+            #burger-button
+              #bars
+                %span.top
+                %span.middle
+                %span.bottom
+          / /.logotipo
+          #hora.hidden-xs
+            #icono-hora
+              %img{:src => "assets/img/icono_sol.png"}/
+            #texto-hora
+              %span 3.39 PM. Abierto ahora
+          / /.hora
+        / /.cont-logotipo
+        %nav#menu.menu
+          / menu
+          .container
+            %p#tu-dominio
+              %a.link-menu{:href => "search.html", :target => "_top"} Encuentra tu dominio
+            .row
+              / MENU DE NAVEGACION
+              #menu-agencia.col-sm-6
+                %a.link-menu{:href => "aboutus.html", :target => "_top"} Nuestra Agencia
+                %br/
+                %a.link-menu{:href => "success.html", :target => "_top"} Proyectos con éxito
+                %br/
+                %a.link-menu{:href => "webdesing.html", :target => "_top"} Diseño de Páginas Web
+                %br/
+                %a.link-menu{:href => "digital.html", :target => "_top"} Mercadeo Digital
+                %br/
+                %a.link-menu{:href => "services.html", :target => "_top"} Servicios
+                %br/
+                %a.link-menu{:href => "blog.html", :target => "_top"} Notas para la Comunidad
+                %br/
+                %a.link-menu{:href => "#contactos"} Contactos
+                %br/
+                #menu-redes
+                  %a.link-menu{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} INSTAGRAM
+                  %a.link-menu{:href => "https://www.facebook.com/grupobrieva", :target => "_blank"} FACEBOOK
+                  %a.link-menu{:href => "https://plus.google.com/+juancarlosbrievadesigners", :target => "_blank"} GOOGLE+
+              / /.menu de navegación
+              / DATOS
+              #datos.col-sm-6
+                #datos1.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Cartagena
+                  (57 5) 643 0188
+                  %br/
+                  +57 301 324 5468
+                  %br/
+                  %a{:href => "mailto:contacto@grupobrieva.com"} contacto@grupobrieva.com
+                  %br/
+                  %address Manga, Cl. 20 #25-82
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+                #datos2.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Medellín
+                  +57 301 795 7845
+                  %br/
+                  %a{:href => "mailto:antonio@grupobrieva.com"} antonio@grupobrieva.com
+                  %br/
+                  %address Centro comercial Río Sur
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+              / /.datos
+          / /.container
+        #header-exito-texto.mt-14.mb-14
+          %p.sfreg.color-blanco.texto-2_5 Campaña de lanzamiento másiva en redes sociales
+          %p.sfpro.color-blanco.texto-5
+            Delipostres Repostería
+            %br>/
+            Bolivar y la Costa
+        / /.header-exito-texto
+        / Flecha abajo
+        %a.mover1
+          #cont-flecha-services
+            %img#flecha.center-block{:src => "assets/img/flecha.png"}/
+        / /.Flecha abajo
+      / /.container
+    / /.HEADER
+    %section#exitos-art
+      #contenido-exitos.container
+        / Artículo
+        %article#cta1.wow.fadeInUp.mt-10
+          %p.sfpro.texto-2_5.color-rojo El Reto
+          %p.sfreg.texto-5.color-333.mt-3{:style => "max-width: 85rem"} Dar a conocer y generar compras del producto nuevo a través de solo redes sociales para Delipostres Repostrería.
+          %p.sfreg.texto-2_5.color-999.mt-3{:style => "max-width: 70rem"} El objetivo fue crear una campaña directa y clara ofreciendo el nuevo producto a través de redes sociales que impulsara el posicionamiento y reconocimientoa a nivel nacional generando que consumidores visitaran elas tiendas en las que está disponible el producto nuevo.
+        / /. Artículo
+        / Foto
+        %img.img-responsive.wow.fadeInUp.mt-6{:alt => "Foto caso de exito", :src => "assets/img/img-ejemplo1.jpg"}/
+        / foto
+        / Artículo
+        %article.wow.fadeInUp.mt-6
+          %p.sfpro.texto-2_5.color-azul Cómo lo hicimos
+          %p.sfreg.texto-5.color-333.mt-3 Creamos una campaña promocional compuesta por diferentes piezas creativas.
+          %p.sfreg.texto-2_5.color-999.mt-3 Diseñamos una campaña que cumpliera con las espectativas del cliente. Definimos el publico objetivo de la campaña y buscamos personas que nos sirvieran de modelo para realizar un estudio fotográfico con el  producto y así generar un impacto real positivo en clientes.
+        / /. Artículo
+        / Foto
+        %img.img-responsive.wow.fadeInUp.mt-6{:alt => "Foto caso de exito", :src => "assets/img/img-ejemplo2.jpg"}/
+        / foto
+        / Artículo
+        %article.wow.fadeInUp.mt-6
+          %p.sfreg.texto-2_5.color-999.mt-3 Creamos diferentes piezas visuales de publicidad digital para la campaña. Utilizamos la herramienta de anuncios para empresas de  Facebook e instagram con diferentes contenidos apuntando publicos objetivos diferentes.
+        / /. Artículo
+        / Foto
+        %img.img-responsive.mt-6{:alt => "Foto caso de exito", :src => "assets/img/img-ejemplo3.jpg"}/
+        / foto
+        / Artículo
+        %article.wow.fadeInUp.mt-6
+          %p.sfpro.texto-2_5.color-verde.mt-6 El Resultado
+          %p.sfreg.texto-5.color-333.mt-3{:style => "max-width: 85rem"} Incrementó el número de ventas y visitas en las tiendas seleccionadas.
+          %p.sfreg.texto-2_5.color-999.mt-3{:style => "max-width: 70rem"}
+            Gracias a la segmentación detallada, la creatividad en las piezas y el mensaje publicitario logramos hacer que las personas que visitaban la tienda reconocieran el producto inmediatamente. Fue tan grande el alcance e impacto que los clientes mostraban las imagenes publicitarias del producto encontradas en internet para comprar.
+            %br/
+            30% más de visitas a las tiendas seleccionadas
+            %br/
+            5% más de compras al mes
+            %br/
+            Posicionamiento de marca en publicos nunca alcanzados
+        / /. Artículo
+      / /.container
+    / /.exitos-art
+    %section#compartir.mt-10.mb-10
+      .container
+        %p.sfreg.texto-1_7.color-999 COMPARTE ESTA HISTORIA CON TUS AMIGOS
+        .row.mt-3
+          .col-sm-6.col-xs-12
+            %ul.nav.nav-pills
+              %li
+                %a#link-gris.link-azul-gris{:href => "javascript:void(0);"} Facebook
+              %li
+                %a#link-gris.link-azul-gris{:href => "javascript:void(0);"} Twitter
+              %li
+                %a#link-gris.link-azul-gris{:href => "javascript:void(0);"} Whatsapp
+              %li
+                %a#link-gris.link-azul-gris{:href => "javascript:void(0);"} Mail
+          / /.col-sm-6 col-xs-12
+          .col-sm-6.col-xs-12
+            %ul.nav.nav-pills
+              %li
+                %a.link-azul-gris{:href => "success.html", :target => "_top"} Regresar a todos los proyectos
+          / /.col-sm-6 col-xs-12
+        / /.row
+      / /.container
+    /
+      ************************
+      FOOTER
+      ************************
+    %footer
+      .container
+        .footer-cont
+          %img{:alt => "...", :src => "assets/img/icono.png"}/
+          %p
+            Agencia de Publicidad Digital / Diseño Gráfico y Diseño de páginas web. Teléfono (5) 643 0188 - +57 301 324 5468 - contacto@grupobrieva
+            %br/
+            = succeed "\u{a0}\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "legal.html"} Cookies y Politica de privacidad
+            = succeed "\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "http://www.grupobrieva.com/"} Diseñado por Grupo Brieva
+            %a{:href => "http://slicegroup.xyz/"} Desarrollado por Slice group
+        / /.footer-cont
+      / /.container
+    / FOOTER
+    /
+      *******************
+      Core JS
+      *********************
+    %script{:src => "assets/js/jquery-3.2.1.min.js", :type => "text/javascript"}
+    %script{:src => "assets/js/bootstrap.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick-custom.js", :type => "text/javascript"}
+    %script{:src => "assets/js/brieva.js", :type => "text/javascript"}
+    %script{:src => "assets/js/wow.js", :type => "text/javascript"}
+    / <script type="text/javascript" src="assets/js/npm.js"></script>
