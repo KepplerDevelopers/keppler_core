@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
-   get '/briefing', to: 'app/front#briefing', as: :app_briefing
-   get '/webdesing', to: 'app/front#webdesing', as: :app_webdesing
    get '/index', to: 'app/front#index', as: :app_index
-   get '/success_ej', to: 'app/front#success_ej', as: :app_success_ej
-   get '/success', to: 'app/front#success', as: :app_success
-   get '/services', to: 'app/front#services', as: :app_services
-   get '/digital', to: 'app/front#digital', as: :app_digital
-   get '/search', to: 'app/front#search', as: :app_search
-   get '/aboutus', to: 'app/front#aboutus', as: :app_aboutus
-   get '/branding', to: 'app/front#branding', as: :app_branding
-   get '/blog', to: 'app/front#blog', as: :app_blog
 
   root to: 'app/front#index'
   get '/test_mailer', to: 'app/front#test_mailer', as: :test_mailer
