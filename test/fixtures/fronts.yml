@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  blog: MyString
+  branding: MyString
+  aboutus: MyString
+  search: MyString
+  digital: MyString
+  services: MyString
+  success: MyString
+  success_ej: MyString
+  index: MyString
+  webdesing: MyString
+  briefing: MyString
+
+two:
+  blog: MyString
+  branding: MyString
+  aboutus: MyString
+  search: MyString
+  digital: MyString
+  services: MyString
+  success: MyString
+  success_ej: MyString
+  index: MyString
+  webdesing: MyString
+  briefing: MyString

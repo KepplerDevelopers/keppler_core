@@ -1,0 +1,236 @@
+!!!
+%html{:lang => "es"}
+  %head
+    = render 'app/layouts/head'
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Grupo Brieva - Noticias
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "Grandes Creativos que sabemos Hacer Marcas Exitosas", :name => "description"}/
+    %meta{:content => "slicegroup.xyz", :name => "author"}/
+    %link{:href => "assets/img/favicon.ico", :rel => "shortcut icon"}/
+    / CORE CSS
+    %link{:href => "assets/css/bootstrap.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/font-awesome.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick-theme.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/animate.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/style.css", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    / /////// Botón para ir al principio
+    %a.ir-arriba-cont.hidden-xs{:href => "#inicio"}
+      / <i class="fa fa-chevron-circle-up fa-2x ir-arriba"></i>
+      %span.ir-arriba
+        %img{:alt => "...", :src => "assets/img/flecha2.png"}/
+    / */Botón para ir al principio
+    /
+      ********************
+      *************************
+      HEADER
+      *********************
+    %header#header-blog
+      %section.container{:style => "position: relative; min-height: 100vh; height: auto;"}
+        #cont-logotipo
+          #logotipo
+            / MARCA
+            #marca
+              %a{:href => "index.html"}
+                %img{:src => "assets/img/logo_peq.png"}/
+            / BURGER BUTTON
+            #burger-button
+              #bars
+                %span.top
+                %span.middle
+                %span.bottom
+          / /.logotipo
+          /
+            <div id="hora">
+            <div id="icono-hora"><img src="assets/img/icono_sol.png"></div>
+            <div id="texto-hora"><span>3.39 PM. Abierto ahora</span></div>
+            </div>
+          / /.hora
+        / /.cont-logotipo
+        %nav#menu.menu
+          / menu
+          .container
+            %p#tu-dominio
+              %a.link-menu{:href => "search.html", :target => "_top"} Encuentra tu dominio
+            .row
+              / MENU DE NAVEGACION
+              #menu-agencia.col-sm-6
+                %a.link-menu{:href => "aboutus.html", :target => "_top"} Nuestra Agencia
+                %br/
+                %a.link-menu{:href => "success.html", :target => "_top"} Proyectos con éxito
+                %br/
+                %a.link-menu{:href => "webdesing.html", :target => "_top"} Diseño de Páginas Web
+                %br/
+                %a.link-menu{:href => "digital.html", :target => "_top"} Mercadeo Digital
+                %br/
+                %a.link-menu{:href => "services.html", :target => "_top"} Servicios
+                %br/
+                %a.link-menu{:href => "blog.html", :target => "_top"} Notas para la Comunidad
+                %br/
+                %a.link-menu{:href => "#contactos"} Contactos
+                %br/
+                #menu-redes
+                  %a.link-menu{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} INSTAGRAM
+                  %a.link-menu{:href => "https://www.facebook.com/grupobrieva", :target => "_blank"} FACEBOOK
+                  %a.link-menu{:href => "https://plus.google.com/+juancarlosbrievadesigners", :target => "_blank"} GOOGLE+
+              / /.menu de navegación
+              / DATOS
+              #datos.col-sm-6
+                #datos1.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Cartagena
+                  (57 5) 643 0188
+                  %br/
+                  +57 301 324 5468
+                  %br/
+                  %a{:href => "mailto:contacto@grupobrieva.com"} contacto@grupobrieva.com
+                  %br/
+                  %address Manga, Cl. 20 #25-82
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+                #datos2.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Medellín
+                  +57 301 795 7845
+                  %br/
+                  %a{:href => "mailto:antonio@grupobrieva.com"} antonio@grupobrieva.com
+                  %br/
+                  %address Centro comercial Río Sur
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+              / /.datos
+          / /.container
+        #header-blog-texto.mt-14.mb-14
+          %p.sfpro.color-verde.texto-2_5 Cultura y tendencia
+          %p.sfpro.color-blanco.texto-6_5.mt-3
+            La importancia de
+            %br>/
+            las marcas
+            %br>/
+            en un proyecto gráfico
+          %p.sfreg.color-blanco.texto-3 29 de Julio de 2017
+          %a#button-blog.btn.btn-azul.btn-lg.sfreg.texto-2.mt-3{:href => "javascript:void(0);"} Leer artículo
+        / /.header-blog-texto
+      / /.container
+    / /.HEADER
+    %section#blog-art
+      .container.mb-14
+        %ul.nav.nav-pills.mt-3
+          %li
+            %a.link-azul-gris{:href => "javascript:void(0);"} Ver todo
+          %li
+            %a.link-azul-gris{:href => "javascript:void(0);"} Cultura y tendencia
+          %li
+            %a.link-azul-gris{:href => "javascript:void(0);"} Proyectos en desarrollo
+          %li
+            %a.link-azul-gris{:href => "javascript:void(0);"} Solo para creativos
+        .row.mt-10
+          .col-sm-6.col-xs-12
+            .bolg-item
+              %img.img-responsive{:src => "assets/img/blog-001.jpg"}/
+              .blog-item-cont
+                %p.sfpro.texto-2_5.color-verde Solo para creativos
+                %p.sfpro.texto-4.color-blanco
+                  Doble exposición.
+                  %br>/
+                  De lo análogo a lo
+                  %br>/
+                  digital
+                %p.sfreg.texto-2_5.color-blanco 29 de Julio de 2017
+                %p
+            / /.bolg-item
+          / /.col-sm-6 col-xs-12
+          .col-sm-6.col-xs-12
+            .bolg-item
+              %img.img-responsive{:src => "assets/img/blog-002.jpg"}/
+              .blog-item-cont
+                %p.sfpro.texto-2_5.color-verde Proyectos en desarrollo
+                %p.sfpro.texto-4.color-blanco
+                  Doble exposición.
+                  %br>/
+                  De lo análogo a lo
+                  %br>/
+                  digital
+                %p.sfreg.texto-2_5.color-blanco 29 de Julio de 2017
+                %p
+            / /.bolg-item
+          / /.col-sm-6 col-xs-12
+          .clearfix
+          #ultima-img.col-sm-12.col-xs-12.mt-3
+            .bolg-item
+              %img.img-responsive{:src => "assets/img/blog-003.jpg"}/
+              .blog-item-cont
+                %p.sfpro.texto-2_5.color-verde Cultura y tendencia
+                %p.sfpro.texto-4.color-blanco
+                  Lo importante de los colores
+                  %br>/
+                  y las formas en el diseño
+                %p.sfreg.texto-2_5.color-blanco 29 de Julio de 2017
+            / /.bolg-item
+          / /.col-sm-12 col-xs-12
+        / /.row
+      / /.container
+    / /.exitos-art
+    %section#contactos.contactos-blog
+      .container
+        .row
+          .col-sm-6.col-xs-12.contactos-services-cont
+            .wip.color-blanco
+              %p.texto-4.sfpro
+                Proyectos
+                %br>/
+                en desarrollo
+                %br>/
+                \#wip
+              %p.texto-2_5.sfreg
+                Sígue nuestra actividad y revisa en nuestro
+                %a{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} portafolio de instagram
+                que proyecto estamos diseñando.
+              %br/
+              #aboutus-rrss.center-block.text-center
+                %i.fa.fa-facebook{"aria-hidden" => "true"}
+                %i.fa.fa-instagram{"aria-hidden" => "true"}
+          / /.contactos-services-cont
+          .col-sm-6.col-xs-12
+            #formulario
+              %span.sfreg.color-blanco.texto-2 RECIBE NOTICIAS Y ARTÍCULOS
+              %br/
+              %p.sfreg.color-blanco.texto-3.mb-3 Inscríbete en nuestro Newsletter
+              %form.formulario
+                %input#nombre.campo{:name => "nombre", :placeholder => "Nombre y apellido", :required => "", :type => "text"}/
+                %input.btn.btn-verde.pull-right.sfreg.texto-2{:type => "submit", :value => "Inscribirme"}/
+              / /.formulario
+          / /.col-sm-6 col-xs-12
+        / /.row
+      / /.container
+    / /.contactos
+    /
+      ************************
+      FOOTER
+      ************************
+    %footer
+      .container
+        .footer-cont
+          %img{:alt => "...", :src => "assets/img/icono.png"}/
+          %p
+            Agencia de Publicidad Digital / Diseño Gráfico y Diseño de páginas web. Teléfono (5) 643 0188 - +57 301 324 5468 - contacto@grupobrieva
+            %br/
+            = succeed "\u{a0}\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "legal.html"} Cookies y Politica de privacidad
+            = succeed "\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "http://www.grupobrieva.com/"} Diseñado por Grupo Brieva
+            %a{:href => "http://slicegroup.xyz/"} Desarrollado por Slice group
+        / /.footer-cont
+      / /.container
+    / FOOTER
+    /
+      *******************
+      Core JS
+      *********************
+    %script{:src => "assets/js/jquery-3.2.1.min.js", :type => "text/javascript"}
+    %script{:src => "assets/js/bootstrap.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick-custom.js", :type => "text/javascript"}
+    %script{:src => "assets/js/brieva.js", :type => "text/javascript"}
+    %script{:src => "assets/js/wow.js", :type => "text/javascript"}
+    / <script type="text/javascript" src="assets/js/npm.js"></script>

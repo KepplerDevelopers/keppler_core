@@ -1,0 +1,299 @@
+!!!
+%html{:lang => "es"}
+  %head
+    = render 'app/layouts/head'
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Grupo Brieva - Mercadeo Digital
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "Grandes Creativos que sabemos Hacer Marcas Exitosas", :name => "description"}/
+    %meta{:content => "slicegroup.xyz", :name => "author"}/
+    %link{:href => "assets/img/favicon.ico", :rel => "shortcut icon"}/
+    / CORE CSS
+    %link{:href => "assets/css/bootstrap.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/font-awesome.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/slick-theme.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/animate.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "assets/css/style.css", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    / /////// Botón para ir al principio
+    %a.ir-arriba-cont.hidden-xs{:href => "#inicio"}
+      / <i class="fa fa-chevron-circle-up fa-2x ir-arriba"></i>
+      %span.ir-arriba
+        %img{:alt => "...", :src => "assets/img/flecha2.png"}/
+    / */Botón para ir al principio
+    /
+      ********************
+      *************************
+      HEADER
+      *********************
+    %header#header-digital
+      %section.container{:style => "position: relative; min-height: 50vh; height: auto;"}
+        #cont-logotipo
+          #logotipo
+            / MARCA
+            #marca
+              %a{:href => "index.html"}
+                %img{:src => "assets/img/logo_peq.png"}/
+            / BURGER BUTTON
+            #burger-button
+              #bars
+                %span.top
+                %span.middle
+                %span.bottom
+          / /.logotipo
+          /
+            <div id="hora">
+            <div id="icono-hora"><img src="assets/img/icono_sol.png"></div>
+            <div id="texto-hora"><span>3.39 PM. Abierto ahora</span></div>
+            </div>
+          / /.hora
+        / /.cont-logotipo
+        %nav#menu.menu
+          / menu
+          .container
+            %p#tu-dominio
+              %a.link-menu{:href => "search.html", :target => "_top"} Encuentra tu dominio
+            .row
+              / MENU DE NAVEGACION
+              / MENU DE NAVEGACION
+              #menu-agencia.col-sm-6
+                %a.link-menu{:href => "aboutus.html", :target => "_top"} Nuestra Agencia
+                %br/
+                %a.link-menu{:href => "success.html", :target => "_top"} Proyectos con éxito
+                %br/
+                %a.link-menu{:href => "webdesing.html", :target => "_top"} Diseño de Páginas Web
+                %br/
+                %a.link-menu{:href => "digital.html", :target => "_top"} Mercadeo Digital
+                %br/
+                %a.link-menu{:href => "services.html", :target => "_top"} Servicios
+                %br/
+                %a.link-menu{:href => "blog.html", :target => "_top"} Notas para la Comunidad
+                %br/
+                %a.link-menu{:href => "#contactos"} Contactos
+                %br/
+                #menu-redes
+                  %a.link-menu{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} INSTAGRAM
+                  %a.link-menu{:href => "https://www.facebook.com/grupobrieva", :target => "_blank"} FACEBOOK
+                  %a.link-menu{:href => "https://plus.google.com/+juancarlosbrievadesigners", :target => "_blank"} GOOGLE+
+              / /.menu de navegación
+              / DATOS
+              / DATOS
+              #datos.col-sm-6
+                #datos1.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Cartagena
+                  (57 5) 643 0188
+                  %br/
+                  +57 301 324 5468
+                  %br/
+                  %a{:href => "mailto:contacto@grupobrieva.com"} contacto@grupobrieva.com
+                  %br/
+                  %address Manga, Cl. 20 #25-82
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+                #datos2.mt-8
+                  %p.color-blanco.sfpro.texto-2_5 Sede Medellín
+                  +57 301 795 7845
+                  %br/
+                  %a{:href => "mailto:antonio@grupobrieva.com"} antonio@grupobrieva.com
+                  %br/
+                  %address Centro comercial Río Sur
+                  %a#ver-mapa{:href => ""} Ver cómo llegar en el mapa
+              / /.datos
+          / /.container
+        #header-service-texto.mt-14.mb-14
+          %p.sfpro.color-rojo.texto-2_5
+            Mercadeo Digital Profesional.
+            %span.color-azul Innovación y creatividad
+          %br/
+          %p.sfreg.texto-5 Generamos posicionamiento y demanda de servicios y productos a través de estrategias de campañas de mercadeo digital.
+          %p.sfpro.texto-3.color-verde Hacemos visible empresas en internet con herramientas poderosas para empresas
+          %ul.nav.nav-pills.mt-3.mb-6
+            %li
+              %a.link-azul-rojo{:href => "#cta1"} Estrategias de mercadeo
+            %li
+              %a.link-azul-rojo{:href => "#cta1-2"} Google AdWords
+            %li
+              %a.link-azul-rojo{:href => "#cta1-3"} Publicidad en Facebook e Instagram
+        / /.header-service-texto
+        %a.mover1
+          #cont-flecha-services
+            %img#flecha.center-block{:src => "assets/img/flecha.png"}/
+      / /.container
+    / /.HEADER
+    %section#cta1.mercadeo
+      .container
+        .cta1-branding-cont.row
+          %p.sfreg.texto-1_7.color-verde.col-sm-12 DETRÁS DE CADA FRUTO HAY UN GRAN SEMBRADOR. CREATIVIDAD INTELIGENTE
+          %p.sfpro.texto-4.color-blanco.mt-2.col-sm-7 Creación de estrategias creativas de mercadeo
+          %p.sfreg.texto-2_5.color-blanco.col-sm-7.col-xs-12
+            Somos expertos pensando y creando formas de comunicar a través de campañas creativas y diferentes en internet para empresas, servicios y productos.
+            %br>/
+            “Detrás de cada fruto hay un gran sembrador”
+          .botones.mt-6.col-sm-12
+            %a.btn.btn-azul.btn-lg{:href => "#contactos"} Solicitar Más Información
+            %a.btn.btn-transparente.btn-lg{:href => "success.html", :target => "_top"} Ver casos de éxito
+          / /.botones
+        / /.cta1-branding-cont
+      / /.container
+    / /.cta1
+    %section.mercadeo2
+      %img#cta1-2{:alt => "Mercadeo Digital", :src => "assets/img/img-digital01.jpg"}/
+      .container
+        .row
+          .col-lg-6
+          .col-lg-6
+            .mercadeo2-cont
+              %div
+                %img.img-responsive{:alt => "Google AdWords", :src => "assets/img/logo-AdWords.png"}/
+                %p.sfpro.texto-4.color-azul.mt-2 Ayudamos a que las personas encuentren su empresa fácil en internet
+                %p#mercadeo2-texto.sfreg.texto-2_5.color-333.mt-2
+                  Luego de la estrategia creativa, desarrollamos y  creamos campañas en Google AdWords con el objetivo de destacar y conectar clientes con su servicio o producto. Somos expertos en lograr que encuentren su sitio web en las primeras posiciones en los resultados de busquedas ayudando a generar visitas, llamadas y correos
+                .botones.mt-3
+                  %a.btn.btn-azul{:href => "#contactos"} Solicitar Más Información
+                  %a.btn.btn-transparente.color-verde{:href => "success.html", :target => "_top"} Ver casos de éxito
+                / /.botones
+            / /.branding2-cont
+          / /.col-lg-6
+        / /.row
+      / /.container
+    / /.branding2
+    %section#cta1-3.mercadeo3
+      .container
+        .cta1-branding-cont.row
+          %p.sfreg.texto-1_7.color-blanco.col-sm-7 SEGMENTAMOS, ATRAEMOS, CAPTAMOS ATENCIÓN Y OBTENEMOS RESULTADOS
+          %p.sfpro.texto-4.color-blanco.mt-2.col-sm-7 Anuncios de Publicidad en Facebook e Instagram
+          %p.sfreg.texto-2_5.color-blanco.mt-2.col-sm-7 Los auncios creativos en redes sociales ayudan a conectar clientes con las marcas comunicando un contenido comercial o contenidos que generen recordación de marca.
+          .botones.mt-6.col-sm-12
+            %a.btn.btn-azul.btn-lg{:href => "#contactos"} Solicitar Más Información
+            %a.btn.btn-transparente.btn-lg{:href => ""} Ver casos de éxito
+          / /.botones
+        / /.cta1-branding-cont
+      / /.container
+    / /.cta2
+    %section#cta4
+      .container.mt-10.mb-10
+        %p.sfreg.texto-5.color-amarillo.mb-2
+          Hemos logrado alcanzar a más de
+          %span.color-verde 50.000
+          personas través de campañas de
+          %span.color-azul Mercadeo Digital
+        %p
+        %a.link-rojo-azul{:href => "success.html", :target => "_top"} ¿Quieres tener más información?
+      / /.container
+    / /.cta-clientes
+    %section#web-ejemplos
+      .columna1
+        .item.card-hover
+          %img.img-fondo.img-responsive{:alt => "Ejemplo1", :src => "assets/img/img-digital-ejemplo1.jpg"}/
+          #mascara1
+          .item-texto
+            .cont
+              %img.img-responsive{:alt => "Logo Cliente", :src => "assets/img/logo-delipostres.png"}/
+              %p
+              %p.texto-1_7.color-blanco.sfreg
+                DELIPOSTRES REPOSTERÍA
+                %br>/
+                CAMPAÑA DE ANUNCIOS EN REDES SOCIALES
+              %p.texto-4.color-blanco.sfpro Lanzamiento de campaña con Más de 25.000 personas alcanzadas en redes sociales.
+        / /.item card-hover
+      / /.columna1
+      .columna2
+        .columna2-1
+          .item.card-hover
+            %img.img-fondo.img-responsive{:alt => "Ejemplo3", :src => "assets/img/img-digital-ejemplo3.jpg"}/
+            #mascara3
+            .item-texto
+              .cont
+                %img.img-responsive{:alt => "Logo Cliente", :src => "assets/img/logo-barugrande.png"}/
+                %p
+                %p.texto-1_7.color-blanco.sfreg PLAN DE MEDIOS DIGITALES
+                %p.texto-3.color-blanco.sfpro Logramos atraer potenciales clientes internacionales a través  pautas en medios digitales Mundiales
+          / /.item card-hover
+        / /.columna2-1
+        .columna2-2
+          .item.card-hover
+            %img.img-fondo.img-responsive{:alt => "Ejemplo2", :src => "assets/img/img-web-ejemplo2.jpg"}/
+            #mascara2
+            .item-texto
+              .cont
+                %img.img-responsive{:alt => "Logo Cliente", :src => "assets/img/logo-baru.png", :style => "width: 13rem; height: auto;"}/
+                %p
+                %p.texto-1_7.color-blanco.sfreg
+                  BARÚ OFF SHORE
+                  %br>/
+                  DISEÑO WEB PARA EMPRESA MUNDIAL DE LOGISTICA MARITIMA
+                %p.texto-3.color-blanco.sfpro
+                  Multilenguaje.
+                  %br>/
+                  Potencializar los servicios de la empresa
+          / /.item card-hover
+        / /.columna2-2
+      / /.columna2
+    / /.web-ejemplos
+    %section#contactos.contactos-services
+      .container
+        .row
+          .col-sm-6.col-xs-12.contactos-services-cont
+            .wip.color-blanco
+              %p.texto-4.sfpro
+                Proyectos
+                %br>/
+                en desarrollo
+                %br>/
+                \#wip
+              %p.texto-2_5.sfreg
+                Sígue nuestra actividad y revisa en nuestro
+                %a{:href => "https://www.instagram.com/grupobrieva/", :target => "_blank"} portafolio de instagram
+                que proyecto estamos diseñando.
+              %br/
+              #aboutus-rrss.center-block.text-center
+                %i.fa.fa-facebook{"aria-hidden" => "true"}
+                %i.fa.fa-instagram{"aria-hidden" => "true"}
+          / /.contactos-services-cont
+          .col-sm-6.col-xs-12
+            #formulario
+              %span.sfreg.color-blanco.texto-2_5 PRIMERO ASESORATE
+              %br/
+              %p.sfreg.color-blanco.texto-4.mb-3 Nosotros te ayudamos, es gratis
+              %form.formulario
+                %input#nombre.campo{:name => "nombre", :placeholder => "Nombre y apellido", :required => "", :type => "text"}/
+                %input#email.campo{:name => "email", :placeholder => "E-mail", :required => "", :type => "email"}/
+                %input#telefono.campo{:name => "telefono", :placeholder => "Teléfono", :required => "", :type => "text"}/
+                %input.btn.btn-violeta.pull-right.sfreg.texto-2{:type => "submit", :value => "Enviar"}/
+              / /.formulario
+          / /.col-sm-6 col-xs-12
+        / /.row
+      / /.container
+    / /.aboutus-cta
+    /
+      ************************
+      FOOTER
+      ************************
+    %footer
+      .container
+        .footer-cont
+          %img{:alt => "...", :src => "assets/img/icono.png"}/
+          %p
+            Agencia de Publicidad Digital / Diseño Gráfico y Diseño de páginas web. Teléfono (5) 643 0188 - +57 301 324 5468 - contacto@grupobrieva
+            %br/
+            = succeed "\u{a0}\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "legal.html"} Cookies y Politica de privacidad
+            = succeed "\u{a0}\u{a0}\u{a0}" do
+              %a{:href => "http://www.grupobrieva.com/"} Diseñado por Grupo Brieva
+            %a{:href => "http://slicegroup.xyz/"} Desarrollado por Slice group
+        / /.footer-cont
+      / /.container
+    / FOOTER
+    /
+      *******************
+      Core JS
+      *********************
+    %script{:src => "assets/js/jquery-3.2.1.min.js", :type => "text/javascript"}
+    %script{:src => "assets/js/bootstrap.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick.js", :type => "text/javascript"}
+    %script{:src => "assets/js/slick-custom.js", :type => "text/javascript"}
+    %script{:src => "assets/js/brieva.js", :type => "text/javascript"}
+    %script{:src => "assets/js/wow.js", :type => "text/javascript"}
+    / <script type="text/javascript" src="assets/js/npm.js"></script>
