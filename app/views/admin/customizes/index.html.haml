@@ -7,6 +7,11 @@
 				%i.material-icons#xs smartphone
 				%i.material-icons#md tablet
 				%i.material-icons#lg laptop
+				-# %span.separator-line
+				%i.material-icons#reload refresh
+				= link_to root_path, target: "_blank" do
+					%i.material-icons fullscreen
+
 		.box-body.box-body-no-padding.hidden-xs#box-body{style:"height: 325px;flow:hidden;overflow:hidden; margin: 0 auto"}
 			%iframe{src: "#{root_path}", frameborder:"0", style:"height:250%;width:250%;zoom:1.8;transform:scale(0.4);transform-origin:0 0;"}
 .col-lg-6
@@ -14,7 +19,7 @@
 		.box-header.with-border
 			%h3.box-title Frontend Theme
 		.box-body.no-padding
-			%table.table.table-striped
+			%table.table
 				%tbody
 					- @objects.each do |customize|
 						= render 'listing', customize: customize
@@ -31,8 +36,8 @@
 :scss
 	.box-tools {
 		i {
-			padding: 0 10px;
-			font-size: 25px;
+			padding: 5px 10px;
+			font-size: 20px;
 			color: #d2d2d2;
 			transition: all ease .3s;
 			cursor: pointer;
@@ -54,4 +59,8 @@
 
 	$('#lg').click(function() {
 		$('#box-body').animate({ 'width': '100%' }, 300)
+	})
+
+	$('#reload').click(function() {
+		$('iframe').attr('src', "#{root_path}")
 	})
