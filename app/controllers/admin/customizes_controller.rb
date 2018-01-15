@@ -48,8 +48,8 @@ module Admin
         if @customize.installed?
           @customize.install
         else
-          #@customizes.each { |customize| customize.update(installed: false) }
           @customize.uninstall
+          Customize.first.update(installed: true)
         end
         redirect_to :back
       else
