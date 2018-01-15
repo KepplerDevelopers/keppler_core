@@ -42,7 +42,7 @@
                   - @objects.each do |user|
                     = render 'listing', user: user
 
-        %center
+        %center#paginator-module
           = paginate @objects, window: 1
 
   .listing-show

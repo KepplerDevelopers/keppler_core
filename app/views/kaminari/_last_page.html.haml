@@ -6,6 +6,6 @@
 -#    per_page:      number of items to fetch per page
 -#    remote:        data-remote
 %span.last
-	- unless current_page.last?
-		= link_to url, :remote => remote, class: "btn-floating grey lighten-3", title: 'Last page' do
-			%i.material-icons.md-24.md-dark more_horiz
+  - unless current_page.last?
+    = link_to url, :remote => remote, class: "btn-pag", title: 'Last page' do
+      %i.material-icons.md-24.md-dark.icon-size more_horiz
