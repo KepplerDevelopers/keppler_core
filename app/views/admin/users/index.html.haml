@@ -42,6 +42,9 @@
                   - @objects.each do |user|
                     = render 'listing', user: user
 
+        %center
+          = paginate @objects, window: 1
+
   .listing-show
     = render "description"
   .mixed-btn
