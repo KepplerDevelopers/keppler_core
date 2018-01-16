@@ -31,6 +31,9 @@
 
                 - @objects.each do |script|
                   = render 'listing', script: script
+
+      %center#paginator-module
+        = paginate @objects, window: 1
   -# %table.bordered
   -# 	%tbody
   -# 		- if @objects.size.zero?

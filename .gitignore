@@ -18,6 +18,7 @@
 # minimal Rails specific artifacts
 db/*.sqlite3
 /db/*.sqlite3-journal
+/db/schema.rb
 /log/*
 /tmp/*
 Gemfile.lock

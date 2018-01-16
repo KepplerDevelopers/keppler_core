@@ -31,36 +31,9 @@
 
                 - @objects.each do |google_adword|
                   = render 'listing', google_adword: google_adword
-  -# %table.bordered
-  -# 	%tbody
-  -# 		- if @objects.size.zero?
-  -# 			%tr
-  -# 				%td{colspan: "4"}
-  -# 					%center
-  -# 						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.google_adword"))
-  -# 		- else
-  -# 			%tr.white-hover
-  -# 				%td
-  -# 				%th.center Name
-  -# 				%th.center.hide-on-small-and-down Email
-  -# 				%th.center.hide-on-small-and-down Role
-  -# 				- if can? :show, User
-  -# 					%th
-  -# 				- if can? :update, User
-  -# 					%th
-  -# 				- if can? :delete, User
-  -# 					%th
-  -# 		- @objects.each do |google_adword|
-  -# 			= render 'listing', google_adword: google_adword
-  -# = paginate @objects, window: 1
-
--# .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
--#   = render "degoogle_adwordion"
 .mixed-btn
   = link_to new_admin_google_adword_path, class: "btn-float" do
-    %i.material-icons add
-    -# %i.fa.fa-plus
-    -# -# = material_icon.md_24.add.css_class("md-light")
+    %i.material-icons add}
 
 
 :javascript
@@ -69,7 +42,6 @@
       $('.collapse.in').collapse('hide');
     });
     $(".custom-collapse").each(function(idx){
-      //console.log(40 + (35 * idx) + "px");
       $(this).css('top', 40 + (47 * idx) + "px")
     });
   })
