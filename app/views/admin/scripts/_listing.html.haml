@@ -2,8 +2,9 @@
   - if can? :destroy_multiple, Script
     %td.item-check{style:"width: 10%"}
       = link_to "", admin_script_path(script), remote: true, class: "show-row"
-      .pretty.p-default.p-thick.p-pulse
-        %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{script.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{script.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{script.id})"}
+
+      .pretty.p-default.p-curve.p-thick.p-smooth
+        %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{script.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{script.id}", "@click" => "listDelete(#{script.id})"}
         .state.p-danger-o
           %label{ for: "checkbox-#{script.id}" }
   %td.hide-on-small-and-down

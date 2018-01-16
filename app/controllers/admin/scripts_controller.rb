@@ -18,6 +18,10 @@ module Admin
             search: @query)
         )
       end
+      respond_to do |format|
+        format.html
+        format.json { render :json => @objects }
+      end
     end
 
     # GET /scripts/1

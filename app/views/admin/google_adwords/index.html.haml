@@ -33,14 +33,11 @@
                   = render 'listing', google_adword: google_adword
 .mixed-btn
   = link_to new_admin_google_adword_path, class: "btn-float" do
-    %i.material-icons add}
+    %i.material-icons add
 
 
 :javascript
   $(document).ready(function(){
-    $('body, html').click(function(){
-      $('.collapse.in').collapse('hide');
-    });
     $(".custom-collapse").each(function(idx){
       $(this).css('top', 40 + (47 * idx) + "px")
     });

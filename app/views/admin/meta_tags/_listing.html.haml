@@ -20,8 +20,8 @@
   - if can? :destroy_multiple, MetaTag
     %td.item-check{style:"width: 10%"}
       = link_to "", admin_meta_tag_path(meta_tag), remote: true, class: "show-row"
-      .pretty.p-default.p-thick.p-pulse
-        %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{meta_tag.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{meta_tag.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
+      .pretty.p-default.p-curve.p-thick.p-smooth
+        %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{meta_tag.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{meta_tag.id}", "@click" => "listDelete(#{meta_tag.id})"}
         .state.p-danger-o
           %label{ for: "checkbox-#{meta_tag.id}" }
     %td

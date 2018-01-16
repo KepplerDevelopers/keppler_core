@@ -1,78 +1,63 @@
-.container
-  .row
-    .listing.col-lg-12.col-xs-12
-      %section.content-header.index-header
-        %h1
-          = t("keppler.modules.#{controller_path.underscore}")
-        %ol.breadcrumb
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-dashboard
-              = t("keppler.modules.#{action_name.underscore}")
+#index-container
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1
+            = t("keppler.modules.#{controller_path.underscore}")
+          .toolbar
+            .mailbox-controls
+              %button.btn.btn-default.btn-sm{:type => "button"}
+                %i.fa.fa-refresh
+              / Check all button
+              .btn-group
+                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
+                  .pretty.p-default.p-curve.p-thick.p-smooth
+                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
+                    .state.p-danger-o
+                      %label{ for: "checkbox-all" }
+                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
+                  %i.fa.fa-trash-o
+          %ol.breadcrumb
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-dashboard
+                = t("keppler.modules.#{action_name.underscore}")
+            -# %li
+            -#   %a{:href => "#"} UI
+            -# %li.active General
 
-      = entries(@total, @objects)
+        =# entries(@total, @objects)
 
-      .box.slice-box
-        .box-body.no-padding
-          %table.table.table-striped
-            %tbody
-              - if @objects.size.zero?
-                %tr
-                  %th{:style => 'text-align: center;'}
-                    %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.script"))
-              - else
-                %tr
-                  %th
-                  %th= t("activerecord.attributes.name")
-                  %th= t("activerecord.attributes.script")
-                  %th= t("activerecord.attributes.url")
-                  %th{:style => "text-align: center;padding-right: 30px;"}
-                    Actions
+        .box.slice-box
+          .box-body.no-padding
+            %table.table.table-striped
+              %tbody
+                - if @objects.size.zero?
+                  %tr
+                    %th{:style => 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.script"))
+                - else
+                  %tr
+                    %th
+                    %th= t("activerecord.attributes.name")
+                    %th= t("activerecord.attributes.script")
+                    %th= t("activerecord.attributes.url")
+                    %th{:style => "text-align: center;padding-right: 30px;"}
+                      Actions
 
-                - @objects.each do |script|
-                  = render 'listing', script: script
+                  - @objects.each do |script|
+                    = render 'listing', script: script
 
-      %center#paginator-module
-        = paginate @objects, window: 1
-  -# %table.bordered
-  -# 	%tbody
-  -# 		- if @objects.size.zero?
-  -# 			%tr
-  -# 				%td{colspan: "4"}
-  -# 					%center
-  -# 						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.script"))
-  -# 		- else
-  -# 			%tr.white-hover
-  -# 				%td
-  -# 				%th.center Name
-  -# 				%th.center.hide-on-small-and-down Email
-  -# 				%th.center.hide-on-small-and-down Role
-  -# 				- if can? :show, User
-  -# 					%th
-  -# 				- if can? :update, User
-  -# 					%th
-  -# 				- if can? :delete, User
-  -# 					%th
-  -# 		- @objects.each do |script|
-  -# 			= render 'listing', script: script
-  -# = paginate @objects, window: 1
-
--# .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
--#   = render "description"
-.mixed-btn
-  = link_to new_admin_script_path, class: "btn-float" do
-    %i.material-icons add
-    -# %i.fa.fa-plus
-    -# -# = material_icon.md_24.add.css_class("md-light")
-
+        %center#paginator-module
+          = paginate @objects, window: 1
+  .mixed-btn
+    = link_to new_admin_script_path, class: "btn-float" do
+      %i.material-icons add
 
 :javascript
   $(document).ready(function(){
-    $('body, html').click(function(){
-      $('.collapse.in').collapse('hide');
-    });
-    $(".custom-collapse").each(function(idx){
-      //console.log(40 + (35 * idx) + "px");
+    $(".actions.dropdown-menu").each(function(idx){
       $(this).css('top', 40 + (47 * idx) + "px")
     });
-  })
+  });
