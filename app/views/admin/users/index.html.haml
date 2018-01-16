@@ -18,16 +18,11 @@
                       %label{ for: "checkbox-all" }
                 %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
                   %i.fa.fa-trash-o
-              / /.btn-group
-              
           %ol.breadcrumb
             %li
               %a{:href => "#"}
                 %i.fa.fa-dashboard
                 = t("keppler.modules.#{action_name.underscore}")
-
-
-            
         .box.slice-box
           .box-body.no-padding
             %table.table.table-striped

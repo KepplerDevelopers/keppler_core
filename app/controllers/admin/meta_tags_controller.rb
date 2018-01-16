@@ -10,10 +10,15 @@ module Admin
       meta_tags = @q.result(distinct: true)
       @objects = meta_tags.page(@current_page)
       @total = meta_tags.size
+      #@meta_tags = MetaTag.all.reverse
       if !@objects.first_page? && @objects.size.zero?
         redirect_to meta_tags_path(
           page: @current_page.to_i.pred, search: @query
         )
+      end
+      respond_to do |format|
+        format.html
+        format.json { render :json => @objects }
       end
     end
 
