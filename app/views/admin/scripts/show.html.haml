@@ -6,19 +6,23 @@
 					%i.fa.fa-chevron-left
 					Volver
 					.clearfix
-		.clearfix
-  .row
-    .listing.col-lg-12.col-xs-12
-      %section.content-header.index-header
-        %h1
-          = t("keppler.modules.#{controller_path.underscore}")
-        %ol.breadcrumb
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-dashboard
-              = t("keppler.modules.#{action_name.underscore}")
+	.show-section
+		.row
+			.col-xs-12
+				.box.slice-box
+					.box-header.with-border
+						%h3.box-title Scripts
+						.box-tools.pull-right
+							= link_to edit_admin_script_path(@script), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+								%i.material-icons create
+							= link_to admin_script_path(@script), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+								%i.material-icons delete
 
-      .box.slice-box
-        .box-body.no-padding
-          %table.table.table-striped
-            %tbody
+					/ /.box-header
+					.box-body.box-body-no-padding
+						%table.table.table-striped
+							%tbody
+								- @script.as_json(only: @script.attribute_names, methods: [:rol]).each do |attribute, value|
+									%tr.list-row
+										%th.display-label= t("activerecord.attributes.#{attribute}")
+										%td.display-value.fs-body-1.tc-black-2= value

@@ -89,9 +89,9 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'commands'
   # Style guides
-  gem 'rubocop', require: false
-  gem 'haml-lint', require: false
-  gem 'scss_lint', require: false
+  gem 'rubocop'
+  gem 'haml-lint'
+  gem 'scss_lint'
 end
 
 #---- keppler_ga_dashboard ----

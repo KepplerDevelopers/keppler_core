@@ -1,24 +1,47 @@
-= title(t('keppler.titles.index', model: "Google adwords"))
-.listing.col.l9.m12.s12
-	- if can? :new, model
-		= link_to new_admin_google_adword_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-			-# -# = material_icon.md_24.add
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- @objects.each do |google_adword|
-				= render 'listing', google_adword: google_adword
-			- if @objects.size.zero?
-				%tr
-					%td.center{colspan: "4"}
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.google_adwords"))
--# %center#paginator-module
--#   = paginate @objects, window: 1
+.container
+  .row
+    .listing.col-lg-12.col-xs-12
+      %section.content-header.index-header
+        %h1
+          = t("keppler.modules.#{controller_path.underscore}")
+        %ol.breadcrumb
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-dashboard
+              = t("keppler.modules.#{action_name.underscore}")
 
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
+      = entries(@total, @objects)
 
-- if can? :new, model
-	= link_to new_admin_google_adword_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
-		-# -# = material_icon.md_24.add.css_class("md-light")
+      .box.slice-box
+        .box-body.no-padding
+          %table.table.table-striped
+            %tbody
+              - if @objects.size.zero?
+                %tr
+                  %th{:style => 'text-align: center;'}
+                    %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.google_adword"))
+              - else
+                %tr
+                  %th
+                  %th= t("activerecord.attributes.url")
+                  %th= t("activerecord.attributes.campaign_name")
+                  %th= t("activerecord.attributes.description")
+                  %th= t("activerecord.attributes.script")
+                  %th
+
+                - @objects.each do |google_adword|
+                  = render 'listing', google_adword: google_adword
+.mixed-btn
+  = link_to new_admin_google_adword_path, class: "btn-float" do
+    %i.material-icons add}
+
+
+:javascript
+  $(document).ready(function(){
+    $('body, html').click(function(){
+      $('.collapse.in').collapse('hide');
+    });
+    $(".custom-collapse").each(function(idx){
+      $(this).css('top', 40 + (47 * idx) + "px")
+    });
+  })

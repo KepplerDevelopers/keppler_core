@@ -9,11 +9,8 @@
             %a{:href => "#"}
               %i.fa.fa-dashboard
               = t("keppler.modules.#{action_name.underscore}")
-          -# %li
-          -#   %a{:href => "#"} UI
-          -# %li.active General
 
-      =# entries(@total, @objects)
+      = entries(@total, @objects)
 
       .box.slice-box
         .box-body.no-padding
@@ -23,16 +20,12 @@
                 %tr
                   %th{:style => 'text-align: center;'}
                     %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.script"))
-                -# .row
-                -#   .col-xs-4.col-lg-offset-4
-                -#     .callout.callout-warning
-                -#       %h4= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.script"))
               - else
                 %tr
-                  %td
-                  %th= t('activerecord.attributes.name')
-                  %th= t('activerecord.attributes.script')
-                  %th= t('activerecord.attributes.role')
+                  %th
+                  %th= t("activerecord.attributes.name")
+                  %th= t("activerecord.attributes.script")
+                  %th= t("activerecord.attributes.url")
                   %th{:style => "text-align: center;padding-right: 30px;"}
                     Actions
 

@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-   get '/index', to: 'app/front#index', as: :app_index
 
   root to: 'app/front#index'
-  get '/test_mailer', to: 'app/front#test_mailer', as: :test_mailer
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
@@ -45,6 +43,7 @@ Rails.application.routes.draw do
 
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
       delete(
         '/destroy_multiple',
         action: :destroy_multiple,
@@ -55,6 +54,7 @@ Rails.application.routes.draw do
 
     resources :google_adwords do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
       delete(
         '/destroy_multiple',
         action: :destroy_multiple,
@@ -65,6 +65,7 @@ Rails.application.routes.draw do
 
     resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
       delete(
         '/destroy_multiple',
         action: :destroy_multiple,
