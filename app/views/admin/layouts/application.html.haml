@@ -58,6 +58,21 @@
           }
           console.log(that.deleteList);
         },
+        selectAll: function(){
+          var that = this;
+          if (that.deleteList.length < that.items.length){
+            that.items.map(function(item, idx){
+              if (!that.deleteList.includes(item.id)){
+                //console.log(item.id);
+                document.getElementById(`checkbox-${item.id}`).click();
+              }
+            });
+          }else{
+            that.items.map(function(item, idx){
+              document.getElementById(`checkbox-${item.id}`).click();
+            });
+          }
+        }
         // deleteThem: function(){
         //   var that = this;
         //   //$.ajax({

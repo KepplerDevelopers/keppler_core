@@ -6,7 +6,7 @@
           %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
       - else
         = link_to "", admin_user_path(user), remote: true, class: "show-row"
-        .pretty.p-default.p-thick.p-pulse
+        .pretty.p-default.p-curve.p-thick.p-smooth
           %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
           .state.p-danger-o
             %label{ for: "checkbox-#{user.id}" }
@@ -33,11 +33,11 @@
           = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
             %i.material-icons create
             Edit
-      - if can? :clone, User
-        %li
-          = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-            %i.material-icons clone
-            Clone
+      -# - if can? :clone, User
+      -#   %li
+      -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+      -#       %i.material-icons clone
+      -#       Clone
       - if can? :delete, User
         %li
           = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
