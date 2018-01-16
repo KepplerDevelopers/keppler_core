@@ -36,6 +36,8 @@
 
                   - @objects.each do |meta_tag|
                     = render 'listing', meta_tag: meta_tag
+        %center#paginator-module
+          = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
   .mixed-btn
