@@ -13,7 +13,7 @@
               .btn-group
                 %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
                   .pretty.p-default.p-curve.p-thick.p-smooth
-                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all"}
+                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
                 %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
@@ -56,9 +56,6 @@
       %i.material-icons add
 :javascript
   $(document).ready(function(){
-    $('body, html').click(function(){
-      $('.collapse.in').collapse('hide');
-    });
     $(".actions.dropdown-menu").each(function(idx){
       $(this).css('top', 40 + (47 * idx) + "px")
     });
