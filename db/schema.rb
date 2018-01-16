@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112185419) do
+ActiveRecord::Schema.define(version: 20180114004009) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -67,6 +67,23 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.integer  "setting_id",     limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "keppler_contact_us_message_settings", force: :cascade do |t|
+    t.string   "mailer_to",   limit: 255
+    t.string   "mailer_from", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "keppler_contact_us_messages", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "subject",    limit: 255
+    t.string   "email",      limit: 255
+    t.text     "content",    limit: 65535
+    t.boolean  "read",       limit: 1
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "meta_tags", force: :cascade do |t|
