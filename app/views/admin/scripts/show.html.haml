@@ -1,12 +1,12 @@
 .container
-	.row
-		.col-lg-2
-			.arrow-back.btn.btn-default
-				= link_to admin_scripts_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-					%i.fa.fa-chevron-left
-					Volver
-					.clearfix
-		.clearfix
+  .row
+    .col-lg-2
+      .arrow-back.btn.btn-default
+        = link_to admin_scripts_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          %i.fa.fa-chevron-left
+          Volver
+          .clearfix
+    .clearfix
   .row
     .listing.col-lg-12.col-xs-12
       %section.content-header.index-header
@@ -22,3 +22,7 @@
         .box-body.no-padding
           %table.table.table-striped
             %tbody
+              - @script.as_json(only: ["id", "name", "script", "url", "created_at"], methods: [:rol]).each do |attribute, value|
+                %tr.list-row
+                  %th.display-label= t("activerecord.attributes.script.#{attribute}")
+                  %td.display-value.fs-body-1.tc-black-2= value.to_s.humanize
