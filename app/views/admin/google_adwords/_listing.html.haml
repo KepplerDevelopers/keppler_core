@@ -29,7 +29,7 @@
             Show
       - if can? :update, GoogleAdword
         %li
-          = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: 'Edit' do
+          = link_to edit_admin_google_adword_path(google_adword), class: 'new-menu', title: 'Edit' do
             %i.material-icons create
             Edit
       -# - if can? :clone, User
@@ -39,6 +39,6 @@
       -#       Clone
       - if can? :delete, GoogleAdword
         %li
-          = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: 'Delete' do
+          = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
             %i.material-icons delete
             Delete

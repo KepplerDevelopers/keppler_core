@@ -76,9 +76,13 @@ module Admin
         notice: actions_messages(Script.new)
       )
     end
+    def reload
+      @q = Script.ransack(params[:q])
+      meta_tags = @q.result(distinct: true)
+      @objects = meta_tags.page(@current_page)
+    end
 
     private
-
     # Use callbacks to share common setup or constraints between actions.
     def set_ga_track
       @script = Script.find(params[:id])
