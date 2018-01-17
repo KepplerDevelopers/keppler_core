@@ -15,6 +15,10 @@ module Admin
           google_adwords_path(page: @current_page.to_i.pred, search: @query)
         )
       end
+      respond_to do |format|
+        format.html
+        format.json { render :json => @objects }
+      end
     end
 
     # GET /google_adwords/1
