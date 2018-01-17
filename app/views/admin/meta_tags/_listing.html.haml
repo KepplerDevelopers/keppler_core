@@ -24,7 +24,7 @@
               Show
         - if can? :update, MetaTag
           %li
-            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Edit' do
+            = link_to edit_admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Edit' do
               %i.material-icons create
               Edit
         -# - if can? :clone, User
@@ -34,6 +34,6 @@
         -#       Clone
         - if can? :delete, MetaTag
           %li
-            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Delete' do
+            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.material-icons delete
               Delete

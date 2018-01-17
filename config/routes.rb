@@ -70,6 +70,11 @@ Rails.application.routes.draw do
 
     resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get(
+        '/reload',
+        action: :reload,
+        on: :collection
+      )
       delete(
         '/destroy_multiple',
         action: :destroy_multiple,

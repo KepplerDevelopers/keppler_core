@@ -30,7 +30,7 @@
             Show
       - if can? :update, User
         %li
-          = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+          = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Show' do
             %i.material-icons create
             Edit
       -# - if can? :clone, User
@@ -40,7 +40,7 @@
       -#       Clone
       - if can? :delete, User
         %li
-          = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+          = link_to admin_user_path(user), class: 'new-menu', title: 'Show', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
             %i.material-icons delete
             Delete
       -# %li
