@@ -78,7 +78,11 @@ module Admin
         notice: actions_messages(MetaTag.new)
       )
     end
-
+    def reload
+      @q = MetaTag.ransack(params[:q])
+      meta_tags = @q.result(distinct: true)
+      @objects = meta_tags.page(@current_page)
+    end
     private
 
     # Use callbacks to share common setup or constraints between actions.

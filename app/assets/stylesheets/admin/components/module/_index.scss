@@ -86,7 +86,7 @@
 }
 .actions.dropdown-menu{
   // left: auto;
-  top: 40px;
+  top: auto;
   left: auto;
   right: 60px;
   width: 100px;
@@ -157,3 +157,7 @@
     }
   }
 }
+#objects-container{
+  transition: .1s;
+}
+    
