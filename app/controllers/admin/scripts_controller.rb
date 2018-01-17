@@ -78,8 +78,8 @@ module Admin
     end
     def reload
       @q = Script.ransack(params[:q])
-      meta_tags = @q.result(distinct: true)
-      @objects = meta_tags.page(@current_page)
+      scripts = @q.result(distinct: true)
+      @objects = scripts.page(@current_page)
     end
 
     private
