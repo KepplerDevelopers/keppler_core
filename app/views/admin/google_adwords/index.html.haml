@@ -7,7 +7,7 @@
             = t("keppler.modules.#{controller_path.underscore}")
           .toolbar
             .mailbox-controls
-              %button.btn.btn-default.btn-sm{:type => "button"}
+              = link_to reload_admin_google_adwords_path, class: "btn btn-default btn-sm", remote: true do
                 %i.fa.fa-refresh
               / Check all button
               .btn-group
@@ -29,7 +29,7 @@
         .box.slice-box
           .box-body.no-padding
             %table.table.table-striped
-              %tbody
+              %thead
                 - if @objects.size.zero?
                   %tr
                     %th{:style => 'text-align: center;'}
@@ -42,9 +42,9 @@
                     %th= t("activerecord.attributes.description")
                     %th= t("activerecord.attributes.script")
                     %th
-
-                  - @objects.each do |google_adword|
-                    = render 'listing', google_adword: google_adword
+              %tbody#objects-container
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @objects
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
   .mixed-btn
