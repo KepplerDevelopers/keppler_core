@@ -19,6 +19,7 @@
     - else
       %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
         = yield
+- if action_name.eql?('index')
   :javascript
     var app = new Vue({
       el: "#index-container",
