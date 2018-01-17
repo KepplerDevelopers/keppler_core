@@ -1,21 +1,3 @@
--# %tr{ id: "row-#{meta_tag.id}" }
--# 	- if can? :destroy_multiple, MetaTag
--# 		%td.item-check{style:"width: 10%"}
--# 			= link_to "", admin_meta_tag_path(meta_tag), remote: true, class: "show-row"
--# 			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{meta_tag.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{meta_tag.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
--# 			%label{ for: "checkbox-#{meta_tag.id}" }
-
--# 		%td{style:"width: 30%"}
--# 			= link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
--# 			%span
--# 				= meta_tag.title
--# 		%td{style:"width: 30%"}
--# 			= link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
--# 			%span
--# 				= meta_tag.url
--# 	%td{style:"width: 5%"}
--# 		= link_to admin_meta_tag_path(meta_tag), class: "btn-floating waves-effect btn-flat" do
--# 			-# -# = material_icon.md_24.more_horiz.css_class("md-dark")
 %tr{ id: "row-#{meta_tag.id}" }
   - if can? :destroy_multiple, MetaTag
     %td.item-check{style:"width: 10%"}
@@ -24,35 +6,39 @@
         %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{meta_tag.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{meta_tag.id}", "@click" => "listDelete(#{meta_tag.id})"}
         .state.p-danger-o
           %label{ for: "checkbox-#{meta_tag.id}" }
-    %td
-      = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
-      %span
-        = meta_tag.title
-    %td
-      = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
-      %span
-        = meta_tag.url
-    %td{:style => "float: right;padding-right: 30px;"}
-      %a.drop{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
-        %i.material-icons menu
-      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{script.id}"}
-        - if can? :show, MetaTag
-          %li
-            = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
-              %i.material-icons remove_red_eye
-              Show
-        - if can? :update, MetaTag
-          %li
-            = link_to admin_script_path(script), class: 'new-menu', title: 'Edit' do
-              %i.material-icons create
-              Edit
-        -# - if can? :clone, User
-        -#   %li
-        -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-        -#       %i.material-icons clone
-        -#       Clone
-        - if can? :delete, MetaTag
-          %li
-            = link_to admin_script_path(script), class: 'new-menu', title: 'Delete' do
-              %i.material-icons delete
-              Delete
+  %td.hide-on-small-and-down
+    = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
+    %span= meta_tag.title
+  %td.text-overflow{ style: 'max-width: 200px'}
+    = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
+    %span= meta_tag.description
+  %td.hide-on-small-and-down
+    = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
+    %span= meta_tag.meta_tags
+  %td.hide-on-small-and-down
+    = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
+    %span= meta_tag.url
+  %td{:style => "float: right;padding-right: 30px;"}
+    %a.drop{:id => "menu-#{meta_tag.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+      %i.material-icons menu
+    %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{meta_tag.id}"}
+      - if can? :show, MetaTag
+        %li
+          = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Show' do
+            %i.material-icons remove_red_eye
+            Show
+      - if can? :update, MetaTag
+        %li
+          = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Edit' do
+            %i.material-icons create
+            Edit
+      -# - if can? :clone, User
+      -#   %li
+      -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+      -#       %i.material-icons clone
+      -#       Clone
+      - if can? :delete, MetaTag
+        %li
+          = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Delete' do
+            %i.material-icons delete
+            Delete
