@@ -80,6 +80,12 @@ module Admin
       )
     end
 
+    def reload
+      @q = GoogleAdword.ransack(params[:q])
+      google_adwords = @q.result(distinct: true)
+      @objects = google_adwords.page(@current_page)
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
