@@ -50,8 +50,10 @@
 
   #sidebar-footer
     %a{:href=>"http://slicegroup.xyz", target: "_blank"}
-      #sidebar-footer-brand.pull-left
-        = image_tag 'admin/slice_white.png', height: 30
+      #slice.brand.pull-left
+        = image_tag 'admin/slice_white.png'
+      #icon.brand.pull-left.hidden
+        = image_tag 'admin/slice-icon.png'
     %span.pull-right v 2.0
 
   / /.sidebar
