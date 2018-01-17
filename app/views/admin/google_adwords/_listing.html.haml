@@ -1,19 +1,44 @@
 %tr{ id: "row-#{google_adword.id}" }
-	- if can? :destroy_multiple, GoogleAdword
-		%td.item-check{style:"width: 10%"}
-			= link_to "", admin_google_adword_path(google_adword), remote: true, class: "show-row"
-			%input{ type:"checkbox", class: "filled-in", id: "checkbox-#{google_adword.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{google_adword.id}", "ng-click"=>"selectByCheck(#{@objects.size})"}
-			%label{ for: "checkbox-#{google_adword.id}" }
-
-		%td.center
-			= link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
-			%span
-				= google_adword.url
-		%td.center
-			= link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
-			%span
-				= google_adword.campaign_name
-
-	%td.center
-		= link_to admin_google_adword_path(google_adword), class: "btn-floating waves-effect btn-flat" do
-			-# -# = material_icon.md_24.more_horiz.css_class("md-dark")
+  - if can? :destroy_multiple, GoogleAdword
+    %td.item-check{style:"width: 10%"}
+      = link_to "", admin_google_adword_path(google_adword), remote: true, class: "show-row"
+      .pretty.p-default.p-curve.p-thick.p-smooth
+        %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{google_adword.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{google_adword.id}", "@click" => "listDelete(#{google_adword.id})"}
+        .state.p-danger-o
+          %label{ for: "checkbox-#{google_adword.id}" }
+  %td.hide-on-small-and-down
+    = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
+    %span= google_adword.url
+  %td.text-overflow{ style: 'max-width: 200px'}
+    = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
+    %span= google_adword.campaign_name
+  %td.hide-on-small-and-down
+    = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
+    %span= google_adword.description
+  %td.hide-on-small-and-down
+    = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
+    %span= google_adword.script
+  %td{:style => "float: right;padding-right: 30px;"}
+    %a.drop{:id => "menu-#{google_adword.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+      %i.material-icons menu
+    %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{google_adword.id}"}
+      - if can? :show, GoogleAdword
+        %li
+          = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: 'Show' do
+            %i.material-icons remove_red_eye
+            Show
+      - if can? :update, GoogleAdword
+        %li
+          = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: 'Edit' do
+            %i.material-icons create
+            Edit
+      -# - if can? :clone, User
+      -#   %li
+      -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+      -#       %i.material-icons clone
+      -#       Clone
+      - if can? :delete, GoogleAdword
+        %li
+          = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: 'Delete' do
+            %i.material-icons delete
+            Delete
