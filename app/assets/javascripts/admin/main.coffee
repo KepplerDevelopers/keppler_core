@@ -64,25 +64,12 @@ $(window).load ->
     return
 
   toggleMenu = ->
-    img = $('#sidebar-footer-brand img')
-    if $('body').hasClass 'sidebar-collapse'
-      img.attr 'src', '/assets/admin/slice_white.png'
-      img.css {
-        height: 30,
-        margin: 0
-      }
-    else
-      img.attr 'src', '/assets/admin/slice-icon.png'
-      img.css {
-        height: 20,
-        margin: '0 13px'
-      }
-    return
+    $slice = $('#sidebar-footer .brand')
+    $slice.toggleClass 'hidden'
 
   $('.sidebar-toggle').click ->
     toggleMenu()
-    
+
   preloaderFadeOutTime = 500
   hidePreloader()
-  toggleMenu()
   return

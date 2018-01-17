@@ -32,25 +32,27 @@
       = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
       %span
         = meta_tag.url
-    %td{:style => "float: right;width: 20%;"}
-      %a.coll{"data-toggle"=>"collapse", "aria-expanded"=>"false", "aria-controls"=>"menu-#{meta_tag.id}", :href => "#menu-#{meta_tag.id}"}
-        -# %span.caret
+    %td{:style => "float: right;padding-right: 30px;"}
+      %a.drop{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.material-icons menu
-      .custom-collapse.collapse{id: "menu-#{meta_tag.id}"}
-        .panel-body
-          - if can? :show, MetaTag
-
-            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Show' do
+      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{script.id}"}
+        - if can? :show, MetaTag
+          %li
+            = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
               %i.material-icons remove_red_eye
-          - if can? :update, MetaTag
-
-            = link_to edit_admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Edit' do
+              Show
+        - if can? :update, MetaTag
+          %li
+            = link_to admin_script_path(script), class: 'new-menu', title: 'Edit' do
               %i.material-icons create
-          -# - if can? :clone, MetaTag
-
-          -#   = link_to admin_meta_tag_clone_path(meta_tag), class: 'new-menu', title: 'Clone' do
-          -#     %i.material-icons clone
-          - if can? :delete, MetaTag
-
-            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+              Edit
+        -# - if can? :clone, User
+        -#   %li
+        -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+        -#       %i.material-icons clone
+        -#       Clone
+        - if can? :delete, MetaTag
+          %li
+            = link_to admin_script_path(script), class: 'new-menu', title: 'Delete' do
               %i.material-icons delete
+              Delete
