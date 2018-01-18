@@ -1,7 +1,6 @@
 !!!
 %html
   = render 'admin/layouts/head'
-  
   %body.sidebar-mini.skin-blue{style: "height: auto; min-height: 100%;" }
     #log
 
@@ -22,9 +21,3 @@
         = yield
     - if action_name.eql?('index')
       %script{:src => "/assets/vue_admin/index.js"}
-    
-:sass
-  .wrapper
-    .content-wrapper
-      padding-top: 60px
-      min-height: 100vh !important
