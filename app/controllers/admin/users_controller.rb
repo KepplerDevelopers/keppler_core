@@ -76,6 +76,12 @@ module Admin
       @cache = Cache.create(image: params[:user][:avatar])
     end
 
+    def reload
+      @q = User.ransack(params[:q])
+      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
+      @objects = users.page(@current_page)
+    end
+    
     private
 
     def set_user

@@ -8,7 +8,7 @@
             = t("keppler.modules.#{controller_path.underscore}")
           .toolbar
             .mailbox-controls
-              %button.btn.btn-default.btn-sm{:type => "button"}
+              = link_to reload_admin_users_path, class: "btn btn-default btn-sm", remote: true do
                 %i.fa.fa-refresh
               / Check all button
               .btn-group
@@ -27,7 +27,7 @@
         .box.slice-box
           .box-body.no-padding
             %table.table.table-striped
-              %tbody
+              %thead
                 - if @objects.size.zero?
                   %tr
                     %th{:style => 'text-align: center;'}
@@ -43,9 +43,9 @@
                       Role
                     %th{:style => "text-align: center;padding-right: 30px;"}
                       Actions
-
-                  - @objects.each do |user|
-                    = render 'listing', user: user
+              %tbody#objects-container
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @objects
 
         %center#paginator-module
           = paginate @objects, window: 1
