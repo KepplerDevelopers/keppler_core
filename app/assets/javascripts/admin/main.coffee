@@ -62,7 +62,7 @@ $(window).load ->
     preloader = $('#spinner')
     preloader.fadeOut preloaderFadeOutTime
     return
-
+    
   toggleMenu = ->
     $slice = $('#sidebar-footer .brand')
     $slice.toggleClass 'hidden'
