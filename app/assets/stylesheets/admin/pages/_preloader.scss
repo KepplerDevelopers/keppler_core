@@ -218,36 +218,36 @@
   }
   @-webkit-keyframes colors {
     0% {
-      stroke: #4285F4;
+      stroke: $keppler-color;
     }
     25% {
-      stroke: #DE3E35;
+      stroke: $keppler-color;
     }
     50% {
-      stroke: #F7C223;
+      stroke: $keppler-color;
     }
     75% {
-      stroke: #1B9A59;
+      stroke: $keppler-color;
     }
     100% {
-      stroke: #4285F4;
+      stroke: $keppler-color;
     }
   }
   @keyframes colors {
     0% {
-      stroke: #4285F4;
+      stroke: $keppler-color;
     }
     25% {
-      stroke: #DE3E35;
+      stroke: $keppler-color;
     }
     50% {
-      stroke: #F7C223;
+      stroke: $keppler-color;
     }
     75% {
-      stroke: #1B9A59;
+      stroke: $keppler-color;
     }
     100% {
-      stroke: #4285F4;
+      stroke: $keppler-color;
     }
   }
   @-webkit-keyframes dash {
