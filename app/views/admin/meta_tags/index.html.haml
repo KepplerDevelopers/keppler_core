@@ -7,7 +7,7 @@
             = t("keppler.modules.#{controller_path.underscore}")
           .toolbar
             .mailbox-controls
-              %button.btn.btn-default.btn-sm{:type => "button"}
+              = link_to reload_admin_meta_tags_path, class: "btn btn-default btn-sm", remote: true do
                 %i.fa.fa-refresh
               / Check all button
               .btn-group
@@ -31,8 +31,9 @@
 
         .box.slice-box
           .box-body.no-padding
+            
             %table.table.table-striped
-              %tbody
+              %thead
                 - if @objects.size.zero?
                   %tr
                     %th{:style => 'text-align: center;'}
@@ -46,9 +47,9 @@
                       Url
                     %th{:style => "width: 20%;"}
                       Actions
-
-                  - @objects.each do |meta_tag|
-                    = render 'listing', meta_tag: meta_tag
+              %tbody#objects-container
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @objects
         %center#paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
@@ -58,10 +59,8 @@
       %i.material-icons add
 :javascript
   $(document).ready(function(){
-    $('body, html').click(function(){
-      $('.collapse.in').collapse('hide');
-    });
-    $(".custom-collapse").each(function(idx){
+    $(".actions.dropdown-menu").each(function(idx){
       $(this).css('top', 40 + (47 * idx) + "px")
     });
   });
+  
