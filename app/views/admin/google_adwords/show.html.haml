@@ -7,30 +7,31 @@
           Volver
           .clearfix
     .clearfix
-  .row
-    .listing.col-lg-12.col-xs-12
-      %section.content-header.index-header
-        %h1
-          = t("keppler.modules.#{controller_path.underscore}")
-        %ol.breadcrumb
-          %li
-            %a{:href => "#"}
-              %i.fa.fa-dashboard
-              = t("keppler.modules.#{action_name.underscore}")
+  .show-section
+    .row
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+            .box-tools.pull-right
+              = link_to edit_admin_google_adword_path(@google_adword), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                %i.icon-pencil
+              = link_to admin_google_adword_path(@google_adword), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                %i.icon-trash
 
-      .box.slice-box
-        .box-body.no-padding
-          %table.table.table-striped
-            %tbody
-              %tr.list-row
-                %th.display-label= t("activerecord.attributes.url")
-                %td.display-value.fs-body-1.tc-black-2= @google_adword.url
-              %tr.list-row
-                %th.display-label= t("activerecord.attributes.campaign_name")
-                %td.display-value.fs-body-1.tc-black-2= @google_adword.campaign_name
-              %tr.list-row
-                %th.display-label= t("activerecord.attributes.description")
-                %td.display-value.fs-body-1.tc-black-2= @google_adword.description
-              %tr.list-row
-                %th.display-label= t("activerecord.attributes.script")
-                %td.display-value.fs-body-1.tc-black-2= @google_adword.script
+      
+          .box-body.no-padding
+            %table.table.table-striped
+              %tbody
+                %tr.list-row
+                  %th.display-label= t("activerecord.attributes.url")
+                  %td.display-value.fs-body-1.tc-black-2= @google_adword.url
+                %tr.list-row
+                  %th.display-label= t("activerecord.attributes.campaign_name")
+                  %td.display-value.fs-body-1.tc-black-2= @google_adword.campaign_name
+                %tr.list-row
+                  %th.display-label= t("activerecord.attributes.description")
+                  %td.display-value.fs-body-1.tc-black-2= @google_adword.description
+                %tr.list-row
+                  %th.display-label= t("activerecord.attributes.script")
+                  %td.display-value.fs-body-1.tc-black-2= @google_adword.script

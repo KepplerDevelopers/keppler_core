@@ -53,7 +53,7 @@
       top: 2rem;
     }
     100% {
-      top: 0rem;
+      top: 0;
     }
   }
 
@@ -78,7 +78,7 @@
       opacity: 0;
     }
     100% {
-      top: 0rem;
+      top: 0;
       opacity: 1;
     }
   }
@@ -147,4 +147,16 @@
       padding: 0 15px 15px;
     }
   }
+}
+.input-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  pointer-events: none;
 }
