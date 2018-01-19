@@ -159,4 +159,12 @@
 #objects-container{
   transition: .1s;
 }
+
+.ui-sortable-helper{
+  display: table;
+}
+.ui-sortable-handle{
+  background-color: #fdfdfd;
+}
+
     
