@@ -44,9 +44,9 @@
 						%h3.box-title Meta tags
 						.box-tools.pull-right
 							= link_to edit_admin_meta_tag_path(@meta_tag), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
-								%i.fa.fa-pencil
+								%i.icon-pencil
 							= link_to admin_meta_tag_path(@meta_tag), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-								%i.fa.fa-trash
+								%i.icon-trash
 
 					/ /.box-header
 					.box-body.box-body-no-padding
