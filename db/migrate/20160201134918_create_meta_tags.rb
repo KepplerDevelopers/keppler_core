@@ -5,6 +5,7 @@ class CreateMetaTags < ActiveRecord::Migration
       t.text :description
       t.text :meta_tags
       t.string :url
+      t.integer :position
 
       t.timestamps null: false
     end

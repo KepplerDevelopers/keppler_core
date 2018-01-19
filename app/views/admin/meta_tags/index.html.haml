@@ -47,9 +47,9 @@
                       Url
                     %th{:style => "width: 20%;"}
                       Actions
-              %tbody#objects-container
+              %tbody#draggable{ "data-update-url" => "#{admin_sorting_meta_tags_path}" }
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @objects
+                = render 'listing', objects: @meta_tags
         %center#paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
@@ -57,10 +57,6 @@
   .mixed-btn
     = link_to new_admin_meta_tag_path, class: "btn-float" do
       %i.material-icons add
-:javascript
-  $(document).ready(function(){
-    $(".actions.dropdown-menu").each(function(idx){
-      $(this).css('top', 40 + (47 * idx) + "px")
-    });
-  });
+  
+  
   

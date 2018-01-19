@@ -48,8 +48,10 @@ Rails.application.routes.draw do
       )
     end
 
+    post '/sorting', to: 'meta_tags#sort', as: :sorting_meta_tags
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      
       get(
         '/reload',
         action: :reload,

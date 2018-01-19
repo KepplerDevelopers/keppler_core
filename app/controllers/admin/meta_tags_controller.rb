@@ -10,7 +10,7 @@ module Admin
       meta_tags = @q.result(distinct: true)
       @objects = meta_tags.page(@current_page)
       @total = meta_tags.size
-      #@meta_tags = MetaTag.all.reverse
+      @meta_tags = MetaTag.order(:position)
       if !@objects.first_page? && @objects.size.zero?
         redirect_to meta_tags_path(
           page: @current_page.to_i.pred, search: @query
@@ -38,7 +38,6 @@ module Admin
     # POST /meta_tags
     def create
       @meta_tag = MetaTag.new(meta_tag_params)
-
       if @meta_tag.save
         redirect(@meta_tag, params)
       else
@@ -78,11 +77,16 @@ module Admin
         notice: actions_messages(MetaTag.new)
       )
     end
+
     def reload
-      @q = MetaTag.ransack(params[:q])
-      meta_tags = @q.result(distinct: true)
-      @objects = meta_tags.page(@current_page)
+      @meta_tags = MetaTag.order(:position)
     end
+
+    def sort
+      MetaTag.sorter(params[:row])
+      render :index
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -92,7 +96,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def meta_tag_params
-      params.require(:meta_tag).permit(:title, :description, :meta_tags, :url)
+      params.require(:meta_tag).permit(:title, :description, :meta_tags, :url, :position)
     end
 
     def show_history

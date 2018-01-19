@@ -7,7 +7,14 @@ function removeA(arr) {
       }
   }
   return arr;
-}
+} 
+
+
+$(function ($) {
+  moveDropdown();
+});
+
+
 var app = new Vue({
     el: "#index-container",
     //  props: [action, controller],
