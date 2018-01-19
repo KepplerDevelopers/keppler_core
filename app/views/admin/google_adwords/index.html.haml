@@ -50,11 +50,3 @@
   .mixed-btn
     = link_to new_admin_google_adword_path, class: "btn-float" do
       %i.material-icons add
-
-
-:javascript
-  $(document).ready(function(){
-    $(".custom-collapse").each(function(idx){
-      $(this).css('top', 40 + (47 * idx) + "px")
-    });
-  })
