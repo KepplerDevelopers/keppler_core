@@ -12,11 +12,12 @@
       #search
         .input-group
           = search_form_for [:admin, @q], html: { method: :get } do |f|
-            = f.search_field controller_name.singularize.camelcase.constantize.search_field, placeholder: 'Buscar..', class: 'form-control search-bar'
+            = f.search_field search_model, placeholder: "#{t('keppler.actions.search')}...", class: 'form-control search-bar'
           %span.input-group-btn
-            %button.btn.btn-defaul.search-button{:type => "button"}
+            %button.btn.search-button.toggle-search{:type => "submit"}
               %span.glyphicon.glyphicon-search.search-icon
-
+      .hide-search
+        %i.material-icons arrow_back
 
     .navbar-custom-menu
       %ul.nav.navbar-nav
@@ -39,7 +40,7 @@
                 = link_to "Profile", "/admin/users/#{current_user.id}", class: "btn btn-default btn-flat"
               .pull-right
                 = link_to t('devise.sign_out'), destroy_session_path(current_user), class: " btn btn-default btn-flat"
-        - if action_name == 'index'
+        - if listing?
           %li
             %a{:href=>"#", "data-toggle" => "control-sidebar"}
               %i.fa.fa-history

@@ -21,7 +21,7 @@
       %span= google_adword.script
     %td{:style => "float: right;padding-right: 30px;"}
       %a.drop{:id => "menu-#{google_adword.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
-        %i.material-icons menu
+        %i.material-icons more_vert
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{google_adword.id}"}
         - if can? :show, GoogleAdword
           %li
