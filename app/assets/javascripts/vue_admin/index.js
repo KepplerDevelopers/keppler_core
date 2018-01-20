@@ -7,8 +7,7 @@ function removeA(arr) {
       }
   }
   return arr;
-} 
-
+}
 
 $(function ($) {
   moveDropdown();

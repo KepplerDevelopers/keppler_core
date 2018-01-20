@@ -1,15 +1,22 @@
 #search {
   margin: 8px 0;
-
-  .search-icon {
-    color: #fff;
-
-  }
-  .search-button {
-    background-color: $keppler-color;
-    border-radius: 1px;
-  }
-  .search-button:hover {
-    background-color: $keppler-color;
+  width: 50%;
+  float: left;
+  .input-group {
+    .search-bar {
+      // padding: 0;
+    }
+    .input-group-btn {
+      .search-button {
+        background-color: $keppler-color;
+        border-radius: 1px;
+        &:hover {
+          background-color: $keppler-color;
+        }
+        .search-icon {
+          color: #fff;
+        }
+      }
+    }
   }
 }
