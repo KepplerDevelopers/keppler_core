@@ -15,7 +15,7 @@
       %span= meta_tag.url
     %td{:style => "float: right;padding-right: 30px;"}
       %a.drop{:id => "menu-#{meta_tag.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
-        %i.material-icons menu
+        %i.material-icons more_vert
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{meta_tag.id}"}
         - if can? :show, MetaTag
           %li
