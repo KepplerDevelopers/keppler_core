@@ -11,7 +11,7 @@ class MetaTag < ActiveRecord::Base
   end
 
   def self.search_field
-    :title_or_description_or_url_cont
+    :title_or_description_or_url_cont_any
   end
 
   def self.sorter(params)
