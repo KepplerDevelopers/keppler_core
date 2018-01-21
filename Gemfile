@@ -39,7 +39,10 @@ gem 'public_activity'
 source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
 end
-# gem 'icheck-rails'
+
+#State Machine
+gem 'aasm', '~> 4.12', '>= 4.12.3'
+
 
 # Forms
 gem 'simple_form'

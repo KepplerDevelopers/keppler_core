@@ -1,7 +1,7 @@
 # User Model
 class User < ActiveRecord::Base
   include ActivityHistory
-
+  include AASM
   mount_uploader :avatar, TemplateUploader
   before_save :create_permalink, if: :new_record?
   rolify
@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
     roles.first.name
   end
 
+
   # Get the page number that the object belongs to
   def page(order = :id)
     ((self.class.order(order => :desc)
@@ -27,6 +28,20 @@ class User < ActiveRecord::Base
 
   def self.search_field
     :name_or_username_or_email_cont
+  end
+
+  #STATES
+  aasm column: "state" do
+    state :active, :initial => true
+    state :inactive
+
+    event :activating do
+      transitions from: :inactive, to: :active
+    end
+
+    event :desactivating do
+      transitions from: :active, to: :inactive
+    end
   end
 
   private
