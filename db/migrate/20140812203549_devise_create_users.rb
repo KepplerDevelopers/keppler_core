@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :permalink
       t.string :username
       t.string :avatar
+      t.string :state, default: 'active'
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
