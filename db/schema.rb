@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.string   "name",                   limit: 255
     t.string   "permalink",              limit: 255
     t.string   "username",               limit: 255
+    t.datetime "deleted_at"
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
