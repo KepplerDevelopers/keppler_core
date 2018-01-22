@@ -39,11 +39,7 @@ gem 'public_activity'
 source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
 end
-
-#State Machine
-gem 'aasm', '~> 4.12', '>= 4.12.3'
-
-
+gem 'acts_as_paranoid', '~> 0.5.0'
 # Forms
 gem 'simple_form'
 gem 'cocoon'
