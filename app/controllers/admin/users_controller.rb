@@ -7,7 +7,7 @@ module Admin
 
     def index
       @q = User.ransack(params[:q])
-      users = @q.result(distinct: true).where('id != ? AND state = ?', User.first.id, 'active').order(created_at: :desc)
+      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
       @objects = users.page(@current_page)
       @total = users.size
       @users = User.all.reverse
@@ -59,11 +59,6 @@ module Admin
 
     def destroy
       @user.destroy
-      redirect_to admin_users_path, notice: actions_messages(@user)
-    end
-
-    def desactivate
-      @user.desactivating! if @user.may_desactivating?
       redirect_to admin_users_path, notice: actions_messages(@user)
     end
 

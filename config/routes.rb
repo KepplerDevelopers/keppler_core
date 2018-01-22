@@ -35,7 +35,6 @@ Rails.application.routes.draw do
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''
       post '/upload_avatar', action: :change_avatar
-      get '/unable/:id', action: :desactivate, on: :collection, as: :desactive
       get(
         '/reload',
         action: :reload,

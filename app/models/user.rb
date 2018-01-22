@@ -1,13 +1,12 @@
 # User Model
 class User < ActiveRecord::Base
   include ActivityHistory
-  include AASM
   mount_uploader :avatar, TemplateUploader
   before_save :create_permalink, if: :new_record?
   rolify
   validates_presence_of :name, :role_ids, :email
   mount_uploader :avatar, AttachmentUploader
-  # has_many :posts, dependent:  :destroy relation posts
+  acts_as_paranoid
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -28,20 +27,6 @@ class User < ActiveRecord::Base
 
   def self.search_field
     :name_or_username_or_email_cont
-  end
-
-  #STATES
-  aasm column: "state" do
-    state :active, :initial => true
-    state :inactive
-
-    event :activating do
-      transitions from: :inactive, to: :active
-    end
-
-    event :desactivating do
-      transitions from: :active, to: :inactive
-    end
   end
 
   private
