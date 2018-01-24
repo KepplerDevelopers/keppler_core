@@ -2,24 +2,23 @@
   %tr{ id: "row-#{script.id}" }
     - if can? :destroy_multiple, User
       %td.item-check{style:"width: 10%"}
-        = link_to "", admin_script_path(script), remote: true, class: "show-row"
         .pretty.p-default.p-curve.p-thick.p-smooth
           %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{script.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{script.id}", "@click" => "listDelete(#{script.id})"}
           .state.p-danger-o
             %label{ for: "checkbox-#{script.id}" }
     %td.hide-on-small-and-down
-      = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
-      %span= script.name
+      = link_to admin_script_path(script, search: @query), remote: true, class: "show-row" do
+        %span= script.name
     %td.text-overflow{ style: 'max-width: 200px'}
-      = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
-      %span= script.script
+      = link_to admin_script_path(script, search: @query), remote: true, class: "show-row" do
+        %span= script.script
     %td.hide-on-small-and-down
-      = link_to "", admin_script_path(script, search: @query), remote: true, class: "show-row"
-      %span= script.url
-    %td{:style => "float: right;padding-right: 30px;"}
-      %a.drop{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+      = link_to admin_script_path(script, search: @query), remote: true, class: "show-row" do
+        %span= script.url
+    %td{:style => ";padding-right: 30px;"}
+      %a.drop.pull-right{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.material-icons more_vert
-      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{script.id}"}
+      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{script.id}" }
         - if can? :show, Script
           %li
             = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
