@@ -2,7 +2,7 @@ module Admin
   # UsersController
   class UsersController < AdminController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :set_roles, only: [:index, :new, :edit]
+    before_action :set_roles, only: [:index, :new, :edit, :create, :update]
     before_action :show_history, only: [:index]
 
     def index
@@ -53,7 +53,7 @@ module Admin
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
         redirect(@user, params)
       else
-        redirect_to new_admin_user_path
+        render 'new'
       end
     end
 
