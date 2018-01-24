@@ -53,7 +53,7 @@ module Admin
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
         redirect(@user, params)
       else
-        render action: 'new'
+        redirect_to new_admin_user_path
       end
     end
 
@@ -81,7 +81,7 @@ module Admin
       users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
       @objects = users.page(@current_page)
     end
-    
+
     private
 
     def set_user

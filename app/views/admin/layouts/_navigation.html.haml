@@ -7,6 +7,7 @@
       Admin
   %nav.navbar.navbar-static-top
     %a.sidebar-toggle{"data-toggle" => "offcanvas", :href => "#", :role => "button"}
+      %i.icon-menu
       %span.sr-only Toggle navigation
     - if listing?
       #search
@@ -43,4 +44,4 @@
         - if listing?
           %li
             %a{:href=>"#", "data-toggle" => "control-sidebar"}
-              %i.fa.fa-history
+              %i.icon-clock

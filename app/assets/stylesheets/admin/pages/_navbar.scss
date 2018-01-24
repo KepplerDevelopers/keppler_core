@@ -30,3 +30,7 @@ header.main-header{
 .navbar-nav {
   transition: .4s .5s ease-in-out;
 }
+
+.main-header .sidebar-toggle:before {
+  display: none;
+}
