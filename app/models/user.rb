@@ -1,13 +1,12 @@
 # User Model
 class User < ActiveRecord::Base
   include ActivityHistory
-
   mount_uploader :avatar, TemplateUploader
   before_save :create_permalink, if: :new_record?
   rolify
   validates_presence_of :name, :role_ids, :email
   mount_uploader :avatar, AttachmentUploader
-  # has_many :posts, dependent:  :destroy relation posts
+  acts_as_paranoid
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -17,6 +16,7 @@ class User < ActiveRecord::Base
   def rol
     roles.first.name
   end
+
 
   # Get the page number that the object belongs to
   def page(order = :id)
