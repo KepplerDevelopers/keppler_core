@@ -37,7 +37,7 @@
 						<%- end -%>
 					<%- end -%>
 					%th.center{ colspan: 2 }
-			%tbody#draggable{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
+			%tbody#objects-container{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
 				- @objects.each do |<%= singular_table_name %>|
 					= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
 		- else

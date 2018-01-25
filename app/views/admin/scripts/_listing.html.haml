@@ -29,11 +29,11 @@
             = link_to edit_admin_script_path(script), class: 'new-menu', title: 'Edit' do
               %i.icon-pencil
               Edit
-        -# - if can? :clone, User
-        -#   %li
-        -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-        -#       %i.material-icons clone
-        -#       Clone
+        - if can? :clone, Script
+          %li
+            = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
+              %i.material-icons clone
+              Clone
         - if can? :delete, Script
           %li
             = link_to admin_script_path(script), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do

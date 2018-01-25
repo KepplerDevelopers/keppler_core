@@ -1,5 +1,5 @@
 jQuery ->
-  $('#draggable').sortable
+  $('#objects-container').sortable
     axis: 'y'
     handler: '.drop'
     update: ->

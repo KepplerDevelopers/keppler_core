@@ -54,7 +54,7 @@
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
-  #index-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+  %aside#index-show.control-sidebar
 
   .mixed-btn
     = link_to new_admin_script_path, class: "btn-float" do

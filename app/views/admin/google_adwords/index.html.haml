@@ -47,6 +47,8 @@
                 = render 'listing', objects: @objects
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
+  %aside#index-show.control-sidebar
+  
   .mixed-btn
     = link_to new_admin_google_adword_path, class: "btn-float" do
       %i.material-icons add
