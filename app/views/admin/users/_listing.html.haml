@@ -19,19 +19,19 @@
     %td.hide-on-small-and-down
       = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
         %span= user.rol.humanize
-    %td{:style => "float: right;padding-right: 30px;"}
+    %td{ style: "padding-right: 30px" }
       %a.drop{:id => "menu-#{user.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
-        %i.material-icons more_vert
+        %i.icon-options-vertical
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{user.id}"}
         - if can? :show, User
           %li
             = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-              %i.material-icons remove_red_eye
+              %i.icon-eye
               Show
         - if can? :update, User
           %li
-            = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Show' do
-              %i.material-icons create
+            = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Edit' do
+              %i.icon-pencil
               Edit
         -# - if can? :clone, User
         -#   %li
@@ -40,8 +40,8 @@
         -#       Clone
         - if can? :delete, User
           %li
-            = link_to admin_user_path(user), class: 'new-menu', title: 'Show', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-              %i.material-icons delete
+            = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+              %i.icon-trash
               Delete
 
   %aside.control-sidebar.control-sidebar-light{ id: "index_show_#{user.id}"}

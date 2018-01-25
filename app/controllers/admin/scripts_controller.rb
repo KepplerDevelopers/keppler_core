@@ -38,8 +38,7 @@ module Admin
 
     # POST /scripts
     def create
-      @script =
-        Script.new(script_params)
+      @script = Script.new(script_params)
 
       if @script.save
         redirect(@script, params)

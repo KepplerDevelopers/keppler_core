@@ -15,19 +15,19 @@
     %td.hide-on-small-and-down
       = link_to admin_script_path(script, search: @query), remote: true, class: "show-row" do
         %span= script.url
-    %td{:style => ";padding-right: 30px;"}
+    %td{ style: 'padding-right: 30px' }
       %a.drop.pull-right{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
-        %i.material-icons more_vert
+        %i.icon-options-vertical
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{script.id}" }
         - if can? :show, Script
           %li
             = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
-              %i.material-icons remove_red_eye
+              %i.icon-eye
               Show
         - if can? :update, Script
           %li
             = link_to edit_admin_script_path(script), class: 'new-menu', title: 'Edit' do
-              %i.material-icons create
+              %i.icon-pencil
               Edit
         -# - if can? :clone, User
         -#   %li
@@ -37,5 +37,5 @@
         - if can? :delete, Script
           %li
             = link_to admin_script_path(script), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-              %i.material-icons delete
+              %i.icon-trash
               Delete
