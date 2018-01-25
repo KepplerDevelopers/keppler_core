@@ -1,28 +1,27 @@
 - objects.each do |meta_tag|
   %tr{ id: "row-#{meta_tag.id}" }
-    - if can? :destroy_multiple, MetaTag
+    - if can? :destroy_multiple, GoogleAdword
       %td.item-check{style:"width: 10%"}
-        = link_to "", admin_meta_tag_path(meta_tag), remote: true, class: "show-row"
         .pretty.p-default.p-curve.p-thick.p-smooth
           %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{meta_tag.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{meta_tag.id}", "@click" => "listDelete(#{meta_tag.id})"}
           .state.p-danger-o
             %label{ for: "checkbox-#{meta_tag.id}" }
     %td.hide-on-small-and-down
-      = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
-      %span= meta_tag.title
-    %td.hide-on-small-and-down
-      = link_to "", admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row"
-      %span= meta_tag.url
-    %td{:style => "float: right;padding-right: 30px;"}
-      %a.drop{:id => "menu-#{meta_tag.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+      = link_to admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row" do
+        %span= meta_tag.title
+    %td.text-overflow{ style: 'max-width: 200px'}
+      = link_to admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row" do
+        %span= meta_tag.url
+    %td{ style: 'padding-right: 30px;'}
+      %a.drop.pull-right{:id => "menu-#{meta_tag.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown'}
         %i.icon-options-vertical
-      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{meta_tag.id}"}
-        - if can? :show, MetaTag
+      %ul.actions.dropdown-menu{ 'aria-labelledby' => "menu-#{meta_tag.id}"}
+        - if can? :show, GoogleAdword
           %li
             = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Show' do
               %i.icon-eye
               Show
-        - if can? :update, MetaTag
+        - if can? :update, GoogleAdword
           %li
             = link_to edit_admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Edit' do
               %i.icon-pencil
@@ -32,7 +31,7 @@
         -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
         -#       %i.material-icons clone
         -#       Clone
-        - if can? :delete, MetaTag
+        - if can? :delete, GoogleAdword
           %li
             = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash

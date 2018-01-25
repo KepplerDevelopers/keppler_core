@@ -2,9 +2,9 @@
   .container
     .row
       .col-lg-2
-        .arrow-back.btn.btn-default
-          = link_to admin_meta_tags_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-            %i.fa.fa-chevron-left
+        = link_to admin_meta_tags_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          .arrow-back.btn.btn-default
+            %i.icon-arrow-left
             Volver
     .row
       .col-lg-12
@@ -37,16 +37,16 @@
                 .form-padding
                   .row
                     .col-lg-6
-                      = f.input :title, input_html: {class: "form-control"}
+                      = f.input :title, required: true, autofocus: true
 
                     .col-lg-6
-                      = f.input :url, input_html: {class: "form-control"}
+                      = f.input :url, required: true, autofocus: true
                   .row
                     .col-lg-12
-                      = f.input :description, input_html: { class: "materialize-textarea" }
+                      = f.input :description, required: true, autofocus: true
                   .row
                     .col-lg-12
-                      = f.input :meta_tags, input_html: { class: "materialize-textarea" }
+                      = f.input :meta_tags, required: true, autofocus: true
 
                   .row
                     .col-lg-12

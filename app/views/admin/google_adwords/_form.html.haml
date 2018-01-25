@@ -1,10 +1,16 @@
 = simple_form_for [:admin, @google_adword] do |f|
   .container
     .row
+      .col-lg-2
+        = link_to admin_google_adwords_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          .arrow-back.btn.btn-default
+            %i.icon-arrow-left
+            = t('keppler.actions.back')
+    .row
       .col-xs-12
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= controller_name
+            %h3.box-title= controller_name.humanize
           .box-body
             %table.table.table-bordered
               %tbody
