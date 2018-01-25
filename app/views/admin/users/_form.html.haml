@@ -1,7 +1,3 @@
-.hidden
-	= simple_form_for @user, url: admin_user_upload_avatar_path(1), method: :post, remote: true do |f|
-		= f.input :avatar, label: false
-
 = simple_form_for [:admin, @user] do |f|
 	.container
 
@@ -23,7 +19,7 @@
 							-# - else
 							.form-group.outline.files.trigger{style: "height: 195px"}
 								%i.material-icons.files-icon#icon-file add
-								= f.input :avatar, label: false	
+								= f.input :avatar, label: false
 						%h3.profile-username.text-center Selecciona o arrastra una imagen hasta aquí
 
 
@@ -57,5 +53,3 @@
 											.pull-right
 												= f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
 												= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
-
-
