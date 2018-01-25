@@ -15,23 +15,6 @@ a.coll{
   }
 }
 
-#objects-container {
-  td:first-child {
-    padding: 10px 20px;
-  }
-  td {
-    padding: 0;
-    a.show-row {
-      display: block;
-      color: inherit;
-      padding: 8px;
-      &:hover {
-        color: inherit;
-      }
-    }
-  }
-}
-
 .icon-delete {
 	color: $keppler-color;
 	font-size: 14px;

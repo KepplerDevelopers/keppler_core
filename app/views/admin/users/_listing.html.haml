@@ -6,20 +6,19 @@
           = link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
             %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
         - else
-          = link_to "", admin_user_path(user), remote: true, class: "show-row"
           .pretty.p-default.p-curve.p-thick.p-smooth
             %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
             .state.p-danger-o
               %label{ for: "checkbox-#{user.id}" }
     %td.hide-on-small-and-down
-      = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
-      %span= user.name
+      = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
+        %span= user.name
     %td
-      = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
-      %span= user.email
+      = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
+        %span= user.email
     %td.hide-on-small-and-down
-      = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
-      %span= user.rol.humanize
+      = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
+        %span= user.rol.humanize
     %td{:style => "float: right;padding-right: 30px;"}
       %a.drop{:id => "menu-#{user.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.material-icons more_vert
@@ -44,3 +43,13 @@
             = link_to admin_user_path(user), class: 'new-menu', title: 'Show', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.material-icons delete
               Delete
+
+  %aside.control-sidebar.control-sidebar-light{ id: "index_show_#{user.id}"}
+    .tab-content
+      %p.control-sidebar-heading
+        = user.name
+      %ul.timeline
+        - user.attributes.each do |attribute|
+          %li
+            %strong= attribute.key
+            = attribute.value
