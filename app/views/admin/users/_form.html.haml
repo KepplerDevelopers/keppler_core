@@ -2,13 +2,13 @@
   .container
 
     .row
-      .col-lg-2
+      .col-xs-12
         = link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
           .arrow-back.btn.btn-default
             %i.fa.fa-chevron-left
             Volver
     .row
-      .col-lg-3
+      .col-md-4.col-sm-5
         .box.slice-box
           .box-body.box-profile
             .form-group.files.trigger
@@ -19,7 +19,7 @@
 
 
 
-      .col-lg-9
+      .col-md-8.col-sm-7
         .box.slice-box
           .box-header.with-border
             %h3.box-title User

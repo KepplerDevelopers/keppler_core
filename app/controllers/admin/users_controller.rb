@@ -71,11 +71,6 @@ module Admin
       )
     end
 
-    def change_avatar
-      Cache.destroy_all
-      @cache = Cache.create(image: params[:user][:avatar])
-    end
-
     def reload
       @q = User.ransack(params[:q])
       users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)

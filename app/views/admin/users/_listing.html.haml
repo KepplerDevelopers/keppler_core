@@ -19,7 +19,7 @@
     %td.hide-on-small-and-down
       = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
         %span= user.rol.humanize
-    %td{ style: "padding-right: 30px" }
+    %td.pull-right{ style: "padding-right: 30px" }
       %a.drop{:id => "menu-#{user.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{user.id}"}
@@ -44,12 +44,12 @@
               %i.icon-trash
               Delete
 
-  %aside.control-sidebar.control-sidebar-light{ id: "index_show_#{user.id}"}
-    .tab-content
-      %p.control-sidebar-heading
-        = user.name
-      %ul.timeline
-        - user.attributes.each do |attribute|
-          %li
-            %strong= attribute.key
-            = attribute.value
+  -# %aside.control-sidebar.control-sidebar-light{ id: "index_show_#{user.id}"}
+  -#   .tab-content
+  -#     %p.control-sidebar-heading
+  -#       = user.name
+  -#     %ul.timeline
+  -#       - user.attributes.each do |attribute|
+  -#         %li
+  -#           %strong= attribute.first
+  -#           = attribute.last
