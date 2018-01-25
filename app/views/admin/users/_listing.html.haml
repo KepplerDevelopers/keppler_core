@@ -3,8 +3,8 @@
     - if can? :destroy_multiple, User
       %td.item-check{style:"width: 10%"}
         - if user.id.eql?(current_user.id)
-          = link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
-            %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
+          -# = link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
+          -#   %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
         - else
           .pretty.p-default.p-curve.p-thick.p-smooth
             %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
