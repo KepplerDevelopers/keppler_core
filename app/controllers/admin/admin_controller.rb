@@ -26,6 +26,9 @@ module Admin
       @setting = Setting.first
     end
 
+    def close_index_show
+    end
+
     private
     def get_tables_name
       @models = ActiveRecord::Base.connection.tables.map{|model| model.capitalize.singularize.camelize}
