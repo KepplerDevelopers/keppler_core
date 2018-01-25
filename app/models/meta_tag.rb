@@ -3,12 +3,13 @@ class MetaTag < ActiveRecord::Base
   include ActivityHistory
   include CloneRecord
   acts_as_list
+  before_save :split_url
   validates_uniqueness_of :url
 
   validates_presence_of :title, :meta_tags, :url
 
   def self.get_by_url(url)
-    url = url.split('//').last.split('/').join('/')
+    url = url.split('//').last.split('/').join('/').split('www.').last
     find_by_url(url)
   end
 
@@ -21,4 +22,11 @@ class MetaTag < ActiveRecord::Base
       self.find(id).update(position: idx.to_i+1)
     end
   end
+
+  private
+
+  def split_url
+    self.url = self.url.split('//').last.split('/').join('/').split('www.').last
+  end
+
 end
