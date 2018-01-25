@@ -2,7 +2,7 @@ module Admin
   # UsersController
   class UsersController < AdminController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :set_roles, only: [:index, :new, :edit]
+    before_action :set_roles, only: [:index, :new, :edit, :create, :update]
     before_action :show_history, only: [:index]
 
     def index
@@ -53,7 +53,7 @@ module Admin
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
         redirect(@user, params)
       else
-        render action: 'new'
+        render 'new'
       end
     end
 
@@ -81,7 +81,7 @@ module Admin
       users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
       @objects = users.page(@current_page)
     end
-    
+
     private
 
     def set_user

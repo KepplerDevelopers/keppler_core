@@ -8,7 +8,7 @@
           .toolbar
             .mailbox-controls
               = link_to reload_admin_google_adwords_path, class: "btn btn-default btn-sm", remote: true do
-                %i.fa.fa-refresh
+                %i.icon-reload
               / Check all button
               .btn-group
                 %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
@@ -17,7 +17,7 @@
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
                 %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
-                  %i.fa.fa-trash-o
+                  %i.icon-trash
           %ol.breadcrumb
             %li
               %a{:href => "#"}

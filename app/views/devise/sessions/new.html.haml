@@ -13,10 +13,10 @@
 						%form{:action => "../../index2.html", :method => "post"}
 							.form-group.has-feedback
 								= f.email_field :email, :autofocus => true, class: "form-control validate", :placeholder => "Email"
-								%span.glyphicon.glyphicon-envelope.form-control-feedback
+								%i.icon-envelope.input-icon
 							.form-group.has-feedback
 								= f.password_field :password, :autofocus => true, class: "form-control validate #{'invalid' if flash[:alert]}", :placeholder => "Password"
-								%span.glyphicon.glyphicon-lock.form-control-feedback
+								%i.icon-lock.input-icon
 							.form-group.has-feedback
 								.pull-left
 									- if devise_mapping.recoverable?
