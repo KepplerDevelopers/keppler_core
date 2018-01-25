@@ -44,14 +44,15 @@
   .user-panel > .info > p {
     font-weight: 600;
     margin-bottom: 0px;
+    white-space: inherit;
   }
 
   .user-panel > .info > small {
     color: #c0c0c0;
     margin-bottom: 9px !important;
-}
+  }
 
   .text-success {
     color: #2ade2e !important;
-}
+  }
 }
