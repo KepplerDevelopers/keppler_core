@@ -1,6 +1,6 @@
 - objects.each do |script|
   %tr{ id: "row-#{script.id}" }
-    - if can? :destroy_multiple, User
+    - if can? :destroy_multiple, Script
       %td.item-check{style:"width: 10%"}
         .pretty.p-default.p-curve.p-thick.p-smooth
           %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{script.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{script.id}", "@click" => "listDelete(#{script.id})"}
@@ -21,21 +21,21 @@
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{script.id}" }
         - if can? :show, Script
           %li
-            = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
+            = link_to admin_script_path(script), class: 'new-menu', title: t('keppler.actions.show') do
               %i.icon-eye
-              Show
+              = t('keppler.actions.show')
         - if can? :update, Script
           %li
-            = link_to edit_admin_script_path(script), class: 'new-menu', title: 'Edit' do
+            = link_to edit_admin_script_path(script), class: 'new-menu', title: t('keppler.actions.edit') do
               %i.icon-pencil
-              Edit
+              = t('keppler.actions.edit')
         - if can? :clone, Script
           %li
-            = link_to admin_script_path(script), class: 'new-menu', title: 'Show' do
-              %i.material-icons clone
-              Clone
+            = link_to admin_script_path(script), class: 'new-menu', title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
         - if can? :delete, Script
           %li
-            = link_to admin_script_path(script), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+            = link_to admin_script_path(script), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash
-              Delete
+              = t('keppler.actions.delete')

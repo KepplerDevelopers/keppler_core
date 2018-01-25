@@ -11,26 +11,6 @@
         .box.slice-box
           .box-header.with-border
             %h3.box-title= controller_name.humanize
-            .box-tools.pull-right
-              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                %i.fa.fa-minus
-              .btn-group
-                %button.btn.btn-box-tool.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-                  %i.fa.fa-wrench
-                %ul.dropdown-menu{:role => "menu"}
-                  %li
-                    %a{:href => "#"} Action
-                  %li
-                    %a{:href => "#"} Another action
-                  %li
-                    %a{:href => "#"} Something else here
-                  %li.divider
-                  %li
-                    %a{:href => "#"} Separated link
-              -# %button.btn.btn-box-tool{"data-widget" => "remove", :type => "button"}
-              -# 	%i.fa.fa-times
-
-          / /.box-header
           .box-body
             %table.table.table-bordered
               %tbody
@@ -40,13 +20,13 @@
                       = f.input :title, required: true, autofocus: true
 
                     .col-lg-6
-                      = f.input :url, required: true, autofocus: true
+                      = f.input :url, required: true
                   .row
                     .col-lg-12
-                      = f.input :description, required: true, autofocus: true
+                      = f.input :meta_tags, required: true
                   .row
                     .col-lg-12
-                      = f.input :meta_tags, required: true, autofocus: true
+                      = f.input :description
 
                   .row
                     .col-lg-12

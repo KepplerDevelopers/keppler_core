@@ -3,6 +3,8 @@ class GoogleAdword < ActiveRecord::Base
   include ActivityHistory
   include CloneRecord
 
+  validates_presence_of :url, :campaign_name, :script
+
   validates_uniqueness_of :url
 
   def self.get_by_url(url)

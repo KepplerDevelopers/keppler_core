@@ -25,21 +25,21 @@
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{user.id}"}
         - if can? :show, User
           %li
-            = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
+            = link_to admin_user_path(user), class: 'new-menu', title: t('keppler.actions.show') do
               %i.icon-eye
-              Show
+              = t('keppler.actions.show')
         - if can? :update, User
           %li
-            = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Edit' do
+            = link_to edit_admin_user_path(user), class: 'new-menu', title: t('keppler.actions.edit') do
               %i.icon-pencil
-              Edit
-        -# - if can? :clone, User
-        -#   %li
-        -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-        -#       %i.material-icons clone
-        -#       Clone
+              = t('keppler.actions.edit')
+        - if can? :clone, User
+          %li
+            = link_to admin_user_path(user), class: 'new-menu', title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
         - if can? :delete, User
           %li
-            = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+            = link_to admin_user_path(user), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash
-              Delete
+              = t('keppler.actions.delete')
