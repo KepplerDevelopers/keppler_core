@@ -6,52 +6,35 @@
           -# = link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
           -#   %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
         - else
-          .pretty.p-default.p-curve.p-thick.p-smooth
+          -# .pretty.p-default.p-curve.p-thick.p-smooth
+          -#   %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
+          -#   .state.p-danger-o
+          -#     %label{ for: "checkbox-#{user.id}" }
+          -# .form-check
+          -#   %label{ for: "checkbox-#{user.id}" }
+          -#     %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
+          -#     %span.label-text
+          .keppler-check
             %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
-            .state.p-danger-o
-              %label{ for: "checkbox-#{user.id}" }
+            %label{ for: "checkbox-#{user.id}" }
+
+
+
     %td.hide-on-small-and-down
-      = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.name
     %td
-      = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.email
     %td.hide-on-small-and-down
-<<<<<<< HEAD
-      = link_to "", admin_user_path(user, search: @query), remote: true, class: "show-row"
-      %span= user.rol.humanize
-    %td{:style => "float: right;padding-right: 30px;"}
-      %a.drop{:id => "menu-#{user.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
-=======
-      = link_to admin_user_path(user, search: @query), remote: true, class: "show-row" do
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.rol.humanize
-    %td{ style: "padding-right: 30px" }
-      %a.drop.pull-right{:id => "menu-#{user.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
->>>>>>> index-show/104
+    %td{ style: 'padding-right: 30px' }
+      %a.drop.pull-right{ id: "menu-#{user.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown'}
         %i.icon-options-vertical
-      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{user.id}"}
+      %ul.actions.dropdown-menu{'aria-labelledby' => "menu-#{user.id}"}
         - if can? :show, User
           %li
-<<<<<<< HEAD
-            = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-              %i.icon-eye
-              Show
-        - if can? :update, User
-          %li
-            = link_to edit_admin_user_path(user), class: 'new-menu', title: 'Edit' do
-              %i.icon-pencil
-              Edit
-        -# - if can? :clone, User
-        -#   %li
-        -#     = link_to admin_user_path(user), class: 'new-menu', title: 'Show' do
-        -#       %i.material-icons clone
-        -#       Clone
-        - if can? :delete, User
-          %li
-            = link_to admin_user_path(user), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-              %i.icon-trash
-              Delete
-=======
             = link_to admin_user_path(user), class: 'new-menu', title: t('keppler.actions.show') do
               %i.icon-eye
               = t('keppler.actions.show')
@@ -68,7 +51,6 @@
         - if can? :destroy, User
           - unless user.id.eql?(current_user.id)
             %li
-              = link_to admin_user_path(user), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+              = link_to admin_user_path(user), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                 %i.icon-trash
                 = t('keppler.actions.delete')
->>>>>>> index-show/104
