@@ -7,39 +7,26 @@ class Ability
 
     if user.has_role? :keppler_admin
 
-      can :manage, Scaffold
-      # - Customize authorize -
-      can [:manage], Customize
+      # - Keppler Admin can manage everything -
+      can :manage, :all, except: [User]
 
-      # - Seo authorize -
-      can :manage, MetaTag
-      can :manage, GoogleAdword
+      # - Keppler Admin cannot clone users, scripts or SEO models -
+      cannot :clone, [User, Script, GoogleAdword, MetaTag]
 
       # - GoogleAnalytics authorize -
-      if Setting.first.google_analytics_setting.ga_status
-        can :manage, Script
-      end
-
-      # - Setting authorize -
-      can :manage, Setting
-
-      # - User authorize -
-      # can [:delete, :show, :edit, :update,
-      #      :create, :index, :destroy_multiple], User
-
-      can [:manage], User
-
-      can :destroy, User do |u|
-        !u.eql?(user)
+      # if Setting.first.google_analytics_setting.ga_status
+      #   can :manage, Script
+      # end
+      if user.present?  # additional permissions for logged in users (they can manage their posts)
+        cannot :destroy, User
       end
 
     elsif user.has_role? :admin
 
-      # - User authorize -
-      # can [:delete, :show, :edit, :update,
-      #      :create, :index, :destroy_multiple], User
-      can [:manage], User
-      cannot :delete, user
+      # - Admin authorize -
+      can :manage, User
+      cannot :clone, [User, Script, GoogleAdword, MetaTag]
+      cannot :destroy, User, user: !user.id
 
     elsif user.has_role? :client
 

@@ -2,6 +2,8 @@
 class Script < ActiveRecord::Base
   include ActivityHistory
 
+  validates_presence_of :name, :script, :url
+
   def self.get_script(request)
     find_by_url(request.url)
   end

@@ -20,8 +20,8 @@
                   %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{:href => "#"}
-                %i.fa.fa-dashboard
+              %a{href: "#"}
+                %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
         .box.slice-box
           .box-body.no-padding
@@ -29,7 +29,7 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{:style => 'text-align: center;'}
+                    %th{style: 'text-align: center;'}
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
                 - else
                   %tr
@@ -40,7 +40,7 @@
                       Email
                     %th
                       Role
-                    %th{:style => "text-align: center;padding-right: 30px;"}
+                    %th{style: "text-align: center;padding-right: 30px;"}
                       Actions
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
@@ -51,6 +51,7 @@
 
   .listing-show
     = render "description"
+  %aside#index-show.control-sidebar
   .mixed-btn
     = link_to new_admin_user_path, class: "btn-float" do
       %i.material-icons add

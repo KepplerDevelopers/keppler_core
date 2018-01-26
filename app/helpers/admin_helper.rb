@@ -46,6 +46,10 @@ module AdminHelper
     end
   end
 
+  def search_model
+    controller_name.singularize.camelcase.constantize.search_field
+  end
+
   private
 
   # ------------ preload
