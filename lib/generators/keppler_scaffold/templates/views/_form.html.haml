@@ -41,7 +41,7 @@
 				.arrow-back.btn.btn-default
 					= link_to admin_<%= plural_table_name %>_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
 						%i.fa.fa-chevron-left
-						Volver
+						= t('keppler.actions.back')
 						.clearfix
 			.clearfix
 		.row
