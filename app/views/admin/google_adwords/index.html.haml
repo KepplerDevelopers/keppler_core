@@ -20,8 +20,8 @@
                   %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{:href => "#"}
-                %i.fa.fa-dashboard
+              %a{href: "#"}
+                %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
 
         -# = entries(@total, @objects)
@@ -32,7 +32,7 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{:style => 'text-align: center;'}
+                    %th{style: 'text-align: center;'}
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.google_adwords"))
                 - else
                   %tr
@@ -47,6 +47,8 @@
                 = render 'listing', objects: @objects
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
+  %aside#index-show.control-sidebar
+  
   .mixed-btn
     = link_to new_admin_google_adword_path, class: "btn-float" do
       %i.material-icons add

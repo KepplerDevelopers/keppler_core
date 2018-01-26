@@ -10,7 +10,6 @@ module Admin
       scripts = @q.result(distinct: true)
       @objects = scripts.page(@current_page)
       @total = scripts.size
-
       if !@objects.first_page? && @objects.size.zero?
         redirect_to(
           scripts_path(
@@ -39,8 +38,7 @@ module Admin
 
     # POST /scripts
     def create
-      @script =
-        Script.new(script_params)
+      @script = Script.new(script_params)
 
       if @script.save
         redirect(@script, params)

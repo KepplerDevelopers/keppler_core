@@ -26,7 +26,7 @@
 						%th.center
 					- if can? :clone, Scaffold
 						%th.center
-					- if can? :delete, Scaffold
+					- if can? :destroy, Scaffold
 						%th.center
 
 			- @objects.each do |scaffold|

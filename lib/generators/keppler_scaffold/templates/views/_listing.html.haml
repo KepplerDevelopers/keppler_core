@@ -50,7 +50,7 @@
 						%li.center
 							= link_to admin_<%= singular_table_name %>_clone_path(<%= singular_table_name %>), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.clone') do
 								-# = material_icon.md_24.content_copy.css_class('md-dark')
-					- if can? :delete, <%= singular_table_name.camelcase %>
+					- if can? :destroy, <%= singular_table_name.camelcase %>
 						%li.center{style:'padding-right: 20px'}
 							= link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
 								-# = material_icon.md_18.delete.css_class('md-dark')

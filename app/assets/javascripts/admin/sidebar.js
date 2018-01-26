@@ -14,7 +14,7 @@ $(function ($) {
       $body.removeClass('disable-animations');
     });
   }
-  
+
 
 });
 function moveDropdown(){

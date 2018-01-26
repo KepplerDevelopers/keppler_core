@@ -10,6 +10,12 @@ menu:
     icon: chart
     current: ['admin/scripts']
     model: Script
+  script:
+    name: scripts
+    url_path: /admin/scripts
+    icon: chart
+    current: ['admin/scripts']
+    model: Script
   seo:
     name: SEO
     current: ['admin/meta_tags', 'admin/google_adwords']
@@ -24,12 +30,6 @@ menu:
           name: Google Adwords
           url_path: /admin/google_adwords
           current: ['admin/google_adwords']
-  script:
-    name: scripts
-    url_path: /admin/scripts
-    icon: chart
-    current: ['admin/scripts']
-    model: Script
   user:
     name: users
     url_path: /admin/users

@@ -20,22 +20,22 @@
                   %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{:href => "#"}
-                %i.fa.fa-dashboard
+              %a{href: "#"}
+                %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
             -# %li
-            -#   %a{:href => "#"} UI
+            -#   %a{href: "#"} UI
             -# %li.active General
 
         =# entries(@total, @objects)
 
         .box.slice-box
           .box-body.no-padding
-            %table.table.table-striped
+            %table.table
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{:style => 'text-align: center;'}
+                    %th{style: 'text-align: center;'}
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.script"))
 
                 - else
@@ -44,7 +44,7 @@
                     %th= t('activerecord.attributes.name')
                     %th= t('activerecord.attributes.script')
                     %th= t('activerecord.attributes.role')
-                    %th{:style => "text-align: center;padding-right: 30px;"}
+                    %th{style: "text-align: center;padding-right: 30px;"}
                       Actions
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
@@ -54,6 +54,8 @@
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
+  %aside#index-show.control-sidebar
+
   .mixed-btn
     = link_to new_admin_script_path, class: "btn-float" do
       %i.material-icons add
