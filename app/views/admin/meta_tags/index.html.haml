@@ -20,7 +20,7 @@
                   %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{:href => "#"}
+              %a{href: "#"}
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
 
@@ -33,7 +33,7 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{:style => 'text-align: center;'}
+                    %th{style: 'text-align: center;'}
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.meta_tags"))
                 - else
                   %tr

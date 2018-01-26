@@ -20,11 +20,11 @@
                   %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{:href => "#"}
+              %a{href: "#"}
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
             -# %li
-            -#   %a{:href => "#"} UI
+            -#   %a{href: "#"} UI
             -# %li.active General
 
         =# entries(@total, @objects)
@@ -35,7 +35,7 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{:style => 'text-align: center;'}
+                    %th{style: 'text-align: center;'}
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.script"))
 
                 - else
@@ -44,7 +44,7 @@
                     %th= t('activerecord.attributes.name')
                     %th= t('activerecord.attributes.script')
                     %th= t('activerecord.attributes.role')
-                    %th{:style => "text-align: center;padding-right: 30px;"}
+                    %th{style: "text-align: center;padding-right: 30px;"}
                       Actions
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'

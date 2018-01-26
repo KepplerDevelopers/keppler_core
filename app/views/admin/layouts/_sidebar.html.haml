@@ -1,10 +1,10 @@
 %aside.main-sidebar
   / sidebar: style can be found in sidebar.less
-  %section.sidebar{:style => "" }
+  %section.sidebar{style: "" }
     / Sidebar user panel
     .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
       .pull-left.image
-        .img-circle.side-img-profile{:alt => "User Image", :style => "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
+        .img-circle.side-img-profile{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
       .info
         %p= current_user.name
         %small= current_user.rol.humanize
@@ -33,11 +33,11 @@
           - else #tree sidebar links
             - if menu[key]["model"] && can?(:index, menu[key]["model"].constantize)
               %li
-                %a{ :href => "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
+                %a{ href: "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
                   %i{ class: "icon-#{menu[key]['icon']}" }
                   %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
                   %span.pull-right-container
-                    %i.icon-arrow-left.pull-right
+                    %i.fa.fa-angle-left.pull-right
 
                 %ul.treeview-menu
                   - menu[key]["submenu"].each do |submenu|
