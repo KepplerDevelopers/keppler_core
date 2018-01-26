@@ -23,5 +23,11 @@ class <%= class_name %> < ActiveRecord::Base
       end
     end
   end
+
+  def self.sorter(params)
+    params.each_with_index do |id, idx|
+      self.find(id).update(position: idx.to_i+1)
+    end
+  end
 end
 <% end -%>
