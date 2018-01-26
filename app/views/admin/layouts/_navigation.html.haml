@@ -1,12 +1,12 @@
 %header.main-header
-  %a.logo{:href => "/admin/dashboard"}
+  %a.logo{href: "/admin/dashboard"}
     %span.logo-mini
       %span K
     %span.logo-lg
       %span Keppler
       Admin
   %nav.navbar.navbar-static-top
-    %a.sidebar-toggle{"data-toggle" => "offcanvas", :href => "#", :role => "button"}
+    %a.sidebar-toggle{"data-toggle" => "offcanvas", href: "#", :role => "button"}
       %i.icon-menu
       %span.sr-only Toggle navigation
     - if listing?
@@ -23,15 +23,15 @@
     .navbar-custom-menu
       %ul.nav.navbar-nav
         %li.dropdown.messages-menu
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
             %i.icon-envelope
         %li.dropdown.user.user-menu
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            .small-profile-img{ :style => "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            .small-profile-img{ style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             %li.user-header{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
-              .img-circle.nav-profile-img{:alt => "User Image", :style => "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
+              .img-circle.nav-profile-img{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
               %p
                 = current_user.name
                 %small

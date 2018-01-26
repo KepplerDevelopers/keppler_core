@@ -8,7 +8,7 @@ class Ability
     if user.has_role? :keppler_admin
 
       # - Keppler Admin can manage everything -
-      can :manage, :all
+      can :manage, :all, except: [User]
 
       # - Keppler Admin cannot clone users, scripts or SEO models -
       cannot :clone, [User, Script, GoogleAdword, MetaTag]
@@ -17,13 +17,16 @@ class Ability
       # if Setting.first.google_analytics_setting.ga_status
       #   can :manage, Script
       # end
-
-      cannot :destroy, User, id: user.id
+      if user.present?  # additional permissions for logged in users (they can manage their posts)
+        cannot :destroy, User
+      end
 
     elsif user.has_role? :admin
 
       # - Admin authorize -
-      can :manage, [User]
+      can :manage, User
+      cannot :clone, [User, Script, GoogleAdword, MetaTag]
+      cannot :destroy, User, user: !user.id
 
     elsif user.has_role? :client
 

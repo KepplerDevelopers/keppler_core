@@ -1,7 +1,7 @@
 .wrapper
 	.wrapper-body.container
 		.actions
-			- if can? :delete, <%= singular_table_name.camelcase %>
+			- if can? :destroy, <%= singular_table_name.camelcase %>
 				= link_to admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
 					-# = material_icon.md_18.delete.css_class("md-dark")
 			- if can? :update, <%= singular_table_name.camelcase %>
