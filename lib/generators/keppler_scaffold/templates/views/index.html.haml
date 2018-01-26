@@ -144,7 +144,7 @@
 					 					<%- end -%>
 										%th{:style => "width: 20%;"}
                       Actions
-              %tbody#draggable{ "data-update-url" => "#{admin_sorting_<%= plural_table_name %>_path}" }
+              %tbody#objects-container{ "data-update-url" => "#{admin_sorting_<%= plural_table_name %>_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @<%= plural_table_name %>
         %center#paginator-module
