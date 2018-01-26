@@ -40,7 +40,7 @@
 
 .mixed-btn{
   position: fixed;
-  right: 30px;
+  right: 20px;
   bottom: 20px;
   padding-top: 15px;
   margin-bottom: 0;
@@ -140,6 +140,69 @@
     }
   }
 }
+#index-show {
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 50px;
+  background: #f9fafc;
+  border-left: 1px solid #d2d6de;
+  color: #5e5e5e;
+  padding-top: 50px;
+  z-index: 1010;
+  top: 0;
+  right: -230px;
+  width: 230px;
+  -webkit-transition: right 0.3s ease-in-out;
+  -o-transition: right 0.3s ease-in-out;
+  transition: right 0.3s ease-in-out;
+  a {
+    color: $keppler-color;
+    cursor: pointer;
+    transition: .3s;
+    &:hover {
+      color: $keppler-darken;
+      transition: .3s;
+    }
+  }
+  img {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  p {
+    margin: 10px 0 0;
+  }
+  .tab-content{
+    padding: 10px;
+    ul {
+      &:before{
+        content: none;
+      }
+      li{
+        margin-right: 0;
+        &:before{
+          content: none;
+        }
+        .timeline-item{
+          margin: 0;
+        }
+      }
+    }
+    .actions {
+      width: 100%;
+      margin: 0;
+      a {
+        margin-right: 5px;
+      }
+      #close-index-show {
+        margin: 0;
+      }
+    }
+    .control-sidebar-heading {
+      padding: 20px 0;
+    }
+  }
+}
 .cut-text{
   white-space: nowrap;
   overflow: hidden;
@@ -156,8 +219,21 @@
     }
   }
 }
-#objects-container{
-  transition: .1s;
+#objects-container {
+  td:first-child {
+    padding: 10px 20px;
+  }
+  td {
+    padding: 0;
+    a {
+      display: block;
+      color: inherit;
+      padding: 8px;
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
 }
 
 .ui-sortable-helper{
@@ -171,4 +247,3 @@
     top: 5px;
   }
 }
-    

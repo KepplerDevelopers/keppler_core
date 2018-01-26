@@ -1,29 +1,26 @@
-.listing-show-header
-	.actions
-		- if can? :update, GoogleAdword
-			= link_to edit_admin_google_adword_path(@google_adword), class: "btn-floating waves-effect waves-light btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.edit") do
-				-# -# = material_icon.md_24.create
-	%h5
-		-# -# = material_icon.md_24.code.css_class("md-light")
-		= t("keppler.models.singularize.#{controller_name.singularize}")
-.listing-show-body.card{ resize: true , style: "height: {{windowHeight}}px;" }
-	.card-content
-		%table.list.bordered
-			%tr.list-row
-				%th.display-label= t("activerecord.attributes.url")
-				%td.display-value= @google_adword.url
-			%tr.list-row
-				%th.display-label= t("activerecord.attributes.campaign_name")
-				%td.display-value= @google_adword.campaign_name
-			%tr.list-row
-				%th.display-label= t("activerecord.attributes.description")
-				%td.display-value= @google_adword.description
-			%tr.list-row
-				%th.display-label= t("activerecord.attributes.script")
-				%td.display-value= @google_adword.script
-
-			%tr.list-row
-				= link_to t('keppler.actions.back_history'), admin_google_adwords_path
-
-:javascript
-	$('.tooltipped').tooltip({delay: 1});
+.tab-content
+  %h6.actions
+    - if can? :update, GoogleAdword
+      = link_to edit_admin_google_adword_path(@google_adword), title: t("keppler.actions.edit"), class: 'pull-left' do
+        %i.icon-pencil
+        %span= t('keppler.actions.edit')
+    - if can? :destroy, GoogleAdword
+      = link_to admin_google_adword_path(@google_adword), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+        %i.icon-trash
+        %span= t('keppler.actions.delete')
+    %a#close-index-show.pull-right
+      %i.icon-close
+  %p.control-sidebar-heading
+    %i.icon-graph
+    = controller_name.singularize.humanize
+  %ul.timeline
+    - @google_adword.attributes.each do |attribute, value|
+      %li.list-row
+        .timeline-item
+          %h6.timeline-header.no-border
+            %small
+              %strong.display-value= t("activerecord.attributes.#{attribute}")
+              %p.display-label= value
+:coffee
+  $('#close-index-show').click ->
+    $('#index-show').css 'right', -$('#index-show').outerWidth()
