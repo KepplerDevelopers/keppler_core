@@ -1,4 +1,4 @@
-#index-container{ :controller => "users" }
+#index-container{ :controller => 'users' }
   .container
     .row
       .listing.col-lg-12.col-xs-12
@@ -7,20 +7,19 @@
             = t("keppler.modules.#{controller_path.underscore}")
           .toolbar
             .mailbox-controls
-              = link_to reload_admin_users_path, class: "btn btn-default btn-sm", remote: true do
+              = link_to reload_admin_users_path, class: 'btn btn-default btn-sm', remote: true do
                 %i.icon-reload
               / Check all button
               .btn-group
-                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
-                  .pretty.p-default.p-curve.p-thick.p-smooth
-                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
-                    .state.p-danger-o
-                      %label{ for: "checkbox-all" }
-                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
+                %button.btn.btn-default.btn-sm.checkbox-toggle{ type: 'button', style: 'height: 30px; min-width: 30px' }
+                  .keppler-check
+                    %input{ type: 'checkbox', class: 'filled-in', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %label{ for: 'checkbox-all' }
+                %a.btn.btn-default.btn-sm{ type: 'button', 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', 'v-show' => 'checks' }
                   %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{href: "#"}
+              %a{ href: '#' }
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
         .box.slice-box
@@ -29,18 +28,15 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{style: 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
+                    %th.center
+                      %h6= t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.user'))
                 - else
                   %tr
-                    %td
                     %th
-                      Name
-                    %th
-                      Email
-                    %th
-                      Role
-                    %th{style: "text-align: center;padding-right: 30px;"}
+                    %th= t('activerecord.attributes.name')
+                    %th= t('activerecord.attributes.email')
+                    %th= t('activerecord.attributes.role')
+                    %th.center{ style: 'padding-right: 30px' }
                       Actions
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
@@ -50,8 +46,8 @@
           = paginate @objects, window: 1
 
   .listing-show
-    = render "description"
+    = render 'description'
   %aside#index-show.control-sidebar
   .mixed-btn
-    = link_to new_admin_user_path, class: "btn-float" do
+    = link_to new_admin_user_path, class: 'btn-float' do
       %i.material-icons add

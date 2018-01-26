@@ -8,7 +8,7 @@ class Ability
     if user.has_role? :keppler_admin
 
       # - Keppler Admin can manage everything -
-      can :manage, :all, except: [User]
+      can :manage, :all
 
       # - Keppler Admin cannot clone users, scripts or SEO models -
       cannot :clone, [User, Script, GoogleAdword, MetaTag]

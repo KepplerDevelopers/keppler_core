@@ -11,16 +11,16 @@
                 %i.icon-reload
               / Check all button
               .btn-group
-                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
+                %button.btn.btn-default.btn-sm.checkbox-toggle{type: "button", "@click" => "selectAll()"}
                   .pretty.p-default.p-curve.p-thick.p-smooth
                     %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
-                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
+                %a.btn.btn-default.btn-sm{type: "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", rel: "nofollow", "v-show" => "checks" }
                   %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{href: "#"}
+              %a{ href: '#' }
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
 
@@ -48,7 +48,7 @@
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
   %aside#index-show.control-sidebar
-  
+
   .mixed-btn
     = link_to new_admin_google_adword_path, class: "btn-float" do
       %i.material-icons add
