@@ -2,21 +2,21 @@
   %tr{ id: "row-#{google_adword.id}" }
     - if can? :destroy_multiple, GoogleAdword
       %td.item-check{style:"width: 10%"}
-        = link_to "", admin_google_adword_path(google_adword), remote: true, class: "show-row"
         .pretty.p-default.p-curve.p-thick.p-smooth
           %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{google_adword.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{google_adword.id}", "@click" => "listDelete(#{google_adword.id})"}
           .state.p-danger-o
             %label{ for: "checkbox-#{google_adword.id}" }
     %td.hide-on-small-and-down
-      = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
-      %span= google_adword.url
+      = link_to admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row" do
+        %span= google_adword.url
     %td.text-overflow{ style: 'max-width: 200px'}
-      = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
-      %span= google_adword.campaign_name
+      = link_to admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row" do
+        %span= google_adword.campaign_name
     %td.hide-on-small-and-down
-      = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
-      %span= google_adword.description
+      = link_to admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row" do
+        %span= google_adword.description
     %td.hide-on-small-and-down
+<<<<<<< HEAD
       = link_to "", admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row"
       %span= google_adword.script
     %td{:style => "float: right;padding-right: 30px;"}
@@ -43,3 +43,31 @@
             = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash
               Delete
+=======
+      = link_to admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row" do
+        %span= google_adword.script
+    %td{ style: 'padding-right: 30px;'}
+      %a.drop.pull-right{:id => "menu-#{google_adword.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown'}
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{ 'aria-labelledby' => "menu-#{google_adword.id}"}
+        - if can? :show, GoogleAdword
+          %li
+            = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: t('keppler.actions.show') do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can? :update, GoogleAdword
+          %li
+            = link_to edit_admin_google_adword_path(google_adword), class: 'new-menu', title: t('keppler.actions.edit') do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can? :clone, GoogleAdword
+          %li
+            = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can? :destroy, GoogleAdword
+          %li
+            = link_to admin_google_adword_path(google_adword), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+              %i.icon-trash
+              = t('keppler.actions.delete')
+>>>>>>> index-show/104

@@ -1,61 +1,57 @@
-.hidden
-	= simple_form_for @user, url: admin_user_upload_avatar_path(1), method: :post, remote: true do |f|
-		= f.input :avatar, label: false
-
 = simple_form_for [:admin, @user] do |f|
-	.container
+  .container
 
-		.row
-			.col-lg-2
-				.arrow-back.btn.btn-default
-					= link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-						%i.fa.fa-chevron-left
-							Volver
-						.clearfix
-			.clearfix
-		.row
-			.col-lg-3
-				.box.slice-box
-					.box-body.box-profile
-						%center#image
-							-# - if @user
-							-# 	= render "admin/users/avatar", image: Cache.last.image
-							-# - else
-							.form-group.outline.files.trigger{style: "height: 195px"}
-								%i.material-icons.files-icon#icon-file add
-								= f.input :avatar, label: false	
-						%h3.profile-username.text-center Selecciona o arrastra una imagen hasta aquí
+    .row
+      .col-xs-12
+        = link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          .arrow-back.btn.btn-default
+            %i.icon-arrow-left
+            = t('keppler.actions.back')
+    .row
+      .col-md-4.col-sm-5
+        .box.slice-box
+          .box-body.box-profile
+            .form-group.files.trigger
+              %i.material-icons.files-icon#icon-file add
+              = f.file_field :avatar, class: 'photo_upload'
+            %center#image
+              = image_tag 'avatar.png', class: 'hidden image_to_upload'
 
 
-			.col-lg-9
-				.box.slice-box
-					.box-header.with-border
-						%h3.box-title User
+
+      .col-md-8.col-sm-7
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title User
 
 
-					.box-body
-						%table.table.table-bordered
-							%tbody
-								.form-padding
-									.row
-										.col-lg-6
-											= f.input :name, label: false, placeholder: "Name", input_html: {class: "form-control"}, :required => true
+          .box-body
+            %table.table.table-bordered
+              %tbody
+                .form-padding
+                  .row
+                    .col-lg-6
+                      = f.input :name, label: false, placeholder: "Name", input_html: {class: "form-control"}, required: true
 
-										.col-lg-6
-											= f.input :email, label: false, placeholder: "Email", input_html: {class: "form-control"}, :required => true
-									.row
-										.col-lg-12
-											= f.input :role_ids, label: false, collection: @roles, include_blank: t("keppler.actions.select_rol"), input_html: { class: "form-control" }, :required => true
-									.row
-										.col-lg-6
-											= f.input :password, label: false, placeholder: "Password", input_html: {class: "form-control"}, :required => true
-										.col-lg-6
-											= f.input :password_confirmation, label: false, placeholder: "Password Confirmation", input_html: {class: "form-control"}, :required => true
+                    .col-lg-6
+                      = f.input :email, label: false, placeholder: "Email", input_html: {class: "form-control"}, required: true
+                  .row
+                    .col-xs-12
+                      -# = f.input :role_ids, label: false, collection: @roles, include_blank: t("keppler.actions.select_rol"), input_html: { class: "form-control" }, required: true
+                      .form-group
+                        %select#user_role_ids.form-control.select.required.form-control{"aria-required" => "true", :name => "user[role_ids]", :required => "required"}
+                          %option{:value => ""} Seleccionar rol
+                          - @roles.each do |role|
+                            %option{ value: role.last }= role.first
 
-									.row
-										.col-lg-12
-											.pull-right
-												= f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
-												= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+                  .row
+                    .col-lg-6
+                      = f.input :password, label: false, placeholder: "Password", input_html: {class: "form-control"}, required: true
+                    .col-lg-6
+                      = f.input :password_confirmation, label: false, placeholder: "Password Confirmation", input_html: {class: "form-control"}, required: true
 
-
+                  .row
+                    .col-lg-12
+                      .pull-right
+                        = f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
+                        = f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"

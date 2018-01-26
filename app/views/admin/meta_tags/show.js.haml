@@ -1,6 +1,4 @@
-$(".listing-show").html("#{j render('index_show')}")
+$("#index-show").html("#{j render('index_show')}")
+$("#index-show").css('right', 0)
 $('.listing table').find(".active").removeClass("active")
 $("#row-#{@meta_tag.id}").addClass("active")
-$scope = angular.element($(".listing-show")).scope()
-$scope.compiledHTML($(".listing-show"))
-$(".listing-show-body").trigger("click");
