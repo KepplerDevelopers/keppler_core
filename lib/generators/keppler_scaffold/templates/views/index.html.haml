@@ -151,6 +151,7 @@
           = paginate @objects, window: 1
   .listing-show.visible-lg.visible-md
     = render "description"
+  %aside#index-show.control-sidebar
   .mixed-btn
     = link_to new_admin_<%= singular_table_name %>_path, class: "btn-float" do
       %i.material-icons add

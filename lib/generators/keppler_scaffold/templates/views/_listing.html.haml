@@ -102,19 +102,19 @@
           %li
             = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: 'Show' do
               %i.icon-eye
-              Show
+              t('keppler.actions.show')
         - if can? :update, <%= singular_table_name.camelcase %>
           %li
             = link_to edit_admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: 'Edit' do
               %i.icon-pencil
-              Edit
-        -# - if can? :clone, <%= singular_table_name.camelcase %>
-        -#   %li
-        -#     = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: 'Show' do
-        -#       %i.material-icons clone
-        -#       Clone
+              t('keppler.actions.edit')
+        - if can? :clone, <%= singular_table_name.camelcase %>
+          %li
+            = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: 'Show' do
+              %i.icon-clone
+              t('keppler.actions.clone')
         - if can? :delete, <%= singular_table_name.camelcase %>
           %li
             = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash
-              Delete
+              t('keppler.actions.delete')
