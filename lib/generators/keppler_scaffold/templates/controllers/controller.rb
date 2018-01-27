@@ -21,7 +21,7 @@ module Admin
       respond_to do |format|
         format.html
         format.xls { send_data(@<%= plural_table_name %>.to_xls) }
-        format.json { render :json => @<%= plural_table_name %> }
+        format.json { render :json => @objects }
       end
     end
 
@@ -92,7 +92,9 @@ module Admin
     end
     
     def reload
-      @<%= plural_table_name %> = <%= class_name %>.order(:position)
+      @q = <%= class_name %>.ransack(params[:q])
+      <%= plural_table_name %> = @q.result(distinct: true)
+      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
     end
 
     def sort
@@ -101,7 +103,9 @@ module Admin
     end
 
     private
-
+    def setting_search
+      
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>
       @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
