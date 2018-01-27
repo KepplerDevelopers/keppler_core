@@ -6,19 +6,11 @@
           -# = link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
           -#   %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
         - else
-          -# .pretty.p-default.p-curve.p-thick.p-smooth
-          -#   %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
-          -#   .state.p-danger-o
-          -#     %label{ for: "checkbox-#{user.id}" }
-          -# .form-check
-          -#   %label{ for: "checkbox-#{user.id}" }
-          -#     %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
-          -#     %span.label-text
-          .keppler-check
-            %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{user.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{user.id}", "ng-click"=>"selectByCheck(#{@objects.size})", "@click" => "listDelete(#{user.id})"}
+          .checkbox
             %label{ for: "checkbox-#{user.id}" }
-
-
+              %input{ type:"checkbox", id: "checkbox-#{user.id}", 'checklist-model' => 'check', 'checklist-value' => "#{user.id}", 'ng-click' => "selectByCheck(#{@objects.size})", '@click' => "listDelete(#{user.id})"}
+              %span.cr
+                %i.cr-icon.glyphicon.glyphicon-ok
 
     %td.hide-on-small-and-down
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do

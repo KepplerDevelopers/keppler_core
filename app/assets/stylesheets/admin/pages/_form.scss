@@ -82,7 +82,7 @@
   font-weight: 400;
   background-color: $keppler-color;
   border: none;
-  color: #fff;
+  color: #eee;
   transition: .4s;
 
   &:hover,
@@ -101,43 +101,57 @@
   padding: 0 !important;
 }
 
-.keppler-check {
-  input[type=checkbox] {
-    display: none;
-    visibility: hidden;
-    transition: .3s;
-  }
-
-  input[type="checkbox"] + label {
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: 500;
-    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    transition: .3s;
-  }
-
-  input[type="checkbox"] + label:before {
-    display: block;
-    content: "";
-    // margin: 0 15px 3px 0px;
-    width: 15px;
-    height: 15px;
-    background-color: transparent;
-    border: 2px solid #5a5a5a;
-    border-radius: 2px;
-    vertical-align: middle;
-  }
-
-  input[type=checkbox]:checked + label:before {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjIwcHgiIGhlaWdodD0iMTVweCIgdmlld0JveD0iMCAwIDIwIDE1Ij4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iNy4xNDMsMTQuOTM4IDAsNy43OTYgMi4wMjEsNS43NzYgNy4xNDMsMTAuODk4IDE3Ljk3OSwwLjA2MiAyMCwyLjA4MiAiLz4NCjwvc3ZnPg0K');
-    background-color: $keppler-color;
-    border-color: $keppler-color;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    -webkit-background-size: 11px auto;
-    -moz-background-size: 11px auto;
-    -o-background-size: 11px auto;
-    background-size: 11px auto;
-    transition: .3s;
+.checkbox {
+  margin: 0;
+  label {
+    padding: 0;
+    min-height: 0;
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    input[type="checkbox"] {
+      display: none;
+      transition: all .3s ease-in;
+      & + .cr > .cr-icon {
+        transform: scale(3) rotateZ(-20deg);
+        opacity: 0;
+        transition: all .3s ease-in;
+      }
+      &:checked + .cr {
+        background: $keppler-color;
+        border: solid 1px $keppler-color;
+        transition: all .3s ease-in;
+        .cr-icon  {
+          transform: scale(1) rotateZ(0deg);
+          opacity: 1;
+          color: #eee;
+          transition: all .3s ease-in;
+        }
+      }
+      &:disabled + .cr {
+        opacity: .5;
+        transition: all .3s ease-in;
+      }
+    }
+    .cr {
+      position: relative;
+      display: inline-block;
+      border-radius: 1px;
+      width: 1em;
+      height: 1em;
+      float: left;
+      border: solid 1px #999;
+      transition: .3s;
+      .cr-icon {
+        position: absolute;
+        font-size: .6em;
+        line-height: 0;
+        top: 50%;
+        left: 20%;
+        color: #eee;
+      }
+    }
   }
 }
