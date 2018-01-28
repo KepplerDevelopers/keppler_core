@@ -17,7 +17,7 @@
                     %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
-                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks", title: t('keppler.actions.delete') }
+                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", title: t('keppler.actions.delete'), ":class" => "{disabled: !checks}"}
                   %i.icon-trash
           %ol.breadcrumb
             %li
@@ -46,7 +46,6 @@
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
-
         %center#paginator-module
           = paginate @objects, window: 1
 
