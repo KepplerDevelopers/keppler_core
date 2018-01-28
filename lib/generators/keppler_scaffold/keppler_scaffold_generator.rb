@@ -160,7 +160,7 @@ module Rails
       end
 
       def str_route
-        " post '/sorting', to: '#{controller_file_name}#sort', as: :sorting_#{controller_file_name}\n  resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/import', action: 'import', as: :import\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
+        " post '/sorting', to: '#{controller_file_name}#sort', as: :sorting_#{controller_file_name}\n  resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/import', action: 'import', as: :import\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      '/destroy_multiple',\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
       end
 
       def str_menu
