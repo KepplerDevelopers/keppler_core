@@ -7,16 +7,17 @@
             = t("keppler.modules.#{controller_path.underscore}")
           .toolbar
             .mailbox-controls
-              = link_to reload_admin_google_adwords_path, class: "btn btn-default btn-sm", remote: true do
-                %i.icon-reload
+              .btn-group
+                = link_to reload_admin_google_adwords_path, class: "tool-btn", remote: true do
+                  %i.icon-reload
               / Check all button
               .btn-group
-                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
+                %button.tool-btn.checkbox-toggle{"@click" => "selectAll()"}
                   .pretty.p-default.p-curve.p-thick.p-smooth
                     %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
-                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
+                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                   %i.icon-trash
           %ol.breadcrumb
             %li

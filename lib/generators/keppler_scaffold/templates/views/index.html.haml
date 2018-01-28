@@ -8,21 +8,21 @@
           .toolbar
             .mailbox-controls
               .btn-group
-                = link_to reload_admin_<%= plural_table_name %>_path, class: "btn btn-default btn-sm", remote: true do
+                = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
                   %i.icon-reload
               .btn-group
-                = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "btn btn-default btn-sm", title: 'Save as .xls' do
+                = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "tool-btn", title: 'Save as .xls' do
                   %i.icon-cloud-download
-                = link_to "", class: "btn btn-default btn-sm", title: 'Import File', id: "<%= singular_table_name %>" do
+                = link_to "", class: "tool-btn", title: 'Import File', id: "<%= singular_table_name %>" do
                   %i.icon-cloud-upload
               / Check all button
               .btn-group
-                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
+                %a.tool-btn.checkbox-toggle{"@click" => "selectAll()"}
                   .pretty.p-default.p-curve.p-thick.p-smooth
                     %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
-                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
+                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":disabled"=>"checks ? disabled : '' }
                   %i.icon-trash
           %ol.breadcrumb
             %li
