@@ -7,16 +7,17 @@
             = t("keppler.modules.#{controller_path.underscore}")
           .toolbar
             .mailbox-controls
-              = link_to reload_admin_users_path, class: "btn btn-default btn-sm", remote: true do
-                %i.icon-reload
+              .btn-group
+                = link_to reload_admin_users_path, class: "tool-btn", title: t('keppler.actions.refresh'), remote: true do
+                  %i.icon-reload
               / Check all button
               .btn-group
-                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
+                %a.tool-btn.checkbox-toggle{"@click" => "selectAll()", title: t('keppler.actions.select_all')}
                   .pretty.p-default.p-curve.p-thick.p-smooth
                     %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
-                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
+                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks", title: t('keppler.actions.delete') }
                   %i.icon-trash
           %ol.breadcrumb
             %li
