@@ -7,8 +7,9 @@
             = t("keppler.modules.#{controller_path.underscore}")
           .toolbar
             .mailbox-controls
-              = link_to reload_admin_<%= plural_table_name %>_path, class: "btn btn-default btn-sm", remote: true do
-                %i.icon-reload
+              .btn-group
+                = link_to reload_admin_<%= plural_table_name %>_path, class: "btn btn-default btn-sm", remote: true do
+                  %i.icon-reload
               .btn-group
                 = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "btn btn-default btn-sm", title: 'Save as .xls' do
                   %i.icon-cloud-download
@@ -26,7 +27,7 @@
           %ol.breadcrumb
             %li
               %a{:href => "#"}
-                %i.fa.fa-dashboard
+                %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
             -# %li
             -#   %a{:href => "#"} UI
@@ -68,7 +69,7 @@
                       Actions
               %tbody#objects-container{ "data-update-url" => "#{admin_sorting_<%= plural_table_name %>_path}" }
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @<%= plural_table_name %>
+                = render 'listing', objects: @objects
         %center#paginator-module
           = paginate @objects, window: 1
   .listing-show.visible-lg.visible-md

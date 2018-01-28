@@ -103,9 +103,7 @@ module Admin
     end
 
     private
-    def setting_search
-      
-    end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>
       @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
