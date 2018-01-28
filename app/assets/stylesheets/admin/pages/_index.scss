@@ -216,24 +216,23 @@
   .checkbox-toggle{
     .pretty{
       margin-right: 0;
+      padding-right: 5px;
     }
   }
-}
-#objects-container {
-  // td:first-child {
-  //   padding: 10px 20px;
-  // }
-  // td {
-  //   padding: 0;
-  //   a {
-  //     display: block;
-  //     color: inherit;
-  //     padding: 8px;
-  //     &:hover {
-  //       color: inherit;
-  //     }
-  //   }
-  // }
+  .btn-group{
+    border-right: 1px solid lightgray;
+    padding: 0 5px;
+    i{
+      padding: 5px;
+      color: #9e9e9e;
+      transition: .2s;
+      &:hover{
+        color: #111;
+        transition: .2s;
+      }
+    }
+    
+  }
 }
 
 .ui-sortable-helper{
