@@ -1,34 +1,34 @@
 .container
-	.row
-		.col-lg-2
-			= link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				.arrow-back.btn.btn-default
-					%i.icon-arrow-left
-					= t('keppler.actions.back')
-	.show-section
-		.row
-			.col-lg-3
-				.box.slice-box
-					.box-body.box-profile
-						.profile-user-img.img-responsive.bg-profile{style: "background-image: url(#{@user.avatar? ? @user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
-						%h3.profile-username.text-center= @user.name
-						%p.text-muted.text-center= @user.rol.humanize
-			.col-lg-9
-				.box.slice-box
-					.box-header.with-border
-						%h3.box-title Users
-						.box-tools.pull-right
-							= link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
-								%i.icon-pencil
-							- unless current_user == @user
-								= link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-									%i.icon-trash
+  .row
+    .col-lg-2
+      = link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+        .arrow-back.btn.btn-default
+          %i.fa.fa-angle-left
+          = t('keppler.actions.back')
+  .show-section
+    .row
+      .col-lg-3
+        .box.slice-box
+          .box-body.box-profile
+            .profile-user-img.img-responsive.bg-profile{style: "background-image: url(#{@user.avatar? ? @user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
+            %h3.profile-username.text-center= @user.name
+            %p.text-muted.text-center= @user.rol.humanize
+      .col-lg-9
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title Users
+            .box-tools.pull-right
+              = link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                %i.icon-pencil
+              - unless current_user == @user
+                = link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                  %i.icon-trash
 
-					/ /.box-header
-					.box-body.box-body-no-padding
-						%table.table.table-striped
-							%tbody
-								- @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
-									%tr.list-row
-										%th.display-label= t("activerecord.attributes.user.#{attribute}")
-										%td.display-value.fs-body-1.tc-black-2= value.to_s.humanize
+          / /.box-header
+          .box-body.box-body-no-padding
+            %table.table.table-striped
+              %tbody
+                - @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
+                  %tr.list-row
+                    %th.display-label= t("activerecord.attributes.user.#{attribute}")
+                    %td.display-value.fs-body-1.tc-black-2= value.to_s.humanize

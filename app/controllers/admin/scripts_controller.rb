@@ -56,6 +56,16 @@ module Admin
       end
     end
 
+    def clone
+      @script = Script.clone_record params[:script_id]
+
+      if @script.save
+        redirect_to admin_scripts_path
+      else
+        render :new
+      end
+    end
+
     # DELETE /scripts/1
     def destroy
       @script.destroy

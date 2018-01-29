@@ -1,118 +1,118 @@
 #development
-	.wrapper
-		.wrapper-body.container
-			.actions
-				= link_to admin_scaffolds_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-					-# = material_icon.md_18.arrow_back.css_class("md-dark")
-			.wrapper-inputs
-				.col.s6
-					.card
-						.card-content
-							= simple_form_for [:admin, @scaffold] do |f|
-								-# {{ $data }}
-								-# {{disabelAddOther}} - {{disabledSave}}
-								.row
-									.col.s12
-										= f.input :name, input_html: {"v-model" => "name" }
-									.col.s12
-										%input{type: "text", "v-model" => "temp[0]", "v-bind:disabled" => "!name"}
-									.col.s12
-										%input{type: "hidden", "v-model" => "fields", name: "[scaffold][fields]", "v-bind:disabled" => "!name"}
+  .wrapper
+    .wrapper-body.container
+      .actions
+        = link_to admin_scaffolds_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          -# = material_icon.md_18.arrow_back.css_class("md-dark")
+      .wrapper-inputs
+        .col.s6
+          .card
+            .card-content
+              = simple_form_for [:admin, @scaffold] do |f|
+                -# {{ $data }}
+                -# {{disabelAddOther}} - {{disabledSave}}
+                .row
+                  .col.s12
+                    = f.input :name, input_html: {"v-model" => "name" }
+                  .col.s12
+                    %input{type: "text", "v-model" => "temp[0]", "v-bind:disabled" => "!name"}
+                  .col.s12
+                    %input{type: "hidden", "v-model" => "fields", name: "[scaffold][fields]", "v-bind:disabled" => "!name"}
 
-									.col.s12
-										%h6{style: "margin-bottom: 50px"} type
+                  .col.s12
+                    %h6{style: "margin-bottom: 50px"} type
 
-									.col.s6
-										.switch{style: "margin-bottom: 20px"}
-											%label
-												String
-												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "string", type: "checkbox", "v-model" => "type", value: "string", "v-on:click" => "toggleType('string')"}
-													%span.lever
-									.col.s6
-										.switch{style: "margin-bottom: 20px"}
-											%label
-												Integer
-												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "integer", type: "checkbox", "v-model" => "type", value: "integer", "v-on:click" => "toggleType('integer')"}
-													%span.lever
-									.col.s6
-										.switch
-											%label
-												Text
-												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "text", type: "checkbox", "v-model" => "type", value: "text", "v-on:click" => "toggleType('text')"}
-													%span.lever
-									.col.s6
-										.switch
-											%label
-												Boolean
-												%input{name: "post", type: "hidden", value: "false"}
-												%input{name: "boolean", type: "checkbox", "v-model" => "type", value: "boolean", "v-on:click" => "toggleType('boolean')"}
-													%span.lever
+                  .col.s6
+                    .switch{style: "margin-bottom: 20px"}
+                      %label
+                        String
+                        %input{name: "post", type: "hidden", value: "false"}
+                        %input{name: "string", type: "checkbox", "v-model" => "type", value: "string", "v-on:click" => "toggleType('string')"}
+                          %span.lever
+                  .col.s6
+                    .switch{style: "margin-bottom: 20px"}
+                      %label
+                        Integer
+                        %input{name: "post", type: "hidden", value: "false"}
+                        %input{name: "integer", type: "checkbox", "v-model" => "type", value: "integer", "v-on:click" => "toggleType('integer')"}
+                          %span.lever
+                  .col.s6
+                    .switch
+                      %label
+                        Text
+                        %input{name: "post", type: "hidden", value: "false"}
+                        %input{name: "text", type: "checkbox", "v-model" => "type", value: "text", "v-on:click" => "toggleType('text')"}
+                          %span.lever
+                  .col.s6
+                    .switch
+                      %label
+                        Boolean
+                        %input{name: "post", type: "hidden", value: "false"}
+                        %input{name: "boolean", type: "checkbox", "v-model" => "type", value: "boolean", "v-on:click" => "toggleType('boolean')"}
+                          %span.lever
 
-									.col.s12{style: "margin-top: 80px"}
-										.form-actions.right
-											%button.btn{type: "button", "v-on:click" => "addField", "v-bind:disabled" => "disabelAddOther"} Añadir Otro
-											= f.button :submit, "Guardar", name: '_save', "v-bind:disabled" => "disabledSave"
-											-# = f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
+                  .col.s12{style: "margin-top: 80px"}
+                    .form-actions.right
+                      %button.btn{type: "button", "v-on:click" => "addField", "v-bind:disabled" => "disabelAddOther"} Añadir Otro
+                      = f.button :submit, "Guardar", name: '_save', "v-bind:disabled" => "disabledSave"
+                      -# = f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
 
-				.col.s6
-					.card
-						.card-content
-							%table.bordered{style: "margin-top: 15px"}
-								%thead
-									%tr{style:"background: #fff;"}
-										%span{style: "font-weight: bold"}{{ scaffoldName }}
-								%tbody
-									%th.center Field
-									%th.center Type
-									%tr{"v-for" => "t in fields"}
-										%td.center-align
-											{{ t.split(':').shift() }}
-										%td.center-align
-											{{ t.split(':').pop() }}
+        .col.s6
+          .card
+            .card-content
+              %table.bordered{style: "margin-top: 15px"}
+                %thead
+                  %tr{style:"background: #fff;"}
+                    %span{style: "font-weight: bold"}{{ scaffoldName }}
+                %tbody
+                  %th.center Field
+                  %th.center Type
+                  %tr{"v-for" => "t in fields"}
+                    %td.center-align
+                      {{ t.split(':').shift() }}
+                    %td.center-align
+                      {{ t.split(':').pop() }}
 
 :javascript
-	new Vue({
-		el: '#development',
-		data: {
-			name: '',
-			fields: [],
-			temp: [],
-			type: []
-		},
-		methods: {
-			addField() {
-				if (this.temp) {
-					this.fields.push(this.temp[0] + ':' + this.type)
-					this.temp = []
-					this.type = []
-				}
-			},
-			toggleType(type) {
-				this.type = []
-				this.type.push(type)
-			}
-		},
-		computed: {
-			scaffoldName() {
-				return this.name ? this.name : 'Name'
-			},
-			// disabelAddOther() {
-			// 	if (this.temp == [''] && this.type == ['']) {
-			// 		return false
-			// 	} else {
-			// 		return true
-			// 	}
-			// },
-			// disabledSave() {
-			// 	if (this.fields == []) {
-			// 		return false
-			// 	} else {
-			// 		return true
-			// 	}
-			// }
-		},
+  new Vue({
+    el: '#development',
+    data: {
+      name: '',
+      fields: [],
+      temp: [],
+      type: []
+    },
+    methods: {
+      addField() {
+        if (this.temp) {
+          this.fields.push(this.temp[0] + ':' + this.type)
+          this.temp = []
+          this.type = []
+        }
+      },
+      toggleType(type) {
+        this.type = []
+        this.type.push(type)
+      }
+    },
+    computed: {
+      scaffoldName() {
+        return this.name ? this.name : 'Name'
+      },
+      // disabelAddOther() {
+      // 	if (this.temp == [''] && this.type == ['']) {
+      // 		return false
+      // 	} else {
+      // 		return true
+      // 	}
+      // },
+      // disabledSave() {
+      // 	if (this.fields == []) {
+      // 		return false
+      // 	} else {
+      // 		return true
+      // 	}
+      // }
+    },
 
-	})
+  })

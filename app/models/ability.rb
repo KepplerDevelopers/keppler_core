@@ -11,7 +11,7 @@ class Ability
       can :manage, :all
 
       # - Keppler Admin cannot clone users, scripts or SEO models -
-      cannot :clone, [User, Script, GoogleAdword, MetaTag]
+      cannot :clone, [User, GoogleAdword, MetaTag]
 
       # - GoogleAnalytics authorize -
       # if Setting.first.google_analytics_setting.ga_status

@@ -1,11 +1,12 @@
 - objects.each do |script|
   %tr{ id: "row-#{script.id}" }
-    - if can? :destroy_multiple, Script
-      %td.item-check{style:"width: 10%"}
-        .pretty.p-default.p-curve.p-thick.p-smooth
-          %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{script.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{script.id}", "@click" => "listDelete(#{script.id})"}
-          .state.p-danger-o
-            %label{ for: "checkbox-#{script.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can? :destroy_multiple, Script
+        .checkbox
+          %label{ for: "checkbox-#{script.id}" }
+            %input{ type:"checkbox", id: "checkbox-#{script.id}", 'checklist-model' => 'check', 'checklist-value' => "#{script.id}", 'ng-click' => "selectByCheck(#{@objects.size})", '@click' => "listDelete(#{script.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
     %td.hide-on-small-and-down
       = link_to admin_script_path(script, search: @query), remote: true, class: "show-row" do
         %span= script.name
@@ -31,7 +32,7 @@
               = t('keppler.actions.edit')
         - if can? :clone, Script
           %li
-            = link_to admin_script_path(script), class: 'new-menu', title: t('keppler.actions.clone') do
+            = link_to admin_script_clone_path(script), class: 'new-menu', title: t('keppler.actions.clone') do
               %i.icon-docs
               = t('keppler.actions.clone')
         - if can? :destroy, Script
