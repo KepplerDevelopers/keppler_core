@@ -1,7 +1,7 @@
 .tab-content
   %h6.actions
-    - if can? :update, <%= singular_table_name.camelcase %>
-      = link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), title: t("keppler.actions.edit"), class: 'pull-left' do
+    - if can? :update, Father
+      = link_to edit_admin_father_path(@father), title: t("keppler.actions.edit"), class: 'pull-left' do
         %i.icon-pencil
         %span= t('keppler.actions.edit')
     %a#close-index-show.pull-right
@@ -9,7 +9,7 @@
   %h3.control-sidebar-heading
     = t("keppler.modules.#{controller_path.underscore}")
   %ul.timeline
-    - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name} %>).each do |attribute, value|
+    - @father.as_json(only: ["name", "avatar", "email"]).each do |attribute, value|
       %li.list-row
         .timeline-item
           %h6.timeline-header.no-border

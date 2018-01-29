@@ -210,30 +210,42 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.toolbar {
-  width: 130px;
-  position: relative;
-  margin: 0 60px;
-  display: inline-grid;
-  float: right;
-  @include respond-to(sm) {
-    margin: 0;
+.toolbar{
+  background-color: #fbfbfb;
+  position: absolute;
+  top: 15px;
+  right: 70px;
+  border-radius: 2px;
+  font-size: 1.4rem;
+  .disabled{
+    pointer-events: none;
+    cursor: not-allowed;
   }
-}
-#objects-container {
-  td:first-child {
-    padding: 10px 20px;
+  .mailbox-controls {
+    padding: 3px 0;
   }
-  td {
-    padding: 0;
-    a {
-      display: block;
-      color: inherit;
-      padding: 8px;
-      &:hover {
-        color: inherit;
+  .checkbox-toggle{
+    .pretty{
+      margin-right: 0;
+      padding-right: 5px;
+    }
+  }
+  .btn-group{
+    border-right: 1px solid lightgray;
+    padding: 0 5px;
+    i{
+      padding: 5px;
+      color: #9e9e9e;
+      transition: .2s;
+      &:hover{
+        color: #111;
+        transition: .2s;
       }
     }
+    &:last-child{
+      border: none;
+    }
+
   }
 }
 
