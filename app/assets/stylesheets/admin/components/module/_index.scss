@@ -1,6 +1,9 @@
 .content-header.index-header{
-  margin: 10px 0 !important;
-
+  margin: 0 !important;
+  padding: 15px !important;
+  h1 {
+    margin: 0 10px 0 0;
+  }
 }
 .callout.callout-warning{
   background-color: white;
@@ -100,7 +103,7 @@
       padding: 10px;
       white-space: nowrap;
       border-bottom: 1px solid #f4f4f4;
-      i{
+      i {
         margin-right: 10px;
         font-size: inherit;
         text-rendering: auto;
@@ -109,31 +112,30 @@
       }
     }
   }
-  // .menu{
-  //   max-height: 200px;
-  //   margin: 0;
-  //   padding: 0;
-  //   list-style: none;
-  //   overflow-x: hidden;
-  //
-  // }
 }
-.control-sidebar{
+.control-sidebar {
   position: fixed;
   height: 100%;
   overflow-y: auto;
   padding-bottom: 50px;
-  .tab-content{
-    ul.timeline{
-      &:before{
+  .tab-content {
+    ul.timeline {
+      &:before {
         content: none;
       }
       li{
+        margin-right: 0;
         &:before{
           content: none;
         }
-        .timeline-item{
+        .timeline-item {
           margin: 0;
+          float: left;
+          width: 100%;
+          .time {
+            font-size: 10px;
+            padding-top: 0;
+          }
         }
       }
 
@@ -208,12 +210,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.toolbar{
+.toolbar {
   width: 130px;
-  position: absolute;
-  top: 10px;
-  right: 50px;
-  margin: 0 20px;
+  position: relative;
+  margin: 0 60px;
+  display: inline-grid;
+  float: right;
+  @include respond-to(sm) {
+    margin: 0;
+  }
 }
 #objects-container {
   td:first-child {
