@@ -1,4 +1,4 @@
-#index-container{ :controller => "<%= plural_table_name %>" }
+#index-container{ :controller => "fathers" }
   .container
     .row
       .listing.col-lg-12.col-xs-12
@@ -8,12 +8,12 @@
           .toolbar
             .mailbox-controls
               .btn-group
-                = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
+                = link_to reload_admin_fathers_path, class: "tool-btn", remote: true do
                   %i.icon-reload
               .btn-group
-                = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "tool-btn", title: 'Save as .xls' do
+                = link_to admin_fathers_path(:format => :xls), class: "tool-btn", title: 'Save as .xls' do
                   %i.icon-cloud-download
-                = link_to "", class: "tool-btn", title: 'Import File', id: "<%= singular_table_name %" do
+                = link_to "", class: "tool-btn", title: 'Import File', id: "father" do
                   %i.icon-cloud-upload
               / Check all button
               .btn-group
@@ -22,7 +22,7 @@
                     %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
-                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":disabled"=>"checks ? disabled : ''" }
+                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":disabled"=>"checks ? disabled : '' }
                   %i.icon-trash
           %ol.breadcrumb
             %li
@@ -43,7 +43,7 @@
                 - if @objects.size.zero?
                   %tr
                     %th{:style => 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.fathers"))
                 - else
                   %tr
                     %td
@@ -52,7 +52,7 @@
                     %th.visible-lg.visible.md= t("activerecord.attributes.email")
                     %th{:style => "width: 20%;"}
                       Actions
-              %tbody#objects-container{ "data-update-url" => "#{sort_admin_<%= plural_table_name %>_path}" }
+              %tbody#objects-container{ "data-update-url" => "#{sort_admin_fathers_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
         %center#paginator-module
@@ -61,15 +61,15 @@
     = render "description"
   %aside#index-show.control-sidebar
   .mixed-btn
-    = link_to new_admin_<%= singular_table_name %_path, class: "btn-float" do
+    = link_to new_admin_father_path, class: "btn-float" do
       %i.material-icons add
 :javascript
   $(document).ready(function(){
-    $('#<%= singular_table_name %').click(function() {
-      $('#import_file_<%= singular_table_name %').click()
-      $('#import_file_<%= singular_table_name %').change(function() {
+    $('#father').click(function() {
+      $('#import_file_father').click()
+      $('#import_file_father').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_<%= singular_table_name %').submit()
+        $('#import_form_father').submit()
       })
     });
   });

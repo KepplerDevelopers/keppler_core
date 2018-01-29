@@ -8,8 +8,17 @@
           = entries(@total, @objects)
           .toolbar
             .mailbox-controls
-              .btn-group.pull-right
-                %a.btn.btn-default.btn-sm{ type: 'button', 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', 'v-show' => 'checks' }
+              .btn-group
+                = link_to reload_admin_google_adwords_path, class: "tool-btn", remote: true do
+                  %i.icon-reload
+              / Check all button
+              .btn-group
+                %button.tool-btn.checkbox-toggle{"@click" => "selectAll()"}
+                  .pretty.p-default.p-curve.p-thick.p-smooth
+                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
+                    .state.p-danger-o
+                      %label{ for: "checkbox-all" }
+                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                   %i.icon-trash
                 .checkbox.btn.btn-default.btn-sm
                   %label{ for: 'checkbox-all' }
