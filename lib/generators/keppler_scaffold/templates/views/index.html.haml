@@ -25,6 +25,9 @@
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
+          .hide
+            = form_tag admin_scaffold_import_path(@objects), id: "import_form_<%= plural_table_name %>", multipart: true, method: :post do
+              = file_field_tag :file, id: "import_file_scaffold"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -77,11 +80,11 @@
 
 :javascript
   $(document).ready(function(){
-    $('#<%= singular_table_name %>').click(function() {
-      $('#import_file_<%= singular_table_name %>').click()
-      $('#import_file_<%= singular_table_name %>').change(function() {
+    $('#<%= plural_table_name %>').click(function() {
+      $('#import_file_<%= plural_table_name %>').click()
+      $('#import_file_<%= plural_table_name %>').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_<%= singular_table_name %>').submit()
+        $('#import_form_<%= plural_table_name %>').submit()
       })
     });
   });
