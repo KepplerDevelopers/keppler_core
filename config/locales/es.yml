@@ -5,12 +5,16 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
-      customizes: Customizes
-      dashboard: Dashboard
+      fathers: Fathers
+      customizes: Personalización
+      dashboard: Tablero
       users: Usuarios
-      keppler-design: 'Keppler Design'
-      development: 'Development'
+      development: 'Desarrollo'
       setting: Configuración
+      keppler-design: 'Diseño Keppler'
+      keppler-design-submenu:
+        frontend-templates: 'Plantillas y Temas'
+        admin-appearance: 'Apariencia de Keppler'
       setting-submenu:
         basic-information: 'Información básica'
         email-setting-smtp: 'Configuración de email (SMTP)'
@@ -32,6 +36,7 @@ es:
         categories: Categorías
     models:
       singularize:
+        father: father
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -40,6 +45,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        fathers: fathers
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -49,6 +55,7 @@ es:
         user: usuarios
         script: scripts
     modules:
+      admin/fathers: Fathers
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'

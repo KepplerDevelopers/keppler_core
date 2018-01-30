@@ -4,27 +4,35 @@
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1
-            = t("keppler.modules.#{controller_path.underscore}")
+            %h1{ style: 'display: inline-block' }
+              = t("keppler.modules.#{controller_path.underscore}")
+            = entries(@total, @objects)
           .toolbar
             .mailbox-controls
-              = link_to reload_admin_meta_tags_path, class: "btn btn-default btn-sm", remote: true do
-                %i.icon-reload
-              / Check all button
               .btn-group
-                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
+                = link_to reload_admin_meta_tags_path, class: "tool-btn", remote: true do
+                  %i.icon-reload
+                / Check all button
+              .btn-group
+                %a.tool-btn.checkbox-toggle{"@click" => "selectAll()"}
                   .pretty.p-default.p-curve.p-thick.p-smooth
                     %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
                     .state.p-danger-o
                       %label{ for: "checkbox-all" }
-                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
+                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                   %i.icon-trash
+                .checkbox.btn.btn-default.btn-sm
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+                = link_to reload_admin_meta_tags_path, class: 'btn btn-default btn-sm', remote: true do
+                  %i.icon-reload
           %ol.breadcrumb
             %li
-              %a{href: "#"}
+              %a{ href: '#' }
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
-
-        -# = entries(@total, @objects)
 
         .box.slice-box
           .box-body.no-padding

@@ -8,6 +8,28 @@ Rails.application.routes.draw do
   namespace :admin do
 
     root to: 'admin#root'
+ 
+    resources :fathers do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
+      post '/import', action: 'import', as: :import
+      post(
+        '/sort',
+        action: :sort,
+        on: :collection,
+      )
+      get(
+        '/reload',
+        action: :reload,
+        on: :collection,
+      )
+      delete(
+        '/destroy_multiple',
+        action: :destroy_multiple,
+        on: :collection,
+        as: :destroy_multiple
+      )
+    end
 
     resources :scaffolds do
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -49,7 +71,7 @@ Rails.application.routes.draw do
     post '/sorting', to: 'meta_tags#sort', as: :sorting_meta_tags
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
-
+      get '/clone', action: 'clone'
       get(
         '/reload',
         action: :reload,
@@ -65,6 +87,7 @@ Rails.application.routes.draw do
 
     resources :google_adwords do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
       get(
         '/reload',
         action: :reload,
@@ -80,6 +103,7 @@ Rails.application.routes.draw do
 
     resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
       get(
         '/reload',
         action: :reload,

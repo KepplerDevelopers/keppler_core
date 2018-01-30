@@ -17,20 +17,6 @@
 -# 		= activity.created_at
 -# 		= t('keppler.messages.since_been_removed')
 .timeline-item
-  - if activity.trackable
-    %span.time
-      %i.fa.fa-clock-o
-      -# = t('keppler.messages.to')
-      %b
-        -# = activity.trackable.send(method)
-      = t('keppler.messages.at')
-      = activity.created_at
-  - else
-    %span.time
-      %i.fa.fa-clock-o
-      = t('keppler.messages.at')
-      = activity.created_at
-      = t('keppler.messages.since_been_removed')
 
   %h6.timeline-header.no-border
     %small
@@ -40,3 +26,20 @@
       = t('keppler.messages.has')
       = t('keppler.actions.updated').downcase
       = t("keppler.models.singularize.#{activity.trackable_type.underscore}").humanize
+      %b
+        = activity.trackable.send(method) if activity.trackable
+  - if activity.trackable
+    %span.time
+      %i.icon-clock
+      = t('keppler.messages.at')
+      = activity.created_at.to_formatted_s(:time)
+      = t('keppler.messages.to')
+      = activity.created_at.to_formatted_s(:day)
+  - else
+    %span.time
+      %i.icon-clock
+      = t('keppler.messages.at')
+      = activity.created_at.to_formatted_s(:time)
+      = t('keppler.messages.to')
+      = activity.created_at.to_formatted_s(:day)
+      = t('keppler.messages.since_been_removed')

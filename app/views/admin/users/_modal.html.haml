@@ -5,7 +5,7 @@
 -# 		.modal-content
 -# 			- Role.all.drop(1).each do |role|
 -# 				.radio-button
--# 					= radio_button_tag "user[role_ids]", role.id, false, class: "radio-button__input", id: "radio#{role.id}", :type => "radio", :value => "#{role.id}", :checked => @user.has_role?(role.name)
+-# 					= radio_button_tag "user[role_ids]", role.id, false, class: "radio-button__input", id: "radio#{role.id}", type: "radio", :value => "#{role.id}", :checked => @user.has_role?(role.name)
 -# 					= label_tag "user[role_ids]", role.name.humanize, class: "radio-button__label", :for => "radio#{role.id}"
 -# 		.modal-footer
 -# 			.actions

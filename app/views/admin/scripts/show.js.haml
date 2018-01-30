@@ -1,7 +1,4 @@
 $("#index-show").html("#{j render('index_show')}")
-if (!$('#index-show').hasClass('active')) { $('#index-show').animate({ right: 0 }, 0).addClass('active') }
--# $('.listing table').find(".active").removeClass("active")
--# $("#row-#{@script.id}").addClass("active")
--# $scope = angular.element($(".listing-show")).scope()
--# $scope.compiledHTML($(".listing-show"))
--# $(".listing-show-body").trigger("click");
+$("#index-show").css('right', 0)
+$('.listing table').find(".active").removeClass("active")
+$("#row-#{@script.id}").addClass("active")

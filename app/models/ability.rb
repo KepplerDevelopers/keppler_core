@@ -7,11 +7,14 @@ class Ability
 
     if user.has_role? :keppler_admin
 
+      # - Father authorize -
+      can :manage, Father
+
       # - Keppler Admin can manage everything -
-      can :manage, :all, except: [User]
+      can :manage, :all
 
       # - Keppler Admin cannot clone users, scripts or SEO models -
-      cannot :clone, [User, Script, GoogleAdword, MetaTag]
+      cannot :clone, [User, GoogleAdword, MetaTag]
 
       # - GoogleAnalytics authorize -
       # if Setting.first.google_analytics_setting.ga_status
@@ -29,6 +32,9 @@ class Ability
       cannot :destroy, User, user: !user.id
 
     elsif user.has_role? :client
+
+      # - Father authorize -
+      can [:index, :show], Father
 
     end
     # The first argument to `can` is the action you are giving the user
