@@ -8,12 +8,6 @@
           = entries(@total, @objects)
           .toolbar
             .toolbar-item
-              = link_to admin_users_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                %i.icon-cloud-download
-            .toolbar-item
-              = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "user" do
-                %i.icon-cloud-upload
-            .toolbar-item
               = link_to reload_admin_users_path, class: "tool-btn", remote: true do
                 %i.icon-reload
             .toolbar-item
@@ -25,9 +19,6 @@
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
-          .hide
-            = form_tag admin_user_import_path(@objects), id: "import_form_users", multipart: true, method: :post do
-              = file_field_tag :file, id: "import_file_user"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
