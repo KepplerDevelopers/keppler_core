@@ -11,7 +11,7 @@
               = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                 %i.icon-cloud-download
             .toolbar-item
-              = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %" do
+              = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
                 %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
@@ -77,11 +77,11 @@
 
 :javascript
   $(document).ready(function(){
-    $('#<%= singular_table_name %').click(function() {
-      $('#import_file_<%= singular_table_name %').click()
-      $('#import_file_<%= singular_table_name %').change(function() {
+    $('#<%= singular_table_name %>').click(function() {
+      $('#import_file_<%= singular_table_name %>').click()
+      $('#import_file_<%= singular_table_name %>').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_<%= singular_table_name %').submit()
+        $('#import_form_<%= singular_table_name %>').submit()
       })
     });
   });
