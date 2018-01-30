@@ -35,35 +35,3 @@
 .mixed-btn
   = link_to new_admin_customize_path, class: "btn-float" do
     %i.material-icons add
-
-:scss
-  .box-tools {
-    i {
-      padding: 5px 10px;
-      font-size: 20px;
-      color: #d2d2d2;
-      transition: all ease .3s;
-      cursor: pointer;
-      &:hover {
-        color: #555;
-        transition: all ease .3s;
-      }
-    }
-  }
-
-:javascript
-  $('#xs').click(function() {
-    $('#box-body').animate({ 'width': '35%' }, 300)
-  })
-
-  $('#md').click(function() {
-    $('#box-body').animate({ 'width': '70%' }, 300)
-  })
-
-  $('#lg').click(function() {
-    $('#box-body').animate({ 'width': '100%' }, 300)
-  })
-
-  $('#reload').click(function() {
-    $('iframe').attr('src', "#{root_path}")
-  })
