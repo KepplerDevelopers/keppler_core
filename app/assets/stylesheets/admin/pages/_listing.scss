@@ -23,3 +23,16 @@ a.coll{
 .material-icons {
   color: #999;
 }
+
+.show-row {
+  img {
+    height: 20px;
+    border-radius: 50%;
+  }
+  a {
+    position: absolute;
+    display: block;
+    width: 20%;
+    height: 20px;
+  }
+}

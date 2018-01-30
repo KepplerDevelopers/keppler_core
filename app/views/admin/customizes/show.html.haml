@@ -4,7 +4,7 @@
     .actions
       - if can? :destroy, Customize
         = link_to admin_customize_path(@customize), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-          -# -# = material_icon.md_18.delete.css_class("md-dark")
+          %i.icon-trash
       = link_to admin_customizes_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
         -# -# = material_icon.md_18.arrow_back.css_class("md-dark")
     .card

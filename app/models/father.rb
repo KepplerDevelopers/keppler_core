@@ -4,10 +4,11 @@ class Father < ActiveRecord::Base
   include CloneRecord
   require 'csv'
   mount_uploader :avatar, AttachmentUploader
+  mount_uploader :logo, AttachmentUploader
   acts_as_list
   # Fields for the search form in the navbar
   def self.search_field
-    :name_or_avatar_or_email_cont
+    :avatar_or_name_or_email_or_icon_or_logo_cont
   end
 
   def self.import(file)

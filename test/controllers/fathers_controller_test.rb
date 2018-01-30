@@ -18,7 +18,7 @@ class FathersControllerTest < ActionController::TestCase
 
   test "should create father" do
     assert_difference('Father.count') do
-      post :create, father: { avatar: @father.avatar, email: @father.email, name: @father.name }
+      post :create, father: { avatar: @father.avatar, email: @father.email, icon: @father.icon, logo: @father.logo, name: @father.name }
     end
 
     assert_redirected_to father_path(assigns(:father))
@@ -35,7 +35,7 @@ class FathersControllerTest < ActionController::TestCase
   end
 
   test "should update father" do
-    patch :update, id: @father, father: { avatar: @father.avatar, email: @father.email, name: @father.name }
+    patch :update, id: @father, father: { avatar: @father.avatar, email: @father.email, icon: @father.icon, logo: @father.logo, name: @father.name }
     assert_redirected_to father_path(assigns(:father))
   end
 

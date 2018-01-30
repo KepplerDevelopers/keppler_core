@@ -3,6 +3,7 @@ module Admin
   class FathersController < AdminController
     before_action :set_father, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
+    before_action :set_attachments
 
     # GET /fathers
     def index
@@ -80,13 +81,12 @@ module Admin
 
     def import
       Father.import(params[:file])
-
       redirect_to(
         admin_fathers_path(page: @current_page, search: @query),
         notice: actions_messages(Father.new)
       )
     end
-    
+
     def reload
       @q = Father.ransack(params[:q])
       fathers = @q.result(distinct: true)
@@ -99,7 +99,12 @@ module Admin
     end
 
     private
-    
+
+    def set_attachments
+      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
+                      'picture', 'banner', 'attachment', 'pic', 'file']
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_father
       @father = Father.find(params[:id])
@@ -107,7 +112,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def father_params
-      params.require(:father).permit(:name, :avatar, :email)
+      params.require(:father).permit(:avatar, :name, :email, :icon, :logo)
     end
 
     def show_history

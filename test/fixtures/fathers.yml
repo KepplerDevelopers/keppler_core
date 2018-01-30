@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
   avatar: MyString
+  name: MyString
   email: MyString
+  icon: MyString
+  logo: MyString
 
 two:
-  name: MyString
   avatar: MyString
+  name: MyString
   email: MyString
+  icon: MyString
+  logo: MyString

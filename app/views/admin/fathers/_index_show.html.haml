@@ -9,13 +9,16 @@
   %h3.control-sidebar-heading
     = t("keppler.modules.#{controller_path.underscore}")
   %ul.timeline
-    - @father.as_json(only: ["name", "avatar", "email"]).each do |attribute, value|
+    - @father.as_json(only: ["avatar", "name", "email", "icon", "logo"]).each do |attribute, value|
       %li.list-row
         .timeline-item
           %h6.timeline-header.no-border
             %small
               %strong.display-value= t("activerecord.attributes.#{attribute}")
-              %p.display-label= value
+              - if @attachments.include?(attribute.name)
+                .display-label= image_tag value
+              - else
+                %p.display-label= value
 :coffee
   $('#close-index-show').click ->
     $('#index-show').css 'right', -$('#index-show').outerWidth()

@@ -103,6 +103,7 @@
 
 .checkbox {
   margin: 0;
+  display: flex;
   label {
     padding: 0;
     min-height: 0;
@@ -117,6 +118,7 @@
       & + .cr > .cr-icon {
         transform: scale(3) rotateZ(-20deg);
         opacity: 0;
+        color: #eee;
         transition: all .3s ease-in;
       }
       &:checked + .cr {
@@ -132,6 +134,7 @@
       }
       &:disabled + .cr {
         opacity: .5;
+        cursor: not-allowed;
         transition: all .3s ease-in;
       }
     }
@@ -139,17 +142,17 @@
       position: relative;
       display: inline-block;
       border-radius: 1px;
-      width: 1em;
-      height: 1em;
+      width: 15px;
+      height: 15px;
       float: left;
       border: solid 1px #999;
       transition: .3s;
       .cr-icon {
         position: absolute;
-        font-size: .6em;
-        line-height: 0;
-        top: 50%;
-        left: 20%;
+        font-size: 11px;
+        top: 0;
+        left: 1px;
+        padding: 0px;
         color: #eee;
       }
     }
