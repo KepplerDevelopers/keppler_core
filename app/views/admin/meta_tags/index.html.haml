@@ -7,26 +7,27 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            .mailbox-controls
-              .btn-group
-                = link_to reload_admin_meta_tags_path, class: "tool-btn", remote: true do
-                  %i.icon-reload
-                / Check all button
-              .btn-group
-                %a.tool-btn.checkbox-toggle{"@click" => "selectAll()"}
-                  .pretty.p-default.p-curve.p-thick.p-smooth
-                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
-                    .state.p-danger-o
-                      %label{ for: "checkbox-all" }
-                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
-                  %i.icon-trash
-                .checkbox.btn.btn-default.btn-sm
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
-                = link_to reload_admin_meta_tags_path, class: 'btn btn-default btn-sm', remote: true do
-                  %i.icon-reload
+            .toolbar-item
+              = link_to admin_meta_tags_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                %i.icon-cloud-download
+            .toolbar-item
+              = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "meta_tag" do
+                %i.icon-cloud-upload
+            .toolbar-item
+              = link_to reload_admin_meta_tags_path, class: "tool-btn", remote: true do
+                %i.icon-reload
+            .toolbar-item
+              .checkbox
+                %label{ for: 'checkbox-all' }
+                  %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                  %span.cr
+                    %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+                %i.icon-trash
+          .hide
+            = form_tag admin_meta_tag_import_path(@objects), id: "import_form_meta_tags", multipart: true, method: :post do
+              = file_field_tag :file, id: "import_file_meta_tag"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
