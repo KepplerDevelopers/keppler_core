@@ -4,7 +4,7 @@
       - if can? :destroy_multiple, <%= singular_table_name.camelcase %>
         .checkbox
           %label{ for: "checkbox-#{<%= singular_table_name %>.id}" }
-            %input{ type:"checkbox", id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model' => 'check', 'checklist-value' => "#{<%= singular_table_name %>.id}", 'ng-click' => "selectByCheck(#{@objects.size})", '@click' => "listDelete(#{<%= singular_table_name %>.id})"}
+            %input{ type:"checkbox", id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model' => 'check', 'checklist-value' => "#{<%= singular_table_name %>.id}", '@click' => "listDelete(#{<%= singular_table_name %>.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     <%- attributes.each do |attribute| -%>
@@ -20,12 +20,12 @@
         <%- unless attribute.type.to_s == 'text' -%>
           <%- unless @attachments.include?(attribute.name) -%>
             <%- if index < 2 -%>
-    %td
+    %td.hidden-xs
       = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
         %span
           = <%= singular_table_name %>.<%= attribute.name %>
             <%- else -%>
-    %td.visible-lg.visible-md
+    %td.hidden-xs.hidden-sm
       = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
         %span
           = <%= singular_table_name %>.<%= attribute.name %>

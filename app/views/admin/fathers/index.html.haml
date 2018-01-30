@@ -3,73 +3,66 @@
     .row
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
-          %h1
+          %h1{ style: 'display: inline-block' }
             = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
           .toolbar
-            .mailbox-controls
-              .btn-group
-                = link_to reload_admin_fathers_path, class: "tool-btn", remote: true do
-                  %i.icon-reload
-              .btn-group
-                = link_to admin_fathers_path(:format => :xls), class: "tool-btn", title: 'Save as .xls' do
-                  %i.icon-cloud-download
-                = link_to "", class: "tool-btn", title: 'Import File', id: "father" do
-                  %i.icon-cloud-upload
-              / Check all button
-              .btn-group
-                %a.tool-btn.checkbox-toggle{"@click" => "selectAll()"}
-                  .pretty.p-default.p-curve.p-thick.p-smooth
-                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
-                    .state.p-danger-o
-                      %label{ for: "checkbox-all" }
-                %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":disabled"=>"checks ? disabled : '' }
-                  %i.icon-trash
+            .toolbar-item
+              = link_to reload_admin_fathers_path, class: "tool-btn", remote: true do
+                %i.icon-reload
+            .toolbar-item
+              .checkbox
+                %label{ for: 'checkbox-all' }
+                  %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                  %span.cr
+                    %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+                %i.icon-trash
           %ol.breadcrumb
             %li
-              %a{:href => "#"}
+              %a{ href: '#' }
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
-            -# %li
-            -#   %a{:href => "#"} UI
-            -# %li.active General
-
-        =# entries(@total, @objects)
 
         .box.slice-box
           .box-body.no-padding
 
-            %table.table.table-striped
+            %table.table
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{:style => 'text-align: center;'}
+                    %th{style: 'text-align: center;'}
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.fathers"))
                 - else
                   %tr
-                    %td
-                     %th= t("activerecord.attributes.avatar")
-                    %th= t("activerecord.attributes.name")
-                    %th.visible-lg.visible.md= t("activerecord.attributes.email")
-                    %th{:style => "width: 20%;"}
-                      Actions
+                    %th
+                    %th= t('activerecord.attributes.avatar')
+                    %th= t('activerecord.attributes.logo')
+                    %th.hidden-xs= t('activerecord.attributes.name')
+                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.email')
+                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.icon')
+                    %th.center Menu
               %tbody#objects-container{ "data-update-url" => "#{sort_admin_fathers_path}" }
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @objects
+                = render 'listing', objects: @fathers
         %center#paginator-module
           = paginate @objects, window: 1
-  .listing-show.visible-lg.visible-md
+  %aside.control-sidebar
     = render "description"
   %aside#index-show.control-sidebar
+
   .mixed-btn
     = link_to new_admin_father_path, class: "btn-float" do
       %i.material-icons add
+
 :javascript
   $(document).ready(function(){
-    $('#father').click(function() {
-      $('#import_file_father').click()
-      $('#import_file_father').change(function() {
+    $('# singular_table_name %').click(function() {
+      $('#import_file_<%= singular_table_name %').click()
+      $('#import_file_<%= singular_table_name %').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_father').submit()
+        $('#import_form_<%= singular_table_name %').submit()
       })
     });
   });

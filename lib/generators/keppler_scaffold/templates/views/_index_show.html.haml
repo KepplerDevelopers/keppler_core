@@ -15,7 +15,10 @@
           %h6.timeline-header.no-border
             %small
               %strong.display-value= t("activerecord.attributes.#{attribute}")
-              %p.display-label= value
+              - if @attachments.include?(attribute.name)
+                .display-label= image_tag value
+              - else
+                %p.display-label= value
 :coffee
   $('#close-index-show').click ->
     $('#index-show').css 'right', -$('#index-show').outerWidth()

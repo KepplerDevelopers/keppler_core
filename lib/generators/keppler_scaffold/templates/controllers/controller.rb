@@ -7,6 +7,7 @@ module Admin
   class <%= controller_class_name %>Controller < AdminController
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
+    before_action :set_attachments
 
     # GET <%= route_url %>
     def index
@@ -84,13 +85,12 @@ module Admin
 
     def import
       <%= class_name %>.import(params[:file])
-
       redirect_to(
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
     end
-    
+
     def reload
       @q = <%= class_name %>.ransack(params[:q])
       <%= plural_table_name %> = @q.result(distinct: true)
@@ -103,7 +103,12 @@ module Admin
     end
 
     private
-    
+
+    def set_attachments
+      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
+                      'picture', 'banner', 'attachment', 'pic', 'file']
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>
       @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>

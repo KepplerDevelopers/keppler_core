@@ -4,7 +4,7 @@
       - if can? :destroy_multiple, Father
         .checkbox
           %label{ for: "checkbox-#{father.id}" }
-            %input{ type:"checkbox", id: "checkbox-#{father.id}", 'checklist-model' => 'check', 'checklist-value' => "#{father.id}", 'ng-click' => "selectByCheck(#{@objects.size})", '@click' => "listDelete(#{father.id})"}
+            %input{ type:"checkbox", id: "checkbox-#{father.id}", 'checklist-model' => 'check', 'checklist-value' => "#{father.id}", '@click' => "listDelete(#{father.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td
@@ -14,11 +14,19 @@
     %td
       = link_to admin_father_path(father, search: @query), remote: true, class: 'show-row' do
         %span
+          = image_tag father.logo
+    %td.hidden-xs
+      = link_to admin_father_path(father, search: @query), remote: true, class: 'show-row' do
+        %span
           = father.name
-    %td.visible-lg.visible-md
+    %td.hidden-xs.hidden-sm
       = link_to admin_father_path(father, search: @query), remote: true, class: 'show-row' do
         %span
           = father.email
+    %td.hidden-xs.hidden-sm
+      = link_to admin_father_path(father, search: @query), remote: true, class: 'show-row' do
+        %span
+          = father.icon
     %td{ style: 'padding-right: 30px' }
       %a.drop.pull-right{:id => "menu-#{father.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical

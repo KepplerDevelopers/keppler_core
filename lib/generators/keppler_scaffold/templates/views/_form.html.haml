@@ -2,12 +2,11 @@
   .container
     .row
       .col-lg-2
-        .arrow-back.btn.btn-default
-          = link_to admin_<%= plural_table_name %>_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-            %i.fa.fa-chevron-left
+        = link_to admin_<%= plural_table_name %>_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          .arrow-back.btn.btn-default
+            %i.fa.fa-angle-left
             = t('keppler.actions.back')
-            .clearfix
-      .clearfix
+            
     .row
       .col-lg-12
         .box.slice-box
@@ -22,12 +21,18 @@
                 .form-padding
                   <%- attributes.each do |attribute| -%>
                     <%- if @attachments.include?(attribute.name) -%>
-                  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+                  .col-md-4
+                    .upload-image
+                      = f.label :<%= attribute.name %>
+                      .form-group.files.trigger
+                        %i.material-icons.files-icon add
+                        = f.file_field :<%= attribute.name %>, class: 'photo_upload'
+                      %center#image
+                        = image_tag '<%= attribute.name %>.png', class: 'hidden image_to_upload'
                     <%- end -%>
-                  <%- end -%>	
+                  <%- end -%>
                   <%- attributes.each do |attribute| -%>
-                  .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                  .col-xs-12
                   <%- unless @attachments.include?(attribute.name) -%>
                     <%- if attribute.type.to_s == "text" -%>
                     = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
@@ -42,7 +47,7 @@
                     <%- end -%>
                   <%- end -%>
                   <%- end -%>
-                  .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                  .col-xs-12
                     .pull-right
                       = f.button :submit, t("keppler.actions.save"), name: '_save', class: "btn-primary"
                       = f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'

@@ -217,9 +217,17 @@
   right: 70px;
   border-radius: 2px;
   font-size: 1.4rem;
+  display: inline-block;
+  padding: 0 5px;
+  &-item {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5px;
+  }
   .disabled{
     pointer-events: none;
     cursor: not-allowed;
+    opacity: .5;
   }
   .mailbox-controls {
     padding: 3px 0;
@@ -229,6 +237,11 @@
       margin-right: 0;
       padding-right: 5px;
     }
+  }
+  a:active, a:focus, a:visited {
+    outline: none;
+    text-decoration: none;
+    color: $keppler-color;
   }
   .btn-group{
     border-right: 1px solid lightgray;

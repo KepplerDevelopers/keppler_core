@@ -4,7 +4,7 @@
       - if can? :destroy_multiple, Script
         .checkbox
           %label{ for: "checkbox-#{script.id}" }
-            %input{ type:"checkbox", id: "checkbox-#{script.id}", 'checklist-model' => 'check', 'checklist-value' => "#{script.id}", 'ng-click' => "selectByCheck(#{@objects.size})", '@click' => "listDelete(#{script.id})"}
+            %input{ type:"checkbox", id: "checkbox-#{script.id}", 'checklist-model' => 'check', 'checklist-value' => "#{script.id}", '@click' => "listDelete(#{script.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td.hide-on-small-and-down
