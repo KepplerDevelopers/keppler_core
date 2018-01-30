@@ -78,6 +78,14 @@ module Admin
       )
     end
 
+    def import
+      MetaTag.import(params[:file])
+      redirect_to(
+        admin_meta_tags_path(page: @current_page, search: @query),
+        notice: actions_messages(MetaTag.new)
+      )
+    end
+
     def reload
       @meta_tags = MetaTag.order(:position)
     end
