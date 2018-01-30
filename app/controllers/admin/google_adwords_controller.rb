@@ -80,6 +80,14 @@ module Admin
       )
     end
 
+    def import
+      GoogleAdword.import(params[:file])
+      redirect_to(
+        admin_google_adwords_path(page: @current_page, search: @query),
+        notice: actions_messages(GoogleAdword.new)
+      )
+    end
+
     def reload
       @q = GoogleAdword.ransack(params[:q])
       google_adwords = @q.result(distinct: true)

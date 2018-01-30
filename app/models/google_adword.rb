@@ -14,4 +14,19 @@ class GoogleAdword < ActiveRecord::Base
   def self.search_field
     :campaign_name_or_description_cont
   end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      begin
+        self.create! row.to_hash
+      rescue => err
+      end
+    end
+  end
+
+  def self.sorter(params)
+    params.each_with_index do |id, idx|
+      self.find(id).update(position: idx.to_i+1)
+    end
+  end
 end
