@@ -7,17 +7,18 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            .mailbox-controls
-              .btn-group.pull-right
-                %a.btn.btn-default.btn-sm{ type: 'button', 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', 'v-show' => 'checks' }
-                  %i.icon-trash
-                .checkbox.btn.btn-default.btn-sm
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
-                = link_to reload_admin_users_path, class: 'btn btn-default btn-sm', remote: true do
-                  %i.icon-reload
+            .toolbar-item
+              = link_to reload_admin_users_path, class: "tool-btn", remote: true do
+                %i.icon-reload
+            .toolbar-item
+              .checkbox
+                %label{ for: 'checkbox-all' }
+                  %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                  %span.cr
+                    %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+                %i.icon-trash
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -42,7 +43,6 @@
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
-
         %center#paginator-module
           = paginate @objects, window: 1
 

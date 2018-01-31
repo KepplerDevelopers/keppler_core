@@ -13,6 +13,12 @@ body {
   font-family: $font-primary;
   font-size: 1.5rem;
 }
+a{
+  color: inherit;
+  &:hover{
+    color: inherit;
+  }
+}
 
 .container{
   width: 100%;
@@ -29,4 +35,21 @@ body {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.slice-box{
+  border-top-color: $keppler-color;
+}
+
+.box-tools {
+  i {
+    padding: 0 10px;
+    font-size: 25px;
+    color: #d2d2d2;
+    transition: all ease .3s;
+    cursor: pointer;
+    &:hover {
+      color: #555;
+      transition: all ease .3s;
+    }
+  }
 }
