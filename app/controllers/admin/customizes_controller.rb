@@ -32,6 +32,23 @@ module Admin
       end
     end
 
+    # PATCH/PUT /customizes/1
+    def update
+      @customizes = Customize.all
+      @customizes.each { |customize| customize.update(installed: false) }
+      if @customize.update(customize_params)
+        if @customize.installed?
+          @customize.install
+        else
+          #@customizes.each { |customize| customize.update(installed: false) }
+          @customize.uninstall
+        end
+        redirect_to :back
+      else
+        render :edit
+      end
+    end
+
     def install_default
       @customize = Customize.find(params[:customize_id])
       if !@customize.installed?
@@ -47,7 +64,7 @@ module Admin
         redirect_to :back
       end
     end
-    
+
     # DELETE /customizes/1
     def destroy
       if @customize.installed?
