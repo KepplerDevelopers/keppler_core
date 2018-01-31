@@ -5,11 +5,10 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
-      rockers: Rockers
       customizes: Personalización
       dashboard: Tablero
       users: Usuarios
-      development: 'Desarrollo'
+      development: 'Desarrollo Keppler'
       setting: Configuración
       keppler-design: 'Diseño Keppler'
       keppler-design-submenu:
@@ -36,7 +35,6 @@ es:
         categories: Categorías
     models:
       singularize:
-        rocker: rocker
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -45,7 +43,6 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
-        rockers: rockers
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -55,7 +52,6 @@ es:
         user: usuarios
         script: scripts
     modules:
-      admin/rockers: Rockers
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
