@@ -1,11 +1,12 @@
 - objects.each do |meta_tag|
   %tr{ id: "row-#{meta_tag.id}" }
-    - if can? :destroy_multiple, GoogleAdword
-      %td.item-check{style:"width: 10%"}
-        .pretty.p-default.p-curve.p-thick.p-smooth
-          %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{meta_tag.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{meta_tag.id}", "@click" => "listDelete(#{meta_tag.id})"}
-          .state.p-danger-o
-            %label{ for: "checkbox-#{meta_tag.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can? :destroy_multiple, MetaTag
+        .checkbox
+          %label{ for: "checkbox-#{meta_tag.id}" }
+            %input{ type:"checkbox", id: "checkbox-#{meta_tag.id}", 'checklist-model' => 'check', 'checklist-value' => "#{meta_tag.id}", 'ng-click' => "selectByCheck(#{@objects.size})", '@click' => "listDelete(#{meta_tag.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
     %td.hide-on-small-and-down
       = link_to admin_meta_tag_path(meta_tag, search: @query), remote: true, class: "show-row" do
         %span= meta_tag.title

@@ -5,7 +5,7 @@ KepplerConfiguration.setup do |config|
   #   example: [:registrations, :confirmations]
   config.skip_module_devise = [:registrations]
   # Allows you to choose the number of rows to show per page
-  config.default_per_page = 25
+  config.default_per_page = 10
 
   # Load sidebar menu fom config/menu.yml
   config.visible_models = YAML.load_file(
