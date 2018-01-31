@@ -35,9 +35,9 @@
                 - else
                   %tr
                     %th
-                    %th= t('activerecord.attributes.name')
+                    %th.visible-lg.visible-md= t('activerecord.attributes.name')
                     %th= t('activerecord.attributes.email')
-                    %th= t('activerecord.attributes.role')
+                    %th.visible-lg.visible-md= t('activerecord.attributes.role')
                     %th.center{ style: 'padding-right: 30px' }
                       Actions
               %tbody#objects-container
@@ -46,7 +46,7 @@
         %center#paginator-module
           = paginate @objects, window: 1
 
-  .listing-show
+  .listing-show.hidden-xs
     = render 'description'
   %aside#index-show.control-sidebar
   .mixed-btn
