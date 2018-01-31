@@ -7,9 +7,6 @@ class Ability
 
     if user.has_role? :keppler_admin
 
-      # - Rocker authorize -
-      can :manage, Rocker
-
       # - Keppler Admin can manage everything -
       can :manage, :all
 
@@ -32,9 +29,6 @@ class Ability
       cannot :destroy, User, user: !user.id
 
     elsif user.has_role? :client
-
-      # - Rocker authorize -
-      can [:index, :show], Rocker
 
     end
     # The first argument to `can` is the action you are giving the user

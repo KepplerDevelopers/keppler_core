@@ -11,14 +11,11 @@ module Admin
       @objects = scripts.page(@current_page)
       @total = scripts.size
       if !@objects.first_page? && @objects.size.zero?
-        redirect_to(
-          scripts_path(
-            page: @current_page.to_i.pred,
-            search: @query)
-        )
+        redirect_to scripts_path(page: @current_page.to_i.pred,search: @query)
       end
       respond_to do |format|
         format.html
+        format.xls { send_data(@scripts.to_xls) }
         format.json { render :json => @objects }
       end
     end
