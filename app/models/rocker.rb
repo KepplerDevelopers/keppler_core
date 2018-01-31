@@ -1,22 +1,19 @@
-# Script Model
-class Script < ActiveRecord::Base
+# Rocker Model
+class Rocker < ActiveRecord::Base
   include ActivityHistory
   include CloneRecord
-
-  validates_presence_of :name, :script, :url
-
-  def self.get_script(request)
-    find_by_url(request.url)
-  end
-
+  require 'csv'
+  mount_uploader :avatar, AttachmentUploader
+  acts_as_list
+  # Fields for the search form in the navbar
   def self.search_field
-    :name_or_script_cont
+    :avatar_or_name_cont
   end
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
-        self.create! row.to_hash
+        Rocker.create! row.to_hash
       rescue => err
       end
     end

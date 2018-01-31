@@ -26,7 +26,7 @@
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
-            = form_tag admin_google_adword_import_path(@objects), id: "import_form_google_adwords", multipart: true, method: :post do
+            = form_tag admin_google_adword_import_path(@objects), id: "import_form_google_adword", multipart: true, method: :post do
               = file_field_tag :file, id: "import_file_google_adword"
           %ol.breadcrumb
             %li
@@ -60,3 +60,16 @@
   .mixed-btn
     = link_to new_admin_google_adword_path, class: "btn-float" do
       %i.material-icons add
+
+
+:javascript
+  $(document).ready(function(){
+    $('#google_adword').click(function(e) {
+      e.preventDefault()
+      $('#import_file_google_adword').click()
+      $('#import_file_google_adword').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#import_form_google_adword').submit()
+      })
+    });
+  });

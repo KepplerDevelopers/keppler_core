@@ -239,8 +239,10 @@
   @include respond-to(xs) {
     margin-top: 20px !important;
   }
-  @include respond-to(sm) {
-    margin-top: 20px !important;
+  a:hover {
+    outline: none;
+    text-decoration: none;
+    color: $keppler-color;
   }
 }
 #objects-container {

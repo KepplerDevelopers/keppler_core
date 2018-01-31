@@ -30,6 +30,12 @@ menu:
           name: Google Adwords
           url_path: /admin/google_adwords
           current: ['admin/google_adwords']
+  rocker:
+    name: rockers
+    url_path: /admin/rockers
+    icon: layers
+    current: ['admin/rockers']
+    model: Rocker
   user:
     name: users
     url_path: /admin/users
