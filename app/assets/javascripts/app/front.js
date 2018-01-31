@@ -107,7 +107,7 @@ function scrollFunction(){
       'margin-top': '616px'
     })
   }
-  console.log(scroll)
+  // console.log(scroll)
 }
 $(document).ready(function() {
   $('pre code').each(function(i, block) {
