@@ -1,8 +1,15 @@
 .content-header.index-header{
   margin: 0 !important;
-  padding: 15px !important;
+  padding: 15px 0 !important;
+  @include respond-to(xs) {
+    margin-top: 10px !important;
+  }
   h1 {
     margin: 0 10px 0 0;
+    font-size: 2.5rem;
+    @include respond-to(xs) {
+      font-size: 2rem;
+    }
   }
 }
 .callout.callout-warning{
@@ -17,7 +24,7 @@
   min-width: 0;
   padding: 2px;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 1.4rem;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -133,7 +140,7 @@
           float: left;
           width: 100%;
           .time {
-            font-size: 10px;
+            font-size: 1rem;
             padding-top: 0;
           }
         }
@@ -158,6 +165,9 @@
   -webkit-transition: right 0.3s ease-in-out;
   -o-transition: right 0.3s ease-in-out;
   transition: right 0.3s ease-in-out;
+  @include respond-to(xs) {
+    padding-top: 100px;
+  }
   a {
     color: $keppler-color;
     cursor: pointer;
@@ -210,49 +220,43 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.toolbar{
-  background-color: #fbfbfb;
-  position: absolute;
-  top: 15px;
-  right: 70px;
-  border-radius: 2px;
-  font-size: 1.4rem;
-  display: inline-block;
-  padding: 0 5px;
-  &-item {
-    display: table-cell;
-    vertical-align: middle;
-    padding: 5px;
+.toolbar {
+  position: relative;
+  margin: 0 70px;
+  display: inline-grid;
+  float: right;
+  @include respond-to(sm) {
+    margin: 0;
   }
-  .disabled{
-    pointer-events: none;
-    cursor: not-allowed;
-    opacity: .5;
+  @include respond-to(xs) {
+    margin: 0;
   }
   .mailbox-controls {
-    padding: 3px 0;
+    padding: 5px 0 !important;
   }
-  .checkbox-toggle{
-    .pretty{
-      margin-right: 0;
-      padding-right: 5px;
-    }
+}
+.breadcrumb {
+  @include respond-to(xs) {
+    margin-top: 20px !important;
   }
   a:hover {
     outline: none;
     text-decoration: none;
     color: $keppler-color;
   }
-  .btn-group{
-    border-right: 1px solid lightgray;
-    padding: 0 5px;
-    i{
-      padding: 5px;
-      color: #9e9e9e;
-      transition: .2s;
-      &:hover{
-        color: #111;
-        transition: .2s;
+}
+#objects-container {
+  td:first-child {
+    padding: 10px 20px;
+  }
+  td {
+    padding: 0;
+    a {
+      display: block;
+      color: inherit;
+      padding: 8px;
+      &:hover {
+        color: inherit;
       }
     }
     &:last-child{
