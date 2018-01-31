@@ -2,6 +2,7 @@ en:
   keppler:
     login_message: Sign in to start your session
     sidebar-menu:
+      rockers: Rockers
       customizes: Customizes
       dashboard: Dashboard
       users: Users
@@ -26,6 +27,7 @@ en:
         categories: Categories
     models:
       singularize:
+        rocker: rocker
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -34,6 +36,7 @@ en:
         configuration: configuration
         user: user
       pluralize:
+        rockers: rockers
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -42,6 +45,7 @@ en:
         configurations: configurations
         user: users
     modules:
+      admin/rockers: Rockers
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'

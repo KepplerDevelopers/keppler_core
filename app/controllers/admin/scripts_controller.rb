@@ -84,6 +84,15 @@ module Admin
         notice: actions_messages(Script.new)
       )
     end
+
+    def import
+      Script.import(params[:file])
+      redirect_to(
+        admin_scripts_path(page: @current_page, search: @query),
+        notice: actions_messages(Script.new)
+      )
+    end
+
     def reload
       @q = Script.ransack(params[:q])
       scripts = @q.result(distinct: true)
