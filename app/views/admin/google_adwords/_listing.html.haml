@@ -1,11 +1,12 @@
 - objects.each do |google_adword|
   %tr{ id: "row-#{google_adword.id}" }
-    - if can? :destroy_multiple, GoogleAdword
-      %td.item-check{style:"width: 10%"}
-        .pretty.p-default.p-curve.p-thick.p-smooth
-          %input{ type:"checkbox", class: "filled-in", id: "checkbox-#{google_adword.id}", 'checklist-model'=>"check", 'checklist-value'=>"#{google_adword.id}", "@click" => "listDelete(#{google_adword.id})"}
-          .state.p-danger-o
-            %label{ for: "checkbox-#{google_adword.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can? :destroy_multiple, GoogleAdword
+        .checkbox
+          %label{ for: "checkbox-#{google_adword.id}" }
+            %input{ type:"checkbox", id: "checkbox-#{google_adword.id}", 'checklist-model' => 'check', 'checklist-value' => "#{google_adword.id}", 'ng-click' => "selectByCheck(#{@objects.size})", '@click' => "listDelete(#{google_adword.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
     %td.hide-on-small-and-down
       = link_to admin_google_adword_path(google_adword, search: @query), remote: true, class: "show-row" do
         %span= google_adword.url

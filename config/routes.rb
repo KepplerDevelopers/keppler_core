@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     post '/sorting', to: 'meta_tags#sort', as: :sorting_meta_tags
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
-
+      get '/clone', action: 'clone'
       get(
         '/reload',
         action: :reload,
@@ -65,6 +65,7 @@ Rails.application.routes.draw do
 
     resources :google_adwords do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
       get(
         '/reload',
         action: :reload,
@@ -80,6 +81,7 @@ Rails.application.routes.draw do
 
     resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
       get(
         '/reload',
         action: :reload,

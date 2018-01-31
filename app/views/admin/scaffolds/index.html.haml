@@ -1,55 +1,55 @@
 .listing.col.l9.m12.s12
-	- if can? :new, model
-		= link_to new_admin_scaffold_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only", title: 'New' do
-			-# = material_icon.md_24.add
-	= entries(@total, @objects)
-	= link_to admin_scaffolds_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
-		-# = material_icon.md_18.cloud_download.css_class("md-dark")
-	= link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "scaffold" do
-		-# = material_icon.md_18.cloud_upload.css_class("md-dark")
+  - if can? :new, model
+    = link_to new_admin_scaffold_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only", title: 'New' do
+      -# = material_icon.md_24.add
+  = entries(@total, @objects)
+  = link_to admin_scaffolds_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
+    -# = material_icon.md_18.cloud_download.css_class("md-dark")
+  = link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "scaffold" do
+    -# = material_icon.md_18.cloud_upload.css_class("md-dark")
 
-	.hide
-		= form_tag admin_scaffold_import_path(@objects), id: "import_form_scaffold", multipart: true, method: :post do
-			= file_field_tag :file, id: "import_file_scaffold"
+  .hide
+    = form_tag admin_scaffold_import_path(@objects), id: "import_form_scaffold", multipart: true, method: :post do
+      = file_field_tag :file, id: "import_file_scaffold"
 
-	%table.bordered
-		%tbody
-			- unless @objects.blank?
-				%tr{style:"background: #fff;"}
-					- if can? :destroy_multiple, Scaffold
-						%th{style: 'padding-left: 20px'}
-					%th.center= t("activerecord.attributes.scaffold.name")
-					%th.center= t("activerecord.attributes.scaffold.fields")
-					- if can? :show, Scaffold
-						%th.center
-					- if can? :update, Scaffold
-						%th.center
-					- if can? :clone, Scaffold
-						%th.center
-					- if can? :destroy, Scaffold
-						%th.center
+  %table.bordered
+    %tbody
+      - unless @objects.blank?
+        %tr{style:"background: #fff;"}
+          - if can? :destroy_multiple, Scaffold
+            %th{style: 'padding-left: 20px'}
+          %th.center= t("activerecord.attributes.scaffold.name")
+          %th.center= t("activerecord.attributes.scaffold.fields")
+          - if can? :show, Scaffold
+            %th.center
+          - if can? :update, Scaffold
+            %th.center
+          - if can? :clone, Scaffold
+            %th.center
+          - if can? :destroy, Scaffold
+            %th.center
 
-			- @objects.each do |scaffold|
-				= render 'listing', scaffold: scaffold
-			- if @objects.size.zero?
-				%tr
-					%td{colspan: "4"}
-						%center
-							No scaffolds found
-	= paginate @objects, window: 1
+      - @objects.each do |scaffold|
+        = render 'listing', scaffold: scaffold
+      - if @objects.size.zero?
+        %tr
+          %td{colspan: "4"}
+            %center
+              No scaffolds found
+  = paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
+  = render "description"
 
 - if can? :new, model
-	= link_to new_admin_scaffold_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		-# = material_icon.md_24.add.css_class("md-light")
+  = link_to new_admin_scaffold_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
+    -# = material_icon.md_24.add.css_class("md-light")
 
 :javascript
-	$('#scaffold').click(function() {
-		$('#import_file_scaffold').click()
-		$('#import_file_scaffold').change(function() {
-			$('.waiting').css('display', 'block')
-			$('#import_form_scaffold').submit()
-		})
-	})
+  $('#scaffold').click(function() {
+    $('#import_file_scaffold').click()
+    $('#import_file_scaffold').change(function() {
+      $('.waiting').css('display', 'block')
+      $('#import_form_scaffold').submit()
+    })
+  })

@@ -38,8 +38,8 @@ module AdminHelper
 
   def entries(total, objects)
     unless total.zero?
-      content_tag :div, class: 'btn-group', style: "margin-bottom: 10px" do
-        content_tag :button, class: 'btn btn-default' do
+      content_tag :div, class: 'badge objects-counter', style: "margin-bottom: 0 10px" do
+        content_tag :span, class: 'span' do
           message(total, objects)
         end
       end

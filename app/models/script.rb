@@ -1,6 +1,7 @@
 # Script Model
 class Script < ActiveRecord::Base
   include ActivityHistory
+  include CloneRecord
 
   validates_presence_of :name, :script, :url
 
