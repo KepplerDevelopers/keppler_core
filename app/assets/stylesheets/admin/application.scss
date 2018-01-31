@@ -1,8 +1,10 @@
 //= require simple-line-icons
-//= require animate
+//= require animate-css
 //= require jquery.minicolors
+//= require noty
 //= require_self
 
+//Libraries and plugins as gems
 @import 'bourbon';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -11,40 +13,31 @@
 @import "adminlte";
 @import "simple-line-icons";
 
-// @import 'materialize';
+//Utils folder
 @import 'utils/variables';
 @import 'utils/mixins';
 @import 'utils/theme';
 @import 'utils/base';
-// @import 'pages/layout';
 
-// @import 'pages/devise';
+// Page folder
 @import 'pages/navbar';
-
 @import 'pages/devise';
-// @import 'pages/navbar';
-
 @import 'pages/sidebar';
-// @import 'pages/pageslide';
-// @import 'pages/header';
 @import 'pages/listing';
 @import 'pages/files';
-// @import 'pages/show';
 @import 'pages/show';
 @import 'pages/form';
 @import 'pages/preloader';
 @import 'pages/switchs';
 @import 'pages/index';
 @import 'pages/search';
-// @import 'pages/themes';
-//@import 'dashboard'; //dashboard gem
+
+//Components folder
 @import "components/navigation/navbar";
 @import "components/navigation/sidebar";
 @import "components/layouts/footer";
 @import "components/layouts/settings";
-
 @import "components/paginator/paginator";
 
-// @import 'icheck/square/green';
-// @import 'icheck/square/_all';
+//Vendor folder
 @import "vendor/admin-lte/skin-blue";

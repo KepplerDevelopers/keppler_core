@@ -38,6 +38,9 @@ gem 'public_activity'
 #admin lte
 source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
+  gem 'rails-assets-noty'
+  gem 'rails-assets-animate-css'
+  gem 'rails-assets-bounce.js'
 end
 gem 'acts_as_paranoid', '~> 0.5.0'
 # Forms
