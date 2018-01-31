@@ -7,6 +7,7 @@ module Admin
   class <%= controller_class_name %>Controller < AdminController
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
+    before_action :set_attachments
 
     # GET <%= route_url %>
     def index
@@ -14,12 +15,14 @@ module Admin
       <%= plural_table_name %> = @q.result(distinct: true)
       @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
       @total = <%= plural_table_name %>.size
+      @<%= plural_table_name %> = <%= class_name %>.order(:position)
       if !@objects.first_page? && @objects.size.zero?
         redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
       end
       respond_to do |format|
         format.html
         format.xls { send_data(@<%= plural_table_name %>.to_xls) }
+        format.json { render :json => @objects }
       end
     end
 
@@ -82,14 +85,29 @@ module Admin
 
     def import
       <%= class_name %>.import(params[:file])
-
       redirect_to(
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
     end
 
+    def reload
+      @q = <%= class_name %>.ransack(params[:q])
+      <%= plural_table_name %> = @q.result(distinct: true)
+      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
+    end
+
+    def sort
+      <%= class_name %>.sorter(params[:row])
+      render :index
+    end
+
     private
+
+    def set_attachments
+      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
+                      'picture', 'banner', 'attachment', 'pic', 'file']
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>

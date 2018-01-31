@@ -257,6 +257,10 @@
         color: inherit;
       }
     }
+    &:last-child{
+      border: none;
+    }
+
   }
 }
 

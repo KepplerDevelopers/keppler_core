@@ -4,68 +4,72 @@
   text-align: center !important;
   width: 100% !important;
 }
-.files {
-  position: relative;
-  input  {
-    cursor: pointer;
-    outline: 2px dashed #92b0b3;
-    outline-offset: -10px;
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    padding: 160px 25px 70px;
-    text-align: center !important;
-    margin: 0;
-    width: 100% !important;
-    &:before {
+
+.upload-image {
+  max-width: 400px;
+  .files {
+    position: relative;
+    input  {
+      cursor: pointer;
+      outline: 2px dashed #92b0b3;
+      outline-offset: -10px;
+      -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+      transition: outline-offset .15s ease-in-out, background-color .15s linear;
+      padding: 160px 25px 70px;
+      text-align: center !important;
+      margin: 0;
+      width: 100% !important;
+      &:before {
+        position: absolute;
+        bottom: 5px;
+        left: 0;  pointer-events: none;
+        width: 100%;
+        right: 0;
+        height: 57px;
+        // content: "O arrastralos hasta aquí.";
+        display: block;
+        margin: 0 auto;
+        color: #2ea591;
+        font-weight: 600;
+        text-transform: capitalize;
+        text-align: center;
+      }
+      &:after {
+        content: 'o arrastrar una imagen hasta aquí';
+        position: absolute;
+        font-size: 12px;
+        top: 200px;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-30%);
+      }
+    }
+    &-icon {
+      pointer-events: none;
       position: absolute;
-      bottom: 5px;
-      left: 0;  pointer-events: none;
-      width: 100%;
+      top: 100px;
+      font-size: 50px;
+      left: 0;
+      width: 50px;
       right: 0;
-      height: 57px;
-      // content: "O arrastralos hasta aquí.";
+      height: 56px;
+      content: "";
+      // background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
       display: block;
       margin: 0 auto;
-      color: #2ea591;
-      font-weight: 600;
-      text-transform: capitalize;
-      text-align: center;
-    }
-    &:after {
-      content: 'o arrastrar una imagen hasta aquí';
-      position: absolute;
-      font-size: 12px;
-      top: 200px;
-      width: 100%;
-      left: 50%;
-      transform: translateX(-30%);
+      background-size: 100%;
+      background-repeat: no-repeat;
     }
   }
-  &-icon {
-    pointer-events: none;
+
+  .image_to_upload {
+    width: 100%;
+  }
+
+  .files-absolute {
     position: absolute;
-    top: 100px;
-    font-size: 50px;
-    left: 0;
-    width: 50px;
-    right: 0;
-    height: 56px;
-    content: "";
-    // background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
-    display: block;
-    margin: 0 auto;
-    background-size: 100%;
-    background-repeat: no-repeat;
+    opacity: 0;
+    width: 90%;
+    transition: .3s;
   }
-}
-
-.image_to_upload {
-  width: 100%;
-}
-
-.files-absolute {
-  position: absolute;
-  opacity: 0;
-  width: 90%;
-  transition: .3s;
 }
