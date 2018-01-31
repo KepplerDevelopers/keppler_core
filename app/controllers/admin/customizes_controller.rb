@@ -15,17 +15,9 @@ module Admin
       end
     end
 
-    # GET /customizes/1
-    def show
-    end
-
     # GET /customizes/new
     def new
       @customize = Customize.new
-    end
-
-    # GET /customizes/1/edit
-    def edit
     end
 
     # POST /customizes
@@ -37,23 +29,6 @@ module Admin
         redirect_to admin_customizes_path
       else
         render :new
-      end
-    end
-
-    # PATCH/PUT /customizes/1
-    def update
-      @customizes = Customize.all
-      @customizes.each { |customize| customize.update(installed: false) }
-      if @customize.update(customize_params)
-        if @customize.installed?
-          @customize.install
-        else
-          @customize.uninstall
-          Customize.first.update(installed: true)
-        end
-        redirect_to :back
-      else
-        render :edit
       end
     end
 
@@ -72,17 +47,7 @@ module Admin
         redirect_to :back
       end
     end
-
-    def clone
-      @customize = Customize.clone_record params[:customize_id]
-
-      if @customize.save
-        redirect_to admin_customizes_path
-      else
-        render :new
-      end
-    end
-
+    
     # DELETE /customizes/1
     def destroy
       if @customize.installed?
