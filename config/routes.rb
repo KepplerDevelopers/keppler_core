@@ -9,28 +9,6 @@ Rails.application.routes.draw do
 
     root to: 'admin#root'
 
-    resources :rockers do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      post '/import', action: 'import', as: :import
-      post(
-        '/sort',
-        action: :sort,
-        on: :collection,
-      )
-      get(
-        '/reload',
-        action: :reload,
-        on: :collection,
-      )
-      delete(
-        '/destroy_multiple',
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
     resources :scaffolds do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
