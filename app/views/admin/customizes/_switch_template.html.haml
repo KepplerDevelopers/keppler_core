@@ -5,14 +5,14 @@
         %span.status.pull-left{style: "padding-right: 50px"} No installed
         .switch.pull-right
           %input{name: "customize[installed]", type: "hidden", value: "true"}
-          %input#default_switch{:name => "customize[installed]", :type => "checkbox", value: "true"}/
+          %input#default_switch{:name => "customize[installed]", type: "checkbox", value: "true"}/
           %label.label-default{:for => "default_switch", onclick: "installTemplate(#{customize.id})"}
 
       - else
         %span.status.pull-left{style: "padding-right: 50px"} Installed
         .switch.pull-right
           %input{name: "customize[installed]", type: "hidden", value: "false"}
-          %input#default_switch{:name => "customize[installed]", :type => "checkbox", value: "false", checked: "checked"}/
+          %input#default_switch{:name => "customize[installed]", type: "checkbox", value: "false", checked: "checked"}/
           %label.label-default{:for => "default_switch", onclick: "installTemplate(#{customize.id})"}
 
 :javascript
