@@ -11,12 +11,11 @@ module Admin
       @objects = google_adwords.page(@current_page)
       @total = google_adwords.size
       if !@objects.first_page? && @objects.size.zero?
-        redirect_to(
-          google_adwords_path(page: @current_page.to_i.pred, search: @query)
-        )
+        redirect_to google_adwords_path(page: @current_page.to_i.pred,search: @query)
       end
       respond_to do |format|
         format.html
+        format.xls { send_data(@google_adwords.to_xls) }
         format.json { render :json => @objects }
       end
     end
@@ -58,7 +57,7 @@ module Admin
       @google_adword = GoogleAdword.clone_record params[:google_adword_id]
 
       if @google_adword.save
-        redirect_to admin_meta_tags_path
+        redirect_to admin_google_adwords_path
       else
         render :new
       end

@@ -16,7 +16,7 @@ class Script < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
-        self.create! row.to_hash
+        Script.create! row.to_hash
       rescue => err
       end
     end

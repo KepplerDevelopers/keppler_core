@@ -64,8 +64,7 @@
 
 :javascript
   $(document).ready(function(){
-    $('#rocker').click(function(e) {
-      e.preventDefault()
+    $('#rocker').click(function() {
       $('#import_file_rocker').click()
       $('#import_file_rocker').change(function() {
         $('.waiting').css('display', 'block')

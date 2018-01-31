@@ -238,10 +238,13 @@
       padding-right: 5px;
     }
   }
-  a:hover {
-    outline: none;
-    text-decoration: none;
-    color: $keppler-color;
+  a {
+    &:hover {
+      color: $keppler-color;
+    }
+    &:focus {
+      color: inherit;
+    }
   }
   .btn-group{
     border-right: 1px solid lightgray;
