@@ -4,7 +4,7 @@
       .center
         .login-container
           .login-logo
-            %a{href: "#"}
+            %a{ href: '#' }
               %span{style:"font-family: 'Patua One'"} Keppler
               Admin
           / /.login-logo
@@ -13,17 +13,17 @@
               %p.login-box-msg= t('keppler.login_message')
               %form{:action => "../../index2.html", :method => "post"}
                 .form-group.has-feedback
-                  %input#user_email.form-control.validate{:autofocus => "autofocus", :name => "user[email]", :placeholder => "Email", :type => "email", :value => ""}/
+                  %input#user_email.form-control.validate{:autofocus => "autofocus", :name => "user[email]", :placeholder => "Email", type: "email", :value => ""}/
                   %span.glyphicon.glyphicon-envelope.form-control-feedback
                 .form-group.has-feedback
-                  %input#user_email.form-control.validate{:autofocus => "autofocus", :name => "user[password]", :placeholder => "Password", :type => "pass", :value => ""}/
+                  %input#user_email.form-control.validate{:autofocus => "autofocus", :name => "user[password]", :placeholder => "Password", type: "pass", :value => ""}/
                   %span.glyphicon.glyphicon-lock.form-control-feedback
                 .form-group.has-feedback
                   .pull-left
                     %a{href:""}
                       = t("devise.sessions.forgot_password")
                   .pull-right
-                    %input.btn-primary{:name => "commit", :type => "submit", :value => "Entrar"}/
+                    %input.btn-primary{:name => "commit", type: "submit", :value => "Entrar"}/
                 .clearfix
                   / /.col
     .login-footer{style:"transform: scale(0.4);"}

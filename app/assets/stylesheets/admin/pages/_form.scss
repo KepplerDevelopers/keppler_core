@@ -82,7 +82,7 @@
   font-weight: 400;
   background-color: $keppler-color;
   border: none;
-  color: #fff;
+  color: #eee;
   transition: .4s;
 
   &:hover,
@@ -101,16 +101,57 @@
   padding: 0 !important;
 }
 
-.pretty {
+.checkbox {
+  margin: 0;
   label {
-    font-weight: bold !important;
+    padding: 0;
+    min-height: 0;
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    input[type="checkbox"] {
+      display: none;
+      transition: all .3s ease-in;
+      & + .cr > .cr-icon {
+        transform: scale(3) rotateZ(-20deg);
+        opacity: 0;
+        transition: all .3s ease-in;
+      }
+      &:checked + .cr {
+        background: $keppler-color;
+        border: solid 1px $keppler-color;
+        transition: all .3s ease-in;
+        .cr-icon  {
+          transform: scale(1) rotateZ(0deg);
+          opacity: 1;
+          color: #eee;
+          transition: all .3s ease-in;
+        }
+      }
+      &:disabled + .cr {
+        opacity: .5;
+        transition: all .3s ease-in;
+      }
+    }
+    .cr {
+      position: relative;
+      display: inline-block;
+      border-radius: 1px;
+      width: 1em;
+      height: 1em;
+      float: left;
+      border: solid 1px #999;
+      transition: .3s;
+      .cr-icon {
+        position: absolute;
+        font-size: .6em;
+        line-height: 0;
+        top: 50%;
+        left: 20%;
+        color: #eee;
+      }
+    }
   }
-}
-
-.pretty input:checked~.state.p-danger-o label:before, .pretty.p-toggle .state.p-danger-o label:before {
-  border-color: $keppler-color !important;
-}
-
-.pretty.p-default:not(.p-fill) input:checked~.state.p-danger-o label:after {
-    background-color: $keppler-color !important;
 }
