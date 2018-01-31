@@ -21,21 +21,21 @@
 					%h3.box-title Admin Theme
 
 				.box-body
-					.form-group.files.trigger
-						%i.material-icons.files-icon#icon-file add
-						= f.file_field :image_background, class: 'photo_upload'
-					%center#image
-						= image_tag 'image_background.png', class: 'hidden image_to_upload'
+					.upload-image
+						.form-group.files.trigger
+							%i.material-icons.files-icon#icon-file add
+							= f.file_field :image_background, class: 'photo_upload'
+						%center#image
+							= image_tag 'image_background.png', class: 'hidden image_to_upload'
 					%p Principal
 					%input{type: "color", name: "color", placeholder: "Color", value: "#{@color}", "v-model" => "main"}
 					-# = text_field_tag :color, nil, placeholder: "Color", value: @color
-					%br
-					%br
-					%p Hover
-					= text_field_tag :accent, nil, placeholder: "Accent", value: @accent, class: "color-input"
-					.hidden
-						= text_field_tag :darken, nil, placeholder: "Darken", value: @darken, class: "color-input"
-					.clearfix
+					-# %br
+					-# %br
+					-# %p Hover
+					-# = text_field_tag :accent, nil, placeholder: "Accent", value: @accent, class: "color-input"
+					-# .hidden
+					-# 	= text_field_tag :darken, nil, placeholder: "Darken", value: @darken, class: "color-input"
 					.pull-right
 						- if @render.eql?('appearance')
 							= link_to appearance_default_admin_settings_path(@render), class: "btn btn-default", method: :put do

@@ -11,11 +11,12 @@
       .col-md-4.col-sm-5
         .box.slice-box
           .box-body.box-profile
-            .form-group.files.trigger
-              %i.material-icons.files-icon#icon-file add
-              = f.file_field :avatar, class: 'photo_upload'
-            %center#image
-              = image_tag 'avatar.png', class: 'hidden image_to_upload'
+            .upload-image
+              .form-group.files.trigger
+                %i.material-icons.files-icon#icon-file add
+                = f.file_field :avatar, class: 'photo_upload'
+              %center#image
+                = image_tag 'avatar.png', class: 'hidden image_to_upload'
 
 
 

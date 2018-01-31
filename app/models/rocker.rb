@@ -13,7 +13,7 @@ class Rocker < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
-        Rocker.create! row.to_hash
+        self.create! row.to_hash
       rescue => err
       end
     end
