@@ -12,13 +12,13 @@
               %span.cr
                 %i.cr-icon.glyphicon.glyphicon-ok
 
-    %td.hide-on-small-and-down
+    %td.visible-lg.visible-md
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.name
     %td
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.email
-    %td.hide-on-small-and-down
+    %td.visible-lg.visible-md
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.rol.humanize
     %td{ style: 'padding-right: 30px' }
