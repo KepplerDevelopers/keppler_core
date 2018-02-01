@@ -1,10 +1,8 @@
+#= require bounce.min
+#= require noty
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
-# require angular
-#= require noty
-#= require checklist-model
-# require angular-local-storage
 #= require nprogress
 #= require nprogress-turbolinks
 #= require ckeditor/init
