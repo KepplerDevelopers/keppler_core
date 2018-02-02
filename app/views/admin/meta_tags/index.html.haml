@@ -52,7 +52,7 @@
                       .pull-right Actions
               %tbody#objects-container{ "data-update-url" => "#{admin_sorting_meta_tags_path}" }
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @meta_tags
+                = render 'listing', objects: @objects
         %center#paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
