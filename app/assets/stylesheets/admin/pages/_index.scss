@@ -1,8 +1,15 @@
 .content-header.index-header{
   margin: 0 !important;
-  padding: 15px !important;
+  padding: 15px 0 !important;
+  @include respond-to(xs) {
+    margin-top: 10px !important;
+  }
   h1 {
     margin: 0 10px 0 0;
+    font-size: 2.5rem;
+    @include respond-to(xs) {
+      font-size: 2rem;
+    }
   }
 }
 .callout.callout-warning{
@@ -17,7 +24,7 @@
   min-width: 0;
   padding: 2px;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 1.4rem;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -133,7 +140,7 @@
           float: left;
           width: 100%;
           .time {
-            font-size: 10px;
+            font-size: 1rem;
             padding-top: 0;
           }
         }
@@ -158,6 +165,9 @@
   -webkit-transition: right 0.3s ease-in-out;
   -o-transition: right 0.3s ease-in-out;
   transition: right 0.3s ease-in-out;
+  @include respond-to(xs) {
+    padding-top: 100px;
+  }
   a {
     color: $keppler-color;
     cursor: pointer;
@@ -244,10 +254,13 @@
       padding-right: 5px;
     }
   }
-  a:active, a:focus, a:visited {
-    outline: none;
-    text-decoration: none;
-    color: $keppler-color;
+  a {
+    &:hover {
+      color: $keppler-color;
+    }
+    &:focus {
+      color: inherit;
+    }
   }
   .btn-group{
     border-right: 1px solid lightgray;
@@ -259,6 +272,39 @@
       &:hover{
         color: #111;
         transition: .2s;
+      }
+    }
+    &:last-child{
+      border: none;
+    }
+
+  }
+}
+.breadcrumb {
+  @include respond-to(xs) {
+    margin-top: 20px !important;
+  }
+  a {
+    &:hover {
+      color: $keppler-color;
+    }
+    &:focus {
+      color: inherit;
+    }
+  }
+}
+#objects-container {
+  td:first-child {
+    padding: 10px 20px;
+  }
+  td {
+    padding: 0;
+    a {
+      display: block;
+      color: inherit;
+      padding: 8px;
+      &:hover {
+        color: inherit;
       }
     }
     &:last-child{

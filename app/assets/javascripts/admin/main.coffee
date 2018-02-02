@@ -14,7 +14,7 @@ $(window).load ->
 
   searchButton = ->
     $('.search-button').click ->
-      if $(window).width() < 768
+      if $(window).width() < 992
         if $(this).hasClass ('submit')
           $('#search form').submit()
         $('#search')

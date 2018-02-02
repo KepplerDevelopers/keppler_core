@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
+      post '/import', action: 'import', as: 'import'
       post '/install_default', action: 'install_default'
       delete(
         action: :destroy_multiple,
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
+      post '/import', action: 'import', as: 'import'
       get(
         '/reload',
         action: :reload,
@@ -66,6 +68,7 @@ Rails.application.routes.draw do
     resources :google_adwords do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
+      post '/import', action: 'import', as: 'import'
       get(
         '/reload',
         action: :reload,
@@ -82,6 +85,7 @@ Rails.application.routes.draw do
     resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
+      post '/import', action: 'import', as: 'import'
       get(
         '/reload',
         action: :reload,
