@@ -25,7 +25,7 @@ function notify(notice){
       //     //   bounces  : 4,
       //     //   stiffness: 3
       //     // })
-      //     // .translate({ 
+      //     // .translate({
       //     //   from     : {x: 0, y: 0}, to: {x: 0, y: -50},
       //     //   easing   : "sway",
       //     //   duration : 1000,
