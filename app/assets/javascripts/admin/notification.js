@@ -2,7 +2,7 @@ function notify(notice){
   new Noty({
     text: notice,
     //layout: 'topRight',
-    layout: 'bottomLeft',
+    layout: 'bottomCenter',
     timeout: 2000,
     animation: {
       open: 'animated bounceIn', // Animate.css class names
@@ -25,7 +25,7 @@ function notify(notice){
       //     //   bounces  : 4,
       //     //   stiffness: 3
       //     // })
-      //     // .translate({ 
+      //     // .translate({
       //     //   from     : {x: 0, y: 0}, to: {x: 0, y: -50},
       //     //   easing   : "sway",
       //     //   duration : 1000,
