@@ -42,6 +42,6 @@
               .pull-right
                 = link_to t('devise.sign_out'), destroy_session_path(current_user), class: " btn btn-default btn-flat"
         - if listing?
-          %li
+          %li.hidden-xs
             %a{:href=>"#", "data-toggle" => "control-sidebar"}
               %i.icon-clock
