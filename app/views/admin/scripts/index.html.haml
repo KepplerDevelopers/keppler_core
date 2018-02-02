@@ -26,7 +26,7 @@
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
-            = form_tag admin_script_import_path(@objects), id: "import_form_scripts", multipart: true, method: :post do
+            = form_tag admin_script_import_path(@objects), id: "import_form_script", multipart: true, method: :post do
               = file_field_tag :file, id: "import_file_script"
           %ol.breadcrumb
             %li
@@ -64,3 +64,16 @@
   .mixed-btn
     = link_to new_admin_script_path, class: "btn-float" do
       %i.material-icons add
+
+
+:javascript
+  $(document).ready(function(){
+    $('#script').click(function(e) {
+      e.preventDefault()
+      $('#import_file_script').click()
+      $('#import_file_script').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#import_form_script').submit()
+      })
+    });
+  });
