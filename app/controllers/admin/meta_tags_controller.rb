@@ -7,10 +7,10 @@ module Admin
     # GET /meta_tags
     def index
       @q = MetaTag.ransack(params[:q])
-      meta_tags = @q.result(distinct: true)
+      meta_tags = @q.result(distinct: true).order(:position)
       @objects = meta_tags.page(@current_page)
       @total = meta_tags.size
-      @meta_tags = MetaTag.order(:position)
+      # @meta_tags = MetaTag.order(:position)
       if !@objects.first_page? && @objects.size.zero?
         redirect_to meta_tags_path(page: @current_page.to_i.pred,search: @query)
       end
