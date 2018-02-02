@@ -2,7 +2,7 @@ function notify(notice){
   new Noty({
     text: notice,
     //layout: 'topRight',
-    layout: 'bottomLeft',
+    layout: 'bottomCenter',
     timeout: 2000,
     animation: {
       open: 'animated bounceIn', // Animate.css class names
