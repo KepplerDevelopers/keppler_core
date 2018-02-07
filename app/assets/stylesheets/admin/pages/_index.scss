@@ -94,10 +94,19 @@
   color: inherit;
   cursor: pointer;
 }
+#preview{
+  position: absolute;
+  background: #333;
+  padding: 3px;
+  visibility: none;
+  color: #fff;
+  box-shadow: 4px 4px 3px rgba(103, 115, 130, 1);
+  width: 20%;
+}
 .actions.dropdown-menu{
   top: 40px;
   left: auto;
-  right: 60px;
+  right: 110px;
   width: 100px;
   min-width: 130px;
   padding: 0;
@@ -316,8 +325,6 @@
 
 .ui-sortable-helper{
   display: table;
-}
-.ui-sortable-handle{
   background-color: #fdfdfd;
 }
 #tools{
