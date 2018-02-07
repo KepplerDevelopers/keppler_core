@@ -8,6 +8,7 @@
 
   .show-section
     .row
+      <%- if attributes.select{|attribute| @attachments.include?(attribute.name)}.size <= 0 -%>
       .col-lg-12
         .box.slice-box
           .box-header.with-border
@@ -28,3 +29,36 @@
                         = image_tag value
                       - else
                         = value
+      <%- else -%>
+      <%- @attr = attributes.map{|attr| attr.name}.select{|attr| @attachments.include?(attr)} %>
+      .col-lg-5
+        - @<%= singular_table_name %>.as_json(only: <%= @attr %>).each do |attribute, value|
+          .box.slice-box
+            .box-header.with-border
+              %h3.box-title.attr-name= attribute.capitalize
+              .box-tools.pull-right
+                %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
+                  %i.fa.fa-minus
+            .box-body.box-body-no-padding
+              = image_tag value, class: 'img-show'
+      .col-lg-7
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+            .box-tools.pull-right
+              = link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                %i.icon-pencil
+              = link_to admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                %i.icon-trash
+              %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
+                %i.fa.fa-minus
+          .box-body.box-body-no-padding
+            %table.table.table-striped
+              %tbody
+                - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name}.select{|attr| !@attachments.include?(attr)} %>).each do |attribute, value|
+                  %tr.list-row
+                    %th.display-label= t("activerecord.attributes.#{attribute}")
+                    %td.display-value.fs-body-1.tc-black-2
+                      = value
+      <%- end -%>
+      
