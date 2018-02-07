@@ -10,6 +10,14 @@
   margin: 0 auto;
   .files {
     position: relative;
+    #icon-file{
+      position: absolute;
+      left: 50%;
+      top: 35%;
+      font-size: 4rem;
+      opacity: .7;
+    }
+    
     input  {
       cursor: pointer;
       outline: 2px dashed #92b0b3;
