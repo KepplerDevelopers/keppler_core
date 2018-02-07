@@ -13,7 +13,9 @@
           .box-body.box-profile
             .upload-image
               .form-group.files.trigger
-                %i.material-icons.files-icon#icon-file add
+                #icon-file
+                  %i
+                    +
                 = f.file_field :avatar, class: 'photo_upload'
               %center#image
                 = image_tag 'avatar.png', class: 'hidden image_to_upload'
