@@ -230,16 +230,13 @@
   text-overflow: ellipsis;
 }
 .toolbar{
-  @include respond-to(lg) {
-    right: 70px;
-  }
-  @include respond-to(md) {
-    right: 70px;
+  @media screen and (min-width: 0) and (max-width: 991px) {
+    right: 15px;  
   }
   background-color: #fbfbfb;
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 70px;
   border-radius: 2px;
   font-size: 1.4rem;
   display: inline-block;
