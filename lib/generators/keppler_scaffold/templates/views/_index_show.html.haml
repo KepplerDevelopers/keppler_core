@@ -15,7 +15,7 @@
           %h6.timeline-header.no-border
             %small
               %strong.display-value= t("activerecord.attributes.#{attribute}")
-              - if @attachments.include?(attribute.name)
+              - if @attachments.include?(attribute)
                 .display-label= image_tag value
               - else
                 %p.display-label= value
