@@ -17,7 +17,7 @@
       = link_to admin_script_path(script, search: @query), remote: true, class: "show-row" do
         %span= script.url
     %td{ style: 'padding-right: 30px' }
-      %a.drop.pull-right{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+      %a.action-btn.pull-right{:id => "menu-#{script.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{script.id}" }
         - if can? :show, Script

@@ -13,9 +13,8 @@
 
 .show-row {
   img {
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
+    width: 25px;
+    border-radius: 2px;
     object-fit: cover;
   }
   a {
@@ -24,4 +23,7 @@
     width: 20%;
     height: 20px;
   }
+}
+.ui-sortable-handle{
+  width: 50px;
 }
