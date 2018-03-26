@@ -1,6 +1,14 @@
 = simple_form_for [:admin, @google_adword] do |f|
   .container
     .row
+      .col-lg-2
+        .arrow-back.btn.btn-default
+          = link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+            %i.fa.fa-chevron-left
+              Volver
+            .clearfix
+      .clearfix
+    .row
       .col-xs-12
         .box.slice-box
           .box-header.with-border

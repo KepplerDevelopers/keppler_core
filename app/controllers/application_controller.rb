@@ -2,11 +2,11 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :appearance
   before_action :set_apparience_colors
+  skip_around_action :set_locale_from_url
   include PublicActivity::StoreController
   include AdminHelper
 
