@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  localized do
    get '/index', to: 'app/front#index', as: :app_index
+    get '/', to: 'app/front#index', as: :app_index
+  end
 
   root to: 'app/front#index'
   get '/test_mailer', to: 'app/front#test_mailer', as: :test_mailer
@@ -7,7 +10,6 @@ Rails.application.routes.draw do
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
-
     root to: 'admin#root'
 
     resources :scaffolds do
@@ -51,7 +53,7 @@ Rails.application.routes.draw do
     post '/sorting', to: 'meta_tags#sort', as: :sorting_meta_tags
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
-      
+
       get(
         '/reload',
         action: :reload,

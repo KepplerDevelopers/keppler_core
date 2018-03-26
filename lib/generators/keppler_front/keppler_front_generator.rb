@@ -34,7 +34,7 @@ module Rails
             inject_into_file(
               'config/routes.rb',
               "\n #{indent(str_route(attribute))}",
-              after: 'Rails.application.routes.draw do'
+              after: 'localized do'
             )
           end
         end

@@ -1,7 +1,7 @@
 module Admin
   # GoogleAdwordsController
   class GoogleAdwordsController < AdminController
-    before_action :set_google_adword, only: [:show, :edit, :update, :destroy]
+    before_action :set_google_adword, only: %I[show edit update destroy]
     before_action :show_history, only: [:index]
 
     # GET /google_adwords
@@ -17,13 +17,12 @@ module Admin
       end
       respond_to do |format|
         format.html
-        format.json { render :json => @objects }
+        format.json { render json: @objects }
       end
     end
 
     # GET /google_adwords/1
-    def show
-    end
+    def show; end
 
     # GET /google_adwords/new
     def new
@@ -31,8 +30,7 @@ module Admin
     end
 
     # GET /google_adwords/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /google_adwords
     def create
