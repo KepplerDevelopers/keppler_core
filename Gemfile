@@ -71,6 +71,8 @@ gem 'rolify'
 gem 'ransack', git: 'https://github.com/activerecord-hackery/ransack',
                branch: 'rails-4.2'
 
+gem 'route_translator', '4.0.0'
+
 # Pagination
 gem 'kaminari-i18n'
 gem 'kaminari'

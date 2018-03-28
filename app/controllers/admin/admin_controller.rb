@@ -7,7 +7,7 @@ module Admin
     before_filter :paginator_params
     before_filter :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
-    before_action :get_tables_name
+    before_action :tables_name
     def root
       if current_user
         redirect_to dashboard_path
@@ -30,9 +30,13 @@ module Admin
     end
 
     private
-    def get_tables_name
-      @models = ActiveRecord::Base.connection.tables.map{|model| model.capitalize.singularize.camelize}
+
+    def tables_name
+      @models = ActiveRecord::Base.connection.tables.map do |model|
+        model.capitalize.singularize.camelize
+      end
     end
+
     # Get submit key to redirect, only [:create, :update]
     def redirect(object, commit)
       if commit.key?('_save')
@@ -46,7 +50,8 @@ module Admin
     end
 
     def redefine_ids(ids)
-      klass = controller_path.include?('admin') ? controller_name : controller_path
+      is_admin = controller_path.include?('admin')
+      klass =  is_admin ? controller_name : controller_path
 
       ids.delete('[]').split(',').select do |id|
         id if klass.classify.constantize.exists? id
@@ -56,7 +61,8 @@ module Admin
     # Check whether the user has permission to delete
     # each of the selected objects
     def can_multiple_destroy
-      klass = controller_path.include?('admin') ? controller_name : controller_path
+      is_admin = controller_path.include?('admin')
+      klass = is_admin ? controller_name : controller_path
 
       redefine_ids(params[:multiple_ids]).each do |id|
         authorize! :destroy, klass.classify.constantize.find(id)
