@@ -30,11 +30,21 @@ module Rails
 
       def add_route
         attributes.each do |attribute|
-          unless options[:skip_routes]
-            inject_into_file(
-              'config/routes.rb',
-              "\n #{indent(str_route(attribute))}",
-              after: 'localized do'
+          insert_into_file(
+            'config/routes.rb',
+            "\n  #{indent(str_route(attribute))}",
+            after: 'localized do'
+          )
+        end
+      end
+
+      def create_route_locales
+        %w[es en].each do |locale|
+          attributes.each do |attribute|
+            insert_into_file(
+              "config/locales/routes.#{locale}.yml",
+              "\n    #{attribute.name}: #{attribute.name}",
+              after: 'routes:'
             )
           end
         end
@@ -66,7 +76,7 @@ module Rails
       private
 
       def add_str_locales(locale, switch)
-        inject_into_file(
+        insert_into_file(
           "config/locales/#{locale}.yml",
           str_locales(switch),
           after: "#{switch}:"

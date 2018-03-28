@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  server_address: MyString
+  address: MyString
   port: MyString
   domain_name: MyString
   email: MyString
@@ -9,7 +9,7 @@ one:
   setting_id: 1
 
 two:
-  server_address: MyString
+  address: MyString
   port: MyString
   domain_name: MyString
   email: MyString
