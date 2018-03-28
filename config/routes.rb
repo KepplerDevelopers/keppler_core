@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'app/front#index'
-  get '/test_mailer', to: 'app/front#test_mailer', as: :test_mailer
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
