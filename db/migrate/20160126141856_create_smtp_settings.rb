@@ -1,7 +1,7 @@
 class CreateSmtpSettings < ActiveRecord::Migration
   def change
     create_table :smtp_settings do |t|
-      t.string :server_address
+      t.string :address
       t.string :port
       t.string :domain_name
       t.string :email

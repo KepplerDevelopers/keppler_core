@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20180112185419) do
   end
 
   create_table "smtp_settings", force: :cascade do |t|
-    t.string   "server_address", limit: 255
+    t.string   "address", limit: 255
     t.string   "port",           limit: 255
     t.string   "domain_name",    limit: 255
     t.string   "email",          limit: 255
