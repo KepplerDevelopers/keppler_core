@@ -71,7 +71,7 @@ module Admin
     end
 
     def smpt_setting_permit_attributes
-      [:id, :server_address, :port, :domain_name, :email, :password]
+      [:id, :address, :port, :domain_name, :email, :password]
     end
 
     def ga_setting_permit_attributes
