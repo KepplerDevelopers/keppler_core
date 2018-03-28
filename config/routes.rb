@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   localized do
+    get '/index', to: 'app/front#index', as: :app_index
    get '/index', to: 'app/front#index', as: :app_index
    get '/contact', to: 'app/front#contact', as: :app_contact
    get '/aboutus', to: 'app/front#aboutus', as: :app_aboutus
