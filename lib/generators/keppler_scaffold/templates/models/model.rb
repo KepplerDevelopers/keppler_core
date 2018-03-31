@@ -12,7 +12,8 @@ class <%= class_name %> < ActiveRecord::Base
   acts_as_list
   # Fields for the search form in the navbar
   def self.search_field
-    <%= ":#{attributes_names.map { |name| name }.join('_or_')}_cont" %>
+    fields = <%= attributes_names.map { |name| name } %>
+    build_query(fields, :or, :cont)
   end
 
   def self.import(file)
@@ -28,6 +29,13 @@ class <%= class_name %> < ActiveRecord::Base
     params.each_with_index do |id, idx|
       self.find(id).update(position: idx.to_i+1)
     end
+  end
+
+  # Funcion para armar el query de ransack
+  def self.build_query(fields, operator, conf)
+    query = fields.join("_#{operator}_")
+    query << "_#{conf}"
+    query.to_sym
   end
 end
 <% end -%>

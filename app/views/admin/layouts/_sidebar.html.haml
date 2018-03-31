@@ -16,7 +16,7 @@
         = link_to '/admin/dashboard' do
           %i.icon-pie-chart
           %span= t('keppler.sidebar-menu.dashboard')
-      - KepplerConfiguration.visible_models.each do |menu|
+      - @sidebar.each do |menu|
         - menu.each do |key, value|
           - unless menu[key]["submenu"] #ontetab sidebar link
             - if menu[key]["model"] #links with cancancan validate
@@ -47,7 +47,25 @@
                           = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
                         - else
                           = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
-
+      %li
+        = link_to '#' do
+          %i.icon-settings
+          %span= t('keppler.sidebar-menu.setting')
+          %span.pull-right-container
+            %i{class: "fa fa-angle-left pull-right"}
+          %ul{class: "treeview-menu", style:"display: none;"}
+            %li
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/basic_information"} 
+                = t('keppler.sidebar-menu.setting-submenu.basic-information')
+            %li
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/email_setting"} 
+                = t('keppler.sidebar-menu.setting-submenu.email-setting-smtp')
+            %li
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/google_analytics_setting"} 
+                = t('keppler.sidebar-menu.setting-submenu.google-analytics')
+            %li
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/social_accounts"} 
+                = t('keppler.sidebar-menu.setting-submenu.social-accounts')
   #sidebar-footer
     %a{:href=>"http://slicegroup.xyz", target: "_blank" }
       #slice.brand.pull-left
