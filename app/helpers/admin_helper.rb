@@ -47,7 +47,10 @@ module AdminHelper
   end
 
   def search_model
-    controller_name.singularize.camelcase.constantize.search_field
+    klass = controller_path.split('/')
+    klass.delete("admin")
+    klass = klass.join('/')
+    klass.classify.constantize.search_field
   end
 
   private
