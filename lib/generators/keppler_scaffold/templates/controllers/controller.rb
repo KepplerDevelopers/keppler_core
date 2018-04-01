@@ -15,7 +15,7 @@ module Admin
       <%= plural_table_name %> = @q.result(distinct: true)
       @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
       @total = <%= plural_table_name %>.size
-      @<%= plural_table_name %> = <%= class_name %>.order(:position)
+      @<%= plural_table_name %> = @objects.order(:position)
       if !@objects.first_page? && @objects.size.zero?
         redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
       end
