@@ -15,12 +15,8 @@ module Admin
       end
       respond_to do |format|
         format.html
-<<<<<<< HEAD
-        format.json { render json: @objects }
-=======
         format.xls { send_data(@google_adwords.to_xls) }
         format.json { render :json => @objects }
->>>>>>> keppler-v2
       end
     end
 
