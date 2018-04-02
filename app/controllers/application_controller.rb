@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :appearance
   before_action :set_apparience_colors
+  before_filter :set_sidebar
   skip_around_action :set_locale_from_url
   include PublicActivity::StoreController
   include AdminHelper
@@ -39,16 +40,27 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_sidebar
+    @sidebar = YAML.load_file(
+      "#{Rails.root}/config/menu.yml"
+    ).values.each(&:symbolize_keys!)
+    modules = Dir[File.join("#{Rails.root}/modules",  "*")]
+    modules.each do |m|
+      module_menu = YAML.load_file(
+        "#{m}/config/menu.yml"
+      ).values.each(&:symbolize_keys!)
+      @sidebar[0] = @sidebar[0].merge(module_menu[0])        
+    end
+  end
+
   def appearance
     @appearance = Setting.first.appearance
   end
 
   def set_apparience_colors
     variables_file = File.readlines(style_file)
-    @color, @darken, @accent = ""
+    @color = ""
     variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
-    variables_file.each { |line| @darken = line[16..22] if line.include?('$keppler-darken') }
-    variables_file.each { |line| @accent = line[16..22] if line.include?('$keppler-accent') }
   end
 
   def style_file

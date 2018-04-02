@@ -26,8 +26,8 @@ module Admin
       @setting = Setting.first
     end
 
-    def close_index_show
-    end
+    # def close_index_show
+    # end
 
     private
 
