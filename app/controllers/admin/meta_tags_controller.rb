@@ -7,17 +7,16 @@ module Admin
     # GET /meta_tags
     def index
       @q = MetaTag.ransack(params[:q])
-      meta_tags = @q.result(distinct: true)
+      meta_tags = @q.result(distinct: true).order(:position)
       @objects = meta_tags.page(@current_page)
       @total = meta_tags.size
-      @meta_tags = MetaTag.order(:position)
+      # @meta_tags = MetaTag.order(:position)
       if !@objects.first_page? && @objects.size.zero?
-        redirect_to meta_tags_path(
-          page: @current_page.to_i.pred, search: @query
-        )
+        redirect_to meta_tags_path(page: @current_page.to_i.pred,search: @query)
       end
       respond_to do |format|
         format.html
+        format.xls { send_data(@meta_tags.to_xls) }
         format.json { render :json => @objects }
       end
     end
@@ -72,6 +71,14 @@ module Admin
 
     def destroy_multiple
       MetaTag.destroy redefine_ids(params[:multiple_ids])
+      redirect_to(
+        admin_meta_tags_path(page: @current_page, search: @query),
+        notice: actions_messages(MetaTag.new)
+      )
+    end
+
+    def import
+      MetaTag.import(params[:file])
       redirect_to(
         admin_meta_tags_path(page: @current_page, search: @query),
         notice: actions_messages(MetaTag.new)

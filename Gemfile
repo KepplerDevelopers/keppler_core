@@ -38,9 +38,10 @@ gem 'public_activity'
 #admin lte
 source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
+  gem 'rails-assets-noty'
+  gem 'rails-assets-animate-css'
 end
-# gem 'icheck-rails'
-
+gem 'acts_as_paranoid', '~> 0.5.0'
 # Forms
 gem 'simple_form'
 gem 'cocoon'

@@ -10,16 +10,12 @@ module Admin
       scripts = @q.result(distinct: true)
       @objects = scripts.page(@current_page)
       @total = scripts.size
-
       if !@objects.first_page? && @objects.size.zero?
-        redirect_to(
-          scripts_path(
-            page: @current_page.to_i.pred,
-            search: @query)
-        )
+        redirect_to scripts_path(page: @current_page.to_i.pred,search: @query)
       end
       respond_to do |format|
         format.html
+        format.xls { send_data(@scripts.to_xls) }
         format.json { render :json => @objects }
       end
     end
@@ -39,8 +35,7 @@ module Admin
 
     # POST /scripts
     def create
-      @script =
-        Script.new(script_params)
+      @script = Script.new(script_params)
 
       if @script.save
         redirect(@script, params)
@@ -55,6 +50,16 @@ module Admin
         redirect(@script, params)
       else
         render :edit
+      end
+    end
+
+    def clone
+      @script = Script.clone_record params[:script_id]
+
+      if @script.save
+        redirect_to admin_scripts_path
+      else
+        render :new
       end
     end
 
@@ -76,6 +81,15 @@ module Admin
         notice: actions_messages(Script.new)
       )
     end
+
+    def import
+      Script.import(params[:file])
+      redirect_to(
+        admin_scripts_path(page: @current_page, search: @query),
+        notice: actions_messages(Script.new)
+      )
+    end
+
     def reload
       @q = Script.ransack(params[:q])
       scripts = @q.result(distinct: true)

@@ -1,78 +1,90 @@
-.listing.col.l9.m12.s12
-	- if can? :new, model
-		= link_to new_admin_<%= singular_table_name %>_path, class: 'btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only', title: 'New' do
-			-# = material_icon.md_24.add
-	= entries(@total, @objects)
-	= link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
-		-# = material_icon.md_18.cloud_download.css_class("md-dark")
-	= link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "<%= singular_table_name %>" do
-		-# = material_icon.md_18.cloud_upload.css_class("md-dark")
+#index-container{ :controller => "<%= plural_table_name %>" }
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1{ style: 'display: inline-block' }
+            = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
+          .toolbar
+            .toolbar-item
+              = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                %i.icon-cloud-download
+            .toolbar-item
+              = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
+                %i.icon-cloud-upload
+            .toolbar-item
+              = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
+                %i.icon-reload
+            .toolbar-item
+              .checkbox
+                %label{ for: 'checkbox-all' }
+                  %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                  %span.cr
+                    %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+                %i.icon-trash
+          .hide
+            = form_tag admin_<%= singular_table_name %>_import_path(@objects), id: "import_form_<%= plural_table_name %>", multipart: true, method: :post do
+              = file_field_tag :file, id: "import_file_<%= singular_table_name %>"
+          %ol.breadcrumb
+            %li
+              %a{ href: '#' }
+                %i.icon-directions
+                = t("keppler.modules.#{action_name.underscore}")
 
-	.hide
-		= form_tag admin_<%= singular_table_name %>_import_path(@objects), id: "import_form_<%= singular_table_name %>", multipart: true, method: :post do
-			= file_field_tag :file, id: "import_file_<%= singular_table_name %>"
+        .box.slice-box
+          .box-body.no-padding
 
-	%table.bordered
-		- unless @objects.blank?
-			%tbody
-				%tr.white-hover{ width: 5 }
-					- if can? :destroy_multiple, <%= singular_table_name.camelcase %>
-						%th{style: 'padding-left: 20px'}
-					<%- attributes.each do |attribute| -%>
-						<%- if @attachments.include?(attribute.name) -%>
-					%th.center= t("activerecord.attributes.<%= attribute.name %>")
-						<%- end -%>
-					<%- end -%>
-					<%- attributes.each_with_index do |attribute, index| -%>
-						<%- if index < 6 -%>
-							<%- unless @attachments.include?(attribute.name) -%>
-								<%- unless attribute.type.to_s == 'text' -%>
-									<%- if index < 2 -%>
-					%th.center= t("activerecord.attributes.<%= attribute.name %>")
-									<%- else -%>
-					%th.center.hide-on-small-and-down= t("activerecord.attributes.<%= attribute.name %>")
-									<%- end -%>
-								<%- end -%>
-							<%- end -%>
-						<%- end -%>
-					<%- end -%>
-					%th.center{ colspan: 2 }
-			%tbody#draggable{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
-				- @objects.each do |<%= singular_table_name %>|
-					= render 'listing', <%= singular_table_name %>: <%= singular_table_name %>
-		- else
-			%tr
-				%td.center{ colspan: '4' }
-					%center
-						= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
-	= paginate @objects, window: 1
+            %table.table
+              %thead
+                - if @objects.size.zero?
+                  %tr
+                    %th{style: 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
+                - else
+                  %tr
+                    %th
+                    <%- attributes.each do |attribute| -%>
+                      <%- if @attachments.include?(attribute.name) -%>
+                    %th= t('activerecord.attributes.<%= attribute.name %>')
+                      <%- end -%>
+                    <%- end -%>
+                    <%- attributes.each_with_index do |attribute, index| -%>
+                      <%- if index < 6 -%>
+                        <%- unless attribute.type.to_s == 'text' -%>
+                          <%- unless @attachments.include?(attribute.name) -%>
+                            <%- if index < 2 -%>
+                    %th.hidden-xs= t('activerecord.attributes.<%= attribute.name %>')
+                            <%- else -%>
+                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.<%= attribute.name %>')
+                            <%- end -%>
+                          <%- end -%>
+                        <%- end -%>
+                      <%- end -%>
+                    <%- end -%>
+                    %th.center Menu
+              %tbody#objects-container{ "data-update-url" => "#{sort_admin_<%= plural_table_name %>_path}" }
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @<%= plural_table_name %>
+        %center#paginator-module
+          = paginate @objects, window: 1
+  %aside.control-sidebar
+    = render "description"
+  %aside#index-show.control-sidebar
 
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
-
-- if can? :new, model
-	= link_to new_admin_<%= singular_table_name %>_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		-# = material_icon.md_24.add.css_class("md-light")
+  .mixed-btn
+    = link_to new_admin_<%= singular_table_name %>_path, class: "btn-float" do
+      %i.material-icons add
 
 :javascript
-	$(document).ready(function(){
-		$('.tooltipped').tooltip({delay: 50});
-		$( '.action-btn' ).closeFAB();
-		$('.action-btn.toolbar').closeToolbar();
-		$( '.action-btn' ).hover(
-			function() {
-				$( this ).openFAB();
-				$('.action-btn.toolbar').openToolbar();
-			}, function() {
-				$( this ).closeFAB();
-				$('.action-btn.toolbar').closeToolbar();
-			}
-		);
-
-		$('#<%= singular_table_name %>').click(function() {
-			$('#import_file_<%= singular_table_name %>').click()
-			$('#import_file_<%= singular_table_name %>').change(function() {
-				$('.waiting').css('display', 'block')
-				$('#import_form_<%= singular_table_name %>').submit()
-			})
-	})
+  $(document).ready(function(){
+    $('#<%= singular_table_name %>').click(function() {
+      $('#import_file_<%= singular_table_name %>').click()
+      $('#import_file_<%= singular_table_name %>').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#import_form_<%= singular_table_name %>').submit()
+      })
+    });
+  });

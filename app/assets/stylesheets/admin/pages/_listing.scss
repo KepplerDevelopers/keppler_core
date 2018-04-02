@@ -2,20 +2,26 @@
   padding: 12px;
 }
 
-a.coll{
-  color: gray;
-  &:active{
-    color: inherit;
-  }
-  &:link{
-    color: inherit;
-  }
-  &:focus{
-    color: inherit;
-  }
+.icon-delete {
+  color: $keppler-color;
+  font-size: 14px;
 }
 
-.icon-delete {
-	color: $keppler-color;
-	font-size: 14px;
+.material-icons {
+  color: #999;
+}
+
+.show-row {
+  img {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  a {
+    position: absolute;
+    display: block;
+    width: 20%;
+    height: 20px;
+  }
 }

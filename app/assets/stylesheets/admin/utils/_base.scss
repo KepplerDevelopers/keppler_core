@@ -1,12 +1,12 @@
 html,
-body{
+body {
   padding: 0;
   margin: 0;
   height: 100% !important;
 }
 
 html {
-  font-size: $font-size;
+  font-size: 10px;
 }
 
 body {
@@ -14,7 +14,14 @@ body {
   font-size: 1.5rem;
 }
 
-.container{
+a {
+  color: inherit;
+  &:hover {
+    color: inherit;
+  }
+}
+
+.container {
   width: 100%;
 }
 
@@ -29,4 +36,21 @@ body {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.slice-box {
+  border-top-color: $keppler-color;
+}
+
+.box-tools {
+  i {
+    font-size: 1.5rem;
+    color: #d2d2d2;
+    transition: all ease .3s;
+    cursor: pointer;
+    &:hover {
+      color: #555;
+      transition: all ease .3s;
+    }
+  }
 }

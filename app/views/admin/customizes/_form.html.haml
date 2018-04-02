@@ -1,68 +1,33 @@
 = simple_form_for [:admin, @customize] do |f|
-	.container
-		.row
-			.col-lg-2
-				.arrow-back.btn.btn-default
-					= link_to admin_customizes_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-						%i.fa.fa-chevron-left
-						Volver
-						.clearfix
-			.clearfix
-		.row
-			.col-lg-12
-				.box.slice-box
-					.box-header.with-border
-						%h3.box-title Template
+  .container
+    .row
+      .col-lg-2
+        = link_to admin_customizes_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          .arrow-back.btn.btn-default
+            %i.fa.fa-angle-left
+            = t('keppler.actions.back')
 
-					.box-body
-						%table.table.table-bordered
-							%tbody
-								.form-padding
-									.row
-										.col-lg-12
-											.container
-												.row
-													.col-md-12
-														.form-group.files
-															%label Upload Your File
-															%i.material-icons.files-icon#file add
-															%input{type: "hidden", name: "customize[file]"}
-															= f.input :file, label: false
+    .row
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title Template
 
-									.row
-										.col-lg-12
-											.pull-right
-												= f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
-												= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+          .box-body
+            %table.table.table-bordered
+              %tbody
+                .form-padding
+                  .row
+                    .col-lg-12
+                      .container
+                        .row
+                          .col-md-12
+                            .form-group.files
+                              %input{type: "hidden", name: "customize[file]"}
+                              = f.input :file, label: false
 
-:scss
-	.box-tools {
-		i {
-			padding: 0 10px;
-			font-size: 25px;
-			color: #d2d2d2;
-			transition: all ease .3s;
-			cursor: pointer;
-			&:hover {
-				color: #555;
-				transition: all ease .3s;
-			}
-		}
-	}
-
-:javascript
-	$('#xs').click(function() {
-		$('#box-body').animate({ 'width': '35%' }, 300)
-	})
-
-	$('#md').click(function() {
-		$('#box-body').animate({ 'width': '70%' }, 300)
-	})
-
-	$('#lg').click(function() {
-		$('#box-body').animate({ 'width': '100%' }, 300)
-	})
-
-	$('#customize_file').change(function() {
-		$('#file').html('check')
-	})
+                  .row
+                    .col-lg-12
+                      .pull-right
+                        = f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
+                        = f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"

@@ -18,9 +18,15 @@ class <%= class_name %> < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
-        <%= class_name %>.create! row.to_hash
+        self.create! row.to_hash
       rescue => err
       end
+    end
+  end
+
+  def self.sorter(params)
+    params.each_with_index do |id, idx|
+      self.find(id).update(position: idx.to_i+1)
     end
   end
 end
