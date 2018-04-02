@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   # block access dashboard
   def dashboard_access
     roles = Role.all.map {|x| x.name}
-    unless roles.include? current_user.rol
+    unless !user_signed_in? || roles.include?(current_user.rol)
       raise CanCan::AccessDenied.new(
         t('keppler.messages.not_authorized_page'), :index, :dashboard
       )
