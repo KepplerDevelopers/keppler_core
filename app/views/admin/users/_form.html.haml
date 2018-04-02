@@ -14,8 +14,7 @@
             .upload-image
               .form-group.files.trigger
                 #icon-file
-                  %i
-                    +
+                  %i +
                 = f.file_field :avatar, class: 'photo_upload'
               %center#image
                 = image_tag 'avatar.png', class: 'hidden image_to_upload'

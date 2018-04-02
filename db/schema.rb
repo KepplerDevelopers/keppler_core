@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112185419) do
+ActiveRecord::Schema.define(version: 20171225023933) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -36,12 +36,6 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.string   "setting_id",       limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-  end
-
-  create_table "caches", force: :cascade do |t|
-    t.string   "image",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "customizes", force: :cascade do |t|
@@ -155,6 +149,7 @@ ActiveRecord::Schema.define(version: 20180112185419) do
     t.string   "name",                   limit: 255
     t.string   "permalink",              limit: 255
     t.string   "username",               limit: 255
+    t.datetime "deleted_at"
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
