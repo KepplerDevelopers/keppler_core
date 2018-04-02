@@ -21,11 +21,13 @@
                 .form-padding
                   <%- attributes.each do |attribute| -%>
                     <%- if @attachments.include?(attribute.name) -%>
-                  .col-md-4
+                  .col-xs-12
                     .upload-image
                       = f.label :<%= attribute.name %>
                       .form-group.files.trigger
-                        %i.material-icons.files-icon add
+                        #icon-file
+                          %i
+                            +
                         = f.file_field :<%= attribute.name %>, class: 'photo_upload'
                       %center#image
                         = image_tag '<%= attribute.name %>.png', class: 'hidden image_to_upload'

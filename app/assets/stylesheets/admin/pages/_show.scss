@@ -3,10 +3,15 @@
   width: 100px;
   height: 100px;
 }
-
+.img-show{
+  width: 100%;
+}
 .list-row {
   img {
     max-width: 100%;
     max-height: 300px;
   }
+}
+.attr-name{
+  font-weight: bold;
 }

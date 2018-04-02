@@ -13,6 +13,12 @@ body {
   font-family: $font-primary;
   font-size: 1.5rem;
 }
+a{
+  color: inherit;
+  &:hover{
+    color: inherit;
+  }
+}
 
 a {
   color: inherit;
@@ -38,13 +44,11 @@ a {
   text-overflow: ellipsis;
 }
 
-.slice-box {
-  border-top-color: $keppler-color;
-}
 
 .box-tools {
   i {
-    font-size: 1.5rem;
+    padding: 0 5px;
+    font-size: 1.7rem;
     color: #d2d2d2;
     transition: all ease .3s;
     cursor: pointer;
@@ -53,4 +57,10 @@ a {
       transition: all ease .3s;
     }
   }
+}
+ol.breadcrumb{
+  @media screen and (min-width: 0) and (max-width: 991px) {
+    display: none;
+  }
+  
 }
