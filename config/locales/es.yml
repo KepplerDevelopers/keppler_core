@@ -16,7 +16,7 @@ es:
         admin-appearance: 'Apariencia de Keppler'
       setting-submenu:
         basic-information: 'Información básica'
-        email-setting-smtp: 'Configuración de email (SMTP)'
+        email-setting-smtp: 'Configuración SMTP'
         social-accounts: 'Redes sociales'
         google-analytics: 'Google Analytics'
         appearance: Apariencia
@@ -85,7 +85,7 @@ es:
     header_information:
       setting:
         basic_information: Información básica
-        email_setting: Configuración de email via (SMTP)
+        email_setting: Configuración de SMTP
         google_analytics_setting: Google analytics
         social_accounts: Cuentas de redes sociales
         appearance: Aparencia

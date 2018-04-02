@@ -42,7 +42,7 @@ var app = new Vue({
         return this.deleteList.length > 0
       },
       link: function(){
-        return `/admin/${this.controller}/destroy_multiple?multiple_ids=[${this.deleteList}]`
+        return `${this.current_page}/destroy_multiple?multiple_ids=[${this.deleteList}]`
       },
       checkItems: function(){
         return this.items.length > 0

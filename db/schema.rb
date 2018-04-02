@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225023933) do
+ActiveRecord::Schema.define(version: 20180402154434) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(version: 20171225023933) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "photo",      limit: 255
+    t.integer  "age",        limit: 4
+    t.integer  "position",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.integer  "resource_id",   limit: 4
@@ -112,14 +123,14 @@ ActiveRecord::Schema.define(version: 20171225023933) do
   end
 
   create_table "smtp_settings", force: :cascade do |t|
-    t.string   "address", limit: 255
-    t.string   "port",           limit: 255
-    t.string   "domain_name",    limit: 255
-    t.string   "email",          limit: 255
-    t.string   "password",       limit: 255
-    t.integer  "setting_id",     limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "address",     limit: 255
+    t.string   "port",        limit: 255
+    t.string   "domain_name", limit: 255
+    t.string   "email",       limit: 255
+    t.string   "password",    limit: 255
+    t.integer  "setting_id",  limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "social_accounts", force: :cascade do |t|
