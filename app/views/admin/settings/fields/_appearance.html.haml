@@ -24,8 +24,7 @@
 					.upload-image
 						.form-group.files.trigger
 							#icon-file
-								%i
-									+
+								%i +
 							= f.file_field :image_background, class: 'photo_upload'
 						%center#image
 							= image_tag 'image_background.png', class: 'hidden image_to_upload'

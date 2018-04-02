@@ -1,5 +1,5 @@
 html,
-body{
+body {
   padding: 0;
   margin: 0;
   height: 100% !important;
@@ -20,7 +20,14 @@ a{
   }
 }
 
-.container{
+a {
+  color: inherit;
+  &:hover {
+    color: inherit;
+  }
+}
+
+.container {
   width: 100%;
 }
 
@@ -51,7 +58,6 @@ a{
     }
   }
 }
-
 ol.breadcrumb{
   @media screen and (min-width: 0) and (max-width: 991px) {
     display: none;
