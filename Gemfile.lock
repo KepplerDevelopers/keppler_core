@@ -11,7 +11,7 @@ GIT
       polyamorous (~> 1.1)
 
 PATH
-  remote: modules/keppler_ga_dashboard
+  remote: plugins/keppler_ga_dashboard
   specs:
     keppler_ga_dashboard (0.0.1)
       rails (~> 4.2.0)
