@@ -9,7 +9,7 @@
     %a.sidebar-toggle{"data-toggle" => "offcanvas", href: "#", role: "button"}
       %i.icon-menu
       %span.sr-only Toggle navigation
-    - if listing?
+    - if listing? && @q
       #search
         .input-group
           = search_form_for [:admin, @q], html: { method: :get } do |f|

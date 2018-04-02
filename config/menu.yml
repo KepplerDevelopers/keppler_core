@@ -1,9 +1,4 @@
 menu:
-  dashboard:
-    name: dashboard
-    url_path: /admin/dashboard
-    icon: pie-chart
-    current: ['keppler_ga_dashboard/dashboard']
   script:
     name: scripts
     url_path: /admin/scripts
@@ -60,25 +55,3 @@ menu:
   #         name: Keppler scaffolds
   #         url_path: /admin/scaffolds
   #         current: ['/admin/scaffolds']
-  setting:
-    name: setting
-    current: ['admin/settings']
-    icon: settings
-    model: Setting
-    submenu:
-      - basic_information:
-          name: Basic information
-          url_path: /admin/settings/basic_information
-          current: ['basic_information']
-      - smtp_setting:
-          name: Email setting (SMTP)
-          url_path: /admin/settings/email_setting
-          current: ['email_setting']
-      - google_analytics_setting:
-          name: Google analytics
-          url_path: /admin/settings/google_analytics_setting
-          current: ['google_analytics_setting']
-      - social_account:
-          name: Social Accounts
-          url_path: /admin/settings/social_accounts
-          current: ['social_accounts']
