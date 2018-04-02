@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   skip_around_action :set_locale_from_url
   include PublicActivity::StoreController
   include AdminHelper
+  include Pundit
 
   # rescue_from Faraday::ConnectionFailed do |error|
   #   redirect_to main_app.admin_users_path, notice: "Sin conexión a internet"
@@ -49,7 +50,7 @@ class ApplicationController < ActionController::Base
       module_menu = YAML.load_file(
         "#{m}/config/menu.yml"
       ).values.each(&:symbolize_keys!)
-      @sidebar[0] = @sidebar[0].merge(module_menu[0])        
+      @sidebar[0] = @sidebar[0].merge(module_menu[0])
     end
   end
 
