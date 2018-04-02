@@ -50,12 +50,8 @@ Rails.application.routes.draw do
     post '/sorting', to: 'meta_tags#sort', as: :sorting_meta_tags
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
-<<<<<<< HEAD
-
-=======
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: 'import'
->>>>>>> keppler-v2
       get(
         '/reload',
         action: :reload,
