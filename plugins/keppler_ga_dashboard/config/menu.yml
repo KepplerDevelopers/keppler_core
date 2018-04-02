@@ -1,0 +1,6 @@
+menu:
+  dashboard:
+    name: dashboard
+    url_path: /admin/dashboard
+    icon: pie-chart
+    current: ['keppler_ga_dashboard/dashboard']
