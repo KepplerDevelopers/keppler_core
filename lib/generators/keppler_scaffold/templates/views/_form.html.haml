@@ -1,36 +1,53 @@
-.wrapper
-	.wrapper-body.container
-		.actions
-			= link_to admin_<%= plural_table_name %>_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				-# = material_icon.md_18.arrow_back.css_class("md-dark")
-		.wrapper-inputs
-			.card
-				.card-content
-					= simple_form_for [:admin, @<%= singular_table_name %>] do |f|
-						.row
-						<%- attributes.each do |attribute| -%>
-							<%- if @attachments.include?(attribute.name) -%>
-							.col.s12
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
-							<%- end -%>
-						<%- end -%>
-						<%- attributes.each do |attribute| -%>
-							.col.s12
-							<%- unless @attachments.include?(attribute.name) -%>
-								<%- if attribute.type.to_s == "text" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
-								<%- elsif attribute.type.to_s == "date" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
-								<%- elsif attribute.type.to_s == "boolean" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :checkbox_material
-								<%- elsif attribute.type.to_s == "integer" -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {min: 0}
-								<%- else -%>
-								= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
-								<%- end -%>
-							<%- end -%>
-						<%- end -%>
-							.col.s12
-								.form-actions.right
-									= f.button :submit, t("keppler.actions.save"), name: '_save'
-									= f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
+= simple_form_for [:admin, @<%= singular_table_name %>] do |f|
+  .container
+    .row
+      .col-lg-2
+        = link_to admin_<%= plural_table_name %>_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          .arrow-back.btn.btn-default
+            %i.fa.fa-angle-left
+            = t('keppler.actions.back')
+            
+    .row
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler.modules.#{action_name.underscore}")
+            .box-tools.pull-right
+              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-minus
+          .box-body
+            %table.table.table-bordered
+              %tbody
+                .form-padding
+                  <%- attributes.each do |attribute| -%>
+                    <%- if @attachments.include?(attribute.name) -%>
+                  .col-md-4
+                    .upload-image
+                      = f.label :<%= attribute.name %>
+                      .form-group.files.trigger
+                        %i.material-icons.files-icon add
+                        = f.file_field :<%= attribute.name %>, class: 'photo_upload'
+                      %center#image
+                        = image_tag '<%= attribute.name %>.png', class: 'hidden image_to_upload'
+                    <%- end -%>
+                  <%- end -%>
+                  <%- attributes.each do |attribute| -%>
+                  .col-xs-12
+                  <%- unless @attachments.include?(attribute.name) -%>
+                    <%- if attribute.type.to_s == "text" -%>
+                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
+                    <%- elsif attribute.type.to_s == "date" -%>
+                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
+                    <%- elsif attribute.type.to_s == "boolean" -%>
+                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+                    <%- elsif attribute.type.to_s == "integer" -%>
+                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {min: 0}
+                    <%- else -%>
+                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+                    <%- end -%>
+                  <%- end -%>
+                  <%- end -%>
+                  .col-xs-12
+                    .pull-right
+                      = f.button :submit, t("keppler.actions.save"), name: '_save', class: "btn-primary"
+                      = f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'

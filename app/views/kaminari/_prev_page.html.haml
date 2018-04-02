@@ -7,5 +7,5 @@
 -#    remote:        data-remote
 %span.prev
   - unless current_page.first?
-    = link_to url, :rel => 'prev', :remote => remote, class: "btn-pag", title: 'Preview' do
-      %i.material-icons.md-24.md-dark.icon-size chevron_left
+    = link_to url, rel: 'prev', :remote => remote, class: "btn-pag", title: 'Preview' do
+      %i.fa.fa-angle-left

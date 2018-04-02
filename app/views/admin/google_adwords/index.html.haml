@@ -3,28 +3,36 @@
     .row
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
-          %h1
+          %h1{ style: 'display: inline-block' }
             = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
           .toolbar
-            .mailbox-controls
-              = link_to reload_admin_google_adwords_path, class: "btn btn-default btn-sm", remote: true do
+            .toolbar-item
+              = link_to admin_google_adwords_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                %i.icon-cloud-download
+            .toolbar-item
+              = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "google_adword" do
+                %i.icon-cloud-upload
+            .toolbar-item
+              = link_to reload_admin_google_adwords_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-              / Check all button
-              .btn-group
-                %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button", "@click" => "selectAll()"}
-                  .pretty.p-default.p-curve.p-thick.p-smooth
-                    %input{ type:"checkbox", class: "filled-in", id: "checkbox-all", ":disabled"=>"checkItems ? disabled : ''"}
-                    .state.p-danger-o
-                      %label{ for: "checkbox-all" }
-                %a.btn.btn-default.btn-sm{:type => "button", "data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", "v-show" => "checks" }
-                  %i.icon-trash
+            .toolbar-item
+              .checkbox
+                %label{ for: 'checkbox-all' }
+                  %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                  %span.cr
+                    %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+                %i.icon-trash
+          .hide
+            = form_tag admin_google_adword_import_path(@objects), id: "import_form_google_adword", multipart: true, method: :post do
+              = file_field_tag :file, id: "import_file_google_adword"
           %ol.breadcrumb
             %li
-              %a{:href => "#"}
-                %i.fa.fa-dashboard
+              %a{ href: '#' }
+                %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
-
-        -# = entries(@total, @objects)
 
         .box.slice-box
           .box-body.no-padding
@@ -32,7 +40,7 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{:style => 'text-align: center;'}
+                    %th{style: 'text-align: center;'}
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.google_adwords"))
                 - else
                   %tr
@@ -47,6 +55,21 @@
                 = render 'listing', objects: @objects
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
+  %aside#index-show.control-sidebar
+
   .mixed-btn
     = link_to new_admin_google_adword_path, class: "btn-float" do
       %i.material-icons add
+
+
+:javascript
+  $(document).ready(function(){
+    $('#google_adword').click(function(e) {
+      e.preventDefault()
+      $('#import_file_google_adword').click()
+      $('#import_file_google_adword').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#import_form_google_adword').submit()
+      })
+    });
+  });

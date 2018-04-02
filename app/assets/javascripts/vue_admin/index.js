@@ -7,7 +7,7 @@ function removeA(arr) {
       }
   }
   return arr;
-} 
+}
 
 
 $(function ($) {
@@ -21,14 +21,16 @@ var app = new Vue({
     data: {
       items: [],
       deleteList:[],
-      controller: ""
+      controller: "",
+      current_page: ""
     },
     mounted: function(){
       var that;
       that = this;
       that.controller = that._vnode.data.attrs.controller;
+      that.current_page = window.location.pathname;
       $.ajax({
-        url: `/admin/${that.controller}.json`,
+        url: `${that.current_page}.json`,
         success: function(res){
           that.items = res;
           //console.log(res);

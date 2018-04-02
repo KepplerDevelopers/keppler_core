@@ -1,60 +1,60 @@
-%tr{ id: "row-#{<%= singular_table_name %>.id}" }
-	- if can? :destroy_multiple, <%= singular_table_name.camelcase %>
-		%td.center.item-check{ width: 60 }
-			= link_to '', admin_<%= singular_table_name %>_path(<%= singular_table_name %>), remote: true, class: 'show-row'
-			%input{ type:'checkbox', class: 'filled-in', id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model'=>'check', 'checklist-value'=>"#{<%= singular_table_name %>.id}", 'ng-click'=>"selectByCheck(#{@objects.size})"}
-			%label{ for: "checkbox-#{<%= singular_table_name %>.id}" }
-
-	<%- attributes.each do |attribute| -%>
-		<%- if @attachments.include?(attribute.name) -%>
-	%td.center
-		= link_to '', admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row'
-		%span
-			= image_tag <%= singular_table_name %>.<%= attribute.name %>
-		<%- end -%>
-	<%- end -%>
-	<%- attributes.each_with_index do |attribute, index| -%>
-		<%- if index < 6 -%>
-			<%- unless attribute.type.to_s == 'text' -%>
-				<%- unless @attachments.include?(attribute.name) -%>
-					<%- if index < 2 -%>
-	%td.center
-		= link_to '', admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row'
-		%span
-			= <%= singular_table_name %>.<%= attribute.name %>
-					<%- else -%>
-	%td.center.hide-on-small-and-down
-		= link_to '', admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row'
-		%span
-			= <%= singular_table_name %>.<%= attribute.name %>
-					<%- end -%>
-				<%- end -%>
-			<%- end -%>
-		<%- end -%>
-	<%- end -%>
-	%td.center{ width: 60 }
-		.action-btn.horizontal
-			%a.btn-floating.btn-flat.right
-				%i.material-icons.grey-text menu
-			%ul.right.expanded-menu
-				.icons.right
-					- if can? :show, <%= singular_table_name.camelcase %>
-						%li.center
-							= link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.show') do
-								-# = material_icon.md_24.remove_red_eye.css_class('md-dark')
-					- if can? :update, <%= singular_table_name.camelcase %>
-						%li.center
-							= link_to edit_admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.edit') do
-								-# = material_icon.md_18.create.css_class('md-dark')
-					- if can? :clone, <%= singular_table_name.camelcase %>
-						%li.center
-							= link_to admin_<%= singular_table_name %>_clone_path(<%= singular_table_name %>), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.clone') do
-								-# = material_icon.md_24.content_copy.css_class('md-dark')
-					- if can? :delete, <%= singular_table_name.camelcase %>
-						%li.center{style:'padding-right: 20px'}
-							= link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
-								-# = material_icon.md_18.delete.css_class('md-dark')
-	%td.center.draggable{ width: 20 }
-		.action-btn
-			%a.btn-floating.btn-flat.right
-				%i.material-icons.grey-text open_with
+- objects.each do |<%= singular_table_name %>|
+  %tr{ id: "row-#{<%= singular_table_name %>.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can? :destroy_multiple, <%= singular_table_name.camelcase %>
+        .checkbox
+          %label{ for: "checkbox-#{<%= singular_table_name %>.id}" }
+            %input{ type:"checkbox", id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model' => 'check', 'checklist-value' => "#{<%= singular_table_name %>.id}", '@click' => "listDelete(#{<%= singular_table_name %>.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+    <%- attributes.each do |attribute| -%>
+      <%- if @attachments.include?(attribute.name) -%>
+    %td
+      = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
+        %span
+          = image_tag <%= singular_table_name %>.<%= attribute.name %>
+      <%- end -%>
+    <%- end -%>
+    <%- attributes.each_with_index do |attribute, index| -%>
+      <%- if index < 6 -%>
+        <%- unless attribute.type.to_s == 'text' -%>
+          <%- unless @attachments.include?(attribute.name) -%>
+            <%- if index < 2 -%>
+    %td.hidden-xs
+      = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
+        %span
+          = <%= singular_table_name %>.<%= attribute.name %>
+            <%- else -%>
+    %td.hidden-xs.hidden-sm
+      = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
+        %span
+          = <%= singular_table_name %>.<%= attribute.name %>
+            <%- end -%>
+          <%- end -%>
+        <%- end -%>
+      <%- end -%>
+    <%- end -%>
+    %td{ style: 'padding-right: 30px' }
+      %a.drop.pull-right{:id => "menu-#{<%= singular_table_name %>.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{<%= singular_table_name %>.id}" }
+        - if can? :show, <%= singular_table_name.camelcase %>
+          %li
+            = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.show') do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can? :update, <%= singular_table_name.camelcase %>
+          %li
+            = link_to edit_admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.edit') do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can? :clone, <%= singular_table_name.camelcase %>
+          %li
+            = link_to admin_<%= singular_table_name %>_clone_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can? :destroy, <%= singular_table_name.camelcase %>
+          %li
+            = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+              %i.icon-trash
+              = t('keppler.actions.delete')
