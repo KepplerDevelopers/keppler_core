@@ -24,7 +24,7 @@ module Admin
     def appearance_default
       appearance = Appearance.last
       appearance.update(image_background: nil)
-      get_apparience_colors(["#f50e1e", "#d32f2f", "#d11421"])
+      get_apparience_colors(["#f50e1e"])
       redirect_to(
         admin_settings_path(@render), notice: actions_messages(@setting)
       )
@@ -33,14 +33,14 @@ module Admin
     private
 
     def get_theme?
-      colors = [params[:color], params[:darken], params[:accent]]
+      colors = [params[:color]]
       !colors.include?('') and !colors.include?(nil)
     end
 
     def get_apparience_colors(values)
       variables_file = File.readlines(style_file)
       indx = 0
-      [:color, :darken, :accent].each_with_index do |attribute, i|
+      [:color].each_with_index do |attribute, i|
         variables_file.map { |line| indx = variables_file.find_index(line) if line.include?("$keppler-#{attribute}") }
         variables_file[indx] = "$keppler-#{attribute}:#{values[i]};\n"
       end
