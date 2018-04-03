@@ -39,6 +39,7 @@
                 - else
                   %tr
                     %th
+                    %th
                     %th.visible-lg.visible-md= t('activerecord.attributes.name')
                     %th= t('activerecord.attributes.email')
                     %th.visible-lg.visible-md= t('activerecord.attributes.role')
@@ -57,3 +58,15 @@
     .mixed-btn
       = link_to new_admin_user_path, class: 'btn-float' do
         +
+:javascript
+  $(document).ready(function(){
+    $('#user').click(function() {
+      $('#import_file_user').click()
+      $('#import_file_user').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#import_form_user').submit()
+      })
+    });
+
+    renderImg();
+  });
