@@ -93,6 +93,7 @@ module Admin
         format.xls { send_data(@meta_tags.to_xls) }
         format.json { render :json => @meta_tags }
       end
+      authorize @meta_tags
     end
 
     def reload

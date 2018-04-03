@@ -7,9 +7,10 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            .toolbar-item
-              = link_to admin_script_download_path(Script, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                %i.icon-cloud-download
+            - if Pundit.policy(current_user, Script).download?
+              .toolbar-item
+                = link_to admin_script_download_path(Script, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                  %i.icon-cloud-download
             - if Pundit.policy(current_user, Script).import?
               .toolbar-item
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "script" do
