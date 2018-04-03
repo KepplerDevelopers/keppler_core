@@ -15,7 +15,7 @@ module Admin
       end
       respond_to do |format|
         format.html
-        format.xls { send_data(@meta_tags.to_xls) }
+        format.xls { send_data(@objects.to_xls) }
         format.json { render :json => @objects }
       end
     end
