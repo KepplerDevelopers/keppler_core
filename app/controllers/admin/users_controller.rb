@@ -19,8 +19,6 @@ module Admin
         format.html
         format.json { render :json => @objects }
       end
-
-      authorize @users
     end
 
     def new
@@ -50,7 +48,6 @@ module Admin
       else
         render action: 'edit'
       end
-
       authorize @user
     end
 
@@ -67,6 +64,7 @@ module Admin
     def destroy
       @user.destroy
       redirect_to admin_users_path, notice: actions_messages(@user)
+      authorize @user
     end
 
     def destroy_multiple
@@ -76,6 +74,7 @@ module Admin
         admin_users_path(page: @current_page, search: @query),
         notice: actions_messages(User.new)
       )
+      authorize @user
     end
 
     def reload
