@@ -10,14 +10,8 @@ module Admin
       meta_tags = @q.result(distinct: true).order(:position)
       @objects = meta_tags.page(@current_page)
       @total = meta_tags.size
-      # @meta_tags = MetaTag.order(:position)
       if !@objects.first_page? && @objects.size.zero?
         redirect_to meta_tags_path(page: @current_page.to_i.pred,search: @query)
-      end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@meta_tags.to_xls) }
-        format.json { render :json => @objects }
       end
     end
 
@@ -28,10 +22,12 @@ module Admin
     # GET /meta_tags/new
     def new
       @meta_tag = MetaTag.new
+      authorize @meta_tag
     end
 
     # GET /meta_tags/1/edit
     def edit
+      authorize @meta_tag
     end
 
     # POST /meta_tags
@@ -51,6 +47,7 @@ module Admin
       else
         render :edit
       end
+      authorize @meta_tag
     end
 
     def clone
@@ -61,12 +58,14 @@ module Admin
       else
         render :new
       end
+      authorize @meta_tag
     end
 
     # DELETE /meta_tags/1
     def destroy
       @meta_tag.destroy
       redirect_to admin_meta_tags_path, notice: actions_messages(@meta_tag)
+      authorize @meta_tag
     end
 
     def destroy_multiple
@@ -75,6 +74,7 @@ module Admin
         admin_meta_tags_path(page: @current_page, search: @query),
         notice: actions_messages(MetaTag.new)
       )
+      authorize @meta_tag
     end
 
     def import
@@ -83,6 +83,17 @@ module Admin
         admin_meta_tags_path(page: @current_page, search: @query),
         notice: actions_messages(MetaTag.new)
       )
+      authorize @meta_tag
+    end
+
+    def download
+      @meta_tags = MetaTag.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@meta_tags.to_xls) }
+        format.json { render :json => @meta_tags }
+      end
+      authorize @meta_tags
     end
 
     def reload

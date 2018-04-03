@@ -10,13 +10,9 @@ module Admin
       scripts = @q.result(distinct: true)
       @objects = scripts.page(@current_page)
       @total = scripts.size
+
       if !@objects.first_page? && @objects.size.zero?
         redirect_to scripts_path(page: @current_page.to_i.pred,search: @query)
-      end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@scripts.to_xls) }
-        format.json { render :json => @objects }
       end
     end
 
@@ -27,10 +23,12 @@ module Admin
     # GET /scripts/new
     def new
       @script = Script.new
+      authorize @script
     end
 
     # GET /scripts/1/edit
     def edit
+      authorize @script
     end
 
     # POST /scripts
@@ -51,6 +49,7 @@ module Admin
       else
         render :edit
       end
+      authorize @script
     end
 
     def clone
@@ -61,6 +60,7 @@ module Admin
       else
         render :new
       end
+      authorize @script
     end
 
     # DELETE /scripts/1
@@ -71,6 +71,7 @@ module Admin
         admin_scripts_path,
         notice: actions_messages(@script)
       )
+      authorize @script
     end
 
     def destroy_multiple
@@ -80,6 +81,7 @@ module Admin
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
+      authorize @script
     end
 
     def import
@@ -88,8 +90,19 @@ module Admin
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
+      authorize @script
     end
 
+    def download
+      @scripts = Script.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@scripts.to_xls) }
+        format.json { render :json => @scripts }
+      end
+      authorize @scripts
+    end
+    
     def reload
       @q = Script.ransack(params[:q])
       scripts = @q.result(distinct: true)
@@ -100,6 +113,10 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_ga_track
       @script = Script.find(params[:id])
+    end
+
+    def authorization
+      authorize @script
     end
 
     # Only allow a trusted parameter "white list" through.

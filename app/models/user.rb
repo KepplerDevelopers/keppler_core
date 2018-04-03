@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
     roles.first.name
   end
 
-
   # Get the page number that the object belongs to
   def page(order = :id)
     ((self.class.order(order => :desc)
@@ -27,6 +26,14 @@ class User < ActiveRecord::Base
 
   def self.search_field
     :name_or_username_or_email_cont
+  end
+
+  def keppler_admin?
+    rol.eql?('keppler_admin')
+  end
+
+  def admin?
+    rol.eql?('admin')
   end
 
   private
