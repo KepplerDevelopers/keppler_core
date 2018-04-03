@@ -8,7 +8,7 @@
           = entries(@total, @objects)
           .toolbar
             .toolbar-item
-              = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+              = link_to admin_<%= singular_table_name %>_download_path(<%= singular_table_name.camelcase %>, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                 %i.icon-cloud-download
             - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).import?
               .toolbar-item
@@ -17,7 +17,7 @@
             .toolbar-item
               = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).destroy_multiple?    
+            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
