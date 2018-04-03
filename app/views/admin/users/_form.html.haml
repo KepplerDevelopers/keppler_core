@@ -12,12 +12,12 @@
         .box.slice-box
           .box-body.box-profile
             .upload-image
-              .form-group.files.trigger
+              .files.form-group.trigger{ class: "#{@user.avatar.blank? ? '' : 'files-absolute'}" }
                 #icon-file
                   +
                 = f.file_field :avatar, class: 'photo_upload'
               %center#image
-                = image_tag 'avatar.png', class: 'hidden image_to_upload'
+                = image_tag "#{@user.avatar.blank? ? 'avatar.png' : @user.avatar}", class: "#{!@user.avatar.blank? ? '' : 'hidden'} image_to_upload"
 
 
 
