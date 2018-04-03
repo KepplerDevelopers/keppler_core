@@ -38,6 +38,32 @@ ActiveRecord::Schema.define(version: 20180402154434) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "briefings", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "email",         limit: 255
+    t.string   "phone",         limit: 255
+    t.string   "company",       limit: 255
+    t.string   "domain",        limit: 255
+    t.string   "social",        limit: 255
+    t.string   "hosting",       limit: 255
+    t.string   "plan",          limit: 255
+    t.text     "description",   limit: 65535
+    t.string   "country",       limit: 255
+    t.text     "meeting_way",   limit: 65535
+    t.text     "briefing_type", limit: 65535
+    t.integer  "position",      limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "brand",      limit: 255
+    t.string   "name",       limit: 255
+    t.integer  "position",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "customizes", force: :cascade do |t|
     t.string   "file",       limit: 255
     t.boolean  "installed",  limit: 1
@@ -153,6 +179,18 @@ ActiveRecord::Schema.define(version: 20180402154434) do
     t.integer  "setting_id",  limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "picture",       limit: 255
+    t.string   "hover_picture", limit: 255
+    t.string   "name",          limit: 255
+    t.string   "position_es",   limit: 255
+    t.string   "position_en",   limit: 255
+    t.string   "linkedin",      limit: 255
+    t.integer  "position",      limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|

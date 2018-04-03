@@ -10,18 +10,20 @@
             .toolbar-item
               = link_to admin_<%= plural_table_name %>_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                 %i.icon-cloud-download
-            .toolbar-item
-              = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
-                %i.icon-cloud-upload
+            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).import?
+              .toolbar-item
+                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
+                  %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            .toolbar-item
-              .checkbox
-                %label{ for: 'checkbox-all' }
-                  %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                  %span.cr
-                    %i.cr-icon.glyphicon.glyphicon-ok
+            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).destroy_multiple?    
+              .toolbar-item
+                .checkbox
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
@@ -65,7 +67,7 @@
                       <%- end -%>
                     <%- end -%>
                     %th.center Menu
-                    %th  
+                    %th
               %tbody#objects-container{ "data-update-url" => "#{sort_admin_<%= plural_table_name %>_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @<%= plural_table_name %>
@@ -76,8 +78,9 @@
   %aside#index-show.control-sidebar
 
   .mixed-btn
-    = link_to new_admin_<%= singular_table_name %>_path, class: "btn-float" do
-      +
+    - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).create?
+      = link_to new_admin_<%= singular_table_name %>_path, class: "btn-float" do
+        +
 
 :javascript
   $(document).ready(function(){
