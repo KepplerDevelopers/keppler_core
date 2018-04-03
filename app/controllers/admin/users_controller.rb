@@ -19,6 +19,8 @@ module Admin
         format.html
         format.json { render :json => @objects }
       end
+
+      authorize @users
     end
 
     def new
@@ -27,12 +29,15 @@ module Admin
         format.html
         format.json { render :json => @user }
       end
+
+      authorize @user
     end
 
     def show
     end
 
     def edit
+      authorize @user
     end
 
     def update
@@ -45,6 +50,8 @@ module Admin
       else
         render action: 'edit'
       end
+
+      authorize @user
     end
 
     def create
