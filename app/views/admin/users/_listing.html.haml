@@ -12,6 +12,9 @@
               %span.cr
                 %i.cr-icon.glyphicon.glyphicon-ok
 
+    %td.avatar
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
+        = image_tag user.avatar
     %td.visible-lg.visible-md
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.name
