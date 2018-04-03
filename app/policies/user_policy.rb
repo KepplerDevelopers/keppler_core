@@ -1,5 +1,5 @@
 # Policy for user model
-class UserPolicy < ApplicationPolicy
+class UserPolicy < ControllerPolicy
   attr_reader :user, :objects
 
   def initialize(user, objects)

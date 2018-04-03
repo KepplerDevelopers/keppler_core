@@ -18,11 +18,13 @@
           .box-header.with-border
             %h3.box-title Users
             .box-tools.pull-right
-              = link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
-                %i.icon-pencil
-              - unless current_user == @user
-                = link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-                  %i.icon-trash
+              - if Pundit.policy(current_user, User).update?
+                = link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                  %i.icon-pencil
+              - if Pundit.policy(current_user, User).destroy?
+                - unless current_user == @user
+                  = link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                    %i.icon-trash
 
           / /.box-header
           .box-body.box-body-no-padding

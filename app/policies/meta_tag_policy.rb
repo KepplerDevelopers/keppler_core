@@ -1,5 +1,5 @@
 # Policy for MetaTag model
-class MetaTagPolicy < ApplicationPolicy
+class MetaTagPolicy < ControllerPolicy
   attr_reader :user, :objects
 
   def initialize(user, objects)
