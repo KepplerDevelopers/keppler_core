@@ -13,11 +13,6 @@ module Admin
       if !@objects.first_page? && @objects.size.zero?
         redirect_to meta_tags_path(page: @current_page.to_i.pred,search: @query)
       end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@objects.to_xls) }
-        format.json { render :json => @objects }
-      end
     end
 
     # GET /meta_tags/1
@@ -89,6 +84,15 @@ module Admin
         notice: actions_messages(MetaTag.new)
       )
       authorize @meta_tag
+    end
+
+    def download
+      @meta_tags = MetaTag.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@meta_tags.to_xls) }
+        format.json { render :json => @meta_tags }
+      end
     end
 
     def reload

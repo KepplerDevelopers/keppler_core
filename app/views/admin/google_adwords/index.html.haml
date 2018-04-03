@@ -8,7 +8,7 @@
           = entries(@total, @objects)
           .toolbar
             .toolbar-item
-              = link_to admin_google_adwords_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+              = link_to admin_google_adwords_download_path(GoogleAdword, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                 %i.icon-cloud-download
             .toolbar-item
               = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "google_adword" do

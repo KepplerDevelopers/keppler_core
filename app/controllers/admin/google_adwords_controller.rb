@@ -13,11 +13,6 @@ module Admin
       if !@objects.first_page? && @objects.size.zero?
         redirect_to google_adwords_path(page: @current_page.to_i.pred,search: @query)
       end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@objects.to_xls) }
-        format.json { render :json => @objects }
-      end
     end
 
     # GET /google_adwords/1
@@ -83,6 +78,15 @@ module Admin
         admin_google_adwords_path(page: @current_page, search: @query),
         notice: actions_messages(GoogleAdword.new)
       )
+    end
+
+    def download
+      @google_adwords = GoogleAdword.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@google_adwords.to_xls) }
+        format.json { render :json => @objects }
+      end
     end
 
     def reload

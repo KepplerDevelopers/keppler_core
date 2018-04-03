@@ -10,13 +10,9 @@ module Admin
       scripts = @q.result(distinct: true)
       @objects = scripts.page(@current_page)
       @total = scripts.size
+
       if !@objects.first_page? && @objects.size.zero?
         redirect_to scripts_path(page: @current_page.to_i.pred,search: @query)
-      end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@objects.to_xls) }
-        format.json { render :json => @objects }
       end
     end
 
@@ -86,6 +82,15 @@ module Admin
         notice: actions_messages(Script.new)
       )
       authorize @script
+    end
+
+    def download
+      @scripts = Script.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@scripts.to_xls) }
+        format.json { render :json => @scripts }
+      end
     end
 
     def import
