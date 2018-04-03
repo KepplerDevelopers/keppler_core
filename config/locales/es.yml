@@ -5,7 +5,6 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
-      cars: Cars
       customizes: Personalización
       dashboard: Tablero
       users: Usuarios
@@ -36,7 +35,6 @@ es:
         categories: Categorías
     models:
       singularize:
-        car: car
         customize: customize
         google_adword: google adword
         meta_tag: meta tag
@@ -45,7 +43,6 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
-        cars: cars
         customizes: customizes
         google_adwords: google adwords
         meta_tags: meta tags
@@ -55,7 +52,6 @@ es:
         user: usuarios
         script: scripts
     modules:
-      admin/cars: Cars
       admin/customizes: Customizes
       admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
