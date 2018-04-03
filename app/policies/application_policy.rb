@@ -42,6 +42,10 @@ class ApplicationPolicy
     keppler_admin? || admin?
   end
 
+  def download?
+    keppler_admin? || admin?
+  end
+
   def keppler_admin?
     user.keppler_admin?
   end

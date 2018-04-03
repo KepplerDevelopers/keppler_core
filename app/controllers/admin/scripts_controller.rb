@@ -84,15 +84,6 @@ module Admin
       authorize @script
     end
 
-    def download
-      @scripts = Script.all
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@scripts.to_xls) }
-        format.json { render :json => @scripts }
-      end
-    end
-
     def import
       Script.import(params[:file])
       redirect_to(
@@ -102,6 +93,16 @@ module Admin
       authorize @script
     end
 
+    def download
+      @scripts = Script.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@scripts.to_xls) }
+        format.json { render :json => @scripts }
+      end
+      authorize @scripts
+    end
+    
     def reload
       @q = Script.ransack(params[:q])
       scripts = @q.result(distinct: true)
