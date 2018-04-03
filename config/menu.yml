@@ -21,6 +21,12 @@ menu:
           name: 'Title & Metas'
           url_path: /admin/meta_tags
           current: ['admin/meta_tags']
+  car:
+    name: cars
+    url_path: /admin/cars
+    icon: layers
+    current: ['admin/cars']
+    model: Car
   user:
     name: users
     url_path: /admin/users
