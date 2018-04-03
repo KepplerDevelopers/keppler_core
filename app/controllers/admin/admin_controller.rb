@@ -3,11 +3,11 @@ module Admin
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
     before_filter :authenticate_user!
-    load_and_authorize_resource except: :root
     before_filter :paginator_params
     before_filter :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
+
     def root
       if current_user
         redirect_to dashboard_path
