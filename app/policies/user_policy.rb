@@ -12,6 +12,6 @@ class UserPolicy < ControllerPolicy
   end
 
   def destroy?
-    admin? && same_user?(@user)
+    (keppler_admin? || admin?) && !same_user?(@user)
   end
 end

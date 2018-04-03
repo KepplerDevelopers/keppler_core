@@ -6,7 +6,7 @@
           .arrow-back.btn.btn-default
             %i.fa.fa-angle-left
             = t('keppler.actions.back')
-            
+
     .row
       .col-lg-12
         .box.slice-box
@@ -24,13 +24,12 @@
                   .col-xs-12
                     .upload-image
                       = f.label :<%= attribute.name %>
-                      .form-group.files.trigger
+                      .files.form-group.trigger{ class: "#{'files-absolute' unless @<%= singular_table_name %>.<%= attribute.name %>.blank?}" }
                         #icon-file
-                          %i
-                            +
+                          +
                         = f.file_field :<%= attribute.name %>, class: 'photo_upload'
                       %center#image
-                        = image_tag '<%= attribute.name %>.png', class: 'hidden image_to_upload'
+                        = image_tag "#{@<%= singular_table_name %>.<%= attribute.name %>.blank? ? '<%= attribute.name %>.png' : @<%= singular_table_name %>.<%= attribute.name %>}", class: "#{'hidden' if @<%= singular_table_name %>.<%= attribute.name %>.blank?} image_to_upload"
                     <%- end -%>
                   <%- end -%>
                   <%- attributes.each do |attribute| -%>
