@@ -65,7 +65,6 @@ gem 'simple-line-icons-rails'
 gem 'devise'
 gem 'devise-i18n'
 gem 'pundit'
-gem 'cancancan'
 gem 'rolify'
 
 # Search

@@ -86,7 +86,6 @@ GEM
       thor
     builder (3.2.3)
     byebug (9.1.0)
-    cancancan (2.1.2)
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -412,7 +411,6 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.6)
   bourbon (= 4.2.0)
   byebug
-  cancancan
   carrierwave
   ckeditor
   cocoon
