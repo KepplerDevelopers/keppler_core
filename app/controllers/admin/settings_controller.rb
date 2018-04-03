@@ -2,6 +2,7 @@ module Admin
   # SettingsController
   class SettingsController < AdminController
     before_action :set_setting, only: [:edit, :update, :appearance_default]
+    before_action :authorization, only: [:edit, :update]
 
     def edit
       @social_medias = social_account_permit_attributes
@@ -54,6 +55,10 @@ module Admin
       @render = params[:config]
     end
 
+    def authorization
+      authorize @setting
+    end
+    
     def style_file
       "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
     end

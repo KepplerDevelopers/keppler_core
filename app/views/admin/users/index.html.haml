@@ -13,12 +13,13 @@
             .toolbar-item
               = link_to reload_admin_users_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            .toolbar-item
-              .checkbox
-                %label{ for: 'checkbox-all' }
-                  %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                  %span.cr
-                    %i.cr-icon.glyphicon.glyphicon-ok
+            - if Pundit.policy(current_user, User).destroy_multiple?
+              .toolbar-item
+                .checkbox
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
@@ -52,6 +53,7 @@
   .listing-show.hidden-xs
     = render 'description'
   %aside#index-show.control-sidebar
-  .mixed-btn
-    = link_to new_admin_user_path, class: 'btn-float' do
-      +
+  - if Pundit.policy(current_user, User).create?
+    .mixed-btn
+      = link_to new_admin_user_path, class: 'btn-float' do
+        +

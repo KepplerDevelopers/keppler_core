@@ -19,11 +19,6 @@ module Admin
       if !@objects.first_page? && @objects.size.zero?
         redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
       end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
-        format.json { render :json => @objects }
-      end
     end
 
     # GET <%= route_url %>/1
@@ -33,10 +28,12 @@ module Admin
     # GET <%= route_url %>/new
     def new
       @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
+      authorize @<%= singular_table_name %>
     end
 
     # GET <%= route_url %>/1/edit
     def edit
+      authorize @<%= singular_table_name %>
     end
 
     # POST <%= route_url %>
@@ -57,6 +54,7 @@ module Admin
       else
         render :edit
       end
+      authorize @<%= singular_table_name %>
     end
 
     def clone
@@ -67,12 +65,14 @@ module Admin
       else
         render :new
       end
+      authorize @<%= singular_table_name %>
     end
 
     # DELETE <%= route_url %>/1
     def destroy
       @<%= orm_instance.destroy %>
       redirect_to admin_<%= index_helper %>_path, notice: actions_messages(@<%= singular_table_name %>)
+      authorize @<%= singular_table_name %>
     end
 
     def destroy_multiple
@@ -81,6 +81,7 @@ module Admin
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
+      authorize @<%= singular_table_name %>
     end
 
     def import
@@ -89,6 +90,17 @@ module Admin
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
+      authorize @<%= singular_table_name %>
+    end
+
+    def download
+      @<%= plural_table_name %> = <%= class_name %>.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
+        format.json { render :json => @<%= plural_table_name %> }
+      end
+      authorize @<%= plural_table_name %>
     end
 
     def reload

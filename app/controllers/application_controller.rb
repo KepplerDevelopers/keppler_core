@@ -8,28 +8,21 @@ class ApplicationController < ActionController::Base
   before_action :set_apparience_colors
   before_filter :set_sidebar
   skip_around_action :set_locale_from_url
+  include Pundit
   include PublicActivity::StoreController
   include AdminHelper
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # rescue_from Faraday::ConnectionFailed do |error|
   #   redirect_to main_app.admin_users_path, notice: "Sin conexión a internet"
   # end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    exception.default_message =
-      case exception.action
-      when :index
-        t('keppler.messages.not_authorized_page')
-      else
-        t('keppler.messages.not_authorized_action')
-      end
-    redirect_to main_app.not_authorized_path, flash: {
-      message: exception.message
-    }
-  end
-
   private
 
+  def user_not_authorized
+    flash[:alert] = "No tienes permiso para realizar esa acción"
+    redirect_to(request.referrer || root_path)
+  end
   # block access dashboard
   def dashboard_access
     roles = Role.all.map {|x| x.name}
@@ -49,7 +42,7 @@ class ApplicationController < ActionController::Base
       module_menu = YAML.load_file(
         "#{m}/config/menu.yml"
       ).values.each(&:symbolize_keys!)
-      @sidebar[0] = @sidebar[0].merge(module_menu[0])        
+      @sidebar[0] = @sidebar[0].merge(module_menu[0])
     end
   end
 

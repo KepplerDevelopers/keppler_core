@@ -64,7 +64,7 @@ gem 'simple-line-icons-rails'
 # Authentication and Authorization
 gem 'devise'
 gem 'devise-i18n'
-gem 'cancancan'
+gem 'pundit'
 gem 'rolify'
 
 # Search
