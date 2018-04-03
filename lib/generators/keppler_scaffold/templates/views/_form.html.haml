@@ -40,7 +40,13 @@
                     <%- elsif attribute.type.to_s == "date" -%>
                     = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
                     <%- elsif attribute.type.to_s == "boolean" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+                    -# = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+                    .checkbox
+                      %label{ for: "checkbox-#{@<%= singular_table_name %>.id}" }
+                        %span <%= attribute.name %>
+                        %input{ type:"checkbox", id: "checkbox-#{@<%= singular_table_name %>.id}", 'checklist-model' => 'check', 'checklist-value' => "#{@<%= singular_table_name %>.id}", '@click' => "listDelete(#{@<%= singular_table_name %>.id})"}
+                        %span.cr
+                          %i.cr-icon.glyphicon.glyphicon-ok
                     <%- elsif attribute.type.to_s == "integer" -%>
                     = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {min: 0}
                     <%- else -%>

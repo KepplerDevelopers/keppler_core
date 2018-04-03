@@ -8,6 +8,30 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'admin#root'
+ 
+    resources :cars do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
+      post '/import', action: 'import', as: :import
+    
+      get '/download', action: 'download', as: :download
+      post(
+        '/sort',
+        action: :sort,
+        on: :collection,
+      )
+      get(
+        '/reload',
+        action: :reload,
+        on: :collection,
+      )
+      delete(
+        '/destroy_multiple',
+        action: :destroy_multiple,
+        on: :collection,
+        as: :destroy_multiple
+      )
+    end
     
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
