@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: 'import'
+      get '/download', action: 'download', as: 'download'
       get(
         '/reload',
         action: :reload,
@@ -69,6 +70,7 @@ Rails.application.routes.draw do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: 'import'
+      get '/download', action: 'download', as: 'download'
       get(
         '/reload',
         action: :reload,
@@ -86,6 +88,7 @@ Rails.application.routes.draw do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: 'import'
+      get '/download', action: 'download', as: 'download'
       get(
         '/reload',
         action: :reload,

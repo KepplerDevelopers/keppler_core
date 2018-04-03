@@ -8,7 +8,7 @@
           = entries(@total, @objects)
           .toolbar
             .toolbar-item
-              = link_to admin_meta_tags_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+              = link_to admin_meta_tag_download_path(MetaTag, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                 %i.icon-cloud-download
             - if Pundit.policy(current_user, MetaTag).import?
               .toolbar-item
