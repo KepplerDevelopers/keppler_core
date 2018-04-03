@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402154434) do
+ActiveRecord::Schema.define(version: 20180403210807) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -38,27 +38,11 @@ ActiveRecord::Schema.define(version: 20180402154434) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "briefings", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "email",         limit: 255
-    t.string   "phone",         limit: 255
-    t.string   "company",       limit: 255
-    t.string   "domain",        limit: 255
-    t.string   "social",        limit: 255
-    t.string   "hosting",       limit: 255
-    t.string   "plan",          limit: 255
-    t.text     "description",   limit: 65535
-    t.string   "country",       limit: 255
-    t.text     "meeting_way",   limit: 65535
-    t.text     "briefing_type", limit: 65535
-    t.integer  "position",      limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
-  create_table "clients", force: :cascade do |t|
-    t.string   "brand",      limit: 255
+  create_table "cars", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.string   "color",      limit: 255
+    t.boolean  "selled",     limit: 1
+    t.string   "photo",      limit: 255
     t.integer  "position",   limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -69,15 +53,6 @@ ActiveRecord::Schema.define(version: 20180402154434) do
     t.boolean  "installed",  limit: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-  end
-
-  create_table "google_adwords", force: :cascade do |t|
-    t.string   "url",           limit: 255
-    t.string   "campaign_name", limit: 255
-    t.text     "description",   limit: 65535
-    t.text     "script",        limit: 65535
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
   end
 
   create_table "google_analytics_settings", force: :cascade do |t|
@@ -97,17 +72,6 @@ ActiveRecord::Schema.define(version: 20180402154434) do
     t.integer  "position",    limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-  end
-
-  create_table "people", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
-    t.string   "phone",      limit: 255
-    t.string   "photo",      limit: 255
-    t.integer  "age",        limit: 4
-    t.integer  "position",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -179,18 +143,6 @@ ActiveRecord::Schema.define(version: 20180402154434) do
     t.integer  "setting_id",  limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string   "picture",       limit: 255
-    t.string   "hover_picture", limit: 255
-    t.string   "name",          limit: 255
-    t.string   "position_es",   limit: 255
-    t.string   "position_en",   limit: 255
-    t.string   "linkedin",      limit: 255
-    t.integer  "position",      limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|
