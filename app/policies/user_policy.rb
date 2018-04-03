@@ -7,23 +7,11 @@ class UserPolicy < ApplicationPolicy
     @objects = objects
   end
 
-  def index?
-    admin?
+  def clone?
+    false
   end
 
-  def new?
-    create?
-  end
-
-  def create?
-    admin?
-  end
-
-  def edit?
-    update?
-  end
-
-  def update?
-    admin?
+  def destroy?
+    admin? && same_user?(@user)
   end
 end
