@@ -33,10 +33,12 @@ module Admin
     # GET <%= route_url %>/new
     def new
       @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
+      authorize @<%= singular_table_name %>
     end
 
     # GET <%= route_url %>/1/edit
     def edit
+      authorize @<%= singular_table_name %>
     end
 
     # POST <%= route_url %>
@@ -57,6 +59,7 @@ module Admin
       else
         render :edit
       end
+      authorize @<%= singular_table_name %>
     end
 
     def clone
@@ -67,12 +70,14 @@ module Admin
       else
         render :new
       end
+      authorize @<%= singular_table_name %>
     end
 
     # DELETE <%= route_url %>/1
     def destroy
       @<%= orm_instance.destroy %>
       redirect_to admin_<%= index_helper %>_path, notice: actions_messages(@<%= singular_table_name %>)
+      authorize @<%= singular_table_name %>
     end
 
     def destroy_multiple
@@ -81,6 +86,7 @@ module Admin
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
+      authorize @<%= singular_table_name %>
     end
 
     def import
@@ -89,6 +95,7 @@ module Admin
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
+      authorize @<%= singular_table_name %>
     end
 
     def reload
