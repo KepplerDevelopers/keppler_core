@@ -1,5 +1,4 @@
 %aside.main-sidebar
-  / sidebar: style can be found in sidebar.less
   %section.sidebar{style: "" }
     / Sidebar user panel
     .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
@@ -20,7 +19,7 @@
         - menu.each do |key, value|
           - unless menu[key]["submenu"] #ontetab sidebar link
             - if menu[key]["model"] #links with cancancan validate
-              - if can?(:index, menu[key]["model"].constantize)
+              - if Pundit.policy(current_user, menu[key]["model"].constantize).index?
                 %li.treeview
                   = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", :'data-no-turbolink'=> true do
                     %i{ class: "icon-#{menu[key]["icon"]}" }
@@ -31,7 +30,7 @@
                     %i{ class: "icon-#{menu[key]["icon"]}" }
                     %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
           - else #tree sidebar links
-            - if menu[key]["model"] && can?(:index, menu[key]["model"].constantize)
+            - if menu[key]["model"] && Pundit.policy(current_user, menu[key]["model"].constantize).index?
               %li
                 %a{ href: "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
                   %i{ class: "icon-#{menu[key]['icon']}" }
@@ -55,16 +54,16 @@
             %i{class: "fa fa-angle-left pull-right"}
           %ul{class: "treeview-menu", style:"display: none;"}
             %li
-              %a{"data-no-turbolink"=>"true", href:"/admin/settings/basic_information"} 
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/basic_information"}
                 = t('keppler.sidebar-menu.setting-submenu.basic-information')
             %li
-              %a{"data-no-turbolink"=>"true", href:"/admin/settings/email_setting"} 
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/email_setting"}
                 = t('keppler.sidebar-menu.setting-submenu.email-setting-smtp')
             %li
-              %a{"data-no-turbolink"=>"true", href:"/admin/settings/google_analytics_setting"} 
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/google_analytics_setting"}
                 = t('keppler.sidebar-menu.setting-submenu.google-analytics')
             %li
-              %a{"data-no-turbolink"=>"true", href:"/admin/settings/social_accounts"} 
+              %a{"data-no-turbolink"=>"true", href:"/admin/settings/social_accounts"}
                 = t('keppler.sidebar-menu.setting-submenu.social-accounts')
   #sidebar-footer
     %a{:href=>"http://slicegroup.xyz", target: "_blank" }
@@ -73,6 +72,3 @@
       #icon.brand.pull-left.hidden
         = image_tag 'admin/slice-icon.png'
     %span.pull-right v 2.0
-
-  / /.sidebar
-/ Content Wrapper. Contains page content
