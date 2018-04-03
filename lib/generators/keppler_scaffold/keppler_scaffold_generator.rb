@@ -48,23 +48,23 @@ module Rails
         )
       end
 
-      def add_access_ability
-        inject_into_file(
-          'app/models/ability.rb',
-          str_ability_admin,
-          after: '    if user.has_role? :keppler_admin'
-        )
-        inject_into_file(
-          'app/models/ability.rb',
-          str_ability_admin,
-          after: '    elsif user.has_role? :admin'
-        )
-        inject_into_file(
-          'app/models/ability.rb',
-          str_ability_client,
-          after: '    elsif user.has_role? :client'
-        )
-      end
+      # def add_access_ability
+      #   inject_into_file(
+      #     'app/models/ability.rb',
+      #     str_ability_admin,
+      #     after: '    if user.has_role? :keppler_admin'
+      #   )
+      #   inject_into_file(
+      #     'app/models/ability.rb',
+      #     str_ability_admin,
+      #     after: '    elsif user.has_role? :admin'
+      #   )
+      #   inject_into_file(
+      #     'app/models/ability.rb',
+      #     str_ability_client,
+      #     after: '    elsif user.has_role? :client'
+      #   )
+      # end
 
       def add_locales
         %w(en es).each do |locale|
@@ -105,6 +105,16 @@ module Rails
             'app/models',
             controller_class_path,
             "#{controller_file_name.singularize}.rb"
+          )
+        )
+      end
+
+      def create_policies_files
+        template(
+          'policies/policy.rb',
+          File.join(
+            'app/policies',
+            controller_class_path, "#{controller_file_name.singularize}_policy.rb"
           )
         )
       end
@@ -168,13 +178,13 @@ module Rails
         "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: layers\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
       end
 
-      def str_ability_admin
-        "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
-      end
-
-      def str_ability_client
-        "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can [:index, :show], #{controller_file_name.singularize.camelcase}"
-      end
+      # def str_ability_admin
+      #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
+      # end
+      #
+      # def str_ability_client
+      #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can [:index, :show], #{controller_file_name.singularize.camelcase}"
+      # end
 
       def str_xls
         "\nif #{controller_file_name.singularize.camelcase}.table_exists?\n  @#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n  @#{controller_file_name.pluralize}.to_xls(\n    only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n    except: [:id],\n    header: false,\n    prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n    column_width: [17, 15, 15, 40, 25, 37]\n  )\n  @#{controller_file_name.pluralize}.to_xls do |column, value|\n    column == :salutation ? t(value) : value\n  end\nend\n"
