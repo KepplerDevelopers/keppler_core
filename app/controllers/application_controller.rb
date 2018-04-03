@@ -8,26 +8,27 @@ class ApplicationController < ActionController::Base
   before_action :set_apparience_colors
   before_filter :set_sidebar
   skip_around_action :set_locale_from_url
+  include Pundit
   include PublicActivity::StoreController
   include AdminHelper
-  include Pundit
+
 
   # rescue_from Faraday::ConnectionFailed do |error|
   #   redirect_to main_app.admin_users_path, notice: "Sin conexión a internet"
   # end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    exception.default_message =
-      case exception.action
-      when :index
-        t('keppler.messages.not_authorized_page')
-      else
-        t('keppler.messages.not_authorized_action')
-      end
-    redirect_to main_app.not_authorized_path, flash: {
-      message: exception.message
-    }
-  end
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   exception.default_message =
+  #     case exception.action
+  #     when :index
+  #       t('keppler.messages.not_authorized_page')
+  #     else
+  #       t('keppler.messages.not_authorized_action')
+  #     end
+  #   redirect_to main_app.not_authorized_path, flash: {
+  #     message: exception.message
+  #   }
+  # end
 
   private
 
