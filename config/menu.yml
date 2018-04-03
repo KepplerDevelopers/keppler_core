@@ -21,10 +21,6 @@ menu:
           name: 'Title & Metas'
           url_path: /admin/meta_tags
           current: ['admin/meta_tags']
-      - google_adwords:
-          name: Google Adwords
-          url_path: /admin/google_adwords
-          current: ['admin/google_adwords']
   user:
     name: users
     url_path: /admin/users

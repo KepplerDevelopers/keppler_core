@@ -12,26 +12,17 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   include AdminHelper
 
-
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # rescue_from Faraday::ConnectionFailed do |error|
   #   redirect_to main_app.admin_users_path, notice: "Sin conexión a internet"
   # end
 
-  # rescue_from CanCan::AccessDenied do |exception|
-  #   exception.default_message =
-  #     case exception.action
-  #     when :index
-  #       t('keppler.messages.not_authorized_page')
-  #     else
-  #       t('keppler.messages.not_authorized_action')
-  #     end
-  #   redirect_to main_app.not_authorized_path, flash: {
-  #     message: exception.message
-  #   }
-  # end
-
   private
 
+  def user_not_authorized
+    flash[:alert] = "No tienes permiso para realizar esa acción"
+    redirect_to(request.referrer || root_path)
+  end
   # block access dashboard
   def dashboard_access
     roles = Role.all.map {|x| x.name}

@@ -1,5 +1,5 @@
 # Policy for customize model
-class CustomizePolicy < ApplicationPolicy
+class CustomizePolicy < ControllerPolicy
   attr_reader :user, :objects
 
   def initialize(user, objects)
