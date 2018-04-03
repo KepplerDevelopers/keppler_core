@@ -3,6 +3,7 @@ module Admin
   class CustomizesController < AdminController
     before_action :set_customize, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
+    before_action :authorization, only: [:new, :create, :edit, :update, :destroy, :destroy_multiple]
 
     # GET /customizes
     def index
@@ -87,6 +88,10 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_customize
       @customize = Customize.find(params[:id])
+    end
+
+    def authorization
+      authorize @customize
     end
 
     # Only allow a trusted parameter "white list" through.
