@@ -100,6 +100,7 @@ module Admin
         format.xls { send_data(@<%= plural_table_name %>.to_xls) }
         format.json { render :json => @<%= plural_table_name %> }
       end
+      authorize @<%= plural_table_name %>
     end
 
     def reload
