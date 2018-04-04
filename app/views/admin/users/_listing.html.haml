@@ -3,8 +3,6 @@
     - if Pundit.policy(current_user, User).destroy_multiple?
       %td.item-check{style:"width: 10%"}
         - if user.id.eql?(current_user.id)
-          -# = link_to admin_user_path(current_user), class: "btn-floating btn-flat", style: 'margin-right: 13px' do
-          -#   %i.material-icons.light-green-text{ title: 'Sesión iniciada' } account_circle
         - else
           .checkbox
             %label{ for: "checkbox-#{user.id}" }
