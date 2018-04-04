@@ -13,7 +13,7 @@ menu:
     model: Script
   seo:
     name: SEO
-    current: ['admin/meta_tags', 'admin/google_adwords']
+    current: ['admin/meta_tags']
     icon: graph
     model: MetaTag
     submenu:
