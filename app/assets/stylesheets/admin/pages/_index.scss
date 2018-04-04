@@ -104,9 +104,8 @@
   width: 20%;
 }
 .actions.dropdown-menu{
-  // top: 40px;
   left: auto;
-  right: 110px;
+  right: 60px;
   width: 100px;
   min-width: 130px;
   padding: 0;
@@ -231,7 +230,7 @@
 }
 .toolbar{
   @media screen and (min-width: 0) and (max-width: 991px) {
-    right: 15px;  
+    right: 15px;
   }
   background-color: #fbfbfb;
   position: absolute;
@@ -311,6 +310,7 @@
       padding: 8px;
       &:hover {
         color: inherit;
+        cursor: pointer;
       }
     }
     &:last-child{
