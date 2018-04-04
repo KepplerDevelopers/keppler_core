@@ -107,6 +107,9 @@
   label {
     padding: 0;
     min-height: 0;
+    .label-text {
+      margin: -3px 0 0 10px;
+    }
     &:after {
       content: '';
       display: table;
@@ -144,7 +147,6 @@
       border-radius: 1px;
       width: 15px;
       height: 15px;
-      margin: 3px 10px 0 0;
       float: left;
       border: solid 1px #999;
       transition: .3s;
