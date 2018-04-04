@@ -68,8 +68,7 @@ gem 'pundit'
 gem 'rolify'
 
 # Search
-gem 'ransack', git: 'https://github.com/activerecord-hackery/ransack',
-               branch: 'rails-4.2'
+gem 'ransack', git: 'https://github.com/activerecord-hackery/ransack'
 
 gem 'route_translator', '4.0.0'
 
