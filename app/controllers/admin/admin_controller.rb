@@ -2,9 +2,9 @@ module Admin
   # AdminController
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
-    before_filter :authenticate_user!
-    before_filter :paginator_params
-    before_filter :set_setting
+    before_action :authenticate_user!
+    before_action :paginator_params
+    before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
 
@@ -32,7 +32,7 @@ module Admin
     private
 
     def tables_name
-      @models = ActiveRecord::Base.connection.tables.map do |model|
+      @models = ApplicationRecord.connection.tables.map do |model|
         model.capitalize.singularize.camelize
       end
     end

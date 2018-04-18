@@ -5,7 +5,7 @@ module KepplerGaDashboard
   class DashboardController < ::ApplicationController
     layout 'admin/layouts/application'
     before_action :dashboard_access, only: [:analytics]
-    before_filter :authenticate_user!
+    before_action :authenticate_user!
 
     def analytics
       # set up a client instance

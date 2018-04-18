@@ -1,5 +1,5 @@
 # MetaTag Model
-class MetaTag < ActiveRecord::Base
+class MetaTag < ApplicationRecord
   include ActivityHistory
   include CloneRecord
   acts_as_list

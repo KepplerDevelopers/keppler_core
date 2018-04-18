@@ -14,11 +14,11 @@ Rails.application.routes.draw do
       get '/clone', action: 'clone'
       post '/import', action: 'import', as: 'import'
       post '/install_default', action: 'install_default'
-      delete(
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
+      # delete(
+      #   action: :destroy_multiple,
+      #   on: :collection,
+      #   as: :destroy_multiple
+      # )
     end
 
     resources :users do

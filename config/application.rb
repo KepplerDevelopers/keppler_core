@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -13,6 +13,9 @@ module InyxmaterRails
     #   those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.2
 
     # Enable the asset pipeline
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
@@ -35,7 +38,7 @@ module InyxmaterRails
 
     config.i18n.default_locale = :es
 
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
 
     # config exeption routes
     config.exceptions_app = routes

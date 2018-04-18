@@ -1,5 +1,5 @@
 # ApplicationMailer
-class ApplicationMailer < ActionMailer::Base
+class ApplicationMailer < ActionMailer
   default from: 'testing@keppler.com'
   layout 'mailers/mailer'
 

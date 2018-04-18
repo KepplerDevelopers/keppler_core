@@ -1,5 +1,5 @@
 # User Model
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include ActivityHistory
   mount_uploader :avatar, TemplateUploader
   before_save :create_permalink, if: :new_record?

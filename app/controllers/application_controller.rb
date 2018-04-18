@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   layout :layout_by_resource
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :appearance
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :appearance
   before_action :set_apparience_colors
-  before_filter :set_sidebar
+  before_action :set_sidebar
   skip_around_action :set_locale_from_url
   include Pundit
   include PublicActivity::StoreController
