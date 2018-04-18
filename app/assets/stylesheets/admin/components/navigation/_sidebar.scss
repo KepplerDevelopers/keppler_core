@@ -11,10 +11,10 @@
 
   .sidebar-menu > li:hover > a,
   .sidebar-menu > li.active > a {
-    color: #ffffff;    
     background: #fff !important;
     border-left-color: $keppler-color !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+    transition: .3s;
   }
 
   .sidebar-menu > li > .treeview-menu {
@@ -33,7 +33,7 @@
 
   .sidebar {
     min-height: 84vh;
-    margin: 1% !important;;
+    margin: 0 6px !important;;
     a {
       color: #424242 !important;
       span {
