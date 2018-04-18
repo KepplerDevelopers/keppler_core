@@ -44,7 +44,7 @@
 
         %ul
           %li
-            Base de datos por defecto MySQL
+            Base de datos por defecto PostgreSQL
           %li
             Integración para autenticación de usuarios con
             = link_to 'Devise', 'https://github.com/plataformatec/devise', target: '_blank'
@@ -53,22 +53,22 @@
             = link_to 'Rolify', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
           %li
             Integración para autorizaciones con
-            = link_to 'CanCanCan', 'https://github.com/CanCanCommunity/cancancan', target: '_blank'
+            = link_to 'Pundit', 'https://github.com/varvet/pundit', target: '_blank'
           %li
             Inegración para el manejo de de paginación con
             = link_to 'Kaminari', 'https://github.com/amatsuda/kaminari', target: '_blank'
           %li
             Integración para helpers de formularios con
-            = link_to 'SimpleForm', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
+            = link_to 'SimpleForm', 'https://github.com/plataformatec/simple_form', target: '_blank'
           %li
             Integración para búsquedas full-text con
             = link_to 'Ransack', 'https://github.com/activerecord-hackery/ransack', target: '_blank'
           %li
             Integración con framework fronte-end para el administrativo con
-            = link_to 'Materialize', 'http://materializecss.com/', target: '_blank'
+            = link_to 'Admin LTE', 'https://adminlte.io/', target: '_blank'
           %li
             Integración con framework javascript
-            = link_to 'AngularJs', 'https://angularjs.org/', target: '_blank'
+            = link_to 'VueJS', 'https://vuejs.org/', target: '_blank'
           %li
             Integración sitemap dinamicos con
             = link_to 'sitemap_generator', 'https://github.com/kjvarga/sitemap_generator', target: '_blank'
@@ -94,13 +94,13 @@
             rake db:migrate
             rake db:seed
 
-        %h3 SimpleForm con Materialize
+        %h3 SimpleForm con AdminLTE
 
         %p
-          Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en
+          Se ofrece una integración por defecto entre SimpleForm y Bootstrap, usted tiene la posibilidad de cambiar su funcionalidad en
           %pre
             %code.ruby
-              config/initializers/simple_form_materialize.rb
+              config/initializers/simple_form_bootstrap.rb
 
 
         %p Aquí algunos ejemplos para la creación de inputs:
@@ -136,7 +136,7 @@
           Nota:
         %p
           Puede revisar la documentación de
-          = link_to 'Materialize', 'http://materializecss.com/'
+          = link_to 'Admin LTE', 'https://adminlte.io/'
         para agregar nuevas integraciones para sus formularios a través de los
         = link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
         de simpleform.
@@ -152,7 +152,7 @@
 
         %pre
           %code.shell
-            rails g keppler_scaffold [module_name] [attributes] -f
+            rails g keppler_scaffold [module_name] [attribute:type] [attribute:type] ...
 
         %p Luego crea la tabla en base de datos.
 
@@ -168,13 +168,13 @@
 
         %ul
           %li
-            = link_to 'Keppler google analytics dashboard', 'https://github.com/SliceDevelopers/keppler_ga_dashboard'
+            = link_to 'Keppler Google Analytics Dashboard', 'https://github.com/slicegroup/keppler_ga_dashboard'
           %strong ya viene integrado
           %li
-            = link_to 'Keppler blog', 'https://github.com/SliceDevelopers/keppler_blog'
+            = link_to 'Keppler Blog', 'https://github.com/slicegroup/keppler_blog'
           %li
-            = link_to 'Keppler catalogs', 'https://github.com/inyxtech/keppler_catalogs'
+            = link_to 'Keppler Catalogs', 'https://github.com/slicegroup/keppler_catalogs'
           %li
-            = link_to 'Keppler contact', 'https://github.com/SliceDevelopers/keppler_contact_us'
+            = link_to 'Keppler Contact Us', 'https://github.com/slicegroup/keppler_contact_us'
 
     %script{ src: '/assets/app/front.js' }
