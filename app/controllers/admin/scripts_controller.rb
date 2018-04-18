@@ -102,7 +102,7 @@ module Admin
       end
       authorize @scripts
     end
-    
+
     def reload
       @q = Script.ransack(params[:q])
       scripts = @q.result(distinct: true)
