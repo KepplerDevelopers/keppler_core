@@ -1,7 +1,7 @@
 %aside.main-sidebar
   %section.sidebar{style: "" }
     / Sidebar user panel
-    .user-panel{ style: @appearance.image_background? ? nil : nil  }
+    .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
       .pull-left.image
         .img-circle.side-img-profile{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
       .info
@@ -34,6 +34,8 @@
                 %a{ href: "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
                   %i{ class: "icon-#{menu[key]['icon']}" }
                   %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+                  %span.pull-right-container
+                    %i.fa.fa-angle-left.pull-right
 
                 %ul.treeview-menu
                   - menu[key]["submenu"].each do |submenu|
@@ -47,6 +49,8 @@
         = link_to '#' do
           %i.icon-settings
           %span= t('keppler.sidebar-menu.setting')
+          %span.pull-right-container
+            %i{class: "fa fa-angle-left pull-right"}
           %ul{class: "treeview-menu", style:"display: none;"}
             %li
               %a{"data-no-turbolink"=>"true", href:"/admin/settings/basic_information"}
