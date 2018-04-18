@@ -1,2 +1,2 @@
-class Front < ActiveRecord::Base
+class Front < ApplicationRecord
 end

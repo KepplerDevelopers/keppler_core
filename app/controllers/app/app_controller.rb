@@ -2,8 +2,8 @@ module App
   # AppController -> Controller out the back-office
   class AppController < ::ApplicationController
     layout 'app/layouts/application'
-    before_filter :set_metas
-    before_filter :set_analytics
+    before_action :set_metas
+    before_action :set_analytics
 
     def set_metas
       @setting = Setting.first

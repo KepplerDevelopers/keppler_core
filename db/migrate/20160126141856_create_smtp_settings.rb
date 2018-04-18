@@ -1,4 +1,4 @@
-class CreateSmtpSettings < ActiveRecord::Migration
+class CreateSmtpSettings < ActiveRecord::Migration[5.1]
   def change
     create_table :smtp_settings do |t|
       t.string :address
