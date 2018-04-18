@@ -31,6 +31,28 @@ rake db:migrate
 rake db:seed
 ```
 
+### Keppler Scaffolds
+
+Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
+
+`rails g keppler_scaffold [module_name] [attribute:type] [attribute:type] ...`
+
+Por ejemplo:
+
+`rails g keppler_scaffold Example name:string phone:string photo:string age:integer average:float birth:date user:references...`
+
+**Observaciones:**
+
+1. Es importante que si es un campo numérico al cual no se van a aplicar operaciones matemáticas, como por ejemplo
+a un DNI, se debe colocar como `string` y no como número entero ni decimal.
+
+2. Para convertir automáticamente un campo a imagen o archivo adjunto, debería llamarse como una de las siguientes opciones:
+`logo, brand, photo, avatar, cover, image, picture, banner, attachment, pic, file`
+
+Luego crea la tabla en base de datos.
+
+`rake db:migrate`
+
 ### SimpleForm con AdminLTE
 
 Se ofrece una integración por defecto entre SimpleForm y Bootstrap, usted tiene la posibilidad de cambiar su funcionalidad en `config/initializers/simple_form_bootstrap.rb`
@@ -64,17 +86,6 @@ Aqui algunos ejemplos para la creacion de inputs:
 ```
 
 **Nota:** *Puede revisar la documentación de [AdminLTE](https://adminlte.io/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
-
-
-### Keppler Scaffolds
-
-Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
-
-`rails g keppler_scaffold [module_name] [attribute:type] [attribute:type] ...`
-
-Luego crea la tabla en base de datos.
-
-`rake db:migrate`
 
 ### Plugins (Módulos)
 
