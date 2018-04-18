@@ -35,7 +35,7 @@ gem 'sitemap_generator'
 # History
 gem 'public_activity'
 
-#admin lte
+# Admin LTE
 source 'https://rails-assets.org/' do
   gem 'rails-assets-adminlte'
   gem 'rails-assets-noty'
