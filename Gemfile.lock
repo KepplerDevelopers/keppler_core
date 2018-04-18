@@ -1,14 +1,13 @@
 GIT
   remote: https://github.com/activerecord-hackery/ransack
-  revision: d9f516f9185cf7eb7c9853a942493460e304857e
-  branch: rails-4.2
+  revision: 581bcd8a788fae3147fab873311fa9c60ae3c41c
   specs:
-    ransack (1.2.4)
-      actionpack (~> 4.2.0)
-      activerecord (~> 4.2.0)
-      activesupport (~> 4.2.0)
+    ransack (1.8.8)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
       i18n
-      polyamorous (~> 1.1)
+      polyamorous (~> 1.3.2)
 
 PATH
   remote: plugins/keppler_ga_dashboard
@@ -255,7 +254,7 @@ GEM
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
-    polyamorous (1.3.2)
+    polyamorous (1.3.3)
       activerecord (>= 3.0)
     powerpack (0.1.1)
     pry (0.11.3)

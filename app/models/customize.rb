@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Customize Model
 class Customize < ActiveRecord::Base
   include ActivityHistory
@@ -11,10 +13,10 @@ class Customize < ActiveRecord::Base
   end
 
   def name
-    if self.file?
-      "#{self.file.to_s.split("/").last.split(".").first.capitalize} Template"
+    if file?
+      "#{file.to_s.split('/').last.split('.').first.capitalize} Template"
     else
-      "Keppler Default"
+      'Keppler Default'
     end
   end
 
@@ -39,9 +41,9 @@ class Customize < ActiveRecord::Base
   private
 
   def clear_template
-    file_name =  Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first
-    template_name = file_name.split("/").last if file_name
-    names = build_array_html_files_names(template_name, "html")
+    file_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')][0]
+    template_name = file_name.split('/').last if file_name
+    names = build_array_html_files_names(template_name, 'html')
     system "rails d keppler_front front #{names.join(' ')}"
     system "rm -rf #{Rails.root}/app/views/app/front/"
     clear_assets("#{Rails.root}/public/templates")
@@ -49,44 +51,41 @@ class Customize < ActiveRecord::Base
     clear_assets("#{Rails.root}/app/assets/javascripts/js")
     clear_assets("#{Rails.root}/app/assets/images/img")
     clear_assets("#{Rails.root}/app/assets/images/fonts")
-    system "rails g keppler_front front index --skip-migration -f"
+    system 'rails g keppler_front front index --skip-migration -f'
     system "rm -rf #{Rails.root}/app/model/front.rb"
   end
 
   def unzip_template
-    system "unzip #{Rails.root}/public/#{self.file} -d #{Rails.root}/public/templates"
+    system "unzip #{Rails.root}/public/#{file} -d #{Rails.root}/public/templates"
   end
 
   def build_array_html_files_names(template_name, extention)
     names = []
     Dir[File.join("#{Rails.root}/public/templates/#{template_name}", '**', '*')].each do |file|
       if File.file?(file)
-        name = file.to_s.split("/").last.split(".").first
-        extentions = file.to_s.split("/").last.split(".").second
-        if extentions.eql?(extention)
-          names << name
-        end
+        name = file.to_s.split('/').last.split('.').first
+        extentions = file.to_s.split('/').last.split('.').second
+        names << name if extentions.eql?(extention)
       end
     end
-    return names
+    names
   end
 
   def build_array_assets_files_names(template_name, extention)
     names = []
     Dir[File.join("#{Rails.root}/public/templates/#{template_name}/assets/#{extention}", '**', '*')].each do |file|
-      if File.file?(file)
-        name = file.to_s.split("/").last
-        names << name
-      end
+      break unless File.file?(file)
+      name = file.to_s.split('/').last
+      names << name
     end
-    return names
+    names
   end
 
   def install_template_html
-    system "rails d keppler_front front index"
+    system 'rails d keppler_front front index'
     folder = "#{Rails.root}/app/views/app/front"
     template_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first.split("/").last
-    names = build_array_html_files_names(template_name,  "html")
+    names = build_array_html_files_names(template_name, 'html')
     system "rails g keppler_front front #{names.join(' ')} --skip-migration -f"
     system "rm -rf #{Rails.root}/app/model/front.rb"
     names.each do |name|
@@ -148,7 +147,7 @@ class Customize < ActiveRecord::Base
     head_idx = 0
     index_html.each { |line| head_idx = index_html.find_index(line) if line.include?('%html') }
     index_html.insert(head_idx.to_i+2, "    = render 'app/layouts/head'\n")
-    index_html = index_html.join("")
+    index_html = index_html.join('')
     File.write("#{folder}/#{name}.html.haml", index_html)
   end
 end
