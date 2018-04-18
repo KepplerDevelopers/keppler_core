@@ -12,7 +12,7 @@
 
   	.navbar-static-top {
   		background: white !important;
-      box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
 
       a {
         color: #949494 !important;
@@ -31,11 +31,44 @@
     }
   }
 }
+
+.navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+  position: absolute;
+  right: 0;
+  left: auto;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+}
+
 .navbar.navbar-static-top{
   height: 50px !important;
+  margin: .5%;
+  border-radius: 4px;
 
   h3{
     display: inline-block;
     margin: 10px 0;
   }
+}
+
+header.main-header a.logo {
+  width: 50px !important;
+}
+
+header.main-header a.logo span span {
+  font-family: 'Patua One', cursive;
+  color: #fff !important;
+  text-shadow: 1px 1px 1px #0003;
+  font-size: 2.6rem !important;
+}
+
+.skin-blue .main-header .navbar-static-top a {
+  border-radius: 4px 0px 0px 4px !important;
+}
+
+.sidebar-mini.sidebar-collapse .main-header .navbar {
+  margin-left: .5% !important;
+}
+
+.skin-blue .main-header .dropdown a {
+  border-radius: 0px !important;
 }
