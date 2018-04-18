@@ -1,4 +1,4 @@
 # GoogleAnalyticsSetting Model
-class GoogleAnalyticsSetting < ActiveRecord::Base
+class GoogleAnalyticsSetting < ApplicationRecord
   belongs_to :setting
 end

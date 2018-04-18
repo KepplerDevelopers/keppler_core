@@ -2,11 +2,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(user, objects)
-    @user = user
-    @objects = objects
-  end
-
   def keppler_admin?
     user.keppler_admin?
   end

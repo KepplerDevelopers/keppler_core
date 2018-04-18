@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # FileMaterialInput
 class FileMaterialInput < SimpleForm::Inputs::Base
   def input(_wrapper_options = nil)
@@ -15,9 +13,8 @@ class FileMaterialInput < SimpleForm::Inputs::Base
   private
 
   def file_input
-    template.content_tag(
-      :span, t("activerecord.attributes.#{attribute_name}").humanize
-    ) + @builder.file_field(attribute_name)
+    template.content_tag(:span, t("activerecord.attributes.#{attribute_name}").humanize) +
+      @builder.file_field(attribute_name)
   end
 
   def file_path

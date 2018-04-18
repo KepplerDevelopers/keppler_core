@@ -1,5 +1,5 @@
 # Script Model
-class Script < ActiveRecord::Base
+class Script < ApplicationRecord
   include ActivityHistory
   include CloneRecord
 
