@@ -39,3 +39,37 @@
     margin: 10px 0;
   }
 }
+
+header.main-header a.logo {
+  width: 65px !important;
+}
+
+header.main-header a.logo span span {
+  font-family: 'Patua One', cursive;
+  color: #fff !important;
+  text-shadow: 1px 1px 1px #0003;
+  font-size: 2.6rem !important;
+}
+
+.skin-blue .main-header {
+  .navbar-static-top a {
+    border-radius: 4px 0px 0px 4px !important;
+  }
+  .dropdown a {
+    border-radius: 0px !important;
+  }
+}
+
+.sidebar-mini.sidebar-collapse {
+  .main-header .navbar {
+    margin-left: .5% !important;
+  }
+  .main-sidebar {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 65px !important;
+    z-index: 850;
+  }
+}
