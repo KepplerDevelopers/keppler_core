@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     @sidebar = YAML.load_file(
       "#{Rails.root}/config/menu.yml"
     ).values.each(&:symbolize_keys!)
-    modules = Dir[File.join("#{Rails.root}/plugins",  "*")]
+    modules = Dir[File.join("#{Rails.root}/plugins", '*')]
     modules.each do |m|
       module_menu = YAML.load_file(
         "#{m}/config/menu.yml"

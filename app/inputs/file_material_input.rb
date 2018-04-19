@@ -28,8 +28,6 @@ class FileMaterialInput < SimpleForm::Inputs::Base
   end
 
   def object_value(object)
-    if object.send(attribute_name).file
-      object.send(attribute_name).file.filename
-    end
+    object.send(attribute_name).file&.filename
   end
 end

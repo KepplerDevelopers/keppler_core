@@ -1,10 +1,10 @@
 menu:
-  script:
-    name: scripts
-    url_path: /admin/scripts
-    icon: chart
-    current: ['admin/scripts']
-    model: Script
+  dashboard:
+    name: dashboard
+    url_path: /admin
+    icon: pie-chart
+    current: ['admin/dashboard']
+    model: Dashboard
   script:
     name: scripts
     url_path: /admin/scripts
