@@ -1,4 +1,4 @@
 # SocialAccount Model
-class SocialAccount < ActiveRecord::Base
+class SocialAccount < ApplicationRecord
   belongs_to :setting
 end

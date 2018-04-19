@@ -1,6 +1,6 @@
 # <%= class_name %> Model
 <% module_namespacing do -%>
-class <%= class_name %> < ActiveRecord::Base
+class <%= class_name %> < ApplicationRecord
   include ActivityHistory
   include CloneRecord
   require 'csv'

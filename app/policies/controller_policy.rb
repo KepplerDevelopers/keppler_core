@@ -1,5 +1,11 @@
 # Application Policy
 class ControllerPolicy < ApplicationPolicy
+  attr_reader :user, :record
+
+  def initialize(user, objects)
+    @user = user
+    @objects = objects
+  end
 
   def index?
     true

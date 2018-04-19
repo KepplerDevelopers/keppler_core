@@ -3,10 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .front {
-  @include align-items(center);
-  @include display(flex);
-  @include flex-direction(column);
-  @include justify-content(center);
+  // @include align-items(center);
+  // @include display(flex);
+  // @include flex-direction(column);
+  // @include justify-content(center);
   background-image: url("Home_Keppler.png");
   background-size: cover;
   background-position: 100% 90%;
@@ -29,7 +29,7 @@
     }
 
     li {
-      @include display(inline);
+      // @include display(inline);
       margin: 0 20px;
 
       @include respond-to(xs) {

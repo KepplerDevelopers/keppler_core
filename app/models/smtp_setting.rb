@@ -1,5 +1,5 @@
 # SmtpSetting Model
-class SmtpSetting < ActiveRecord::Base
+class SmtpSetting < ApplicationRecord
   belongs_to :setting
   validates_presence_of :address, :port, :domain_name, :email, :password
 end

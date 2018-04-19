@@ -1,11 +1,11 @@
 .skin-blue {
   .main-sidebar{
     // position: fixed;
-    background-color: #ecf0f5 !important;
+    background-color: #353535 !important;
 
     li.header {
       color: #848383 !important;
-      background: #ecf0f5 !important;
+      background: #353535 !important;
     }
   }
 
@@ -19,23 +19,15 @@
 
   .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;
-    background: #fff !important;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+    background: #292929 !important;
     color: #848383 !important;
-  }
-
-  .sidebar-menu > li:hover > .treeview-menu {
-    margin: 0 1px;
-    background: #fff !important;
-    color: #848383 !important;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .sidebar {
     min-height: 84vh;
-    margin: 0 6px !important;;
+    margin: 0 6px !important;
     a {
-      color: #424242 !important;
+      color: #a0a0a0;
       span {
         margin-left: 10px;
       }
@@ -44,7 +36,7 @@
 
 
   .user-panel {
-    // background-image: url('profile-menu.jpg');
+    background-image: url('profile-menu.jpg');
     background-position: center;
     background-size: cover;
     padding-top: 3rem;
@@ -55,11 +47,10 @@
     font-weight: 600;
     margin-bottom: 0px;
     white-space: initial;
-    color: #424242 !important;
   }
 
   .user-panel > .info > small {
-    color: #5a5a5a;;
+    color: #c0c0c0;
     margin-bottom: 9px !important;
   }
 
@@ -67,7 +58,6 @@
     color: #2ade2e !important;
   }
 }
-
 
 body .side-img-profile {
   vertical-align: middle;
