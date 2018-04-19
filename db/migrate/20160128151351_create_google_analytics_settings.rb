@@ -1,4 +1,4 @@
-class CreateGoogleAnalyticsSettings < ActiveRecord::Migration
+class CreateGoogleAnalyticsSettings < ActiveRecord::Migration[5.1]
   def change
     create_table :google_analytics_settings do |t|
       t.string :ga_account_id
