@@ -1,9 +1,12 @@
 module Admin
   # CustomizesController
   class CustomizesController < AdminController
-    before_action :set_customize, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
-    before_action :authorization, only: [:new, :create, :edit, :update, :destroy, :destroy_multiple]
+    before_action :set_customize, only: %i[show edit update destroy]
+    before_action :set_customizes, only: %i[update install_default]
+    before_action :show_history, only: %i[index]
+    before_action :authorization, only: %i[
+      new create edit update destroy destroy_multiple
+    ]
 
     # GET /customizes
     def index
@@ -11,8 +14,10 @@ module Admin
       customizes = @q.result(distinct: true)
       @objects = customizes.page(@current_page)
       @total = customizes.size
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to customizes_path(page: @current_page.to_i.pred, search: @query)
+      if !@objects.first_page? && @objects.blank?
+        redirect_to customizes_path(
+          page: @current_page.to_i.pred, search: @query
+        )
       end
     end
 
@@ -35,15 +40,9 @@ module Admin
 
     # PATCH/PUT /customizes/1
     def update
-      @customizes = Customize.all
       @customizes.each { |customize| customize.update(installed: false) }
       if @customize.update(customize_params)
-        if @customize.installed?
-          @customize.install
-        else
-          #@customizes.each { |customize| customize.update(installed: false) }
-          @customize.uninstall
-        end
+        @customize.installed? ? @customize.install : @customize.uninstall
         redirect_to :back
       else
         render :edit
@@ -52,8 +51,9 @@ module Admin
 
     def install_default
       @customize = Customize.find(params[:customize_id])
-      if !@customize.installed?
-        @customizes = Customize.all
+      if @customize.installed?
+        redirect_to :back
+      else
         @customizes.each { |customize| customize.update(installed: false) }
         if @customize.update(customize_params)
           @customize.install_keppler_template
@@ -61,8 +61,6 @@ module Admin
         else
           render :edit
         end
-      else
-        redirect_to :back
       end
     end
 
@@ -88,6 +86,10 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_customize
       @customize = Customize.find(params[:id])
+    end
+
+    def set_customizes
+      @customizes = Customize.all
     end
 
     def authorization
