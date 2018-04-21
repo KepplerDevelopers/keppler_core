@@ -1,33 +1,42 @@
 .skin-blue {
   .main-sidebar{
     // position: fixed;
-    background-color: #353535 !important;
-
-    li.header {
-      color: #848383 !important;
-      background: #353535 !important;
-    }
+    background-color: #e3e5e9 !important;
+    padding-top: 50px !important;
+    border-right: 1px solid #e4e4e4;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .sidebar-menu > li:hover > a,
   .sidebar-menu > li.active > a {
     background: #fff !important;
+    color: #353535 !important;
     border-left-color: $keppler-color !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
     transition: .3s;
+
+    i {
+      color: $keppler-color !important;
+    }
   }
 
   .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;
-    background: #292929 !important;
-    color: #848383 !important;
+    background: #dadada !important;
+    color: #353535 !important;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+    border-radius: none !important;
+
+    a:hover {
+      color: $keppler-color !important;
+    }
   }
 
   .sidebar {
     min-height: 84vh;
-    margin: 0 6px !important;
+    margin: 0px !important;
     a {
-      color: #a0a0a0;
+      color: #353535 !important;
       span {
         margin-left: 10px;
       }
@@ -36,7 +45,6 @@
 
 
   .user-panel {
-    background-image: url('profile-menu.jpg');
     background-position: center;
     background-size: cover;
     padding-top: 3rem;
@@ -47,10 +55,11 @@
     font-weight: 600;
     margin-bottom: 0px;
     white-space: initial;
+    color: #353535 !important;
   }
 
   .user-panel > .info > small {
-    color: #c0c0c0;
+    color: #8c8c8c;
     margin-bottom: 9px !important;
   }
 
@@ -73,4 +82,10 @@ body .side-img-profile {
   padding: 12px 5px 12px 20px;
   background-color: inherit;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+
+.skin-blue .main-sidebar li.header {
+  color: #353535 !important;
+  background: #e3e5e9 !important;
 }

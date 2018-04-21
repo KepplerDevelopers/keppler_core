@@ -75,7 +75,7 @@ Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configu
 Luego crea la tabla en base de datos.
 
 `rake db:migrate`
-
+<!-- 
 ### Plugins (Módulos)
 
 La plataforma permite la adaptación de módulos con facil instalación, algunos de los módulos desarrollados son:
@@ -84,3 +84,4 @@ La plataforma permite la adaptación de módulos con facil instalación, algunos
 * [Keppler blog](https://github.com/SliceDevelopers/keppler_blog)
 * [Keppler catalogs](https://github.com/inyxtech/keppler_catalogs)
 * [Keppler contact](https://github.com/SliceDevelopers/keppler_contact_us)
+ -->
