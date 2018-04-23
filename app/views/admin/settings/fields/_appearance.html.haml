@@ -1,7 +1,7 @@
 #colors
   {{ changeColors }}
   = f.simple_fields_for :appearance, html: {multipart: true} do |f|
-    .col-md-7.col-lg-8
+    .col-md-7.col-lg-6
       .box.slice-box
         .box-header.with-border
           %h3.box-title Preview
@@ -15,7 +15,7 @@
             -# %iframe{src:"http://localhost:3000", frameborder:"0", style:"zoom: 0.75; transform: scale(0.75); transform-origin: 0 0;"}
             .appearance-img{style: "background-image:url('/assets/admin/profile-menu.jpg')"}
               = render "admin/settings/components/preview"
-    .col-md-5.col-lg-4
+    .col-md-5.col-lg-6
       .box.slice-box
         .box-header.with-border
           %h3.box-title Admin Theme
