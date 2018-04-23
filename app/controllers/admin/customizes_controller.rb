@@ -1,7 +1,7 @@
 module Admin
   # CustomizesController
   class CustomizesController < AdminController
-    before_action :set_customize, only: %i[show edit update destroy]
+    before_action :set_customize, only: %i[show edit update destroy authorization]
     before_action :set_customizes, only: %i[update install_default]
     before_action :show_history, only: %i[index]
     before_action :authorization, only: %i[
@@ -43,7 +43,7 @@ module Admin
       @customizes.each { |customize| customize.update(installed: false) }
       if @customize.update(customize_params)
         @customize.installed? ? @customize.install : @customize.uninstall
-        redirect_to :back
+        redirect_to admin_customizes_path
       else
         render :edit
       end
@@ -52,12 +52,12 @@ module Admin
     def install_default
       @customize = Customize.find(params[:customize_id])
       if @customize.installed?
-        redirect_to :back
+        redirect_to admin_customizes_path
       else
         @customizes.each { |customize| customize.update(installed: false) }
         if @customize.update(customize_params)
           @customize.install_keppler_template
-          redirect_to :back
+          redirect_to admin_customizes_path
         else
           render :edit
         end
@@ -93,7 +93,7 @@ module Admin
     end
 
     def authorization
-      authorize @customize
+      authorize Customize
     end
 
     # Only allow a trusted parameter "white list" through.
