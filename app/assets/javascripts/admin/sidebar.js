@@ -1,6 +1,7 @@
 $(function ($) {
   var $body = $('body'),
       $slice = $('#sidebar-footer .brand')
+
   // On click, capture state and save it in localStorage
   $($.AdminLTE.options.sidebarToggleSelector).click(function () {
     localStorage.setItem('sidebar', $body.hasClass('sidebar-collapse') ? 1 : 0);
