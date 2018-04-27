@@ -1,7 +1,9 @@
+$sidebar-color: #fafafa;
+
 .skin-blue {
   .main-sidebar{
     // position: fixed;
-    background-color: #e3e5e9 !important;
+    background-color: $sidebar-color !important;
     padding-top: 50px !important;
     border-right: 1px solid #e4e4e4;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
@@ -22,7 +24,7 @@
 
   .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;
-    background: #dadada !important;
+    background: #eee !important;
     color: #353535 !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
     border-radius: none !important;
@@ -70,10 +72,12 @@
 
 body .side-img-profile {
   vertical-align: middle;
-  width: 45px;
-  height: 45px;
+  width: 40px !important;
+  height: 40px !important;
   transition: .2s;
   box-shadow: 1px 1px 2px #c0c0c0;
+  background: $keppler-color;
+  object-fit: contain;
 }
 
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
@@ -87,5 +91,5 @@ body .side-img-profile {
 
 .skin-blue .main-sidebar li.header {
   color: #353535 !important;
-  background: #e3e5e9 !important;
+  background: $sidebar-color !important;
 }
