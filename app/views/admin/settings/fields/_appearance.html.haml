@@ -41,7 +41,7 @@
             - if @render.eql?('appearance')
               = link_to appearance_default_admin_settings_path(@render), class: "btn btn-default", method: :put do
                 = t("keppler.actions.appearance_defaut")
-            = f.button :submit, t("keppler.actions.apply"), class: "btn btn-primary change-color", style: "margin-left:10px"
+            = f.button :submit, t("keppler.actions.apply"), class: "btn btn-primary change-color"
 
 :javascript
   new Vue({
@@ -56,6 +56,10 @@
           $('.btn-primary').css('background', this.main)
           $('.slice-box').css('border-top-color', this.main)
           $('#span').css('color', this.main)
+          $('.side-img-profile').css('background', this.main)
+          $('.small-profile-img').css('background', this.main)
+          $('.active i').css('color', this.main)
+          $('.active a').css('border-left-color', this.main)
         }
       }
     }

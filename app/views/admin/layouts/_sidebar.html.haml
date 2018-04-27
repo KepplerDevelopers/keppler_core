@@ -3,7 +3,8 @@
     / Sidebar user panel
     .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
       .pull-left.image
-        .img-circle.side-img-profile{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
+        -# .img-circle.side-img-profile{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'assets/admin/user.png'})" }
+        = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'img-circle side-img-profile', alt: current_user.name
       .info
         %p= current_user.name
         %small= current_user.rol.humanize

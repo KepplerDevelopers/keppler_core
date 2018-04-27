@@ -17,7 +17,7 @@
                   +
                 = f.file_field :avatar, class: 'photo_upload'
               %center#image
-                = image_tag "#{@user.avatar.blank? ? 'avatar.png' : @user.avatar}", class: "#{'hidden' if @user.avatar.blank?} image_to_upload"
+                = image_tag "#{@user.avatar.blank? ? '' : @user.avatar}", class: "#{'hidden' if @user.avatar.blank?} image_to_upload"
 
 
 

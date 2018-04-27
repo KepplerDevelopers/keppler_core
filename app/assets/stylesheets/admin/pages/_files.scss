@@ -13,6 +13,7 @@
     #icon-file{
       position: absolute;
       left: 50%;
+      transform: translateX(-50%);
       top: 35%;
       font-size: 4rem;
       opacity: .7;
@@ -49,7 +50,8 @@
         top: 200px;
         width: 100%;
         left: 50%;
-        transform: translateX(-30%);
+        transform: translateX(-50%);
+        text-align: center;
       }
     }
     &-icon {
