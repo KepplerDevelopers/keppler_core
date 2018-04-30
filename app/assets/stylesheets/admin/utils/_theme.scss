@@ -97,3 +97,10 @@
   color: #fff !important;
   text-align: center;
 }
+
+.content-wrapper,
+.right-side {
+  min-height: 100%;
+  background-color: #fafafa;
+  z-index: 800;
+}
