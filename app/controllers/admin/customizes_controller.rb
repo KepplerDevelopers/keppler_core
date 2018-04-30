@@ -93,7 +93,7 @@ module Admin
     end
 
     def authorization
-      authorize @customize
+      authorize Customize
     end
 
     # Only allow a trusted parameter "white list" through.

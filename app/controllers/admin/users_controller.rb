@@ -41,7 +41,6 @@ module Admin
     end
 
     def create
-      byebug
       @user = User.new(user_params)
       if @user.save
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
