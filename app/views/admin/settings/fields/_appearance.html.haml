@@ -22,17 +22,15 @@
 
         .box-body
           .upload-image
-            .form-group.files.trigger
+            .files.form-group.trigger{ class: "#{'files-absolute' unless f.object.image_background.blank?}" }
               #icon-file
                 +
-              = f.file_field :image_background, class: 'photo_upload'
+              = f.file_field :avatar, class: 'photo_upload'
             %center#image
-              =# image_tag 'image_background.png', class: 'hidden image_to_upload'
+              = image_tag "#{f.object.image_background.blank? ? '' : f.object.image_background}", class: "#{'hidden' if f.object.image_background.blank?} image_to_upload"
           %p Principal
-          %input{type: "color", name: "color", placeholder: "Color", value: "#{@color}", "v-model" => "main"}
+          %input{type: "color", name: "color", placeholder: "Color", value: @color, "v-model" => "main"}
           -# = text_field_tag :color, nil, placeholder: "Color", value: @color
-          -# %br
-          -# %br
           -# %p Hover
           -# = text_field_tag :accent, nil, placeholder: "Accent", value: @accent, class: "color-input"
           -# .hidden
@@ -41,10 +39,10 @@
             - if @render.eql?('appearance')
               = link_to appearance_default_admin_settings_path(@render), class: "btn btn-default", method: :put do
                 = t("keppler.actions.appearance_defaut")
-            = f.button :submit, t("keppler.actions.apply"), class: "btn btn-primary change-color", style: "margin-left:10px"
+            = f.button :submit, t("keppler.actions.apply"), class: "btn btn-primary change-color"
 
 :javascript
-  new Vue({
+  var vm = new Vue({
     el: '#colors',
     data: {
       main: "#{@color}"
@@ -52,10 +50,23 @@
     computed: {
       changeColors() {
         if (this.main) {
+          $('.keppler-color').css('color', this.main)
+          $('.keppler-background').css('background', this.main)
+          $('.keppler-border-top-color').css('border-top-color', this.main)
+          $('.keppler-border-left-color').css('border-left-color', this.main)
           $('.logo').css('background', this.main)
           $('.btn-primary').css('background', this.main)
           $('.slice-box').css('border-top-color', this.main)
           $('#span').css('color', this.main)
+          $('.side-img-profile').css('background', this.main)
+          $('.small-profile-img').css('background', this.main)
+          $('.login-logo span').css('color', this.main)
+          $('.login-footer span').css('color', this.main)
+          $('.sidebar-menu > li:hover > a, .sidebar-menu > li.active > a')
+            .css({
+              'color': this.main,
+              'border-left-color': this.main
+            })
         }
       }
     }

@@ -87,8 +87,12 @@
 
   &:hover,
   &:focus,
-  &:active {
-    background-color: $keppler-accent;
+  &:active,
+  &:active:focus,
+  &[disabled]:hover {
+    background-color: $keppler-color;
+    filter: brightness(120%);
+    outline: none;
   }
 }
 

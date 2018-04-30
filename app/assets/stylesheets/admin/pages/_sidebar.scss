@@ -38,12 +38,12 @@ body{
     display: none
   }
   &.sidebar-collapse{
+    transition: .2s;
     .user-panel{
       padding: {
         left: 4px;
         right: 2px;
       }
-      transition: .2s;
       .side-img-profile{
         width: 40px;
         height: 40px;

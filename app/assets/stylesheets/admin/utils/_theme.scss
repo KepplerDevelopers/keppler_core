@@ -1,3 +1,7 @@
+.keppler-color { color: $keppler-color }
+.keppler-background { background: $keppler-color }
+.keppler-border-top-color { border-top-color: $keppler-color }
+
 .skin-blue .content-header {
   background: transparent;
   margin-top: 50px !important;
@@ -7,6 +11,7 @@
   .content-wrapper {
     padding-top: 60px;
     min-height: 100vh !important;
+    background: #f5f5f5;
     @media screen and (min-width: 0) and (max-width: 767px) {
       // padding-top: 120px;
       padding-top: 30px;
