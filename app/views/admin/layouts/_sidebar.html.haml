@@ -37,6 +37,10 @@
                           = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
                         - else
                           = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
+      / %li
+      / = link_to '/admin/dashboard' do
+      / %i.icon-puzzle
+      / %span= t('keppler.sidebar-menu.plugins')
       %li
         = link_to '#' do
           %i.icon-settings
