@@ -10,13 +10,14 @@
       .col-lg-3
         .box.slice-box
           .box-body.box-profile
-            .profile-user-img.img-responsive.bg-profile{style: "background-image: url(#{@user.avatar? ? @user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
+            -# .{style: "background-image: url(#{@user.avatar? ? @user.avatar : '/assets/admin/user.png'})"}
+            = image_tag (@user.avatar.url || 'admin/user.png'), class: 'profile-user-img img-circle img-responsive', alt: @user.name
             %h3.profile-username.text-center= @user.name
             %p.text-muted.text-center= @user.rol.humanize
       .col-lg-9
         .box.slice-box
           .box-header.with-border
-            %h3.box-title Users
+            %h3.box-title= @user.name || 'User'
             .box-tools.pull-right
               - if Pundit.policy(current_user, User).update?
                 = link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do

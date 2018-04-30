@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:alert] = "No tienes permiso para realizar esa acción"
+    flash[:alert] = 'No tienes permiso para realizar esa acción'
     redirect_to(request.referrer || root_path)
   end
   # block access dashboard

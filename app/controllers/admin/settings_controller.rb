@@ -25,7 +25,7 @@ module Admin
     def appearance_default
       appearance = Appearance.last
       appearance.update(image_background: nil)
-      get_apparience_colors(["#f50e1e"])
+      get_apparience_colors(["#f44336"])
       redirect_to(
         admin_settings_path(@render), notice: actions_messages(@setting)
       )
@@ -45,7 +45,7 @@ module Admin
         variables_file.map { |line| indx = variables_file.find_index(line) if line.include?("$keppler-#{attribute}") }
         variables_file[indx] = "$keppler-#{attribute}:#{values[i]};\n"
       end
-      variables_file = variables_file.join("")
+      variables_file = variables_file.join('')
       File.write(style_file, variables_file)
     end
 
@@ -58,7 +58,7 @@ module Admin
     def authorization
       authorize @setting
     end
-    
+
     def style_file
       "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
     end

@@ -19,19 +19,6 @@
 @import 'utils/theme';
 @import 'utils/base';
 
-// Page folder
-@import 'pages/navbar';
-@import 'pages/devise';
-@import 'pages/sidebar';
-@import 'pages/listing';
-@import 'pages/files';
-@import 'pages/show';
-@import 'pages/form';
-@import 'pages/preloader';
-@import 'pages/switchs';
-@import 'pages/index';
-@import 'pages/search';
-
 //Components folder
 @import "components/navigation/navbar";
 @import "components/navigation/sidebar";
@@ -41,3 +28,6 @@
 
 //Vendor folder
 @import "vendor/admin-lte/skin-blue";
+
+// Page folder
+@import 'pages/*';

@@ -1,9 +1,11 @@
+$sidebar-color: linear-gradient(to right, #ffffff, #f5f5f5);
+
 .skin-blue {
   .main-sidebar{
     // position: fixed;
-    background-color: #f5f5f5 !important;
+    background: $sidebar-color !important;
     padding-top: 50px !important;
-    border-right: 1px solid #f0f0f0;
+    // border-right: 1px solid #e4e4e4;
     // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
   }
 
@@ -12,8 +14,8 @@
     background: #e3e5e9 !important;
     color: #353535 !important;
     border-left-color: $keppler-color !important;
-    // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
-    transition: .3s;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+    transition: .5s;
 
     i {
       color: $keppler-color !important;
@@ -22,13 +24,14 @@
 
   .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;
-    background: #e3e5e9 !important;
+    background: #eee !important;
     color: #353535 !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
     border-radius: none !important;
 
     a:hover {
-      color: $keppler-color !important;
+      color: #333;
+      transition: .5s;
     }
   }
 
@@ -36,7 +39,11 @@
     min-height: 84vh;
     margin: 0px !important;
     a {
-      color: #353535 !important;
+      color: #8c8c8c !important;
+      transition: .5s;
+      &:hover {
+        color: #353535 !important;
+      }
       span {
         margin-left: 10px;
       }
@@ -70,22 +77,24 @@
 
 body .side-img-profile {
   vertical-align: middle;
-  width: 45px;
-  height: 45px;
+  width: 40px !important;
+  height: 40px !important;
   transition: .2s;
-  box-shadow: 1px 1px 2px #c0c0c0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  background: $keppler-color;
+  object-fit: cover;
 }
 
 .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
   top: 0;
   margin-left: -3px;
   padding: 12px 5px 12px 20px;
-  background-color: inherit;
+  background: inherit;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 
 .skin-blue .main-sidebar li.header {
   color: #353535 !important;
-  background: #f5f5f5 !important;
+  background: $sidebar-color !important;
 }
