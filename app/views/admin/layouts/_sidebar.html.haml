@@ -3,15 +3,14 @@
     / Sidebar user panel
     .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
       .pull-left.image
-        -# .img-circle.side-img-profile{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'assets/admin/user.png'})" }
-        = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'img-circle side-img-profile', alt: current_user.name
+        = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'img-circle side-img-profile keppler-background', alt: current_user.name
       .info
         %p= current_user.name
         %small= current_user.rol.humanize
     / sidebar menu: : style can be found in sidebar.less
     %ul.sidebar-menu.tree{"data-widget" => "tree" }
-      %li.header MAIN NAVIGATION
-      -# %li
+      -# %li.header MAIN NAVIGATION
+      %li
         = link_to '/admin/dashboard' do
           %i.icon-pie-chart
           %span= t('keppler.sidebar-menu.dashboard')

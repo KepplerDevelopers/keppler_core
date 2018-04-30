@@ -1,6 +1,6 @@
 %header.main-header
   %nav.navbar.navbar-static-top
-    %a.logo.hidden-xs{href: "/admin/dashboard"}
+    %a.logo.keppler-color.hidden-xs{href: "/admin/dashboard"}
       %span.logo-mini
         %span K
       %span.logo-lg
@@ -26,8 +26,7 @@
             %i.icon-envelope
         %li.dropdown.user.user-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-            -# .small-profile-img{ style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})" }
-            = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'small-profile-img'
+            = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             %li.user-header{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
