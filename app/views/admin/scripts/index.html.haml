@@ -13,10 +13,10 @@
                   %i.icon-cloud-download
             - if Pundit.policy(current_user, Script).import?
               .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "script" do
+                = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'script' do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_scripts_path, class: "tool-btn", remote: true do
+              = link_to reload_admin_scripts_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
             - if Pundit.policy(current_user, Script).destroy_multiple?
               .toolbar-item
@@ -51,9 +51,8 @@
                     %td
                     %th= t('activerecord.attributes.name')
                     %th= t('activerecord.attributes.script')
-                    %th= t('activerecord.attributes.role')
-                    %th{style: "text-align: center;padding-right: 30px;"}
-                      Actions
+                    %th= t('activerecord.attributes.url')
+                    %th
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects

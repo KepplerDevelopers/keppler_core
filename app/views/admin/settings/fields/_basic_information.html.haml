@@ -1,4 +1,10 @@
 .col-lg-6
+  -# - %i[logo favicon].each do |image_input|
+    .info-box
+      %span.info-box-img.info-box-icon{ id: image_input.to_s, style: "background-image: url(#{f.object.image_input || '/assets/admin/profile-menu.jpg'})"}
+      .info-box-content
+        %span.info-box-text
+          = f.input image_input
   .info-box
     %span#logo.info-box-img.info-box-icon{style: "background-image: url(#{f.object.logo? ? f.object.logo : '/assets/admin/profile-menu.jpg'})"}
     .info-box-content
@@ -15,16 +21,16 @@
   .box.slice-box
     .box-header.with-border
       %h3.box-title
-        Basic information
+        = t('keppler.sidebar-menu.setting-submenu.basic-information')
       .box-tools.pull-right
-        %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
+        %a.btn.btn-box-tool{ "data-widget" => "collapse", type: "button" }
           %i.fa.fa-minus
     .box-body.pure-input
-      = f.input :name, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Name"
-      = f.input :description, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Description"
-      = f.input :email, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Email"
-      = f.input :phone, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Phone number"
-      = f.input :mobile, input_html: {class: "form-control"}, :required => true, label: false, placeholder: "Mobile"
+      = f.input :name, input_html: { class: 'form-control' }, required: true, label: t('activerecord.attributes.name'), placeholder: t('activerecord.attributes.name')
+      = f.input :description, input_html: { class: 'form-control' }, required: true, label: t('activerecord.attributes.description'), placeholder: t('activerecord.attributes.description')
+      = f.input :email, input_html: { class: 'form-control' }, required: false, label: t('activerecord.attributes.email'), placeholder: 'example@domain.com'
+      = f.input :phone, input_html: { class: 'form-control' }, required: false, label: t('activerecord.attributes.phone_one'), placeholder: '+584141234567'
+      = f.input :mobile, input_html: { class: 'form-control' }, required: false, label: t('activerecord.attributes.phone_two'), placeholder: '+582123536869'
       .pull-right
         = f.button :submit, t("keppler.actions.apply"), :class => "btn-primary"
     -# .card-image

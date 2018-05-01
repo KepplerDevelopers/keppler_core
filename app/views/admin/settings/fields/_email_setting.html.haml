@@ -1,17 +1,17 @@
 .col-lg-12
-	= f.simple_fields_for :smtp_setting do |f|
-		.box.slice-box
-			.box-header.with-border
-				%h3.box-title
-					Email configuration (SMTP)
-				.box-tools.pull-right
-					%a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
-						%i.fa.fa-minus
-			.box-body.pure-input
-				= f.input :address
-				= f.input :port
-				= f.input :domain_name
-				= f.input :email
-				= f.input :password
-				.pull-right
-					= f.button :submit, t("keppler.actions.apply"), :class => "btn-primary"
+  = f.simple_fields_for :smtp_setting do |f|
+    .box.slice-box
+      .box-header.with-border
+        %h3.box-title
+          = t('keppler.sidebar-menu.setting-submenu.email-setting-smtp')
+        .box-tools.pull-right
+          %a.btn.btn-box-tool{'data-widget' => 'collapse', type: 'button'}
+            %i.fa.fa-minus
+      .box-body.pure-input
+        = f.input :address
+        = f.input :port
+        = f.input :domain_name
+        = f.input :email
+        = f.input :password
+        .pull-right
+          = f.button :submit, t('keppler.actions.apply'), class: "btn-primary"

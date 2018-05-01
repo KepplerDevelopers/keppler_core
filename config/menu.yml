@@ -51,3 +51,25 @@ menu:
   #         name: Keppler scaffolds
   #         url_path: /admin/scaffolds
   #         current: ['/admin/scaffolds']
+  setting:
+    name: setting
+    icon: settings
+    current: ['admin/settings/basic_information']
+    model: Setting
+    submenu:
+      - basic-information:
+          name: basic-information
+          url_path: /admin/settings/basic_information
+          current: ['admin/settings/basic_information']
+      - email-setting:
+          name: email-setting-smtp
+          url_path: /admin/settings/email_setting
+          current: ['admin/settings/email_setting']
+      - google_analytics_setting:
+          name: google-analytics
+          url_path: /admin/settings/google_analytics_setting
+          current: ['/admin/settings/google_analytics_setting']
+      - social_accounts:
+          name: social-accounts
+          url_path: /admin/settings/social_accounts
+          current: ['/admin/settings/social_accounts']
