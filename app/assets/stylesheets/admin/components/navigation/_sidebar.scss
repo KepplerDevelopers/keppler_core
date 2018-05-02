@@ -11,8 +11,8 @@ $sidebar-color: linear-gradient(to right, #ffffff, #f5f5f5);
 
   .sidebar-menu > li:hover > a,
   .sidebar-menu > li.active > a {
-    background: #e3e5e9 !important;
-    color: #353535 !important;
+    background: #fff !important;
+    color: #5a5a5a !important;
     border-left-color: $keppler-color !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
     transition: .5s;
@@ -25,12 +25,12 @@ $sidebar-color: linear-gradient(to right, #ffffff, #f5f5f5);
   .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;
     background: #eee !important;
-    color: #353535 !important;
+    color: #5a5a5a !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
     border-radius: none !important;
 
     a:hover {
-      color: #333;
+      color: #5a5a5a;
       transition: .5s;
     }
   }
@@ -42,7 +42,7 @@ $sidebar-color: linear-gradient(to right, #ffffff, #f5f5f5);
       color: #8c8c8c !important;
       transition: .5s;
       &:hover {
-        color: #353535 !important;
+        color: #5a5a5a !important;
       }
       span {
         margin-left: 10px;
@@ -62,7 +62,7 @@ $sidebar-color: linear-gradient(to right, #ffffff, #f5f5f5);
     font-weight: 600;
     margin-bottom: 0px;
     white-space: initial;
-    color: #353535 !important;
+    color: #5a5a5a !important;
   }
 
   .user-panel > .info > small {
@@ -95,6 +95,6 @@ body .side-img-profile {
 
 
 .skin-blue .main-sidebar li.header {
-  color: #353535 !important;
+  color: #5a5a5a !important;
   background: $sidebar-color !important;
 }

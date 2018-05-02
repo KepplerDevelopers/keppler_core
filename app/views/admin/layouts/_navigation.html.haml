@@ -30,7 +30,7 @@
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             %li.user-header{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
-              .img-circle.nav-profile-img{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
+              = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'img-circle nav-profile-img', alt: current_user.name
               %p
                 = current_user.name
                 %small

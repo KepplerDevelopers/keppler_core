@@ -43,8 +43,7 @@
                     %th.visible-lg.visible-md= t('activerecord.attributes.name')
                     %th= t('activerecord.attributes.email')
                     %th.visible-lg.visible-md= t('activerecord.attributes.role')
-                    %th.center{ style: 'padding-right: 30px' }
-                      Actions
+                    %th
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects

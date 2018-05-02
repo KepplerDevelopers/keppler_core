@@ -1,4 +1,4 @@
-#index-container{ :controller => "meta_tags" }
+#index-container{ controller: 'meta_tags' }
   .container
     .row
       .listing.col-lg-12.col-xs-12
@@ -13,10 +13,10 @@
                   %i.icon-cloud-download
             - if Pundit.policy(current_user, MetaTag).import?
               .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "meta_tag" do
+                = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'meta_tag' do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_meta_tags_path, class: "tool-btn", remote: true do
+              = link_to reload_admin_meta_tags_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
             - if Pundit.policy(current_user, MetaTag).destroy_multiple?
               .toolbar-item
@@ -26,7 +26,7 @@
                     %span.cr
                       %i.cr-icon.glyphicon.glyphicon-ok
             .toolbar-item
-              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+              %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
                 %i.icon-trash
           .hide
             = form_tag admin_meta_tag_import_path(@objects), id: "import_form_meta_tag", multipart: true, method: :post do
@@ -45,25 +45,24 @@
                 - if @objects.size.zero?
                   %tr
                     %th{style: 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.meta_tags"))
+                      %h6= t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.meta_tags'))
                 - else
                   %tr
                     %td
                     %th= t('activerecord.attributes.title')
                     %th= t('activerecord.attributes.url')
                     %th
-                      .pull-right Actions
-              %tbody#objects-container{ "data-update-url" => "#{admin_sorting_meta_tags_path}" }
+              %tbody#objects-container{ 'data-update-url' => "#{admin_sorting_meta_tags_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
         %center#paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-    = render "description"
+    = render 'description'
   %aside#index-show.control-sidebar
   - if Pundit.policy(current_user, MetaTag).create?
     .mixed-btn
-      = link_to new_admin_meta_tag_path, class: "btn-float" do
+      = link_to new_admin_meta_tag_path, class: 'btn-float' do
         +
 
 
