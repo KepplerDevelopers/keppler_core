@@ -96,7 +96,7 @@
 }
 #preview{
   position: absolute;
-  background: #333;
+  background: #5a5a5a;
   padding: 3px;
   visibility: none;
   color: #fff;
@@ -313,9 +313,9 @@
         cursor: pointer;
       }
     }
-    &:last-child{
-      border: none;
-    }
+    // &:last-child{
+    //   border: none;
+    // }
 
   }
 }

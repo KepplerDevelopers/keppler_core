@@ -1,42 +1,42 @@
 .social-medias-setting.col-lg-12
-	.box.slice-box
-		.box-header.with-border
-			%h3.box-title
-				Email configuration (SMTP)
-			.box-tools.pull-right
-				%a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
-					%i.fa.fa-minus
-		.box-body.pure-input
-			= f.simple_fields_for :social_account do |f|
-				.row
-					- @social_medias.each_with_index do |social, color|
-						.col-lg-6.col-md-6.col-sm-12.col-xs-12
-							= f.input social
+  .box.slice-box
+    .box-header.with-border
+      %h3.box-title
+        = t 'keppler.sidebar-menu.setting-submenu.social-accounts'
+      .box-tools.pull-right
+        %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
+          %i.fa.fa-minus
+    .box-body.pure-input
+      = f.simple_fields_for :social_account do |f|
+        .row
+          - @social_medias.each_with_index do |social, color|
+            .col-lg-6.col-md-6.col-sm-12.col-xs-12
+              = f.input social
 
-							-# To show a social media icon before input
-							:javascript
-								var input = $("#setting_social_account_attributes_#{social}")
-								input.before(
-									`<i style="color:#9e9e9e" class="social-icons prefix fa fa-#{social.to_s.split('_').join('-')}"></i>`
-									)
-								input.focus(function(){
-									$('.fa-#{social.to_s.split('_').join('-')}').css('color', "#{@colors[color]}")
-								})
-								input.blur(function(){
-									$('.fa-#{social.to_s.split('_').join('-')}').css('color', "#9e9e9e")
-								})
+              -# To show a social media icon before input
+              :javascript
+                var input = $("#setting_social_account_attributes_#{social}")
+                input.before(
+                  `<i style="color:#9e9e9e" class="social-icons prefix fab fa-#{social.to_s.split('_').join('-')}"></i>`
+                  )
+                input.focus(function(){
+                  $('.fa-#{social.to_s.split('_').join('-')}').css('color', "#{@colors[color]}")
+                })
+                input.blur(function(){
+                  $('.fa-#{social.to_s.split('_').join('-')}').css('color', "#9e9e9e")
+                })
 
-							-# To activate colors in social media inputs
-							:sass
-								.setting_social_account_#{social}
-									i.active
-										color: #{@colors[color]} !important
-									input:focus:not([readonly])
-										border: 1px solid #{@colors[color]} !important
-										// box-shadow: 0 1px 0 0 #{@colors[color]} !important
-									.control-label.active
-										color: #{@colors[color]} !important
-				.row
-					.col-lg-12
-						.pull-right
-							= f.button :submit, t("keppler.actions.apply"), :class => "btn-primary"
+              -# To activate colors in social media inputs
+              :sass
+                .setting_social_account_#{social}
+                  i.active
+                    color: #{@colors[color]} !important
+                  input:focus:not([readonly])
+                    border: 1px solid #{@colors[color]} !important
+                    // box-shadow: 0 1px 0 0 #{@colors[color]} !important
+                  .control-label.active
+                    color: #{@colors[color]} !important
+        .row
+          .col-lg-12
+            .pull-right
+              = f.button :submit, t("keppler.actions.apply"), :class => "btn-primary"
