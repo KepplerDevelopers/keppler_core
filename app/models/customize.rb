@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Customize Model
 class Customize < ApplicationRecord
   include ActivityHistory
@@ -11,10 +13,10 @@ class Customize < ApplicationRecord
   end
 
   def name
-    if self.file?
-      "#{self.file.to_s.split("/").last.split(".").first.capitalize} Template"
+    if file?
+      "#{file.to_s.split('/').last.split('.').first.capitalize} Template"
     else
-      "Keppler Default"
+      'Keppler Default'
     end
   end
 
@@ -39,9 +41,9 @@ class Customize < ApplicationRecord
   private
 
   def clear_template
-    file_name =  Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first
-    template_name = file_name.split("/").last if file_name
-    names = build_array_html_files_names(template_name, "html")
+    file_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first
+    template_name = file_name.split('/').last if file_name
+    names = build_array_html_files_names(template_name, 'html')
     system "rails d keppler_front front #{names.join(' ')}"
     system "rm -rf #{Rails.root}/app/views/app/front/"
     clear_assets("#{Rails.root}/public/templates")
