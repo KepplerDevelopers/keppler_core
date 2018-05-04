@@ -56,7 +56,7 @@ gem 'paranoia', '2.4.1'
 gem 'cocoon', '1.2.11'
 gem 'jquery-minicolors-rails', '~> 2.2', '>= 2.2.6.0'
 gem 'simple_form', '4.0.0'
-#
+
 # Upload
 gem 'carrierwave', '1.2.2'
 gem 'rmagick', '2.16.0' # fix issue: 'sudo apt install libmagick++-dev'
