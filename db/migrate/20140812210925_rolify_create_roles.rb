@@ -2,6 +2,7 @@ class RolifyCreateRoles < ActiveRecord::Migration[5.1]
   def change
     create_table(:roles) do |t|
       t.string :name
+      t.integer :position
       t.references :resource, polymorphic: true
 
       t.timestamps

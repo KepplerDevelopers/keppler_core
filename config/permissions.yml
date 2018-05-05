@@ -1,0 +1,13 @@
+modules:
+  users:
+    name: users
+    actions: [
+      'index', 'show', 'create',
+      'new', 'edit', 'update',
+      'destroy', 'upload', 'download'
+    ]
+  user:
+    name: others
+    actions: [
+      'action1', 'action2', 'action3'
+    ]

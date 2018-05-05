@@ -9,6 +9,39 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#root'
 
+    resources :roles do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
+      post '/import', action: 'import', as: :import
+      get(
+        '/add_permissions',
+        action: 'add_permissions',
+        as: :add_permissions
+      )
+      post(
+        '/create_permissions',
+        action: 'create_permissions',
+        as: :create_permissions
+      )
+      get '/download', action: 'download', as: :download
+      post(
+        '/sort',
+        action: :sort,
+        on: :collection,
+      )
+      get(
+        '/reload',
+        action: :reload,
+        on: :collection,
+      )
+      delete(
+        '/destroy_multiple',
+        action: :destroy_multiple,
+        on: :collection,
+        as: :destroy_multiple
+      )
+    end
+
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'

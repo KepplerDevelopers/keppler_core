@@ -1,0 +1,8 @@
+modules:
+  other1:
+    name: other1
+    actions: [
+      'index', 'show', 'create',
+      'new', 'edit', 'update',
+      'destroy', 'upload', 'download'
+    ]

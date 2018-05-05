@@ -2,6 +2,7 @@ en:
   keppler:
     login_message: Sign in to start your session
     sidebar-menu:
+      roles: Roles
       customizes: Customizes
       dashboard: Dashboard
       users: Users
@@ -26,6 +27,7 @@ en:
         categories: Categories
     models:
       singularize:
+        role: role
         customize: customize
         meta_tag: meta tag
         script: Script
@@ -33,6 +35,7 @@ en:
         configuration: configuration
         user: user
       pluralize:
+        roles: roles
         customizes: customizes
         meta_tags: meta tags
         scripts: Scripts
@@ -40,6 +43,7 @@ en:
         configurations: configurations
         user: users
     modules:
+      admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
