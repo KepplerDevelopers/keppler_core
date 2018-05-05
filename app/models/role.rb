@@ -32,19 +32,11 @@ class Role < ApplicationRecord
   end
 
   def add_action(module_name, action)
-    old_hash = all_permissions
-    array = old_hash[module_name]['actions']
-    array.push(action)
-    new_hash = Hash[module_name, Hash['actions', array]]
-    permissions.first.update(modules: old_hash.merge(new_hash))
+    permissions.first.update(modules: hash('add', module_name, action))
   end
 
   def remove_action(module_name, action)
-    old_hash = all_permissions
-    array = old_hash[module_name]['actions']
-    array = array.delete_if { |act| act.eql?(action) }
-    new_hash = Hash[module_name, Hash['actions', array]]
-    permissions.first.update(modules: old_hash.merge(new_hash))
+    permissions.first.update(modules: hash('remove', module_name, action))
   end
 
   def toggle_action(module_name, action)
@@ -59,5 +51,17 @@ class Role < ApplicationRecord
     old_hash = all_permissions
     new_hash = Hash[module_name, Hash['actions', Array(action)]]
     permissions.first.update(modules: old_hash.merge(new_hash))
+  end
+
+  private
+
+  def hash(act, module_name, action)
+    old_hash = all_permissions
+    arr = old_hash[module_name]['actions']
+
+    act.eql?('add') ? arr.push(action) : arr.delete_if { |a| a.eql?(action) }
+
+    new_hash = Hash[module_name, Hash['actions', arr]]
+    old_hash.merge(new_hash)
   end
 end
