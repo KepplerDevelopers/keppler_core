@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # SmtpSetting Model
 class SmtpSetting < ApplicationRecord
   belongs_to :setting
