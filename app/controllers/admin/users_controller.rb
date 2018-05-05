@@ -41,7 +41,6 @@ module Admin
     end
 
     def create
-      byebug
       @user = User.new(user_params)
       if @user.save
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
@@ -63,12 +62,6 @@ module Admin
         notice: actions_messages(User.new)
       )
     end
-
-    # def delete_avatar
-    #   @user = User.find(params[:user_id])
-    #   @user.update(avatar: nil)
-    #   # redirect_to admin_user_edit_path(@user)
-    # end
 
     def reload
       @q = User.ransack(params[:q])

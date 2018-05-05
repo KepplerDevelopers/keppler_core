@@ -36,6 +36,18 @@ class User < ApplicationRecord
     rol.eql?('admin')
   end
 
+  def can?(model_name, method)
+    unless permissions[model_name].nil?
+      permissions[model_name]['actions'].include?(method) || false
+    end
+  end
+
+  def permissions
+    unless roles.first.permissions.blank?
+      roles.first.permissions.first.modules
+    end
+  end
+
   private
 
   def create_permalink
