@@ -23,27 +23,29 @@
                     %tr
                       %td
                         .pull-left
-                          %h4= action
+                          %h4= action.first
                         .pull-right
                           = render "admin/roles/switch", role: @role, module_name: module_name[key]["name"], action: action, children: false
-              - if module_name[key]["childrens"]
-                - module_name[key]["childrens"].each do |children|
-                  .row{style: "margin-top: 20px"}
-                    .col-lg-12
-                      .box.slice-box
-                        .box-header.with-border
-                          %h4.box-title= children["name"]
-                          %h4.box-title
-                          .box-tools.pull-right
-                            %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                              %i.fa.fa-minus
-                        .box-body
-                          %table.table.table-bordered
-                            %tbody
-                              - children["actions"].each do |action|
-                                %tr
-                                  %td
-                                    .pull-left
-                                      %h4= action
-                                    .pull-right
-                                      = render "admin/roles/switch", role: @role, module_name: module_name[key]["name"], action: action, children: true
+              -# - if module_name[key]["childrens"]
+              -#   - module_name[key]["childrens"].each do |children|
+              -#     - children.each do |keys, value|
+              -#       = key["actions"]
+              -#       .row{style: "margin-top: 20px"}
+              -#         .col-lg-12
+              -#           .box.slice-box
+              -#             .box-header.with-border
+              -#               %h4.box-title= key["name"]
+              -#               %h4.box-title
+              -#               .box-tools.pull-right
+              -#                 %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+              -#                   %i.fa.fa-minus
+              -#             .box-body
+              -#               %table.table.table-bordered
+              -#                 %tbody
+              -#                   - keys["actions"].each do |action|
+              -#                     %tr
+              -#                       %td
+              -#                         .pull-left
+              -#                           %h4= action.first
+              -#                         .pull-right
+              -#                           = render "admin/roles/switch", role: @role, module_name: module_name[key]["name"], action: action, children: true

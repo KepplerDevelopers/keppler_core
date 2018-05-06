@@ -37,7 +37,6 @@ module Admin
       @role = Role.new(role_params)
 
       if @role.save
-        # @permission = Permission.create(role_id: @role, modules: [])
         redirect_to admin_role_add_permissions_path(@role)
       else
         render :new
@@ -119,7 +118,6 @@ module Admin
       else
         create_first_permission
       end
-
       redirect_to admin_role_add_permissions_path(params[:role_id])
     end
 
