@@ -7,18 +7,18 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).download?
+            - if can?(<%= singular_table_name.camelcase %>).download?
               .toolbar-item
                 = link_to admin_<%= singular_table_name %>_download_path(<%= singular_table_name.camelcase %>, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).import?
+            - if can?(<%= singular_table_name.camelcase %>).import?
               .toolbar-item
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).destroy_multiple?
+            - if can?(<%= singular_table_name.camelcase %>).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
@@ -79,7 +79,7 @@
   %aside#index-show.control-sidebar
 
   .mixed-btn
-    - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).create?
+    - if can?(<%= singular_table_name.camelcase %>).create?
       = link_to new_admin_<%= singular_table_name %>_path, class: "btn-float" do
         +
 
