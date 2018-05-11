@@ -42,6 +42,12 @@ class User < ApplicationRecord
     end
   end
 
+  def can_child?(model_name, parent, method)
+    if !permissions.nil? && !permissions[parent]['childrens'][model_name].nil?
+      permissions[parent]['childrens'][model_name]['actions'].include?(method) || false
+    end
+  end
+
   def permissions
     unless roles.first.permissions.blank?
       roles.first.permissions.first.modules

@@ -31,7 +31,7 @@ menu:
           name: users
           url_path: /admin/users
           current: ["admin/users"]
-      - role:
+      - roles:
           name: roles
           url_path: /admin/roles
           current: ['admin/roles']

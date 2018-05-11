@@ -1,30 +1,22 @@
 modules:
   scripts:
     name: scripts
-    actions:
-      index: 'index'
-      create: 'create'
-      edit: 'edit'
-      destroy: 'destroy'
-      clone: 'clone'
-      upload: 'upload'
-      download: 'download'
+    actions: [
+      'index', 'create', 'edit',
+      'destroy', 'upload', 'download',
+      'clone'
+    ]
   users:
     name: users
-    actions:
-      index: 'index'
-      create: 'create'
-      edit: 'edit'
-      destroy: 'destroy'
-      clone: 'clone'
-      upload: 'upload'
-      download: 'download'
+    actions: [
+      'index', 'create', 'edit',
+      'destroy', 'upload', 'download',
+      'clone'
+    ]
     childrens:
-      roles:
+      - roles:
         name: roles
-        actions:
-          index: 'index'
-          create: 'create'
-          edit: 'edit'
-          destroy: 'destroy'
-          create_permissions: 'add permissions'
+        actions: [
+          'index', 'create', 'edit',
+          'destroy', 'add_permissions'
+        ]

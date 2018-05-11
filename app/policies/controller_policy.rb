@@ -43,7 +43,7 @@ class ControllerPolicy < ApplicationPolicy
     keppler_admin? || user_can?(@objects, 'destroy')
   end
 
-  def import?
+  def upload?
     keppler_admin? || user_can?(@objects, 'import')
   end
 

@@ -114,7 +114,11 @@ module Admin
 
     def create_permissions
       if @role.have_permissions?
-        toggle_actions(params[:role][:module], params[:role][:action])
+        if params[:role][:children]
+          @role.add_children(params[:role][:module], params[:role][:parent], params[:role][:action])
+        else
+          toggle_actions(params[:role][:module], params[:role][:action])
+        end
       else
         create_first_permission
       end
