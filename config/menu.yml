@@ -6,7 +6,7 @@ menu:
     current: ['keppler_ga_dashboard/dashboard']
   seo:
     name: SEO
-    current: ['admin/meta_tags', 'admin/google_adwords']
+    current: ['admin/meta_tags']
     icon: trending_up
     model: MetaTag
     submenu:
@@ -14,10 +14,6 @@ menu:
           name: 'Title & Metas'
           url_path: /admin/meta_tags
           current: ['admin/meta_tags']
-      - google_adwords:
-          name: Google Adwords
-          url_path: /admin/google_adwords
-          current: ['admin/google_adwords']
   script:
     name: Scripts
     url_path: /admin/scripts

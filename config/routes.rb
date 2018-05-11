@@ -51,16 +51,6 @@ Rails.application.routes.draw do
       )
     end
 
-    resources :google_adwords do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      delete(
-        '/destroy_multiple',
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
-
     resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
       delete(

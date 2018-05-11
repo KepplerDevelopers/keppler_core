@@ -27,7 +27,6 @@ es:
     models:
       singularize:
         customize: customize
-        google_adword: google adword
         meta_tag: meta tag
         script: script
         setting: configuración
@@ -35,7 +34,6 @@ es:
         user: usuario
       pluralize:
         customizes: customizes
-        google_adwords: google adwords
         meta_tags: meta tags
         scripts: scripts
         settings: configuraciones
@@ -43,7 +41,6 @@ es:
         user: usuarios
     modules:
       admin/customizes: Customizes
-      admin/google_adwords: 'Google adwords'
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
       admin/scaffolds: 'Scaffolds'
