@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  photo: MyString
+  name: MyString
+  phone: MyString
+  public: false
+  age: 1
+  weight: 1.5
+
+two:
+  photo: MyString
+  name: MyString
+  phone: MyString
+  public: false
+  age: 1
+  weight: 1.5

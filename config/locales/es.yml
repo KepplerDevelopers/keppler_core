@@ -1,6 +1,7 @@
 es:
   keppler:
     sidebar-menu:
+      test_modules: Test modules
       customizes: Customizes
       dashboard: Dashboard
       users: Usuarios
@@ -26,6 +27,7 @@ es:
         categories: Categorías
     models:
       singularize:
+        test_module: test module
         customize: customize
         meta_tag: meta tag
         script: script
@@ -33,6 +35,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        test_modules: test modules
         customizes: customizes
         meta_tags: meta tags
         scripts: scripts
@@ -40,6 +43,7 @@ es:
         configurations: configuraciones
         user: usuarios
     modules:
+      admin/test_modules: Test modules
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'

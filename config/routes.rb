@@ -9,6 +9,22 @@ Rails.application.routes.draw do
 
     root to: 'admin#root'
 
+    resources :test_modules do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
+      post '/import', action: 'import', as: 'import'
+      post(
+        action: :sort,
+        on: :collection,
+        as: :sort
+      )
+      delete(
+        action: :destroy_multiple,
+        on: :collection,
+        as: :destroy_multiple
+      )
+    end
+
     resources :scaffolds do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'

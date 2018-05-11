@@ -1,0 +1,67 @@
+.listing.col.l9.m12.s12
+  - if can? :new, model
+    = link_to new_admin_test_module_path, class: 'btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only', title: 'New' do
+      = material_icon.md_24.add
+  = entries(@total, @objects)
+  = link_to admin_test_modules_path(:format => :xls), class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Save as .xls' do
+    = material_icon.md_18.cloud_download.css_class("md-dark")
+  = link_to "", class: "btn-tool-right btn-floating btn-flat tooltipped right", title: 'Import File', id: "test_module" do
+    = material_icon.md_18.cloud_upload.css_class("md-dark")
+
+  .hide
+    = form_tag admin_test_module_import_path(@objects), id: "import_form_test_module", multipart: true, method: :post do
+      = file_field_tag :file, id: "import_file_test_module"
+
+  %table.bordered
+    - unless @objects.blank?
+      %tbody
+        %tr.white-hover{ width: 5 }
+          - if can? :destroy_multiple, TestModule
+            %th{style: 'padding-left: 20px'}
+          %th.center= t("activerecord.attributes.photo")
+          %th.center= t("activerecord.attributes.name")
+          %th.center.hide-on-small-and-down= t("activerecord.attributes.phone")
+          %th.center.hide-on-small-and-down= t("activerecord.attributes.public")
+          %th.center.hide-on-small-and-down= t("activerecord.attributes.age")
+          %th.center.hide-on-small-and-down= t("activerecord.attributes.weight")
+          %th.center{ colspan: 2 }
+      %tbody#draggable{ 'data-update-url' => sort_admin_test_modules_path }
+        - @objects.each do |test_module|
+          = render 'listing', test_module: test_module
+    - else
+      %tr
+        %td.center{ colspan: '4' }
+          %center
+            = t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.test_modules"))
+  = paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+  = render "description"
+
+- if can? :new, model
+  = link_to new_admin_test_module_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
+    = material_icon.md_24.add.css_class("md-light")
+
+:javascript
+  $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+    $('.action-btn').closeFAB();
+    $('.action-btn.toolbar').closeToolbar();
+    $( '.action-btn' ).hover(
+      function() {
+        $( this ).openFAB();
+        $('.action-btn.toolbar').openToolbar();
+      }, function() {
+        $( this ).closeFAB();
+        $('.action-btn.toolbar').closeToolbar();
+      }
+    );
+
+    $('#test_module').click(function() {
+      $('#import_file_test_module').click()
+      $('#import_file_test_module').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#import_form_test_module').submit()
+      })
+    })
+  })

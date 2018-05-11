@@ -1,0 +1,57 @@
+%tr{ id: "row-#{test_module.id}" }
+  - if can? :destroy_multiple, TestModule
+    %td.center.item-check{ width: 60 }
+      = link_to '', admin_test_module_path(test_module), remote: true, class: 'show-row'
+      %input{ type:'checkbox', class: 'filled-in', id: "checkbox-#{test_module.id}", 'checklist-model'=>'check', 'checklist-value'=>"#{test_module.id}", 'ng-click'=>"selectByCheck(#{@objects.size})"}
+      %label{ for: "checkbox-#{test_module.id}" }
+
+  %td.center
+    = link_to '', admin_test_module_path(test_module, search: @query), remote: true, class: 'show-row'
+    %span
+      = image_tag test_module.photo
+  %td.center
+    = link_to '', admin_test_module_path(test_module, search: @query), remote: true, class: 'show-row'
+    %span
+      = test_module.name
+  %td.center.hide-on-small-and-down
+    = link_to '', admin_test_module_path(test_module, search: @query), remote: true, class: 'show-row'
+    %span
+      = test_module.phone
+  %td.center.hide-on-small-and-down
+    = link_to '', admin_test_module_path(test_module, search: @query), remote: true, class: 'show-row'
+    %span
+      = test_module.public
+  %td.center.hide-on-small-and-down
+    = link_to '', admin_test_module_path(test_module, search: @query), remote: true, class: 'show-row'
+    %span
+      = test_module.age
+  %td.center.hide-on-small-and-down
+    = link_to '', admin_test_module_path(test_module, search: @query), remote: true, class: 'show-row'
+    %span
+      = test_module.weight
+  %td.center{ width: 60 }
+    .action-btn.horizontal
+      %a.btn-floating.btn-flat.right
+        %i.material-icons.grey-text menu
+      %ul.right.expanded-menu
+        .icons.right
+          - if can? :show, TestModule
+            %li.center
+              = link_to admin_test_module_path(test_module), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.show') do
+                = material_icon.md_24.remove_red_eye.css_class('md-dark')
+          - if can? :update, TestModule
+            %li.center
+              = link_to edit_admin_test_module_path(test_module), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.edit') do
+                = material_icon.md_18.create.css_class('md-dark')
+          - if can? :clone, TestModule
+            %li.center
+              = link_to admin_test_module_clone_path(test_module), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.clone') do
+                = material_icon.md_24.content_copy.css_class('md-dark')
+          - if can? :delete, TestModule
+            %li.center{style:'padding-right: 20px'}
+              = link_to admin_test_module_path(test_module), class: 'btn-floating waves-effect btn-flat tooltipped', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+                = material_icon.md_18.delete.css_class('md-dark')
+  %td.center.draggable{ width: 20 }
+    .action-btn
+      %a.btn-floating.btn-flat.right
+        %i.material-icons.grey-text open_with

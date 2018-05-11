@@ -5,8 +5,8 @@ require_dependency "<%= namespaced_file_path %>/application_controller"
 module Admin
   # <%= controller_class_name %>Controller
   class <%= controller_class_name %>Controller < AdminController
-    before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
+    before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
+    before_action :show_history, only: %i[index]
 
     # GET <%= route_url %>
     def index

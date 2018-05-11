@@ -11,7 +11,7 @@ module Rails
       class_option :stylesheet_engine, desc: 'Engine for Stylesheets'
       remove_class_option :resource_route, type: :boolean
 
-      source_root File.expand_path('../templates', __FILE__)
+      source_root File.expand_path('templates', __dir__)
 
       check_class_collision suffix: 'Controller'
 
@@ -31,13 +31,12 @@ module Rails
       )
 
       def add_route
-        unless options[:skip_routes]
-          inject_into_file(
-            'config/routes.rb',
-            "\n #{indent(str_route)}",
-            after: "root to: 'admin#root'"
-          )
-        end
+        return if options[:skip_routes]
+        inject_into_file(
+          'config/routes.rb',
+          "\n\n  #{indent(str_route)}",
+          after: "root to: 'admin#root'"
+        )
       end
 
       def add_option_menu
@@ -159,7 +158,7 @@ module Rails
       end
 
       def str_route
-        "resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/sort', action: 'sort'\n    delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
+        "resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/import', action: 'import', as: 'import'\n        post(\n          action: :sort,\n          on: :collection,\n          as: :sort\n        )delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
       end
 
       def str_menu
