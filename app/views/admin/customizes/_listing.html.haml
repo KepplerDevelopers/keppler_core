@@ -1,6 +1,6 @@
 %tr{id: "row-#{customize.id}"}
   %td.item-check{style:"width: 5%"}
-    - if Pundit.policy(current_user, Customize).destroy?
+    - if can?(Customize).destroy?
       - if !customize.id.eql?(1) && !customize.installed
         = link_to admin_customize_path(customize), method: :delete do
           %i.icon-trash.icon-delete
