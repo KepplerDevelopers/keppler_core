@@ -20,12 +20,6 @@ menu:
     icon: settings_ethernet
     current: ['admin/scripts']
     model: Script
-  test_module:
-    name: test modules
-    url_path: /admin/test_modules
-    icon: help_outline
-    current: ['admin/test_modules']
-    model: TestModule
   user:
     name: users
     url_path: /admin/users

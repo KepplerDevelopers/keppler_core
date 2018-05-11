@@ -158,7 +158,7 @@ module Rails
       end
 
       def str_route
-        "resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/import', action: 'import', as: 'import'\n        post(\n          action: :sort,\n          on: :collection,\n          as: :sort\n        )delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
+        "resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/import', action: 'import', as: 'import'\n        delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
       end
 
       def str_menu
