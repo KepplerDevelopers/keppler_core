@@ -1,10 +1,10 @@
 .tab-content
   %h6.actions
-    - if Pundit.policy(current_user, MetaTag).update?
+    - if can?(MetaTag).update?
       = link_to edit_admin_meta_tag_path(@meta_tag), title: t("keppler.actions.edit"), class: 'pull-left' do
         %i.icon-pencil
         %span= t('keppler.actions.edit')
-    - if Pundit.policy(current_user, MetaTag).destroy?
+    - if can?(MetaTag).destroy?
       = link_to admin_meta_tag_path(@meta_tag), class: 'new-menu', title: 'Delete', method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
         %i.icon-trash
         %span= t('keppler.actions.delete')

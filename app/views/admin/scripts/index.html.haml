@@ -7,18 +7,18 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            - if Pundit.policy(current_user, Script).download?
+            - if can?(Script).download?
               .toolbar-item
                 = link_to admin_script_download_path(Script, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if Pundit.policy(current_user, Script).import?
+            - if can?(Script).import?
               .toolbar-item
                 = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'script' do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_scripts_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
-            - if Pundit.policy(current_user, Script).destroy_multiple?
+            - if can?(Script).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
@@ -62,7 +62,7 @@
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
   %aside#index-show.control-sidebar
-  - if Pundit.policy(current_user, Script).create?
+  - if can?(Script).create?
     .mixed-btn
       = link_to new_admin_script_path, class: "btn-float" do
         +
