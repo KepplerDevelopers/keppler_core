@@ -43,16 +43,16 @@ menu:
           name: admin appearance
           url_path: /admin/settings/appearance
           current: ['appearance']
-  development:
-    name: Development
-    current: ['admin/scaffolds']
-    icon: code
-    model: Scaffold
-    submenu:
-      - scaffolds:
-          name: Keppler scaffolds
-          url_path: /admin/scaffolds
-          current: ['/admin/scaffolds']
+  # development:
+  #   name: Development
+  #   current: ['admin/scaffolds']
+  #   icon: code
+  #   model: Scaffold
+  #   submenu:
+  #     - scaffolds:
+  #         name: Keppler scaffolds
+  #         url_path: /admin/scaffolds
+  #         current: ['/admin/scaffolds']
   setting:
     name: setting
     current: ['admin/settings']
