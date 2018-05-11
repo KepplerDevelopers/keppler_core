@@ -14,10 +14,10 @@
           .box-header.with-border
             %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
             .box-tools.pull-right
-              - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).update?
+              - if can?(<%= singular_table_name.camelcase %>).update?
                 = link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
                   %i.icon-pencil
-              - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).destroy?
+              - if can?(<%= singular_table_name.camelcase %>).destroy?
                 = link_to admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
                   %i.icon-trash
           .box-body.box-body-no-padding

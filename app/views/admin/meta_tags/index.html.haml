@@ -7,18 +7,18 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            - if Pundit.policy(current_user, MetaTag).download?
+            - if can?(MetaTag).download?
               .toolbar-item
                 = link_to admin_meta_tag_download_path(MetaTag, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if Pundit.policy(current_user, MetaTag).import?
+            - if can?(MetaTag).import?
               .toolbar-item
                 = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'meta_tag' do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_meta_tags_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
-            - if Pundit.policy(current_user, MetaTag).destroy_multiple?
+            - if can?(MetaTag).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
@@ -60,7 +60,7 @@
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description'
   %aside#index-show.control-sidebar
-  - if Pundit.policy(current_user, MetaTag).create?
+  - if can?(MetaTag).create?
     .mixed-btn
       = link_to new_admin_meta_tag_path, class: 'btn-float' do
         +

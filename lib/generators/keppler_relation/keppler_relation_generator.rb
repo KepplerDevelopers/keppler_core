@@ -207,7 +207,7 @@ module Rails
 
       # References to add nest button in father_module's listing
       def str_last_button(father)
-        " - if Pundit.policy(current_user, #{father.camelcase}).show?"
+        " - if can?(#{father.camelcase}).show?"
       end
 
       #String of the button to add in father_module's listing
