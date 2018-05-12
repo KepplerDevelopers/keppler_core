@@ -10,15 +10,16 @@
     = t("keppler.modules.#{controller_path.underscore}")
   %ul.timeline
     - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name} %>).each do |attribute, value|
-      %li.list-row
-        .timeline-item
-          %h6.timeline-header.no-border
-            %small
-              %strong.display-value= t("activerecord.attributes.#{attribute}")
-              - if @attachments.include?(attribute)
-                .display-label= image_tag value
-              - else
-                %p.display-label= value
+      -unless attribute.eql?('position') || attribute.eql?('deleted_at')
+        %li.list-row
+          .timeline-item
+            %h6.timeline-header.no-border
+              %small
+                %strong.display-value= t("activerecord.attributes.#{attribute}")
+                - if @attachments.include?(attribute)
+                  .display-label= image_tag value
+                - else
+                  %p.display-label= value
 :coffee
   $('#close-index-show').click ->
     $('#index-show').css 'right', -$('#index-show').outerWidth()
