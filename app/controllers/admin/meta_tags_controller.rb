@@ -77,8 +77,8 @@ module Admin
       authorize @meta_tag
     end
 
-    def import
-      MetaTag.import(params[:file])
+    def upload
+      MetaTag.upload(params[:file])
       redirect_to(
         admin_meta_tags_path(page: @current_page, search: @query),
         notice: actions_messages(MetaTag.new)

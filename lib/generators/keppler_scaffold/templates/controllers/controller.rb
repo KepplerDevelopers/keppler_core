@@ -84,8 +84,8 @@ module Admin
       authorize @<%= singular_table_name %>
     end
 
-    def import
-      <%= class_name %>.import(params[:file])
+    def upload
+      <%= class_name %>.upload(params[:file])
       redirect_to(
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
