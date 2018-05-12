@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
-      post '/import', action: 'import', as: 'import'
+      post '/upload', action: 'upload', as: 'upload'
       post '/install_default', action: 'install_default'
       # delete(
       #   action: :destroy_multiple,
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     resources :meta_tags do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
-      post '/import', action: 'import', as: 'import'
+      post '/upload', action: 'upload', as: 'upload'
       get '/download', action: 'download', as: 'download'
       get(
         '/reload',
@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     resources :scripts do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
-      post '/import', action: 'import', as: 'import'
+      post '/upload', action: 'upload', as: 'upload'
       get '/download', action: 'download', as: 'download'
       get(
         '/reload',
