@@ -37,6 +37,7 @@ Gemfile.lock
 /coverage/
 /db/*.javadb/
 /db/*.sqlite3
+/db/schema.rb
 /doc/api/
 /doc/app/
 /doc/features.html
