@@ -19,7 +19,7 @@ class MetaTag < ApplicationRecord
     :title_or_description_or_url_cont_any
   end
 
-  def self.import(file)
+  def self.upload(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
         self.create! row.to_hash

@@ -11,7 +11,7 @@
               .toolbar-item
                 = link_to admin_meta_tag_download_path(MetaTag, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if can?(MetaTag).import?
+            - if can?(MetaTag).upload?
               .toolbar-item
                 = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'meta_tag' do
                   %i.icon-cloud-upload
@@ -29,8 +29,8 @@
               %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
                 %i.icon-trash
           .hide
-            = form_tag admin_meta_tag_import_path(@objects), id: "import_form_meta_tag", multipart: true, method: :post do
-              = file_field_tag :file, id: "import_file_meta_tag"
+            = form_tag admin_meta_tag_upload_path(@objects), id: "upload_form_meta_tag", multipart: true, method: :post do
+              = file_field_tag :file, id: "upload_file_meta_tag"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -70,10 +70,10 @@
   $(document).ready(function(){
     $('#meta_tag').click(function(e) {
       e.preventDefault()
-      $('#import_file_meta_tag').click()
-      $('#import_file_meta_tag').change(function() {
+      $('#upload_file_meta_tag').click()
+      $('#upload_file_meta_tag').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_meta_tag').submit()
+        $('#upload_form_meta_tag').submit()
       })
     });
   });
