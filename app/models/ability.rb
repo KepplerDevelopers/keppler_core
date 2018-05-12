@@ -15,8 +15,6 @@ class Ability
 
       # - Seo authorize -
       can :manage, MetaTag
-      can :manage, GoogleAdword
-
       # - GoogleAnalytics authorize -
       if Setting.first.google_analytics_setting.ga_status
         can :manage, Script
