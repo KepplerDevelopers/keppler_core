@@ -21,9 +21,10 @@
 
     .navbar-custom-menu
       %ul.nav.navbar-nav
-        %li.dropdown.messages-menu
-          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-            %i.icon-envelope
+        -# - if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
+          %li.dropdown.messages-menu
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              %i.icon-envelope
         %li.dropdown.user.user-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
             = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'small-profile-img keppler-background'
