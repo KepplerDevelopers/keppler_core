@@ -10,19 +10,19 @@
 # user = CreateAdminService.new.call
 # puts 'CREATED ADMIN USER: ' << user.email
 
-[:keppler_admin, :admin, :client].each do |name|
+%i[keppler_admin admin client].each do |name|
   Role.create name: name
   puts "Role #{name} has been created"
 end
 
 User.create(
-  name: 'Keppler Admin', email: 'admin@keppler.com', password: '12345678',
-  password_confirmation: '12345678', role_ids: '1'
+  name: 'Keppler Admin', email: 'admin@keppler.io', password: '+12345678+',
+  password_confirmation: '+12345678+', role_ids: '1'
 )
 
-puts 'admin@keppler.com has been created'
+puts 'admin@keppler.io has been created'
 
-Customize.create(file: "", installed: true)
+Customize.create(file: '', installed: true)
 puts 'Keppler Template has been created'
 # Create setting deafult
 setting = Setting.create(
@@ -42,4 +42,10 @@ setting.appearance = Appearance.new(theme_name: 'keppler')
 setting.save
 puts 'Setting default has been created'
 
-# KepplerContactUs::MessageSetting.create(mailer_from: '', mailer_to: '')
+if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
+  KepplerContactUs::MessageSetting.create(
+    mailer_from: 'contacto@slicegroup.xyz', 
+    mailer_to: 'contacto@slicegroup.xyz'
+  )
+  puts 'KepplerContactUs mailer_to and mailer_from has been created'
+end

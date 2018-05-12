@@ -21,23 +21,19 @@ class MetaTag < ApplicationRecord
 
   def self.upload(file)
     CSV.foreach(file.path, headers: true) do |row|
-      begin
-        self.create! row.to_hash
-      rescue => err
-      end
+      create! row.to_hash
     end
   end
 
   def self.sorter(params)
     params.each_with_index do |id, idx|
-      self.find(id).update(position: idx.to_i+1)
+      find(id).update(position: idx.to_i + 1)
     end
   end
 
   private
 
   def split_url
-    self.url = self.url.split('//').last.split('/').join('/').split('www.').last
+    self.url = url.split('//').last.split('/').join('/').split('www.').last
   end
-
 end
