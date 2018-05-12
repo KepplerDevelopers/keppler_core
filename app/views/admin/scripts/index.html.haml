@@ -11,7 +11,7 @@
               .toolbar-item
                 = link_to admin_script_download_path(Script, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if can?(Script).import?
+            - if can?(Script).upload?
               .toolbar-item
                 = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'script' do
                   %i.icon-cloud-upload
@@ -29,8 +29,8 @@
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
-            = form_tag admin_script_import_path(@objects), id: "import_form_script", multipart: true, method: :post do
-              = file_field_tag :file, id: "import_file_script"
+            = form_tag admin_script_upload_path(@objects), id: "upload_form_script", multipart: true, method: :post do
+              = file_field_tag :file, id: "upload_file_script"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -72,10 +72,10 @@
   $(document).ready(function(){
     $('#script').click(function(e) {
       e.preventDefault()
-      $('#import_file_script').click()
-      $('#import_file_script').change(function() {
+      $('#upload_file_script').click()
+      $('#upload_file_script').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_script').submit()
+        $('#upload_form_script').submit()
       })
     });
   });
