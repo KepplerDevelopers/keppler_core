@@ -34,6 +34,6 @@ class MetaTag < ApplicationRecord
   private
 
   def split_url
-    url.split('//').last.split('/').join('/').split('www.').last
+    self.url = url.split('//').last.split('/').join('/').split('www.').last
   end
 end
