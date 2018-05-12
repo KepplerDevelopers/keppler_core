@@ -37,6 +37,8 @@
                   <%- unless @attachments.include?(attribute.name) -%>
                     <%- if attribute.type.to_s == "text" -%>
                     = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
+                    <%- elsif attribute.name.to_s == "position" || attribute.name.to_s == "deleted_at" -%>
+                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :hidden
                     <%- elsif attribute.type.to_s == "date" -%>
                     = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
                     <%- elsif attribute.type.to_s == "boolean" -%>
