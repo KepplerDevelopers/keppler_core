@@ -17,7 +17,7 @@
     <%- end -%>
     <%- attributes.each_with_index do |attribute, index| -%>
       <%- if index < 6 -%>
-        <%- unless attribute.type.to_s == 'text' -%>
+        <%- unless attribute.type.to_s.eql?('text') || attribute.name.eql?('position') || attribute.name.eql?('deleted_at') -%>
           <%- unless @attachments.include?(attribute.name) -%>
             <%- if index < 2 -%>
     %td.hidden-xs
