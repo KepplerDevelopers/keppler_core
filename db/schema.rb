@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_12_175959) do
+
+ActiveRecord::Schema.define(version: 2018_05_12_153015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +41,17 @@ ActiveRecord::Schema.define(version: 2018_05_12_175959) do
     t.string "setting_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string "name"
+    t.string "model"
+    t.string "color"
+    t.integer "position"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_cars_on_deleted_at"
   end
 
   create_table "customizes", force: :cascade do |t|

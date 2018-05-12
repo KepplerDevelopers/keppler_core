@@ -8,6 +8,7 @@ module Admin
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
     before_action :set_attachments
+    before_action :authorization
 
     # GET <%= route_url %>
     def index
@@ -22,19 +23,15 @@ module Admin
     end
 
     # GET <%= route_url %>/1
-    def show
-    end
+    def show; end
 
     # GET <%= route_url %>/new
     def new
       @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
-      authorize @<%= singular_table_name %>
     end
 
     # GET <%= route_url %>/1/edit
-    def edit
-      authorize @<%= singular_table_name %>
-    end
+    def edit; end
 
     # POST <%= route_url %>
     def create
@@ -54,7 +51,6 @@ module Admin
       else
         render :edit
       end
-      authorize @<%= singular_table_name %>
     end
 
     def clone
@@ -65,14 +61,12 @@ module Admin
       else
         render :new
       end
-      authorize @<%= singular_table_name %>
     end
 
     # DELETE <%= route_url %>/1
     def destroy
       @<%= orm_instance.destroy %>
       redirect_to admin_<%= index_helper %>_path, notice: actions_messages(@<%= singular_table_name %>)
-      authorize @<%= singular_table_name %>
     end
 
     def destroy_multiple
@@ -81,7 +75,6 @@ module Admin
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
-      authorize @<%= singular_table_name %>
     end
 
     def upload
@@ -90,7 +83,6 @@ module Admin
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
-      authorize @<%= singular_table_name %>
     end
 
     def download
@@ -100,7 +92,6 @@ module Admin
         format.xls { send_data(@<%= plural_table_name %>.to_xls) }
         format.json { render :json => @<%= plural_table_name %> }
       end
-      authorize @<%= plural_table_name %>
     end
 
     def reload
@@ -115,6 +106,10 @@ module Admin
     end
 
     private
+
+    def authorization
+      authorize <%= class_name %>
+    end
 
     def set_attachments
       @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
