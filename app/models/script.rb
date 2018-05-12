@@ -13,7 +13,7 @@ class Script < ApplicationRecord
     :name_or_script_cont
   end
 
-  def self.import(file)
+  def self.upload(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
         Script.create! row.to_hash

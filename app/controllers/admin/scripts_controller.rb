@@ -79,8 +79,8 @@ module Admin
       )
     end
 
-    def import
-      Script.import(params[:file])
+    def upload
+      Script.upload(params[:file])
       redirect_to(
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
