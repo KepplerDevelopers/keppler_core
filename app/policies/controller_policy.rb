@@ -43,7 +43,7 @@ class ControllerPolicy < ApplicationPolicy
     keppler_admin? || admin?
   end
 
-  def import?
+  def upload?
     keppler_admin? || admin?
   end
 
