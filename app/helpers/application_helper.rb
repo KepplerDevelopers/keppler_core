@@ -15,7 +15,7 @@ module ApplicationHelper
     current_user
   end
 
-  def can(model)
+  def can?(model)
     Pundit.policy(current_user, model)
   end
 

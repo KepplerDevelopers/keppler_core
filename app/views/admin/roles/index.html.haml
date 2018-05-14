@@ -7,18 +7,18 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            - if Pundit.policy(current_user, Role).download?
+            - if can?(Role).download?
               .toolbar-item
                 = link_to admin_role_download_path(Role, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if Pundit.policy(current_user, Role).import?
+            - if can?(Role).upload?
               .toolbar-item
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "role" do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_roles_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if Pundit.policy(current_user, Role).destroy_multiple?
+            - if can?(Role).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
@@ -29,8 +29,8 @@
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
-            = form_tag admin_role_import_path(@objects), id: "import_form_roles", multipart: true, method: :post do
-              = file_field_tag :file, id: "import_file_role"
+            = form_tag admin_role_upload_path(@objects), id: "upload_form_roles", multipart: true, method: :post do
+              = file_field_tag :file, id: "upload_file_role"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -62,17 +62,17 @@
   %aside#index-show.control-sidebar
 
   .mixed-btn
-    - if Pundit.policy(current_user, Role).create?
+    - if can?(Role).create?
       = link_to new_admin_role_path, class: "btn-float" do
         +
 
 :javascript
   $(document).ready(function(){
     $('#role').click(function() {
-      $('#import_file_role').click()
-      $('#import_file_role').change(function() {
+      $('#upload_file_role').click()
+      $('#upload_file_role').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_role').submit()
+        $('#upload_form_role').submit()
       })
     });
 

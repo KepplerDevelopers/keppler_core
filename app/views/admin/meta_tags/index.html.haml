@@ -7,18 +7,18 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            - if Pundit.policy(current_user, MetaTag).download?
+            - if can?(MetaTag).download?
               .toolbar-item
                 = link_to admin_meta_tag_download_path(MetaTag, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if Pundit.policy(current_user, MetaTag).import?
+            - if can?(MetaTag).upload?
               .toolbar-item
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "meta_tag" do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_meta_tags_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if Pundit.policy(current_user, MetaTag).destroy_multiple?
+            - if can?(MetaTag).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
@@ -29,8 +29,8 @@
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
-            = form_tag admin_meta_tag_import_path(@objects), id: "import_form_meta_tag", multipart: true, method: :post do
-              = file_field_tag :file, id: "import_file_meta_tag"
+            = form_tag admin_meta_tag_upload_path(@objects), id: "upload_form_meta_tag", multipart: true, method: :post do
+              = file_field_tag :file, id: "upload_file_meta_tag"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -61,7 +61,7 @@
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render "description"
   %aside#index-show.control-sidebar
-  - if Pundit.policy(current_user, MetaTag).create?
+  - if can?(MetaTag).create?
     .mixed-btn
       = link_to new_admin_meta_tag_path, class: "btn-float" do
         +
@@ -71,10 +71,10 @@
   $(document).ready(function(){
     $('#meta_tag').click(function(e) {
       e.preventDefault()
-      $('#import_file_meta_tag').click()
-      $('#import_file_meta_tag').change(function() {
+      $('#upload_file_meta_tag').click()
+      $('#upload_file_meta_tag').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_meta_tag').submit()
+        $('#upload_form_meta_tag').submit()
       })
     });
   });

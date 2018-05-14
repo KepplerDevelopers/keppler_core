@@ -79,8 +79,8 @@ module Admin
       authorize @role
     end
 
-    def import
-      Role.import(params[:file])
+    def upload
+      Role.upload(params[:file])
       redirect_to(
         admin_roles_path(page: @current_page, search: @query),
         notice: actions_messages(Role.new)

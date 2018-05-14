@@ -13,10 +13,10 @@
           .box-header.with-border
             %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
             .box-tools.pull-right
-              - if Pundit.policy(current_user, Role).update?
+              - if can?(Role).update?
                 = link_to edit_admin_role_path(@role), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
                   %i.icon-pencil
-              - if Pundit.policy(current_user, Role).destroy?
+              - if can?(Role).destroy?
                 = link_to admin_role_path(@role), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
                   %i.icon-trash
           .box-body.box-body-no-padding

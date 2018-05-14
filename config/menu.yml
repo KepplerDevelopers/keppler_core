@@ -16,11 +16,7 @@ menu:
     current: ['admin/meta_tags']
     icon: graph
     model: MetaTag
-    submenu:
-      - meta_tags:
-          name: 'Title & Metas'
-          url_path: /admin/meta_tags
-          current: ['admin/meta_tags']
+    url_path: /admin/meta_tags
   user:
     name: users
     icon: user

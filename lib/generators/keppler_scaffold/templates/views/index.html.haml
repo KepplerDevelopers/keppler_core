@@ -7,18 +7,18 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).download?
+            - if can?(<%= singular_table_name.camelcase %>).download?
               .toolbar-item
                 = link_to admin_<%= singular_table_name %>_download_path(<%= singular_table_name.camelcase %>, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).import?
+            - if can?(<%= singular_table_name.camelcase %>).upload?
               .toolbar-item
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).destroy_multiple?
+            - if can?(<%= singular_table_name.camelcase %>).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
@@ -29,8 +29,8 @@
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
-            = form_tag admin_<%= singular_table_name %>_import_path(@objects), id: "import_form_<%= plural_table_name %>", multipart: true, method: :post do
-              = file_field_tag :file, id: "import_file_<%= singular_table_name %>"
+            = form_tag admin_<%= singular_table_name %>_upload_path(@objects), id: "upload_form_<%= plural_table_name %>", multipart: true, method: :post do
+              = file_field_tag :file, id: "upload_file_<%= singular_table_name %>"
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -79,17 +79,17 @@
   %aside#index-show.control-sidebar
 
   .mixed-btn
-    - if Pundit.policy(current_user, <%= singular_table_name.camelcase %>).create?
+    - if can?(<%= singular_table_name.camelcase %>).create?
       = link_to new_admin_<%= singular_table_name %>_path, class: "btn-float" do
         +
 
 :javascript
   $(document).ready(function(){
     $('#<%= singular_table_name %>').click(function() {
-      $('#import_file_<%= singular_table_name %>').click()
-      $('#import_file_<%= singular_table_name %>').change(function() {
+      $('#upload_file_<%= singular_table_name %>').click()
+      $('#upload_file_<%= singular_table_name %>').change(function() {
         $('.waiting').css('display', 'block')
-        $('#import_form_<%= singular_table_name %>').submit()
+        $('#upload_form_<%= singular_table_name %>').submit()
       })
     });
 

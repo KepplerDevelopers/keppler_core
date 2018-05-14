@@ -44,7 +44,7 @@ class ControllerPolicy < ApplicationPolicy
   end
 
   def upload?
-    keppler_admin? || user_can?(@objects, 'import')
+    keppler_admin? || user_can?(@objects, 'upload')
   end
 
   def download?

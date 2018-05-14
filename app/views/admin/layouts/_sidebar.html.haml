@@ -16,14 +16,14 @@
           %span= t('keppler.sidebar-menu.dashboard')
       - @sidebar.each do |menu|
         - menu.each do |key, value|
-          - unless menu[key]["submenu"] # ontetab sidebar linkbyg 
-            - if menu[key]["model"] && can(menu[key]["model"].constantize).index?
+          - unless menu[key]["submenu"] # ontetab sidebar linkbyg
+            - if menu[key]["model"] && can?(menu[key]["model"].constantize).index?
               %li.treeview{ class: ('active' if controller_name.eql?(menu[key]['name']))}
                 = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", :'data-no-turbolink'=> true do
                   %i{ class: "icon-#{menu[key]["icon"]}" }
                   %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
           - else # tree sidebar links
-            - if menu[key]["model"] && can(menu[key]["model"].constantize).index?
+            - if menu[key]["model"] && can?(menu[key]["model"].constantize).index?
               %li{ class: ('active' if menu[key]['current'].include?(controller_path))}
                 %a{ href: "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
                   %i{ class: "icon-#{menu[key]['icon']}" }

@@ -6,12 +6,18 @@ modules:
       'destroy', 'upload', 'download',
       'clone'
     ]
-  users:
-    name: users
+  seo:
+    name: seo
     actions: [
       'index', 'create', 'edit',
       'destroy', 'upload', 'download',
       'clone'
+    ]
+  users:
+    name: users
+    actions: [
+      'index', 'create', 'edit',
+      'destroy', 'download'
     ]
     childrens:
       - roles:

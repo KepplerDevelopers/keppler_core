@@ -16,7 +16,7 @@ class <%= class_name %> < ApplicationRecord
     build_query(fields, :or, :cont)
   end
 
-  def self.import(file)
+  def self.upload(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
         self.create! row.to_hash
