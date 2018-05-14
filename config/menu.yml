@@ -11,7 +11,7 @@ menu:
     icon: chart
     current: ['admin/scripts']
     model: Script
-  seo:
+  meta_tags:
     name: SEO
     current: ['admin/meta_tags']
     icon: graph

@@ -11,6 +11,6 @@ class ApplicationPolicy
   end
 
   def user_can?(objects, method)
-    user.can?(objects.model_name.name.classify.downcase.pluralize, method)
+    user.can?(objects.name, method)
   end
 end

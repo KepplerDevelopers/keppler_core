@@ -23,7 +23,7 @@
           .box-body.no-padding
             %table.table.table-striped
               %tbody
-                - @script.as_json(only: ["id", "name", "script", "url", "created_at"], methods: [:rol]).each do |attribute, value|
+                - @script.as_json(only: ["id", "name", "script", "url", "created_at"]).each do |attribute, value|
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.script.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2= value.to_s.humanize

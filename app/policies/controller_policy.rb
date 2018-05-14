@@ -20,7 +20,7 @@ class ControllerPolicy < ApplicationPolicy
   end
 
   def edit?
-    update? || user_can?(@objects, 'edit')
+    update? || user_can?(@objects, 'update')
   end
 
   def update?

@@ -1,4 +1,4 @@
-= simple_form_for @role, url: admin_role_create_permissions_path(role), method: :post do |f|
+= simple_form_for @role, url: admin_role_create_permissions_path(role), method: :post, remote: true do |f|
   %label
     - if !role.have_action?(module_name, action)
       .switch.pull-right

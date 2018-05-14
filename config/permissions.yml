@@ -1,28 +1,28 @@
 modules:
   scripts:
-    name: scripts
+    name: Script
     actions: [
-      'index', 'create', 'edit',
+      'index', 'create', 'update',
       'destroy', 'upload', 'download',
       'clone'
     ]
-  seo:
-    name: seo
+  meta_tags:
+    name: MetaTag
     actions: [
-      'index', 'create', 'edit',
+      'index', 'create', 'update',
       'destroy', 'upload', 'download',
       'clone'
     ]
   users:
-    name: users
+    name: User
     actions: [
-      'index', 'create', 'edit',
+      'index', 'create', 'update',
       'destroy', 'download'
     ]
     childrens:
       - roles:
-        name: roles
+        name: Role
         actions: [
-          'index', 'create', 'edit',
+          'index', 'create', 'update',
           'destroy', 'add_permissions'
         ]
