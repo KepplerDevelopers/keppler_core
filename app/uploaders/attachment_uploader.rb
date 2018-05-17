@@ -3,12 +3,15 @@
 # AttachmentUploader Carrierwave
 class AttachmentUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
+  include CarrierWave::ImageOptimizer
+
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
+  process :optimize
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -20,6 +23,10 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     return_size_type(file.content_type)
   end
 
+  # version :thumb do
+  #   process :resize_to_fit => [100, 100]
+  #   process :quality => 100 
+  # end
   # Provide a default URL as a default if there hasn't been a file uploaded:
 
   # Process files as they are uploaded:
@@ -48,7 +55,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   private
 
   def return_size_type(file)
-    return 0.1..2.megabytes if file.include?('image')
-    0.1..5.megabytes
+    return 0..1.megabytes if file.include?('image')
+    0..5.megabytes
   end
 end
