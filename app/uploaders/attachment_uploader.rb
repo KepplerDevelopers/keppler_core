@@ -16,6 +16,10 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def size_range
+    return_size_type(file.content_type)
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
 
   # Process files as they are uploaded:
@@ -41,4 +45,10 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  private
+
+  def return_size_type(file)
+    return 0.1..2.megabytes if file.include?('image')
+    0.1..5.megabytes
+  end
 end
