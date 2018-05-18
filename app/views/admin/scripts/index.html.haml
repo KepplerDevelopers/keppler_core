@@ -9,7 +9,7 @@
           .toolbar
             - if can?(Script).download?
               .toolbar-item
-                = link_to admin_script_download_path(Script, format: :xls), class: 'tool-btn', title: t('keppler.actions.download_records') do
+                = link_to admin_scripts_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
             - if can?(Script).upload?
               .toolbar-item
@@ -66,16 +66,3 @@
     .mixed-btn
       = link_to new_admin_script_path, class: "btn-float" do
         +
-
-
-:javascript
-  $(document).ready(function(){
-    $('#script').click(function(e) {
-      e.preventDefault()
-      $('#upload_file_script').click()
-      $('#upload_file_script').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_script').submit()
-      })
-    });
-  });
