@@ -16,22 +16,31 @@ class <%= class_name %> < ApplicationRecord
 
   # Fields for the search form in the navbar
   def self.search_field
-    fields = <%= attributes_names.map { |name| name } %>
+    fields = %i[<%= attributes_names.map { |name| name }.join(' ') %>]
     build_query(fields, :or, :cont)
   end
 
   def self.upload(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin
-        self.create! row.to_hash
+        create! row.to_hash
       rescue => err
+      end
+    end
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |<%= class_name.downcase %>|
+        csv << <%= class_name.downcase %>.attributes.values
       end
     end
   end
 
   def self.sorter(params)
     params.each_with_index do |id, idx|
-      self.find(id).update(position: idx.to_i+1)
+      find(id).update(position: idx.to_i + 1)
     end
   end
 

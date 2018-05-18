@@ -1,4 +1,4 @@
-#index-container{ controller: "<%= plural_table_name %>" }
+#index-container{ controller: '<%= plural_table_name %>' }
   .container
     .row
       .listing.col-lg-12.col-xs-12
@@ -9,14 +9,14 @@
           .toolbar
             - if can?(<%= singular_table_name.camelcase %>).download?
               .toolbar-item
-                = link_to admin_<%= singular_table_name %>_download_path(<%= singular_table_name.camelcase %>, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                = link_to admin_<%= plural_table_name %>_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
             - if can?(<%= singular_table_name.camelcase %>).upload?
               .toolbar-item
-                = link_to '', id: 'upload', class: 'tool-btn', title: t('keppler.actions.upload_records') do
+                = link_to '#', id: 'upload', class: 'tool-btn', title: t('keppler.actions.upload_records') do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
+              = link_to reload_admin_<%= plural_table_name %>_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
             - if can?(<%= singular_table_name.camelcase %>).destroy_multiple?
               .toolbar-item
@@ -36,16 +36,14 @@
               %a{ href: '#' }
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
-
         .box.slice-box
           .box-body.no-padding
-
             %table.table
               %thead
                 - if @objects.size.zero?
                   %tr
                     %th{style: 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.<%= plural_table_name %>"))
+                      %h6= t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.<%= plural_table_name %>'))
                 - else
                   %tr
                     %th
@@ -69,7 +67,7 @@
                     <%- end -%>
                     %th.center Menu
                     %th
-              %tbody#objects-container{ "data-update-url" => "#{sort_admin_<%= plural_table_name %>_path}" }
+              %tbody#objects-container{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @<%= plural_table_name %>
         %center#paginator-module
@@ -80,18 +78,4 @@
 
   .mixed-btn
     - if can?(<%= singular_table_name.camelcase %>).create?
-      = link_to new_admin_<%= singular_table_name %>_path, class: "btn-float" do
-        +
-
-:javascript
-  $(document).ready(function(){
-    $('#upload').click(function() {
-      $('#upload_file').click()
-      $('#upload_file').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form').submit()
-      })
-    });
-
-    renderImg();
-  });
+      = link_to '+', new_admin_<%= singular_table_name %>_path, class: 'btn-float'
