@@ -1,4 +1,4 @@
-#index-container{ :controller => "<%= plural_table_name %>" }
+#index-container{ controller: "<%= plural_table_name %>" }
   .container
     .row
       .listing.col-lg-12.col-xs-12
@@ -13,7 +13,7 @@
                   %i.icon-cloud-download
             - if can?(<%= singular_table_name.camelcase %>).upload?
               .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
+                = link_to '', id: 'upload', class: 'tool-btn', title: t('keppler.actions.upload_records') do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
@@ -26,11 +26,11 @@
                     %span.cr
                       %i.cr-icon.glyphicon.glyphicon-ok
             .toolbar-item
-              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+              %a.tool-btn{'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
                 %i.icon-trash
           .hide
-            = form_tag admin_<%= singular_table_name %>_upload_path(@objects), id: "upload_form_<%= plural_table_name %>", multipart: true, method: :post do
-              = file_field_tag :file, id: "upload_file_<%= singular_table_name %>"
+            = form_tag admin_<%= singular_table_name %>_upload_path(@objects), id: 'upload_form', multipart: true, method: :post do
+              = file_field_tag :file, id: 'upload_file'
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -75,7 +75,7 @@
         %center#paginator-module
           = paginate @objects, window: 1
   %aside.control-sidebar
-    = render "description"
+    = render 'description'
   %aside#index-show.control-sidebar
 
   .mixed-btn
@@ -85,11 +85,11 @@
 
 :javascript
   $(document).ready(function(){
-    $('#<%= singular_table_name %>').click(function() {
-      $('#upload_file_<%= singular_table_name %>').click()
-      $('#upload_file_<%= singular_table_name %>').change(function() {
+    $('#upload').click(function() {
+      $('#upload_file').click()
+      $('#upload_file').change(function() {
         $('.waiting').css('display', 'block')
-        $('#upload_form_<%= singular_table_name %>').submit()
+        $('#upload_form').submit()
       })
     });
 

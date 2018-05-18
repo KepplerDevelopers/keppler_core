@@ -1,0 +1,40 @@
+.container
+  .row
+    .col-lg-2
+      = link_to admin_test_modules_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+        .arrow-back.btn.btn-default
+          %i.fa.fa-angle-left
+          = t('keppler.actions.back')
+
+  .show-section
+    .row
+
+      .col-lg-5
+        - @test_module.as_json(only: ["image"]).each do |attribute, value|
+          .box.slice-box
+            .box-header.with-border
+              %h3.box-title= attribute.capitalize
+              .box-tools.pull-right
+                %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
+                  %i.fa.fa-minus
+            .box-body.box-body-no-padding
+              = image_tag value.url, class: 'img-show'
+      .col-lg-7
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+            .box-tools.pull-right
+              = link_to edit_admin_test_module_path(@test_module), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                %i.icon-pencil
+              = link_to admin_test_module_path(@test_module), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                %i.icon-trash
+              %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
+                %i.fa.fa-minus
+          .box-body.box-body-no-padding
+            %table.table.table-striped
+              %tbody
+                - @test_module.as_json(only: ["name", "position", "deleted_at"]).each do |attribute, value|
+                  %tr.list-row
+                    %th.display-label= t("activerecord.attributes.#{attribute}")
+                    %td.display-value.fs-body-1.tc-black-2
+                      = value
