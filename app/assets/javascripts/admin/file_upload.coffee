@@ -1,3 +1,14 @@
+$(document).ready ->
+  $('#upload').click ->
+    $('#upload_file').click()
+    $('#upload_file').change ->
+      $('.waiting').css 'display', 'block'
+      $('#upload_form').submit()
+      return
+    return
+  renderImg()
+  return
+
 ready_post = ->
   # Display the image to be uploaded.
   $('.photo_upload').on 'change', (e) ->

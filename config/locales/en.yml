@@ -2,7 +2,6 @@ en:
   keppler:
     login_message: Sign in to start your session
     sidebar-menu:
-      test_modules: Test modules
       customizes: Customizes
       dashboard: Dashboard
       users: Users
@@ -27,23 +26,20 @@ en:
         categories: Categories
     models:
       singularize:
-        test_module: test module
         customize: customize
         meta_tag: meta tag
-        script: Script
+        script: script
         setting: setting
         configuration: configuration
         user: user
       pluralize:
-        test_modules: test modules
         customizes: customizes
         meta_tags: meta tags
-        scripts: Scripts
+        scripts: scripts
         settings: settings
         configurations: configurations
         user: users
     modules:
-      admin/test_modules: Test modules
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'

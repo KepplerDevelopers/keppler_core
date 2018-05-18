@@ -21,7 +21,10 @@ class MetaTag < ApplicationRecord
 
   def self.upload(file)
     CSV.foreach(file.path, headers: true) do |row|
-      create! row.to_hash
+      begin
+        create! row.to_hash
+      rescue => err
+      end
     end
   end
 
