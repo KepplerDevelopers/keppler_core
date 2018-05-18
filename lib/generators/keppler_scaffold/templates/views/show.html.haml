@@ -29,7 +29,7 @@
                       %th.display-label= t("activerecord.attributes.#{attribute}")
                       %td.display-value.fs-body-1.tc-black-2
                         - if @attachments.include?(attribute)
-                          = image_tag value
+                          = image_tag value.url
                         - else
                           = value
       <%- else -%>
@@ -43,7 +43,7 @@
                 %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
                   %i.fa.fa-minus
             .box-body.box-body-no-padding
-              = image_tag value, class: 'img-show'
+              = image_tag value.url, class: 'img-show'
       .col-lg-7
         .box.slice-box
           .box-header.with-border

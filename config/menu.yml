@@ -21,6 +21,12 @@ menu:
           name: 'Title & Metas'
           url_path: /admin/meta_tags
           current: ['admin/meta_tags']
+  test_module:
+    name: test modules
+    url_path: /admin/test_modules
+    icon: layers
+    current: ['admin/test_modules']
+    model: TestModule
   user:
     name: users
     url_path: /admin/users
