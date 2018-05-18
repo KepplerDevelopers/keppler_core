@@ -9,7 +9,7 @@
           .toolbar
             - if can?(MetaTag).download?
               .toolbar-item
-                = link_to admin_meta_tag_download_path(MetaTag, format: :xls), class: 'tool-btn', title: t('keppler.actions.download_records') do
+                = link_to admin_meta_tags_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
             - if can?(MetaTag).upload?
               .toolbar-item

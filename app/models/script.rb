@@ -22,6 +22,15 @@ class Script < ApplicationRecord
     end
   end
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |script|
+        csv << script.attributes.values
+      end
+    end
+  end
+
   def self.sorter(params)
     params.each_with_index { |id, idx| find(id).update(position: idx.to_i + 1) }
   end

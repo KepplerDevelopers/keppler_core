@@ -28,6 +28,15 @@ class MetaTag < ApplicationRecord
     end
   end
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |meta_tag|
+        csv << meta_tag.attributes.values
+      end
+    end
+  end
+
   def self.sorter(params)
     params.each_with_index do |id, idx|
       find(id).update(position: idx.to_i + 1)
