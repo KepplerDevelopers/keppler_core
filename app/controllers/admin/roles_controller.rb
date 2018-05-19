@@ -24,7 +24,6 @@ module Admin
     # GET /roles/new
     def new
       @role = Role.new
-      authorize @role
     end
 
     # GET /roles/1/edit

@@ -11,6 +11,7 @@
     %ul.sidebar-menu.tree{"data-widget" => "tree" }
       -# %li.header MAIN NAVIGATION
       %li
+        -# - if can?('Dashboard').index?
         = link_to '/admin/dashboard' do
           %i.icon-pie-chart
           %span= t('keppler.sidebar-menu.dashboard')

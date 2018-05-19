@@ -23,7 +23,6 @@ module Admin
     # GET /scripts/new
     def new
       @script = Script.new
-      authorize @script
     end
 
     # GET /scripts/1/edit

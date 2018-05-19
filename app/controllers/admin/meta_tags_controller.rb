@@ -22,7 +22,6 @@ module Admin
     # GET /meta_tags/new
     def new
       @meta_tag = MetaTag.new
-      authorize @meta_tag
     end
 
     # GET /meta_tags/1/edit
