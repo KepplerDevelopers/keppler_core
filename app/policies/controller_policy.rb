@@ -12,7 +12,7 @@ class ControllerPolicy < ApplicationPolicy
   end
 
   def new?
-    create? || user_can?(@objects, 'new')
+    create? || user_can?(@objects, 'create')
   end
 
   def create?
@@ -32,7 +32,7 @@ class ControllerPolicy < ApplicationPolicy
   end
 
   def show?
-    keppler_admin? || user_can?(@objects, 'show')
+    keppler_admin? || user_can?(@objects, 'index')
   end
 
   def destroy_multiple?
