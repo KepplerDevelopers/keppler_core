@@ -38,7 +38,7 @@
       %a.action-btn.pull-right{:id => "menu-#{<%= singular_table_name %>.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
       %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{<%= singular_table_name %>.id}" }
-        - if can?(<%= singular_table_name.camelcase %>).show?
+        - if can?(<%= singular_table_name.camelcase %>).index?
           %li
             = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.show') do
               %i.icon-eye

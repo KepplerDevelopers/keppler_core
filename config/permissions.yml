@@ -19,10 +19,11 @@ modules:
       'index', 'create', 'update',
       'destroy', 'download'
     ]
-    childrens:
-      - roles:
-        name: Role
-        actions: [
-          'index', 'create', 'update',
-          'destroy', 'add_permissions'
-        ]
+
+    # childrens:
+    #   - roles:
+    #     name: Role
+    #     actions: [
+    #       'index', 'create', 'update',
+    #       'destroy', 'add_permissions'
+    #     ]
