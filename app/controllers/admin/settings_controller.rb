@@ -2,7 +2,7 @@ module Admin
   # SettingsController
   class SettingsController < AdminController
     before_action :set_setting, only: [:edit, :update, :appearance_default]
-    before_action :authorization, only: [:edit, :update]
+    before_action :authorization
 
     def edit
       @social_medias = social_account_permit_attributes
@@ -56,7 +56,7 @@ module Admin
     end
 
     def authorization
-      authorize @setting
+      authorize Setting
     end
 
     def style_file

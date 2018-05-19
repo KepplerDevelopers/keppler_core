@@ -3,6 +3,7 @@ module Admin
   class MetaTagsController < AdminController
     before_action :set_meta_tag, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
+    before_action :authorization
 
     # GET /meta_tags
     def index
@@ -105,6 +106,10 @@ module Admin
     end
 
     private
+
+    def authorization
+      authorize MetaTag
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_meta_tag

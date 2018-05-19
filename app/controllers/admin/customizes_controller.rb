@@ -4,9 +4,7 @@ module Admin
     before_action :set_customize, only: %i[show edit update destroy]
     before_action :set_customizes, only: %i[update install_default]
     before_action :show_history, only: %i[index]
-    before_action :authorization, only: %i[
-      new create edit update destroy destroy_multiple
-    ]
+    before_action :authorization
 
     # GET /customizes
     def index
@@ -93,7 +91,7 @@ module Admin
     end
 
     def authorization
-      authorize @customize
+      authorize Customize
     end
 
     # Only allow a trusted parameter "white list" through.

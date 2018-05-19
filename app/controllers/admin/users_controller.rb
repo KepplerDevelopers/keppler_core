@@ -4,7 +4,7 @@ module Admin
     before_action :set_user, only: %i[show edit update destroy]
     before_action :set_roles, only: %i[index new edit create update]
     before_action :show_history, only: %i[index]
-    before_action :authorize_user, only: %i[edit update destroy destroy_multiple]
+    before_action :authorization
 
     def index
       @q = User.ransack(params[:q])
@@ -80,8 +80,8 @@ module Admin
       @roles = all_roles.drop(1)
     end
 
-    def authorize_user
-      authorize @user
+    def authorization
+      authorize User
     end
 
     def respond_to_formats(objects)

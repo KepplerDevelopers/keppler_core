@@ -3,6 +3,7 @@ module Admin
   class ScriptsController < AdminController
     before_action :set_ga_track, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
+    before_action :authorization
 
     # GET /scripts
     def index
@@ -27,7 +28,6 @@ module Admin
 
     # GET /scripts/1/edit
     def edit
-      authorize @script
     end
 
     # POST /scripts
@@ -48,7 +48,6 @@ module Admin
       else
         render :edit
       end
-      authorize @script
     end
 
     def clone
@@ -59,7 +58,6 @@ module Admin
       else
         render :new
       end
-      authorize @script
     end
 
     # DELETE /scripts/1
@@ -70,7 +68,6 @@ module Admin
         admin_scripts_path,
         notice: actions_messages(@script)
       )
-      authorize @script
     end
 
     def destroy_multiple
@@ -80,7 +77,6 @@ module Admin
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
-      authorize @script
     end
 
     def upload
@@ -89,7 +85,6 @@ module Admin
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
-      authorize @script
     end
 
     def download
@@ -99,7 +94,6 @@ module Admin
         format.xls { send_data(@scripts.to_xls) }
         format.json { render :json => @scripts }
       end
-      authorize @scripts
     end
 
     def reload
@@ -115,7 +109,7 @@ module Admin
     end
 
     def authorization
-      authorize @script
+      authorize Script
     end
 
     # Only allow a trusted parameter "white list" through.
