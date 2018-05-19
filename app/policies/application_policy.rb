@@ -11,6 +11,6 @@ class ApplicationPolicy
   end
 
   def user_can?(objects, method)
-    user.can?(objects.name, method)
+    user.can?(objects.model_name.name, method)
   end
 end
