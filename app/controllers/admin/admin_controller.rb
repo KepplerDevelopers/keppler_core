@@ -65,7 +65,7 @@ module Admin
       klass = is_admin ? controller_name : controller_path
 
       redefine_ids(params[:multiple_ids]).each do |id|
-        authorize! :destroy, klass.classify.constantize.find(id)
+        authorize klass.classify.constantize.find(id)
       end
     end
   end

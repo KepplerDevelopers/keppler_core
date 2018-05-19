@@ -29,7 +29,7 @@
               = t('keppler.actions.edit')
         - if can?(MetaTag).clone?
           %li
-            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: t('keppler.actions.clone') do
+            = link_to admin_meta_tag_clone_path(meta_tag), class: 'new-menu', title: t('keppler.actions.clone') do
               %i.icon-docs
               = t('keppler.actions.clone')
         - if can?(MetaTag).destroy?
