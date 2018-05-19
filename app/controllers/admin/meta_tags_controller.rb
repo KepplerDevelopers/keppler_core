@@ -78,7 +78,6 @@ module Admin
     end
 
     def upload
-      byebug
       MetaTag.upload(params[:file])
       redirect_to(
         admin_meta_tags_path(page: @current_page, search: @query),
