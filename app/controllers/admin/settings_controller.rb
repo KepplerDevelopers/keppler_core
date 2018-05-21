@@ -2,7 +2,7 @@ module Admin
   # SettingsController
   class SettingsController < AdminController
     before_action :set_setting, only: [:edit, :update, :appearance_default]
-    before_action :authorization
+    before_action :authorization, except: %i[reload]
 
     def edit
       @social_medias = social_account_permit_attributes

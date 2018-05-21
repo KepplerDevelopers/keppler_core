@@ -4,7 +4,7 @@ module Admin
     before_action :set_customize, only: %i[show edit update destroy authorization]
     before_action :set_customizes, only: %i[update install_default]
     before_action :show_history, only: %i[index]
-    before_action :authorization
+    before_action :authorization, except: %i[reload]
 
     # GET /customizes
     def index

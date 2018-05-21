@@ -4,7 +4,7 @@ module Admin
     before_action :set_user, only: %i[show edit update destroy]
     before_action :set_roles, only: %i[index new edit create update]
     before_action :show_history, only: %i[index]
-    before_action :authorization
+    before_action :authorization, except: %i[reload]
 
     def index
       @q = User.ransack(params[:q])

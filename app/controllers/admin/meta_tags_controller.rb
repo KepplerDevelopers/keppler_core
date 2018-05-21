@@ -3,7 +3,7 @@ module Admin
   class MetaTagsController < AdminController
     before_action :set_meta_tag, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
-    before_action :authorization
+    before_action :authorization, except: %i[reload]
 
     # GET /meta_tags
     def index
@@ -27,7 +27,6 @@ module Admin
 
     # GET /meta_tags/1/edit
     def edit
-      authorize @meta_tag
     end
 
     # POST /meta_tags
@@ -47,7 +46,6 @@ module Admin
       else
         render :edit
       end
-      authorize @meta_tag
     end
 
     def clone
@@ -58,14 +56,12 @@ module Admin
       else
         render :new
       end
-      authorize @meta_tag
     end
 
     # DELETE /meta_tags/1
     def destroy
       @meta_tag.destroy
       redirect_to admin_meta_tags_path, notice: actions_messages(@meta_tag)
-      authorize @meta_tag
     end
 
     def destroy_multiple
@@ -82,7 +78,6 @@ module Admin
         admin_meta_tags_path(page: @current_page, search: @query),
         notice: actions_messages(MetaTag.new)
       )
-      authorize @meta_tag
     end
 
     def download
@@ -92,7 +87,6 @@ module Admin
         format.xls { send_data(@meta_tags.to_xls) }
         format.json { render :json => @meta_tags }
       end
-      authorize @meta_tags
     end
 
     def reload

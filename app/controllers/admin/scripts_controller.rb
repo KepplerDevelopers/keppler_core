@@ -3,7 +3,7 @@ module Admin
   class ScriptsController < AdminController
     before_action :set_ga_track, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
-    before_action :authorization
+    before_action :authorization, except: %i[reload]
 
     # GET /scripts
     def index
