@@ -7,9 +7,10 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            .toolbar-item
-              = link_to admin_users_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                %i.icon-cloud-download
+            - if can?(User).download?
+              .toolbar-item
+                = link_to admin_users_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                  %i.icon-cloud-download
             .toolbar-item
               = link_to reload_admin_users_path, class: "tool-btn", remote: true do
                 %i.icon-reload

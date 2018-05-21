@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2018_05_03_174351) do
   create_table "permissions", force: :cascade do |t|
     t.jsonb "modules"
     t.bigint "role_id"
+    t.string "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["role_id"], name: "index_permissions_on_role_id"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_05_03_174351) do
     t.integer "position"
     t.string "resource_type"
     t.bigint "resource_id"
+    t.string "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
@@ -144,13 +146,6 @@ ActiveRecord::Schema.define(version: 2018_05_03_174351) do
     t.string "skype"
     t.string "vimeo"
     t.integer "setting_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tests", force: :cascade do |t|
-    t.string "test"
-    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
