@@ -1,7 +1,7 @@
 module Admin
   # SettingsController
   class SettingsController < AdminController
-    before_action :set_setting, only: [:edit :update :appearance_default]
+    before_action :set_setting, only: %i[:edit :update :appearance_default]
     before_action :authorization, except: %i[reload]
 
     def edit
