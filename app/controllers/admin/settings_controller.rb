@@ -11,9 +11,7 @@ module Admin
 
     def update
       if @setting.update(setting_params)
-        if get_theme?
-          get_apparience_colors([params[:color], params[:darken], params[:accent]])
-        end
+        get_apparience_colors([params[:color], params[:darken], params[:accent]]) if theme?
         redirect_to(
           admin_settings_path(@render), notice: actions_messages(@setting)
         )
@@ -25,7 +23,7 @@ module Admin
     def appearance_default
       appearance = Appearance.last
       appearance.update(image_background: nil)
-      get_apparience_colors(["#f44336"])
+      get_apparience_colors(['#f44336'])
       redirect_to(
         admin_settings_path(@render), notice: actions_messages(@setting)
       )
@@ -33,9 +31,9 @@ module Admin
 
     private
 
-    def get_theme?
+    def theme?
       colors = [params[:color]]
-      !colors.include?('') and !colors.include?(nil)
+      !colors.include?('') && !colors.include?(nil)
     end
 
     def get_apparience_colors(values)
@@ -76,35 +74,35 @@ module Admin
     end
 
     def smpt_setting_permit_attributes
-      [:id, :address, :port, :domain_name, :email, :password]
+      %i[id address port domain_name email password]
     end
 
     def ga_setting_permit_attributes
-      [:ga_account_id, :ga_tracking_id, :ga_status]
+      %i[ga_account_id ga_tracking_id ga_status]
     end
 
     def social_account_permit_attributes
-      [
-        :facebook, :twitter, :instagram, :google_plus,
-        :tripadvisor, :pinterest, :flickr, :behance,
-        :dribbble, :tumblr, :github, :linkedin,
-        :soundcloud, :youtube, :skype, :vimeo
+      %i[
+        facebook twitter instagram google_plus
+        tripadvisor pinterest flickr behance
+        dribbble tumblr github linkedin
+        soundcloud youtube skype vimeo
       ]
     end
 
     def social_account_colors
-      [
-        '#3b5998', '#1da1f2', '#e1306c', '#dd4b39',
-        '#00af87', '#bd081c', '#ff0084', '#1769ff',
-        '#ff8833', '#35465c', '#333333', '#0077b5',
-        '#ff8800', '#ff0000', '#00aff0', '#162221'
+      %w[
+        #3b5998 #1da1f2 #e1306c #dd4b39
+        #00af87 #bd081c #ff0084 #1769ff
+        #ff8833 #35465c #333333 #0077b5
+        #ff8800 #ff0000 #00aff0 #162221
       ]
     end
 
     def apparence_permit_attributes
-      [
-        :id, :theme_name, :image_background,
-        :image_background_cache, :remove_image_background
+      %i[
+        id theme_name image_background
+        image_background_cache remove_image_background
       ]
     end
   end

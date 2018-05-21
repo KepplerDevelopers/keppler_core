@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails/generators/rails/resource/resource_generator'
 require 'rails/generators/resource_helpers'
 module Rails
@@ -11,7 +13,7 @@ module Rails
       class_option :stylesheet_engine, desc: 'Engine for Stylesheets'
       remove_class_option :resource_route, type: :boolean
 
-      source_root File.expand_path('../templates', __FILE__)
+      source_root File.expand_path('templates', __dir__)
 
       check_class_collision suffix: 'Controller'
 
@@ -31,13 +33,12 @@ module Rails
       )
 
       def add_route
-        unless options[:skip_routes]
-          inject_into_file(
-            'config/routes.rb',
-            "\n #{indent(str_route)}",
-            after: "root to: 'admin#root'"
-          )
-        end
+        return if options[:skip_routes]
+        inject_into_file(
+          'config/routes.rb',
+          "\n #{indent(str_route)}",
+          after: "root to: 'admin#root'"
+        )
       end
 
       def add_option_menu
@@ -67,7 +68,7 @@ module Rails
       # end
 
       def add_locales
-        %w(en es).each do |locale|
+        %w[en es].each do |locale|
           add_str_locales(locale, 'singularize')
           add_str_locales(locale, 'pluralize')
           add_str_locales(locale, 'modules')
@@ -76,7 +77,7 @@ module Rails
         end
       end
 
-      # Se usa para configurar la exportación del ActiveRecords a .xls,
+      # Se usa para configurar la exportacion del ActiveRecords a .xls,
       # pero da problemas al borrar el KepplerScaffold
 
       # def add_config_xls
@@ -114,7 +115,8 @@ module Rails
           'policies/policy.rb',
           File.join(
             'app/policies',
-            controller_class_path, "#{controller_file_name.singularize}_policy.rb"
+            controller_class_path,
+            "#{controller_file_name.singularize}_policy.rb"
           )
         )
       end
@@ -122,16 +124,22 @@ module Rails
       def create_views_files
         names
         attachments
-        template_keppler_views('_description.html.haml')
-        template_keppler_views('_index_show.html.haml')
-        template_keppler_views('_listing.html.haml')
-        template_keppler_views('_form.html.haml')
-        template_keppler_views('show.js.haml')
-        template_keppler_views('edit.html.haml')
-        template_keppler_views('new.html.haml')
-        template_keppler_views('show.html.haml')
-        template_keppler_views('index.html.haml')
-        template_keppler_views('reload.js.haml')
+        # template_keppler_views('_description.html.haml')
+        # template_keppler_views('_index_show.html.haml')
+        # template_keppler_views('_listing.html.haml')
+        # template_keppler_views('_form.html.haml')
+        # template_keppler_views('show.js.haml')
+        # template_keppler_views('edit.html.haml')
+        # template_keppler_views('new.html.haml')
+        # template_keppler_views('show.html.haml')
+        # template_keppler_views('index.html.haml')
+        # template_keppler_views('reload.js.haml')
+        %w[
+          _description.html _index_show.html _listing.html _form.html edit.html
+          new.html show.html index.html show.js reload.js
+        ].each do |file_name|
+          template_keppler_views("#{file_name}.haml")
+        end
       end
 
       hook_for :test_framework, as: :scaffold
@@ -142,23 +150,23 @@ module Rails
       end
 
       def add_position_field
-        file = Dir::entries('db/migrate').sort.last
-        #system "sudo apt-get update"
+        file = Dir::entries('db/migrate').max
+        # system 'sudo apt-get update'
         inject_into_file(
           "db/migrate/#{file}",
           "t.integer :position\n      ",
-          before: "t.timestamps null: false"
+          before: 't.timestamps null: false'
         )
       end
 
       private
 
       def names
-        @names = ['name', 'title', 'first_name', 'full_name']
+        @names = %w[name title first_name full_name]
       end
 
       def attachments
-        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
+        @attachments = %w[logo brand photo avatar cover image picture banner attachment pic file]
       end
 
       def add_str_locales(locale, switch)
@@ -212,7 +220,7 @@ module Rails
       def template_keppler_views(name_file)
         template(
           "views/#{name_file}",
-          File.join("app/views/admin/#{controller_file_name}",  name_file)
+          File.join("app/views/admin/#{controller_file_name}", name_file)
         )
       end
 

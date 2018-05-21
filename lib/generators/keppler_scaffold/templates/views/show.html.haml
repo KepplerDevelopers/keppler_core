@@ -24,13 +24,14 @@
             %table.table.table-striped
               %tbody
                 - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name} %>).each do |attribute, value|
-                  %tr.list-row
-                    %th.display-label= t("activerecord.attributes.#{attribute}")
-                    %td.display-value.fs-body-1.tc-black-2
-                      - if @attachments.include?(attribute)
-                        = image_tag value
-                      - else
-                        = value
+                  - unless attribute.eql?('position') || attribute.eql?('deleted_at')
+                    %tr.list-row
+                      %th.display-label= t("activerecord.attributes.#{attribute}")
+                      %td.display-value.fs-body-1.tc-black-2
+                        - if @attachments.include?(attribute)
+                          = image_tag value
+                        - else
+                          = value
       <%- else -%>
       <%- @attr = attributes.map{|attr| attr.name}.select{|attr| @attachments.include?(attr)} %>
       .col-lg-5

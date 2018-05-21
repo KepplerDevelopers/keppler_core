@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-2
-      = link_to admin_users_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+      = link_to admin_users_path, 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
         .arrow-back.btn.btn-default
           %i.fa.fa-angle-left
           = t('keppler.actions.back')
@@ -10,7 +10,6 @@
       .col-lg-3
         .box.slice-box
           .box-body.box-profile
-            -# .{style: "background-image: url(#{@user.avatar? ? @user.avatar : '/assets/admin/user.png'})"}
             = image_tag (@user.avatar.url || 'admin/user.png'), class: 'profile-user-img img-circle img-responsive', alt: @user.name
             %h3.profile-username.text-center= @user.name
             %p.text-muted.text-center= @user.rol.humanize
@@ -20,18 +19,16 @@
             %h3.box-title= @user.name || 'User'
             .box-tools.pull-right
               - if can?(User).update?
-                = link_to edit_admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                = link_to edit_admin_user_path(@user), class: 'btn btn-box-tool', title: "#{t('keppler.actions.edit') }" do
                   %i.icon-pencil
               - if can?(User).destroy?
                 - unless current_user == @user
-                  = link_to admin_user_path(@user), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                  = link_to admin_user_path(@user), class: 'btn btn-box-tool', title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
                     %i.icon-trash
-
-          / /.box-header
           .box-body.box-body-no-padding
             %table.table.table-striped
               %tbody
-                - @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"], methods: [:rol]).each do |attribute, value|
+                - @user.as_json(except: %i[username deleted_at], methods: [:rol]).each do |attribute, value|
                   %tr.list-row
-                    %th.display-label= t("activerecord.attributes.user.#{attribute}")
-                    %td.display-value.fs-body-1.tc-black-2= value.to_s.humanize
+                    %th.display-label= t("activerecord.attributes.#{attribute}")
+                    %td.display-value.fs-body-1.tc-black-2= value

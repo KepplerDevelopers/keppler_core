@@ -74,7 +74,6 @@ module Admin
         admin_meta_tags_path(page: @current_page, search: @query),
         notice: actions_messages(MetaTag.new)
       )
-      authorize @meta_tag
     end
 
     def upload

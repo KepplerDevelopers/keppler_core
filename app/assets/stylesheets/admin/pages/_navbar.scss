@@ -12,6 +12,8 @@ header.main-header{
     width: 90px;
     height: 90px;
     margin: 0 auto;
+    object-fit: cover;
+    background: $keppler-color;
   }
   .small-profile-img {
     @extend %circle-img;

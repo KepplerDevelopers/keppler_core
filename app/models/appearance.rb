@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Appearance Model
 class Appearance < ApplicationRecord
   belongs_to :setting

@@ -92,7 +92,7 @@ module Admin
       respond_to do |format|
         format.html
         format.xls { send_data(@scripts.to_xls) }
-        format.json { render :json => @scripts }
+        format.json { render json: @scripts }
       end
     end
 
@@ -103,6 +103,7 @@ module Admin
     end
 
     private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_ga_track
       @script = Script.find(params[:id])

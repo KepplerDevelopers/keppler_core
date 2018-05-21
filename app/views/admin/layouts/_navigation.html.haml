@@ -21,16 +21,17 @@
 
     .navbar-custom-menu
       %ul.nav.navbar-nav
-        %li.dropdown.messages-menu
-          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-            %i.icon-envelope
+        -# - if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
+          %li.dropdown.messages-menu
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              %i.icon-envelope
         %li.dropdown.user.user-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
             = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             %li.user-header{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
-              .img-circle.nav-profile-img{:alt => "User Image", style: "background-image: url(#{current_user.avatar? ? current_user.avatar : 'https://thumbs.dreamstime.com/t/profile-icon-male-avatar-portrait-casual-person-silhouette-face-flat-design-vector-46846326.jpg'})"}
+              = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'img-circle nav-profile-img', alt: current_user.name
               %p
                 = current_user.name
                 %small

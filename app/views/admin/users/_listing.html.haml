@@ -12,7 +12,7 @@
 
     %td.avatar
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
-        -# = image_tag user.avatar.url
+        = image_tag user.avatar.url if user.avatar.url
     %td.visible-lg.visible-md
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
         %span= user.name

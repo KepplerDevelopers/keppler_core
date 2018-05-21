@@ -198,7 +198,7 @@ es:
       address: Dirección del servidor
       port: Puerto
       domain_name: Dominio
-      url: Url
+      url: URL
       meta_tags: 'Meta Tags'
       script: 'Script'
       campaign_name: Campaña

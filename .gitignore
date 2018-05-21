@@ -27,6 +27,7 @@ Gemfile.lock
 *.sassc
 .redcar/
 .sass-cache
+.byebug-history
 /app/assets/javascripts/guard_javascript/*
 /app/assets/stylesheets/frontend/native_stylesheets/guard_stylesheets/*
 /config/application.yml
@@ -36,6 +37,7 @@ Gemfile.lock
 /coverage/
 /db/*.javadb/
 /db/*.sqlite3
+/db/schema.rb
 /doc/api/
 /doc/app/
 /doc/features.html

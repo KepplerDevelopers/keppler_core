@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # <%= class_name %> Model
 <% module_namespacing do -%>
 class <%= class_name %> < ApplicationRecord
@@ -10,6 +12,8 @@ class <%= class_name %> < ApplicationRecord
     <%- end -%>
   <%- end -%>
   acts_as_list
+  acts_as_paranoid
+
   # Fields for the search form in the navbar
   def self.search_field
     fields = <%= attributes_names.map { |name| name } %>

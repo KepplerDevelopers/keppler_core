@@ -1,4 +1,4 @@
-.row{style: 'padding: 2rem;padding-top: 20px;padding: 2rem;'}
+#customize-index.row
   .col-md-6.col-lg-6
     .box.slice-box
       .box-header.with-border
@@ -9,11 +9,11 @@
           %i.icon-screen-desktop#lg
           -# %span.separator-line
           %i.icon-reload#reload
-          = link_to root_path, target: "_blank" do
+          = link_to root_path, target: '_blank' do
             %i.icon-size-fullscreen
 
-      .box-body.box-body-no-padding.hidden-xs#box-body{style:"height: 325px;flow:hidden;overflow:hidden; margin: 0 auto"}
-        %iframe{src: "#{root_path}", frameborder:"0", style:"height:250%;width:250%;zoom:1.8;transform:scale(0.4);transform-origin:0 0;"}
+      .box-body.box-body-no-padding.hidden-xs#box-body
+        %iframe{ src: root_path, frameborder: '0' }
   .col-md-6.col-lg-6
     .box.slice-box
       .box-header.with-border
@@ -25,14 +25,14 @@
               = render 'listing', customize: customize
             - if @objects.size.zero?
               %tr
-                %td{colspan: "4"}
+                %td{ colspan: 4 }
                   %center
-                    = t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
+                    = t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.customizes'))
         %center#paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-    = render "description"
+    = render 'description'
     - if can?(Customize).create?
       .mixed-btn
-        = link_to new_admin_customize_path, class: "btn-float" do
+        = link_to new_admin_customize_path, class: 'btn-float' do
           +

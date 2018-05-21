@@ -23,8 +23,7 @@ module Admin
     end
 
     # GET <%= route_url %>/1
-    def show
-    end
+    def show; end
 
     # GET <%= route_url %>/new
     def new
@@ -32,8 +31,7 @@ module Admin
     end
 
     # GET <%= route_url %>/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST <%= route_url %>
     def create

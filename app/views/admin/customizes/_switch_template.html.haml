@@ -2,18 +2,18 @@
   = simple_form_for [:admin, customize] do |f|
     %label
       - if customize.installed == false
-        %span.status.pull-left{style: "padding-right: 50px"} No installed
+        %span.status.pull-left No installed
         .switch.pull-right
-          %input{name: "customize[installed]", type: "hidden", value: "true"}
-          %input#default_switch{:name => "customize[installed]", type: "checkbox", value: "true"}/
-          %label.label-default{:for => "default_switch", onclick: "installTemplate(#{customize.id})"}
+          %input{ name: 'customize[installed]', type: 'hidden', value: 'true' }
+          %input#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'true'}
+          %label.label-default{ for: 'default_switch', onclick: "installTemplate(#{customize.id})"}
 
       - else
-        %span.status.pull-left{style: "padding-right: 50px"} Installed
+        %span.status.pull-left Installed
         .switch.pull-right
-          %input{name: "customize[installed]", type: "hidden", value: "false"}
-          %input#default_switch{:name => "customize[installed]", type: "checkbox", value: "false", checked: "checked"}/
-          %label.label-default{:for => "default_switch", onclick: "installTemplate(#{customize.id})"}
+          %input{ name: 'customize[installed]', type: 'hidden', value: 'false' }
+          %input#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'false', checked: 'checked' }
+          %label.label-default{ for: 'default_switch', onclick: "installTemplate(#{customize.id})" }
 
 :javascript
   function installTemplate(customize_id) {
