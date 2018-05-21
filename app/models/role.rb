@@ -58,7 +58,7 @@ class Role < ApplicationRecord
 
   def create_hash(act, module_name, action)
     old_hash = all_permissions
-    arr = old_hash[module_name]['actions']
+    arr = old_hash.dig(module_name, 'actions')
 
     act.eql?('add') ? arr.push(action) : arr.delete_if { |a| a.eql?(action) }
 
