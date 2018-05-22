@@ -1,30 +1,34 @@
 .container
-	.login-box
-		.center
-			.login-container
-				.login-logo
-					%a{ href: '#' }
-						%span{style:"font-family: 'Patua One'"} Keppler
-						Admin
-				/ /.login-logo
-				.login-box-body
-					= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
-						%p.login-box-msg= t('keppler.login_message')
-						%form{:action => "../../index2.html", :method => "post"}
-							.form-group.has-feedback
-								= f.email_field :email, :autofocus => true, class: "form-control validate", :placeholder => "Email"
-								%i.icon-envelope.input-icon
-							.form-group.has-feedback
-								= f.password_field :password, :autofocus => true, class: "form-control validate #{'invalid' if flash[:alert]}", :placeholder => "Password"
-								%i.icon-lock.input-icon
-							.form-group.has-feedback
-								.pull-left
-									- if devise_mapping.recoverable?
-										= link_to new_password_path(resource_name), class: "recoverable" do
-											= t("devise.sessions.forgot_password")
-								.pull-right
-									= f.submit t("devise.sessions.log_in"), class: 'btn-primary'
-							.clearfix
+  .login-box
+    .center
+      .login-container
+        .login-logo
+          %a{ href: '#' }
+            %span{style:"font-family: 'Patua One'"} Keppler
+            Admin
+        / /.login-logo
+        .login-box-body
+          = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
+            %p.login-box-msg= t('keppler.login_message')
+            %form{:action => "../../index2.html", :method => "post"}
+              .form-group.has-feedback
+                = f.email_field :email, :autofocus => true, class: "form-control validate", :placeholder => "Email"
+                %i.icon-envelope.input-icon
+              .form-group.has-feedback
+                = f.password_field :password, :autofocus => true, class: "form-control validate #{'invalid' if flash[:alert]}", :placeholder => "Password"
+                %i.icon-lock.input-icon
+              .form-group.has-feedback
+                .devise-errors.center-align
+                  - flash.each do |name, msg|
+                    = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+              .form-group.has-feedback
+                .pull-left
+                  - if devise_mapping.recoverable?
+                    = link_to new_password_path(resource_name), class: "recoverable" do
+                      = t("devise.sessions.forgot_password")
+                .pull-right
+                  = f.submit t("devise.sessions.log_in"), class: 'btn-primary'
+              .clearfix
 
-	.login-footer
-		= "#{t('keppler.powered')} <span>Slice Group</span>".html_safe
+  .login-footer
+    = "#{t('keppler.powered')} <span>Slice Group</span>".html_safe
