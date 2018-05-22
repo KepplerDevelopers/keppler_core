@@ -6,6 +6,9 @@ en:
       customizes: Customizes
       dashboard: Dashboard
       users: Users
+      users-submenu:
+        users: Users
+        roles: Roles
       setting: Settings
       keppler-design: 'Keppler Design'
       development: 'Development'
@@ -25,6 +28,14 @@ en:
       keppler-blog-submenu:
         posts: Posts
         categories: Categories
+    permissions:
+      index: Index
+      create: Create
+      update: Edit
+      destroy: Destroy
+      upload: Upload
+      download: Download
+      clone: Clone    
     models:
       singularize:
         role: role

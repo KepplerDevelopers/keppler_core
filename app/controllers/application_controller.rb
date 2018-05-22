@@ -47,7 +47,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def set_modules
     @modules = YAML.load_file(
       "#{Rails.root}/config/permissions.yml"

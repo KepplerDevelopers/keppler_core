@@ -9,6 +9,9 @@ es:
       customizes: Personalización
       dashboard: Tablero
       users: Usuarios
+      users-submenu:
+        users: Usuarios
+        roles: Roles
       development: 'Desarrollo Keppler'
       setting: Configuración
       keppler-design: 'Diseño Keppler'
@@ -37,6 +40,14 @@ es:
       keppler-blog-submenu:
         posts: Posts
         categories: Categorías
+    permissions:
+      index: Listar
+      create: Crear
+      update: Editar
+      destroy: Eliminar
+      upload: Cargar
+      download: Descargar
+      clone: Clonar
     models:
       singularize:
         role: role
