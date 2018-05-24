@@ -90,13 +90,6 @@ module Admin
       authorize @user
     end
 
-    def respond_to_formats(objects)
-      respond_to do |format|
-        format.html
-        format.json { render json: objects }
-      end
-    end
-
     def user_params
       params.require(:user).permit(
         :name, :email, :password, :password_confirmation,

@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
 # Script Model
 class Script < ApplicationRecord
   include ActivityHistory
   include CloneRecord
+  include Uploadable
+  include Downloadable
+  include Sortable
+  acts_as_list
 
   validates_presence_of :name, :script, :url
 
@@ -11,18 +17,5 @@ class Script < ApplicationRecord
 
   def self.search_field
     :name_or_script_cont
-  end
-
-  def self.upload(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      begin
-        Script.create! row.to_hash
-      rescue => err
-      end
-    end
-  end
-
-  def self.sorter(params)
-    params.each_with_index { |id, idx| find(id).update(position: idx.to_i + 1) }
   end
 end
