@@ -21,12 +21,6 @@ menu:
           name: 'Title & Metas'
           url_path: /admin/meta_tags
           current: ['admin/meta_tags']
-  post:
-    name: posts
-    url_path: /admin/posts
-    icon: layers
-    current: ['admin/posts']
-    model: Post
   user:
     name: users
     url_path: /admin/users
