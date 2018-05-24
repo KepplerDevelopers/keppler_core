@@ -60,6 +60,7 @@ gem 'simple_form', '4.0.0'
 # Upload
 gem 'carrierwave', '1.2.2'
 gem 'rmagick', '2.16.0' # fix issue: 'sudo apt install libmagick++-dev'
+gem 'mini_magick', '4.8.0' # fix issue: 'sudo apt install libmagick++-dev'
 
 # Design
 gem 'bootstrap-sass', '3.3.7'
