@@ -79,10 +79,8 @@ class ApplicationController < ActionController::Base
       trackable_type: model.to_s
     ).order('created_at desc').limit(50)
   end
-
+  
   protected
-
-
 
   def configure_permitted_parameters
     RUBY_VERSION < "2.2.0" ? devise_old : devise_new
@@ -106,5 +104,4 @@ class ApplicationController < ActionController::Base
                :current_password)
     end
   end
-
 end

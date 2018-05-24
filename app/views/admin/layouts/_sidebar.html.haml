@@ -24,21 +24,22 @@
                   %i{ class: "icon-#{menu[key]["icon"]}" }
                   %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
           - else # tree sidebar links
-            - if menu[key]["model"] && can?(menu[key]["model"].constantize).index?
-              %li{ class: ('active' if menu[key]['current'].include?(controller_path))}
-                %a{ href: "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
-                  %i{ class: "icon-#{menu[key]['icon']}" }
-                  %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+            - unless menu[key]["model"].eql?('Customize') and Rails.env.production?
+              - if menu[key]["model"] && can?(menu[key]["model"].constantize).index?
+                %li{ class: ('active' if menu[key]['current'].include?(controller_path))}
+                  %a{ href: "#", class: "#{'active current' if menu[key]['current'].include?(controller_path)}" }
+                    %i{ class: "icon-#{menu[key]['icon']}" }
+                    %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
 
-                %ul.treeview-menu
-                  - menu[key]["submenu"].each do |submenu|
-                    - submenu.each do |name, val|
-                      -# - if current_user.can_child?(submenu[name]['name'], menu[key]["model"].pluralize.downcase, 'index')
-                      %li
-                        - if settings_path?
-                          = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
-                        - else
-                          = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
+                  %ul.treeview-menu
+                    - menu[key]["submenu"].each do |submenu|
+                      - submenu.each do |name, val|
+                        -# - if current_user.can_child?(submenu[name]['name'], menu[key]["model"].pluralize.downcase, 'index')
+                        %li
+                          - if settings_path?
+                            = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(@render)}", :'data-no-turbolink'=>true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
+                          - else
+                            = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "#{'current' if submenu[name]['current'].include?(controller_path)}", :'data-no-turbolink'=> true, class: (submenu[name]['url_path'].eql?("/admin/settings/email_setting") ? 'cut-text' : '')
 
   #sidebar-footer
     %a{:href=>"http://slicegroup.xyz", target: "_blank" }
