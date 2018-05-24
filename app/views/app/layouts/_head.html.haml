@@ -1,5 +1,5 @@
 // Title & Meta tags
-= render 'app/layouts/meta_tags'
+= render "app/layouts/meta_tags"
 
 // Stylesheets
 = stylesheet_link_tag 'app/application', media: 'all', 'data-turbolinks-track' => true
@@ -12,11 +12,3 @@
 
 // Google Analytics
 = render 'app/layouts/google_analytics'
-
-// Favicon
-= favicon_link_tag @favicon
-
-- scripts = @scripts.select{|x| x.url == request.env['PATH_INFO']}
-- unless scripts.empty?
-  - scripts.each do |script|
-    = raw script.script

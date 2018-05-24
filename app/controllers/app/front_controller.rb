@@ -6,5 +6,9 @@ module App
     def index
     end
 
+    def post
+      @post = Post.first
+    end
+
   end
 end

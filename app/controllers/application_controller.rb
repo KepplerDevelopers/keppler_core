@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def class_exists?(klass)
+    defined?(klass) && klass.is_a?(Class)
+  end
+
   def redirect_to_index(_objects_path)
     redirect_to objects_path(page: @current_page.to_i.pred, search: @query)
   end

@@ -1,0 +1,45 @@
+- objects.each do |post|
+  %tr{ id: "row-#{post.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can?(Post).destroy_multiple?
+        .checkbox
+          %label{ for: "checkbox-#{post.id}" }
+            %input{ type:"checkbox", id: "checkbox-#{post.id}", 'checklist-model' => 'check', 'checklist-value' => "#{post.id}", '@click' => "listDelete(#{post.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+    %td
+      = link_to admin_post_path(post, search: @query), remote: true, class: 'show-row' do
+        %span
+          = image_tag post.image.url
+    %td.hidden-xs
+      = link_to admin_post_path(post, search: @query), remote: true, class: 'show-row' do
+        %span
+          = post.name
+    %td{ style: 'width: 15px;padding-right:15px;' }
+      %a.action-btn.pull-right{:id => "menu-#{post.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{post.id}" }
+        - if can?(Post).show?
+          %li
+            = link_to admin_post_path(post), class: 'new-menu', title: t('keppler.actions.show') do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can?(Post).update?
+          %li
+            = link_to edit_admin_post_path(post), class: 'new-menu', title: t('keppler.actions.edit') do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can?(Post).clone?
+          %li
+            = link_to admin_post_clone_path(post), class: 'new-menu', title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can?(Post).destroy?
+          %li
+            = link_to admin_post_path(post), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+              %i.icon-trash
+              = t('keppler.actions.delete')
+
+    %td{:style => 'width: 5%;'}
+      %a.drop{:href=>"#"}
+        %i.icon-cursor-move
