@@ -1,18 +1,17 @@
 module Admin
   # MetaTagController
   class MetaTagsController < AdminController
-    before_action :set_meta_tag, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
+    before_action :set_meta_tag, only: %i[show edit update destroy]
+    before_action :show_history, only: %i[index]
 
     # GET /meta_tags
     def index
       @q = MetaTag.ransack(params[:q])
-      meta_tags = @q.result(distinct: true).order(:position)
-      @objects = meta_tags.page(@current_page)
-      @total = meta_tags.size
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to meta_tags_path(page: @current_page.to_i.pred,search: @query)
-      end
+      @meta_tags = @q.result(distinct: true).order(:position)
+      @objects = @meta_tags.page(@current_page)
+      @total = @meta_tags.size
+      redirect_to_index(meta_tags_path) if nothing_in_first_page?(@objects)
+      respond_to_formats(@meta_tags)
     end
 
     # GET /meta_tags/1
@@ -76,22 +75,18 @@ module Admin
       )
     end
 
-    def upload
-      MetaTag.upload(params[:file])
-      redirect_to(
-        admin_meta_tags_path(page: @current_page, search: @query),
-        notice: actions_messages(MetaTag.new)
-      )
-      authorize @meta_tag
-    end
-
+    # def upload
+    #   MetaTag.upload(params[:file])
+    #   redirect_to(
+    #     admin_meta_tags_path(page: @current_page, search: @query),
+    #     notice: actions_messages(MetaTag.new)
+    #   )
+    #   authorize @meta_tag
+    # end
+    #
     def download
       @meta_tags = MetaTag.all
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@meta_tags.to_xls) }
-        format.json { render :json => @meta_tags }
-      end
+      respond_to_formats(@meta_tags)
       authorize @meta_tags
     end
 
