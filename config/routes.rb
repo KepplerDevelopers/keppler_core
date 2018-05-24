@@ -4,34 +4,10 @@ Rails.application.routes.draw do
 
   root to: 'app/front#index'
 
-  get '/post', to: 'app/front#post'
-
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
 
   namespace :admin do
     root to: 'admin#root'
-
-    resources :posts do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      post '/upload', action: 'upload', as: :upload
-      post(
-        '/sort',
-        action: :sort,
-        on: :collection,
-      )
-      get(
-        '/reload',
-        action: :reload,
-        on: :collection,
-      )
-      delete(
-        '/destroy_multiple',
-        action: :destroy_multiple,
-        on: :collection,
-        as: :destroy_multiple
-      )
-    end
 
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
