@@ -9,11 +9,11 @@
           .toolbar
             - if can?(MetaTag).download?
               .toolbar-item
-                = link_to admin_meta_tag_download_path(MetaTag, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                = link_to admin_meta_tags_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
             - if can?(MetaTag).upload?
               .toolbar-item
-                = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'meta_tag' do
+                = link_to '#', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_meta_tags_path, class: 'tool-btn', remote: true do
@@ -29,8 +29,8 @@
               %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
                 %i.icon-trash
           .hide
-            = form_tag admin_meta_tag_upload_path(@objects), id: "upload_form_meta_tag", multipart: true, method: :post do
-              = file_field_tag :file, id: "upload_file_meta_tag"
+            = form_tag admin_meta_tag_upload_path(@objects), id: 'upload_form', multipart: true, method: :post do
+              = file_field_tag :file, id: 'upload_file'
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -52,7 +52,7 @@
                     %th= t('activerecord.attributes.title')
                     %th= t('activerecord.attributes.url')
                     %th
-              %tbody#objects-container{ 'data-update-url' => "#{admin_sorting_meta_tags_path}" }
+              %tbody#objects-container{ 'data-update-url' => "#{sort_admin_meta_tags_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
         %center#paginator-module
@@ -64,16 +64,3 @@
     .mixed-btn
       = link_to new_admin_meta_tag_path, class: 'btn-float' do
         +
-
-
-:javascript
-  $(document).ready(function(){
-    $('#meta_tag').click(function(e) {
-      e.preventDefault()
-      $('#upload_file_meta_tag').click()
-      $('#upload_file_meta_tag').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_meta_tag').submit()
-      })
-    });
-  });

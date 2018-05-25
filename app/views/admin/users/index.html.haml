@@ -8,10 +8,10 @@
           = entries(@total, @objects)
           .toolbar
             .toolbar-item
-              = link_to admin_users_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+              = link_to admin_users_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
                 %i.icon-cloud-download
             .toolbar-item
-              = link_to reload_admin_users_path, class: "tool-btn", remote: true do
+              = link_to reload_admin_users_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
             - if can?(User).destroy_multiple?
               .toolbar-item
@@ -57,15 +57,3 @@
     .mixed-btn
       = link_to new_admin_user_path, class: 'btn-float' do
         +
-:javascript
-  $(document).ready(function(){
-    $('#user').click(function() {
-      $('#upload_file_user').click()
-      $('#upload_file_user').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_user').submit()
-      })
-    });
-
-    renderImg();
-  });

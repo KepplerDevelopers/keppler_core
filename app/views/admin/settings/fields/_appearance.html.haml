@@ -10,11 +10,10 @@
         .box-body.box-body-no-padding
           - if f.object.image_background?
             .appearance-img{style: "background-image:url(#{f.object.image_background_url})"}
-              = render "admin/settings/components/preview"
+              = render 'admin/settings/components/preview'
           - else
-            -# %iframe{src:"http://localhost:3000", frameborder:"0", style:"zoom: 0.75; transform: scale(0.75); transform-origin: 0 0;"}
             .appearance-img{style: "background-image:url('/assets/admin/profile-menu.jpg')"}
-              = render "admin/settings/components/preview"
+              = render 'admin/settings/components/preview'
     .col-md-5.col-lg-6
       .box.slice-box
         .box-header.with-border
@@ -29,7 +28,7 @@
             %center#image
               = image_tag "#{f.object.image_background.blank? ? '' : f.object.image_background}", class: "#{'hidden' if f.object.image_background.blank?} image_to_upload"
           %p Principal
-          %input{type: "color", name: "color", placeholder: "Color", value: @color, "v-model" => "main"}
+          %input{type: 'color', name: 'color', placeholder: 'Color', value: @color, 'v-model' => 'main'}
           -# = text_field_tag :color, nil, placeholder: "Color", value: @color
           -# %p Hover
           -# = text_field_tag :accent, nil, placeholder: "Accent", value: @accent, class: "color-input"
@@ -37,9 +36,9 @@
           -# 	= text_field_tag :darken, nil, placeholder: "Darken", value: @darken, class: "color-input"
           .pull-right
             - if @render.eql?('appearance')
-              = link_to appearance_default_admin_settings_path(@render), class: "btn btn-default", method: :put do
-                = t("keppler.actions.appearance_defaut")
-            = f.button :submit, t("keppler.actions.apply"), class: "btn btn-primary change-color"
+              = link_to appearance_default_admin_settings_path(@render), class: 'btn btn-default', method: :put do
+                = t('keppler.actions.appearance_defaut')
+            = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
 
 :javascript
   var vm = new Vue({
