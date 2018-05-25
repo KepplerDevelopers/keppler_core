@@ -28,6 +28,7 @@
                         #icon-file
                           +
                         = f.file_field :<%= attribute.name %>, class: 'photo_upload'
+                        = f.error :<%= attribute.name %>, style: "color: red;"
                       %center#image
                         = image_tag "#{@<%= singular_table_name %>.<%= attribute.name %>.blank? ? '<%= attribute.name %>.png' : @<%= singular_table_name %>.<%= attribute.name %>}", class: "#{'hidden' if @<%= singular_table_name %>.<%= attribute.name %>.blank?} image_to_upload"
                     <%- end -%>
