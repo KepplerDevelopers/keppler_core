@@ -110,7 +110,7 @@
         var i = {};
         i[e] = t.value, this.set(i), this.execute()
       },
-      template: '<div class="ViewSelector2 row">  <div class="ViewSelector2-item col s4" style="display:none;">    <label>Cuenta</label>    <select class="form-control"></select>  </div>  <div class="ViewSelector2-item col-lg-6">    <label>Propiedad</label>    <select class="form-control"></select>  </div>  <div class="ViewSelector2-item col-lg-6">    <label>Vista</label>    <select class="form-control"></select>  </div></div>'
+      template: '<div class="ViewSelector2 row">  <div class="ViewSelector2-item col s4" style="display:none;">    <label>Cuenta</label>    <select class="form-control"></select>  </div>  <div class="ViewSelector2-item col-md-6">    <label>Propiedad</label>    <select class="form-control"></select>  </div>  <div class="ViewSelector2-item col-md-6">    <label>Vista</label>    <select class="form-control"></select>  </div></div>'
     })
   })
 }, function(t, e, i) {
