@@ -12,6 +12,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
   process :optimize
+  process quality: 100
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -23,10 +24,9 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     return_size_type(file.content_type)
   end
 
-  # version :thumb do
-  #   process :resize_to_fit => [100, 100]
-  #   process :quality => 100 
-  # end
+  version :thumb do
+    process resize_to_fit: [200, 200]
+  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
 
   # Process files as they are uploaded:
