@@ -1,25 +1,22 @@
 module Admin
   # ScriptsController
   class ScriptsController < AdminController
-    before_action :set_ga_track, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
+    before_action :set_ga_track, only: %i[show edit update destroy]
+    before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload]
 
     # GET /scripts
     def index
       @q = Script.ransack(params[:q])
-      scripts = @q.result(distinct: true)
-      @objects = scripts.page(@current_page)
-      @total = scripts.size
-
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to scripts_path(page: @current_page.to_i.pred,search: @query)
-      end
+      @scripts = @q.result(distinct: true)
+      @objects = @scripts.page(@current_page)
+      @total = @scripts.size
+      redirect_to_index(scripts_path) if nothing_in_first_page?(@objects)
+      respond_to_formats(@scripts)
     end
 
     # GET /scripts/1
-    def show
-    end
+    def show; end
 
     # GET /scripts/new
     def new
@@ -27,8 +24,7 @@ module Admin
     end
 
     # GET /scripts/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /scripts
     def create
@@ -72,11 +68,11 @@ module Admin
 
     def destroy_multiple
       Script.destroy redefine_ids(params[:multiple_ids])
-
       redirect_to(
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
+      authorize @script
     end
 
     def upload
@@ -85,15 +81,6 @@ module Admin
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
-    end
-
-    def download
-      @scripts = Script.all
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@scripts.to_xls) }
-        format.json { render json: @scripts }
-      end
     end
 
     def reload

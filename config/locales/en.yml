@@ -43,7 +43,7 @@ en:
         role: role
         customize: customize
         meta_tag: meta tag
-        script: Script
+        script: script
         setting: setting
         configuration: configuration
         user: user
@@ -51,7 +51,7 @@ en:
         roles: roles
         customizes: customizes
         meta_tags: meta tags
-        scripts: Scripts
+        scripts: scripts
         settings: settings
         configurations: configurations
         user: users
