@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/upload', action: 'upload', as: :upload
+      post '/show_description/:module/:action_name', action: 'show_description', as: :show_description
       get(
         '/add_permissions',
         action: 'add_permissions',

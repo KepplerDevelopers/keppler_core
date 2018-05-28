@@ -1,7 +1,7 @@
 module Admin
   # RolesController
   class RolesController < AdminController
-    before_action :set_role, only: [:show, :edit, :update, :destroy, :add_permissions, :create_permissions, :toggle_actions, :create_first_permission]
+    before_action :set_role, only: %i[show edit update destroy add_permissions create_permissions toggle_actions create_first_permission]
     before_action :show_history, only: [:index]
     before_action :set_attachments
 
@@ -112,12 +112,20 @@ module Admin
     end
 
     def create_permissions
+      @module = params[:role][:module]
+      @action = params[:role][:action]
+
       if @role.have_permissions?
         toggle_actions(params[:role][:module], params[:role][:action])
       else
         create_first_permission
       end
-      redirect_to admin_role_add_permissions_path(params[:role_id])
+      # redirect_to admin_role_add_permissions_path(params[:role_id])
+    end
+
+    def show_description
+      @module = params[:module]
+      @action = params[:action_name]
     end
 
     private
