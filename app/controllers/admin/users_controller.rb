@@ -9,14 +9,23 @@ module Admin
     def index
       @q = User.ransack(params[:q])
       users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
+
       @objects = users.page(@current_page)
       @total = users.size
-      @users = User.all.reverse
+
+      if params[:role].eql?('clients')
+        @users = User.select { |u| u.rol.eql?('client') }
+      else
+        @users = User.select { |u| !u.rol.eql?('client') }
+      end
 
       if !@objects.first_page? && @objects.size.zero?
         redirect_to users_path(page: @current_page.to_i.pred, search: @query)
       end
-      respond_to_formats(@objects)
+      respond_to do |format|
+        format.html
+        format.json { render :json => @objects }
+      end
     end
 
     def new
@@ -72,7 +81,11 @@ module Admin
     private
 
     def set_user
-      @user = User.find(params[:id])
+        if params[:id].eql?('clients') || params[:id].eql?('admins')
+        redirect_to action: :index, role: params[:id]
+      else
+        @user = User.find(params[:id])
+      end
     end
 
     def set_roles

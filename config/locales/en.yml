@@ -9,6 +9,8 @@ en:
       users-submenu:
         users: Users
         roles: Roles
+        clients: Clients
+        admins: Admins
       setting: Settings
       keppler-design: 'Keppler Design'
       development: 'Development'
@@ -35,7 +37,7 @@ en:
       destroy: Destroy
       upload: Upload
       download: Download
-      clone: Clone    
+      clone: Clone
     models:
       singularize:
         role: role

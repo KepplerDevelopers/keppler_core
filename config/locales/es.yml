@@ -12,6 +12,8 @@ es:
       users-submenu:
         users: Usuarios
         roles: Roles
+        clients: Clientes
+        admins: Administradores
       development: 'Desarrollo Keppler'
       setting: Configuración
       keppler-design: 'Diseño Keppler'
