@@ -5,6 +5,7 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
+      people: People
       customizes: Personalización
       dashboard: Tablero
       users: Usuarios
@@ -38,6 +39,7 @@ es:
         categories: Categorías
     models:
       singularize:
+        person: person
         customize: customize
         meta_tag: meta tag
         script: script
@@ -45,6 +47,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        people: people
         customizes: customizes
         meta_tags: meta tags
         scripts: scripts
@@ -53,6 +56,7 @@ es:
         user: usuarios
         script: scripts
     modules:
+      admin/people: People
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
@@ -125,6 +129,7 @@ es:
       upload_records: Cargar registros
   activerecord:
     attributes:
+      public: Publico
       id: Identificador
       title: Título
       subtitle: Subtítulo

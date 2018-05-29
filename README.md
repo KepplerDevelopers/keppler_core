@@ -1,19 +1,19 @@
 ### KEPPLER ADMIN
 
-KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
+KEPPLER ADMIN es un CMS con un entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
 
 
 ### Características
 
-* Base de datos por defecto MySQL
+* Base de datos por defecto PostreSQL
 * Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
 * Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
-* Integración para autorizaciones con [CanCanCan](https://github.com/CanCanCommunity/cancancan)
+* Integración para autorizaciones con [Pundit](https://github.com/varvet/pundit)
 * Inegración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
 * Integración para helpers de formularios con [SimpleForm](https://github.com/RolifyCommunity/rolify)
 * Integración para búsquedas full-text con [Ransack](https://github.com/activerecord-hackery/ransack)
-* Integración con framework fronte-end para el administrativo con [Materialize](http://materializecss.com/)
-* Integración con framework javascript [AngularJs](https://angularjs.org/)
+* Integración con framework fronte-end para el administrativo con [AdminLTE](https://adminlte.io/)
+* Integración con framework javascript [VueJS](https://vuejs.org/)
 * Integración sitemap dinamicos con [sitemap_generator](https://github.com/kjvarga/sitemap_generator)
 
 ### Instalación
@@ -31,51 +31,55 @@ rake db:migrate
 rake db:seed
 ```
 
-### SimpleForm con Materialize
+### SimpleForm con Bootstrap
 
-Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en `config/initializers/simple_form_materialize.rb`
+Se ofrece una integración por defecto entre SimpleForm y Bootstrap, usted tiene la posibilidad de cambiar su funcionalidad en `config/initializers/simple_form_bootstrap.rb`
 
 Aqui algunos ejemplos para la creacion de inputs:
 
 ```ruby
-#inputs de tipo text
+ # Inputs de tipo string o textarea
 = f.input :name
 
-#inputs de tipo boolean
-= f.input :public, as: :checkbox_material
+ # Inputs de tipo CKEditor
+= f.input :description, as: :ckeditor, input_html: { ckeditor: { toolbar: 'mini'} }
 
-#inputs de tipo textarea
-= f.input :description, input_html: { class: "materialize-textarea" }
+ # Inputs de tipo boolean
+= f.input :public, as: :keppler_boolean
 
-#inputs de tipo file
-= f.input :image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+ # Inputs de tipo file
+= f.input :image, as: :keppler_file, wrapper_html: { class: 'file-field' }
 
-#inputs de tipo select
-= f.input :role_ids, collection: Role.all, label: false, include_blank: "Selecione un rol"
+ # Inputs de tipo select
+= f.input :role_ids, collection: Role.all, label: false, include_blank: "Seleccione un rol"
 
-#inputs de tipo radio buttons
-= f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
+ # Inputs de tipo radio buttons
+= f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']], :first, :last
 
-#inputs de tipo check_boxes
-= f.collection_check_boxes :options, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
+ # Inputs de tipo check_boxes
+= f.collection_check_boxes :options, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']], :first, :last
 
-#inputs de tipo date
-= f.input :date, input_html: {class: "datepicker"}
+ # Inputs de tipo date
+= f.input :date, input_html: { class: 'datepicker' }
 ```
 
-**Nota:** *Puede revisar la documentación de [Materialize](http://materializecss.com/) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
+**Nota:** *Puede revisar la documentación de [AdminLTE](https://adminlte.io) para agregar nuevas integraciones para sus formularios a través de los [Wrappers](https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers) de simpleform.*
 
 
 ### Keppler scaffolds
 
-Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo modulo solo tienes que llamar al siguiente comando desde la consola:
+Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente configurados para adaptarse de una vez al administrativo. Para crear un nuevo módulo sólo debes llamar al siguiente comando desde la consola:
 
-`rails g keppler_scaffold [module_name] [attributes] -f`
+`rails g keppler_scaffold ModuleName attribute:type`
 
-Luego crea la tabla en base de datos.
+Por ejemplo:
+
+`rails g keppler_scaffold Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references`
+
+Luego migra la tabla a la base de datos.
 
 `rake db:migrate`
-<!-- 
+<!--
 ### Plugins (Módulos)
 
 La plataforma permite la adaptación de módulos con facil instalación, algunos de los módulos desarrollados son:

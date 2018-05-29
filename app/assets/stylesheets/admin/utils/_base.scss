@@ -45,6 +45,10 @@ a {
   text-overflow: ellipsis;
 }
 
+td.text-overflow {
+  max-width: 100px;
+}
+
 
 .box-tools {
   i {

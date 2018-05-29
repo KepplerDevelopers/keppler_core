@@ -37,6 +37,8 @@ $(window).load ->
       $('.hide-search').removeClass 'appear'
       $('.search-button').removeClass 'submit'
 
+  $('.datepicker').datepicker()
+
   preloaderFadeOutTime = 500
   hidePreloader()
   searchButton()

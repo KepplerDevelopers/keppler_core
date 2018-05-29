@@ -1,27 +1,20 @@
 # frozen_string_literal: true
 
-# <%= class_name %> Model
-<% module_namespacing do -%>
-class <%= class_name %> < ApplicationRecord
+# Person Model
+class Person < ApplicationRecord
   include ActivityHistory
   include CloneRecord
   include Uploadable
   include Downloadable
   include Sortable
-  <%- attributes.each do |attribute| -%>
-    <%- if @attachments.include?(attribute.name) -%>
-  mount_uploader :<%=attribute.name%>, AttachmentUploader
-    <%- end -%>
-    <%- if attribute.reference? -%>
-  belongs_to :<%= attribute.name %>
-    <%- end -%>
-  <%- end -%>
+  mount_uploader :avatar, AttachmentUploader
+  belongs_to :user
   acts_as_list
   acts_as_paranoid
 
   # Fields for the search form in the navbar
   def self.search_field
-    fields = %i[<%= attributes_names.map { |name| name }.join(' ') %>]
+    fields = %i[avatar name bio birthdate hour public user_id position deleted_at]
     build_query(fields, :or, :cont)
   end
 
@@ -32,4 +25,3 @@ class <%= class_name %> < ApplicationRecord
     query.to_sym
   end
 end
-<% end -%>

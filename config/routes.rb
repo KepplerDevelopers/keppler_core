@@ -8,6 +8,28 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'admin#root'
+ 
+    resources :people do
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
+      post '/upload', action: 'upload', as: :upload
+      post(
+        '/sort',
+        action: :sort,
+        on: :collection,
+      )
+      get(
+        '/reload',
+        action: :reload,
+        on: :collection,
+      )
+      delete(
+        '/destroy_multiple',
+        action: :destroy_multiple,
+        on: :collection,
+        as: :destroy_multiple
+      )
+    end
 
     resources :customizes do
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -91,7 +113,10 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  # Dashboard route engine
+  # Dashboard routes engine
   mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'
+
+  # Ckeditor routes engine
+  mount Ckeditor::Engine => '/ckeditor'
 
 end

@@ -17,12 +17,12 @@
                 = link_to admin_user_delete_avatar_path(@user), remote: true do
                   %i.icon-trash
           .box-body.box-profile
-            .upload-image
+            .upload_image
               .files.form-group.trigger{ class: "#{'files-absolute' unless @user.avatar.blank?}" }
-                #icon-file
+                .icon-file
                   +
                 = f.file_field :avatar, class: 'photo_upload'
-              %center#image
+              %center.image-show
                 = image_tag "#{@user.avatar.blank? ? 'admin/user.png' : @user.avatar}", class: "#{'hidden' if @user.avatar.blank?} image_to_upload"
 
 
