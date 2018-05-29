@@ -19,6 +19,14 @@ class User < ApplicationRecord
     roles.first.name
   end
 
+  def self.select_clients(obj)
+    obj.select { |u| !u.rol.eql?('admin') && !u.rol.eql?('keppler_admin') }
+  end
+
+  def self.select_admins(obj)
+    obj.select { |u| u.rol.eql?('admin') || u.rol.eql?('keppler_admin')  }
+  end
+
   # Get the page number that the object belongs to
   def page(order = :id)
     ((self.class.order(order => :desc)

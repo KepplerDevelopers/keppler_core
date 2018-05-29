@@ -45,6 +45,10 @@ menu:
           name: frontend templates
           url_path: /admin/customizes
           current: ['admin/customizes']
+      - appearance:
+          name: admin appearance
+          url_path: /admin/settings/appearance
+          current: ['appearance']    
   # development:
   #   name: Development
   #   current: ['admin/scaffolds']

@@ -14,9 +14,9 @@ module Admin
       @total = users.size
 
       if params[:role].eql?('clients')
-        @users = User.select { |u| u.rol.eql?('client') }
+        @users = User.select_clients(@objects)
       else
-        @users = User.select { |u| !u.rol.eql?('client') }
+        @users = User.select_admins(@objects)
       end
 
       if !@objects.first_page? && @objects.size.zero?
