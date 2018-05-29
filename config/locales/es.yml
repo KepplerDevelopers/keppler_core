@@ -337,6 +337,7 @@ es:
   errors:
     format: ! '%{attribute} %{message}'
     messages:
+      max_size_error: "Archivo demasiado pesado"
       tipo_transaccion: no puede realizarse, el artículo no posee existencia
       lista_de_articulos: no puede estar vacía
       stock_maximo: no puede ser menor al stock mínimo
