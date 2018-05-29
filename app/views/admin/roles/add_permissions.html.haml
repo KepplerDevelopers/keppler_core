@@ -23,11 +23,11 @@
                       - module_name[key]["actions"].each do |action|
                         %tr
                           %td.row-selectable
-                            = link_to admin_role_show_description_path(@role, module_name[key]["name"], action.first), method: :post, remote: true do
+                            = link_to admin_role_show_description_path(@role, module_name[key]["name"], action), method: :post, remote: true do
                               .pull-left
-                                %h4= t("keppler.permissions.#{action.first}")
+                                %h4= t("keppler.permissions.#{action}")
                               .pull-right
-                                = render "admin/roles/switch", role: @role, module_name: module_name[key]["name"], action: action.first, children: false
+                                = render "admin/roles/switch", role: @role, module_name: module_name[key]["name"], action: action, children: false
 
     .col-lg-6
       %div{style: "width: 43%; height: 100%; position: fixed; right: 0px"}
@@ -35,7 +35,7 @@
           .box.slice-box
             .box-header.with-border
               %h4.box-title= t("activerecord.attributes.description")
-              
+
             .box-body{style: "min-height: 100px"}
               %table.table.table-bordered
                 %tbody
@@ -44,12 +44,12 @@
                       - module_name.each do |key, value|
                         - unless module_name[key]["name"].eql?('dashboard')
                           - module_name[key]["actions"].each do |action|
-                            %div.no-visible{id: "description-#{module_name[key]["name"]}-#{action.first}"}
+                            %div.no-visible{id: "description-#{module_name[key]["name"]}-#{action}"}
                               %h5
                                 %strong Modulo:
                                 = module_name[key]["name"].pluralize
                               %h5
                                 %strong Acción:
-                                = t("keppler.permissions.#{action.first}").camelize
+                                = t("keppler.permissions.#{action}").camelize
                               %hr
-                              %h5= t("keppler.permissions.descriptions.#{action.first}")
+                              %h5= t("keppler.permissions.descriptions.#{action}")

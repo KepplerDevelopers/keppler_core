@@ -193,7 +193,7 @@ module Rails
       end
 
       def str_permissions
-        "#{controller_file_name.pluralize}:\n    name: #{controller_file_name.singularize.camelize}\n    actions:\n      index: ''\n      create: ''\n      update: ''\n      destroy: ''\n      download: ''\n      upload: ''\n      clone: ''\n  "
+        "#{controller_file_name.pluralize}:\n    name: #{controller_file_name.singularize.camelize}\n    actions: [\n      'index', 'create', 'update',\n      'destroy', 'download', 'upload',\n      'clone'\n    ]\n  "
       end
       # def str_ability_admin
       #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
