@@ -49,6 +49,13 @@ module Rails
         )
       end
 
+      def add_option_permissions
+        inject_into_file(
+          'config/permissions.yml',
+          str_permissions,
+          before: 'scripts:'
+        )
+      end
       # def add_access_ability
       #   inject_into_file(
       #     'app/models/ability.rb',
@@ -185,6 +192,9 @@ module Rails
         "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: layers\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
       end
 
+      def str_permissions
+        "#{controller_file_name.pluralize}:\n    name: #{controller_file_name.singularize.camelize}\n    actions: [\n      'index', 'create', 'update',\n      'destroy', 'download', 'upload',\n      'clone'\n    ]\n  "
+      end
       # def str_ability_admin
       #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
       # end
