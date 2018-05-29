@@ -7,9 +7,10 @@
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            .toolbar-item
-              = link_to admin_users_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
-                %i.icon-cloud-download
+            - if can?(User).download?
+              .toolbar-item
+                = link_to admin_users_path(:format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                  %i.icon-cloud-download
             .toolbar-item
               = link_to reload_admin_users_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
@@ -28,6 +29,16 @@
               %a{ href: '#' }
                 %i.icon-directions
                 = t("keppler.modules.#{action_name.underscore}")
+
+        .form-group
+          %label.control-label.string.required{ for: 'user_name' }
+            Filtrar usuarios por rol
+          = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do |f|
+            %select#filter_by_role.form-control.form-control{name: "role", onchange: "$(this).parent().submit()"}
+              - Role.all.each do |role|
+                - unless role.name.eql?('keppler_admin')
+                  %option{name: "role", value: role.name}= role.name
+
         .box.slice-box
           .box-body.no-padding
             %table.table.table-striped
@@ -46,7 +57,7 @@
                     %th
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @objects
+                = render 'listing', objects: @users
         %center#paginator-module
           = paginate @objects, window: 1
 
@@ -57,3 +68,6 @@
     .mixed-btn
       = link_to new_admin_user_path, class: 'btn-float' do
         +
+
+:javascript
+  $('#role-1').fadeOut()

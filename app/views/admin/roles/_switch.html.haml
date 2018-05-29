@@ -1,0 +1,20 @@
+= simple_form_for @role, url: admin_role_create_permissions_path(role), method: :post, remote: true do |f|
+  %label
+    - if !role.have_action?(module_name, action)
+      %label.switch
+        %input{name: "role[module]", type: "hidden", value: module_name}
+        %input{name: "role[action]", type: "hidden", value: action}
+        %input{id: "switch-#{module_name}-#{action}", :type => "checkbox"}/
+        %span.slider.round{onclick: "sendPermission('#{module_name}', '#{action}')"}
+
+    - else
+      %label.switch
+        %input{name: "role[module]", type: "hidden", value: module_name}
+        %input{name: "role[action]", type: "hidden", value: action}
+        %input.active{id: "switch-#{module_name}-#{action}", :type => "checkbox", checked: "checked"}/
+        %span.slider.round{onclick: "sendPermission('#{module_name}', '#{action}')"}
+
+:javascript
+  function sendPermission(module_name, action) {
+    $('#switch-'+module_name+'-'+action).parent().parent().parent().submit()
+  }

@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["contacto@slicegroup.xyz"]
   s.homepage    = "https://www.slicegroup.xyz"
   s.summary     = "Summary of KepplerGaDashboard"
-  s.description = "Engine integrado con google analytics que proporciona un dashboard agradable presentando algunas métricas sobre las visitas."
+  s.description = ""
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

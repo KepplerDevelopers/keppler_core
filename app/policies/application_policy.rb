@@ -6,11 +6,11 @@ class ApplicationPolicy
     user.keppler_admin?
   end
 
-  def admin?
-    user.admin?
-  end
-
   def same_user?(id)
     user.id.eql?(id)
+  end
+
+  def user_can?(objects, method)
+    user.can?(objects.model_name.name, method)
   end
 end
