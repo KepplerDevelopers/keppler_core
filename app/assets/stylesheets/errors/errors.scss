@@ -137,6 +137,11 @@
   top: 230px;
   animation: spin 6.5s infinite linear;
 }
+#astronaut-static {
+  width: 150px;
+  height: 250px;
+  margin-top: 50px;
+}
 
 @keyframes spin {
   0% {
