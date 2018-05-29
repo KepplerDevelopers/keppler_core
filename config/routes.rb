@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
+  post '/filter', to: 'admin/users#filter_by_role', as: :filter_by_role
 
   namespace :admin do
     root to: 'admin#root'
+
 
     resources :roles do
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -49,6 +51,7 @@ Rails.application.routes.draw do
       post '/upload', action: 'upload', as: :upload
       post '/install_default', action: 'install_default'
     end
+
 
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''

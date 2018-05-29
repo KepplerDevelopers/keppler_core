@@ -23,14 +23,10 @@ menu:
     current: ["admin/users"]
     model: User
     submenu:
-      - admins:
-          name: admins
-          url_path: /admin/users/admins
-          current: ['admin/users/admins']
-      - clients:
-          name: clients
-          url_path: /admin/users/clients
-          current: ['admin/users/clients']
+      - users:
+          name: users
+          url_path: /admin/users
+          current: ['admin/users']
       - roles:
           name: roles
           url_path: /admin/roles
@@ -48,7 +44,7 @@ menu:
       - appearance:
           name: admin appearance
           url_path: /admin/settings/appearance
-          current: ['appearance']    
+          current: ['appearance']
   # development:
   #   name: Development
   #   current: ['admin/scaffolds']

@@ -4,28 +4,24 @@ module Admin
     before_action :set_user, only: %i[show edit update destroy]
     before_action :set_roles, only: %i[index new edit create update]
     before_action :show_history, only: %i[index]
-    before_action :authorization, except: %i[reload]
+    before_action :authorization, except: %i[reload filter_by_role]
+    before_action :set_objects, only: %i[index filter_by_role]
 
     def index
-      @q = User.ransack(params[:q])
-      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
-
-      @objects = users.page(@current_page)
-      @total = users.size
-
-      if params[:role].eql?('clients')
-        @users = User.select_clients(@objects)
-      else
-        @users = User.select_admins(@objects)
-      end
+      @users = User.filter_by_role(@objects, 'keppler_admin')
 
       if !@objects.first_page? && @objects.size.zero?
         redirect_to users_path(page: @current_page.to_i.pred, search: @query)
       end
+
       respond_to do |format|
         format.html
         format.json { render :json => @objects }
       end
+    end
+
+    def filter_by_role
+      @users = User.filter_by_role(@objects, params[:role])
     end
 
     def new
@@ -86,6 +82,14 @@ module Admin
       else
         @user = User.find(params[:id])
       end
+    end
+
+    def set_objects
+      @q = User.ransack(params[:q])
+      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
+
+      @objects = users.page(@current_page)
+      @total = users.size
     end
 
     def set_roles

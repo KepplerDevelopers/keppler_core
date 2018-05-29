@@ -19,12 +19,8 @@ class User < ApplicationRecord
     roles.first.name
   end
 
-  def self.select_clients(obj)
-    obj.select { |u| !u.rol.eql?('admin') && !u.rol.eql?('keppler_admin') }
-  end
-
-  def self.select_admins(obj)
-    obj.select { |u| u.rol.eql?('admin') || u.rol.eql?('keppler_admin')  }
+  def self.filter_by_role(obj, role)
+    obj.select { |u| u.rol.eql?(role) }
   end
 
   # Get the page number that the object belongs to
