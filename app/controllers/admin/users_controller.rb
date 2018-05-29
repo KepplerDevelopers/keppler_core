@@ -8,7 +8,7 @@ module Admin
     before_action :set_objects, only: %i[index filter_by_role]
 
     def index
-      @users = User.filter_by_role(@objects, 'keppler_admin')
+      @users = User.filter_by_role(@objects, 'admin')
 
       if !@objects.first_page? && @objects.size.zero?
         redirect_to users_path(page: @current_page.to_i.pred, search: @query)

@@ -32,11 +32,12 @@
 
         .form-group
           %label.control-label.string.required{ for: 'user_name' }
-            Filtrar por role
+            Filtrar usuarios por rol
           = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do |f|
             %select#filter_by_role.form-control.form-control{name: "role", onchange: "$(this).parent().submit()"}
               - Role.all.each do |role|
-                %option{name: "role", value: role.name}= role.name
+                - unless role.name.eql?('keppler_admin')
+                  %option{name: "role", value: role.name}= role.name
 
         .box.slice-box
           .box-body.no-padding
