@@ -5,8 +5,8 @@ require_dependency "<%= namespaced_file_path %>/application_controller"
 module Admin
   # <%= controller_class_name %>Controller
   class <%= controller_class_name %>Controller < AdminController
-    before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
+    before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
+    before_action :show_history, only: %i[index]
     before_action :set_attachments
     before_action :authorization, except: %i[reload]
 
@@ -20,6 +20,7 @@ module Admin
       if !@objects.first_page? && @objects.size.zero?
         redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
       end
+      format
     end
 
     # GET <%= route_url %>/1
@@ -85,15 +86,6 @@ module Admin
       )
     end
 
-    def download
-      @<%= plural_table_name %> = <%= class_name %>.all
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
-        format.json { render :json => @<%= plural_table_name %> }
-      end
-    end
-
     def reload
       @q = <%= class_name %>.ransack(params[:q])
       <%= plural_table_name %> = @q.result(distinct: true)
@@ -106,6 +98,15 @@ module Admin
     end
 
     private
+
+    def format
+      respond_to do |format|
+        format.html
+        format.csv { send_data @<%= plural_table_name %>.to_csv }
+        format.xls # { send_data @<%= plural_table_name %>.to_xls }
+        format.json { render json: @<%= plural_table_name %> }
+      end
+    end
 
     def authorization
       authorize <%= class_name %>

@@ -185,8 +185,7 @@ module Rails
       end
 
       def str_route
-        "\n  resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/upload', action: 'upload', as: :upload\n    \n    get '/download', action: 'download', as: :download\n    post(\n      '/sort',\n      action: :sort,\n      on: :collection,\n    )\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      '/destroy_multiple',\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )
-  end"
+        "\n  resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/upload', action: 'upload', as: :upload\n    post(\n      '/sort',\n      action: :sort,\n      on: :collection,\n    )\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      '/destroy_multiple',\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end"
       end
 
       def str_menu
@@ -204,9 +203,9 @@ module Rails
       #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can [:index, :show], #{controller_file_name.singularize.camelcase}"
       # end
 
-      def str_xls
-        "\nif #{controller_file_name.singularize.camelcase}.table_exists?\n  @#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n  @#{controller_file_name.pluralize}.to_xls(\n    only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n    except: [:id],\n    header: false,\n    prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n    column_width: [17, 15, 15, 40, 25, 37]\n  )\n  @#{controller_file_name.pluralize}.to_xls do |column, value|\n    column == :salutation ? t(value) : value\n  end\nend\n"
-      end
+      # def str_xls
+      #   "\nif #{controller_file_name.singularize.camelcase}.table_exists?\n  @#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n  @#{controller_file_name.pluralize}.to_xls(\n    only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n    except: [:id],\n    header: false,\n    prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n    column_width: [17, 15, 15, 40, 25, 37]\n  )\n  @#{controller_file_name.pluralize}.to_xls do |column, value|\n    column == :salutation ? t(value) : value\n  end\nend\n"
+      # end
 
       def str_locales(switch)
         case switch
@@ -215,9 +214,9 @@ module Rails
         when 'pluralize'
           "\n        #{controller_file_name}: #{controller_file_name.humanize.downcase}"
         when 'modules'
-          "\n      admin/#{controller_file_name}: #{controller_file_name.humanize}"
+          "\n      admin/#{controller_file_name.dasherize}: #{controller_file_name.humanize}"
         when 'sidebar-menu'
-          "\n      #{controller_file_name}: #{controller_file_name.humanize}"
+          "\n      #{controller_file_name.dasherize}: #{controller_file_name.humanize}"
         # when 'attributes'
         #   array = ["\n      #{controller_file_name.singularize}:"]
         #   attributes_names.each do |attribute|
