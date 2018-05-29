@@ -2,35 +2,28 @@ modules:
   scripts:
     name: Script
     actions:
-      index: 'Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos'
-      create: 'Permite al usuario la creación de nuevos registros dentro del módulo'
-      update: 'Permite al usuario actualizar registros existentes dentro del módulo'
-      destroy: 'Permite al usuario eliminar registros existentes dentro del módulo'
-      upload: 'Permite al usuario cargar un archivo con extensión .csv (pre-fabricado) y crear registros en la base de datos con el contenido del mismo'
-      download: 'Permite al usuario descargar en un archivo con extensión .csv los registros existentes dentro del módulo'
-      clone: 'Permite al usuario clonar un registro existente dentro del módulo'
+      index: ''
+      create: ''
+      update: ''
+      destroy: ''
+      upload: ''
+      download: ''
+      clone: ''
   meta_tags:
     name: MetaTag
     actions:
-      index: 'Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos'
-      create: 'Permite al usuario la creación de nuevos registros dentro del módulo'
-      update: 'Permite al usuario actualizar registros existentes dentro del módulo'
-      destroy: 'Permite al usuario eliminar registros existentes dentro del módulo'
-      upload: 'Permite al usuario cargar un archivo con extensión .csv (pre-fabricado) y crear registros en la base de datos con el contenido del mismo'
-      download: 'Permite al usuario descargar en un archivo con extensión .csv los registros existentes dentro del módulo'
-      clone: 'Permite al usuario clonar un registro existente dentro del módulo'
+      index: ''
+      create: ''
+      update: ''
+      destroy: ''
+      upload: ''
+      download: ''
+      clone: ''
   users:
     name: User
     actions:
-      index: 'Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos'
-      create: 'Permite al usuario la creación de nuevos registros dentro del módulo'
-      update: 'Permite al usuario actualizar registros existentes dentro del módulo'
-      destroy: 'Permite al usuario eliminar registros existentes dentro del módulo'
-      download: 'Permite al usuario descargar en un archivo con extensión .csv los registros existentes dentro del módulo'
-    # childrens:
-    #   - roles:
-    #     name: Role
-    #     actions: [
-    #       'index', 'create', 'update',
-    #       'destroy', 'add_permissions'
-    #     ]
+      index: ''
+      create: ''
+      update: ''
+      destroy: ''
+      download: ''
