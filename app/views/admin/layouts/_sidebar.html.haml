@@ -1,7 +1,12 @@
 %aside.main-sidebar
-  %section.sidebar.sidebar-collapse{style: "" }
+  %section.sidebar.sidebar-collapse
     / Sidebar user panel
-    .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
+    .user-panel
+      -# Activar background del panel de usuario para versiones darken
+      -# - if @appearance.image_background?
+        :sass
+          .user-panel
+            background-image: url(#{@appearance.image_background})
       .pull-left.image
         = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle side-img-profile keppler-background', alt: current_user.name
       .info
