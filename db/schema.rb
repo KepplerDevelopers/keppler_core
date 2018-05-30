@@ -75,7 +75,11 @@ ActiveRecord::Schema.define(version: 2018_05_03_174351) do
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_pruebas_on_deleted_at"
   end
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> fd6c358f7e78e97f1018be8d73ae42f108568930
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
