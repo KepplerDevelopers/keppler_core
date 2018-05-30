@@ -25,6 +25,7 @@ a{
     max-width: 280px;
     height: 50vh;
     max-height: 200px;
+    margin-right: -20px;
   }
 }
 .denied__wrapper {
@@ -130,11 +131,15 @@ a{
 }
 #astronaut {
   width: 50px;
+  height: 90px;
   position: absolute;
-  right: 20px;
-  top: 230px;
+  left: 60%;
+  top: 60%;
   @media only screen and (min-width:991px) and (max-width:2000px){
     animation: spin 6.5s infinite linear;
+  }
+  @media only screen and (max-width:991px) and (min-width:0px){
+    display: none;
   }
 }
 #not-authorized{
