@@ -15,6 +15,10 @@ module ApplicationHelper
     current_user
   end
 
+  def can?(model)
+    Pundit.policy(current_user, model)
+  end
+
   def landing?
     controller_name.eql?('front') && action_name.eql?('index')
   end

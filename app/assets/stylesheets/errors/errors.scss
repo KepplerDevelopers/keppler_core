@@ -114,7 +114,9 @@ a{
 }
 
 .saturn, .saturn-2, .hover {
-  animation: hover 2s infinite ease-in-out alternate;
+  @media only screen and (min-width:991px) and (max-width:2000px){
+    animation: hover 2s infinite ease-in-out alternate;
+  }
 }
 
 @keyframes hover {
@@ -128,10 +130,16 @@ a{
 }
 #astronaut {
   width: 50px;
+  height: 90px;
   position: absolute;
-  right: 20px;
-  top: 230px;
-  animation: spin 6.5s infinite linear;
+  left: 60%;
+  top: 60%;
+  @media only screen and (min-width:991px) and (max-width:2000px){
+    animation: spin 6.5s infinite linear;
+  }
+  @media only screen and (max-width:991px) and (min-width:0px){
+    display: none;
+  }
 }
 #not-authorized{
   #astronaut-static {

@@ -2,9 +2,15 @@ en:
   keppler:
     login_message: Sign in to start your session
     sidebar-menu:
+      roles: Roles
       customizes: Customizes
       dashboard: Dashboard
       users: Users
+      users-submenu:
+        users: Users
+        roles: Roles
+        clients: Clients
+        admins: Admins
       setting: Settings
       keppler-design: 'Keppler Design'
       development: 'Development'
@@ -24,8 +30,25 @@ en:
       keppler-blog-submenu:
         posts: Posts
         categories: Categories
+    permissions:
+      index: Index
+      create: Create
+      update: Edit
+      destroy: Destroy
+      upload: Upload
+      download: Download
+      clone: Clone
+      descriptions:
+        index: Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos
+        create: Permite al usuario la creación de nuevos registros dentro del módulo
+        update: Permite al usuario actualizar registros existentes dentro del módulo
+        destroy: Permite al usuario eliminar registros existentes dentro del módulo
+        upload: Permite al usuario cargar un archivo con extensión .csv (pre-fabricado) y crear registros en la base de datos con el contenido del mismo
+        download: Permite al usuario descargar en un archivo con extensión .csv los registros existentes dentro del módulo
+        clone: Permite al usuario clonar un registro existente dentro del módulo
     models:
       singularize:
+        role: role
         customize: customize
         meta_tag: meta tag
         script: script
@@ -33,6 +56,7 @@ en:
         configuration: configuration
         user: user
       pluralize:
+        roles: roles
         customizes: customizes
         meta_tags: meta tags
         scripts: scripts
@@ -40,6 +64,7 @@ en:
         configurations: configurations
         user: users
     modules:
+      admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'

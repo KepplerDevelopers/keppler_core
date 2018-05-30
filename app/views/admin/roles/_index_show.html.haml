@@ -1,0 +1,24 @@
+.tab-content
+  %h6.actions
+    - if can?(Role).update?
+      = link_to edit_admin_role_path(@role), title: t("keppler.actions.edit"), class: 'pull-left' do
+        %i.icon-pencil
+        %span= t('keppler.actions.edit')
+    %a#close-index-show.pull-right
+      %i.icon-close
+  %h3.control-sidebar-heading
+    = t("keppler.modules.#{controller_path.underscore}")
+  %ul.timeline
+    - @role.as_json(only: ["name"]).each do |attribute, value|
+      %li.list-row
+        .timeline-item
+          %h6.timeline-header.no-border
+            %small
+              %strong.display-value= t("activerecord.attributes.#{attribute}")
+              - if @attachments.include?(attribute)
+                .display-label= image_tag value
+              - else
+                %p.display-label= value
+:coffee
+  $('#close-index-show').click ->
+    $('#index-show').css 'right', -$('#index-show').outerWidth()
