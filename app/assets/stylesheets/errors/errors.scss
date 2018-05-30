@@ -1,48 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Patua+One');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-body{
-  margin: 0px !important;
-  width: 100%;
-  height: 100%;
+body {
+  margin: 0;
+  padding: 0;
 }
-#particles-js {
-  width: 100%;
-  height: 100%;
-  margin: 0px !important;
-  position: fixed !important;
-  opacity: 0.23;
+a{
+  text-decoration: none;
+  z-index: 999;
 }
 .permission_denied {
   width: 100%;
+  height: 100vh;
   overflow: hidden;
-  margin: 0px !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   background-image: url('/assets/app/fondo.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  a {
-    text-decoration: none;
-  }
 }
 .svg-planet{
   svg{
-    max-width:280px;
-    width: 80%;
+    max-width: 280px;
     height: 50vh;
-    margin-right: -20px;
-    max-height: 280px;
+    max-height: 200px;
   }
 }
 .denied__wrapper {
-  max-width: 390px;
-  width: 100%;
-  height: 92vh;
-  padding-top: 8vh;
-  display: block;
-  margin: 0 auto;
-  position: relative;
-}
-.permission_denied {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
   h1 {
     text-align: center;
     color: #fff;
@@ -60,7 +50,7 @@ body{
     max-width: 330px;
     margin: 0px auto;
     font-weight: 600;
-    font-family: 'Source Sans Pro', sans-serif;;
+    font-family: 'Source Sans Pro', sans-serif;
     span {
       position: relative;
       width: 65px;
@@ -76,6 +66,7 @@ body{
     }
   }
 }
+
 .denied__link {
   background: none;
   color: #fff;
@@ -89,7 +80,7 @@ body{
   margin-top: 50px;
   display: block;
   font-weight: 600;
-  font-family: 'Source Sans Pro', sans-serif;;
+  font-family: 'Source Sans Pro', sans-serif;
   transition: all ease-in-out .5s;
   &:hover {
     color: #fff;
@@ -100,25 +91,25 @@ body{
     opacity: 1.0;
   }
 }
+#particles-js {
+  width: 100%;
+  height: 100%;
+  margin: 0px !important;
+  position: fixed !important;
+  opacity: 0.23;
+}
 @media (max-width: 600px) {
-  .permission_denied {
-    h1 {
-      font-size: 75px;
-    }
-    h3 {
-      font-size: 16px;
-      width: 200px;
-      margin: 0 auto;
-      line-height: 23px;
-      span {
-        width: 60px;
-      }
-    }
-    #astronaut {
-      width: 35px;
-      right: 40px;
-      top: 170px;
-    }
+  .permission_denied h1{
+    font-size: 75px;
+  }
+  .permission_denied h3{
+    font-size: 16px;
+    width: 200px;
+    margin: 0 auto;
+    line-height: 23px;
+  }
+  .permission_denied h3 span{
+    width: 60px;
   }
 }
 
@@ -146,6 +137,15 @@ body{
     animation: spin 6.5s infinite linear;
   }
 }
+#not-authorized{
+  #astronaut-static {
+    height: 250px;
+    width: 200px;
+    margin-top: 50px;
+    margin-right: -70px;
+  }
+}
+
 
 @keyframes spin {
   0% {
