@@ -19,6 +19,10 @@ class User < ApplicationRecord
     roles.first.name
   end
 
+  def self.filter_by_role(obj, role)
+    obj.select { |u| u.rol.eql?(role) }
+  end
+
   # Get the page number that the object belongs to
   def page(order = :id)
     ((self.class.order(order => :desc)
@@ -36,6 +40,18 @@ class User < ApplicationRecord
 
   def admin?
     rol.eql?('admin')
+  end
+
+  def can?(model_name, method)
+    unless permissions.nil? || permissions[model_name].nil?
+      permissions[model_name]['actions'].include?(method) || false
+    end
+  end
+
+  def permissions
+    unless roles.first.permissions.blank?
+      roles.first.permissions.first.modules
+    end
   end
 
   private

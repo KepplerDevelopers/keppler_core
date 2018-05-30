@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :appearance
   before_action :set_apparience_colors
   before_action :set_sidebar
+  before_action :set_modules
   skip_around_action :set_locale_from_url
   include Pundit
   include PublicActivity::StoreController
@@ -18,6 +19,10 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def class_exists?(klass)
+    defined?(klass) && klass.is_a?(Class)
+  end
 
   def redirect_to_index(_objects_path)
     redirect_to objects_path(page: @current_page.to_i.pred, search: @query)
@@ -60,6 +65,19 @@ class ApplicationController < ActionController::Base
         "#{m}/config/menu.yml"
       ).values.each(&:symbolize_keys!)
       @sidebar[0] = @sidebar[0].merge(module_menu[0])
+    end
+  end
+
+  def set_modules
+    @modules = YAML.load_file(
+      "#{Rails.root}/config/permissions.yml"
+    ).values.each(&:symbolize_keys!)
+    modules = Dir[File.join("#{Rails.root}/plugins", '*')]
+    modules.each do |m|
+      module_name = YAML.load_file(
+        "#{m}/config/permissions.yml"
+      ).values.each(&:symbolize_keys!)
+      @modules[0] = @modules[0].merge(module_name[0])
     end
   end
 

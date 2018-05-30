@@ -14,10 +14,10 @@
             %h3.box-title= t 'keppler.sidebar-menu.seo-submenu.title-metas'
             .box-tools.pull-right
               - if can?(MetaTag).update?
-                = link_to edit_admin_meta_tag_path(@meta_tag), class: 'btn btn-box-tool', title: t('keppler.actions.edit') do
+                = link_to edit_admin_meta_tag_path(@meta_tag), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
                   %i.icon-pencil
               - if can?(MetaTag).destroy?
-                = link_to admin_meta_tag_path(@meta_tag), class: 'btn btn-box-tool', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+                = link_to admin_meta_tag_path(@meta_tag), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
                   %i.icon-trash
           .box-body.box-body-no-padding
             %table.table.table-striped

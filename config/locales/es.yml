@@ -5,9 +5,15 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
+      roles: Roles
       customizes: Personalización
       dashboard: Tablero
       users: Usuarios
+      users-submenu:
+        users: Usuarios
+        roles: Roles
+        clients: Clientes
+        admins: Administradores
       development: 'Desarrollo Keppler'
       setting: Configuración
       keppler-design: 'Diseño Keppler'
@@ -36,8 +42,25 @@ es:
       keppler-blog-submenu:
         posts: Posts
         categories: Categorías
+    permissions:
+      index: Listar
+      create: Crear
+      update: Editar
+      destroy: Eliminar
+      upload: Cargar
+      download: Descargar
+      clone: Clonar
+      descriptions:
+        index: Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos
+        create: Permite al usuario la creación de nuevos registros dentro del módulo
+        update: Permite al usuario actualizar registros existentes dentro del módulo
+        destroy: Permite al usuario eliminar registros existentes dentro del módulo
+        upload: Permite al usuario cargar un archivo con extensión .csv (pre-fabricado) y crear registros en la base de datos con el contenido del mismo
+        download: Permite al usuario descargar en un archivo con extensión .csv los registros existentes dentro del módulo
+        clone: Permite al usuario clonar un registro existente dentro del módulo
     models:
       singularize:
+        role: role
         customize: customize
         meta_tag: meta tag
         script: script
@@ -45,6 +68,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        roles: roles
         customizes: customizes
         meta_tags: meta tags
         scripts: scripts
@@ -53,6 +77,7 @@ es:
         user: usuarios
         script: scripts
     modules:
+      admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
@@ -312,6 +337,7 @@ es:
   errors:
     format: ! '%{attribute} %{message}'
     messages:
+      max_size_error: "Archivo demasiado pesado"
       tipo_transaccion: no puede realizarse, el artículo no posee existencia
       lista_de_articulos: no puede estar vacía
       stock_maximo: no puede ser menor al stock mínimo

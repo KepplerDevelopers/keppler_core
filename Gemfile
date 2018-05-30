@@ -8,7 +8,7 @@ gem 'rails', '5.2.0'
 gem 'ckeditor', '4.2.4'
 gem 'jquery-rails', '4.3' # jQuery library
 gem 'nprogress-rails', '0.2.0.2' #
-gem 'remotipart', '1.4.0'
+gem 'remotipart', '1.3.0'
 gem 'vuejs-rails', '2.5.13' # VueJS library
 
 # Server
@@ -59,6 +59,8 @@ gem 'simple_form', '4.0.0'
 
 # Upload
 gem 'carrierwave', '1.2.2'
+gem 'carrierwave-imageoptimizer', '~> 1.4'
+gem 'mini_magick', '4.8.0'
 gem 'rmagick', '2.16.0' # fix issue: 'sudo apt install libmagick++-dev'
 
 # Design
@@ -101,7 +103,7 @@ group :development, :test do
   gem 'rubocop', '~> 0.54.0', require: false
   gem 'spring', '2.0.2'
   # gem 'table_print'
-  gem 'web-console', '3.6.0'
+  gem 'web-console', '>= 3.3.0'
 
   # Style guides
   gem 'haml_lint', '~> 0.27.0', require: false

@@ -8,31 +8,31 @@ class ControllerPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    keppler_admin? || user_can?(@objects, 'index')
   end
 
   def new?
-    create?
+    create? || user_can?(@objects, 'create')
   end
 
   def create?
-    keppler_admin? || admin?
+    keppler_admin? || user_can?(@objects, 'create')
   end
 
   def edit?
-    update?
+    update? || user_can?(@objects, 'update')
   end
 
   def update?
-    keppler_admin? || admin?
+    keppler_admin? || user_can?(@objects, 'update')
   end
 
   def clone?
-    keppler_admin? || admin?
+    keppler_admin? || user_can?(@objects, 'clone')
   end
 
   def show?
-    true
+    keppler_admin? || user_can?(@objects, 'index')
   end
 
   def destroy_multiple?
@@ -40,14 +40,14 @@ class ControllerPolicy < ApplicationPolicy
   end
 
   def destroy?
-    keppler_admin? || admin?
+    keppler_admin? || user_can?(@objects, 'destroy')
   end
 
   def upload?
-    keppler_admin? || admin?
+    keppler_admin? || user_can?(@objects, 'upload')
   end
 
   def download?
-    keppler_admin? || admin?
+    keppler_admin? || user_can?(@objects, 'download')
   end
 end
