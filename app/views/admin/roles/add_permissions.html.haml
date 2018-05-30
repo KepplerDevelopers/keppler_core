@@ -7,6 +7,10 @@
           = t('keppler.actions.back')
   .row
     .col-lg-6
+      %section.content-header.index-header
+        %h1{ style: 'display: inline-block; margin-left: 15px' }
+          Role:
+          = @role.name
       - @modules.each do |module_name|
         - module_name.each do |key, value|
           - unless module_name[key]["name"].eql?('dashboard')
