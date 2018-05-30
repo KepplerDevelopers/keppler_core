@@ -3,7 +3,7 @@
     / Sidebar user panel
     .user-panel{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
       .pull-left.image
-        = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'img-circle side-img-profile keppler-background', alt: current_user.name
+        = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle side-img-profile keppler-background', alt: current_user.name
       .info
         %p= current_user.name
         %small= current_user.rol.humanize

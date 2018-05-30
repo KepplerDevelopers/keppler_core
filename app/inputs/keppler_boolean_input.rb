@@ -9,10 +9,11 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
     @namef = "#{@model}[#{@attribute}]"
   end
 
-  def input
+  def input(_wrapper_options)
     label_switch do
       input_switch +
-        span_slider_round
+        span_slider_round +
+        script
     end
   end
 
@@ -34,6 +35,16 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
     template.content_tag(
       :span,
       class: 'slider round'
+    )
+  end
+
+  def script
+    template.content_tag(
+      :script,
+        `$(".switch-#{object}-#{attribute_name}").click(function(event) {
+          event.preventDefault()
+          $(this).find('input').toggleClass('active');
+        });`
     )
   end
 end

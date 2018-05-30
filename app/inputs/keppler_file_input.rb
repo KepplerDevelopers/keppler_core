@@ -9,14 +9,14 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     @namef = "#{@model}[#{@attribute}]"
   end
 
-  def input
+  def input(wrapper_options)
     template.content_tag(:div, class: 'upload_image') do
-      input_label +
-        template.content_tag(:div, class: "#{'files-absolute' unless object.try(attribute_name).blank?} files form-group trigger") do
-          icon_file +
-            photo_uploader
-        end +
-        image_to_upload
+      # input_label +
+      template.content_tag(:div, class: "#{'files-absolute' unless object.try(attribute_name).blank?} files form-group trigger") do
+        # icon_file +
+        photo_uploader
+      end +
+      image_to_upload
     end
   end
 
@@ -31,7 +31,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
 
   def icon_file
     template.content_tag(:div, class: 'icon-file') do
-      template.tag(:i, class: 'fa fa-file-image-o')
+      template.content_tag(:i, '', class: 'glyphicon glyphicon-picture')
     end
   end
 
