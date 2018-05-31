@@ -37,7 +37,9 @@ $(window).load ->
       $('.hide-search').removeClass 'appear'
       $('.search-button').removeClass 'submit'
 
-  $('.datepicker').datepicker()
+  $('.datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
+  })
 
   preloaderFadeOutTime = 500
   hidePreloader()

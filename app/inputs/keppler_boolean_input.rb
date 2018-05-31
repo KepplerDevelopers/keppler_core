@@ -2,49 +2,72 @@
 
 # Creates a much prettier version of the file input field
 class KepplerBooleanInput < SimpleForm::Inputs::Base
-  def initializers
-    @model = lookup_model_names.join('_')
-    @attribute = reflection_or_attribute_name
-    @idf = "#{@model}_#{@attribute}"
-    @namef = "#{@model}[#{@attribute}]"
-  end
-
   def input(_wrapper_options)
-    label_switch do
-      input_switch +
-        span_slider_round +
-        script
+    initializers
+    template.content_tag(:label, '', class: 'keppler-switch') do
+      template.tag(
+        :input,
+        class: ('active' if try_boolean),
+        name: @input_name,
+        type: 'checkbox',
+        checked: try_boolean.to_s,
+        value: try_boolean.to_s
+      ) +
+        template.content_tag(:span, '', class: 'slider round') +
+        template.content_tag(
+          :label,
+          try_boolean.to_s,
+          class: "inline-label #{'active' if try_boolean}"
+        )
     end
   end
 
   def label_switch
-    template.tag(:label, class: 'switch')
+    template.content_tag(:label, '', class: 'keppler-switch')
   end
 
   def input_switch
     template.tag(
       :input,
-      class: ('active' if object.try(attribute_name)),
+      class: ('active' if try_boolean),
       id: "switch-#{object}-#{attribute_name}",
       type: 'checkbox',
-      checked: object.try(attribute_name) ? true : false
+      checked: try_boolean.to_s
     )
   end
 
   def span_slider_round
     template.content_tag(
       :span,
+      '',
       class: 'slider round'
     )
   end
 
-  def script
-    template.content_tag(
-      :script,
-        `$(".switch-#{object}-#{attribute_name}").click(function(event) {
-          event.preventDefault()
-          $(this).find('input').toggleClass('active');
-        });`
-    )
+  # def script
+  #   template.content_tag(
+  #     :script,
+  #       `$('.keppler-switch').click(function(event) {
+  #         event.preventDefault()
+  #         $(this).find('input')
+  #           .toggleClass('active')
+  #           .attr('checked', $(this).find('input').hasClass('active'))
+  #       })`
+  #   )
+  # end
+
+  private
+
+  def try_boolean
+    object.try(attribute_name) ? true : false
+  end
+
+  protected
+
+  def initializers
+    @model = lookup_model_names.join('_')
+    @attribute = reflection_or_attribute_name
+    @input_id = "#{@model}_#{@attribute}"
+    @input_name = "#{@model}[#{@attribute}]"
   end
 end

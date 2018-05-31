@@ -18,7 +18,7 @@
               - if @attachments.include?(attribute)
                 .display-label= image_tag value.url
               - else
-                %p.display-label= value
+                %p.display-label= value.blank? ? '-----------' : value
 :coffee
   $('#close-index-show').click ->
     $('#index-show').css 'right', -$('#index-show').outerWidth()
