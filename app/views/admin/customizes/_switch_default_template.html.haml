@@ -1,16 +1,11 @@
 = simple_form_for customize, url: admin_customize_install_default_path(customize), method: :post do |f|
   - if customize.installed == false
-    %label
-      %span.status.pull-left No installed
-      .switch.pull-right
-        %input{ name: 'customize[installed]', type: 'hidden', value: 'true' }
-        %input#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'true'}
-        %label.label-default{ for: 'default_switch', onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}
-
+    %label.switch.pull-right
+      %input{ name: 'customize[installed]', type: 'hidden', value: 'true' }
+      %input#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'true'}
+      %span.slider.round{onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}
   - else
-    %label
-      %span.status.pull-left Installed
-      .switch.pull-right
-        %input{ name: 'customize[installed]', type: 'hidden', value: 'false' }
-        %input#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'false', checked: 'checked' }
-        %label.label-default{ for: 'default_switch', onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}
+    %label.switch.pull-right
+      %input{ name: 'customize[installed]', type: 'hidden', value: 'false' }
+      %input.active#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'false', checked: "checked"}
+      %span.slider.round{onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}

@@ -84,7 +84,7 @@
 
         %pre
           %code.ruby
-            gem install keppler`
+            gem install keppler
 
         %h4 Lista de comandos
 
@@ -93,7 +93,7 @@
 
         %pre
           %code.ruby
-            keppler`
+            keppler
 
         %h4 Nuevo Proyecto
 
@@ -101,25 +101,25 @@
 
         %pre
           %code.ruby
-            keppler new NuevoProyecto`
+            keppler new NuevoProyecto
 
         %h4 Creación del archivo secrets.yml
 
-        %p Si detienes el proceso a la mitad o aún no tienes configurado un archivo `secrets.yml` con la configuración de
+        %p Si detienes el proceso a la mitad o aún no tienes configurado un archivo secrets.yml con la configuración de
         la base de datos y otros inicializadores, puedes crear la base de datos ejecutando:
 
         %pre
           %code.ruby
-            keppler db_conf`
+            keppler db_conf
 
         %h4 Instalación de las dependencias
 
         %p Antes de poder iniciar con un proyecto nuevo, primero debemos instalar todas las gemas
-        instanciadas en el `Gemfile`, ubicado en la raíz del proyecto, con el comando:
+        instanciadas en el Gemfile, ubicado en la raíz del proyecto, con el comando:
 
         %pre
           %code.ruby
-            keppler dep`
+            keppler dep
 
         %h3 Keppler Scaffolds
 
@@ -129,33 +129,33 @@
 
         %pre
           %code.ruby
-            keppler add module ModuleName attribute:type`
+            keppler add module ModuleName attribute:type
 
         %p Por ejemplo, crearemos un scaffold de productos con diversos campos y tipos de datos:
 
         %pre
           %code.ruby
-            keppler add module Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references`
+            keppler add module Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references
 
         %p Luego debemos migrar la tabla a la base de datos con:
 
         %pre
           %code.ruby
-            keppler migrate`
+            keppler migrate
 
         %p Si luego deseamos borrar, crear, migrar y llenar la base de datos desde cero,
         podemos realizarlo ejecutando el comando:
 
         %pre
           %code.ruby
-            keppler reset`
+            keppler reset
 
         %p Por último, si todo ha sido ejecutado debida y correctamente, podemos iniciar
         el proyecto ejecutando en la consola:
 
         %pre
           %code.ruby
-            keppler server`
+            keppler server
 
         %h3 SimpleForm con Bootstrap
 
