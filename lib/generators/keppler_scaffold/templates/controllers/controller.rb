@@ -113,8 +113,9 @@ module Admin
     end
 
     def set_attachments
-      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
-                      'picture', 'banner', 'attachment', 'pic', 'file']
+      @attachments = %w[
+        logo brand photo avatar cover image picture banner attachment pic file
+      ]
     end
 
     # Use callbacks to share common setup or constraints between actions.

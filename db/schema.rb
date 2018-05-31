@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_03_174351) do
+ActiveRecord::Schema.define(version: 2018_05_30_210201) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,14 +67,15 @@ ActiveRecord::Schema.define(version: 2018_05_03_174351) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+  
   create_table "permissions", force: :cascade do |t|
     t.jsonb "modules"
     t.bigint "role_id"
     t.string "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_pruebas_on_deleted_at"
+    t.index ["deleted_at"], name: "index_people_on_deleted_at"
+    t.index ["user_id"], name: "index_people_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -178,4 +180,5 @@ ActiveRecord::Schema.define(version: 2018_05_03_174351) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "people", "users"
 end

@@ -10,22 +10,23 @@
       z-index: 9;
     }
 
-  	.navbar-static-top {
+    .navbar-static-top {
       margin: 0%;
-  		background: white !important;
+      background: white !important;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
       // border-radius: 4px 0px 0px 4px !important;
 
       a {
         color: #949494 !important;
       }
-  	}
+    }
 
     li.user-header {
       background-image: url('profile-menu.jpg');
       background-position: center;
       background-size: cover;
       border-bottom: 2px solid $keppler-color;
+      border-color: $keppler-color;
     }
 
     .sidebar-toggle:hover {
@@ -75,5 +76,3 @@ header.main-header a.logo span span {
     z-index: 850;
   }
 }
-
-

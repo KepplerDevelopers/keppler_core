@@ -14,18 +14,19 @@ $(window).load ->
 
   searchButton = ->
     $('.search-button').click ->
-      if $(window).width() < 992
-        if $(this).hasClass ('submit')
-          $('#search form').submit()
-        $('#search')
-          .removeClass 'hidding-search'
-          .addClass 'display-search'
-        $('.navbar-nav').addClass 'translate'
-        $('.hide-search').addClass 'appear'
-        $('.search-bar').focus()
-        $(this).addClass 'submit'
-      else
+      # if $(window).width() < 992
+      if $(this).hasClass ('submit')
         $('#search form').submit()
+      $('#search')
+        .removeClass 'hidding-search'
+        .addClass 'display-search'
+      if $(window).width() < 992
+        $('.navbar-nav').addClass 'translate'
+      $('.hide-search').addClass 'appear'
+      $('.search-bar').focus()
+      $(this).addClass 'submit'
+      # else
+      #   $('#search form').submit()
 
 
     $('.hide-search').click ->
@@ -35,6 +36,8 @@ $(window).load ->
       $('.navbar-nav').removeClass 'translate'
       $('.hide-search').removeClass 'appear'
       $('.search-button').removeClass 'submit'
+
+  $('.datepicker').datepicker()
 
   preloaderFadeOutTime = 500
   hidePreloader()

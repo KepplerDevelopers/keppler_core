@@ -133,6 +133,7 @@ en:
       apply: Apply
   activerecord:
     attributes:
+      public: Public
       id: Id
       title: Title
       subtitle: Subtitle
