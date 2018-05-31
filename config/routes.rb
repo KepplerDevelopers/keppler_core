@@ -128,7 +128,10 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  # Dashboard route engine
+  # Dashboard routes engine
   mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'
+
+  # Ckeditor routes engine
+  mount Ckeditor::Engine => '/ckeditor'
 
 end
