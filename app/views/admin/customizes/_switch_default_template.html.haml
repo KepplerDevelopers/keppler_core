@@ -6,6 +6,6 @@
       %span.slider.round{onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}
   - else
     %label.switch.pull-right
-      %input{ name: 'customize[installed]', type: 'hidden', value: 'true' }
-      %input#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'true'}
+      %input{ name: 'customize[installed]', type: 'hidden', value: 'false' }
+      %input.active#default_switch{ name: 'customize[installed]', type: 'checkbox', value: 'false', checked: "checked"}
       %span.slider.round{onclick: "$('#edit_customize_#{customize.id}').submit(); $('#spinner').css('display', 'block')"}
