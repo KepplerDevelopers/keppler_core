@@ -20,6 +20,10 @@
               %tbody
                 .form-padding
                   <%- attributes.each_with_index do |attribute, index| -%>
+<<<<<<< HEAD
+=======
+
+>>>>>>> keppler-v2
                   .col-xs-12
                     <%- if @attachments.include?(attribute.name) -%>
                     = f.input :<%= attribute.name %>, as: :keppler_file, label: false
