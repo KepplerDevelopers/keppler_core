@@ -13,51 +13,34 @@
           .box-header.with-border
             %h3.box-title= t("keppler.modules.#{action_name.underscore}")
             .box-tools.pull-right
-              %a.btn.btn-box-tool{'data-widget' => 'collapse', type: 'button'}
+              %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
                 %i.fa.fa-minus
           .box-body
             %table.table.table-bordered
               %tbody
                 .form-padding
-                  <%- attributes.each do |attribute| -%>
+                  <%- attributes.each_with_index do |attribute, index| -%>
+
+                  .col-xs-12
                     <%- if @attachments.include?(attribute.name) -%>
-                  .col-xs-12
-                    .upload-image
-                      = f.label :<%= attribute.name %>
-                      .files.form-group.trigger{ class: "#{'files-absolute' unless @<%= singular_table_name %>.<%= attribute.name %>.blank?}" }
-                        #icon-file
-                          +
-                        = f.file_field :<%= attribute.name %>, class: 'photo_upload'
-                        = f.error :<%= attribute.name %>, style: "color: red;"
-                      %center#image
-                        = image_tag "#{@<%= singular_table_name %>.<%= attribute.name %>.blank? ? '' : @<%= singular_table_name %>.<%= attribute.name %>}", class: "#{'hidden' if @<%= singular_table_name %>.<%= attribute.name %>.blank?} image_to_upload"
-                    <%- end -%>
-                  <%- end -%>
-                  <%- attributes.each do |attribute| -%>
-                  .col-xs-12
-                  <%- unless @attachments.include?(attribute.name) -%>
-                    <%- if attribute.type.to_s == "text" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {class: "materialize-textarea"}
-                    <%- elsif attribute.name.to_s == "position" || attribute.name.to_s == "deleted_at" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :hidden
-                    <%- elsif attribute.type.to_s == "date" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :string, input_html: {class: "datepicker"}
-                    <%- elsif attribute.type.to_s == "boolean" -%>
-                    -# = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
-                    .checkbox
-                      %label{ for: "checkbox-#{@<%= singular_table_name %>.id}" }
-                        %span.label-text <%= attribute.name %>
-                        %input{ type:"checkbox", id: "checkbox-#{@<%= singular_table_name %>.id}", 'checklist-model' => 'check', 'checklist-value' => "#{@<%= singular_table_name %>.id}", '@click' => "listDelete(#{@<%= singular_table_name %>.id})"}
-                        %span.cr
-                          %i.cr-icon.glyphicon.glyphicon-ok
-                    <%- elsif attribute.type.to_s == "integer" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, input_html: {min: 0}
+                    = f.input :<%= attribute.name %>, as: :keppler_file, label: false
+                    <%- elsif attribute.reference? -%>
+                    = f.association :<%= attribute.name %>, include_blank: false
+                    <%- elsif attribute.type.to_s == 'text' -%>
+                    = f.input :<%= attribute.name %>, input_html: { ckeditor: { toolbar: 'mini' } }
+                    <%- elsif attribute.name.to_s == 'position' || attribute.name.to_s == 'deleted_at' -%>
+                    = f.input :<%= attribute.name %>, as: :hidden
+                    <%- elsif attribute.type.to_s == 'date' -%>
+                    = f.input :<%= attribute.name %>, as: :string, input_html: { class: 'datepicker' }
+                    <%- elsif attribute.type.to_s == 'boolean' -%>
+                    = f.input :<%= attribute.name %>, as: :keppler_boolean
+                    <%- elsif attribute.type.to_s == 'integer' -%>
+                    = f.input :<%= attribute.name %>, input_html: { min: 0 }
                     <%- else -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+                    = f.input :<%= attribute.name %>
                     <%- end -%>
-                  <%- end -%>
                   <%- end -%>
                   .col-xs-12
                     .pull-right
-                      = f.button :submit, t("keppler.actions.save"), name: '_save', class: "btn-primary"
-                      = f.button :submit, t("keppler.actions.save_and_add_another"), name: '_add_other'
+                      = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+                      = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'

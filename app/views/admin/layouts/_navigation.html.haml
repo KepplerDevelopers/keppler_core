@@ -17,7 +17,7 @@
             %button.btn.search-button.toggle-search{type: "submit"}
               %span.glyphicon.glyphicon-search.search-icon
       .hide-search
-        %i.fa.fa-angle-left
+        %i.fa.fa-arrow-left
 
     .navbar-custom-menu
       %ul.nav.navbar-nav
@@ -27,11 +27,11 @@
               %i.icon-envelope
         %li.dropdown.user.user-menu
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-            = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'small-profile-img keppler-background'
+            = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             %li.user-header{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
-              = image_tag (current_user.avatar.url || 'admin/user.png'), class: 'img-circle nav-profile-img', alt: current_user.name
+              = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle nav-profile-img', alt: current_user.name
               %p
                 = current_user.name
                 %small
