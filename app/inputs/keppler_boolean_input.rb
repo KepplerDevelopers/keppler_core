@@ -10,7 +10,7 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
         class: ('active' if try_boolean),
         name: @input_name,
         type: 'checkbox',
-        checked: try_boolean.to_s,
+        checked: true,
         value: try_boolean.to_s
       ) +
         template.content_tag(:span, '', class: 'slider round') +
@@ -37,11 +37,7 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
   end
 
   def span_slider_round
-    template.content_tag(
-      :span,
-      '',
-      class: 'slider round'
-    )
+    template.content_tag(:span, '', class: 'slider round')
   end
 
   # def script
@@ -49,9 +45,14 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
   #     :script,
   #       `$('.keppler-switch').click(function(event) {
   #         event.preventDefault()
-  #         $(this).find('input')
+  #         var input = $(this).find('input')
+  #         var label = $(this).find('.inline-label')
+  #         input
   #           .toggleClass('active')
-  #           .attr('checked', $(this).find('input').hasClass('active'))
+  #           .val(input.hasClass('active'))
+  #         label
+  #           .toggleClass('active')
+  #           .text(label.hasClass('active'))
   #       })`
   #   )
   # end

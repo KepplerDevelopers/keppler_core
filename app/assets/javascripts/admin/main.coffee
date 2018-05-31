@@ -38,7 +38,13 @@ $(window).load ->
       $('.search-button').removeClass 'submit'
 
   $('.datepicker').datepicker({
-    dateFormat: 'yy-mm-dd'
+    dateFormat: 'yy-mm-dd', # formato obligatorio para Keppler
+    showOtherMonths: true,
+    selectOtherMonths: true,
+    changeMonth: true,
+    changeYear: true
+
+    # Ver documentación en https://jqueryui.com/datepicker
   })
 
   preloaderFadeOutTime = 500
