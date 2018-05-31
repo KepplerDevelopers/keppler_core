@@ -44,8 +44,7 @@
                       = f.input :email, label: t('simple_form.labels.defaults.email'), placeholder: 'Email', input_html: {class: 'form-control'}, required: true
                   .row
                     .col-xs-12
-                      - unless @user.role_ids.include?(1)
-                        = f.input :role_ids, collection: @roles, label: false, include_blank: "Selecione un rol"
+                      = f.input :role_ids, collection: @roles, label: false, include_blank: "Selecione un rol"
                   .row
                     .col-lg-6
                       = f.input :password, label: t('simple_form.labels.defaults.password'), placeholder: 'Password', input_html: {class: 'form-control'}, required: true
