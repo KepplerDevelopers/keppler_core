@@ -1,5 +1,10 @@
 # AdminHelper Backoffice
 module AdminHelper
+
+  def keppler_boolean
+    render 'admin/layouts/keppler_boolean'
+  end
+
   def preloader
     render "admin/layouts/preloader"
   end

@@ -1,0 +1,10 @@
+%label.keppler-switch
+  %input{ class: ('active' if @person.try(:public)), name: 'person[public]', type: 'checkbox', checked: @person.try(:public) ? true : false }
+  %span.slider.round
+  :javascript
+    $('.keppler-switch').click(function(event) {
+      event.preventDefault()
+      $(this).find('input')
+        .toggleClass('active')
+        .attr('checked', $(this).find('input').hasClass('active'))
+    })

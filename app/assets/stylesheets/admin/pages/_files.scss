@@ -5,12 +5,17 @@
   width: 100% !important;
 }
 
-.upload-image {
+.upload_image {
   max-width: 400px;
+  min-height: 300px;
   margin: 0 auto;
   .files {
     position: relative;
-    #icon-file{
+    background-image: url(/assets/admin/image_default.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center 80px;
+    .icon-file {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -24,14 +29,15 @@
       outline-offset: -10px;
       -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
       transition: outline-offset .15s ease-in-out, background-color .15s linear;
-      padding: 160px 25px 70px;
       text-align: center !important;
-      margin: 0;
+      padding: 160px 25px 70px;
       width: 100% !important;
+      margin: 0;
       &:before {
         position: absolute;
         bottom: 5px;
-        left: 0;  pointer-events: none;
+        left: 0;
+        pointer-events: none;
         width: 100%;
         right: 0;
         height: 57px;
@@ -73,13 +79,22 @@
   }
 
   .image_to_upload {
+    max-height: 300px;
+    max-width: 400px;
     width: 100%;
   }
 
   .files-absolute {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
     opacity: 0;
-    // width: 90%;
-    transition: .3s;
+    transition: opacity .3s;
+    &:hover {
+      opacity: .5;
+      transition: opacity .3s;
+    }
   }
 }

@@ -20,12 +20,10 @@
           %h3.box-title Admin Theme
 
         .box-body
-          .upload-image
+          .upload_image
             .files.form-group.trigger{ class: "#{'files-absolute' unless f.object.image_background.blank?}" }
-              #icon-file
-                +
-              = f.file_field :avatar, class: 'photo_upload'
-            %center#image
+              = f.file_field :image_background, class: 'photo_upload'
+            %center.image-show
               = image_tag "#{f.object.image_background.blank? ? '' : f.object.image_background}", class: "#{'hidden' if f.object.image_background.blank?} image_to_upload"
           %p Principal
           %input{type: 'color', name: 'color', placeholder: 'Color', value: @color, 'v-model' => 'main'}

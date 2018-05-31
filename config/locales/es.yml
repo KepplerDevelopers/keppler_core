@@ -150,6 +150,7 @@ es:
       upload_records: Cargar registros
   activerecord:
     attributes:
+      public: Publico
       id: Identificador
       title: Título
       subtitle: Subtítulo
