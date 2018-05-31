@@ -59,6 +59,7 @@ gem 'simple_form', '4.0.0'
 
 # Upload
 gem 'carrierwave', '1.2.2'
+gem 'carrierwave-imageoptimizer', '~> 1.4'
 gem 'mini_magick', '4.8.0'
 gem 'rmagick', '2.16.0' # fix issue: 'sudo apt install libmagick++-dev'
 

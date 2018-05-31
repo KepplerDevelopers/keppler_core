@@ -67,17 +67,11 @@ ActiveRecord::Schema.define(version: 2018_05_30_210201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "people", force: :cascade do |t|
-    t.string "photo"
-    t.string "name"
-    t.text "description"
-    t.date "birth"
-    t.time "hour"
-    t.boolean "public"
-    t.bigint "user_id"
-    t.integer "position"
-    t.datetime "deleted_at"
+  
+  create_table "permissions", force: :cascade do |t|
+    t.jsonb "modules"
+    t.bigint "role_id"
+    t.string "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_people_on_deleted_at"
@@ -88,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_210201) do
     t.string "name"
     t.string "resource_type"
     t.bigint "resource_id"
+    t.string "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"

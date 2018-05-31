@@ -38,15 +38,7 @@
                       = f.input :email, label: t('simple_form.labels.defaults.email'), placeholder: 'Email', input_html: {class: 'form-control'}, required: true
                   .row
                     .col-xs-12
-                      - unless @user.role_ids.include?(1)
-                        .form-group
-                          %label.control-label.string.required{ for: 'user_name' }
-                            %abbr{ title: 'required' } *
-                            = t('simple_form.labels.defaults.select_role')
-                          %select#user_role_ids.form-control.select.required.form-control{'aria-required' => 'true', name: 'user[role_ids]', required: 'required'}
-                            - @roles.each do |role|
-                              %option{ value: role.last }= role.first
-
+                      = f.input :role_ids, collection: @roles, label: false, include_blank: "Selecione un rol"
                   .row
                     .col-lg-6
                       = f.input :password, label: t('simple_form.labels.defaults.password'), placeholder: 'Password', input_html: {class: 'form-control'}, required: true

@@ -8,7 +8,7 @@ module Admin
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
     before_action :set_attachments
-    before_action :authorization
+    before_action :authorization, except: %i[reload]
 
     # GET <%= route_url %>
     def index

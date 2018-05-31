@@ -11,22 +11,26 @@ menu:
     icon: chart
     current: ['admin/scripts']
     model: Script
-  seo:
+  meta_tags:
     name: SEO
     current: ['admin/meta_tags']
     icon: graph
     model: MetaTag
-    submenu:
-      - meta_tags:
-          name: 'Title & Metas'
-          url_path: /admin/meta_tags
-          current: ['admin/meta_tags']
+    url_path: /admin/meta_tags
   user:
     name: users
-    url_path: /admin/users
     icon: user
     current: ["admin/users"]
     model: User
+    submenu:
+      - users:
+          name: users
+          url_path: /admin/users
+          current: ['admin/users']
+      - roles:
+          name: roles
+          url_path: /admin/roles
+          current: ['admin/roles']
   customize:
     name: keppler design
     icon: pencil
