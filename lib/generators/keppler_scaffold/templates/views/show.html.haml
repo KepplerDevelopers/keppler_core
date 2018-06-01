@@ -30,7 +30,7 @@
                       - if @attachments.include?(attribute)
                         = image_tag value.url unless value.url.blank?
                       - else
-                        = value
+                        = value.blank? ? '-----------' : value
       <%- else -%>
       <%- @attr = attributes.select{|attr| @attachments.include?(attr.name)} %>
       .col-sm-5
@@ -60,5 +60,5 @@
                 - @<%= singular_table_name %>.as_json(except: %i[id position created_at updated_at deleted_at]).each do |attribute, value|
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
-                    %td.display-value.fs-body-1.tc-black-2.text-overflow= value
+                    %td.display-value.fs-body-1.tc-black-2.text-overflow= value.blank? ? '-----------' : value
       <%- end -%>
