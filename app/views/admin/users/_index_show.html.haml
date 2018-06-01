@@ -10,7 +10,7 @@
     %i.icon-user
     %b= "#{@user.name}"
     %small= "(#{@user.rol.humanize})"
-  = image_tag @user.avatar
+  = image_tag @user.avatar.url if @user.avatar.url
   %ul.timeline
     - @user.as_json(only: ["id", "name", "permalink", "email", "created_at", "sign_in_count", "updated_at", "password"]).each do |attribute, value|
       %li.list-row
