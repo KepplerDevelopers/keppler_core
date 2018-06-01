@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_174700) do
+ActiveRecord::Schema.define(version: 2018_05_03_174351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,30 +66,6 @@ ActiveRecord::Schema.define(version: 2018_05_31_174700) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "people", force: :cascade do |t|
-    t.string "name"
-    t.text "bio"
-    t.string "photo"
-    t.string "email"
-    t.string "phone"
-    t.integer "age"
-    t.float "weight"
-    t.date "birth"
-    t.time "hour"
-    t.bigint "user_id"
-    t.binary "skinet"
-    t.boolean "public"
-    t.datetime "arrived"
-    t.decimal "decimal"
-    t.datetime "killed_at"
-    t.integer "position"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_people_on_deleted_at"
-    t.index ["user_id"], name: "index_people_on_user_id"
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -204,6 +180,5 @@ ActiveRecord::Schema.define(version: 2018_05_31_174700) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "people", "users"
   add_foreign_key "permissions", "roles"
 end
