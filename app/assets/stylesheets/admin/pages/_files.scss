@@ -6,7 +6,7 @@
 }
 
 .upload_image {
-  max-width: 400px;
+  max-width: 325px;
   min-height: 300px;
   margin: 0 auto;
   .files {
@@ -80,7 +80,7 @@
 
   .image_to_upload {
     max-height: 300px;
-    max-width: 400px;
+    max-width: 325px;
     width: 100%;
   }
 
@@ -89,7 +89,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 400px;
+    max-width: 325px;
     opacity: 0;
     transition: opacity .3s;
     &:hover {
