@@ -20,7 +20,6 @@
               %tbody
                 .form-padding
                   <%- attributes.each_with_index do |attribute, index| -%>
-
                   .col-xs-12
                     <%- if @attachments.include?(attribute.name) -%>
                     = f.input :<%= attribute.name %>, as: :keppler_file, label: false
@@ -28,14 +27,16 @@
                     = f.association :<%= attribute.name %>, include_blank: false
                     <%- elsif attribute.type.to_s == 'text' -%>
                     = f.input :<%= attribute.name %>, input_html: { ckeditor: { toolbar: 'mini' } }
-                    <%- elsif attribute.name.to_s == 'position' || attribute.name.to_s == 'deleted_at' -%>
+                    <%- elsif %[position deleted_at].include?(attribute.name.to_s) || attribute.type.to_s == 'timestamp' -%>
                     = f.input :<%= attribute.name %>, as: :hidden
                     <%- elsif attribute.type.to_s == 'date' -%>
                     = f.input :<%= attribute.name %>, as: :string, input_html: { class: 'datepicker' }
                     <%- elsif attribute.type.to_s == 'boolean' -%>
                     = f.input :<%= attribute.name %>, as: :keppler_boolean
-                    <%- elsif attribute.type.to_s == 'integer' -%>
+                    <%- elsif %w[integer float decimal].include?(attribute.type.to_s) -%>
                     = f.input :<%= attribute.name %>, input_html: { min: 0 }
+                    <%- elsif attribute.type.to_s == 'binary' -%>
+                    = f.input :<%= attribute.name %>, as: :string
                     <%- else -%>
                     = f.input :<%= attribute.name %>
                     <%- end -%>
