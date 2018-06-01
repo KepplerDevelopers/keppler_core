@@ -74,8 +74,7 @@ ActiveRecord::Schema.define(version: 2018_05_03_174351) do
     t.string "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_people_on_deleted_at"
-    t.index ["user_id"], name: "index_people_on_user_id"
+    t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
   create_table "roles", force: :cascade do |t|
