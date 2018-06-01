@@ -29,6 +29,7 @@ Gemfile.lock
 .redcar/
 .sass-cache
 .byebug_history
+/.byebug_history
 /app/assets/javascripts/guard_javascript/*
 /app/assets/stylesheets/frontend/native_stylesheets/guard_stylesheets/*
 /config/application.yml

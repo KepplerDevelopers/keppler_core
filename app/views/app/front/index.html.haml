@@ -14,16 +14,16 @@
         .front-social
           %ul
             %li
-              =	link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
+              =  link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
                 = icon 'fab', 'twitter'
             %li
-              =	link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
+              =  link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
                 = icon 'fab', 'facebook'
             %li
-              =	link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
+              =  link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
                 = icon 'fab', 'instagram'
             %li
-              =	link_to "https://github.com/SliceDevelopers", target: '_blank' do
+              =  link_to "https://github.com/SliceDevelopers", target: '_blank' do
                 = icon 'fab', 'github'
         .mouse-scroll
           .mouse
@@ -93,7 +93,7 @@
 
         %pre
           %code.ruby
-            keppler`
+            keppler
 
         %h4 Nuevo Proyecto
 
@@ -101,69 +101,74 @@
 
         %pre
           %code.ruby
-            keppler new NuevoProyecto`
+            keppler new NuevoProyecto
 
         %h4 Creación del archivo secrets.yml
 
-        %p Si detienes el proceso a la mitad o aún no tienes configurado un archivo `secrets.yml` con la configuración de
-        la base de datos y otros inicializadores, puedes crear la base de datos ejecutando:
+        %p
+          Si detienes el proceso a la mitad o aún no tienes configurado un archivo secrets.yml con la configuración de
+          la base de datos y otros inicializadores, puedes crear la base de datos ejecutando:
 
         %pre
           %code.ruby
-            keppler db_conf`
+            keppler db_conf
 
         %h4 Instalación de las dependencias
 
-        %p Antes de poder iniciar con un proyecto nuevo, primero debemos instalar todas las gemas
-        instanciadas en el `Gemfile`, ubicado en la raíz del proyecto, con el comando:
+        %p
+          Antes de poder iniciar con un proyecto nuevo, primero debemos instalar todas las gemas
+          instanciadas en el Gemfile, ubicado en la raíz del proyecto, con el comando:
 
         %pre
           %code.ruby
-            keppler dep`
+            keppler dep
 
         %h3 Keppler Scaffolds
 
-        %p Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente
-        configurados para adaptarse al administrativo. Para crear un nuevo
-        módulo sólo debes llamar al siguiente comando desde la consola:
+        %p
+          Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente
+          configurados para adaptarse al administrativo. Para crear un nuevo
+          módulo sólo debes llamar al siguiente comando desde la consola:
 
         %pre
           %code.ruby
-            keppler add module ModuleName attribute:type`
+            keppler add module ModuleName attribute:type
 
         %p Por ejemplo, crearemos un scaffold de productos con diversos campos y tipos de datos:
 
         %pre
           %code.ruby
-            keppler add module Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references`
+            keppler add module Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references
 
         %p Luego debemos migrar la tabla a la base de datos con:
 
         %pre
           %code.ruby
-            keppler migrate`
+            keppler migrate
 
-        %p Si luego deseamos borrar, crear, migrar y llenar la base de datos desde cero,
-        podemos realizarlo ejecutando el comando:
-
-        %pre
-          %code.ruby
-            keppler reset`
-
-        %p Por último, si todo ha sido ejecutado debida y correctamente, podemos iniciar
-        el proyecto ejecutando en la consola:
+        %p
+          Si luego deseamos borrar, crear, migrar y llenar la base de datos desde cero,
+          podemos realizarlo ejecutando el comando:
 
         %pre
           %code.ruby
-            keppler server`
+            keppler reset
+
+        %p
+          Por último, si todo ha sido ejecutado debida y correctamente, podemos iniciar
+          el proyecto ejecutando en la consola:
+
+        %pre
+          %code.ruby
+            keppler server
 
         %h3 SimpleForm con Bootstrap
 
         %p
           Se ofrece una integración por defecto entre SimpleForm y Bootstrap, usted tiene la posibilidad de cambiar su funcionalidad en
-          %pre
-            %code.ruby
-              config/initializers/simple_form_bootstrap.rb
+        %pre
+          %code.ruby
+            config/initializers/simple_form_bootstrap.rb
 
 
         %p Aquí algunos ejemplos para la creación de inputs:
@@ -199,27 +204,27 @@
           Nota:
         %p
           Puede revisar la documentación de
-          = link_to 'AdminLTE', 'https://adminlte.io'
-        para agregar nuevas integraciones para sus formularios a través de los
-        = link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
-        de simpleform.
+          = link_to 'AdminLTE', 'https://adminlte.io
+          para agregar nuevas integraciones para sus formularios a través de los
+          = link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
+          de SimpleForm.
 
-        %h3 Plugins (Módulos)
+        -# %h3 Plugins (Módulos)
+        -#
+        -# %p
+        -#   La plataforma permite la adaptación de módulos con facil instalación,
+        -#   algunos de los módulos desarrollados son:
+        -#
+        -# %ul
+        -#   %li
+        -#     = link_to 'Keppler Google Analytics Dashboard', 'https://github.com/slicegroup/keppler_ga_dashboard'
+        -#     -
+        -#     %strong ya viene integrado
+        -#   %li
+        -#     = link_to 'Keppler Blog', 'https://github.com/slicegroup/keppler_blog'
+        -#   %li
+        -#     = link_to 'Keppler Catalogs', 'https://github.com/slicegroup/keppler_catalogs'
+        -#   %li
+        -#     = link_to 'Keppler Contact', 'https://github.com/slicegroup/keppler_contact_us'
 
-        %p
-          La plataforma permite la adaptación de módulos con facil instalación,
-          algunos de los módulos desarrollados son:
-
-        %ul
-          %li
-            = link_to 'Keppler Google Analytics Dashboard', 'https://github.com/slicegroup/keppler_ga_dashboard'
-            -
-            %strong ya viene integrado
-          %li
-            = link_to 'Keppler Blog', 'https://github.com/slicegroup/keppler_blog'
-          %li
-            = link_to 'Keppler Catalogs', 'https://github.com/slicegroup/keppler_catalogs'
-          %li
-            = link_to 'Keppler Contact', 'https://github.com/slicegroup/keppler_contact_us'
-
-		%script{ src: '/assets/app/front.js' }
+    %script{ src: '/assets/app/front.js' }
