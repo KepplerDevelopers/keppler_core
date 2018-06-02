@@ -8,7 +8,7 @@ module Admin
     before_action :set_objects, only: %i[index filter_by_role]
 
     def index
-      @users = User.filter_by_role(@objects, 'admin')
+      @users = User.all.drop(1)
 
       if !@objects.first_page? && @objects.size.zero?
         redirect_to users_path(page: @current_page.to_i.pred, search: @query)
@@ -21,7 +21,12 @@ module Admin
     end
 
     def filter_by_role
-      @users = User.filter_by_role(@objects, params[:role])
+      if params[:role].eql?('all')
+        @users = User.all.drop(1)
+      else
+        @users = User.filter_by_role(@objects, params[:role])
+      end
+      
     end
 
     def new
