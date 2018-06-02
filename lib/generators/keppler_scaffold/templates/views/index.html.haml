@@ -69,7 +69,7 @@
                     %th
               %tbody#objects-container{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @<%= plural_table_name %>
+                = render 'listing', objects: @objects
         %center#paginator-module
           = paginate @objects, window: 1
   %aside.control-sidebar
