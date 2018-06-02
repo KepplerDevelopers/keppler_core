@@ -14,7 +14,7 @@
             = role.name
       %td{ style: 'width: 15px;padding-right:15px;' }
         - unless role.id.eql?(1)
-          = link_to admin_role_add_permissions_path(role) , class: "action-btn.pull-right" do
+          = link_to admin_role_add_permissions_path(role.id) , class: "action-btn.pull-right" do
             %i.icon-settings
       %td{ style: 'width: 15px;padding-right:15px;' }
         %a.action-btn.pull-right{:id => "menu-#{role.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
