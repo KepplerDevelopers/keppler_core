@@ -5,7 +5,7 @@ module Admin
     before_action :set_roles, only: %i[index new edit create update]
     before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload filter_by_role]
-    before_action :set_objects, only: %i[index filter_by_role]
+    before_action :set_objects, only: %i[index filter_by_role reload]
 
     def index
       @users = User.all.drop(1)
@@ -26,7 +26,6 @@ module Admin
       else
         @users = User.filter_by_role(@objects, params[:role])
       end
-      
     end
 
     def new
@@ -73,16 +72,12 @@ module Admin
       )
     end
 
-    def reload
-      @q = User.ransack(params[:q])
-      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
-      @objects = users.page(@current_page)
-    end
+    def reload; end
 
     private
 
     def set_user
-        if params[:id].eql?('clients') || params[:id].eql?('admins')
+      if params[:id].eql?('clients') || params[:id].eql?('admins')
         redirect_to action: :index, role: params[:id]
       else
         @user = User.find(params[:id])
@@ -92,7 +87,6 @@ module Admin
     def set_objects
       @q = User.ransack(params[:q])
       users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
-
       @objects = users.page(@current_page)
       @total = users.size
     end
