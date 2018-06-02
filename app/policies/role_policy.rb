@@ -7,6 +7,10 @@ class RolePolicy < ControllerPolicy
     @objects = objects
   end
 
+  def clone?
+    false
+  end
+
   def add_permissions?
     keppler_admin? || user_can?(@objects, 'add_permissions')
   end
