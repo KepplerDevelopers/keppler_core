@@ -62,6 +62,8 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   protected
 
   def initializers
+    @model = lookup_model_names.join('_')
+    @attribute = reflection_or_attribute_name
     @input_id = "#{@model}_#{@attribute}"
     @input_name = "#{@model}[#{@attribute}]"
   end
