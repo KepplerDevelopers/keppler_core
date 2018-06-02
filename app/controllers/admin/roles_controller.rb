@@ -1,9 +1,11 @@
 module Admin
   # RolesController
   class RolesController < AdminController
-    before_action :set_role, only: %i[show edit update destroy add_permissions create_permissions toggle_actions create_first_permission]
+    before_action :set_role, only: %i[show edit update destroy toggle_actions create_first_permission]
+    before_action :set_role_id, only: %i[create_permissions add_permissions]
     before_action :show_history, only: [:index]
     before_action :set_attachments
+    before_action :authorization, except: %i[reload]
 
     # GET /roles
     def index
@@ -28,7 +30,6 @@ module Admin
 
     # GET /roles/1/edit
     def edit
-      authorize @role
     end
 
     # POST /roles
@@ -49,7 +50,6 @@ module Admin
       else
         render :edit
       end
-      authorize @role
     end
 
     def clone
@@ -59,14 +59,12 @@ module Admin
       else
         render :new
       end
-      authorize @role
     end
 
     # DELETE /roles/1
     def destroy
       @role.destroy
       redirect_to admin_roles_path, notice: actions_messages(@role)
-      authorize @role
     end
 
     def destroy_multiple
@@ -75,7 +73,6 @@ module Admin
         admin_roles_path(page: @current_page, search: @query),
         notice: actions_messages(Role.new)
       )
-      authorize @role
     end
 
     def upload
@@ -84,7 +81,6 @@ module Admin
         admin_roles_path(page: @current_page, search: @query),
         notice: actions_messages(Role.new)
       )
-      authorize @role
     end
 
     def download
@@ -94,7 +90,6 @@ module Admin
         format.xls { send_data(@roles.to_xls) }
         format.json { render :json => @roles }
       end
-      authorize @roles
     end
 
     def reload
@@ -109,6 +104,7 @@ module Admin
     end
 
     def add_permissions
+      @role = Role.find(params[:role_id])
     end
 
     def create_permissions
@@ -130,6 +126,7 @@ module Admin
 
     private
 
+    
     def toggle_actions(module_name, action)
       if @role.have_permission_to(module_name)
         @role.toggle_action(module_name, action)
@@ -156,12 +153,20 @@ module Admin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_role
+      @role = Role.find(params[:id])
+    end
+
+    def set_role_id
       @role = Role.find(params[:role_id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def role_params
       params.require(:role).permit(:name, :role_id)
+    end
+
+    def authorization
+      authorize Role
     end
 
     def show_history
