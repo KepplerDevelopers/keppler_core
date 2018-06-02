@@ -1,11 +1,11 @@
 %header.main-header
   %nav.navbar.navbar-static-top
-    %a.logo.keppler-color.hidden-xs{href: "/admin/dashboard"}
+    %a.logo.keppler-color.hidden-xs{ href: dashboard_path }
       %span.logo-mini
         %span K
       %span.logo-lg
         %span K
-    %a.sidebar-toggle{"data-toggle" => "offcanvas", href: "#", role: "button"}
+    %a.sidebar-toggle{ 'data-toggle' => 'offcanvas', href: '#', role: 'button' }
       %i.icon-menu
       %span.sr-only Toggle navigation
     - if listing? && @q
@@ -14,8 +14,8 @@
           = search_form_for [:admin, @q], html: { method: :get } do |f|
             = f.search_field search_model, placeholder: "#{t('keppler.actions.search')}...", class: 'form-control search-bar'
           %span.input-group-btn
-            %button.btn.search-button.toggle-search{type: "submit"}
-              %span.glyphicon.glyphicon-search.search-icon
+            %button.btn.search-button.toggle-search{ type: 'submit' }
+              %i.icon-magnifier.search-icon
       .hide-search
         %i.fa.fa-arrow-left
 
@@ -26,7 +26,7 @@
             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
               %i.icon-envelope
         %li.dropdown.user.user-menu
-          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+          %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#' }
             = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
@@ -38,10 +38,10 @@
                   = "#{t('keppler.navigation.last_session')} #{current_user.updated_at.strftime("%d %b %Y")}"
             %li.user-footer
               .pull-left
-                = link_to "Profile", "/admin/users/#{current_user.id}", class: "btn btn-default btn-flat"
+                = link_to 'Profile', admin_user_path(current_user.id), class: 'btn btn-default btn-flat'
               .pull-right
-                = link_to t('devise.sign_out'), destroy_session_path(current_user), class: " btn btn-default btn-flat"
+                = link_to t('devise.sign_out'), destroy_session_path(current_user), class: 'btn btn-default btn-flat'
         - if listing?
           %li.hidden-xs
-            %a{:href=>"#", "data-toggle" => "control-sidebar"}
+            %a{ href: '#', 'data-toggle' => 'control-sidebar' }
               %i.icon-clock
