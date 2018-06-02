@@ -31,6 +31,7 @@ en:
     #     age: 'Select your age'
     placeholders:
       defaults:
+        all: All
         name: 'Name'
         last_name: 'Last name'
         first_name: 'First name'
