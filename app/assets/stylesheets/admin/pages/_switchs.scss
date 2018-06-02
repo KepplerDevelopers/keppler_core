@@ -1,7 +1,7 @@
 label.keppler-switch {
   margin-bottom: 0px !important;
   position: relative;
-  display: inline-block;
+  display: block;
   width: 60px;
   height: 34px;
   input {
@@ -49,6 +49,17 @@ label.keppler-switch {
     border-radius: 34px;
     &:before {
       border-radius: 50%;
+    }
+  }
+
+  .inline-label {
+    margin-left: 70px;
+    margin-top: 5px;
+    opacity: .5;
+    transition: opacity .3s;
+    &.active {
+      opacity: 1;
+      transition: opacity .3s;
     }
   }
 
