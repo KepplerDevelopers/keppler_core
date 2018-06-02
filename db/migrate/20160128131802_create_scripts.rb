@@ -5,6 +5,7 @@ class CreateScripts < ActiveRecord::Migration[5.1]
       t.text :script
       t.string :url
 
+      t.integer :position
       t.timestamps null: false
     end
   end
