@@ -8,18 +8,24 @@ module Admin
     before_action :set_objects, only: %i[index filter_by_role reload]
 
     def index
-      @users = User.filter_by_role(@objects, '*')
-      redirect_to_index(users_path) if nothing_in_first_page?(@objects)
-      respond_to_formats(User.all)
+      @users = User.all.drop(1)
+
+      if !@objects.first_page? && @objects.size.zero?
+        redirect_to users_path(page: @current_page.to_i.pred, search: @query)
+      end
+
+      respond_to do |format|
+        format.html
+        format.json { render :json => @objects }
+      end
     end
 
     def filter_by_role
-      @users =
-        if params[:role][:id].eql?('*')
-          User.all.drop(1)
-        else
-          User.filter_by_role(@objects, params[:role][:id])
-        end
+      if params[:role].eql?('all')
+        @users = User.all.drop(1)
+      else
+        @users = User.filter_by_role(@objects, params[:role])
+      end
     end
 
     def new

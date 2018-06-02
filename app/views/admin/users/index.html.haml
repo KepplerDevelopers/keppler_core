@@ -34,11 +34,10 @@
           %label.control-label.string.required{ for: 'user_name' }
             Filtrar usuarios por rol
           = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do |f|
-            %select#filter_by_role.form-control.form-control{ name: 'role[id]', onchange: '$(this).parent().submit()' }
-              %option{ value: '*' }= t('simple_form.labels.defaults.all')
+            %select#filter_by_role.form-control.form-control{ name: 'role', onchange: '$(this).parent().submit()' }
+              %option{ name: 'role', value: 'all' } Todos
               - @roles.each do |role|
-                %option{ value: role.second }= role.first
-
+                %option{ name: 'role', value: role.first.downcase }= role.first
         .box.slice-box
           .box-body.no-padding
             %table.table.table-striped
