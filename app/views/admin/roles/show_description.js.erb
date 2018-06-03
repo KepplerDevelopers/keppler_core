@@ -1,2 +1,2 @@
 $('#description-list').find('div').addClass('no-visible')
-$("#description-<%= @module %>-<%= @action %>").toggleClass('no-visible');
+$("#description-<%= @module.split('::').join('') %>-<%= @action %>").toggleClass('no-visible');
