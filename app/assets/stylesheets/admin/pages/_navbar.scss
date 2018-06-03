@@ -24,6 +24,9 @@ header.main-header{
     margin-top: -2px;
     object-fit: cover;
     background-color: $keppler-color;
+    @include respond-to(xs){
+      margin-right: 0;
+    }
   }
 }
 
