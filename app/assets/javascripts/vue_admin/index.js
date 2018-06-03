@@ -22,7 +22,10 @@ var app = new Vue({
       items: [],
       deleteList:[],
       controller: "",
-      current_page: ""
+      current_page: "",
+      states: {
+        checkall: false
+      }
     },
     mounted: function(){
       var that;
@@ -56,22 +59,44 @@ var app = new Vue({
         }else{
           that.deleteList.push(user_id)
         }
+        let check = document.getElementById(`checkbox-all`)
+        if(that.deleteList.length == that.items.length){
+          check.checked = true;
+          that.states.checkall = true;
+          console.log(that.states.checkall)
+        }else{
+          check.checked = false;
+          that.states.checkall = false;
+        }
         //console.log(that.deleteList);
       },
       selectAll: function(){
         var that = this;
-        if (that.deleteList.length < that.items.length){
+        let advice = false;
+        if(that.states.checkall){
           that.items.map(function(item, idx){
-            if (!that.deleteList.includes(item.id)) document.getElementById(`checkbox-${item.id}`).click();
-              //console.log(that.deleteList.length + ' - ' + that.items.length);
-              //console.log(`Este fue agregado ${item.id}`);
+            let check = document.getElementById(`checkbox-${item.id}`)
+            if (check.checked) check.click();
           });
         }else{
-          that.items.map(function(item, idx){
-            //console.log(`Este fue quitado ${item.id}`);
-            document.getElementById(`checkbox-${item.id}`).click();
-          });
+          if (that.deleteList.length < that.items.length){
+            that.items.map(function(item, idx){
+              if (!that.deleteList.includes(item.id)) document.getElementById(`checkbox-${item.id}`).click();
+                //console.log(that.deleteList.length + ' - ' + that.items.length);
+                //console.log(`Este fue agregado ${item.id}`);
+            });
+          }else{
+            that.items.map(function(item, idx){
+              //console.log(`Este fue quitado ${item.id}`);
+              document.getElementById(`checkbox-${item.id}`).click();
+            });
+            advice = true;
+          }  
         }
+        // console.log(that.states.checkall)
+        if (advice) that.states.checkall = !that.states.checkall;
+        
+        // console.log(that.states.checkall)
       }
       // deleteThem: function(){
       //   var that = this;
