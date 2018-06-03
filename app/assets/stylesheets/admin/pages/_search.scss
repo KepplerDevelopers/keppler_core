@@ -91,9 +91,12 @@
   transition: .3s .5s ease-in-out;
 }
 
-.navbar-nav.translate {
-  transform: translateX(100%);
+.navbar-custom-menu{
   transition: .2s .5s ease-in-out;
+  &.translate {
+    transform: translateX(100%);
+    transition: .2s .5s ease-in-out;
+  }
 }
 
 #search.display-search {
