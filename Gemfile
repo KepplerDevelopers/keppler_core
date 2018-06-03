@@ -42,7 +42,7 @@ gem 'sitemap_generator', '6.0.1'
 gem 'public_activity', '1.5.0'
 
 # AdminLTE
-source 'https://rails-assets.org/' do
+source 'http://insecure.rails-assets.org/' do
   gem 'rails-assets-adminlte'
   gem 'rails-assets-animate-css'
   gem 'rails-assets-noty'
