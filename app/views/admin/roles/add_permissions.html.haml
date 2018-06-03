@@ -27,14 +27,14 @@
                     %tbody
                       - module_name[key]["actions"].each do |action|
                         %tr
-                          %td.row-selectable
+                          %td.row-selectable.table-data
                             = link_to admin_role_show_description_path(@role, module_name[key]["name"], action), method: :post, remote: true do
                               .pull-left
                                 %h4= t("keppler.permissions.#{action}")
-                              .pull-right
+                              .pull-right.switch-div
                                 = render "admin/roles/switch", role: @role, module_name: module_name[key]["name"], action: action, children: false
 
-    .col-lg-6
+    .col-lg-6.hidden-xs
       %div{style: "width: 43%; height: 100%; position: fixed; right: 0px"}
         .col-lg-12
           .box.slice-box

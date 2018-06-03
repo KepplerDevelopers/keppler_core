@@ -8,13 +8,14 @@ $(function ($) {
   });
 
   // On ready, read the set state and collapse if needed
-  if (localStorage.getItem('sidebar') === '0') {
-    $body.addClass('disable-animations sidebar-collapse');
-    $slice.toggleClass('hidden')
-    requestAnimationFrame(function () {
-      $body.removeClass('disable-animations');
-    });
+  if (window.width >= 768){
+    if (localStorage.getItem('sidebar') === '0') {
+      $body.addClass('disable-animations sidebar-collapse');
+      $slice.toggleClass('hidden')
+      requestAnimationFrame(function () {
+        $body.removeClass('disable-animations');
+      });
+    }
   }
-
 
 });
