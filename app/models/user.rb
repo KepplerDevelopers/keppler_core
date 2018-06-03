@@ -19,8 +19,8 @@ class User < ApplicationRecord
     roles.first.name
   end
 
-  def self.filter_by_role(obj, role)
-    obj.select { |u| u.rol.eql?(role) }
+  def self.filter_by_role(obj, role_id)
+    obj.select { |u| u.rol.eql?(role_id) }
   end
 
   # Get the page number that the object belongs to
@@ -43,15 +43,13 @@ class User < ApplicationRecord
   end
 
   def can?(model_name, method)
-    unless permissions.nil? || permissions[model_name].nil?
-      permissions[model_name]['actions'].include?(method) || false
-    end
+    return if permissions.nil? || permissions[model_name].nil?
+    permissions[model_name]['actions'].include?(method) || false
   end
 
   def permissions
-    unless roles.first.permissions.blank?
-      roles.first.permissions.first.modules
-    end
+    return if roles.first.permissions.blank?
+    roles.first.permissions.first.modules
   end
 
   private

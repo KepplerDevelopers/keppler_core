@@ -37,6 +37,8 @@
                     = f.input :<%= attribute.name %>, input_html: { min: 0 }
                     <%- elsif attribute.type.to_s == 'binary' -%>
                     = f.input :<%= attribute.name %>, as: :string
+                    <%- elsif attribute.name.to_s == "position" || attribute.name.to_s == "deleted_at" -%>
+                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :hidden
                     <%- else -%>
                     = f.input :<%= attribute.name %>
                     <%- end -%>
