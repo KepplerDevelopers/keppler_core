@@ -4,17 +4,17 @@
       %label.switch
         %input{name: "role[module]", type: "hidden", value: module_name}
         %input{name: "role[action]", type: "hidden", value: action}
-        %input{id: "switch-#{module_name}-#{action}", :type => "checkbox"}/
+        %input{id: "switch-#{module_name.split('::').join('')}-#{action}", :type => "checkbox"}/
         %span.slider.round{onclick: "sendPermission('#{module_name}', '#{action}')"}
 
     - else
       %label.switch
         %input{name: "role[module]", type: "hidden", value: module_name}
         %input{name: "role[action]", type: "hidden", value: action}
-        %input.active{id: "switch-#{module_name}-#{action}", :type => "checkbox", checked: "checked"}/
+        %input.active{id: "switch-#{module_name.split('::').join('')}-#{action}", :type => "checkbox", checked: "checked"}/
         %span.slider.round{onclick: "sendPermission('#{module_name}', '#{action}')"}
 
 :javascript
   function sendPermission(module_name, action) {
-    $('#switch-'+module_name+'-'+action).parent().parent().parent().submit()
+    $('#switch-'+module_name.split('::').join('')+'-'+action).parent().parent().parent().submit()
   }
