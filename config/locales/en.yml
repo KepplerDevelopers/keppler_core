@@ -20,10 +20,7 @@ en:
         social-accounts: 'Social accounts'
         google-analytics: 'Google Analytics'
         appearance: Appearance
-      seo: Seo
-      seo-submenu:
-        title-metas: 'Titles & Meta Tags'
-        google-adwords: 'Google Adwords'
+      meta_tags: Meta tags
       google-analytics-tracks: 'Scripts'
       keppler-messages: Messages
       keppler-blog: Blog
