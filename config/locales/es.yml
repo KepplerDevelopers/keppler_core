@@ -29,10 +29,7 @@ es:
         social-accounts: 'Redes sociales'
         google-analytics: 'Google Analytics'
         appearance: Apariencia
-      seo: Seo
-      seo-submenu:
-        title-metas: 'Títulos y Meta tags'
-        google-adwords: 'Google Adwords'
+      meta_tags: Meta tags
       scripts: 'Scripts'
       keppler-messages: Mensajes
       keppler-messages-submenu:

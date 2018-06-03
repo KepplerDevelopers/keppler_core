@@ -12,7 +12,7 @@ menu:
     current: ['admin/scripts']
     model: Script
   meta_tags:
-    name: SEO
+    name: meta_tags
     current: ['admin/meta_tags']
     icon: graph
     model: MetaTag

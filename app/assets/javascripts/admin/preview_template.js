@@ -12,10 +12,10 @@ $(document).ready(function() {
   })
 
   $('#reload').click(function() {
-    $('iframe').attr('src', "/")
+    $('iframe').attr('src', '/')
   })
 
-  $('.icon-trash').click(function() {
+  $('#customize-index .icon-trash').click(function() {
     $('#spinner').css('display', 'block')
   })
 });
