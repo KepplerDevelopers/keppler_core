@@ -21,7 +21,7 @@ $(window).load ->
         .removeClass 'hidding-search'
         .addClass 'display-search'
       if $(window).width() < 992
-        $('.navbar-nav').addClass 'translate'
+        $('.navbar-custom-menu').addClass 'translate'
       $('.hide-search').addClass 'appear'
       $('.search-bar').focus()
       $(this).addClass 'submit'
@@ -33,7 +33,7 @@ $(window).load ->
       $('#search')
         .removeClass 'display-search'
         .addClass 'hidding-search'
-      $('.navbar-nav').removeClass 'translate'
+      $('.navbar-custom-menu').removeClass 'translate'
       $('.hide-search').removeClass 'appear'
       $('.search-button').removeClass 'submit'
 

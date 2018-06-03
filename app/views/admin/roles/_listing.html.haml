@@ -8,7 +8,7 @@
               %input{ type:"checkbox", id: "checkbox-#{role.id}", 'checklist-model' => 'check', 'checklist-value' => "#{role.id}", '@click' => "listDelete(#{role.id})"}
               %span.cr
                 %i.cr-icon.glyphicon.glyphicon-ok
-      %td.hidden-xs
+      %td
         = link_to admin_role_path(role, search: @query), remote: true, class: 'show-row' do
           %span
             = role.name
