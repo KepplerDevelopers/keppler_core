@@ -156,15 +156,15 @@ module Rails
         invoke invoked, [controller_name]
       end
 
-      def add_position_field
-        file = Dir::entries('db/migrate').max
-        # system 'sudo apt-get update'
-        inject_into_file(
-          "db/migrate/#{file}",
-          "t.integer :position\n      ",
-          before: 't.timestamps null: false'
-        )
-      end
+      # def add_position_field
+      #   file = Dir::entries('db/migrate').max
+      #   # system 'sudo apt-get update'
+      #   inject_into_file(
+      #     "db/migrate/#{file}",
+      #     "t.integer :position\n      ",
+      #     before: 't.timestamps'
+      #   )
+      # end
 
       private
 
@@ -185,7 +185,7 @@ module Rails
       end
 
       def str_route
-        "\n  resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/upload', action: 'upload', as: :upload\n    post(\n      '/sort',\n      action: :sort,\n      on: :collection,\n    )\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      '/destroy_multiple',\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end"
+        "\n  resources :#{controller_file_name} do\n    post '/sort', action: :sort, on: :collection\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/upload', action: 'upload', as: :upload\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      '/destroy_multiple',\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end"
       end
 
       def str_menu
