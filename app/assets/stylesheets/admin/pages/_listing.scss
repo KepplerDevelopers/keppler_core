@@ -27,3 +27,8 @@
 .ui-sortable-handle{
   width: 50px;
 }
+.ui-sortable-helper{
+  // width: 50px;
+  display: table;
+  background-color: #fdfdfd;
+}

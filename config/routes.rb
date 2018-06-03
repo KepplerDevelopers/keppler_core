@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#root'
 
-
     resources :roles do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
