@@ -94,7 +94,9 @@ module Admin
 
     def sort
       <%= class_name %>.sorter(params[:row])
-      render :index
+      @q = <%= class_name %>.ransack(params[:q])
+      <%= plural_table_name %> = @q.result(distinct: true)
+      @objects = <%= plural_table_name %>.page(@current_page)
     end
 
     private
