@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def self.filter_by_role(obj, role_id)
-    obj.select { |u| u.roles.first.id.eql?(role_id.to_i) }
+    obj.select { |u| u.rol.eql?(role_id) }
   end
 
   # Get the page number that the object belongs to
