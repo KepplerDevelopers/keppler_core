@@ -1,1 +1,1 @@
-$("#switch-<%= @module %>-<%= @action %>").toggleClass('active');
+$("#switch-<%= @module.split('::').join('') %>-<%= @action %>").toggleClass('active');

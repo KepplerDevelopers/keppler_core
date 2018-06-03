@@ -28,7 +28,7 @@
                       - module_name[key]["actions"].each do |action|
                         %tr
                           %td.row-selectable.table-data
-                            = link_to admin_role_show_description_path(@role, module_name[key]["name"], action), method: :post, remote: true do
+                            = link_to admin_role_show_description_path(@role, module_name[key]["name"].split('::').join(''), action), method: :post, remote: true do
                               .pull-left
                                 %h4= t("keppler.permissions.#{action}")
                               .pull-right.switch-div
@@ -49,7 +49,7 @@
                       - module_name.each do |key, value|
                         - unless module_name[key]["name"].eql?('dashboard')
                           - module_name[key]["actions"].each do |action|
-                            %div.no-visible{id: "description-#{module_name[key]["name"]}-#{action}"}
+                            %div.no-visible{id: "description-#{module_name[key]["name"].split('::').join('')}-#{action}"}
                               %h5
                                 %strong Modulo:
                                 = module_name[key]["name"].pluralize
