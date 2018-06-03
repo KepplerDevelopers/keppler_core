@@ -50,4 +50,8 @@ class ControllerPolicy < ApplicationPolicy
   def download?
     keppler_admin? || user_can?(@objects, 'download')
   end
+
+  def sort?
+    keppler_admin? || user_can?(@objects, 'sort')
+  end
 end
