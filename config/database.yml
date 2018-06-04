@@ -19,7 +19,14 @@ development:
   <<: *default
 
 test:
-  <<: *default
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  database: keppler-test-dev
+  pool: 5
+  username: dev
+  password: dev
+  template: template0
 
 production:
   <<: *default
