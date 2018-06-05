@@ -101,17 +101,16 @@ group :development do
   # gem 'guard-sass'
   # gem 'quiet_assets'
   # gem 'rails_layout'
-  gem 'rubocop', '~> 0.54.0', require: false
   gem 'spring', '2.0.2'
   # gem 'table_print'
   gem 'web-console', '>= 3.3.0'
-  # Style guides
-  gem 'haml_lint', '~> 0.27.0', require: false
-  gem 'scss_lint', '~> 0.57.0', require: false
 end
 
-group :test do
+group :development, :test do
   gem 'rubocop', '~> 0.54.0', require: false
+  gem 'haml_lint', '~> 0.27.0', require: false
+  gem 'scss_lint', '~> 0.57.0', require: false
+  gem 'jshint' # JavaScripts Linter
 end
 
 #---- keppler_ga_dashboard ----

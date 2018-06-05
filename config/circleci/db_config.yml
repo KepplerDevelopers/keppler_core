@@ -28,11 +28,12 @@ development:
 test:
   domain_name: example.com
   secret_key_base: b45cfc98355d328196d2e264760de949067607165e9c8d88f76aeba0dc486469e6c2ec641c49c92270961c4c6ff40645108f65e239ed4a10dcc46ab4905da72f
+  template: template0
   database:
     :host: localhost
-    :name: database
-    :username: username
-    :password: password
+    :name: keppler-test-dev
+    :username: dev
+    :password: dev
 
 production:
   email: example@gmail.com
