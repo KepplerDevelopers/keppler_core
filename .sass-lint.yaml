@@ -1,0 +1,4 @@
+scss_files: 'app/assets/stylesheets/admin/**/*.scss'
+
+ImportantRule:
+  enabled: false
