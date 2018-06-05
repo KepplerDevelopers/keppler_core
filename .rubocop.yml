@@ -1,0 +1,12 @@
+AllCops:
+  Exclude:
+    - 'Rakefile'
+    - 'Guardfile'
+    - 'config.ru'
+    - 'lib/**/*'
+    - 'test/**/*'
+    - 'config/**/*.rb'
+    - 'config/*.rb'
+    - 'db/**/*.rb'
+    - 'plugins/**/*'
+    - 'bin/*'
