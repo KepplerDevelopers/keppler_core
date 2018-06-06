@@ -34,7 +34,7 @@ module AdminHelper
 
   # Underscore class_name from a object
   def underscore(object)
-    object.class.to_s.underscor
+    object.class.to_s.underscore
   end
 
   # Messages for the crud actions
