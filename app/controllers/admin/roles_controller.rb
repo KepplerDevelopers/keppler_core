@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 module Admin
   # RolesController
   class RolesController < AdminController
-    before_action :set_role, only: %i[show edit update destroy toggle_actions create_first_permission]
+    before_action :set_role, only: %i[show edit update destroy
+                                      toggle_actions create_first_permission]
     before_action :set_role_id, only: %i[create_permissions add_permissions]
     before_action :show_history, only: [:index]
     before_action :set_attachments
@@ -14,14 +17,12 @@ module Admin
       @objects = roles.page(@current_page).order(position: :desc)
       @total = roles.size
       @roles = @objects.order(:position)
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
-      end
+      return if !@objects.first_page? && @objects.size.zero?
+      redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
     end
 
     # GET /roles/1
-    def show
-    end
+    def show; end
 
     # GET /roles/new
     def new
@@ -29,8 +30,7 @@ module Admin
     end
 
     # GET /roles/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /roles
     def create
@@ -88,7 +88,7 @@ module Admin
       respond_to do |format|
         format.html
         format.xls { send_data(@roles.to_xls) }
-        format.json { render :json => @roles }
+        format.json { render json: @roles }
       end
     end
 
@@ -110,13 +110,11 @@ module Admin
     def create_permissions
       @module = params[:role][:module]
       @action = params[:role][:action]
-
       if @role.have_permissions?
-        toggle_actions(params[:role][:module], params[:role][:action])
+        toggle_actions(@module, @action)
       else
         create_first_permission
       end
-      # redirect_to admin_role_add_permissions_path(params[:role_id])
     end
 
     def show_description
@@ -126,7 +124,6 @@ module Admin
 
     private
 
-    
     def toggle_actions(module_name, action)
       if @role.have_permission_to(module_name)
         @role.toggle_action(module_name, action)
@@ -143,12 +140,12 @@ module Admin
     end
 
     def create_hash(module_name, actions)
-      Hash[module_name, Hash["actions", Array(actions)]]
+      Hash[module_name, Hash['actions', Array(actions)]]
     end
 
     def set_attachments
-      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
-                      'picture', 'banner', 'attachment', 'pic', 'file']
+      @attachments = %i[ logo brand photo avatar cover image
+                         picture banner attachment pic file ]
     end
 
     # Use callbacks to share common setup or constraints between actions.

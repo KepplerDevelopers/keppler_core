@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # FileMaterialInput
 class FileMaterialInput < SimpleForm::Inputs::Base
   def input(_wrapper_options = nil)

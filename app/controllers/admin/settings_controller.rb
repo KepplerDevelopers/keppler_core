@@ -41,7 +41,10 @@ module Admin
       variables_file = File.readlines(style_file)
       indx = 0
       [:color].each_with_index do |attribute, i|
-        variables_file.map { |line| indx = variables_file.find_index(line) if line.include?("$keppler-#{attribute}") }
+        variables_file.map do |line|
+          include_attr = line.include?("$keppler-#{attribute}")
+          indx = variables_file.find_index(line) if include_attr
+        end
         variables_file[indx] = "$keppler-#{attribute}:#{values[i]};\n"
       end
       variables_file = variables_file.join('')
