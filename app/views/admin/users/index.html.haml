@@ -61,7 +61,7 @@
           = paginate @objects, window: 1
 
   .listing-show.hidden-xs
-    = render 'description'
+    = render 'description', activities: @activities
   %aside.control-sidebar#index-show
   - if can?(User).create?
     .mixed-btn

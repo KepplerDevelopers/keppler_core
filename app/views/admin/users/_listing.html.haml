@@ -6,7 +6,7 @@
         - else
           .checkbox
             %label{ for: "checkbox-#{user.id}" }
-              %input{ type: 'checkbox', id: "checkbox-#{user.id}", 'checklist-model' => 'check', 'checklist-value' => 'user.id.to_s', 'ng-click' => 'selectByCheck(size.to_s)', '@click' => 'listDelete(user.id.to_s)'}
+              %input{ type: 'checkbox', id: "checkbox-#{user.id}", 'checklist-model' => 'check', 'checklist-value' => 'user.id.to_s', 'ng-click' => 'selectByCheck(size.to_s)', '@click' => 'listDelete(user.id.to_s)' }
               %span.cr
                 %i.cr-icon.glyphicon.glyphicon-ok
 

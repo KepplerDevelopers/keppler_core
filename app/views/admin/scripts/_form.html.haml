@@ -2,7 +2,7 @@
   .container
     .row
       .col-lg-2
-        = link_to admin_scripts_path, "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+        = link_to admin_scripts_path, 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
           .arrow-back.btn.btn-default
             %i.fa.fa-angle-left
             = t('keppler.actions.back')
@@ -18,7 +18,6 @@
                   .row
                     .col-xs-12
                       = f.input :name, required: true, autofocus: true
-
                     .col-xs-12
                       = f.input :script, required: true, autofocus: true
                   .row
@@ -27,5 +26,5 @@
                   .row
                     .col-xs-12
                       .pull-right
-                        = f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
-                        = f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
+                        = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+                        = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'
