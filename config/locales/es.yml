@@ -1,21 +1,36 @@
 es:
   keppler:
+    login_message: Ingresa tus datos para entrar
+    powered: Desarrollado por
+    navigation:
+      last_session: Ultima sesión
     sidebar-menu:
-      customizes: Customizes
-      dashboard: Dashboard
+      roles: Roles
+      customizes: Personalización
+      dashboard: Tablero
       users: Usuarios
+      users-submenu:
+        users: Usuarios
+        roles: Roles
+        clients: Clientes
+        admins: Administradores
+      development: 'Desarrollo Keppler'
       setting: Configuración
+      keppler-design: 'Diseño Keppler'
+      keppler-design-submenu:
+        frontend-templates: 'Plantillas y Temas'
+        admin-appearance: 'Apariencia de Keppler'
+      plugins: Plugins
+      plugins-submenu:
+        install: Instalar plugin
       setting-submenu:
         basic-information: 'Información básica'
-        email-setting-smtp: 'Configuración de email (SMTP)'
+        email-setting-smtp: 'Configuración SMTP'
         social-accounts: 'Redes sociales'
         google-analytics: 'Google Analytics'
         appearance: Apariencia
-      seo: Seo
-      seo-submenu:
-        title-metas: 'Títulos y Meta tagas'
-        google-adwords: 'Google Adwords'
-      google-analytics-tracks: 'Scripts'
+      meta_tags: Meta tags
+      scripts: 'Scripts'
       keppler-messages: Mensajes
       keppler-messages-submenu:
         messages: Mensajes
@@ -24,8 +39,25 @@ es:
       keppler-blog-submenu:
         posts: Posts
         categories: Categorías
+    permissions:
+      index: Listar
+      create: Crear
+      update: Editar
+      destroy: Eliminar
+      upload: Cargar
+      download: Descargar
+      clone: Clonar
+      descriptions:
+        index: Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos
+        create: Permite al usuario la creación de nuevos registros dentro del módulo
+        update: Permite al usuario actualizar registros existentes dentro del módulo
+        destroy: Permite al usuario eliminar registros existentes dentro del módulo
+        upload: Permite al usuario cargar un archivo con extensión .csv (pre-fabricado) y crear registros en la base de datos con el contenido del mismo
+        download: Permite al usuario descargar en un archivo con extensión .csv los registros existentes dentro del módulo
+        clone: Permite al usuario clonar un registro existente dentro del módulo
     models:
       singularize:
+        role: role
         customize: customize
         meta_tag: meta tag
         script: script
@@ -33,13 +65,16 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        roles: roles
         customizes: customizes
         meta_tags: meta tags
         scripts: scripts
         settings: configuraciones
         configurations: configuraciones
         user: usuarios
+        script: scripts
     modules:
+      admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
@@ -72,7 +107,7 @@ es:
     header_information:
       setting:
         basic_information: Información básica
-        email_setting: Configuración de email via (SMTP)
+        email_setting: Configuración de SMTP
         google_analytics_setting: Google analytics
         social_accounts: Cuentas de redes sociales
         appearance: Aparencia
@@ -114,6 +149,7 @@ es:
       upload_records: Cargar registros
   activerecord:
     attributes:
+      public: Publico
       id: Identificador
       title: Título
       subtitle: Subtítulo
@@ -180,12 +216,12 @@ es:
       updated_at: Ultima actualización
       password: Contraseña
       password_confirmation: Confirmar contraseña
-      server_address: Dirección del servidor
+      address: Dirección del servidor
       port: Puerto
       domain_name: Dominio
-      url: Url
+      url: URL
       meta_tags: 'Meta Tags'
-      script: 'Tracking Id'
+      script: 'Script'
       campaign_name: Campaña
       script: Script
       mailer_from: 'Enviar desde'
@@ -301,6 +337,7 @@ es:
   errors:
     format: ! '%{attribute} %{message}'
     messages:
+      max_size_error: "Archivo demasiado pesado"
       tipo_transaccion: no puede realizarse, el artículo no posee existencia
       lista_de_articulos: no puede estar vacía
       stock_maximo: no puede ser menor al stock mínimo

@@ -1,32 +1,72 @@
-.listing.col.l9.m12.s12
-	= link_to new_admin_user_path, class: "btn-add btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-		= material_icon.md_24.person_add
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- if @objects.size.zero?
-				%tr
-					%td.center{ colspan: '4' }
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.user"))
-			- else
-				%tr.white-hover
-					%td
-					%th.center= t('activerecord.attributes.name')
-					%th.center.hide-on-small-and-down= t('activerecord.attributes.email')
-					%th.center.hide-on-small-and-down= t('activerecord.attributes.role')
-					- if can? :show, User
-						%th
-					- if can? :update, User
-						%th
-					- if can? :delete, User
-						%th
-			- @objects.each do |user|
-				= render 'listing', user: user
-	= paginate @objects, window: 1
+#index-container{ controller: 'users' }
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1{ style: 'display: inline-block' }
+            = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
+          .toolbar
+            - if can?(User).download?
+              .toolbar-item
+                = link_to admin_users_path(:format => :xls), class: 'tool-btn', title: t('keppler.actions.download_records') do
+                  %i.icon-cloud-download
+            .toolbar-item
+              = link_to reload_admin_users_path, class: 'tool-btn', remote: true do
+                %i.icon-reload
+            - if can?(User).destroy_multiple?
+              .toolbar-item
+                .checkbox
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
+                %i.icon-trash
+          %ol.breadcrumb
+            %li
+              %a{ href: '#' }
+                %i.icon-directions
+                = t("keppler.modules.#{action_name.underscore}")
 
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
+        .form-group
+          %label.control-label.string.required{ for: 'user_name' }
+            Filtrar usuarios por rol
+          = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do |f|
+            %select#filter_by_role.form-control.form-control{ name: 'role', onchange: '$(this).parent().submit()' }
+              %option{ name: 'role', value: 'all' } Todos
+              - @roles.each do |role|
+                %option{ name: 'role', value: role.first.downcase }= role.first
+        .box.slice-box
+          .box-body.no-padding
+            %table.table.table-striped
+              %thead
+                - if @objects.size.zero?
+                  %tr
+                    %th.center
+                      %h6= t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.user'))
+                - else
+                  %tr
+                    %th
+                    %th
+                    %th.visible-lg.visible-md= t('activerecord.attributes.name')
+                    %th= t('activerecord.attributes.email')
+                    %th.visible-lg.visible-md= t('activerecord.attributes.role')
+                    %th
+              %tbody#objects-container
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @users
+        %center#paginator-module
+          = paginate @objects, window: 1
 
-= link_to new_admin_user_path, class: "btn-add btn-index-add btn-floating btn-large waves-effect waves-light" do
-	= material_icon.md_24.add.css_class("md-light")
+  .listing-show.hidden-xs
+    = render 'description'
+  %aside#index-show.control-sidebar
+  - if can?(User).create?
+    .mixed-btn
+      = link_to new_admin_user_path, class: 'btn-float' do
+        +
+
+:javascript
+  $('#role-1').fadeOut()

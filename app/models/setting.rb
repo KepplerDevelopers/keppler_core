@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Setting Model
-class Setting < ActiveRecord::Base
+class Setting < ApplicationRecord
   include ActivityHistory
 
   has_one :smtp_setting

@@ -1,28 +1,22 @@
 module Admin
   # ScriptsController
   class ScriptsController < AdminController
-    before_action :set_ga_track, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
+    before_action :set_ga_track, only: %i[show edit update destroy]
+    before_action :show_history, only: %i[index]
+    before_action :authorization, except: %i[reload]
 
     # GET /scripts
     def index
       @q = Script.ransack(params[:q])
-      scripts = @q.result(distinct: true)
-      @objects = scripts.page(@current_page)
-      @total = scripts.size
-
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to(
-          scripts_path(
-            page: @current_page.to_i.pred,
-            search: @query)
-        )
-      end
+      @scripts = @q.result(distinct: true)
+      @objects = @scripts.page(@current_page)
+      @total = @scripts.size
+      redirect_to_index(scripts_path) if nothing_in_first_page?(@objects)
+      respond_to_formats(@scripts)
     end
 
     # GET /scripts/1
-    def show
-    end
+    def show; end
 
     # GET /scripts/new
     def new
@@ -30,13 +24,11 @@ module Admin
     end
 
     # GET /scripts/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /scripts
     def create
-      @script =
-        Script.new(script_params)
+      @script = Script.new(script_params)
 
       if @script.save
         redirect(@script, params)
@@ -54,6 +46,16 @@ module Admin
       end
     end
 
+    def clone
+      @script = Script.clone_record params[:script_id]
+
+      if @script.save
+        redirect_to admin_scripts_path
+      else
+        render :new
+      end
+    end
+
     # DELETE /scripts/1
     def destroy
       @script.destroy
@@ -66,11 +68,25 @@ module Admin
 
     def destroy_multiple
       Script.destroy redefine_ids(params[:multiple_ids])
-
       redirect_to(
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
+      authorize @script
+    end
+
+    def upload
+      Script.upload(params[:file])
+      redirect_to(
+        admin_scripts_path(page: @current_page, search: @query),
+        notice: actions_messages(Script.new)
+      )
+    end
+
+    def reload
+      @q = Script.ransack(params[:q])
+      scripts = @q.result(distinct: true)
+      @objects = scripts.page(@current_page)
     end
 
     private
@@ -78,6 +94,10 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_ga_track
       @script = Script.find(params[:id])
+    end
+
+    def authorization
+      authorize Script
     end
 
     # Only allow a trusted parameter "white list" through.

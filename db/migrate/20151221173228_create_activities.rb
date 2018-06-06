@@ -1,13 +1,13 @@
 # Migration responsible for creating a table with activities
-class CreateActivities < ActiveRecord::Migration
+class CreateActivities < ActiveRecord::Migration[5.1]
   # Create table
   def self.up
     create_table :activities do |t|
-      t.belongs_to :trackable, :polymorphic => true
-      t.belongs_to :owner, :polymorphic => true
+      t.belongs_to :trackable, polymorphic: true
+      t.belongs_to :owner, polymorphic: true
       t.string  :key
       t.text    :parameters
-      t.belongs_to :recipient, :polymorphic => true
+      t.belongs_to :recipient, polymorphic: true
 
       t.timestamps
     end

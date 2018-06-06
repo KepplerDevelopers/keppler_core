@@ -1,27 +1,38 @@
-= title(t('keppler.titles.index', model: "Templates"))
-= header_information do
-	= "Templates"
+#customize-index.row
+  .col-md-6.col-lg-6
+    .box.slice-box
+      .box-header.with-border
+        %h3.box-title Preview
+        .box-tools.pull-right#tools
+          %i.icon-screen-smartphone#xs
+          %i.icon-screen-tablet#md
+          %i.icon-screen-desktop#lg
+          -# %span.separator-line
+          %i.icon-reload#reload
+          = link_to root_path, target: '_blank' do
+            %i.icon-size-fullscreen
 
-.listing.col.l9.m12.s12
-	- if can? :new, model
-		= link_to new_admin_customize_path, class: "btn-floating btn-large waves-effect waves-light btn-new hide-on-small-only" do
-			= material_icon.md_24.add
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- if @objects.size.zero?
-				%tr
-					%td.center{colspan: "4"}
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.customizes"))
-			- else
-				- @objects.each do |customize|
-					= render 'listing', customize: customize
-	= paginate @objects, window: 1
-
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
-
-- if can? :new, model
-	= link_to new_admin_customize_path, class: "btn-index-add btn-floating btn-large waves-effect waves-light" do
-		= material_icon.md_24.add.css_class("md-light")
+      .box-body.box-body-no-padding.hidden-xs#box-body
+        %iframe{ src: root_path, frameborder: '0' }
+  .col-md-6.col-lg-6
+    .box.slice-box
+      .box-header.with-border
+        %h3.box-title Frontend Theme
+      .box-body.no-padding
+        %table.table
+          %tbody
+            - @objects.each do |customize|
+              = render 'listing', customize: customize
+            - if @objects.size.zero?
+              %tr
+                %td{ colspan: 4 }
+                  %center
+                    = t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.customizes'))
+        %center#paginator-module
+          = paginate @objects, window: 1
+  .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+    = render 'description'
+    - if can?(Customize).create?
+      .mixed-btn
+        = link_to new_admin_customize_path, class: 'btn-float' do
+          +

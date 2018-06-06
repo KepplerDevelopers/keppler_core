@@ -1,5 +1,4 @@
-//= require material_icons
-//= require animate
+//= require animate-css
 //= require_self
 
 // Plugins
@@ -27,5 +26,4 @@
 @import 'components/inputs';
 
 // Pages
-@import "keppler_blog/frontend/blog";
 @import 'pages/*';

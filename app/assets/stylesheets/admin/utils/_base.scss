@@ -1,0 +1,71 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100% !important;
+  color: #5a5a5a;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: 1.5rem;
+}
+a{
+  color: inherit;
+  &:hover{
+    color: inherit;
+  }
+}
+
+a {
+  color: inherit;
+  &:hover {
+    color: inherit;
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+td.text-overflow {
+  max-width: 100px;
+}
+
+
+.box-tools {
+  i {
+    padding: 0 5px;
+    font-size: 1.7rem;
+    color: #d2d2d2;
+    transition: all ease .3s;
+    cursor: pointer;
+    &:hover {
+      color: #555;
+      transition: all ease .3s;
+    }
+  }
+}
+ol.breadcrumb{
+  @media screen and (min-width: 0) and (max-width: 991px) {
+    display: none;
+  }
+
+}

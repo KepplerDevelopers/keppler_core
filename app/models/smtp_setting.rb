@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # SmtpSetting Model
-class SmtpSetting < ActiveRecord::Base
+class SmtpSetting < ApplicationRecord
   belongs_to :setting
-  validates_presence_of :server_address, :port, :domain_name, :email, :password
+  validates_presence_of :address, :port, :domain_name, :email, :password
 end

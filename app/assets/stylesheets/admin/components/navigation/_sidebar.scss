@@ -1,0 +1,100 @@
+$sidebar-color: linear-gradient(to right, #ffffff, #f5f5f5);
+
+.skin-blue {
+  .main-sidebar{
+    // position: fixed;
+    background: $sidebar-color !important;
+    padding-top: 50px !important;
+    // border-right: 1px solid #e4e4e4;
+    // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+  }
+
+  .sidebar-menu > li:hover > a,
+  .sidebar-menu > li.active > a {
+    background: #fff !important;
+    color: #5a5a5a !important;
+    border-left-color: $keppler-color !important;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+    transition: .5s;
+
+    i {
+      color: $keppler-color !important;
+    }
+  }
+
+  .sidebar-menu > li > .treeview-menu {
+    margin: 0 1px;
+    background: #eee !important;
+    color: #5a5a5a !important;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+    border-radius: none !important;
+
+    a:hover {
+      color: #5a5a5a;
+      transition: .5s;
+    }
+  }
+
+  .sidebar {
+    min-height: 84vh;
+    margin: 0px !important;
+    a {
+      color: #8c8c8c !important;
+      transition: .5s;
+      &:hover {
+        color: #5a5a5a !important;
+      }
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+
+
+  .user-panel {
+    background-position: center;
+    background-size: cover;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .user-panel > .info > p {
+    font-weight: 600;
+    margin-bottom: 0px;
+    white-space: initial;
+    color: #5a5a5a !important;
+  }
+
+  .user-panel > .info > small {
+    color: #8c8c8c;
+    margin-bottom: 9px !important;
+  }
+
+  .text-success {
+    color: #2ade2e !important;
+  }
+}
+
+body .side-img-profile {
+  vertical-align: middle;
+  width: 40px !important;
+  height: 40px !important;
+  transition: .2s;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  background: $keppler-color;
+  object-fit: cover;
+}
+
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
+  top: 0;
+  margin-left: -3px;
+  padding: 12px 5px 12px 20px;
+  background: inherit;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+
+.skin-blue .main-sidebar li.header {
+  color: #5a5a5a !important;
+  background: $sidebar-color !important;
+}

@@ -1,8 +1,10 @@
 module Admin
   # CustomizesController
   class CustomizesController < AdminController
-    before_action :set_customize, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
+    before_action :set_customize, only: %i[show edit update destroy authorization]
+    before_action :set_customizes, only: %i[update install_default]
+    before_action :show_history, only: %i[index]
+    before_action :authorization, except: %i[reload install_default]
 
     # GET /customizes
     def index
@@ -10,22 +12,16 @@ module Admin
       customizes = @q.result(distinct: true)
       @objects = customizes.page(@current_page)
       @total = customizes.size
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to customizes_path(page: @current_page.to_i.pred, search: @query)
+      if !@objects.first_page? && @objects.blank?
+        redirect_to customizes_path(
+          page: @current_page.to_i.pred, search: @query
+        )
       end
-    end
-
-    # GET /customizes/1
-    def show
     end
 
     # GET /customizes/new
     def new
       @customize = Customize.new
-    end
-
-    # GET /customizes/1/edit
-    def edit
     end
 
     # POST /customizes
@@ -42,16 +38,10 @@ module Admin
 
     # PATCH/PUT /customizes/1
     def update
-      @customizes = Customize.all
       @customizes.each { |customize| customize.update(installed: false) }
       if @customize.update(customize_params)
-        if @customize.installed?
-          @customize.install
-        else
-          #@customizes.each { |customize| customize.update(installed: false) }
-          @customize.uninstall
-        end
-        redirect_to :back
+        @customize.installed? ? @customize.install : @customize.uninstall
+        redirect_to admin_customizes_path
       else
         render :edit
       end
@@ -59,27 +49,16 @@ module Admin
 
     def install_default
       @customize = Customize.find(params[:customize_id])
-      if !@customize.installed?
-        @customizes = Customize.all
+      if @customize.installed?
+        redirect_to admin_customizes_path
+      else
         @customizes.each { |customize| customize.update(installed: false) }
         if @customize.update(customize_params)
           @customize.install_keppler_template
-          redirect_to :back
+          redirect_to admin_customizes_path
         else
           render :edit
         end
-      else
-        redirect_to :back
-      end
-    end
-
-    def clone
-      @customize = Customize.clone_record params[:customize_id]
-
-      if @customize.save
-        redirect_to admin_customizes_path
-      else
-        render :new
       end
     end
 
@@ -105,6 +84,14 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_customize
       @customize = Customize.find(params[:id])
+    end
+
+    def set_customizes
+      @customizes = Customize.all
+    end
+
+    def authorization
+      authorize Customize
     end
 
     # Only allow a trusted parameter "white list" through.

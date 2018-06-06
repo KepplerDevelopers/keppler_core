@@ -1,17 +1,24 @@
 !!!
 %html
-	= render 'admin/layouts/head'
-	%body{ 'ng-controller'=>'MainCtrl', class: "#{@appearance.theme_name}-theme" }
-		.waiting
-			= preloader
+  = render 'admin/layouts/head'
+  %body.sidebar-mini.skin-blue{style: "height: auto; min-height: 100%;" }
+    #log
 
-		- if loggedin?
-			= render 'admin/layouts/sidebar'
-			= render 'admin/layouts/navigation'
-			= render 'admin/layouts/header'
-			= render 'admin/layouts/messages'
-			%main.row.admin{ role: 'main', 'ng-click' => 'sidebarClose()' }
-				= yield
-		- else
-			%main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
-				= yield
+    - if loggedin?
+      .wrapper{style:"height: auto; min-height: 100%;"}
+        = render 'admin/layouts/navigation'
+        = render 'admin/layouts/sidebar'
+        = render 'admin/layouts/messages'
+        .content-wrapper{ style: "min-height: 901px;" }
+          = yield
+
+      #spinner
+        = preloader
+
+      = render 'admin/layouts/footer'
+    - else
+      %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
+        = yield
+    - if action_name.eql?('index')
+      %script{src: "/assets/vue_admin/index.js"}
+    = keppler_boolean_script

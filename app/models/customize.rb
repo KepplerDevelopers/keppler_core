@@ -1,19 +1,22 @@
+# frozen_string_literal: true
+
 # Customize Model
-class Customize < ActiveRecord::Base
+class Customize < ApplicationRecord
   include ActivityHistory
   include CloneRecord
   mount_uploader :file, TemplateUploader
 
+  # validates :file, uniqueness: true
   # Fields for the search form in the navbar
   def self.search_field
     :file_cont
   end
 
   def name
-    if self.file?
-      "#{self.file.to_s.split("/").last.split(".").first.capitalize} Template"
+    if file?
+      "#{file.to_s.split('/').last.split('.').first.capitalize} Template"
     else
-      "Keppler Default"
+      'Keppler Default'
     end
   end
 
@@ -38,9 +41,9 @@ class Customize < ActiveRecord::Base
   private
 
   def clear_template
-    file_name =  Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first
-    template_name = file_name.split("/").last if file_name
-    names = build_array_html_files_names(template_name, "html")
+    file_name = Dir[File.join("#{Rails.root}/public/templates", '**', '*')].first
+    template_name = file_name.split('/').last if file_name
+    names = build_array_html_files_names(template_name, 'html')
     system "rails d keppler_front front #{names.join(' ')}"
     system "rm -rf #{Rails.root}/app/views/app/front/"
     clear_assets("#{Rails.root}/public/templates")

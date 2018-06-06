@@ -1,0 +1,78 @@
+.skin-blue{
+  .main-header {
+    position: fixed;
+    width: 100%;
+
+    a.logo {
+      background: $keppler-color;
+      color: #ffffff;
+      border-bottom: 0 solid transparent;
+      z-index: 9;
+    }
+
+    .navbar-static-top {
+      margin: 0%;
+      background: white !important;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+      // border-radius: 4px 0px 0px 4px !important;
+
+      a {
+        color: #949494 !important;
+      }
+    }
+
+    li.user-header {
+      background-image: url('profile-menu.jpg');
+      background-position: center;
+      background-size: cover;
+      border-bottom: 2px solid $keppler-color;
+      border-color: $keppler-color;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #e8e8e8 !important;
+    }
+  }
+}
+.navbar.navbar-static-top{
+  height: 50px !important;
+
+  h3{
+    display: inline-block;
+    margin: 10px 0;
+  }
+}
+
+header.main-header a.logo {
+  width: 50px !important;
+}
+
+header.main-header a.logo span span {
+  font-family: 'Patua One', cursive;
+  color: #fff !important;
+  text-shadow: 1px 1px 1px #0003;
+  font-size: 2.6rem !important;
+}
+
+.skin-blue .main-header {
+  .navbar-static-top a {
+    // border-radius: 4px 0px 0px 4px !important;
+  }
+  .dropdown a {
+    border-radius: 0px !important;
+  }
+}
+
+.sidebar-mini.sidebar-collapse {
+  .main-header .navbar {
+    margin-left: 0% !important;
+  }
+  .main-sidebar {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 50px !important;
+    z-index: 850;
+  }
+}

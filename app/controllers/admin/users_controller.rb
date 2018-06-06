@@ -1,29 +1,41 @@
 module Admin
   # UsersController
   class UsersController < AdminController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :set_roles, only: [:index, :new, :edit]
-    before_action :show_history, only: [:index]
+    before_action :set_user, only: %i[show edit update destroy]
+    before_action :set_roles, only: %i[index new edit create update]
+    before_action :show_history, only: %i[index]
+    before_action :authorization, except: %i[reload filter_by_role]
+    before_action :set_objects, only: %i[index filter_by_role reload]
 
     def index
-      @q = User.ransack(params[:q])
-      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
-      @objects = users.page(@current_page)
-      @total = users.size
+      @users = User.all.drop(1)
+
       if !@objects.first_page? && @objects.size.zero?
         redirect_to users_path(page: @current_page.to_i.pred, search: @query)
+      end
+
+      respond_to do |format|
+        format.html
+        format.json { render :json => @objects }
+      end
+    end
+
+    def filter_by_role
+      if params[:role].eql?('all')
+        @users = User.all.drop(1)
+      else
+        @users = User.filter_by_role(@objects, params[:role])
       end
     end
 
     def new
       @user = User.new
+      respond_to_formats(@user)
     end
 
-    def show
-    end
+    def show; end
 
-    def edit
-    end
+    def edit; end
 
     def update
       update_attributes = user_params.delete_if do |_, value|
@@ -39,12 +51,11 @@ module Admin
 
     def create
       @user = User.new(user_params)
-
       if @user.save
         @user.add_role Role.find(user_params.fetch(:role_ids)).name
         redirect(@user, params)
       else
-        render action: 'new'
+        render 'new'
       end
     end
 
@@ -61,10 +72,23 @@ module Admin
       )
     end
 
+    def reload; end
+
     private
 
     def set_user
-      @user = User.find(params[:id])
+      if params[:id].eql?('clients') || params[:id].eql?('admins')
+        redirect_to action: :index, role: params[:id]
+      else
+        @user = User.find(params[:id])
+      end
+    end
+
+    def set_objects
+      @q = User.ransack(params[:q])
+      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
+      @objects = users.page(@current_page)
+      @total = users.size
     end
 
     def set_roles
@@ -72,10 +96,14 @@ module Admin
       @roles = all_roles.drop(1)
     end
 
+    def authorization
+      authorize User
+    end
+
     def user_params
       params.require(:user).permit(
         :name, :email, :password, :password_confirmation,
-        :role_ids, :encrypted_password
+        :role_ids, :encrypted_password, :avatar
       )
     end
 

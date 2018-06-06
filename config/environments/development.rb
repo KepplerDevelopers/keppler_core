@@ -9,6 +9,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+  config.i18n.fallbacks = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -31,7 +32,7 @@ Rails.application.configure do
   config.time_zone = 'Caracas'
 
   config.action_mailer.smtp_settings = {
-    server_address: 'smtp.gmail.com',
+    address: 'smtp.gmail.com',
     port: 587,
     domain: Rails.application.secrets.domain_name,
     authentication: 'plain',

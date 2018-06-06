@@ -1,27 +1,52 @@
-.wrapper
-	.wrapper-body.container
-		.actions
-			= link_to admin_users_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.wrapper-inputs
-			.card
-				.card-content
-					= simple_form_for [:admin, @user] do |f|
-						.row
-							.col.s12
-								= f.input :name
-							.col.s12
-								= f.input :email
-							.col.s12
-								= f.input :role_ids, collection: @roles, label: 'Rol', include_blank: t("keppler.actions.select_rol"), input_html: { class: "input-field" }
-							.col.s12
-								= f.input :password
-							.col.s12
-								= f.input :password_confirmation
-							.col.s12
-								.form-actions.right
-									= f.button :submit, t("keppler.actions.save"), name: "_save"
-									= f.button :submit, t("keppler.actions.save_and_add_another"), name: "_add_other"
-:javascript
-	op1 = $('option').first()
-	op1.attr('disabled', 'disabled')
+= simple_form_for [:admin, @user] do |f|
+  .container
+
+    .row
+      .col-xs-12
+        = link_to admin_users_path, 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
+          .arrow-back.btn.btn-default
+            %i.fa.fa-angle-left
+            = t('keppler.actions.back')
+    .row
+      .col-md-4
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title Avatar
+            - unless @user.avatar.blank?
+              .pull-right
+                = link_to admin_user_delete_avatar_path(@user), remote: true do
+                  %i.icon-trash
+          .box-body.box-profile
+            = f.input :avatar, as: :keppler_file, label: false
+
+
+
+      .col-md-8
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= @user.name || 'User'
+
+
+          .box-body
+            %table.table.table-bordered
+              %tbody
+                .form-padding
+                  .row
+                    .col-lg-6
+                      = f.input :name, label: t('simple_form.labels.defaults.name'), placeholder: 'Name', input_html: {class: 'form-control'}, required: true
+                    .col-lg-6
+                      = f.input :email, label: t('simple_form.labels.defaults.email'), placeholder: 'Email', input_html: {class: 'form-control'}, required: true
+                  .row
+                    .col-xs-12
+                      = f.input :role_ids, collection: @roles, label: false, include_blank: "Selecione un rol"
+                  .row
+                    .col-lg-6
+                      = f.input :password, label: t('simple_form.labels.defaults.password'), placeholder: 'Password', input_html: {class: 'form-control'}, required: true
+                    .col-lg-6
+                      = f.input :password_confirmation, label: t('simple_form.labels.defaults.password_confirmation'), placeholder: 'Password Confirmation', input_html: {class: 'form-control'}, required: true
+
+                  .row
+                    .col-lg-12
+                      .pull-right
+                        = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+                        = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'

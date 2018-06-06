@@ -1,0 +1,107 @@
+.keppler-color { color: $keppler-color }
+.keppler-background { background: $keppler-color }
+.keppler-border-top-color { border-top-color: $keppler-color }
+
+.skin-blue .content-header {
+  background: transparent;
+  margin-top: 50px !important;
+}
+
+.wrapper {
+  .content-wrapper {
+    padding-top: 60px;
+    min-height: 100vh !important;
+    background: #f5f5f5;
+  }
+}
+
+.btn-ks {
+  border: 1px solid $keppler-color;
+  background: $keppler-color;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-ks:hover {
+  border: 1px solid $keppler-accent;
+  background: $keppler-accent;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-ks-inverse {
+  border: 1px solid $keppler-color;
+  color: $keppler-color;
+  transition: .5s all;
+}
+
+.btn-ks-inverse:hover {
+  border: 1px solid $keppler-color;
+  background: $keppler-color;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr {
+  border: 1px solid #5a5a5a;
+  background: #5a5a5a;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr:hover {
+  border: 1px solid #5a5a5a;
+  background: #1d1d1d;
+  color: white;
+  transition: .5s all;
+}
+
+.btn-gr-inverse {
+  border: 1px solid #5a5a5a;
+  color: #5a5a5a;
+  transition: .5s all;
+}
+
+.btn-gr-inverse:hover {
+  border: 1px solid #5a5a5a;
+  background: #5a5a5a;
+  color: white;
+  transition: .5s all;
+}
+
+.appearance-img {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 350px;
+}
+
+.minicolors-theme-default .minicolors-input {
+    height: 30px;
+    width: auto;
+    display: inline-block;
+    padding-left: 26px;
+}
+
+.label-primary {
+  background: $keppler-color !important;
+}
+
+//Noty
+.noty_bar {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  color: #fff !important;
+  text-align: center;
+}
+
+.content-wrapper,
+.right-side {
+  min-height: 100%;
+  background-color: #fafafa;
+  z-index: 800;
+}
+.box-body{
+  @include respond-to(xs){
+    padding: 0 0 20px 0px !important;
+  }
+}

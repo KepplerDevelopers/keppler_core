@@ -1,180 +1,225 @@
 !!!
 %html
-	%header
-		= render 'app/layouts/head'
-	%body
-		%header
-			= #render 'app/layouts/navigation'
-		%main#keppler{:role => "main"}
-			= #render 'app/layouts/messages'
-			.front
-				.front-logo
-					= image_tag "app/keppler-front.png", class: "img-responsive"
+  %header
+    = render 'app/layouts/head'
+  %body
+    %header
+      = #render 'app/layouts/navigation'
+    %main#keppler{:role => "main"}
+      = #render 'app/layouts/messages'
+      .front
+        .front-logo
+          = image_tag "app/keppler-front.png", class: "img-responsive"
 
-				.front-social
-					%ul
-						%li
-							=	link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
-								= icon 'twitter'
-						%li
-							=	link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
-								= icon 'facebook'
-						%li
-							=	link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
-								= icon 'instagram'
-						%li
-							=	link_to "https://github.com/SliceDevelopers", target: '_blank' do
-								= icon 'github'
-				.mouse-scroll
-					.mouse
-						.scroll
-				%footer.front-footer
-					= render 'app/layouts/footer'
-
-
-			%section#documentation
-				%h3 KEPPLER ADMIN
-
-				%p
-					KEPPLER ADMIN es una entorno de desarrollo que cuenta con una base de
-					gemas ya integradas, de tal forma que acelerará el desarrollo de
-					aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
-
-				%h3 Características
-
-				%ul
-					%li
-						Base de datos por defecto MySQL
-					%li
-						Integración para autenticación de usuarios con
-						= link_to 'Devise', 'https://github.com/plataformatec/devise', target: '_blank'
-					%li
-						Integración para roles de usuarios con
-						= link_to 'Rolify', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
-					%li
-						Integración para autorizaciones con
-						= link_to 'CanCanCan', 'https://github.com/CanCanCommunity/cancancan', target: '_blank'
-					%li
-						Inegración para el manejo de de paginación con
-						= link_to 'Kaminari', 'https://github.com/amatsuda/kaminari', target: '_blank'
-					%li
-						Integración para helpers de formularios con
-						= link_to 'SimpleForm', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
-					%li
-						Integración para búsquedas full-text con
-						= link_to 'Ransack', 'https://github.com/activerecord-hackery/ransack', target: '_blank'
-					%li
-						Integración con framework fronte-end para el administrativo con
-						= link_to 'Materialize', 'http://materializecss.com/', target: '_blank'
-					%li
-						Integración con framework javascript
-						= link_to 'AngularJs', 'https://angularjs.org/', target: '_blank'
-					%li
-						Integración sitemap dinamicos con
-						= link_to 'sitemap_generator', 'https://github.com/kjvarga/sitemap_generator', target: '_blank'
-
-				%h3 Instalación
-
-				%pre
-					%code.shell
-						git clone git@github.com:SliceDevelopers/keppler_admin.git
-						bundle install
-
-				%p
-					Luego debe configurar el archivo
-					%pre
-						%code.ruby
-							config/secrets.yml
-					= link_to '[ver archivo]', 'https://github.com/inyxtech/Keppler-CMS/blob/master/config/secrets.yml.example'
-					de esta manera puede añadir los parámetros de configuración de su base de datos y poder realizar migraciones.
-
-				%pre
-					%code.shell
-						rake db:create
-						rake db:migrate
-						rake db:seed
-
-				%h3 SimpleForm con Materialize
-
-				%p
-					Se ofrece una integración por defecto entre SimpleForm y Materialize, usted tiene la posibilidad de cambiar su funcionalidad en
-					%pre
-						%code.ruby
-							config/initializers/simple_form_materialize.rb
+        .front-social
+          %ul
+            %li
+              =  link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
+                = icon 'fab', 'twitter'
+            %li
+              =  link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
+                = icon 'fab', 'facebook'
+            %li
+              =  link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
+                = icon 'fab', 'instagram'
+            %li
+              =  link_to "https://github.com/SliceDevelopers", target: '_blank' do
+                = icon 'fab', 'github'
+        .mouse-scroll
+          .mouse
+            .scroll
+        %footer.front-footer
+          = render 'app/layouts/footer'
 
 
-				%p Aquí algunos ejemplos para la creación de inputs:
+      %section#documentation
+        %h3 KEPPLER ADMIN
 
-				%pre
-					%code.haml
-						:preserve
-							# inputs de tipo text
-							= f.input :name
+        %p
+          KEPPLER ADMIN es un CMS con un entorno de desarrollo que cuenta con
+          una base de gemas ya integradas, de tal forma que acelerará el
+          desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby
+          on Rails.
 
-							# inputs de tipo boolean
-							= f.input :public, as: :checkbox_material
+        %h3 Características
 
-							# inputs de tipo textarea
-							= f.input :description, input_html: { class: "materialize-textarea" }
+        %ul
+          %li
+            Base de datos por defecto PostreSQL
+          %li
+            Integración para autenticación de usuarios con
+            = link_to 'Devise', 'https://github.com/plataformatec/devise', target: '_blank'
+          %li
+            Integración para roles de usuarios con
+            = link_to 'Rolify', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
+          %li
+            Integración para autorizaciones con
+            = link_to 'Pundit', 'https://github.com/varvet/pundit', target: '_blank'
+          %li
+            Inegración para el manejo de de paginación con
+            = link_to 'Kaminari', 'https://github.com/amatsuda/kaminari', target: '_blank'
+          %li
+            Integración para helpers de formularios con
+            = link_to 'SimpleForm', 'https://github.com/RolifyCommunity/rolify', target: '_blank'
+          %li
+            Integración para búsquedas full-text con
+            = link_to 'Ransack', 'https://github.com/activerecord-hackery/ransack', target: '_blank'
+          %li
+            Integración con framework fronte-end para el administrativo con
+            = link_to 'AdminLTE', 'https://adminlte.io', target: '_blank'
+          %li
+            Integración con framework javascript
+            = link_to 'VueJS', 'https://vuejs.org/', target: '_blank'
+          %li
+            Integración sitemap dinamicos con
+            = link_to 'Sitemap Generator', 'https://github.com/kjvarga/sitemap_generator', target: '_blank'
 
-							# inputs de tipo file
-							= f.input :image, :as => :file_material, label: false, wrapper_html: { class: "file-field" }
+        %h3 Gema de Keppler
 
-							# inputs de tipo select
-							= f.input :role_ids, collection: Role.all, label: false, include_blank: "Selecione un rol"
+        %h4 Instalación
 
-							# inputs de tipo radio buttons
-							= f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
+        %p Una de las novedades de Keppler Admin v2.0 es el lanzamiento de una gema que nos
+        permite el fácil y rápido manejo de las funcionalidades del CMS. Para instalarlo
+        necesitamos ejecutar el siguiente comando desde la consola:
 
-							# inputs de tipo check_boxes
-							= f.collection_check_boxes :options, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']],:first, :last
+        %pre
+          %code.ruby
+            gem install keppler
 
-							# inputs de tipo date
-							= f.input :date, input_html: {class: "datepicker"}
+        %h4 Lista de comandos
 
-				%strong
-					Nota:
-				%p
-					Puede revisar la documentación de
-					= link_to 'Materialize', 'http://materializecss.com/'
-				para agregar nuevas integraciones para sus formularios a través de los
-				= link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
-				de simpleform.
+        %p Para verificar que está instalada la gema correctamente y ver una lista de los posibles comandos
+        que podemos utilizar, ejecutamos:
+
+        %pre
+          %code.ruby
+            keppler
+
+        %h4 Nuevo Proyecto
+
+        %p Para crear un nuevo proyecto en Ruby on Rails con Keppler Admin, podemos ejecutar:
+
+        %pre
+          %code.ruby
+            keppler new NuevoProyecto
+
+        %h4 Creación del archivo secrets.yml
+
+        %p Si detienes el proceso a la mitad o aún no tienes configurado un archivo secrets.yml con la configuración de
+        la base de datos y otros inicializadores, puedes crear la base de datos ejecutando:
+
+        %pre
+          %code.ruby
+            keppler db_conf
+
+        %h4 Instalación de las dependencias
+
+        %p Antes de poder iniciar con un proyecto nuevo, primero debemos instalar todas las gemas
+        instanciadas en el Gemfile, ubicado en la raíz del proyecto, con el comando:
+
+        %pre
+          %code.ruby
+            keppler dep
+
+        %h3 Keppler Scaffolds
+
+        %p Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente
+        configurados para adaptarse al administrativo. Para crear un nuevo
+        módulo sólo debes llamar al siguiente comando desde la consola:
+
+        %pre
+          %code.ruby
+            keppler add module ModuleName attribute:type
+
+        %p Por ejemplo, crearemos un scaffold de productos con diversos campos y tipos de datos:
+
+        %pre
+          %code.ruby
+            keppler add module Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references
+
+        %p Luego debemos migrar la tabla a la base de datos con:
+
+        %pre
+          %code.ruby
+            keppler migrate
+
+        %p Si luego deseamos borrar, crear, migrar y llenar la base de datos desde cero,
+        podemos realizarlo ejecutando el comando:
+
+        %pre
+          %code.ruby
+            keppler reset
+
+        %p Por último, si todo ha sido ejecutado debida y correctamente, podemos iniciar
+        el proyecto ejecutando en la consola:
+
+        %pre
+          %code.ruby
+            keppler server
+
+        %h3 SimpleForm con Bootstrap
+
+        %p
+          Se ofrece una integración por defecto entre SimpleForm y Bootstrap, usted tiene la posibilidad de cambiar su funcionalidad en
+          %pre
+            %code.ruby
+              config/initializers/simple_form_bootstrap.rb
 
 
-				%h3 Keppler scaffolds
+        %p Aquí algunos ejemplos para la creación de inputs:
 
-				%p
-					Keppler ofrece la posibilidad de realizar tareas de scaffolds
-					totalmente configurados para adaptarse de una vez al administrativo.
-					Para crear un nuevo modulo solo tienes que llamar al siguiente
-					comando desde la consola:
+        %pre
+          %code.haml
+            :preserve
+               # Inputs de tipo string o textarea
+              = f.input :name
 
-				%pre
-					%code.shell
-						rails g keppler_scaffold [module_name] [attributes] -f
+               # Inputs de tipo CKEditor
+              = f.input :description, as: :ckeditor, input_html: { ckeditor: { toolbar: 'mini'} }
 
-				%p Luego crea la tabla en base de datos.
+               # Inputs de tipo boolean
+              = f.input :public, as: :keppler_boolean
 
-				%pre
-					%code.shell
-						rake db:migrate
+               # Inputs de tipo file
+              = f.input :image, as: :keppler_file
 
-				%h3 Plugins (Módulos)
+               # Inputs de tipo select
+              = f.input :role_ids, collection: Role.all, label: false, include_blank: "Seleccione un rol"
 
-				%p
-					La plataforma permite la adaptación de módulos con facil instalación,
-					algunos de los módulos desarrollados son:
+               # Inputs de tipo radio buttons
+              = f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']], :first, :last
 
-				%ul
-					%li
-						= link_to 'Keppler google analytics dashboard', 'https://github.com/SliceDevelopers/keppler_ga_dashboard'
-					%strong ya viene integrado
-					%li
-						= link_to 'Keppler blog', 'https://github.com/SliceDevelopers/keppler_blog'
-					%li
-						= link_to 'Keppler catalogs', 'https://github.com/inyxtech/keppler_catalogs'
-					%li
-						= link_to 'Keppler contact', 'https://github.com/SliceDevelopers/keppler_contact_us'
+               # Inputs de tipo check_boxes
+              = f.collection_check_boxes :options, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']], :first, :last
 
-		%script{ src: '/assets/app/front.js' }
+               # Inputs de tipo date
+              = f.input :date, input_html: { class: 'datepicker' }
+
+        %strong
+          Nota:
+        %p
+          Puede revisar la documentación de
+          = link_to 'AdminLTE', 'https://adminlte.io'
+        para agregar nuevas integraciones para sus formularios a través de los
+        = link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
+        de simpleform.
+
+        -# %h3 Plugins (Módulos)
+        -#
+        -# %p
+        -#   La plataforma permite la adaptación de módulos con facil instalación,
+        -#   algunos de los módulos desarrollados son:
+        -#
+        -# %ul
+        -#   %li
+        -#     = link_to 'Keppler Google Analytics Dashboard', 'https://github.com/slicegroup/keppler_ga_dashboard'
+        -#     -
+        -#     %strong ya viene integrado
+        -#   %li
+        -#     = link_to 'Keppler Blog', 'https://github.com/slicegroup/keppler_blog'
+        -#   %li
+        -#     = link_to 'Keppler Catalogs', 'https://github.com/slicegroup/keppler_catalogs'
+        -#   %li
+        -#     = link_to 'Keppler Contact', 'https://github.com/slicegroup/keppler_contact_us'
+
+    %script{ src: '/assets/app/front.js' }

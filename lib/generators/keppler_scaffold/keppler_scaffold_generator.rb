@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails/generators/rails/resource/resource_generator'
 require 'rails/generators/resource_helpers'
 module Rails
@@ -34,7 +36,7 @@ module Rails
         return if options[:skip_routes]
         inject_into_file(
           'config/routes.rb',
-          "\n\n  #{indent(str_route)}",
+          "\n #{indent(str_route)}",
           after: "root to: 'admin#root'"
         )
       end
@@ -47,26 +49,33 @@ module Rails
         )
       end
 
-      def add_access_ability
+      def add_option_permissions
         inject_into_file(
-          'app/models/ability.rb',
-          str_ability_admin,
-          after: '    if user.has_role? :keppler_admin'
-        )
-        inject_into_file(
-          'app/models/ability.rb',
-          str_ability_admin,
-          after: '    elsif user.has_role? :admin'
-        )
-        inject_into_file(
-          'app/models/ability.rb',
-          str_ability_client,
-          after: '    elsif user.has_role? :client'
+          'config/permissions.yml',
+          str_permissions,
+          before: 'scripts:'
         )
       end
+      # def add_access_ability
+      #   inject_into_file(
+      #     'app/models/ability.rb',
+      #     str_ability_admin,
+      #     after: '    if user.has_role? :keppler_admin'
+      #   )
+      #   inject_into_file(
+      #     'app/models/ability.rb',
+      #     str_ability_admin,
+      #     after: '    elsif user.has_role? :admin'
+      #   )
+      #   inject_into_file(
+      #     'app/models/ability.rb',
+      #     str_ability_client,
+      #     after: '    elsif user.has_role? :client'
+      #   )
+      # end
 
       def add_locales
-        %w(en es).each do |locale|
+        %w[en es].each do |locale|
           add_str_locales(locale, 'singularize')
           add_str_locales(locale, 'pluralize')
           add_str_locales(locale, 'modules')
@@ -75,7 +84,7 @@ module Rails
         end
       end
 
-      # Se usa para configurar la exportación del ActiveRecords a .xls,
+      # Se usa para configurar la exportacion del ActiveRecords a .xls,
       # pero da problemas al borrar el KepplerScaffold
 
       # def add_config_xls
@@ -108,18 +117,36 @@ module Rails
         )
       end
 
+      def create_policies_files
+        template(
+          'policies/policy.rb',
+          File.join(
+            'app/policies',
+            controller_class_path,
+            "#{controller_file_name.singularize}_policy.rb"
+          )
+        )
+      end
+
       def create_views_files
         names
         attachments
-        template_keppler_views('_description.html.haml')
-        template_keppler_views('_index_show.html.haml')
-        template_keppler_views('_listing.html.haml')
-        template_keppler_views('_form.html.haml')
-        template_keppler_views('show.js.haml')
-        template_keppler_views('edit.html.haml')
-        template_keppler_views('new.html.haml')
-        template_keppler_views('show.html.haml')
-        template_keppler_views('index.html.haml')
+        # template_keppler_views('_description.html.haml')
+        # template_keppler_views('_index_show.html.haml')
+        # template_keppler_views('_listing.html.haml')
+        # template_keppler_views('_form.html.haml')
+        # template_keppler_views('show.js.haml')
+        # template_keppler_views('edit.html.haml')
+        # template_keppler_views('new.html.haml')
+        # template_keppler_views('show.html.haml')
+        # template_keppler_views('index.html.haml')
+        # template_keppler_views('reload.js.haml')
+        %w[
+          _description.html _index_show.html _listing.html _form.html edit.html
+          new.html show.html index.html show.js reload.js
+        ].each do |file_name|
+          template_keppler_views("#{file_name}.haml")
+        end
       end
 
       hook_for :test_framework, as: :scaffold
@@ -129,24 +156,24 @@ module Rails
         invoke invoked, [controller_name]
       end
 
-      def add_position_field
-        file = Dir::entries('db/migrate').sort.last
-        #system "sudo apt-get update"
-        inject_into_file(
-          "db/migrate/#{file}",
-          "t.integer :position\n      ",
-          before: "t.timestamps null: false"
-        )
-      end
+      # def add_position_field
+      #   file = Dir::entries('db/migrate').max
+      #   # system 'sudo apt-get update'
+      #   inject_into_file(
+      #     "db/migrate/#{file}",
+      #     "t.integer :position\n      ",
+      #     before: 't.timestamps'
+      #   )
+      # end
 
       private
 
       def names
-        @names = ['name', 'title', 'first_name', 'full_name']
+        @names = %w[name title first_name full_name]
       end
 
       def attachments
-        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
+        @attachments = %w[logo brand photo avatar cover image picture banner attachment pic file]
       end
 
       def add_str_locales(locale, switch)
@@ -158,24 +185,27 @@ module Rails
       end
 
       def str_route
-        "resources :#{controller_file_name} do\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/import', action: 'import', as: 'import'\n        delete(\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end\n"
+        "\n  resources :#{controller_file_name} do\n    post '/sort', action: :sort, on: :collection\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/upload', action: 'upload', as: :upload\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      '/destroy_multiple',\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end"
       end
 
       def str_menu
-        "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: help_outline\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
+        "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: layers\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
       end
 
-      def str_ability_admin
-        "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
+      def str_permissions
+        "#{controller_file_name.pluralize}:\n    name: #{controller_file_name.singularize.camelize}\n    actions: [\n      'index', 'create', 'update',\n      'destroy', 'download', 'upload',\n      'clone'\n    ]\n  "
       end
+      # def str_ability_admin
+      #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
+      # end
+      #
+      # def str_ability_client
+      #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can [:index, :show], #{controller_file_name.singularize.camelcase}"
+      # end
 
-      def str_ability_client
-        "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can [:index, :show], #{controller_file_name.singularize.camelcase}"
-      end
-
-      def str_xls
-        "\nif #{controller_file_name.singularize.camelcase}.table_exists?\n  @#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n  @#{controller_file_name.pluralize}.to_xls(\n    only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n    except: [:id],\n    header: false,\n    prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n    column_width: [17, 15, 15, 40, 25, 37]\n  )\n  @#{controller_file_name.pluralize}.to_xls do |column, value|\n    column == :salutation ? t(value) : value\n  end\nend\n"
-      end
+      # def str_xls
+      #   "\nif #{controller_file_name.singularize.camelcase}.table_exists?\n  @#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n  @#{controller_file_name.pluralize}.to_xls(\n    only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n    except: [:id],\n    header: false,\n    prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n    column_width: [17, 15, 15, 40, 25, 37]\n  )\n  @#{controller_file_name.pluralize}.to_xls do |column, value|\n    column == :salutation ? t(value) : value\n  end\nend\n"
+      # end
 
       def str_locales(switch)
         case switch
@@ -184,9 +214,9 @@ module Rails
         when 'pluralize'
           "\n        #{controller_file_name}: #{controller_file_name.humanize.downcase}"
         when 'modules'
-          "\n      admin/#{controller_file_name}: #{controller_file_name.humanize}"
+          "\n      admin/#{controller_file_name.dasherize}: #{controller_file_name.humanize}"
         when 'sidebar-menu'
-          "\n      #{controller_file_name}: #{controller_file_name.humanize}"
+          "\n      #{controller_file_name.dasherize}: #{controller_file_name.humanize}"
         # when 'attributes'
         #   array = ["\n      #{controller_file_name.singularize}:"]
         #   attributes_names.each do |attribute|
@@ -199,7 +229,7 @@ module Rails
       def template_keppler_views(name_file)
         template(
           "views/#{name_file}",
-          File.join("app/views/admin/#{controller_file_name}",  name_file)
+          File.join("app/views/admin/#{controller_file_name}", name_file)
         )
       end
 

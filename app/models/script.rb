@@ -1,8 +1,17 @@
-# GoogleAnayticsTrack Model
-class Script < ActiveRecord::Base
-  include ActivityHistory
+# frozen_string_literal: true
 
-  def self.get_tracking_id(request)
+# Script Model
+class Script < ApplicationRecord
+  include ActivityHistory
+  include CloneRecord
+  include Uploadable
+  include Downloadable
+  include Sortable
+  acts_as_list
+
+  validates_presence_of :name, :script, :url
+
+  def self.get_script(request)
     find_by_url(request.url)
   end
 

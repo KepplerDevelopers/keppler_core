@@ -10,68 +10,37 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Labels and hints examples
-    labels:
+    # Examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'
+    placeholders:
       defaults:
+        all: All
+        name: 'Name'
+        last_name: 'Last name'
+        first_name: 'First name'
+        city: 'City'
+        country: 'Country'
+        code: 'Code'
+        message: 'Message'
+        description: 'Description'
         password: 'Password'
-        id: Id
-        title: Title
-        subtitle: Subtitle
-        tags: Etiquetas
-        name: Name
-        first_name: 'First Name'
-        last_name: 'Last Name'
-        full_name: 'Full Name'
-        email: Email
-        phone: Phone
-        phone_number: 'Phone Number'
-        phone_code: 'Phone Code'
-        area_code: 'Phone Code'
-        phone_one: 'Phone One'
-        phone_two: 'Phone Two'
-        age: Age
-        image: Image
-        photo: Photo
-        attachment: Attachment
-        pdf: PDF
-        avatar: Avatar
-        brand: Brand
-        country: Country
-        state: State
-        city: City
-        company: Company
-        product: Product
-        client: Client
-        partner: Partner
-        code: Code
-        alliance: Alliance
-        ally: Ally
-        category: Category
-        service: Service
-        project: Project
-        type: Type
-        address: Address
-        size: Size
-        distance: Distance
-        description: Description
-        short_description: 'Short Description'
-        long_description: 'Long Description'
-        details: Details
-        message: Message
-        content: Content
-        date: Date
-        date_begin: 'Date Begin'
-        date_end: 'Date End'
-        begin: Inicio
-        end: Fin
-        check_in: 'Check In'
-        check_out: 'Check Out'
-      user:
-        new:
-          email: 'E-mail to sign in.'
-        edit:
-          email: 'E-mail.'
-    hints:
-      defaults:
-        username: 'User name to sign in.'
-        password: 'No special characters, please.'
+        password_confirmation: 'Password confirmation'
+        email: 'Email'
+        phone: 'Phone number'

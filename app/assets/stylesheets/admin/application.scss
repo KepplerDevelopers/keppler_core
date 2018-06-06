@@ -1,24 +1,33 @@
-//= require material_icons
-//= require animate
+// require simple-line-icons
+//= require animate-css
 //= require jquery.minicolors
+//= require noty
 //= require_self
 
+//Libraries and plugins as gems
 @import 'bourbon';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import 'materialize';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "adminlte";
+@import "simple-line-icons";
+
+//Utils folder
 @import 'utils/variables';
 @import 'utils/mixins';
-@import 'pages/layout';
-@import 'pages/devise';
-@import 'pages/navbar';
-@import 'pages/sidebar';
-@import 'pages/pageslide';
-@import 'pages/header';
-@import 'pages/listing';
-@import 'pages/show';
-@import 'pages/form';
-@import 'pages/search';
-@import 'pages/themes';
-@import 'dashboard'; //dashboard gem
-@import "keppler_blog/admin/blog";
+@import 'utils/theme';
+@import 'utils/base';
+
+//Components folder
+@import "components/navigation/navbar";
+@import "components/navigation/sidebar";
+@import "components/layouts/footer";
+@import "components/layouts/settings";
+@import "components/paginator/paginator";
+
+//Vendor folder
+@import "vendor/admin-lte/skin-blue";
+
+// Page folder
+@import 'pages/*';

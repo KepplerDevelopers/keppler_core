@@ -1,0 +1,35 @@
+.slice-box{
+  border-top: none !important;
+
+  &.file-box{
+    padding: 25px;}
+  .pure-input{
+    .form-group{
+      margin-bottom: 25px;
+      &:last-child{
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+.info-box{
+  min-height: 160px;
+  border-bottom-left-radius: 75px;
+  border-top-left-radius: 75px;
+  &:first-child{
+    margin-bottom: 35px;
+  }
+  .info-box-img{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .file{
+    padding: 12px;
+  }
+
+}

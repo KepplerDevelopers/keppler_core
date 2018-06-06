@@ -1,33 +1,39 @@
 menu:
   dashboard:
     name: dashboard
-    url_path: /admin/dashboard
-    icon: dashboard
-    current: ['keppler_ga_dashboard/dashboard']
-  seo:
-    name: SEO
-    current: ['admin/meta_tags']
-    icon: trending_up
-    model: MetaTag
-    submenu:
-      - meta_tags:
-          name: 'Title & Metas'
-          url_path: /admin/meta_tags
-          current: ['admin/meta_tags']
+    url_path: /admin
+    icon: pie-chart
+    current: ['admin/dashboard']
+    model: Dashboard
   script:
-    name: Scripts
+    name: scripts
     url_path: /admin/scripts
-    icon: settings_ethernet
+    icon: chart
     current: ['admin/scripts']
     model: Script
+  meta_tags:
+    name: meta_tags
+    current: ['admin/meta_tags']
+    icon: graph
+    model: MetaTag
+    url_path: /admin/meta_tags
   user:
     name: users
-    url_path: /admin/users
-    icon: account_circle
+    icon: user
     current: ["admin/users"]
+    model: User
+    submenu:
+      - users:
+          name: users
+          url_path: /admin/users
+          current: ['admin/users']
+      - roles:
+          name: roles
+          url_path: /admin/roles
+          current: ['admin/roles']
   customize:
     name: keppler design
-    icon: color_lens
+    icon: pencil
     current: ['admin/customizes']
     model: Customize
     submenu:
@@ -42,7 +48,7 @@ menu:
   # development:
   #   name: Development
   #   current: ['admin/scaffolds']
-  #   icon: code
+  #   icon: screen-desktop
   #   model: Scaffold
   #   submenu:
   #     - scaffolds:
@@ -51,23 +57,23 @@ menu:
   #         current: ['/admin/scaffolds']
   setting:
     name: setting
-    current: ['admin/settings']
     icon: settings
+    current: ['admin/settings/basic_information']
     model: Setting
     submenu:
-      - basic_information:
-          name: Basic information
+      - basic-information:
+          name: basic-information
           url_path: /admin/settings/basic_information
-          current: ['basic_information']
-      - smtp_setting:
-          name: Email setting (SMTP)
+          current: ['admin/settings/basic_information']
+      - email-setting:
+          name: email-setting-smtp
           url_path: /admin/settings/email_setting
-          current: ['email_setting']
+          current: ['admin/settings/email_setting']
       - google_analytics_setting:
-          name: Google analytics
+          name: google-analytics
           url_path: /admin/settings/google_analytics_setting
-          current: ['google_analytics_setting']
-      - social_account:
-          name: Social Accounts
+          current: ['/admin/settings/google_analytics_setting']
+      - social_accounts:
+          name: social-accounts
           url_path: /admin/settings/social_accounts
-          current: ['social_accounts']
+          current: ['/admin/settings/social_accounts']

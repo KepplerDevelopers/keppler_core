@@ -3,7 +3,7 @@ Social = $('#keppler .front-social')
 Slice = $('#keppler .front-footer')
 Mouse = $('#keppler .mouse-scroll')
 function scrollFunction(){
-  scroll = $('html').scrollTop()
+  scroll = $(window).scrollTop()
   if (scroll <= 559) {
     $('.front').css({
       position: 'relative',
@@ -107,7 +107,7 @@ function scrollFunction(){
       'margin-top': '616px'
     })
   }
-  console.log(scroll)
+  // console.log(scroll)
 }
 $(document).ready(function() {
   $('pre code').each(function(i, block) {
@@ -123,6 +123,7 @@ $(document).ready(function() {
     }
   })
 });
+
 $( window ).scroll(function() {
   scrollFunction()
 })

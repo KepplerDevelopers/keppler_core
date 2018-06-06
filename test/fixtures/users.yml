@@ -6,6 +6,5 @@
 #
 admin:
   name: admin
-  email: admin@inyxtech.com
+  email: admin@keppler.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-

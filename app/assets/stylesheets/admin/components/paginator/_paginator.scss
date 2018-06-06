@@ -1,0 +1,53 @@
+#paginator-module{
+  .btn-pag{
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    background-color: #bfc5c5;
+    border-radius: 50%;
+    transition: .3s;
+    cursor: pointer;
+    vertical-align: middle;
+    line-height: -1 !important;
+  }
+
+  .icon-size{
+    line-height: unset !important;
+  }
+
+  .bg-current{
+    background-color: $keppler-color !important;
+  }
+
+  .bg-not{
+    color: #fff !important;
+  }
+
+  .btn-not{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    transition: .3s;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+}
+
+.badge.objects-counter {
+  background: #b6bec7;
+  margin-bottom: 5px;
+  border-radius: 1px;
+}

@@ -1,30 +1,28 @@
-= title(t('keppler.titles.show', model: "Meta tags"))
-.wrapper
-	.wrapper-body.container
-		.actions
-			- if can? :delete, MetaTag
-				= link_to admin_meta_tag_path(@meta_tag), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-					= material_icon.md_18.delete.css_class("md-dark")
-			- if can? :update, MetaTag
-				= link_to edit_admin_meta_tag_path(@meta_tag), class: "right btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" =>t("keppler.actions.edit") do
-					= material_icon.md_18.create.css_class("md-dark")
-			= link_to admin_meta_tags_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.card
-			.card-content
-				%table.list.bordered
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.id")
-						%td.display-value.fs-body-1.tc-black-2= @meta_tag.id.to_s.humanize
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.title")
-						%td.display-value.fs-body-1.tc-black-2= @meta_tag.title.to_s.humanize
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.description")
-						%td.display-value.fs-body-1.tc-black-2= @meta_tag.description.to_s.humanize
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.meta_tags")
-						%td.display-value.fs-body-1.tc-black-2= @meta_tag.meta_tags.to_s.humanize
-					%tr.list-row
-						%th.display-label= t("activerecord.attributes.url")
-						%td.display-value.fs-body-1.tc-black-2= @meta_tag.url.to_s.humanize
+.container
+  .row
+    .col-lg-2
+      = link_to admin_meta_tags_path, 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
+        .arrow-back.btn.btn-default
+          %i.fa.fa-angle-left
+          = t('keppler.actions.back')
+          .clearfix
+  .show-section
+    .row
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t 'keppler.sidebar-menu.seo-submenu.title-metas'
+            .box-tools.pull-right
+              - if can?(MetaTag).update?
+                = link_to edit_admin_meta_tag_path(@meta_tag), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                  %i.icon-pencil
+              - if can?(MetaTag).destroy?
+                = link_to admin_meta_tag_path(@meta_tag), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                  %i.icon-trash
+          .box-body.box-body-no-padding
+            %table.table.table-striped
+              %tbody
+                - @meta_tag.as_json(only: ['id', 'title', 'description', 'meta_tags', 'url', 'created_at']).each do |attribute, value|
+                  %tr.list-row
+                    %th.display-label= t("activerecord.attributes.#{attribute}")
+                    %td.display-value.fs-body-1.tc-black-2= value

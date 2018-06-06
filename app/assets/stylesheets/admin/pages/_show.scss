@@ -1,68 +1,17 @@
-.wrapper {
-  margin-top: 100px;
-
-  @media #{$small-and-down} {
-    margin-top: 20px;
+.bg-profile{
+  @extend %circle-img;
+  width: 100px;
+  height: 100px;
+}
+.img-show{
+  width: 100%;
+}
+.list-row {
+  img {
+    max-width: 100%;
+    max-height: 300px;
   }
-
-  .actions {
-    height: 30px;
-    margin-bottom: 15px;
-
-    a {
-      margin-left: 2px;
-    }
-
-    .btn-floating {
-      box-shadow: none;
-    }
-
-    .btn-floating:hover {
-      background: $gray-hover;
-    }
-  }
-
-  &-body {
-    .card {
-      margin-bottom: 40px;
-      .card-content {
-        .color-title{
-          font-weight: 400;
-          font-size: xx-large;
-          color: $keppler-accent;
-          // letter-spacing: 5px;
-        }
-        .color-subtitle{
-          font-weight: 400;
-          font-size: larger;
-          font-style: oblique;
-          color: $keppler-accent;
-        }
-  			img {
-  				max-height: 200px;
-  				margin: 10px;
-          width: auto;
-  			}
-      }
-    }
-  }
-
-  .list {
-    margin-top: 8px;
-
-    .list-row {
-      margin-bottom: 10px;
-    }
-
-    .display-label {
-      color: $gray-darken;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .display-value {
-      font-size: 13px;
-      font-weight: 300;
-    }
-  }
+}
+.attr-name{
+  font-weight: bold;
 }

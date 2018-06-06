@@ -22,7 +22,7 @@ $nprogress-zindex: 10100;
 // NO TOCAR /////////////
 $keppler-color:#f44336;
 $keppler-darken:#d32f2f;
-$keppler-accent:#009688;
+$keppler-accent:#d11421;
 // NO TOCAR /////////////
 // Pink theme color
 $pink-color: #e91e63;
@@ -53,3 +53,27 @@ $amber-accent: #7c4dff;
 $brown-color: #795548;
 $brown-darken: #5d4037;
 $brown-accent: #4caf50;
+
+// Medias querys
+$breakpoints: (
+  'xs': "(max-width: 767px)",
+  'sm': "(max-width: 991px)",
+  'md': "(max-width: 1199px)",
+  'lg': "(max-width: 1600px)",
+  'xl': "(max-width: 2048px)",
+) !default;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+
+$font-primary: 'Source Sans Pro', sans-serif;
+
+$font-size: 10px;
+$color-primary: #ff5300; // Orange primary
+$color-secundary: #ff005e;
+
+%circle-img{
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

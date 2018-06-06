@@ -1,12 +1,12 @@
 # AdminHelper Backoffice
 module AdminHelper
+
+  def keppler_boolean_script
+    render 'admin/layouts/keppler_boolean_script'
+  end
+
   def preloader
-    content_tag :div, class: 'preloader-wrapper big active' do
-      concat spinner_layer('blue')
-      concat spinner_layer('red')
-      concat spinner_layer('yellow')
-      concat spinner_layer('green')
-    end
+    render "admin/layouts/preloader"
   end
 
   # Header information dinamic in keppler back-office
@@ -43,10 +43,19 @@ module AdminHelper
 
   def entries(total, objects)
     unless total.zero?
-      content_tag :div, class: 'entries hidden-xs' do
-        message(total, objects)
+      content_tag :div, class: 'badge objects-counter', style: "margin-bottom: 0 10px" do
+        content_tag :span, class: 'span' do
+          message(total, objects)
+        end
       end
     end
+  end
+
+  def search_model
+    klass = controller_path.split('/')
+    klass.delete("admin")
+    klass = klass.join('/')
+    klass.classify.constantize.search_field
   end
 
   private

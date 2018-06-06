@@ -2,11 +2,11 @@ module Admin
   # AdminController
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
-    before_filter :authenticate_user!
-    load_and_authorize_resource except: :root
-    before_filter :paginator_params
-    before_filter :set_setting
+    before_action :authenticate_user!
+    before_action :paginator_params
+    before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
+    before_action :tables_name
 
     def root
       if current_user
@@ -26,7 +26,16 @@ module Admin
       @setting = Setting.first
     end
 
+    # def close_index_show
+    # end
+
     private
+
+    def tables_name
+      @models = ApplicationRecord.connection.tables.map do |model|
+        model.capitalize.singularize.camelize
+      end
+    end
 
     # Get submit key to redirect, only [:create, :update]
     def redirect(object, commit)
@@ -41,7 +50,8 @@ module Admin
     end
 
     def redefine_ids(ids)
-      klass = controller_path.include?('admin') ? controller_name : controller_path
+      is_admin = controller_path.include?('admin')
+      klass =  is_admin ? controller_name : controller_path
 
       ids.delete('[]').split(',').select do |id|
         id if klass.classify.constantize.exists? id
@@ -51,10 +61,11 @@ module Admin
     # Check whether the user has permission to delete
     # each of the selected objects
     def can_multiple_destroy
-      klass = controller_path.include?('admin') ? controller_name : controller_path
+      is_admin = controller_path.include?('admin')
+      klass = is_admin ? controller_name : controller_path
 
       redefine_ids(params[:multiple_ids]).each do |id|
-        authorize! :destroy, klass.classify.constantize.find(id)
+        authorize klass.classify.constantize.find(id)
       end
     end
   end

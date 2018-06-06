@@ -1,4 +1,4 @@
-en:
+es:
   simple_form:
     "yes": 'Sí'
     "no": 'No'
@@ -13,11 +13,12 @@ en:
     # Labels and hints examples
     labels:
       defaults:
+        all: Todos
         id: Identificador
         title: Título
         subtitle: Subtítulo
         tags: Etiquetas
-        name: Nombre
+        name: 'Nombre'
         first_name: 'Primer Nombre'
         last_name: 'Último Nombre'
         full_name: 'Nombre Completo'
@@ -75,12 +76,13 @@ en:
         updated_at: Ultima actualización
         password: Contraseña
         password_confirmation: Confirmar contraseña
-        server_address: Dirección del servidor
+        select_role: Selecciona rol de usuario
+        address: Dirección del servidor
         port: Puerto
         domain_name: Dominio
         url: Url
         meta_tags: 'Meta Tags'
-        script: 'Tracking Id'
+        script: 'Script'
         campaign_name: Campaña
         script: Script
       user:
