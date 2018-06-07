@@ -3,9 +3,7 @@
 module Admin
   # RolesController
   class RolesController < AdminController
-    before_action :set_role, only: %i[show edit update destroy
-                                      toggle_actions create_first_permission]
-    before_action :set_role_id, only: %i[create_permissions add_permissions]
+    before_action :set_role, only: %i[show edit update destroy]
     before_action :show_history, only: [:index]
     before_action :set_attachments
     before_action :authorization, except: %i[reload]
@@ -17,8 +15,9 @@ module Admin
       @objects = roles.page(@current_page).order(position: :desc)
       @total = roles.size
       @roles = @objects.order(:position)
-      return if !@objects.first_page? && @objects.size.zero?
-      redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
+      if !@objects.first_page? && @objects.size.zero?
+        redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
+      end
     end
 
     # GET /roles/1
@@ -103,45 +102,7 @@ module Admin
       render :index
     end
 
-    def add_permissions
-      @role = Role.find(params[:role_id])
-    end
-
-    def create_permissions
-      @module = params[:role][:module]
-      @action = params[:role][:action]
-      if @role.have_permissions?
-        toggle_actions(@module, @action)
-      else
-        create_first_permission
-      end
-    end
-
-    def show_description
-      @module = params[:module]
-      @action = params[:action_name]
-    end
-
     private
-
-    def toggle_actions(module_name, action)
-      if @role.have_permission_to(module_name)
-        @role.toggle_action(module_name, action)
-      else
-        @role.add_module(module_name, action)
-      end
-    end
-
-    def create_first_permission
-      Permission.create(
-        role_id: @role.id,
-        modules: create_hash(params[:role][:module], params[:role][:action])
-      )
-    end
-
-    def create_hash(module_name, actions)
-      Hash[module_name, Hash['actions', Array(actions)]]
-    end
 
     def set_attachments
       @attachments = %i[ logo brand photo avatar cover image
@@ -151,10 +112,6 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_role
       @role = Role.find(params[:id])
-    end
-
-    def set_role_id
-      @role = Role.find(params[:role_id])
     end
 
     # Only allow a trusted parameter "white list" through.

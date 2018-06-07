@@ -61,7 +61,7 @@ workflow:
       #     name: run tests
       #     command: |
       #       scss-lint app/assets/stylesheets/
-      #       slim-lint app/views/
+      #       haml-lint app/views/
       #       bundle exec rake jshint
       #       bundle exec rubocop
       #       bundle exec rspec

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   localized do
+    get '/index', to: 'app/front#index', as: :app_index
   end
 
   root to: 'app/front#index'
@@ -14,17 +15,17 @@ Rails.application.routes.draw do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/upload', action: 'upload', as: :upload
-      post '/show_description/:module/:action_name', action: 'show_description', as: :show_description
-      get(
-        '/add_permissions',
-        action: 'add_permissions',
-        as: :add_permissions
-      )
-      post(
-        '/create_permissions',
-        action: 'create_permissions',
-        as: :create_permissions
-      )
+      # post '/show_description/:module/:action_name', action: 'show_description', as: :show_description
+      # get(
+      #   '/add_permissions',
+      #   action: 'add_permissions',
+      #   as: :add_permissions
+      # )
+      # post(
+      #   '/create_permissions',
+      #   action: 'create_permissions',
+      #   as: :create_permissions
+      # )
       get '/download', action: 'download', as: :download
       post(
         '/sort',
@@ -41,6 +42,24 @@ Rails.application.routes.draw do
         action: :destroy_multiple,
         on: :collection,
         as: :destroy_multiple
+      )
+    end
+
+    scope :roles do
+      post(
+        ':role_id/show_description/:module/:action_name',
+        to: 'permissions#show',
+        as: :role_show_description
+      )
+      get(
+        ':role_id/add_permissions',
+        to: 'permissions#add',
+        as: :role_add_permissions
+      )
+      post(
+        ':role_id/create_permissions',
+        to: 'permissions#create',
+        as: :role_create_permissions
       )
     end
 
