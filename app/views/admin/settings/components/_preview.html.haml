@@ -1,30 +1,30 @@
-.devise{style:"background:none"}
-  .container{style:"position: inherit;"}
-    .login-box{style:"transform: scale(0.4);"}
+.devise{ style: 'background: none' }
+  .container{ style: 'position: inherit' }
+    .login-box{ style: 'transform: scale(0.4);' }
       .center
         .login-container
           .login-logo
             %a{ href: '#' }
-              %span{style:"font-family: 'Patua One'"} Keppler
+              %span{ style: 'font-family: Patua One' } Keppler
               Admin
           / /.login-logo
           .login-box-body
             .form
               %p.login-box-msg= t('keppler.login_message')
-              %form{:action => "../../index2.html", :method => "post"}
+              %form{ action: '../../index2.html', method: 'post' }
                 .form-group.has-feedback
-                  %input#user_email.form-control.validate{:autofocus => "autofocus", :name => "user[email]", :placeholder => "Email", type: "email", :value => ""}/
+                  %input.form-control.validate#user_email{ autofocus: 'autofocus', name: 'user[email]', placeholder: 'Email', type: 'email', value: '' }
                   %span.glyphicon.glyphicon-envelope.form-control-feedback
                 .form-group.has-feedback
-                  %input#user_email.form-control.validate{:autofocus => "autofocus", :name => "user[password]", :placeholder => "Password", type: "pass", :value => ""}/
+                  %input.form-control.validate#user_pass{ autofocus: 'autofocus', name: 'user[password]', placeholder: 'Password', type: 'pass', value: '' }
                   %span.glyphicon.glyphicon-lock.form-control-feedback
                 .form-group.has-feedback
                   .pull-left
-                    %a{href:""}
-                      = t("devise.sessions.forgot_password")
+                    %a{ href: '' }
+                      = t('devise.sessions.forgot_password')
                   .pull-right
-                    %input.btn-primary.keppler-background{:name => "commit", type: "submit", :value => "Entrar"}/
+                    %input.btn-primary.keppler-background{ name: 'commit', type: 'submit', value: 'Entrar' }
                 .clearfix
-                  / /.col
-    .login-footer{style:"transform: scale(0.4);"}
+
+    .login-footer{ style: 'transform: scale(0.4);' }
       = "#{t('keppler.powered')} <span>Slice Group</span>".html_safe

@@ -5,10 +5,10 @@
   height: 100%;
 
   .container {
+    position: absolute;
     height: 100%;
     background: rgba(0, 0, 0, 1);
     animation: animationContainer 1.5s forwards;
-    position: absolute;
     overflow: hidden;
   }
 
