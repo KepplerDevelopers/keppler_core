@@ -19,11 +19,11 @@
             %h3.box-title= @user.name || 'User'
             .box-tools.pull-right
               - if can?(User).update?
-                = link_to edit_admin_user_path(@user), class: 'btn btn-box-tool', title: "#{t('keppler.actions.edit') }" do
+                = link_to edit_admin_user_path(@user), class: 'btn btn-box-tool', title: t('keppler.actions.edit').to_s do
                   %i.icon-pencil
               - if can?(User).destroy?
                 - unless current_user == @user
-                  = link_to admin_user_path(@user), class: 'btn btn-box-tool', title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                  = link_to admin_user_path(@user), class: 'btn btn-box-tool', title: t('keppler.actions.delete').to_s, method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                     %i.icon-trash
           .box-body.box-body-no-padding
             %table.table.table-striped
