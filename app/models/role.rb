@@ -16,7 +16,7 @@ class Role < ApplicationRecord
     :name_cont
   end
 
-  def have_permissions?
+  def permissions?
     !permissions.empty?
   end
 
@@ -24,26 +24,28 @@ class Role < ApplicationRecord
     permissions.first&.modules
   end
 
-  def have_permission_to(module_name)
+  def permission_to(module_name)
     !all_permissions[module_name].nil?
   end
 
-  def have_action?(module_name, action)
-    if all_permissions && !all_permissions[module_name].nil?
-      all_permissions[module_name]['actions'].include?(action)
-    end
+  def action?(module_name, action)
+    permit = all_permissions
+    return unless permit && !permit[module_name].nil?
+    permit[module_name]['actions'].include?(action)
   end
 
   def add_action(module_name, action)
-    permissions.first.update(modules: create_hash('add', module_name, action))
+    permission = permissions.first
+    permission.update(modules: create_hash('add', module_name, action))
   end
 
   def remove_action(module_name, action)
-    permissions.first.update(modules: create_hash('remove', module_name, action))
+    permission = permissions.first
+    permission.update(modules: create_hash('remove', module_name, action))
   end
 
   def toggle_action(module_name, action)
-    if have_action?(module_name, action)
+    if action?(module_name, action)
       remove_action(module_name, action)
     else
       add_action(module_name, action)

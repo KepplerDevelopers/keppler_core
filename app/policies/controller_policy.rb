@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Application Policy
 class ControllerPolicy < ApplicationPolicy
   attr_reader :user, :record
