@@ -9,6 +9,7 @@ AllCops:
     - 'config/*.rb'
     - 'db/**/*.rb'
     - 'plugins/**/*'
+    - 'vendor/**/*'
     - 'bin/*'
     - 'app/controllers/app/*.rb'
     - 'app/controllers/devise/*.rb'
