@@ -1,9 +1,9 @@
 #settings
-	.container
-		#action-section
-			= simple_form_for @setting, url: update_admin_settings_path(@render), method: :put do |f|
-				.row
-					= render partial: "admin/settings/fields/#{@render}", locals: { f: f }
+  .container
+    #action-section
+      = simple_form_for setting, url: update_admin_settings_path(render), method: :put do |f|
+        .row
+          = render partial: "admin/settings/fields/#{render}", locals: { f: f, color: color }
 :sass
-	#action-section
-		padding: 12px
+  #action-section
+    padding: 12px

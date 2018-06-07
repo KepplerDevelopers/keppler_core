@@ -1,4 +1,4 @@
-#customize-index.row
+.row#customize-index
   .col-md-6.col-lg-6
     .box.slice-box
       .box-header.with-border
@@ -27,11 +27,11 @@
               %tr
                 %td{ colspan: 4 }
                   %center
-                    = t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.customizes'))
+                    = t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.customizes'))
         %center#paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-    = render 'description'
+    = render 'description', activities: @activities
     - if can?(Customize).create?
       .mixed-btn
         = link_to new_admin_customize_path, class: 'btn-float' do
