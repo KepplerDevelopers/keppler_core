@@ -10,7 +10,7 @@ module Admin
     def create
       @module = params[:role][:module]
       @action = params[:role][:action]
-      if @role.have_permissions?
+      if @role.permissions?
         toggle_actions(@module, @action)
       else
         first_permission(@module, @action)
@@ -29,7 +29,7 @@ module Admin
     end
 
     def toggle_actions(module_name, action)
-      if @role.have_permission_to(module_name)
+      if @role.permission_to(module_name)
         @role.toggle_action(module_name, action)
       else
         @role.add_module(module_name, action)

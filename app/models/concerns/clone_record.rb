@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Keppler
 module CloneRecord
   extend ActiveSupport::Concern

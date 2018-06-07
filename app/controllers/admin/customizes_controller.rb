@@ -15,11 +15,10 @@ module Admin
       customizes = @q.result(distinct: true)
       @objects = customizes.page(@current_page)
       @total = customizes.size
-      if !@objects.first_page? && @objects.blank?
-        redirect_to customizes_path(
-          page: @current_page.to_i.pred, search: @query
-        )
-      end
+      return unless !@objects.first_page? && @objects.blank?
+      redirect_to customizes_path(
+        page: @current_page.to_i.pred, search: @query
+      )
     end
 
     # GET /customizes/new
@@ -79,7 +78,7 @@ module Admin
     def install_keppler_template(customizes, customize)
       customizes.each { |c| c.update(installed: false) }
       if customize.update(customize_params)
-        customize.install_keppler_template
+        customize.set_defaut
         redirect_to admin_customizes_path
       else
         render :edit

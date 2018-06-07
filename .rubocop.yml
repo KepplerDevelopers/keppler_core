@@ -10,3 +10,7 @@ AllCops:
     - 'db/**/*.rb'
     - 'plugins/**/*'
     - 'bin/*'
+    - 'app/controllers/app/*.rb'
+    - 'app/controllers/devise/*.rb'
+    - 'app/services/admin/template_service.rb'
+    - 'Gemfile'

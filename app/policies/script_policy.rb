@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Policy for scripts model
 class ScriptPolicy < ControllerPolicy
   attr_reader :user, :objects

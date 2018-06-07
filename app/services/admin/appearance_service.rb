@@ -3,7 +3,6 @@
 module Admin
   # AppearanceService
   class AppearanceService
-
     def style_file
       stylesheets = 'app/assets/stylesheets/admin/utils'
       "#{Rails.root}/#{stylesheets}/_variables.scss"
@@ -18,6 +17,14 @@ module Admin
 
     def get_color(color)
       get_apparience_color(color) if color_exist(color)
+    end
+
+    def set_color
+      variables_file = File.readlines(style_file)
+      color = ''
+      variables_file.each do |line|
+        color = line[15..21] if line.include?('$keppler-color')
+      end
     end
 
     private

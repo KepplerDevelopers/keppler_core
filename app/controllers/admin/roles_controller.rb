@@ -7,17 +7,17 @@ module Admin
     before_action :show_history, only: [:index]
     before_action :set_attachments
     before_action :authorization, except: %i[reload]
+    include ObjectQuery
 
     # GET /roles
     def index
       @q = Role.ransack(params[:q])
       roles = @q.result(distinct: true)
-      @objects = roles.page(@current_page).order(position: :desc)
+      @objects = object_page(@current_page)
       @total = roles.size
       @roles = @objects.order(:position)
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
-      end
+      return unless !first_page?(@objects) && object_size_zero?(@objects)
+      redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
     end
 
     # GET /roles/1
