@@ -46,6 +46,7 @@ jobs:
       - run: bundle exec rake db:create RAILS_ENV=test
       - run: bundle exec rake db:migrate RAILS_ENV=test
       - run: bundle exec rake db:seed RAILS_ENV=test
+      - run: gem install haml_lint
       - run: haml-lint app/views/admin
 
 workflow:
