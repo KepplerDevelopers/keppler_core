@@ -4,4 +4,4 @@ linters:
   InlineStyles:
     enabled: false
   IdNames:
-    enabled: false  
+    enabled: false

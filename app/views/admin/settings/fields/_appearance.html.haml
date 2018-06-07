@@ -25,7 +25,7 @@
             %center.image-show
               = image_tag f.object.image_background.url.blank? ? '' : f.object.image_background.url, class: "#{'hidden' if f.object.image_background.blank?} image_to_upload"
           %p Principal
-          %input{ type: 'color', name: 'color', placeholder: 'Color', value: @color, 'v-model' => 'main' }
+          %input{ type: 'color', name: 'color', placeholder: 'Color', value: color, 'v-model' => 'main' }
           .pull-right
             - if @render.eql?('appearance')
               = link_to appearance_default_admin_settings_path(@render), class: 'btn btn-default', method: :put do
