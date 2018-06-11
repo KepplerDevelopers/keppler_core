@@ -2,6 +2,7 @@ en:
   keppler:
     login_message: Sign in to start your session
     sidebar-menu:
+      people: People
       roles: Roles
       customizes: Customizes
       dashboard: Dashboard
@@ -45,6 +46,7 @@ en:
         clone: Permite al usuario clonar un registro existente dentro del módulo
     models:
       singularize:
+        person: person
         role: role
         customize: customize
         meta_tag: meta tag
@@ -53,6 +55,7 @@ en:
         configuration: configuration
         user: user
       pluralize:
+        people: people
         roles: roles
         customizes: customizes
         meta_tags: meta tags
@@ -61,6 +64,7 @@ en:
         configurations: configurations
         user: users
     modules:
+      admin/people: People
       admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'

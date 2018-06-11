@@ -62,7 +62,7 @@
 
   .listing-show.hidden-xs
     = render 'description'
-  %aside#index-show.control-sidebar
+  %aside.index-show.control-sidebar
   - if can?(User).create?
     .mixed-btn
       = link_to new_admin_user_path, class: 'btn-float' do

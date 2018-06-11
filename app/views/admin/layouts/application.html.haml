@@ -2,17 +2,15 @@
 %html
   = render 'admin/layouts/head'
   %body.sidebar-mini.skin-blue{style: "height: auto; min-height: 100%;" }
-    #log
-
     - if loggedin?
-      .wrapper{style:"height: auto; min-height: 100%;"}
+      .wrapper{style:"height: auto; min-height: 100vh;"}
         = render 'admin/layouts/navigation'
         = render 'admin/layouts/sidebar'
         = render 'admin/layouts/messages'
         .content-wrapper{ style: "min-height: 901px;" }
           = yield
 
-      #spinner
+      .spinner
         = preloader
 
       = render 'admin/layouts/footer'

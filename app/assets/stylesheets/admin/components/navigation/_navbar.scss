@@ -1,78 +1,110 @@
-.skin-blue{
+.skin-blue {
+  .dropdown a {
+    border-radius: 0;
+  }
+
   .main-header {
     position: fixed;
     width: 100%;
 
-    a.logo {
-      background: $keppler-color;
-      color: #ffffff;
-      border-bottom: 0 solid transparent;
-      z-index: 9;
-    }
+    .small-profile-img {
+      @extend %circle-img;
+      background-color: $keppler-color;
+      float: left;
+      height: 25px;
+      margin-right: 10px;
+      margin-top: -2px;
+      object-fit: cover;
+      width: 25px;
 
-    .navbar-static-top {
-      margin: 0%;
-      background: white !important;
-      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
-      // border-radius: 4px 0px 0px 4px !important;
-
-      a {
-        color: #949494 !important;
+      @include respond-to(xs) {
+        margin-right: 0;
       }
     }
 
-    li.user-header {
+    .nav-profile-img {
+      @extend %circle-img;
+      background: $keppler-color;
+      height: 90px;
+      margin: 0 auto;
+      object-fit: cover;
+      width: 90px;
+    }
+
+    .navbar-static-top {
+      background: $white;
+      box-shadow: 0 1px 3px $navbar-static-top-box-shadow;
+      margin: 0;
+    }
+
+    .user-header {
       background-image: url('profile-menu.jpg');
       background-position: center;
       background-size: cover;
       border-bottom: 2px solid $keppler-color;
       border-color: $keppler-color;
     }
+  }
 
-    .sidebar-toggle:hover {
-      background-color: #e8e8e8 !important;
+  .sidebar-toggle {
+    color: $navbar-static-top-link;
+
+    &::before {
+      display: none;
+    }
+
+    &:hover {
+      background-color: $sidebar-toggle-hover;
+    }
+  }
+
+  .logo {
+    background: $keppler-color;
+    border-bottom: 0 solid transparent;
+    color: $white;
+    font-size: 2.3rem;
+    width: 50px;
+    z-index: 9;
+
+    span {
+      color: $white;
+      font-family: 'Patua One', cursive;
+      font-size: 2.6rem;
+      text-shadow: 1px 1px 1px $logo-span-text-shadow;
     }
   }
 }
-.navbar.navbar-static-top{
-  height: 50px !important;
 
-  h3{
+.user-menu span,
+.navbar-nav i {
+  color: $navbar-static-top-link;
+}
+
+.navbar.navbar-static-top {
+  height: 50px;
+
+  h3 {
     display: inline-block;
     margin: 10px 0;
   }
 }
 
-header.main-header a.logo {
-  width: 50px !important;
-}
-
-header.main-header a.logo span span {
-  font-family: 'Patua One', cursive;
-  color: #fff !important;
-  text-shadow: 1px 1px 1px #0003;
-  font-size: 2.6rem !important;
-}
-
-.skin-blue .main-header {
-  .navbar-static-top a {
-    // border-radius: 4px 0px 0px 4px !important;
-  }
-  .dropdown a {
-    border-radius: 0px !important;
-  }
-}
-
 .sidebar-mini.sidebar-collapse {
   .main-header .navbar {
-    margin-left: 0% !important;
+    margin-left: 0;
   }
+
   .main-sidebar {
-    -webkit-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
     transform: translate(0, 0);
-    width: 50px !important;
+    width: 50px;
     z-index: 850;
   }
+}
+
+.dropdown-toggle {
+  height: 50px;
+}
+
+.navbar-nav {
+  transition: .4s .5s ease-in-out;
 }
