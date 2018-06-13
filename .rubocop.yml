@@ -8,5 +8,5 @@ AllCops:
     - 'config/**/*.rb'
     - 'config/*.rb'
     - 'db/**/*.rb'
-    - 'plugins/**/*'
+    - 'rockets/**/*'
     - 'bin/*'

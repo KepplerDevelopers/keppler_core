@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
     @sidebar = YAML.load_file(
       "#{Rails.root}/config/menu.yml"
     ).values.each(&:symbolize_keys!)
-    modules = Dir[File.join("#{Rails.root}/plugins", '*')]
+    modules = Dir[File.join("#{Rails.root}/rockets", '*')]
     modules.each do |m|
       module_menu = YAML.load_file(
         "#{m}/config/menu.yml"
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
     @modules = YAML.load_file(
       "#{Rails.root}/config/permissions.yml"
     ).values.each(&:symbolize_keys!)
-    modules = Dir[File.join("#{Rails.root}/plugins", '*')]
+    modules = Dir[File.join("#{Rails.root}/rockets", '*')]
     modules.each do |m|
       module_name = YAML.load_file(
         "#{m}/config/permissions.yml"
