@@ -52,10 +52,10 @@
                     %th.hidden-xs= t('activerecord.attributes.name')
                     %th.center Menu
                     %th
-              %tbody#objects-container{ "data-update-url" => "#{sort_admin_roles_path}" }
+              %tbody.objects-container{ "data-update-url" => "#{sort_admin_roles_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @roles
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render "description"

@@ -1,6 +1,6 @@
-.keppler-color { color: $keppler-color }
-.keppler-background { background: $keppler-color }
-.keppler-border-top-color { border-top-color: $keppler-color }
+.keppler-color { color: $keppler-color; }
+.keppler-background { background: $keppler-color; }
+.keppler-border-top-color { border-top-color: $keppler-color; }
 
 .skin-blue .content-header {
   background: transparent;
@@ -9,78 +9,78 @@
 
 .wrapper {
   .content-wrapper {
-    padding-top: 60px;
+    background: $gray-lighten;
     min-height: 100vh;
-    background: #f5f5f5;
+    padding-top: 60px;
   }
 }
 
 .btn-ks {
-  border: 1px solid $keppler-color;
   background: $keppler-color;
-  color: white;
+  border: 1px solid $keppler-color;
+  color: $white;
   transition: .5s all;
-}
 
-.btn-ks:hover {
-  border: 1px solid $keppler-accent;
-  background: $keppler-accent;
-  color: white;
-  transition: .5s all;
+  &:hover {
+    background: $keppler-accent;
+    border: 1px solid $keppler-accent;
+    color: $white;
+    transition: .5s all;
+  }
 }
 
 .btn-ks-inverse {
   border: 1px solid $keppler-color;
   color: $keppler-color;
   transition: .5s all;
-}
 
-.btn-ks-inverse:hover {
-  border: 1px solid $keppler-color;
-  background: $keppler-color;
-  color: white;
-  transition: .5s all;
+  &:hover {
+    background: $keppler-color;
+    border: 1px solid $keppler-color;
+    color: $white;
+    transition: .5s all;
+  }
 }
 
 .btn-gr {
-  border: 1px solid #5a5a5a;
-  background: #5a5a5a;
-  color: white;
+  background: $medium-grey;
+  border: 1px solid $medium-grey;
+  color: $white;
   transition: .5s all;
-}
 
-.btn-gr:hover {
-  border: 1px solid #5a5a5a;
-  background: #1d1d1d;
-  color: white;
-  transition: .5s all;
+  &:hover {
+    background: $almost-black;
+    border: 1px solid $medium-grey;
+    color: $white;
+    transition: .5s all;
+  }
 }
 
 .btn-gr-inverse {
-  border: 1px solid #5a5a5a;
-  color: #5a5a5a;
+  border: 1px solid $medium-grey;
+  color: $medium-grey;
   transition: .5s all;
-}
 
-.btn-gr-inverse:hover {
-  border: 1px solid #5a5a5a;
-  background: #5a5a5a;
-  color: white;
-  transition: .5s all;
+  &:hover {
+    background: $medium-grey;
+    border: 1px solid $medium-grey;
+    color: $white;
+    transition: .5s all;
+  }
 }
 
 .appearance-img {
   background-position: center;
   background-size: cover;
-  width: 100%;
   height: 350px;
+  width: 100%;
 }
 
 .minicolors-theme-default .minicolors-input {
-    height: 30px;
-    width: auto;
-    display: inline-block;
-    padding-left: 26px;
+  display: inline-block;
+  height: 30px;
+  padding-left: 26px;
+  width: auto;
 }
 
 .label-primary {
@@ -88,20 +88,21 @@
 }
 
 //Noty
-.noty_bar {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
+.noty-bar {
+  background-color: $almost-black;
+  color: $white;
   text-align: center;
 }
 
 .content-wrapper,
 .right-side {
+  background-color: $almost-white;
   min-height: 100%;
-  background-color: #fafafa;
   z-index: 800;
 }
-.box-body{
-  @include respond-to(xs){
-    padding: 0 0 20px 0px;
+
+.box-body {
+  @include respond-to(xs) {
+    padding: 0 0 20px;
   }
 }

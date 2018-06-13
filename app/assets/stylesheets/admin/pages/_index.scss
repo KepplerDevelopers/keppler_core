@@ -162,9 +162,9 @@
 }
 
 .index-show {
-  background: #f9fafc;
-  border-left: 1px solid #d2d6de;
-  color: #5e5e5e;
+  background: $white;
+  border-left: 1px solid $gray-lighten;
+  color: $medium-grey;
   height: 100%;
   overflow-y: auto;
   padding-bottom: 50px;
@@ -199,44 +199,44 @@
   p {
     margin: 10px 0 0;
   }
+}
 
-  .tab-content  {
-    padding: 10px;
+.tab-content {
+  padding: 10px;
 
-    ul {
-      &:before{
-        content: none;
-      }
+  ul {
+    &::before {
+      content: none;
+    }
+  }
 
-      li {
-        margin-right: 0;
+  li {
+    margin-right: 0;
 
-        &::before {
-          content: none;
-        }
-
-        .timeline-item {
-          margin: 0;
-        }
-      }
+    &::before {
+      content: none;
     }
 
-    .actions {
+    .timeline-item {
       margin: 0;
-      width: 100%;
+    }
+  }
 
-      a {
-        margin-right: 5px;
-      }
+  .actions {
+    margin: 0;
+    width: 100%;
 
-      #close-index-show {
-        margin: 0;
-      }
+    a {
+      margin-right: 5px;
     }
 
-    .control-sidebar-heading {
-      padding: 20px 0;
+    .close-index-show {
+      margin: 0;
     }
+  }
+
+  .control-sidebar-heading {
+    padding: 20px 0;
   }
 }
 
@@ -247,7 +247,7 @@
 }
 
 .toolbar {
-  background-color: #fbfbfb;
+  background-color: $almost-white;
   border-radius: 2px;
   display: inline-block;
   font-size: 1.4rem;
@@ -294,22 +294,22 @@
   }
 
   .btn-group {
-    border-right: 1px solid lightgray;
+    border-right: 1px solid $gray-hover;
     padding: 0 5px;
-
-    i {
-      color: #9e9e9e;
-      padding: 5px;
-      transition: .2s;
-
-      &:hover {
-        color: #111;
-        transition: .2s;
-      }
-    }
 
     &:last-child {
       border: 0;
+    }
+  }
+
+  i {
+    color: $grey;
+    padding: 5px;
+    transition: .2s;
+
+    &:hover {
+      color: $almost-black;
+      transition: .2s;
     }
   }
 }
@@ -330,31 +330,28 @@
   }
 }
 
-#objects-container {
+.objects-container {
   td:first-child {
     padding: 10px 20px;
   }
 
   td {
     padding: 0;
+  }
 
-    a {
+  a {
+    color: inherit;
+    display: block;
+    padding: 8px;
+
+    &:hover {
       color: inherit;
-      display: block;
-      padding: 8px;
-
-      &:hover {
-        color: inherit;
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
-    // &:last-child{
-    //   border: none;
-    // }
   }
 }
 
-#tools{
+.tools {
   padding: {
     top: 5px;
   }

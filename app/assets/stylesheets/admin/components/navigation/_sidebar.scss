@@ -12,64 +12,74 @@
       padding-bottom: 3rem;
       padding-top: 3rem;
     }
+  }
+}
 
-    .sidebar-item.active,
-    .sidebar-item.active > a {
+.sidebar-item.active,
+.sidebar-item.active > a {
+  background: $white;
+  border-left-color: $keppler-color;
+  box-shadow: 0 1px 3px $light-transparent;
+  color: $dark-grey;
+  transition: .3s ease-out;
+
+  i {
+    color: $keppler-color;
+  }
+}
+
+.sidebar-link {
+  color: $light-grey;
+  transition: .3s ease-out;
+
+  span {
+    margin-left: 10px;
+  }
+
+  &:hover,
+  &.current,
+  &.active {
+    background: $white;
+    border-left-color: $keppler-color;
+    box-shadow: 0 1px 3px $light-transparent;
+    color: $dark-grey;
+    transition: .3s ease-out;
+
+    i {
+      color: $keppler-color;
+    }
+  }
+}
+
+.sidebar-menu {
+  > li {
+
+    &.active {
       background: $white;
       border-left-color: $keppler-color;
       box-shadow: 0 1px 3px $light-transparent;
+    }
+
+    > a {
+      border-left: 3px solid transparent;
+    }
+  }
+}
+
+.treeview-menu {
+  background: $dark-white;
+  border-radius: none;
+  box-shadow: 0 1px 3px $light-transparent;
+  color: $dark-grey;
+  margin: 0 1px;
+
+  a {
+    color: $light-grey;
+
+    &:hover,
+    &.active {
       color: $dark-grey;
       transition: .3s ease-out;
-
-      i {
-        color: $keppler-color;
-      }
-    }
-
-    .sidebar-link {
-      color: $light-grey;
-      transition: .3s ease-out;
-
-      span {
-        margin-left: 10px;
-      }
-
-      &:hover, &.current, &.active {
-        background: $white;
-        border-left-color: $keppler-color;
-        box-shadow: 0 1px 3px $light-transparent;
-        color: $dark-grey;
-        transition: .3s ease-out;
-
-        i {
-          color: $keppler-color;
-        }
-      }
-    }
-
-    .sidebar-menu  > li {
-      &.active {
-        background: $white;
-        border-left-color: $keppler-color;
-        box-shadow: 0 1px 3px $light-transparent;
-      }
-
-      & > .treeview-menu {
-        background: $dark-white;
-        border-radius: none;
-        box-shadow: 0 1px 3px $light-transparent;
-        color: $dark-grey;
-        margin: 0 1px;
-
-        a {
-          color: $light-grey;
-
-          &:hover, &.active {
-            color: $dark-grey;
-            transition: .3s ease-out;
-          }
-        }
-      }
     }
   }
 }

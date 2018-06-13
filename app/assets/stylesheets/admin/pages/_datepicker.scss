@@ -358,7 +358,7 @@
     text-align: center;
 
     select {
-      background: #fefefe;
+      background: $gray-lighten;
       font-size: 1em;
       margin: 1px 0;
     }
@@ -387,7 +387,8 @@
     border: 0;
     padding: 1px;
 
-    span, a {
+    span,
+    a {
       display: block;
       padding: .2em;
       text-align: right;
@@ -533,23 +534,6 @@
     position: relative;
   }
 
-  .ui-dialog-buttonpane {
-    background-image: none;
-    border-width: 1px 0 0;
-    margin-top: .5em;
-    padding: .3em 1em .5em .4em;
-    text-align: left;
-
-    .ui-dialog-buttonset {
-      float: right;
-    }
-
-    button {
-      cursor: pointer;
-      margin: .5em .4em .5em 0;
-    }
-  }
-
   .ui-resizable-n {
     height: 2px;
     top: 0;
@@ -596,6 +580,23 @@
   .ui-resizable-nw {
     left: 0;
     top: 0;
+  }
+}
+
+.ui-dialog-buttonpane {
+  background-image: none;
+  border-width: 1px 0 0;
+  margin-top: .5em;
+  padding: .3em 1em .5em .4em;
+  text-align: left;
+
+  .ui-dialog-buttonset {
+    float: right;
+  }
+
+  button {
+    cursor: pointer;
+    margin: .5em .4em .5em 0;
   }
 }
 
@@ -1073,7 +1074,7 @@ works properly when clicked or hovered */
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
   background-color: $white;
-  border: $blue;
+  border: $keppler-color;
 }
 
 .ui-state-active a,

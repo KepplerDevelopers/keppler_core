@@ -115,4 +115,4 @@ end
 
 #---- keppler_ga_dashboard ----
 gem 'google-api-client', '~> 0.7.1'
-gem 'keppler_ga_dashboard', path: 'plugins/keppler_ga_dashboard'
+gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'

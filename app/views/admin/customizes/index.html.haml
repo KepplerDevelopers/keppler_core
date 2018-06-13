@@ -3,7 +3,7 @@
     .box.slice-box
       .box-header.with-border
         %h3.box-title Preview
-        .box-tools.pull-right#tools
+        .box-tools.pull-right.tools
           %i.icon-screen-smartphone#xs
           %i.icon-screen-tablet#md
           %i.icon-screen-desktop#lg
@@ -28,7 +28,7 @@
                 %td{ colspan: 4 }
                   %center
                     = t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.customizes'))
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description'

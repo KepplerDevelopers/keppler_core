@@ -54,10 +54,10 @@
                     %th= t('activerecord.attributes.email')
                     %th.visible-lg.visible-md= t('activerecord.attributes.role')
                     %th
-              %tbody#objects-container
+              %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @users
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
 
   .listing-show.hidden-xs
