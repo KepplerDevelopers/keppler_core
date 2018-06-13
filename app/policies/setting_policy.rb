@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Policy for setting model
 class SettingPolicy < ControllerPolicy
   attr_reader :user, :objects

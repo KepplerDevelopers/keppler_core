@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # SettingsController
   class SettingsController < AdminController
@@ -11,7 +13,7 @@ module Admin
 
     def update
       if @setting.update(setting_params)
-        get_apparience_colors([params[:color], params[:darken], params[:accent]]) if theme?
+        appearance_service.get_color(params[:color])
         redirect_to(
           admin_settings_path(@render), notice: actions_messages(@setting)
         )
@@ -21,10 +23,7 @@ module Admin
     end
 
     def appearance_default
-      appearance = Appearance.last
-      appearance.remove_image_background!
-      appearance.save
-      get_apparience_colors(['#f44336'])
+      appearance_service.set_default
       redirect_to(
         admin_settings_path(@render), notice: actions_messages(@setting)
       )
@@ -32,20 +31,8 @@ module Admin
 
     private
 
-    def theme?
-      colors = [params[:color]]
-      !colors.include?('') && !colors.include?(nil)
-    end
-
-    def get_apparience_colors(values)
-      variables_file = File.readlines(style_file)
-      indx = 0
-      [:color].each_with_index do |attribute, i|
-        variables_file.map { |line| indx = variables_file.find_index(line) if line.include?("$keppler-#{attribute}") }
-        variables_file[indx] = "$keppler-#{attribute}:#{values[i]};\n"
-      end
-      variables_file = variables_file.join('')
-      File.write(style_file, variables_file)
+    def appearance_service
+      Admin::AppearanceService.new
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -56,10 +43,6 @@ module Admin
 
     def authorization
       authorize Setting
-    end
-
-    def style_file
-      "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
     end
 
     # Only allow a trusted parameter "white list" through.

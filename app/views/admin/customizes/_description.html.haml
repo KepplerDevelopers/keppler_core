@@ -1,9 +1,9 @@
 %aside.control-sidebar.control-sidebar-light
   .tab-content
     %p.control-sidebar-heading
-      = @activities.empty? ? t('keppler.messages.no_events') : t('keppler.titles.history')
+      = activities.empty? ? t('keppler.messages.no_events') : t('keppler.titles.history')
     %ul.timeline
-      - @activities.each do |activity|
+      - activities.each do |activity|
         - if activity.trackable_type.eql? 'Session'
           %li
             = render partial: "public_activity/session/#{activity.key.split('.').second}", locals: { activity: activity, method: 'name' }

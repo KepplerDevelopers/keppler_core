@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ApplicationHelper -> Helpers base
 module ApplicationHelper
   # Title dinamic in all keppler
@@ -22,9 +24,4 @@ module ApplicationHelper
   def landing?
     controller_name.eql?('front') && action_name.eql?('index')
   end
-
-  def can?(model)
-    Pundit.policy(current_user, model)
-  end
-  
 end

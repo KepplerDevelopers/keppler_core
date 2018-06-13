@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Policy for Role model
 class RolePolicy < ControllerPolicy
   attr_reader :user, :objects
