@@ -1,11 +1,4 @@
 modules:
-  people:
-    name: Person
-    actions: [
-      'index', 'create', 'update',
-      'destroy', 'download', 'upload',
-      'clone'
-    ]
   scripts:
     name: Script
     actions: [

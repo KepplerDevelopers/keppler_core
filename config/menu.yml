@@ -16,12 +16,6 @@ menu:
     icon: graph
     model: MetaTag
     url_path: /admin/meta_tags
-  person:
-    name: people
-    url_path: /admin/people
-    icon: layers
-    current: ['admin/people']
-    model: Person
   user:
     name: users
     icon: user

@@ -5,7 +5,6 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
-      people: People
       roles: Roles
       customizes: Personalización
       dashboard: Tablero
@@ -58,7 +57,6 @@ es:
         clone: Permite al usuario clonar un registro existente dentro del módulo
     models:
       singularize:
-        person: person
         role: role
         customize: customize
         meta_tag: meta tag
@@ -67,7 +65,6 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
-        people: people
         roles: roles
         customizes: customizes
         meta_tags: meta tags
@@ -77,7 +74,6 @@ es:
         user: usuarios
         script: scripts
     modules:
-      admin/people: People
       admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'

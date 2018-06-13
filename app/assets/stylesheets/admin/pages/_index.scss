@@ -301,17 +301,6 @@
       border: 0;
     }
   }
-
-  i {
-    color: $grey;
-    padding: 5px;
-    transition: .2s;
-
-    &:hover {
-      color: $almost-black;
-      transition: .2s;
-    }
-  }
 }
 
 .breadcrumb {
