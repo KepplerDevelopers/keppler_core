@@ -1,5 +1,5 @@
-%tr{id: "row-#{customize.id}"}
-  %td.item-check{style:"width: 5%"}
+%tr{ id: "row-#{customize.id}" }
+  %td.item-check{ style: 'width: 5%' }
     - if can?(Customize).destroy?
       - if !customize.id.eql?(1) && !customize.installed
         = link_to admin_customize_path(customize), method: :delete do

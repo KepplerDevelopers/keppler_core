@@ -1,38 +1,29 @@
 %aside.main-sidebar
   %section.sidebar.sidebar-collapse
-    / Sidebar user panel
     .user-panel
-      -# Activar background del panel de usuario para versiones darken
-      -# - if @appearance.image_background?
-        :sass
-          .user-panel
-            background-image: url(#{@appearance.image_background})
       .pull-left.image
         = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle side-img-profile keppler-background', alt: current_user.name
       .info
         %p= current_user.name
         %small= current_user.rol.humanize
-    / sidebar menu: : style can be found in sidebar.less
     %ul.sidebar-menu.tree{ 'data-widget' => 'tree' }
-      -# %li.header MAIN NAVIGATION
-      %li.sidebar-item
-        -# - if can?('Dashboard').index?
-        = link_to '/admin/dashboard', class: 'sidebar-link' do
+      %li
+        = link_to '/admin/dashboard' do
           %i.icon-pie-chart
           %span= t('keppler.sidebar-menu.dashboard')
       - @sidebar.each do |menu|
-        - menu.each do |key, value|
-          - unless menu[key]['submenu'] # ontetab sidebar linkbyg
+        - menu.each do |key, _value|
+          - if !menu[key]['submenu'] # ontetab sidebar linkbyg
             - if menu[key]['model'] && can?(menu[key]['model'].constantize).index?
-              %li.sidebar-item{ class: ('active' if controller_name.eql?(menu[key]['name']))}
-                = link_to menu[key]['url_path'], class: "sidebar-link collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", :'data-no-turbolink'=> true do
+              %li.treeview{ class: ('active' if controller_name.eql?(menu[key]['name'])) }
+                = link_to menu[key]['url_path'], class: "collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
                   %i{ class: "icon-#{menu[key]['icon']}" }
                   %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
           - else # tree sidebar links
-            - unless menu[key]['model'].eql?('Customize') and Rails.env.production?
+            - unless menu[key]['model'].eql?('Customize') && Rails.env.production?
               - if menu[key]['model'] && can?(menu[key]['model'].constantize).index?
-                %li.sidebar-item{ class: ('active' if menu[key]['current'].include?(controller_path))}
-                  %a{ href: '#', class: "sidebar-link #{'active current' if menu[key]['current'].include?(controller_path)}" }
+                %li{ class: ('active' if menu[key]['current'].include?(controller_path)) }
+                  %a{ href: '#', class: ('active current' if menu[key]['current'].include?(controller_path)) }
                     %i{ class: "icon-#{menu[key]['icon']}" }
                     %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
                   %ul.treeview-menu
@@ -45,6 +36,6 @@
     %a{ href: 'http://slicegroup.xyz', target: '_blank' }
       #slice.brand.pull-left
         = image_tag 'admin/slice_white.png'
-      #icon.brand.pull-left.hidden
+      .brand.pull-left.hidden#icon
         = image_tag 'admin/slice-icon.png'
     %span.pull-right v 2.0

@@ -14,11 +14,11 @@
     font-family: roboto;
   }
 
-  select.FormField{
+  select.FormField {
     display: block;
   }
 
-  .dashboard-head{
+  .dashboard-head {
     margin: 15px 15px 15px 20px;
     position: relative;
 
@@ -26,7 +26,7 @@
       margin: 0px;
     }
 
-    #view-name{
+    #view-name {
       margin-left: 10px;
       font-family: "roboto";
       font-weight: 300;
@@ -34,7 +34,7 @@
       color: #777;
     }
 
-    .ActiveUsers{
+    .ActiveUsers {
       position: absolute;
       top: -3px;
       right: 10px;
@@ -52,26 +52,28 @@
       }
     }
 
-    #view-selector-container{
+    #view-selector-container {
       margin-top: 20px;
     }
   }
 
-  #embed-api-auth-container{
+  #embed-api-auth-container {
     .gapi-analytics-auth-styles-signinbutton{
       width: 100%;
     }
   }
 
-  .charts-legend{
+  .charts-legend {
     list-style: none;
     margin: 0;
     padding: 1em 0 0;
     text-align: center;
-    li{
+
+    li {
       display: inline-block;
       padding: .25em .5em;
-      i{
+
+      i {
         display: inline-block;
         height: 1em;
         margin-right: .5em;

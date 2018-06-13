@@ -84,7 +84,7 @@
 
         %pre
           %code.ruby
-            gem install keppler`
+            gem install keppler
 
         %h4 Lista de comandos
 
@@ -105,9 +105,8 @@
 
         %h4 Creación del archivo secrets.yml
 
-        %p
-          Si detienes el proceso a la mitad o aún no tienes configurado un archivo secrets.yml con la configuración de
-          la base de datos y otros inicializadores, puedes crear la base de datos ejecutando:
+        %p Si detienes el proceso a la mitad o aún no tienes configurado un archivo secrets.yml con la configuración de
+        la base de datos y otros inicializadores, puedes crear la base de datos ejecutando:
 
         %pre
           %code.ruby
@@ -115,9 +114,8 @@
 
         %h4 Instalación de las dependencias
 
-        %p
-          Antes de poder iniciar con un proyecto nuevo, primero debemos instalar todas las gemas
-          instanciadas en el Gemfile, ubicado en la raíz del proyecto, con el comando:
+        %p Antes de poder iniciar con un proyecto nuevo, primero debemos instalar todas las gemas
+        instanciadas en el Gemfile, ubicado en la raíz del proyecto, con el comando:
 
         %pre
           %code.ruby
@@ -125,10 +123,9 @@
 
         %h3 Keppler Scaffolds
 
-        %p
-          Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente
-          configurados para adaptarse al administrativo. Para crear un nuevo
-          módulo sólo debes llamar al siguiente comando desde la consola:
+        %p Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente
+        configurados para adaptarse al administrativo. Para crear un nuevo
+        módulo sólo debes llamar al siguiente comando desde la consola:
 
         %pre
           %code.ruby
@@ -146,17 +143,15 @@
           %code.ruby
             keppler migrate
 
-        %p
-          Si luego deseamos borrar, crear, migrar y llenar la base de datos desde cero,
-          podemos realizarlo ejecutando el comando:
+        %p Si luego deseamos borrar, crear, migrar y llenar la base de datos desde cero,
+        podemos realizarlo ejecutando el comando:
 
         %pre
           %code.ruby
             keppler reset
 
-        %p
-          Por último, si todo ha sido ejecutado debida y correctamente, podemos iniciar
-          el proyecto ejecutando en la consola:
+        %p Por último, si todo ha sido ejecutado debida y correctamente, podemos iniciar
+        el proyecto ejecutando en la consola:
 
         %pre
           %code.ruby
@@ -166,9 +161,9 @@
 
         %p
           Se ofrece una integración por defecto entre SimpleForm y Bootstrap, usted tiene la posibilidad de cambiar su funcionalidad en
-        %pre
-          %code.ruby
-            config/initializers/simple_form_bootstrap.rb
+          %pre
+            %code.ruby
+              config/initializers/simple_form_bootstrap.rb
 
 
         %p Aquí algunos ejemplos para la creación de inputs:
@@ -205,9 +200,9 @@
         %p
           Puede revisar la documentación de
           = link_to 'AdminLTE', 'https://adminlte.io'
-          para agregar nuevas integraciones para sus formularios a través de los
-          = link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
-          de SimpleForm.
+        para agregar nuevas integraciones para sus formularios a través de los
+        = link_to 'Wrappers', 'https://github.com/plataformatec/simple_form/wiki/Custom-Wrappers'
+        de simpleform.
 
         -# %h3 Plugins (Módulos)
         -#
