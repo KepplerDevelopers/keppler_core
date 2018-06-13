@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # AdminController
   class AdminController < ::ApplicationController
@@ -25,9 +27,6 @@ module Admin
     def set_setting
       @setting = Setting.first
     end
-
-    # def close_index_show
-    # end
 
     private
 
