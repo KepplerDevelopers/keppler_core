@@ -5,19 +5,19 @@
   height: 100%;
 
   .container {
-    position: absolute;
-    height: 100%;
-    background: rgba(0, 0, 0, 1);
     animation: animationContainer 1.5s forwards;
+    background: $black;
+    height: 100%;
     overflow: hidden;
+    position: absolute;
   }
 
   @keyframes animationContainer {
     0% {
-      background: rgba(0, 0, 0, 1);
+      background: $black;
     }
     100% {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, .4);
     }
   }
 

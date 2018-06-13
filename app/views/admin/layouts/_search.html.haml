@@ -1,0 +1,8 @@
+- if listing?
+  = search_form_for @q, url: url_for(action: :index, controller: controller_name), html: { method: :get, class: "form-search form-search-{{inputSearch}}", "ng-init" => "inputSearch=#{!@query.blank?}" } do |f|
+    = f.search_field @search_field, id: "nav-search", placeholder: t("keppler.actions.search")
+    - if @query
+      = link_to url_for(action: :index, controller: controller_name), class: "hide-on-small-and-down" do
+        %i.close-top-search.hide-on-small-and-down ×
+    - else
+      %i.close-top-search.hide-on-small-and-down{ "ng-click" => "searchSiwtch()"} ×

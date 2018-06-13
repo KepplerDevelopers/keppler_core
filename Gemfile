@@ -88,9 +88,8 @@ gem 'kaminari-i18n', '0.5.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-
 # Development
-group :development do
+group :development, :test do
   gem 'better_errors', '2.4.0'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'byebug', '10.0.2'
@@ -101,18 +100,20 @@ group :development do
   # gem 'guard-sass'
   # gem 'quiet_assets'
   # gem 'rails_layout'
+  gem 'rubocop', '~> 0.54.0', require: false
   gem 'spring', '2.0.2'
   # gem 'table_print'
   gem 'web-console', '>= 3.3.0'
-end
 
-group :development, :test do
-  gem 'rubocop', '~> 0.54.0', require: false
+  # Style guides
   gem 'haml_lint', '~> 0.27.0', require: false
   gem 'scss_lint', '~> 0.57.0', require: false
-  gem 'jshint' # JavaScripts Linter
 end
 
 #---- keppler_ga_dashboard ----
 gem 'google-api-client', '~> 0.7.1'
 gem 'keppler_ga_dashboard', path: 'plugins/keppler_ga_dashboard'
+
+gem 'keppler_blog', path: 'plugins/keppler_blog'
+gem 'social-share-button'
+gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on'

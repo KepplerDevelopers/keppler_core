@@ -7,7 +7,6 @@
   h1 {
     margin: 0 10px 0 0;
     font-size: 2.5rem;
-    display: inline-block;
     @include respond-to(xs) {
       font-size: 2rem;
     }

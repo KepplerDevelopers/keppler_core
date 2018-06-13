@@ -31,14 +31,6 @@ es:
         appearance: Apariencia
       meta_tags: Meta tags
       scripts: 'Scripts'
-      keppler-messages: Mensajes
-      keppler-messages-submenu:
-        messages: Mensajes
-        message-settings: Configuración de mensajes
-      keppler-blog: Blog
-      keppler-blog-submenu:
-        posts: Posts
-        categories: Categorías
     permissions:
       index: Listar
       create: Crear
