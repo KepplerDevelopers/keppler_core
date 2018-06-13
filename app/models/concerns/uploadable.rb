@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Keppler
 module Uploadable
   extend ActiveSupport::Concern

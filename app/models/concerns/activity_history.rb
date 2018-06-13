@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ActivityHistory Module
 module ActivityHistory
   extend ActiveSupport::Concern

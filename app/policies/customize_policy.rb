@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Policy for customize model
 class CustomizePolicy < ControllerPolicy
   attr_reader :user, :objects

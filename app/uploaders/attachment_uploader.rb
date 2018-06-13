@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 # AttachmentUploader Carrierwave
 class AttachmentUploader < CarrierWave::Uploader::Base
