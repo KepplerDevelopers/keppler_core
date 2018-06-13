@@ -1,5 +1,6 @@
 AllCops:
   Exclude:
+    - 'app/controller/app/*.rb'
     - 'Rakefile'
     - 'Guardfile'
     - 'config.ru'

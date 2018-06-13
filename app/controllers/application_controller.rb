@@ -77,10 +77,9 @@ class ApplicationController < ActionController::Base
       module_name = YAML.load_file(
         "#{m}/config/permissions.yml"
       ).values
-      if !module_name.first.nil?
-        module_name.each(&:symbolize_keys!)
-        @modules[0] = @modules[0].merge(module_name[0])
-      end
+      return if module_name.first.nil?
+      module_name.each(&:symbolize_keys!)
+      @modules[0] = @modules[0].merge(module_name[0])
     end
   end
 
