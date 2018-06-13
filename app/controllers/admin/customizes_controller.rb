@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 module Admin
   # CustomizesController
   class CustomizesController < AdminController
-    before_action :set_customize, only: %i[show edit update destroy authorization]
+    before_action :set_customize, only: %i[show edit update
+                                           destroy authorization]
     before_action :set_customizes, only: %i[update install_default]
     before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload install_default]
@@ -12,11 +15,10 @@ module Admin
       customizes = @q.result(distinct: true)
       @objects = customizes.page(@current_page)
       @total = customizes.size
-      if !@objects.first_page? && @objects.blank?
-        redirect_to customizes_path(
-          page: @current_page.to_i.pred, search: @query
-        )
-      end
+      return unless !@objects.first_page? && @objects.blank?
+      redirect_to customizes_path(
+        page: @current_page.to_i.pred, search: @query
+      )
     end
 
     # GET /customizes/new
@@ -52,21 +54,13 @@ module Admin
       if @customize.installed?
         redirect_to admin_customizes_path
       else
-        @customizes.each { |customize| customize.update(installed: false) }
-        if @customize.update(customize_params)
-          @customize.install_keppler_template
-          redirect_to admin_customizes_path
-        else
-          render :edit
-        end
+        install_keppler_template(@customizes, @customize)
       end
     end
 
     # DELETE /customizes/1
     def destroy
-      if @customize.installed?
-        @customize.install
-      end
+      @customize.install if @customize.installed?
       @customize.destroy
       redirect_to admin_customizes_path, notice: actions_messages(@customize)
     end
@@ -80,6 +74,16 @@ module Admin
     end
 
     private
+
+    def install_keppler_template(customizes, customize)
+      customizes.each { |c| c.update(installed: false) }
+      if customize.update(customize_params)
+        customize.set_defaut
+        redirect_to admin_customizes_path
+      else
+        render :edit
+      end
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_customize
@@ -102,6 +106,5 @@ module Admin
     def show_history
       get_history(Customize)
     end
-
   end
 end

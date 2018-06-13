@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ErrorsController -> Controller to redirect error pages
 class ErrorsController < ApplicationController
   layout 'errors/application'
