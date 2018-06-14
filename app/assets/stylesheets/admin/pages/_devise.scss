@@ -5,29 +5,30 @@
   height: 100%;
 
   .container {
-    position: absolute;
-    height: 100%;
-    background: rgba(0, 0, 0, 1);
     animation: animationContainer 1.5s forwards;
+    background: $black;
+    height: 100%;
     overflow: hidden;
+    position: absolute;
   }
 
   @keyframes animationContainer {
     0% {
-      background: rgba(0, 0, 0, 1);
+      background: $black;
     }
+
     100% {
-      background: rgba(0, 0, 0, 0.4);
+      background: $dark-transparent;
     }
   }
 
   .login-footer {
-    text-align: center;
-    color: #e4e4e4;
-    position: relative;
     bottom: 3rem;
+    color: $dark-white;
+    position: relative;
+    text-align: center;
 
-    span{
+    span {
       color: $keppler-color;
     }
   }
@@ -41,17 +42,18 @@
   }
 
   .login-box-body {
-    padding-top: 3rem;
+    animation: animationBody 2.5s forwards;
     padding-bottom: 3rem;
+    padding-top: 3rem;
     position: relative;
     top: 2rem;
-    animation: animationBody 2.5s forwards;
   }
 
   @keyframes animationBody {
     0% {
       top: 2rem;
     }
+
     100% {
       top: 0;
     }
@@ -59,27 +61,29 @@
 
 
   .login-logo {
+    animation: animationLogo 1.5s forwards;
+    opacity: 0;
     position: relative;
     top: 2rem;
-    opacity: 0;
-    animation: animationLogo 1.5s forwards;
-    a {
-      color: #e4e4e4;
 
-      span {
-        color: $keppler-color;
-      }
+    a {
+      color: $dark-white;
+    }
+
+    span {
+      color: $keppler-color;
     }
   }
 
   @keyframes animationLogo {
     0% {
-      top: 2rem;
       opacity: 0;
+      top: 2rem;
     }
+
     100% {
-      top: 0;
       opacity: 1;
+      top: 0;
     }
   }
 
@@ -148,15 +152,16 @@
     }
   }
 }
-.input-icon{
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
+
+.input-icon {
   display: block;
-  width: 34px;
   height: 34px;
   line-height: 34px;
-  text-align: center;
   pointer-events: none;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 34px;
+  z-index: 2;
 }
