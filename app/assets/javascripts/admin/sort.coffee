@@ -1,5 +1,5 @@
 jQuery ->
-  $('#objects-container').sortable
+  $('.objects-container').sortable
     axis: 'y'
     handle: '.drop'
     distance: 20
