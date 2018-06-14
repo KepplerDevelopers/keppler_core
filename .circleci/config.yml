@@ -46,21 +46,7 @@ jobs:
       - run: bundle exec rake db:create RAILS_ENV=test
       - run: bundle exec rake db:migrate RAILS_ENV=test
       - run: bundle exec rake db:seed RAILS_ENV=test
-
-workflow:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-
-
-
-      # run tests!
-      # - run:
-      #     name: run tests
-      #     command: |
-      #       scss-lint app/assets/stylesheets/
-      #       slim-lint app/views/
-      #       bundle exec rake jshint
-      #       bundle exec rubocop
-      #       bundle exec rspec
+      - run: bundle exec rubocop
+      - run: gem install haml_lint
+      - run: haml-lint app/views/admin
+      - run: scss-lint app/assets/stylesheets/admin
