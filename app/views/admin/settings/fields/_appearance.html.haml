@@ -1,4 +1,4 @@
-#colors
+.appearance-colors
   {{ changeColors }}
   = f.simple_fields_for :appearance, html: { multipart: true } do |f|
     .col-md-7.col-lg-6
@@ -34,7 +34,7 @@
 
 :javascript
   var vm = new Vue({
-    el: '#colors',
+    el: '.appearance-colors',
     data: {
       main: "#{@color}"
     },

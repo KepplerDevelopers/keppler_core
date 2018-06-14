@@ -1,6 +1,6 @@
 $(function ($) {
   var $body = $('body'),
-      $slice = $('#sidebar-footer .brand')
+      $slice = $('.sidebar-footer .brand')
 
   // On click, capture state and save it in localStorage
   $($.AdminLTE.options.sidebarToggleSelector).click(function () {

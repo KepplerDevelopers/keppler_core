@@ -1,16 +1,14 @@
 .bfh-timepicker {
-  width: 50%;
+  float: none;
+  // width: 50%;
+  width: inherit;
+
+  &-toggle {
+    border: 1px solid $gray-hover;
+    margin-bottom: 20px;
+  }
 }
 
 .input-group-addon {
-  border: none;
-}
-select.bfh-timepicker {
-  width: inherit !important;
-  float: none !important;
-}
-
-.bfh-timepicker-toggle {
-  border: 1px solid #d2d6de;
-  margin-bottom: 20px;
+  border: 0;
 }

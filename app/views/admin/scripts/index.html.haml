@@ -53,15 +53,15 @@
                     %th= t('activerecord.attributes.script')
                     %th= t('activerecord.attributes.url')
                     %th
-              %tbody#objects-container
+              %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
 
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description', activities: @activities
-  %aside.control-sidebar#index-show
+  %aside.control-sidebar.index-show
   - if can?(Script).create?
     .mixed-btn
       = link_to new_admin_script_path, class: 'btn-float' do
