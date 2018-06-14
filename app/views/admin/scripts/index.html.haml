@@ -55,7 +55,7 @@
                     %th
               %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @objects
+                = render 'listing', objects: @objects, query: @query
 
         %center#paginator-module
           = paginate @objects, window: 1
