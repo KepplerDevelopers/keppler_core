@@ -1,18 +1,18 @@
-= simple_form_for @role, url: admin_role_create_permissions_path(role), method: :post, remote: true do |f|
+= simple_form_for @role, url: admin_role_create_permissions_path(role), method: :post, remote: true do
   %label
-    - if !role.have_action?(module_name, action)
+    - if !role.action?(module_name, action)
       %label.switch
-        %input{name: "role[module]", type: "hidden", value: module_name}
-        %input{name: "role[action]", type: "hidden", value: action}
-        %input{id: "switch-#{module_name.split('::').join('')}-#{action}", :type => "checkbox"}/
-        %span.slider.round{onclick: "sendPermission('#{module_name}', '#{action}')"}
+        %input{ name: 'role[module]', type: 'hidden', value: module_name }
+        %input{ name: 'role[action]', type: 'hidden', value: action }
+        %input{ id: "switch-#{module_name.split('::').join('')}-#{action}", type: 'checkbox' }
+        %span.slider.round{ onclick: "sendPermission('#{module_name}', '#{action}')" }
 
     - else
       %label.switch
-        %input{name: "role[module]", type: "hidden", value: module_name}
-        %input{name: "role[action]", type: "hidden", value: action}
-        %input.active{id: "switch-#{module_name.split('::').join('')}-#{action}", :type => "checkbox", checked: "checked"}/
-        %span.slider.round{onclick: "sendPermission('#{module_name}', '#{action}')"}
+        %input{ name: 'role[module]', type: 'hidden', value: module_name }
+        %input{ name: 'role[action]', type: 'hidden', value: action }
+        %input.active{ id: "switch-#{module_name.split('::').join('')}-#{action}", type: 'checkbox', checked: 'checked' }
+        %span.slider.round{ onclick: "sendPermission('#{module_name}', '#{action}')" }
 
 :javascript
   function sendPermission(module_name, action) {
