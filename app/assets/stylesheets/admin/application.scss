@@ -1,4 +1,3 @@
-// require simple-line-icons
 //= require animate-css
 //= require jquery.minicolors
 //= require noty
@@ -8,10 +7,9 @@
 @import 'bourbon';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "adminlte";
-@import "simple-line-icons";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'adminlte';
 
 //Utils folder
 @import 'utils/variables';
@@ -19,15 +17,18 @@
 @import 'utils/theme';
 @import 'utils/base';
 
+// Bootstrap File Input
+@import 'bootstrap-file-input/*';
+
 //Components folder
-@import "components/navigation/navbar";
-@import "components/navigation/sidebar";
-@import "components/layouts/footer";
-@import "components/layouts/settings";
-@import "components/paginator/paginator";
+@import 'components/navigation/navbar';
+@import 'components/navigation/sidebar';
+@import 'components/layouts/footer';
+@import 'components/layouts/settings';
+@import 'components/paginator/paginator';
 
 //Vendor folder
-@import "vendor/admin-lte/skin-blue";
+@import 'vendor/admin-lte/skin-blue';
 
 // Page folder
 @import 'pages/*';
