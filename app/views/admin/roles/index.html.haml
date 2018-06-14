@@ -1,4 +1,4 @@
-#index-container{ controller: 'roles' }
+.index-container{ controller: 'roles' }
   .container
     .row
       .listing.col-lg-12.col-xs-12
@@ -52,7 +52,7 @@
                     %th.hidden-xs= t('activerecord.attributes.name')
                     %th.center Menu
                     %th
-              %tbody#objects-container{ 'data-update-url' => sort_admin_roles_path.to_s }
+              %tbody.objects-container{ 'data-update-url' => sort_admin_roles_path.to_s }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @roles
         %center.paginator-module
