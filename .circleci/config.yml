@@ -47,4 +47,5 @@ jobs:
       - run: bundle exec rake db:migrate RAILS_ENV=test
       - run: bundle exec rake db:seed RAILS_ENV=test
       - run: bundle exec rubocop
+      - run: gem install scss-lint
       - run: scss-lint app/assets/stylesheets/admin
