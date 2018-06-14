@@ -11,10 +11,10 @@ $themes: (
 @each $label, $primary-color, $darken-color, $accent-color in $themes {
   .#{$label}-theme {
     .devise-box-header {
-      background: $primary-color !important;
+      background: $primary-color;
     }
 
-    .modal-header{
+    .modal-header {
       background: $primary-color;
     }
 
@@ -23,12 +23,12 @@ $themes: (
       background: $primary-color;
     }
 
-    .listing-show-header{
+    .listing-show-header {
       background: $darken-color;
     }
 
     .control-label.active {
-      color: $accent-color !important;
+      color: $accent-color;
     }
 
     .btn-add,
@@ -37,38 +37,9 @@ $themes: (
     }
 
     .btn-white {
-      margin-right: 1rem;
-      background: #dedede;
+      background: $gray-hover;
       color: $accent-color;
-    }
-
-    input[type=text]:focus:not([readonly]),
-    input[type=password]:focus:not([readonly]),
-    input[type=email]:focus:not([readonly]),
-    input[type=url]:focus:not([readonly]),
-    input[type=time]:focus:not([readonly]),
-    input[type=date]:focus:not([readonly]),
-    input[type=datetime-local]:focus:not([readonly]),
-    input[type=tel]:focus:not([readonly]),
-    input[type=number]:focus:not([readonly]),
-    input[type=search]:focus:not([readonly]),
-    textarea.materialize-textarea:focus:not([readonly]) {
-      border-bottom: 1px solid $accent-color;
-      box-shadow: 0 1px 0 0 $accent-color;
-    }
-
-    .checkbox_material [type="checkbox"]:checked + label:before {
-      border-bottom: 2px solid $accent-color;
-      border-right: 2px solid $accent-color;
-    }
-
-    [type="checkbox"].filled-in:checked + label:after {
-      background-color: $accent-color;
-      border: 2px solid $accent-color;
-    }
-
-    #nprogress .bar {
-      background:  $accent-color;
+      margin-right: 1rem;
     }
   }
 }

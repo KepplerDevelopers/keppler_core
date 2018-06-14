@@ -1,4 +1,4 @@
-.new-menu{
+.new-menu {
   padding: 12px;
 }
 
@@ -8,29 +8,31 @@
 }
 
 .material-icons {
-  color: #999;
+  color: $grey;
 }
 
 .show-row {
   img {
-    width: 25px;
     border-radius: 2px;
     object-fit: cover;
+    width: 25px;
   }
+
   a {
-    position: absolute;
     display: block;
-    width: 20%;
     height: 20px;
+    position: absolute;
+    width: 20%;
   }
 }
-.ui-sortable-handle{
+
+.ui-sortable-handle {
   width: 50px;
 }
-.ui-sortable-helper{
-  // width: 50px;
+
+.ui-sortable-helper {
+  background-color: $almost-white;
   display: table;
-  background-color: #fdfdfd;
 }
 
 td .item-check {

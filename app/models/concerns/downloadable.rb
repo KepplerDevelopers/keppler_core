@@ -6,7 +6,7 @@ module Downloadable
 
   require 'csv'
 
-  def self.to_csv(options = {})
+  def to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
       all.each { |object| csv << object.attributes.values }

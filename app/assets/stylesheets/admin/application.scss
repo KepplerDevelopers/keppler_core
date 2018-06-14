@@ -4,14 +4,17 @@
 //= require noty
 //= require_self
 
+//Vendor folder
+@import 'vendor/admin-lte/skin-blue';
+
 //Libraries and plugins as gems
 @import 'bourbon';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "adminlte";
-@import "simple-line-icons";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'adminlte';
+@import 'simple-line-icons';
 
 //Utils folder
 @import 'utils/variables';
@@ -20,14 +23,11 @@
 @import 'utils/base';
 
 //Components folder
-@import "components/navigation/navbar";
-@import "components/navigation/sidebar";
-@import "components/layouts/footer";
-@import "components/layouts/settings";
-@import "components/paginator/paginator";
-
-//Vendor folder
-@import "vendor/admin-lte/skin-blue";
+@import 'components/navigation/navbar';
+@import 'components/navigation/sidebar';
+@import 'components/layouts/footer';
+@import 'components/layouts/settings';
+@import 'components/paginator/paginator';
 
 // Page folder
 @import 'pages/*';
