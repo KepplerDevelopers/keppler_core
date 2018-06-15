@@ -4,8 +4,11 @@ function renderImg(){
   $('.show-row img').hover(function(e){
     $('body').append( `<p id='preview'><img src='' + this.src + '' alt='Image preview' class='img-show' /></p>` );
     $('#preview')
-      .css('top', (e.pageY - xOffset) + 'px')
-      .css('left', (e.pageX + yOffset) + 'px')
+      .css({
+        'top': (e.pageY - xOffset) + 'px',
+        'left': (e.pageX + yOffset) + 'px',
+        'z-index': '100000'
+      })
       .fadeIn('slow');
   }, function(){
     $('#preview').remove();

@@ -59,7 +59,7 @@
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description', activities: @activities
-  %aside.control-sidebar#index-show
+  %aside.control-sidebar.index-show
   - if can?(MetaTag).create?
     .mixed-btn
       = link_to new_admin_meta_tag_path, class: 'btn-float' do
