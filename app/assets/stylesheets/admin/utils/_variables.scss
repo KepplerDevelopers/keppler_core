@@ -1,4 +1,6 @@
 // Colors
+$almost-black: #252525;
+$almost-white: #fdfdfd;
 $black: #000;
 $error-color: #f44336;
 $gray-darken: #4c4c4c;
@@ -8,6 +10,39 @@ $primary-color: #f44336;
 $secondary-color: #d32f2f;
 $white: #fff;
 $link-color: #039be5;
+$light-white: #c5c5c5;
+$light-black: #333;
+$blue: #003eff;
+$grey: #999;
+$medium-grey: #555;
+$ccc: #ccc;
+$gray: #808080;
+$grey-blue: #92b0b3;
+$bfc5c5: #bfc5c5;
+$transparent-black-14: rgba(0, 0, 0, .14);
+$transparent-black-12: rgba(0, 0, 0, .12);
+$transparent-black-2: rgba(0, 0, 0, .2);
+$btn-float-shadow: 0 2px 2px 0 $transparent-black-14, 0 1px 5px 0 $transparent-black-12, 0 3px 1px -2px $transparent-black-2;
+$btn-float-shadow-hover: 0 4px 5px 0 $transparent-black-14, 0 1px 10px 0 $transparent-black-12, 0 2px 4px -1px $transparent-black-2;
+$preview-box-shadow: 4px 4px 3px rgba(103, 115, 130, 1);
+$box-shadow-collapse: 0 2px 12px rgba(0, 0, 0, .175);
+$coco-grey: #c0c0c0;
+
+// Navbar
+$navbar-static-top-link: #949494;
+$sidebar-toggle-hover: #e8e8e8;
+$logo-span-text-shadow: rgba(0, 0, 0, .3);
+
+// Sidebar
+$sidebar-background: linear-gradient(to right, $white, #f5f5f5);
+$dark-grey: #5a5a5a;
+$light-grey: #8c8c8c;
+$dark-transparent: rgba(0, 0, 0, .5);
+$light-transparent: rgba(0, 0, 0, .12);
+$text-success: #2ade2e;
+$dark-white: #eee;
+
+
 
 // Pageslide
 $pageslide-icon-color: #575757;
@@ -24,11 +59,6 @@ $keppler-color:#f44336;
 $keppler-darken:#d32f2f;
 $keppler-accent:#d11421;
 // NO TOCAR /////////////
-// Pink theme color
-$pink-color: #e91e63;
-$pink-darken: #c2185b;
-$pin-accent: #448aff;
-
 // Pink theme color
 $pink-color: #e91e63;
 $pink-darken: #c2185b;
@@ -71,9 +101,9 @@ $font-size: 10px;
 $color-primary: #ff5300; // Orange primary
 $color-secundary: #ff005e;
 
-%circle-img{
-  border-radius: 50%;
+%circle-img {
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  border-radius: 50%;
 }
