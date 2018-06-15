@@ -5,7 +5,7 @@ module ObjectQuery
   extend ActiveSupport::Concern
 
   private
-  
+
   def redirect_to_index(_objects_path)
     redirect_to objects_path(page: @current_page.to_i.pred, search: @query)
   end
