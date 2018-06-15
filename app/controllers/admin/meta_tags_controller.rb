@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # MetaTagController
   class MetaTagsController < AdminController
@@ -16,8 +18,7 @@ module Admin
     end
 
     # GET /meta_tags/1
-    def show
-    end
+    def show; end
 
     # GET /meta_tags/new
     def new
@@ -25,8 +26,7 @@ module Admin
     end
 
     # GET /meta_tags/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /meta_tags
     def create
@@ -84,7 +84,7 @@ module Admin
       respond_to do |format|
         format.html
         format.xls { send_data(@meta_tags.to_xls) }
-        format.json { render :json => @meta_tags }
+        format.json { render json: @meta_tags }
       end
     end
 
@@ -110,7 +110,8 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def meta_tag_params
-      params.require(:meta_tag).permit(:title, :description, :meta_tags, :url, :position)
+      params.require(:meta_tag).permit(:title, :description,
+                                       :meta_tags, :url, :position)
     end
 
     def show_history

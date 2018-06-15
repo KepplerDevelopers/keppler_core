@@ -3,13 +3,13 @@
     .row
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
-          %h1{ style: 'display: inline-block' }
+          %h1
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
             - if can?(User).download?
               .toolbar-item
-                = link_to admin_users_path(:format => :xls), class: 'tool-btn', title: t('keppler.actions.download_records') do
+                = link_to admin_users_path(format: :xls), class: 'tool-btn', title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
             .toolbar-item
               = link_to reload_admin_users_path, class: 'tool-btn', remote: true do
@@ -22,7 +22,7 @@
                     %span.cr
                       %i.cr-icon.glyphicon.glyphicon-ok
             .toolbar-item
-              %a.tool-btn{'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
+              %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{ disabled: !checks }' }
                 %i.icon-trash
           %ol.breadcrumb
             %li
@@ -33,8 +33,8 @@
         .form-group
           %label.control-label.string.required{ for: 'user_name' }
             Filtrar usuarios por rol
-          = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do |f|
-            %select#filter_by_role.form-control.form-control{ name: 'role', onchange: '$(this).parent().submit()' }
+          = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do
+            %select.form-control.form-control#filter_by_role{ name: 'role', onchange: '$(this).parent().submit()' }
               %option{ name: 'role', value: 'all' } Todos
               - @roles.each do |role|
                 %option{ name: 'role', value: role.first.downcase }= role.first
@@ -45,7 +45,7 @@
                 - if @objects.size.zero?
                   %tr
                     %th.center
-                      %h6= t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.user'))
+                      %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.user'))
                 - else
                   %tr
                     %th
@@ -54,15 +54,15 @@
                     %th= t('activerecord.attributes.email')
                     %th.visible-lg.visible-md= t('activerecord.attributes.role')
                     %th
-              %tbody#objects-container
+              %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @users
+                = render 'listing', objects: @users, size: @objects.size
         %center#paginator-module
           = paginate @objects, window: 1
 
   .listing-show.hidden-xs
-    = render 'description'
-  %aside#index-show.control-sidebar
+    = render 'description', activities: @activities
+  %aside.control-sidebar.index-show
   - if can?(User).create?
     .mixed-btn
       = link_to new_admin_user_path, class: 'btn-float' do

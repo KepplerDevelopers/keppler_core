@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # UsersController
   class UsersController < AdminController
@@ -16,16 +18,13 @@ module Admin
 
       respond_to do |format|
         format.html
-        format.json { render :json => @objects }
+        format.json { render json: @objects }
       end
     end
 
     def filter_by_role
-      if params[:role].eql?('all')
-        @users = User.all.drop(1)
-      else
-        @users = User.filter_by_role(@objects, params[:role])
-      end
+      return @users = User.all.drop(1) if params[:role].eql?('all')
+      @users = User.filter_by_role(@objects, params[:role])
     end
 
     def new
@@ -86,7 +85,8 @@ module Admin
 
     def set_objects
       @q = User.ransack(params[:q])
-      users = @q.result(distinct: true).where('id != ?', User.first.id).order(created_at: :desc)
+      users = @q.result(distinct: true).where('id != ?', User.first.id)
+      users = users.order(created_at: :desc)
       @objects = users.page(@current_page)
       @total = users.size
     end

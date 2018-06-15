@@ -29,7 +29,7 @@ module InyxmaterRails
     # The default locale is :en and all translations from config/locales/*.rb,
     #   yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join(
-      'plugins',
+      'rockets',
       'locales',
       '*.{rb,yml}'
     ).to_s]
@@ -42,5 +42,6 @@ module InyxmaterRails
 
     # config exeption routes
     config.exceptions_app = routes
+
   end
 end

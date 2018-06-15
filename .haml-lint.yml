@@ -1,0 +1,7 @@
+linters:
+  LineLength:
+    enabled: false
+  InlineStyles:
+    enabled: false
+  IdNames:
+    enabled: false

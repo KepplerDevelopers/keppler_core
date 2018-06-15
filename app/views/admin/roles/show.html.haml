@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-2
-      = link_to admin_roles_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+      = link_to admin_roles_path, class: '', 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
         .arrow-back.btn.btn-default
           %i.fa.fa-angle-left
           = t('keppler.actions.back')
@@ -14,15 +14,15 @@
             %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
             .box-tools.pull-right
               - if can?(Role).update?
-                = link_to edit_admin_role_path(@role), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
+                = link_to edit_admin_role_path(@role), class: 'btn btn-box-tool', title: t('keppler.actions.edit') do
                   %i.icon-pencil
               - if can?(Role).destroy?
-                = link_to admin_role_path(@role), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                = link_to admin_role_path(@role), class: 'btn btn-box-tool', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                   %i.icon-trash
           .box-body.box-body-no-padding
             %table.table.table-striped
               %tbody
-                - @role.as_json(only: ["name"]).each do |attribute, value|
+                - @role.as_json(only: %w[name]).each do |attribute, value|
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2

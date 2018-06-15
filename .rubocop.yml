@@ -1,0 +1,18 @@
+AllCops:
+  Exclude:
+    - 'Rakefile'
+    - 'Guardfile'
+    - 'config.ru'
+    - 'lib/**/*'
+    - 'test/**/*'
+    - 'config/**/*.rb'
+    - 'config/*.rb'
+    - 'db/**/*.rb'
+    - 'rockets/**/*'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'app/controllers/app/*.rb'
+    - 'app/controllers/devise/*.rb'
+    - 'app/services/admin/template_service.rb'
+    - 'app/controllers/application_controller.rb'
+    - 'Gemfile'

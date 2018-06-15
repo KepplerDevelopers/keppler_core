@@ -1,4 +1,4 @@
-#index-container{ :controller => "roles" }
+#index-container{ controller: 'roles' }
   .container
     .row
       .listing.col-lg-12.col-xs-12
@@ -9,14 +9,14 @@
           .toolbar
             - if can?(Role).download?
               .toolbar-item
-                = link_to admin_role_download_path(Role, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                = link_to admin_role_download_path(Role, format: :xls), class: 'tool-btn', title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
             - if can?(Role).upload?
               .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "role" do
+                = link_to '', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_roles_path, class: "tool-btn", remote: true do
+              = link_to reload_admin_roles_path, class: 'tool-btn', remote: true do
                 %i.icon-reload
             - if can?(Role).destroy_multiple?
               .toolbar-item
@@ -26,11 +26,11 @@
                     %span.cr
                       %i.cr-icon.glyphicon.glyphicon-ok
             .toolbar-item
-              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+              %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', :rel => 'nofollow', ':class' => '{disabled: !checks}' }
                 %i.icon-trash
           .hide
-            = form_tag admin_role_upload_path(@objects), id: "upload_form_roles", multipart: true, method: :post do
-              = file_field_tag :file, id: "upload_file_role"
+            = form_tag admin_role_upload_path(@objects), id: 'upload_form', multipart: true, method: :post do
+              = file_field_tag :file, id: 'upload_file'
           %ol.breadcrumb
             %li
               %a{ href: '#' }
@@ -44,37 +44,24 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{style: 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.roles"))
+                    %th{ style: 'text-align: center;' }
+                      %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.roles'))
                 - else
                   %tr
                     %th
                     %th.hidden-xs= t('activerecord.attributes.name')
                     %th.center Menu
                     %th
-              %tbody#objects-container{ "data-update-url" => "#{sort_admin_roles_path}" }
+              %tbody#objects-container{ 'data-update-url' => sort_admin_roles_path.to_s }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @roles
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   %aside.control-sidebar
-    = render "description"
-  %aside#index-show.control-sidebar
+    = render 'description', activities: @activities
+  %aside.control-sidebar.index-show
 
   .mixed-btn
     - if can?(Role).create?
-      = link_to new_admin_role_path, class: "btn-float" do
+      = link_to new_admin_role_path, class: 'btn-float' do
         +
-
-:javascript
-  $(document).ready(function(){
-    $('#role').click(function() {
-      $('#upload_file_role').click()
-      $('#upload_file_role').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_role').submit()
-      })
-    });
-
-    renderImg();
-  });

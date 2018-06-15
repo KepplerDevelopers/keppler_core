@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-# Front Model
+# Front
 class Front < ApplicationRecord
 end

@@ -4,7 +4,6 @@ menu:
     url_path: /admin
     icon: pie-chart
     current: ['admin/dashboard']
-    model: Dashboard
   script:
     name: scripts
     url_path: /admin/scripts
@@ -20,7 +19,7 @@ menu:
   user:
     name: users
     icon: user
-    current: ["admin/users"]
+    current: ['admin/users', 'admin/roles']
     model: User
     submenu:
       - users:

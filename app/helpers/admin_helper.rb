@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 # AdminHelper Backoffice
 module AdminHelper
-
   def keppler_boolean_script
     render 'admin/layouts/keppler_boolean_script'
   end
 
   def preloader
-    render "admin/layouts/preloader"
+    render 'admin/layouts/preloader'
   end
 
   # Header information dinamic in keppler back-office
@@ -26,7 +27,8 @@ module AdminHelper
 
   # Classify a model from a controller
   def model
-    klass = controller_path.include?('admin') ? controller_name : controller_path
+    ctrlpath = controller_path
+    klass = ctrlpath.include?('admin') ? controller_name : controller_path
     klass.classify.constantize
   end
 
@@ -42,18 +44,19 @@ module AdminHelper
   end
 
   def entries(total, objects)
-    unless total.zero?
-      content_tag :div, class: 'badge objects-counter', style: "margin-bottom: 0 10px" do
-        content_tag :span, class: 'span' do
-          message(total, objects)
-        end
+    return if total.zero?
+    content_tag :div,
+                class: 'badge objects-counter',
+                style: 'margin-bottom: 0 10px' do
+      content_tag :span, class: 'span' do
+        message(total, objects)
       end
     end
   end
 
   def search_model
     klass = controller_path.split('/')
-    klass.delete("admin")
+    klass.delete('admin')
     klass = klass.join('/')
     klass.classify.constantize.search_field
   end
@@ -62,7 +65,7 @@ module AdminHelper
 
   # ------------ preload
   def spinner_layer(_color)
-    content_tag :div, class: 'spinner-layer spinner-#{color}' do
+    content_tag :div, class: "spinner-layer spinner-#{color}" do
       clipper('left') + gap_path + clipper('right')
     end
   end

@@ -41,4 +41,5 @@ Rails.application.configure do
   # In Rails 5, the default value of this option will change
   #  from `:sorted` to `:random`.
   config.active_support.test_order = :sorted
+
 end

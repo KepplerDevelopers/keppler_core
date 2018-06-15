@@ -22,7 +22,7 @@
                   <%- attributes.each_with_index do |attribute, index| -%>
                   .col-xs-12
                     <%- if @attachments.include?(attribute.name) -%>
-                    = f.input :<%= attribute.name %>, as: :keppler_file, label: false
+                    = f.input :<%= attribute.name %>, as: :keppler_file
                     <%- elsif attribute.reference? -%>
                     = f.association :<%= attribute.name %>, include_blank: false
                     <%- elsif attribute.type.to_s == 'text' -%>
