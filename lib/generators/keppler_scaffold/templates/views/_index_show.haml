@@ -4,7 +4,7 @@
       = link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), title: t("keppler.actions.edit"), class: 'pull-left' do
         %i.icon-pencil
         %span= t('keppler.actions.edit')
-    %a.close-index-show.pull-right
+    %a#close-index-show.pull-right
       %i.icon-close
   %h3.control-sidebar-heading
     = t("keppler.modules.#{controller_path.underscore}")
@@ -21,5 +21,5 @@
                 - else
                   %p.display-label= value.blank? ? '-----------' : value
 :coffee
-  $('.close-index-show').click ->
-    $('.index-show').css 'right', -$('.index-show').outerWidth()
+  $('#close-index-show').click ->
+    $('#index-show').css 'right', -$('#index-show').outerWidth()

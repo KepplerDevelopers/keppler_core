@@ -28,14 +28,19 @@
                     %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
                   %ul.treeview-menu
                     - menu[key]['submenu'].each do |submenu|
-                      - submenu.each do |name, val|
+                      - submenu.each do |value, _val|
                         %li
-                          = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", :'data-no-turbolink'=>true
+                          - if settings_path?
+                            = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[value]['name'].parameterize}"), submenu[value]['url_path'], class: ('current' if submenu[value]['current'].include?(render)), 'data-no-turbolink': true
+                          - else
+                            = link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[value]['name'].parameterize}"), submenu[value]['url_path'], class: ('current' if submenu[value]['current'].include?(controller_path)), 'data-no-turbolink': true
 
-  .sidebar-footer
+  #sidebar-footer
     %a{ href: 'http://slicegroup.xyz', target: '_blank' }
-      #slice.brand.pull-left
+      .brand.pull-left#slice
         = image_tag 'admin/slice_white.png'
       .brand.pull-left.hidden#icon
         = image_tag 'admin/slice-icon.png'
     %span.pull-right v 2.0
+
+-# class: (submenu[value]['url_path'].eql?('/admin/settings/email_setting') ? 'cut-text' : '')

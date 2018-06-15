@@ -1,20 +1,17 @@
-.bg-profile {
+.bg-profile{
   @extend %circle-img;
-  height: 100px;
   width: 100px;
+  height: 100px;
 }
-
-.img-show {
+.img-show{
   width: 100%;
 }
-
 .list-row {
   img {
-    max-height: 300px;
     max-width: 100%;
+    max-height: 300px;
   }
 }
-
-.attr-name {
+.attr-name{
   font-weight: bold;
 }
