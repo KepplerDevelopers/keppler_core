@@ -85,13 +85,14 @@
 }
 
 .side-img-profile {
+  @extend %circle-img;
   background: $keppler-color;
   box-shadow: 1px 1px 2px $dark-transparent;
-  height: 40px;
+  height: 45px;
   object-fit: cover;
   transition: .2s;
   vertical-align: middle;
-  width: 40px;
+  width: 45px;
 }
 
 .info p {
@@ -116,4 +117,64 @@
   margin-left: -3px;
   padding: 12px 5px 12px 20px;
   top: 0;
+}
+
+.new-message {
+  margin-top: -45px;
+  position: absolute;
+  right: 15%;
+  z-index: 1;
+}
+
+.sidebar-footer {
+  bottom: 0;
+  opacity: .1;
+  padding: 10px;
+  position: relative;
+  transition: .2s;
+  width: 100%;
+
+  .brand img {
+    height: 25px;
+    margin: 0 10px;
+  }
+
+  span {
+    color: $white;
+    font-family: Patua One;
+    margin: 0 20px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-collapse {
+  transition: .2s;
+
+  .user-panel {
+    padding: {
+      left: 4px;
+      right: 2px;
+    }
+
+    .side-img-profile {
+      height: 40px;
+      transition: .2s;
+      width: 40px;
+    }
+  }
+
+  .sidebar-footer {
+    padding: 4px;
+    transition: .2s;
+
+    .pull-right {
+      display: none;
+    }
+  }
 }
