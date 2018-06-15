@@ -131,6 +131,16 @@ module Rails
       def create_views_files
         names
         attachments
+        # template_keppler_views('_description.html.haml')
+        # template_keppler_views('_index_show.html.haml')
+        # template_keppler_views('_listing.html.haml')
+        # template_keppler_views('_form.html.haml')
+        # template_keppler_views('show.js.haml')
+        # template_keppler_views('edit.html.haml')
+        # template_keppler_views('new.html.haml')
+        # template_keppler_views('show.html.haml')
+        # template_keppler_views('index.html.haml')
+        # template_keppler_views('reload.js.haml')
         %w[
           _description.html _index_show.html _listing.html _form.html edit.html
           new.html show.html index.html show.js reload.js

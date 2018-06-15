@@ -54,7 +54,7 @@
                     %th= t('activerecord.attributes.email')
                     %th.visible-lg.visible-md= t('activerecord.attributes.role')
                     %th
-              %tbody.objects-container
+              %tbody#objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @users, size: @objects.size
         %center#paginator-module
@@ -62,7 +62,7 @@
 
   .listing-show.hidden-xs
     = render 'description', activities: @activities
-  %aside.control-sidebar.index-show
+  %aside.control-sidebar#index-show
   - if can?(User).create?
     .mixed-btn
       = link_to new_admin_user_path, class: 'btn-float' do

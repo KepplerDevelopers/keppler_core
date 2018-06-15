@@ -1,22 +1,21 @@
-.customize-index {
+#customize-index {
   padding: 2rem;
   padding-top: 20px;
-
+  padding: 2rem;
   .status {
     padding-right: 50px;
   }
 }
-
-.iframe-body {
+#box-body {
   height: 325px;
-  margin: 0 auto;
   overflow: hidden;
+  margin: 0 auto;
 
   iframe {
-    height: 250%;
-    transform: scale(.4);
-    transform-origin: 0 0;
-    width: 250%;
-    zoom: 1.8;
+    height:250%;
+    width:250%;
+    zoom:1.8;
+    transform:scale(0.4);
+    transform-origin:0 0;
   }
 }

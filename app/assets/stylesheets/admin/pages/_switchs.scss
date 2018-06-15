@@ -1,49 +1,53 @@
-.keppler-switch {
-  display: block;
-  height: 24px;
-  margin-bottom: 0;
+label.keppler-switch {
+  margin-bottom: 0px !important;
   position: relative;
+  display: block;
   width: 40px;
-
+  height: 24px;
   input {
-    display: none;
+    display:none;
 
     &.active + .slider {
       background-color: $keppler-color;
-      box-shadow: 0 0 1px $keppler-color;
+    }
 
-      // &::before {
-      //   transform: translateX(16px);
-      // }
+    &.active + .slider {
+      box-shadow: 0 0 1px $keppler-color;
+    }
+
+    &.active + .slider:before {
+      -webkit-transform: translateX(16px);
+      -ms-transform: translateX(16px);
+      transform: translateX(16px);
     }
   }
 
   .slider {
-    background-color: $ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
     position: absolute;
-    right: 0;
+    cursor: pointer;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
     transition: .4s;
-
-    &::before {
-      background-color: $white;
-      bottom: 4px;
-      content: '';
-      height: 16px;
-      left: 4px;
+    &:before {
       position: absolute;
-      transition: .4s;
+      content: "";
+      height: 16px;
       width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
     }
+  }
 
-    &.round {
-      border-radius: 34px;
-    }
-
-    &.round::before {
+  .slider.round {
+    border-radius: 34px;
+    &:before {
       border-radius: 50%;
     }
   }
@@ -52,7 +56,6 @@
     margin-left: 50px;
     opacity: .5;
     transition: opacity .3s;
-
     &.active {
       opacity: 1;
       transition: opacity .3s;
@@ -62,81 +65,79 @@
   a {
     text-decoration: none;
   }
+}
 
-  .active + .slider {
-    background-color: $keppler-color;
-    box-shadow: 0 0 1px $keppler-color;
+.no-visible {
+  display: none;
+}
 
-    &::before {
-      transform: translateX(16px);
-    }
-  }
+.row-selectable:hover {
+  background-color: #f3f0f0;
+  transition: all ease .3s;
+  cursor: pointer;
+}
+
+label {
+  margin-bottom: 0px !important;
 }
 
 .switch {
-  display: inline-block;
-  height: 24px;
   position: relative;
+  display: inline-block;
   width: 40px;
+  height: 24px;
+}
 
-  input {
-    display: none;
-  }
+.switch input {
+  display:none;
+}
 
-  .slider {
-    background-color: $ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
 
-    &::before {
-      background-color: $white;
-      bottom: 4px;
-      content: '';
-      height: 16px;
-      left: 4px;
-      position: absolute;
-      transition: .4s;
-      width: 16px;
-    }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
 
-    &.round {
-      border-radius: 34px;
-    }
+input.active + .slider {
+  background-color: $keppler-color;
+}
 
-    &.round::before {
-      border-radius: 50%;
-    }
-  }
+input.active + .slider {
+  box-shadow: 0 0 1px $keppler-color;
+}
 
-  .active + .slider {
-    background-color: $keppler-color;
-    box-shadow: 0 0 1px $keppler-color;
+input.active + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
 
-    &::before {
-      transform: translateX(16px);
-    }
-  }
+.slider.round {
+  border-radius: 34px;
+}
 
-  a {
-    text-decoration: none;
-  }
+.slider.round:before {
+  border-radius: 50%;
+}
 
-  .no-visible {
-    display: none;
-  }
-
-  .row-selectable:hover {
-    background-color: $white;
-    cursor: pointer;
-    transition: all ease .3s;
-  }
-
-  label {
-    margin-bottom: 0;
-  }
+a {
+  text-decoration: none;
 }
