@@ -1,9 +1,9 @@
 html,
 body {
-  color: $medium-grey;
-  height: 100%;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  height: 100% !important;
+  color: #5a5a5a;
 }
 
 html {
@@ -14,10 +14,15 @@ body {
   font-family: $font-primary;
   font-size: 1.5rem;
 }
+a{
+  color: inherit;
+  &:hover{
+    color: inherit;
+  }
+}
 
 a {
   color: inherit;
-
   &:hover {
     color: inherit;
   }
@@ -28,36 +33,39 @@ a {
 }
 
 .center {
-  align-items: center;
   display: flex;
-  height: 100%;
+  align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .text-overflow {
-  max-width: 100%;
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
+
+td.text-overflow {
+  max-width: 100px;
+}
+
 
 .box-tools {
   i {
-    color: $gray-hover;
-    cursor: pointer;
-    font-size: 1.7rem;
     padding: 0 5px;
+    font-size: 1.7rem;
+    color: #d2d2d2;
     transition: all ease .3s;
-
+    cursor: pointer;
     &:hover {
-      color: $medium-grey;
+      color: #555;
       transition: all ease .3s;
     }
   }
 }
-
-.breadcrumb {
+ol.breadcrumb{
   @media screen and (min-width: 0) and (max-width: 991px) {
     display: none;
   }
+
 }
