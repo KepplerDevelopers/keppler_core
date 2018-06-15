@@ -9,7 +9,7 @@
       %i.icon-menu
       %span.sr-only Toggle navigation
     - if listing? && q
-      #search.search
+      .search#search
         .input-group
           = search_form_for [:admin, q], html: { method: :get } do |f|
             = f.search_field search_model, placeholder: t('keppler.actions.search'), class: 'form-control search-bar'
