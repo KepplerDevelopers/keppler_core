@@ -9,6 +9,7 @@ module Admin
     before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
+    before_action :attachments
 
     def root
       if current_user
@@ -24,11 +25,19 @@ module Admin
       @current_page = params[:page] unless params[:page].blank?
     end
 
-    def set_setting
-      @setting = Setting.first
+    private
+
+    def attachments
+      @attachments = %w[
+        logo brand photo avatar cover image picture banner attachment pic file
+      ]
     end
 
-    private
+    def get_history(model)
+      @activities = PublicActivity::Activity.where(
+        trackable_type: model.to_s
+      ).order('created_at desc').limit(50)
+    end
 
     def tables_name
       @models = ApplicationRecord.connection.tables.map do |model|

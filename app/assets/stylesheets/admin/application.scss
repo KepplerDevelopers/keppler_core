@@ -3,6 +3,12 @@
 //= require noty
 //= require_self
 
+//Vendor folder
+@import 'vendor/admin-lte/skin-blue';
+
+// Bootstrap File Input
+@import 'bootstrap-file-input/*';
+
 //Libraries and plugins as gems
 @import 'bourbon';
 @import 'font-awesome-sprockets';
@@ -26,9 +32,6 @@
 @import 'components/layouts/footer';
 @import 'components/layouts/settings';
 @import 'components/paginator/paginator';
-
-//Vendor folder
-@import 'vendor/admin-lte/skin-blue';
 
 // Page folder
 @import 'pages/*';

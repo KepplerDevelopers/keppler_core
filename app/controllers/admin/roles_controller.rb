@@ -5,19 +5,17 @@ module Admin
   class RolesController < AdminController
     before_action :set_role, only: %i[show edit update destroy]
     before_action :show_history, only: [:index]
-    before_action :set_attachments
     before_action :authorization, except: %i[reload]
     include ObjectQuery
 
     # GET /roles
     def index
       @q = Role.ransack(params[:q])
-      roles = @q.result(distinct: true)
-      @objects = object_page(@current_page)
-      @total = roles.size
-      @roles = @objects.order(:position)
-      return unless !first_page?(@objects) && object_size_zero?(@objects)
-      redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
+      @roles = @q.result(distinct: true)
+      @objects = @roles.page(@current_page).order(:position)
+      @total = @roles.size
+      redirect_to_index(roles_path) if nothing_in_first_page?(@objects)
+      respond_to_formats(@roles)
     end
 
     # GET /roles/1
@@ -103,11 +101,6 @@ module Admin
     end
 
     private
-
-    def set_attachments
-      @attachments = %i[ logo brand photo avatar cover image
-                         picture banner attachment pic file ]
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_role

@@ -1,15 +1,15 @@
 %header.main-header
   %nav.navbar.navbar-static-top
     %a.logo.keppler-color.hidden-xs{ href: '/admin/dashboard' }
-      %span.logo-mini
+      .logo-mini
         %span K
-      %span.logo-lg
+      .logo-lg
         %span K
     %a.sidebar-toggle{ 'data-toggle' => 'offcanvas', href: '#', role: 'button' }
       %i.icon-menu
       %span.sr-only Toggle navigation
     - if listing? && q
-      #search
+      .search#search
         .input-group
           = search_form_for [:admin, q], html: { method: :get } do |f|
             = f.search_field search_model, placeholder: t('keppler.actions.search'), class: 'form-control search-bar'
