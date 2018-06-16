@@ -1,0 +1,4 @@
+en:
+  errors:
+    messages:
+      rmagick_processing_error: File processing error

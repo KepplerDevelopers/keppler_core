@@ -1,4 +1,3 @@
-// require simple-line-icons
 //= require animate-css
 //= require jquery.minicolors
 //= require noty
@@ -7,6 +6,9 @@
 //Vendor folder
 @import 'vendor/admin-lte/skin-blue';
 
+// Bootstrap File Input
+@import 'bootstrap-file-input/*';
+
 //Libraries and plugins as gems
 @import 'bourbon';
 @import 'font-awesome-sprockets';
@@ -14,7 +16,6 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'adminlte';
-@import 'simple-line-icons';
 
 //Utils folder
 @import 'utils/variables';

@@ -46,7 +46,6 @@ source 'http://insecure.rails-assets.org/' do
   gem 'rails-assets-adminlte'
   gem 'rails-assets-animate-css'
   gem 'rails-assets-noty'
-  gem 'rails-assets-simple-line-icons'
 end
 
 # Soft delete

@@ -3,57 +3,71 @@
 # Creates a much prettier version of the file input field
 class KepplerFileInput < SimpleForm::Inputs::Base
   def input(_wrapper_options)
-    template.content_tag(:div, class: 'upload-image') do
-      # input_label +
-      template.content_tag(
-        :div,
-        class: "#{'files-absolute' unless attr_blank?} files form-group trigger"
-      ) do
-        # icon_file +
-        photo_uploader
-      end +
-        image_to_upload
-    end
-  end
-
-  def input_label
-    initializers
-    template.content_tag(
-      :label,
-      reflection_or_attribute_name.to_s.humanize,
-      class: 'file optional',
-      for: @input_id
-    )
-  end
-
-  def icon_file
-    template.content_tag(:div, class: 'icon-file') do
-      template.content_tag(:i, '', class: 'glyphicon glyphicon-picture')
-    end
-  end
-
-  def image_to_upload
-    template.content_tag(:center, class: 'image-show') do
-      template.tag(
-        :img,
-        class: "#{'hidden' if attr_blank?} image-to-upload",
-        src: (object.try(attribute_name) || '')
-      )
-    end
-  end
-
-  def photo_uploader
-    initializers
     @builder.file_field(
       attribute_name,
-      class: 'photo_upload',
+      class: 'file',
       type: 'file',
-      id: @input_id,
-      name: @input_name
-    )
+      multiple: input_options[:multiple] || false,
+      'data-preview-file-type' => 'text',
+      value: (object.try(attribute_name) if attr_blank?)
+    ) + script
+  end
+
+  def script
+    initializers
+    template.content_tag(:script, 'text/javascript') do
+      "$('##{@input_id}').fileinput({
+        language: '#{I18n.locale}',
+        showUpload: false,
+        showCancel: false,
+        previewZoomButtonIcons: {
+          prev: '<i class=\"glyphicon glyphicon-triangle-left\"></i>',
+          next: '<i class=\"glyphicon glyphicon-triangle-right\"></i>',
+          toggleheader: '<i class=\"glyphicon glyphicon-resize-vertical\"></i>',
+          fullscreen: '<i class=\"glyphicon glyphicon-fullscreen\"></i>',
+          borderless: '<i class=\"glyphicon glyphicon-resize-full\"></i>',
+          close: '<i class=\"glyphicon glyphicon-remove\"></i>'
+        },
+        previewZoomButtonClasses: {
+          prev: 'btn btn-navigate',
+          next: 'btn btn-navigate',
+          toggleheader: 'btn btn-default btn-header-toggle',
+          fullscreen: 'btn btn-default',
+          borderless: 'btn btn-default',
+          close: 'btn btn-default'
+        },
+        allowedPreviewTypes: #{input_options[:only] || %w[image video audio pdf]},
+        allowedPreviewMimeTypes: null,
+        allowedFileTypes: #{input_options[:only] || []},
+        allowedFileExtensions: null,
+        defaultPreviewContent: null,
+        previewFileIcon: '<i class=\"glyphicon glyphicon-file\"></i>',
+        buttonLabelClass: 'hidden-xs',
+        browseIcon: '<i class=\"glyphicon glyphicon-folder-open\"></i>&nbsp;',
+        browseClass: 'btn btn-primary',
+        removeIcon: '<i class=\"glyphicon glyphicon-trash\"></i>',
+        removeClass: 'btn btn-default',
+        cancelIcon: '<i class=\"glyphicon glyphicon-ban-circle\"></i>',
+        cancelClass: 'btn btn-default',
+        uploadIcon: '<i class=\"glyphicon glyphicon-upload\"></i>',
+        uploadClass: 'btn btn-default',
+        minImageWidth: 300,
+        minImageHeight: 300,
+        maxImageWidth: 5000,
+        maxImageHeight: 5000,
+        maxFileSize: 0,
+        maxFilePreviewSize: 25600, // 25 MB
+        minFileCount: 0,
+        maxFileCount: 0
+      })".html_safe
+    end
   end
 
   private
+
+  def include_attribute?(param)
+    @attachments.map{ |x| x.include?('uno') }.include?(true)
+  end
 
   def attr_blank?
     object.try(attribute_name).blank?

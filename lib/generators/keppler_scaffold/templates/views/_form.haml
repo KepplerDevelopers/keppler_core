@@ -23,6 +23,8 @@
                   .col-xs-12
                     <%- if @attachments.include?(attribute.name) -%>
                     = f.input :<%= attribute.name %>, as: :keppler_file
+                    <%- elsif @attachments.map{ |x| x.pluralize }.include?(attribute.name) -%>
+                    = f.input :<%= attribute.name %>, as: :keppler_file, multiple: true
                     <%- elsif attribute.reference? -%>
                     = f.association :<%= attribute.name %>, include_blank: false
                     <%- elsif attribute.type.to_s == 'text' -%>

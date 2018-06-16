@@ -7,7 +7,6 @@ module Admin
   class <%= controller_class_name %>Controller < AdminController
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
-    before_action :set_attachments
     before_action :authorization, except: %i[reload]
 
     # GET <%= route_url %>
@@ -112,12 +111,6 @@ module Admin
 
     def authorization
       authorize <%= class_name %>
-    end
-
-    def set_attachments
-      @attachments = %w[
-        logo brand photo avatar cover image picture banner attachment pic file
-      ]
     end
 
     # Use callbacks to share common setup or constraints between actions.

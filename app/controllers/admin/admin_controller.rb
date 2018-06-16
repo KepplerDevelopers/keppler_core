@@ -9,6 +9,7 @@ module Admin
     before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
+    before_action :attachments
 
     def root
       if current_user
@@ -25,6 +26,12 @@ module Admin
     end
 
     private
+
+    def attachments
+      @attachments = %w[
+        logo brand photo avatar cover image picture banner attachment pic file
+      ]
+    end
 
     def get_history(model)
       @activities = PublicActivity::Activity.where(
