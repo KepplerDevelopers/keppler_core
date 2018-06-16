@@ -19,50 +19,69 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         language: '#{I18n.locale}',
         showUpload: false,
         showCancel: false,
-        previewZoomButtonIcons: {
-          prev: '<i class=\"glyphicon glyphicon-triangle-left\"></i>',
-          next: '<i class=\"glyphicon glyphicon-triangle-right\"></i>',
-          toggleheader: '<i class=\"glyphicon glyphicon-resize-vertical\"></i>',
-          fullscreen: '<i class=\"glyphicon glyphicon-fullscreen\"></i>',
-          borderless: '<i class=\"glyphicon glyphicon-resize-full\"></i>',
-          close: '<i class=\"glyphicon glyphicon-remove\"></i>'
-        },
-        previewZoomButtonClasses: {
-          prev: 'btn btn-navigate',
-          next: 'btn btn-navigate',
-          toggleheader: 'btn btn-default btn-header-toggle',
-          fullscreen: 'btn btn-default',
-          borderless: 'btn btn-default',
-          close: 'btn btn-default'
-        },
-        allowedPreviewTypes: #{input_options[:only] || %w[image video audio pdf]},
-        allowedPreviewMimeTypes: null,
-        allowedFileTypes: #{input_options[:only] || []},
-        allowedFileExtensions: null,
-        defaultPreviewContent: null,
-        previewFileIcon: '<i class=\"glyphicon glyphicon-file\"></i>',
-        buttonLabelClass: 'hidden-xs',
-        browseIcon: '<i class=icon-folder-alt></i>&nbsp;',
-        browseClass: 'btn btn-primary',
-        removeIcon: '<i class=icon-trash></i>',
-        removeClass: 'btn btn-default',
-        cancelIcon: '<i class=\"glyphicon glyphicon-ban-circle\"></i>',
-        cancelClass: 'btn btn-default',
-        uploadIcon: '<i class=\"glyphicon glyphicon-upload\"></i>',
-        uploadClass: 'btn btn-default',
-        minImageWidth: 300,
-        minImageHeight: 300,
-        maxImageWidth: 5000,
-        maxImageHeight: 5000,
-        maxFileSize: 0,
-        maxFilePreviewSize: 25600, // 25 MB
-        minFileCount: 0,
-        maxFileCount: 0
+        #{preview_zoom_button_icons},
+        #{preview_zoom_button_classes},
+        #{preview_details},
+        #{icons},
+        #{dimensions}
       })".html_safe
     end
   end
 
   private
+
+  def preview_zoom_button_icons
+    "previewZoomButtonIcons: {
+      prev: '<i class=\"glyphicon glyphicon-triangle-left\"></i>',
+      next: '<i class=\"glyphicon glyphicon-triangle-right\"></i>',
+      toggleheader: '<i class=\"glyphicon glyphicon-resize-vertical\"></i>',
+      fullscreen: '<i class=\"glyphicon glyphicon-fullscreen\"></i>',
+      borderless: '<i class=\"glyphicon glyphicon-resize-full\"></i>',
+      close: '<i class=\"glyphicon glyphicon-remove\"></i>'
+    }".html_safe
+  end
+
+  def preview_zoom_button_classes
+    "previewZoomButtonClasses: {
+      prev: 'btn btn-navigate',
+      next: 'btn btn-navigate',
+      toggleheader: 'btn btn-default btn-header-toggle',
+      fullscreen: 'btn btn-default',
+      borderless: 'btn btn-default',
+      close: 'btn btn-default'
+    }".html_safe
+  end
+
+  def preview_details
+    "allowedPreviewMimeTypes: null,
+    allowedFileTypes: #{input_options[:only] || []},
+    allowedFileExtensions: null,
+    defaultPreviewContent: null".html_safe
+  end
+
+  def icons
+    "previewFileIcon: '<i class=\"glyphicon glyphicon-file\"></i>',
+    buttonLabelClass: 'hidden-xs',
+    browseIcon: '<i class=\"icon-folder-alt\"></i>&nbsp;',
+    browseClass: 'btn btn-primary',
+    removeIcon: '<i class=\"icon-trash\"></i>',
+    removeClass: 'btn btn-default',
+    cancelIcon: '<i class=\"glyphicon glyphicon-ban-circle\"></i>',
+    cancelClass: 'btn btn-default',
+    uploadIcon: '<i class=\"glyphicon glyphicon-upload\"></i>',
+    uploadClass: 'btn btn-default'".html_safe
+  end
+
+  def dimensions
+    "minImageWidth: 300,
+    minImageHeight: 300,
+    maxImageWidth: 5000,
+    maxImageHeight: 5000,
+    maxFileSize: 0,
+    maxFilePreviewSize: 25600, // 25 MB
+    minFileCount: 0,
+    maxFileCount: 0".html_safe
+  end
 
   def attr_blank?
     object.try(attribute_name).blank?
