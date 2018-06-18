@@ -5,7 +5,9 @@
 }
 
 .img-show {
-  width: 100%;
+  box-shadow: 2px 2px 5px 0 $transparent-black-2;
+  max-width: 300px;
+  position: absolute;
 }
 
 .list-row {

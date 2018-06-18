@@ -1,9 +1,9 @@
 $(document).ready ->
   $('#upload').click ->
-    $('#upload_file').click()
-    $('#upload_file').change ->
+    $('#upload-file').click()
+    $('#upload-file').change ->
       $('.waiting').css 'display', 'block'
-      $('#upload_form').submit()
+      $('#upload-form').submit()
       return
     return
   renderImg()
@@ -11,7 +11,7 @@ $(document).ready ->
 
 ready_post = ->
   # Display the image to be uploaded.
-  $('.photo_upload').on 'change', (e) ->
+  $('.photo-upload').on 'change', (e) ->
     readURL(this);
 
   readURL = (input) ->
@@ -19,7 +19,7 @@ ready_post = ->
       reader = new FileReader()
 
     reader.onload = (e) ->
-      $('.image_to_upload').attr('src', e.target.result).removeClass('hidden');
+      $('.image-to-upload').attr('src', e.target.result).removeClass('hidden');
       $swap = $('.swap')
       if $swap
         $swap.removeClass('hidden')

@@ -2,20 +2,22 @@ function renderImg(){
   xOffset = -20;
   yOffset = 40;
   $('.show-row img').hover(function(e){
-    $('body').append( `<p id='preview'><img src='' + this.src + '' alt='Image preview' class='img-show' /></p>` );
-    $('#preview')
+    $('body').append( "<img src=" + this.src + " alt='Image preview' class='img-show' />" );
+    $('.img-show')
       .css({
         'top': (e.pageY - xOffset) + 'px',
-        'left': (e.pageX + yOffset) + 'px',
-        'z-index': '100000'
+        'left': (e.pageX + yOffset) + 'px'
       })
       .fadeIn('slow');
   }, function(){
-    $('#preview').remove();
+    $('.img-show').remove();
   });
   $('.show-row img').mousemove(function(e){
-    $('#preview')
-      .css('top', (e.pageY - xOffset) + 'px')
-      .css('left', (e.pageX + yOffset) + 'px');
+    $('.img-show')
+      .css({
+        'top': (e.pageY - xOffset) + 'px',
+        'left': (e.pageX + yOffset) + 'px'
+      })
+      .fadeIn('slow');
   });
 }
