@@ -11,6 +11,8 @@ class <%= class_name %> < ApplicationRecord
   <%- attributes.each do |attribute| -%>
     <%- if @attachments.include?(attribute.name) -%>
   mount_uploader :<%=attribute.name%>, AttachmentUploader
+    <%- elsif @attachments.map{ |x| x.pluralize }.include?(attribute.name) -%>
+  mount_uploader :<%=attribute.name%>, AttachmentUploader
     <%- end -%>
     <%- if attribute.reference? -%>
   belongs_to :<%= attribute.name %>

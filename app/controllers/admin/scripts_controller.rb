@@ -3,7 +3,7 @@
 module Admin
   # ScriptsController
   class ScriptsController < AdminController
-    before_action :set_ga_track, only: %i[show edit update destroy]
+    before_action :set_script, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload]
     include ObjectQuery
@@ -95,7 +95,7 @@ module Admin
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_ga_track
+    def set_script
       @script = Script.find(params[:id])
     end
 

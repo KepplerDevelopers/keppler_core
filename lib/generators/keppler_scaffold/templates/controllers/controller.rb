@@ -8,18 +8,16 @@ module Admin
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload]
+    include ObjectQuery
 
     # GET <%= route_url %>
     def index
       @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :asc)
-      @total = <%= plural_table_name %>.size
-      @<%= plural_table_name %> = <%= class_name %>.all
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
-      end
-      format
+      @<%= plural_table_name %> = @q.result(distinct: true)
+      @objects = @<%= plural_table_name %>.page(@current_page).order(position: :asc)
+      @total = @<%= plural_table_name %>.size
+      redirect_to_index(<%= plural_table_name %>_path) if nothing_in_first_page?(@objects)
+      respond_to_formats(@<%= plural_table_name %>)
     end
 
     # GET <%= route_url %>/1
@@ -100,15 +98,6 @@ module Admin
 
     private
 
-    def format
-      respond_to do |format|
-        format.html
-        format.csv { send_data @<%= plural_table_name %>.to_csv }
-        format.xls # { send_data @<%= plural_table_name %>.to_xls }
-        format.json { render json: @<%= plural_table_name %> }
-      end
-    end
-
     def authorization
       authorize <%= class_name %>
     end
@@ -123,7 +112,9 @@ module Admin
       <%- if attributes_names.empty? -%>
       params[:<%= singular_table_name %>]
       <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+      params.require(:<%= singular_table_name %>).permit(
+        <%= attributes_names.map { |name| attachments.map(&:pluralize).include?(name) ? "{ #{name}: [] }" : ":#{name}" }.join(",\n#{' '*8}") %>
+      )
       <%- end -%>
     end
 
