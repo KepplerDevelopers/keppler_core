@@ -1,5 +1,5 @@
-$('#objects-container').html("#{j render 'listing', objects: @meta_tags}");
-$('#objects-container').css('opacity', '0');
-$('#spinner2').css('display', 'block');
-var request = $.ajax({url: "/admin/meta_tags", method: "get", dataType: "html"});
-request.done(function(msg){$('#spinner2').css('display', 'none');$('#objects-container').css('opacity', '1');});
+$('.objects-container').html("#{j render 'listing', objects: @objects}");
+$('.objects-container').css('opacity', '0');
+$('.spinner2').css('display', 'block');
+var request = $.ajax({url: '/admin/meta_tags', method: 'get', dataType: 'html'});
+request.done(function(msg){$('.spinner2').css('display', 'none');$('.objects-container').css('opacity', '1');});

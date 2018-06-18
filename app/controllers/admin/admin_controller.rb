@@ -24,11 +24,13 @@ module Admin
       @current_page = params[:page] unless params[:page].blank?
     end
 
-    def set_setting
-      @setting = Setting.first
-    end
-
     private
+
+    def get_history(model)
+      @activities = PublicActivity::Activity.where(
+        trackable_type: model.to_s
+      ).order('created_at desc').limit(50)
+    end
 
     def tables_name
       @models = ApplicationRecord.connection.tables.map do |model|

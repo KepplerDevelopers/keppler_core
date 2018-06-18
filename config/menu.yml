@@ -17,12 +17,6 @@ menu:
     icon: graph
     model: MetaTag
     url_path: /admin/meta_tags
-  gallery:
-    name: galleries
-    url_path: /admin/galleries
-    icon: layers
-    current: ['admin/galleries']
-    model: Gallery
   user:
     name: users
     icon: user
