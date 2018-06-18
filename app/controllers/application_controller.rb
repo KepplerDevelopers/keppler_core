@@ -24,27 +24,29 @@ class ApplicationController < ActionController::Base
     defined?(klass) && klass.is_a?(Class)
   end
 
-  def redirect_to_index(_objects_path)
-    redirect_to objects_path(page: @current_page.to_i.pred, search: @query)
+  def appearance
+    @appearance = Setting.first.appearance
   end
 
-  def nothing_in_first_page?(objects)
-    !objects.first_page? && objects.size.zero?
+  def set_apparience_colors
+    variables_file = File.readlines(style_file)
+    @color = ""
+    variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
   end
 
-  def respond_to_formats(objects)
-    respond_to do |format|
-      format.html
-      format.csv { send_data objects.to_csv }
-      format.xls { send_data objects.to_xls }
-      format.json { render json: objects }
-    end
+  def style_file
+    "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
+  end
+
+  def set_setting
+    @setting = Setting.first
   end
 
   def user_not_authorized
     flash[:alert] = t('keppler.messages.not_authorized_action')
     redirect_to(request.referrer || root_path)
   end
+
   # block access dashboard
   def dashboard_access
     roles = Role.all.map {|x| x.name}
@@ -83,29 +85,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def appearance
-    @appearance = Setting.first.appearance
-  end
-
-  def set_apparience_colors
-    variables_file = File.readlines(style_file)
-    @color = ""
-    variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
-  end
-
-  def style_file
-    "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
-  end
-
-  def get_history(model)
-    @activities = PublicActivity::Activity.where(
-      trackable_type: model.to_s
-    ).order('created_at desc').limit(50)
-  end
-
   protected
-
-
 
   def configure_permitted_parameters
     RUBY_VERSION < "2.2.0" ? devise_old : devise_new

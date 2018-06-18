@@ -1,35 +1,41 @@
-.slice-box{
-  border-top: none !important;
+.slice-box {
+  border-top: 0;
 
-  &.file-box{
-    padding: 25px;}
-  .pure-input{
-    .form-group{
-      margin-bottom: 25px;
-      &:last-child{
-        margin-bottom: 20px;
-      }
+  &.file-box {
+    padding: 25px;
+  }
+}
+
+.pure-input {
+  .form-group {
+    margin-bottom: 25px;
+
+    &:last-child {
+      margin-bottom: 20px;
     }
   }
 }
-.info-box{
-  min-height: 160px;
+
+.info-box {
   border-bottom-left-radius: 75px;
   border-top-left-radius: 75px;
-  &:first-child{
+  min-height: 160px;
+
+  &:first-child {
     margin-bottom: 35px;
   }
-  .info-box-img{
+
+  .info-box-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 50%;
-    width: 150px;
     height: 150px;
     margin: 5px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .file{
-    padding: 12px;
+    width: 150px;
   }
 
+  .file {
+    padding: 12px;
+  }
 }

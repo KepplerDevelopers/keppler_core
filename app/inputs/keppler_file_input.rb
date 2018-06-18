@@ -3,7 +3,7 @@
 # Creates a much prettier version of the file input field
 class KepplerFileInput < SimpleForm::Inputs::Base
   def input(_wrapper_options)
-    template.content_tag(:div, class: 'upload_image') do
+    template.content_tag(:div, class: 'upload-image') do
       # input_label +
       template.content_tag(
         :div,
@@ -36,7 +36,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     template.content_tag(:center, class: 'image-show') do
       template.tag(
         :img,
-        class: "#{'hidden' if attr_blank?} image_to_upload",
+        class: "#{'hidden' if attr_blank?} image-to-upload",
         src: (object.try(attribute_name) || '')
       )
     end
@@ -46,7 +46,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     initializers
     @builder.file_field(
       attribute_name,
-      class: 'photo_upload',
+      class: 'photo-upload',
       type: 'file',
       id: @input_id,
       name: @input_name

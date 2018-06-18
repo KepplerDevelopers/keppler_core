@@ -1,137 +1,147 @@
-#search {
-  margin: 8px 0;
-  float: left;
-  width: 50%;
-  max-width: 0;
+.search {
   // animation: .5s ease-out 1s grow_width forwards;
+  float: left;
+  margin: 8px 0;
+  max-width: 0;
   transition: .3s ease-in-out;
+  width: 50%;
+
   @include respond-to(xs) {
     animation: none;
   }
+
   @include respond-to(sm) {
     animation: none;
   }
-  .input-group {
-    .search-bar {
-      border: solid .5px #d2d6de;
-      padding: 0;
-      // animation: .5s cubic-bezier(0.4, 0, 0.2, 1) 1s change_input forwards;
+
+  .search-bar {
+    // animation: .5s cubic-bezier(0.4, 0, 0.2, 1) 1s change_input forwards;
+    border: solid .5px $gray-hover;
+    padding: 0;
+    transition: .3s ease-in-out;
+
+    @include respond-to(xs) {
+      animation: none;
+    }
+
+    @include respond-to(sm) {
+      animation: none;
+    }
+
+    &:focus {
+      border-color: $keppler-color;
       transition: .3s ease-in-out;
-      &:focus {
-        border-color: $keppler-color;
-        transition: .3s ease-in-out;
-      }
+    }
+  }
+
+  .search-button {
+    // animation: .3s ease-in-out .5s change_button forwards;
+    background-color: transparent;
+    border: 50%;
+    transition: .3s ease-in-out;
+
+    @include respond-to(xs) {
+      animation: none;
+      border-radius: 1px;
+    }
+
+    @include respond-to(sm) {
+      animation: none;
+      border-radius: 1px;
+    }
+
+    &:active {
+      box-shadow: none;
+      outline: none;
+    }
+
+    .search-icon {
+      // animation: .3s ease-in-out .5s change_color forwards;
+      color: $grey;
+      transition: .3s ease-in-out;
+
       @include respond-to(xs) {
         animation: none;
       }
+
       @include respond-to(sm) {
         animation: none;
       }
     }
-    .input-group-btn {
-      .search-button {
-        background-color: transparent;
-        // animation: .3s ease-in-out .5s change_button forwards;
-        border: 50%;
-        transition: .3s ease-in-out;
-        &:active {
-          box-shadow: none;
-          outline: none;
-        }
-        @include respond-to(xs) {
-          border-radius: 1px;
-          animation: none;
-        }
-        @include respond-to(sm) {
-          border-radius: 1px;
-          animation: none;
-        }
-        .search-icon {
-          color: #999;
-          // animation: .3s ease-in-out .5s change_color forwards;
-          transition: .3s ease-in-out;
-          @include respond-to(xs) {
-            animation: none;
-          }
-          @include respond-to(sm) {
-            animation: none;
-          }
-        }
-      }
+  }
+
+  &.display-search {
+    animation: .5s ease-in-out .5s grow_width forwards;
+
+    .search-bar {
+      animation: .5s cubic-bezier(.4, 0, .2, 1) .5s change_input forwards;
+    }
+
+    .search-button {
+      animation: .3s ease-in-out change_button forwards;
+    }
+
+    .search-icon {
+      animation: .3s ease-in-out change_color forwards;
+    }
+  }
+
+  &.hidding-search {
+    animation: .3s ease-out .5s width_down forwards;
+    max-width: 500px;
+
+    .search-bar {
+      animation: .5s cubic-bezier(.4, 0, .2, 1) .5s hide_input forwards;
+      padding: 6px 12px;
+    }
+
+    .search-button {
+      animation: .3s ease-in-out hide_button forwards;
+    }
+
+    .search-icon {
+      animation: .3s ease-in-out hide_color forwards;
     }
   }
 }
 
 .hide-search {
+  border-radius: 50%;
+  color: $grey;
+  cursor: pointer;
   display: inline-table;
   height: 34px;
-  width: 34px;
-  padding: 5px;
-  margin: 10px;
-  color: #999;
+  margin: 8px;
   opacity: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: .3s 0 ease-in-out;
+  padding: 5px;
+  transition: .3s ease-in-out;
+  width: 34px;
+
   &:hover {
-    background: #eee;
+    background: $dark-white;
     border-radius: 1px;
-    transition: .3s 0 ease-in-out;
+    transition: .3s ease-in-out;
   }
+
   i {
     display: table-cell;
-    text-align: center;
     padding: 0;
+    text-align: center;
     vertical-align: middle;
+  }
+
+  &.appear {
+    opacity: 1;
+    transition: .3s .5s ease-in-out;
   }
 }
 
-.hide-search.appear {
-  opacity: 1;
-  transition: .3s .5s ease-in-out;
-}
-
-.navbar-custom-menu{
+.navbar-custom-menu {
   transition: .2s .5s ease-in-out;
+
   &.translate {
     transform: translateX(100%);
     transition: .2s .5s ease-in-out;
-  }
-}
-
-#search.display-search {
-  animation: .5s ease-in-out .5s grow_width forwards;
-  .input-group {
-    .search-bar {
-      animation: .5s cubic-bezier(0.4, 0, 0.2, 1) .5s change_input forwards;
-    }
-    .input-group-btn {
-      .search-button {
-        animation: .3s ease-in-out change_button forwards;
-        .search-icon {
-          animation: .3s ease-in-out change_color forwards;
-        }
-      }
-    }
-  }
-}
-
-#search.hidding-search {
-  animation: .3s ease-out .5s width_down forwards;
-  max-width: 500px;
-  .input-group {
-    .search-bar {
-      animation: .5s cubic-bezier(0.4, 0, 0.2, 1) .5s hide_input forwards;
-      padding: 6px 12px;
-    }
-    .input-group-btn {
-      .search-button {
-        animation: .3s ease-in-out hide_button forwards;
-        .search-icon {
-          animation: .3s ease-in-out hide_color forwards;
-        }
-      }
-    }
   }
 }
 
@@ -139,6 +149,7 @@
   from {
     padding: 6px 0;
   }
+
   to {
     padding: 6px 12px;
   }
@@ -146,9 +157,12 @@
 
 @keyframes grow_width {
   from {
+    margin: 8px 0;
     max-width: 0;
   }
+
   to {
+    margin: 8px 10px;
     max-width: 500px;
   }
 }
@@ -156,22 +170,24 @@
 @keyframes change_button {
   from {
     background-color: transparent;
-    padding: 6px 9px;
     border-radius: 50%;
+    padding: 6px 9px;
   }
+
   to {
     background-color: $keppler-color;
-    padding: 6px 12px;
     border-radius: 1px;
+    padding: 6px 12px;
   }
 }
 
 @keyframes change_color {
   from {
-    color: #999;
+    color: $grey;
   }
+
   to {
-    color: #fff;
+    color: $white;
   }
 }
 
@@ -179,6 +195,7 @@
   from {
     padding: 6px 12px;
   }
+
   to {
     padding: 6px 0;
   }
@@ -186,9 +203,12 @@
 
 @keyframes width_down {
   from {
+    margin: 8px 10px;
     max-width: 50%;
   }
+
   to {
+    margin: 8px 0;
     max-width: 0;
   }
 }
@@ -196,21 +216,23 @@
 @keyframes hide_button {
   from {
     background-color: $keppler-color;
-    padding: 6px 12px;
     border-radius: 1px;
+    padding: 6px 12px;
   }
+
   to {
     background-color: transparent;
-    padding: 6px 9px;
     border-radius: 50%;
+    padding: 6px 9px;
   }
 }
 
 @keyframes hide_color {
   from {
-    color: #fff;
+    color: $white;
   }
+
   to {
-    color: #999;
+    color: $grey;
   }
 }

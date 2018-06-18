@@ -6,6 +6,7 @@ module Admin
     before_action :set_meta_tag, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload]
+    include ObjectQuery
 
     # GET /meta_tags
     def index
@@ -81,15 +82,11 @@ module Admin
 
     def download
       @meta_tags = MetaTag.all
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@meta_tags.to_xls) }
-        format.json { render json: @meta_tags }
-      end
+      respond_to_formats(@meta_tags)
     end
 
     def reload
-      @meta_tags = MetaTag.order(:position)
+      @objects = MetaTag.order(:position)
     end
 
     def sort
