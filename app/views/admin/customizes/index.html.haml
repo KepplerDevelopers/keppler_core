@@ -12,7 +12,7 @@
           = link_to root_path, target: '_blank' do
             %i.icon-size-fullscreen
 
-      .box-body.box-body-no-padding.hidden-xs#box-body
+      .box-body.box-body-no-padding.hidden-xs.iframe-body
         %iframe{ src: root_path, frameborder: '0' }
   .col-md-6.col-lg-6
     .box.slice-box
@@ -28,7 +28,7 @@
                 %td{ colspan: 4 }
                   %center
                     = t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.customizes'))
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description', activities: @activities

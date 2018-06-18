@@ -7,5 +7,5 @@
 -#    remote:        data-remote
 %span.next
   - unless current_page.last?
-    = link_to url, rel: 'next', :remote => remote, class: "btn-pag", title: 'Next' do
-      %i.fa.fa-angle-right
+    = link_to url, rel: 'next', remote: remote, class: 'btn-pag', title: 'Next' do
+      %i.icon-arrow-right

@@ -12,12 +12,11 @@ module Admin
     # GET /roles
     def index
       @q = Role.ransack(params[:q])
-      roles = @q.result(distinct: true)
-      @objects = object_page(@current_page)
-      @total = roles.size
-      @roles = @objects.order(:position)
-      return unless !first_page?(@objects) && object_size_zero?(@objects)
-      redirect_to roles_path(page: @current_page.to_i.pred, search: @query)
+      @roles = @q.result(distinct: true)
+      @objects = @roles.page(@current_page).order(:position)
+      @total = @roles.size
+      redirect_to_index(roles_path) if nothing_in_first_page?(@objects)
+      respond_to_formats(@roles)
     end
 
     # GET /roles/1

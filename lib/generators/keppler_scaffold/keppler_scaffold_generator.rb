@@ -56,23 +56,6 @@ module Rails
           before: 'scripts:'
         )
       end
-      # def add_access_ability
-      #   inject_into_file(
-      #     'app/models/ability.rb',
-      #     str_ability_admin,
-      #     after: '    if user.has_role? :keppler_admin'
-      #   )
-      #   inject_into_file(
-      #     'app/models/ability.rb',
-      #     str_ability_admin,
-      #     after: '    elsif user.has_role? :admin'
-      #   )
-      #   inject_into_file(
-      #     'app/models/ability.rb',
-      #     str_ability_client,
-      #     after: '    elsif user.has_role? :client'
-      #   )
-      # end
 
       def add_locales
         %w[en es].each do |locale|
@@ -83,17 +66,6 @@ module Rails
           # add_str_locales(locale, 'attributes')
         end
       end
-
-      # Se usa para configurar la exportacion del ActiveRecords a .xls,
-      # pero da problemas al borrar el KepplerScaffold
-
-      # def add_config_xls
-      #   inject_into_file(
-      #     'config/initializers/mime_types.rb',
-      #     str_xls,
-      #     after: '# ActiveRecords to save as .xls'
-      #   )
-      # end
 
       def create_controller_files
         template(
@@ -142,8 +114,8 @@ module Rails
         # template_keppler_views('index.html.haml')
         # template_keppler_views('reload.js.haml')
         %w[
-          _description.html _index_show.html _listing.html _form.html edit.html
-          new.html show.html index.html show.js reload.js
+          _description _index_show _listing _form show edit new index
+          show.js reload.js
         ].each do |file_name|
           template_keppler_views("#{file_name}.haml")
         end
@@ -156,16 +128,6 @@ module Rails
         invoke invoked, [controller_name]
       end
 
-      # def add_position_field
-      #   file = Dir::entries('db/migrate').max
-      #   # system 'sudo apt-get update'
-      #   inject_into_file(
-      #     "db/migrate/#{file}",
-      #     "t.integer :position\n      ",
-      #     before: 't.timestamps'
-      #   )
-      # end
-
       private
 
       def names
@@ -174,6 +136,7 @@ module Rails
 
       def attachments
         @attachments = %w[logo brand photo avatar cover image picture banner attachment pic file]
+        @attachments.map { |a| [a, a.pluralize].join(' ') }.join(' ').split
       end
 
       def add_str_locales(locale, switch)
@@ -195,17 +158,6 @@ module Rails
       def str_permissions
         "#{controller_file_name.pluralize}:\n    name: #{controller_file_name.singularize.camelize}\n    actions: [\n      'index', 'create', 'update',\n      'destroy', 'download', 'upload',\n      'clone'\n    ]\n  "
       end
-      # def str_ability_admin
-      #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can :manage, #{controller_file_name.singularize.camelcase}"
-      # end
-      #
-      # def str_ability_client
-      #   "\n\n      # - #{controller_file_name.singularize.camelcase} authorize -\n      can [:index, :show], #{controller_file_name.singularize.camelcase}"
-      # end
-
-      # def str_xls
-      #   "\nif #{controller_file_name.singularize.camelcase}.table_exists?\n  @#{controller_file_name.pluralize} = #{controller_file_name.singularize.camelcase}.all\n  @#{controller_file_name.pluralize}.to_xls(\n    only: %i[#{attributes_names.map { |name| name }.join(' ')}],\n    except: [:id],\n    header: false,\n    prepend: [['Col 0, Row 0', 'Col 1, Row 0'], ['Col 0, Row 1']],\n    column_width: [17, 15, 15, 40, 25, 37]\n  )\n  @#{controller_file_name.pluralize}.to_xls do |column, value|\n    column == :salutation ? t(value) : value\n  end\nend\n"
-      # end
 
       def str_locales(switch)
         case switch

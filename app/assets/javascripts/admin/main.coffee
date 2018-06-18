@@ -1,7 +1,7 @@
 $(window).load ->
 
   hidePreloader = ->
-    preloader = $('#spinner')
+    preloader = $('.spinner')
     preloader.fadeOut preloaderFadeOutTime
     return
 
