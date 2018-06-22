@@ -107,10 +107,15 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rubocop', '~> 0.54.0', require: false
+  gem 'database_cleaner', '~> 1.5'
+  gem 'factory_bot_rails'
+  gem 'faker', '1.8.7'
   gem 'haml_lint', '~> 0.27.0', require: false
-  gem 'scss_lint', '~> 0.57.0', require: false
   gem 'jshint' # JavaScripts Linter
+  gem 'rspec-rails', '~> 3.7'
+  gem 'rubocop', '~> 0.54.0', require: false
+  gem 'scss_lint', '~> 0.57.0', require: false
+  gem 'shoulda-matchers', '~> 3.0', require: false
 end
 
 #---- keppler_ga_dashboard ----
