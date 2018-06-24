@@ -55,7 +55,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   private
 
   def return_size_type(file)
-    return 0..1.megabytes if file.include?('image')
-    0..5.megabytes
+    return 0..2.megabytes if file.include?('image')
+    0..10.megabytes
   end
 end

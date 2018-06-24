@@ -21,14 +21,12 @@
                 .form-padding
                   <%- attributes.each_with_index do |attribute, index| -%>
                   .col-xs-12
-                    <%- if @attachments.include?(attribute.name) -%>
-                    = f.input :<%= attribute.name %>, as: :keppler_file
-                    <%- elsif @attachments.map{ |x| x.pluralize }.include?(attribute.name) -%>
-                    = f.input :<%= attribute.name %>, as: :keppler_file, multiple: true
+                    <%- if is_attachment?(attribute.name) -%>
+                    = f.input :<%= attribute.name %>, as: :keppler_file, type: %w[<%= attach_types(attribute.name) %>], formats: %w[<%= attach_formats(attribute.name) %>]<%=', multiple: true' if attach_plural?(attribute.name) %>
                     <%- elsif attribute.reference? -%>
                     = f.association :<%= attribute.name %>, include_blank: false
                     <%- elsif attribute.type.to_s == 'text' -%>
-                    = f.input :<%= attribute.name %>, input_html: { ckeditor: { toolbar: 'mini' } }
+                    = f.input :<%= attribute.name %>, as: :ckeditor, input_html: { ckeditor: { height: 400, toolbar: 'Full' } }
                     <%- elsif %[position deleted_at].include?(attribute.name.to_s) || attribute.type.to_s == 'timestamp' -%>
                     = f.input :<%= attribute.name %>, as: :hidden
                     <%- elsif attribute.type.to_s == 'date' -%>
@@ -39,8 +37,8 @@
                     = f.input :<%= attribute.name %>, input_html: { min: 0 }
                     <%- elsif attribute.type.to_s == 'binary' -%>
                     = f.input :<%= attribute.name %>, as: :string
-                    <%- elsif attribute.name.to_s == "position" || attribute.name.to_s == "deleted_at" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :hidden
+                    <%- elsif attribute.name.to_s == 'position' || attribute.name.to_s == 'deleted_at' -%>
+                    = f.input %> :<%= attribute.name %>, as: :hidden
                     <%- else -%>
                     = f.input :<%= attribute.name %>
                     <%- end -%>

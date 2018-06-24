@@ -9,7 +9,6 @@ module Admin
     before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
-    before_action :attachments
 
     def root
       if current_user

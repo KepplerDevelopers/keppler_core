@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :set_apparience_colors
   before_action :set_sidebar
   before_action :set_modules
+  before_action :attachments
   skip_around_action :set_locale_from_url
   include Pundit
   include PublicActivity::StoreController
@@ -19,6 +20,27 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def attachments
+    @attachments = {
+      images: {
+        types: %w[logo brand photo avatar cover image picture banner pic],
+        formats: %w[jpg jpeg png gif]
+      },
+      videos: {
+        types: %w[video trailer movie],
+        formats: %w[mp4 mkv wmv 3gp avi]
+      },
+      audios: {
+        types: %w[audio sound track song],
+        formats: %w[mp3]
+      },
+      files: {
+        types: %w[document file pdf txt text doc powerpoint word excel],
+        formats: %w[pdf txt text doc docx csv xls xlsx ppt pptx]
+      }
+    }
+  end
 
   def class_exists?(klass)
     defined?(klass) && klass.is_a?(Class)
