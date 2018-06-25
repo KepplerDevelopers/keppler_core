@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     @attachments = {
       images: {
         types: %w[logo brand photo avatar cover image picture banner pic],
-        formats: %w[jpg jpeg png gif]
+        formats: %w[jpg jpeg png gif svg]
       },
       videos: {
         types: %w[video trailer movie],
@@ -37,7 +37,10 @@ class ApplicationController < ActionController::Base
       },
       files: {
         types: %w[document file pdf txt text doc powerpoint word excel],
-        formats: %w[pdf txt text doc docx csv xls xlsx ppt pptx]
+        formats: %w[
+          pdf txt text doc docx csv xls xlsx ppt pptx
+          odt ods rar zip tar tar.gz swf
+        ]
       }
     }
   end

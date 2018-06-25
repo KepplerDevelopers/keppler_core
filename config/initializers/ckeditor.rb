@@ -34,8 +34,8 @@ Ckeditor.setup do |config|
   # config.parent_controller = 'MyController'
 
   # Asset model classes
-  # config.picture_model { Ckeditor::Picture }
-  # config.attachment_file_model { Ckeditor::AttachmentFile }
+  config.picture_model { Ckeditor::Picture }
+  config.attachment_file_model { Ckeditor::AttachmentFile }
 
   # Paginate assets
   # By default: 24

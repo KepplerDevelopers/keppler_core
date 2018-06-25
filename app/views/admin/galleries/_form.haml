@@ -20,19 +20,19 @@
               %tbody
                 .form-padding
                   .col-xs-12
-                    = f.input :avatar, as: :keppler_file, type: %w[image], formats: %w[jpg jpeg png gif]
+                    = f.input :avatar, as: :keppler_file, formats: %w[jpg jpeg png gif svg]
                   .col-xs-12
-                    = f.input :images, as: :keppler_file, type: %w[image], formats: %w[jpg jpeg png gif], multiple: true
+                    = f.input :images, as: :keppler_file, formats: %w[jpg jpeg png gif svg], multiple: true
                   .col-xs-12
-                    = f.input :video, as: :keppler_file, type: %w[video], formats: %w[mp4 mkv wmv 3gp avi]
+                    = f.input :video, as: :keppler_file, formats: %w[mp4 mkv wmv 3gp avi]
                   .col-xs-12
-                    = f.input :audio, as: :keppler_file, type: %w[audio], formats: %w[mp3]
+                    = f.input :audio, as: :keppler_file, formats: %w[mp3]
                   .col-xs-12
-                    = f.input :pdf, as: :keppler_file, type: %w[file], formats: %w[pdf]
+                    = f.input :pdf, as: :keppler_file, formats: %w[pdf]
                   .col-xs-12
-                    = f.input :txt, as: :keppler_file, type: %w[file], formats: %w[txt]
+                    = f.input :txt, as: :keppler_file, formats: %w[txt]
                   .col-xs-12
-                    = f.input :files, as: :keppler_file, type: %w[file], formats: %w[pdf txt text doc docx csv xls xlsx ppt pptx], multiple: true
+                    = f.input :files, as: :keppler_file, formats: %w[pdf txt text doc docx csv xls xlsx ppt pptx odt ods rar zip tar tar.gz swf], multiple: true
                   .col-xs-12
                     = f.input :position, as: :hidden
                   .col-xs-12

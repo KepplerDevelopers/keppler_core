@@ -16,10 +16,23 @@
             %h6.timeline-header.no-border
               %small
                 %strong.display-value= t("activerecord.attributes.#{attribute}")
-                - if @attachments.include?(attribute)
-                  .display-label= image_tag value.url if value.url
-                - else
-                  %p.display-label= value.blank? ? '-----------' : value
+                  - if @attachments[:images][:types].include?(attribute)
+                    = image_tag value.url unless value.url.blank?
+                  - elsif value.is_a?(Array)
+                    - value.each do |image|
+                      = image_tag image.url unless image.url.blank?
+                  - elsif @attachments[:videos][:types].include?(attribute)
+                    = video_tag value.url, controls: true unless value.url.blank? do
+                      Sorry, your browser doesn't support embedded videos, but don't worry, you can
+                      = link_to 'download it', value.url
+                      and watch it with your favorite video player!
+                  - elsif @attachments[:audios][:types].include?(attribute)
+                    = audio_tag value.url, controls: true unless value.url.blank? do
+                      Sorry, your browser doesn't support embedded audios, but don't worry, you can
+                      = link_to 'download it', value.url
+                      and listen to it with your favorite audio player!
+                  - else
+                    = raw value
 :coffee
   $('.close-index-show').click ->
     $('.index-show').css 'right', -$('.index-show').outerWidth()

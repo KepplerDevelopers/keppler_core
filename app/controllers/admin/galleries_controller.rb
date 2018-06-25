@@ -12,10 +12,8 @@ module Admin
       @objects = galleries.page(@current_page).order(position: :asc)
       @total = galleries.size
       @galleries = Gallery.all
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to galleries_path(page: @current_page.to_i.pred, search: @query)
-      end
-      format
+      redirect_to_index(galleries_path) if nothing_in_first_page?(@objects)
+      respond_to_formats(@galleries)
     end
 
     # GET /galleries/1
@@ -96,15 +94,6 @@ module Admin
 
     private
 
-    def format
-      respond_to do |format|
-        format.html
-        format.csv { send_data @galleries.to_csv }
-        format.xls # { send_data @galleries.to_xls }
-        format.json { render json: @galleries }
-      end
-    end
-
     def authorization
       authorize Gallery
     end
@@ -116,7 +105,17 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def gallery_params
-      params.require(:gallery).permit(:avatar, :images, :video, :audio, :pdf, :txt, :files, :position, :deleted_at)
+      params.require(:gallery).permit(
+        :avatar,
+        { images: [] },
+        :video,
+        :audio,
+        :pdf,
+        :txt,
+        { files: [] },
+        :position,
+        :deleted_at
+      )
     end
 
     def show_history

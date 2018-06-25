@@ -26,12 +26,6 @@ module Admin
 
     private
 
-    def attachments
-      @attachments = %w[
-        logo brand photo avatar cover image picture banner attachment pic file
-      ]
-    end
-
     def get_history(model)
       @activities = PublicActivity::Activity.where(
         trackable_type: model.to_s

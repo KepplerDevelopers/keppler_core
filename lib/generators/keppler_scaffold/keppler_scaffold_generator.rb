@@ -129,7 +129,7 @@ module Rails
         @attachments = {
           images: {
             types: %w[logo brand photo avatar cover image picture banner pic],
-            formats: %w[jpg jpeg png gif]
+            formats: %w[jpg jpeg png gif svg]
           },
           videos: {
             types: %w[video trailer movie],
@@ -141,7 +141,10 @@ module Rails
           },
           files: {
             types: %w[document file pdf txt text doc powerpoint word excel],
-            formats: %w[pdf txt text doc docx csv xls xlsx ppt pptx]
+            formats: %w[
+              pdf txt text doc docx csv xls xlsx ppt pptx
+              odt ods rar zip tar tar.gz swf
+            ]
           }
         }
       end
@@ -155,7 +158,7 @@ module Rails
       end
 
       def attach(attachments, type_or_formats)
-        sing = @attachments[attachments][type_or_formats]
+        @attachments[attachments][type_or_formats]
       end
 
       def attach_singular?(name)

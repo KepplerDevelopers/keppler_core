@@ -8,8 +8,7 @@
 
   .show-section
     .row
-      <%- if attributes.select{|attribute| @attachments.include?(attribute.name)}.size <= 0 -%>
-      .col-md-12
+      .col-xs-12
         .box.slice-box
           .box-header.with-border
             %h3.box-title= t("keppler.modules.#{controller_name.underscore}")
@@ -27,38 +26,23 @@
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2
-                      - if @attachments.include?(attribute)
+                      <%- if @attachments[:images][:types].include?(attribute) %>
+                      - if @attachments[:images][:types].include?(attribute)
                         = image_tag value.url unless value.url.blank?
-                      - else
-                        = value.blank? ? '-----------' : value
-      <%- else -%>
-      <%- @attr = attributes.select{|attr| @attachments.include?(attr.name)} %>
-      .col-sm-5
-        - @<%= singular_table_name %>.as_json(only: %w[<%= @attr.map(&:name).join(' ') %>]).each do |attribute, value|
-          .box.slice-box
-            .box-header.with-border
-              %h3.box-title= attribute.capitalize
-              .box-tools.pull-right
-                %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                  %i.fa.fa-minus
-            .box-body.box-body-no-padding
-              = image_tag value.url, class: 'img-show' unless value.url.blank?
-      .col-sm-7
-        .box.slice-box
-          .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{controller_name.underscore}")
-            .box-tools.pull-right
-              = link_to edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-box-tool', title: t('keppler.actions.edit') do
-                %i.icon-pencil
-              = link_to admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-box-tool', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
-                %i.icon-trash
-              %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                %i.fa.fa-minus
-          .box-body.box-body-no-padding
-            %table.table.table-striped
-              %tbody
-                - @<%= singular_table_name %>.as_json(except: %i[id position created_at updated_at deleted_at]).each do |attribute, value|
-                  %tr.list-row
-                    %th.display-label= t("activerecord.attributes.#{attribute}")
-                    %td.display-value.fs-body-1.tc-black-2.text-overflow= value.blank? ? '-----------' : value
-      <%- end -%>
+                      <%- elsif value.is_a?(Array) %>
+                      - elsif value.is_a?(Array)
+                        - value.each do |image|
+                          = image_tag image.url unless image.url.blank?
+                      <%- elsif @attachments[:videos][:types].include?(attribute) %>
+                      - elsif @attachments[:videos][:types].include?(attribute)
+                        = video_tag value.url, controls: true unless value.url.blank? do
+                          Sorry, your browser doesn't support embedded videos, but don't worry, you can
+                          = link_to 'download it', value.url
+                          and watch it with your favorite video player!
+                      <%- elsif @attachments[:audios][:types].include?(attribute) %>
+                      - elsif @attachments[:audios][:types].include?(attribute)
+                        = audio_tag value.url, controls: true unless value.url.blank? do
+                          Sorry, your browser doesn't support embedded audios, but don't worry, you can
+                          = link_to 'download it', value.url
+                          and listen to it with your favorite audio player!
+                      <%- end %>

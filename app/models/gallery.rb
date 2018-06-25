@@ -7,6 +7,13 @@ class Gallery < ApplicationRecord
   include Uploadable
   include Downloadable
   include Sortable
+  mount_uploader :avatar, AttachmentUploader
+  mount_uploaders :images, AttachmentUploader
+  mount_uploader :video, AttachmentUploader
+  mount_uploader :audio, AttachmentUploader
+  mount_uploader :pdf, AttachmentUploader
+  mount_uploader :txt, AttachmentUploader
+  mount_uploaders :files, AttachmentUploader
   acts_as_list
   acts_as_paranoid
 

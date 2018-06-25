@@ -7,30 +7,53 @@
             %input{ type:"checkbox", id: "checkbox-#{gallery.id}", 'checklist-model' => 'check', 'checklist-value' => "#{gallery.id}", '@click' => "listDelete(#{gallery.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
-    %td.hidden-xs
+    %td
       = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
         %span
-          = gallery.avatar
-    %td.hidden-xs
+
+          = image_tag gallery.avatar.url unless gallery.avatar.url.blank?
+    %td
       = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
         %span
-          = gallery.images
-    %td.hidden-xs.hidden-sm
+
+          - value.each do |image|
+            = image_tag image.url unless image.url.blank?
+    %td
       = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
         %span
+
           = gallery.video
-    %td.hidden-xs.hidden-sm
+    %td
       = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
         %span
+
           = gallery.audio
-    %td.hidden-xs.hidden-sm
+    %td
       = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
         %span
+
           = gallery.pdf
-    %td.hidden-xs.hidden-sm
+    %td
       = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
         %span
+
           = gallery.txt
+    %td
+      = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
+        %span
+
+          - value.each do |image|
+            = image_tag image.url unless image.url.blank?
+    %td
+      = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
+        %span
+
+          = gallery.position
+    %td
+      = link_to admin_gallery_path(gallery, search: @query), remote: true, class: 'show-row' do
+        %span
+
+          = gallery.deleted_at
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{gallery.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
