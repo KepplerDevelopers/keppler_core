@@ -143,8 +143,6 @@ es:
       assing_rol: Asignar rol
       select_rol: Seleccionar rol
       save: Guardar
-      import: Importar
-      export: Exportar
       save_and_add_another: Guardar y añadir otro
       back_history: "Volver al historial"
       appearance_defaut: Por defecto

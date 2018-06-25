@@ -6,7 +6,7 @@ $(window).load ->
     return
 
   toggleMenu = ->
-    $slice = $('.sidebar-footer .brand')
+    $slice = $('#sidebar-footer .brand')
     $slice.toggleClass 'hidden'
 
   $('.sidebar-toggle').click ->
@@ -16,8 +16,8 @@ $(window).load ->
     $('.search-button').click ->
       # if $(window).width() < 992
       if $(this).hasClass ('submit')
-        $('.search form').submit()
-      $('.search')
+        $('#search form').submit()
+      $('#search')
         .removeClass 'hidding-search'
         .addClass 'display-search'
       if $(window).width() < 992
@@ -26,11 +26,11 @@ $(window).load ->
       $('.search-bar').focus()
       $(this).addClass 'submit'
       # else
-      #   $('.search form').submit()
+      #   $('#search form').submit()
 
 
     $('.hide-search').click ->
-      $('.search')
+      $('#search')
         .removeClass 'display-search'
         .addClass 'hidding-search'
       $('.navbar-custom-menu').removeClass 'translate'

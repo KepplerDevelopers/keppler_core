@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('iframe').attr('src', '/')
   })
 
-  $('.customize-index .icon-trash').click(function() {
+  $('#customize-index .icon-trash').click(function() {
     $('.spinner').css('display', 'block')
   })
 });
