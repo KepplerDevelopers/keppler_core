@@ -124,8 +124,6 @@ en:
       assing_rol: Assign rol
       select_rol: Select rol
       save: Save
-      import: Import
-      export: Export
       save_and_add_another: Save and add another
       back_history: "Back to history"
       appearance_defaut: Set default

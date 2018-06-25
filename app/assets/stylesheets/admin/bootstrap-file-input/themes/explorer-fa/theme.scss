@@ -142,7 +142,7 @@ $tablet: 767px !default;
     //@extend-elements
     %set_block_full {
         display: block;
-        width: 100% !important;
+        width: 100%;
     }
     .theme-explorer-fa {
         .table {

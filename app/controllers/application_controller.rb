@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
   def set_apparience_colors
     variables_file = File.readlines(style_file)
-    @color = ""
+    @color = ''
     variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
   end
 
