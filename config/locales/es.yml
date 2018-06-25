@@ -5,6 +5,7 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
+      galleries: Galleries
       roles: Roles
       customizes: Personalización
       dashboard: Tablero
@@ -57,6 +58,7 @@ es:
         clone: Permite al usuario clonar un registro existente dentro del módulo
     models:
       singularize:
+        gallery: gallery
         role: role
         customize: customize
         meta_tag: meta tag
@@ -65,6 +67,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        galleries: galleries
         roles: roles
         customizes: customizes
         meta_tags: meta tags
@@ -74,6 +77,7 @@ es:
         user: usuarios
         script: scripts
     modules:
+      admin/galleries: Galleries
       admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
@@ -139,8 +143,6 @@ es:
       assing_rol: Asignar rol
       select_rol: Seleccionar rol
       save: Guardar
-      import: Importar
-      export: Exportar
       save_and_add_another: Guardar y añadir otro
       back_history: "Volver al historial"
       appearance_defaut: Por defecto

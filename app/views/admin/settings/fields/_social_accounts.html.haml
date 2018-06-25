@@ -5,7 +5,7 @@
         = t 'keppler.sidebar-menu.setting-submenu.social-accounts'
       .box-tools.pull-right
         %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-          %i.fa.fa-minus
+          %i.icon-minus
     .box-body.pure-input
       = f.simple_fields_for :social_account do |f|
         .row
@@ -30,12 +30,12 @@
               :sass
                 .setting_social_account_#{social}
                   i.active
-                    color: #{@colors[color]}
+                    color: #{@colors[color]} !important
                   input:focus:not([readonly])
-                    border: 1px solid #{@colors[color]}
-                    // box-shadow: 0 1px 0 0 #{@colors[color]}
+                    border: 1px solid #{@colors[color]} !important
+                    // box-shadow: 0 1px 0 0 #{@colors[color]} !important
                   .control-label.active
-                    color: #{@colors[color]}
+                    color: #{@colors[color]} !important
         .row
           .col-lg-12
             .pull-right

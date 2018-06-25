@@ -5,7 +5,7 @@
       .col-xs-12
         = link_to admin_users_path, 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
           .arrow-back.btn.btn-default
-            %i.fa.fa-angle-left
+            %i.icon-arrow-left
             = t('keppler.actions.back')
     .row
       .col-md-6
@@ -17,7 +17,7 @@
                 = link_to admin_user_delete_avatar_path(user), remote: true do
                   %i.icon-trash
           .box-body.box-profile
-            = f.input :avatar, as: :keppler_file, label: false, multiple: true
+            = f.input :avatar, as: :keppler_file, label: false
 
       .col-md-6
         .box.slice-box

@@ -19,6 +19,8 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         language: '#{I18n.locale}',
         showUpload: false,
         showCancel: false,
+        #{init_preview},
+        #{init_preview_details},
         #{preview_zoom_button_icons},
         #{preview_zoom_button_classes},
         #{preview_details},
@@ -29,6 +31,27 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   end
 
   private
+
+  def init_preview
+    initializers
+    images = []
+    if object.id
+      @images.each do |img|
+        tag =
+          "<img class='kv-preview-data file-preview-image' src=\'/" +
+          img.file.file.split('/')[-5..-1].join('/') + "\'>"
+        images.push(tag)
+      end
+    end
+    ('initialPreview:' + images.to_s).html_safe
+  end
+
+  def init_preview_details
+    "layoutTemplates: {
+      actionDelete: '',
+      actionDrag: '',
+    }".html_safe
+  end
 
   def preview_zoom_button_icons
     "previewZoomButtonIcons: {
@@ -54,8 +77,8 @@ class KepplerFileInput < SimpleForm::Inputs::Base
 
   def preview_details
     "allowedPreviewMimeTypes: null,
-    allowedFileTypes: #{input_options[:only] || []},
-    allowedFileExtensions: null,
+    allowedFileTypes: #{input_options[:type] || []},
+    allowedFileExtensions: #{input_options[:formats] || []},
     defaultPreviewContent: null".html_safe
   end
 
@@ -94,5 +117,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     @attribute = reflection_or_attribute_name
     @input_id = "#{@model}_#{@attribute}"
     @input_name = "#{@model}[#{@attribute}]"
+    images = object.try(attribute_name)
+    @images = images.is_a?(Array) ? images : []
   end
 end
