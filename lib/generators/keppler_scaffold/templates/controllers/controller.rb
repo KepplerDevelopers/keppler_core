@@ -8,6 +8,7 @@ module Admin
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload]
+    include ObjectQuery
 
     # GET <%= route_url %>
     def index

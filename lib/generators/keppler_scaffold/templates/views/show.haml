@@ -27,10 +27,14 @@
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2
-                      - if @attachments.include?(attribute)
-                        = image_tag value.url unless value.url.blank?
-                      - else
-                        = value.blank? ? '-----------' : value
+                      :ruby
+                        if @attachments.include?(attribute)
+                          image_tag value&.url
+                        elsif @attachments.map{ |x| x.pluralize }.include?(attribute)
+                          value.each do |image|
+                            image_tag image&.url
+                        else
+                          value.blank? ? '-----------' : value
       <%- else -%>
       <%- @attr = attributes.select{|attr| @attachments.include?(attr.name)} %>
       .col-sm-5

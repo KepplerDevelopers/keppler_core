@@ -19,7 +19,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         language: '#{I18n.locale}',
         showUpload: false,
         showCancel: false,
-        #{init_preview},
+        #{init_preview if object.id},
         #{init_preview_details},
         #{preview_zoom_button_icons},
         #{preview_zoom_button_classes},
@@ -35,13 +35,11 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   def init_preview
     initializers
     images = []
-    if object.id
-      @images.each do |img|
-        tag =
-          "<img class='kv-preview-data file-preview-image' src=\'/" +
-          img.file.file.split('/')[-5..-1].join('/') + "\'>"
-        images.push(tag)
-      end
+    @images.each do |img|
+      tag =
+        "<img class='kv-preview-data file-preview-image' src=\'/" +
+        img.file.file.split('/')[-5..-1].join('/') + "\'>"
+      images.push(tag)
     end
     ('initialPreview:' + images.to_s).html_safe
   end
