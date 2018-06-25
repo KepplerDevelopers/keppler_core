@@ -13,15 +13,15 @@ $border: 1px !default;
 }
 
 //@extend-elements
-%set_float_left {
+%set-float-left {
   float: left;
 }
 
-%set_float_right {
+%set-float-right {
   float: right;
 }
 
-%set_text_right {
+%set-text-right {
   text-align: right;
 }
 
@@ -44,20 +44,20 @@ $border: 1px !default;
   }
 
   .close {
-    @extend %set_float_left;
+    @extend %set-float-left;
   }
 
   .file-zoom-dialog {
-    @extend %set_text_right;
+    @extend %set-text-right;
   }
 
   .file-error-message {
     pre {
-      @extend %set_text_right;
+      @extend %set-text-right;
     }
 
     ul {
-      @extend %set_text_right;
+      @extend %set-text-right;
     }
   }
 
@@ -75,50 +75,34 @@ $border: 1px !default;
     right: auto;
   }
 
-  // .pull-right {
-  //   float: left;
-  // }
-  //
-  // .pull-left {
-  //   float: right;
-  // }
-  //
-  // .float-right {
-  //   @extend .pull-right;
-  // }
-  //
-  // .float-left {
-  //   @extend .pull-left;
-  // }
-
   .kv-zoom-title {
     direction: ltr;
   }
 
   .krajee-default {
     &.file-preview-frame {
-      @extend %set_float_right;
+      @extend %set-float-right;
       box-shadow: (-$border) $border multiply($border, 5) 0 $zorba;
+    }
 
-      &:not(.file-preview-error):hover {
-        box-shadow: multiply($border, -3) multiply($border, 3) multiply($border, 5) 0 $mine-shaft;
-      }
+    &.file-preview-frame:not(.file-preview-error):hover {
+      box-shadow: multiply($border, -3) multiply($border, 3) multiply($border, 5) 0 $mine-shaft;
     }
 
     .file-actions {
-      @extend %set_float_left;
+      @extend %set-float-left;
     }
 
     .file-other-error {
-      @extend %set_float_left;
+      @extend %set-float-left;
     }
 
     .file-drag-handle {
-      @extend %set_float_right;
+      @extend %set-float-right;
     }
 
     .file-upload-indicator {
-      @extend %set_float_right;
+      @extend %set-float-right;
     }
   }
 
