@@ -1,0 +1,9 @@
+es:
+  ckeditor:
+    page_title: 'Manejador de archivos CKEditor'
+    confirm_delete: 'Eliminar archivo?'
+    buttons:
+      cancel: 'Cancelar'
+      upload: 'Actualizar'
+      delete: 'Eliminar'
+      next: 'Siguiente'

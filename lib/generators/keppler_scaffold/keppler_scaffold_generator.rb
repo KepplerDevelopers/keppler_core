@@ -134,10 +134,85 @@ module Rails
         @names = %w[name title first_name full_name]
       end
 
+      # For Keppler File Inputs
       def attachments
-        @attachments = %w[logo brand photo avatar cover image picture banner attachment pic file]
-        @attachments.map { |a| [a, a.pluralize].join(' ') }.join(' ').split
+        @attachments = {
+          images: {
+            types: %w[logo brand photo avatar cover image picture banner pic],
+            formats: %w[jpg jpeg png gif svg]
+          },
+          videos: {
+            types: %w[video trailer movie],
+            formats: %w[mp4 mkv wmv 3gp avi]
+          },
+          audios: {
+            types: %w[audio sound track song],
+            formats: %w[mp3]
+          },
+          files: {
+            types: %w[document file pdf txt text doc powerpoint word excel],
+            formats: %w[
+              pdf txt text doc docx csv xls xlsx ppt pptx
+              odt ods rar zip tar tar.gz swf
+            ]
+          }
+        }
       end
+
+      def is_attachment?(name)
+        attach_singular?(name) || attach_plural?(name)
+      end
+
+      def types_in_symbols
+        %i[images videos audios files]
+      end
+
+      def attach(attachments, type_or_formats)
+        @attachments[attachments][type_or_formats]
+      end
+
+      def attach_singular?(name)
+        types_in_symbols.each do |symbols|
+          singular_types = attach(symbols, :types).map(&:singularize)
+          singular_formats = attach(symbols, :formats).map(&:singularize)
+          return true if (singular_types + singular_formats).include?(name)
+        end
+        return false
+      end
+
+      def attach_plural?(name)
+        types_in_symbols.each do |symbols|
+          plural_types = attach(symbols, :types).map(&:pluralize)
+          plural_formats = attach(symbols, :formats).map(&:pluralize)
+          return true if (plural_types + plural_formats).include?(name)
+        end
+        return false
+      end
+
+      def attach_types(name)
+        types_in_symbols.each do |symbols|
+          in_types = name_included_in?(symbols, :types, name)
+          in_formats = name_included_in?(symbols, :formats, name)
+          return symbols.to_s.singularize if in_types || in_formats
+        end
+        return types_in_symbols.map(&:to_s).map(&:singularize).join(' ')
+      end
+
+      def attach_formats(name)
+        types_in_symbols.each do |symbols|
+          return name if attach(symbols, :formats).include?(name)
+          if name_included_in?(symbols, :types, name)
+            return attach(symbols, :formats).map(&:to_s).join(' ')
+          end
+        end
+      end
+
+      def name_included_in?(symbols, t_or_f, name)
+        singular = attach(symbols, t_or_f).map(&:singularize).include?(name)
+        plural = attach(symbols, t_or_f).map(&:pluralize).include?(name)
+        singular || plural
+      end
+      # For Keppler File Inputs
 
       def add_str_locales(locale, switch)
         inject_into_file(

@@ -4,7 +4,7 @@
       .col-lg-2
         = link_to admin_<%= plural_table_name %>_path, class: '', 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
           .arrow-back.btn.btn-default
-            %i.icon-arrow-left
+            %i.fa.fa-angle-left
             = t('keppler.actions.back')
 
     .row
@@ -14,19 +14,19 @@
             %h3.box-title= t("keppler.modules.#{action_name.underscore}")
             .box-tools.pull-right
               %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                %i.icon-minus
+                %i.fa.fa-minus
           .box-body
             %table.table.table-bordered
               %tbody
                 .form-padding
                   <%- attributes.each_with_index do |attribute, index| -%>
                   .col-xs-12
-                    <%- if @attachments.include?(attribute.name) -%>
-                    = f.input :<%= attribute.name %>, as: :keppler_file
+                    <%- if is_attachment?(attribute.name) -%>
+                    = f.input :<%= attribute.name %>, as: :keppler_file, formats: %w[<%= attach_formats(attribute.name) %>]<%=', multiple: true' if attach_plural?(attribute.name) %>
                     <%- elsif attribute.reference? -%>
                     = f.association :<%= attribute.name %>, include_blank: false
                     <%- elsif attribute.type.to_s == 'text' -%>
-                    = f.input :<%= attribute.name %>, input_html: { ckeditor: { toolbar: 'mini' } }
+                    = f.input :<%= attribute.name %>, as: :ckeditor, input_html: { ckeditor: { height: 400, toolbar: 'Full' } }
                     <%- elsif %[position deleted_at].include?(attribute.name.to_s) || attribute.type.to_s == 'timestamp' -%>
                     = f.input :<%= attribute.name %>, as: :hidden
                     <%- elsif attribute.type.to_s == 'date' -%>
@@ -37,8 +37,8 @@
                     = f.input :<%= attribute.name %>, input_html: { min: 0 }
                     <%- elsif attribute.type.to_s == 'binary' -%>
                     = f.input :<%= attribute.name %>, as: :string
-                    <%- elsif attribute.name.to_s == "position" || attribute.name.to_s == "deleted_at" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :hidden
+                    <%- elsif attribute.name.to_s == 'position' || attribute.name.to_s == 'deleted_at' -%>
+                    = f.input %> :<%= attribute.name %>, as: :hidden
                     <%- else -%>
                     = f.input :<%= attribute.name %>
                     <%- end -%>

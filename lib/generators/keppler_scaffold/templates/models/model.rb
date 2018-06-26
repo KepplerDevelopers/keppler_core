@@ -9,8 +9,10 @@ class <%= class_name %> < ApplicationRecord
   include Downloadable
   include Sortable
   <%- attributes.each do |attribute| -%>
-    <%- if @attachments.include?(attribute.name) -%>
+    <%- if attach_singular?(attribute.name) -%>
   mount_uploader :<%=attribute.name%>, AttachmentUploader
+    <%- elsif attach_plural?(attribute.name) -%>
+  mount_uploaders :<%=attribute.name%>, AttachmentUploader
     <%- end -%>
     <%- if attribute.reference? -%>
   belongs_to :<%= attribute.name %>
