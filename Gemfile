@@ -114,8 +114,11 @@ group :development, :test do
   gem 'jshint' # JavaScripts Linter
   gem 'rspec-rails', '~> 3.7'
   gem 'rubocop', '~> 0.54.0', require: false
+  gem "rubycritic", '3.4.0', require: false
   gem 'scss_lint', '~> 0.57.0', require: false
   gem 'shoulda-matchers', '~> 3.0', require: false
+  gem 'pundit-matchers', '~> 1.4.1'
+  gem 'rails-controller-testing'
 end
 
 #---- keppler_ga_dashboard ----
