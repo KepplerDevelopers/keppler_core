@@ -7,29 +7,15 @@
             %input{ type:"checkbox", id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model' => 'check', 'checklist-value' => "#{<%= singular_table_name %>.id}", '@click' => "listDelete(#{<%= singular_table_name %>.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
-    <%- attributes.each do |attribute| -%>
-    %td
-      = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
-        %span
-        <%- if @attachments[:images][:types].include?(attribute.name) %>
-          = image_tag <%= singular_table_name %>.<%= attribute.name %>.url unless <%= singular_table_name %>.<%= attribute.name %>.url.blank?
-        <%- elsif attach_plural?(attribute.name) %>
-          - value.each do |image|
-            = image_tag image.url unless image.url.blank?
-        <%- elsif @attachments[:videos][:types].include?(attribute) %>
-          = video_tag <%= singular_table_name %>.<%= attribute.name %>.url, controls: true unless <%= singular_table_name %>.<%= attribute.name %>.url.blank? do
-            Sorry, your browser doesn't support embedded videos, but don't worry, you can
-            = link_to 'download it', value.url
-            and watch it with your favorite video player!
-        <%- elsif @attachments[:audios][:types].include?(attribute) %>
-          = audio_tag <%= singular_table_name %>.<%= attribute.name %>.url, controls: true unless <%= singular_table_name %>.<%= attribute.name %>.url.blank? do
-            Sorry, your browser doesn't support embedded audios, but don't worry, you can
-            = link_to 'download it', value.url
-            and listen to it with your favorite audio player!
-        <%- else %>
-          = <%= singular_table_name %>.<%= attribute.name %>
-        <%- end -%>
-      <%- end -%>
+    - <%= singular_table_name %>.as_json(only: attributes.map(&:to_sym)).each do |attribute, value|
+      %td
+        = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
+          %span
+            - if value.is_a?(Array)
+              - value.each do |media|
+                = multimedia_tag(media)
+            - else
+              = multimedia_tag(value)
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{<%= singular_table_name %>.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
@@ -55,6 +41,6 @@
               %i.icon-trash
               = t('keppler.actions.delete')
 
-    %td{:style => 'width: 5%;'}
-      %a.drop{:href=>"#"}
+    %td{ style: 'width: 5%;' }
+      %a.drop{ href: '#' }
         %i.icon-cursor-move

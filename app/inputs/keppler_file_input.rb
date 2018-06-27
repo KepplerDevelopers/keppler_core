@@ -19,7 +19,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         language: '#{I18n.locale}',
         showUpload: false,
         showCancel: false,
-        #{init_preview if object.id},
+        #{init_preview + ',' if object.id}
         #{init_preview_details},
         #{preview_zoom_button_icons},
         #{preview_zoom_button_classes},

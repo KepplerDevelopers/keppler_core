@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # For Keppler File Inputs
   def attachments
     @attachments = {
       images: {
@@ -44,6 +45,7 @@ class ApplicationController < ActionController::Base
       }
     }
   end
+  # For Keppler File Inputs
 
   def class_exists?(klass)
     defined?(klass) && klass.is_a?(Class)

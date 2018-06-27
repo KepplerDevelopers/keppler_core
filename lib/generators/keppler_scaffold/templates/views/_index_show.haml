@@ -16,14 +16,9 @@
             %h6.timeline-header.no-border
               %small
                 %strong.display-value= t("activerecord.attributes.#{attribute}")
-                :ruby
-                  if @attachments.include?(attribute)
-                    image_tag value&.url
-                  elsif @attachments.map{ |x| x.pluralize }.include?(attribute)
-                    value.each do |image|
-                      image_tag image&.url
-                  else
-                    value.blank? ? '-----------' : value
-:coffee
-  $('.close-index-show').click ->
-    $('.index-show').css 'right', -$('.index-show').outerWidth()
+                %p.display-label
+                  - if value.is_a?(Array)
+                    - value.each do |media|
+                      = multimedia_tag(media)
+                  - else
+                    = multimedia_tag(value)

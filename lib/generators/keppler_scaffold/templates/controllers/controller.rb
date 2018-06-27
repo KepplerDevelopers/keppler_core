@@ -16,9 +16,9 @@ module Admin
       <%= plural_table_name %> = @q.result(distinct: true)
       @objects = <%= plural_table_name %>.page(@current_page).order(position: :asc)
       @total = <%= plural_table_name %>.size
-      @<%= plural_table_name %> = <%= class_name %>.all
+      @attributes = <%= class_name %>.Gallery.attribute_names[1..4]
       redirect_to_index(<%= plural_table_name %>_path) if nothing_in_first_page?(@objects)
-      respond_to_formats(@<%= plural_table_name %>)
+      respond_to_formats(<%= class_name %>.all)
     end
 
     # GET <%= route_url %>/1

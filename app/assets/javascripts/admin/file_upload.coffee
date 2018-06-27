@@ -8,5 +8,3 @@ $(document).ready ->
     return
   renderImg()
   return
-
-$(document).on('turbolinks:load', ready_post)
