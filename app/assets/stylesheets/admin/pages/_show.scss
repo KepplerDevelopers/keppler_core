@@ -5,13 +5,25 @@
 }
 
 .img-show {
-  width: 100%;
+  box-shadow: 2px 2px 5px 0 $transparent-black-2;
+  max-height: 300px;
+  max-width: 300px;
+  position: absolute;
 }
 
 .list-row {
+  audio,
   img {
-    max-height: 300px;
+    max-height: 50px;
     max-width: 100%;
+
+    &:hover {
+      cursor: zoom-in;
+    }
+  }
+
+  video {
+    max-height: 100px;
   }
 }
 

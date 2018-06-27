@@ -13,15 +13,6 @@ class MetaTag < ApplicationRecord
 
   validates_presence_of :title, :meta_tags, :url
 
-  require 'csv'
-
-  def to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each { |object| csv << object.attributes.values }
-    end
-  end
-
   def self.get_by_url(url)
     url = url.split('//').last.split('/').join('/').split('www.').last
     find_by_url(url)
