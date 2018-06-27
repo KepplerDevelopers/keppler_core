@@ -3,53 +3,12 @@
 # Creates a much prettier version of the file input field
 class KepplerFileInput < SimpleForm::Inputs::Base
   def input(_wrapper_options)
-    template.content_tag(:div, class: 'upload-image') do
-      # input_label +
-      template.content_tag(
-        :div,
-        class: "#{'files-absolute' unless attr_blank?} files form-group trigger"
-      ) do
-        # icon_file +
-        photo_uploader
-      end +
-        image_to_upload
-    end
-  end
-
-  def input_label
-    initializers
-    template.content_tag(
-      :label,
-      reflection_or_attribute_name.to_s.humanize,
-      class: 'file optional',
-      for: @input_id
-    )
-  end
-
-  def icon_file
-    template.content_tag(:div, class: 'icon-file') do
-      template.content_tag(:i, '', class: 'glyphicon glyphicon-picture')
-    end
-  end
-
-  def image_to_upload
-    template.content_tag(:center, class: 'image-show') do
-      template.tag(
-        :img,
-        class: "#{'hidden' if attr_blank?} image-to-upload",
-        src: (object.try(attribute_name) || '')
-      )
-    end
-  end
-
-  def photo_uploader
-    initializers
     @builder.file_field(
       attribute_name,
-      class: 'photo-upload',
-      type: 'file',
-      id: @input_id,
-      name: @input_name
+      class: 'file',
+      multiple: input_options[:multiple] || false,
+      'data-preview-file-type' => 'any',
+      value: (object.try(attribute_name) if attr_blank?)
     )
   end
 
@@ -66,5 +25,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     @attribute = reflection_or_attribute_name
     @input_id = "#{@model}_#{@attribute}"
     @input_name = "#{@model}[#{@attribute}]"
+    images = object.try(attribute_name)
+    @images = images.is_a?(Array) ? images : []
   end
 end

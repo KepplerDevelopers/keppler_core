@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'carrierwave'
+
 # CkeditorAttachmentFileUploader
 class CkeditorAttachmentFileUploader < CarrierWave::Uploader::Base
   include Ckeditor::Backend::CarrierWave

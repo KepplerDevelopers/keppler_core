@@ -11,9 +11,19 @@
 }
 
 .list-row {
-  img {
-    max-height: 300px;
+  audio,
+  img,
+  video {
+    max-height: 50px;
     max-width: 100%;
+
+    &:hover {
+      cursor: zoom-in;
+    }
+  }
+
+  video {
+    max-height: 100px;
   }
 }
 
