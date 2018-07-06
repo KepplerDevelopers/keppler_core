@@ -16,11 +16,11 @@
 end
 
 User.create(
-  name: 'Keppler Admin', email: 'admin@keppler.io', password: '+12345678+',
+  name: 'Keppler Admin', email: 'admin@keppleradmin.com', password: '+12345678+',
   password_confirmation: '+12345678+', role_ids: '1'
 )
 
-puts 'admin@keppler.io has been created'
+puts 'admin@keppleradmin.com has been created'
 
 Customize.create(file: '', installed: true)
 puts 'Keppler Template has been created'
@@ -44,7 +44,7 @@ puts 'Setting default has been created'
 
 if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
   KepplerContactUs::MessageSetting.create(
-    mailer_from: 'contacto@slicegroup.xyz', 
+    mailer_from: 'contacto@slicegroup.xyz',
     mailer_to: 'contacto@slicegroup.xyz'
   )
   puts 'KepplerContactUs mailer_to and mailer_from has been created'
