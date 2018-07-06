@@ -34,6 +34,23 @@ class Role < ApplicationRecord
     permit[module_name]['actions'].include?(action)
   end
 
+  def toggle_actions(module_name, action)
+    if permission_to(module_name)
+      update_action(module_name, action)
+    else
+      add_module(module_name, action)
+    end
+  end
+
+  def first_permission(module_name, action)
+    Permission.create(
+      role_id: id,
+      modules: Hash[module_name, Hash['actions', Array(action)]]
+    )
+  end
+
+  private
+
   def add_action(module_name, action)
     permission = permissions.first
     permission.update(modules: create_hash('add', module_name, action))
@@ -44,7 +61,7 @@ class Role < ApplicationRecord
     permission.update(modules: create_hash('remove', module_name, action))
   end
 
-  def toggle_action(module_name, action)
+  def update_action(module_name, action)
     if action?(module_name, action)
       remove_action(module_name, action)
     else

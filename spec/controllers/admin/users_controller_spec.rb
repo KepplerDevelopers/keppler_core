@@ -6,7 +6,6 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   describe 'Filter role' do
     it 'POST to filter role' do
-      user.add_role(:admin)
       sign_in user
       post :filter_by_role, format: 'js', xhr: true
       expect(response).to have_http_status(200)
