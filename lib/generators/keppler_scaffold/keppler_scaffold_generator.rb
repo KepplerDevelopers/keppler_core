@@ -134,10 +134,12 @@ module Rails
         @names = %w[name title first_name full_name]
       end
 
+      # For Keppler File Inputs
       def attachments
         @attachments = %w[logo brand photo avatar cover image picture banner attachment pic file]
         @attachments.map { |a| [a, a.pluralize].join(' ') }.join(' ').split
       end
+      # For Keppler File Inputs
 
       def add_str_locales(locale, switch)
         inject_into_file(

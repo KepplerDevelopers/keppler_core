@@ -3,57 +3,111 @@
 # Creates a much prettier version of the file input field
 class KepplerFileInput < SimpleForm::Inputs::Base
   def input(_wrapper_options)
-    template.content_tag(:div, class: 'upload-image') do
-      # input_label +
-      template.content_tag(
-        :div,
-        class: "#{'files-absolute' unless attr_blank?} files form-group trigger"
-      ) do
-        # icon_file +
-        photo_uploader
-      end +
-        image_to_upload
-    end
-  end
-
-  def input_label
-    initializers
-    template.content_tag(
-      :label,
-      reflection_or_attribute_name.to_s.humanize,
-      class: 'file optional',
-      for: @input_id
-    )
-  end
-
-  def icon_file
-    template.content_tag(:div, class: 'icon-file') do
-      template.content_tag(:i, '', class: 'glyphicon glyphicon-picture')
-    end
-  end
-
-  def image_to_upload
-    template.content_tag(:center, class: 'image-show') do
-      template.tag(
-        :img,
-        class: "#{'hidden' if attr_blank?} image-to-upload",
-        src: (object.try(attribute_name) || '')
-      )
-    end
-  end
-
-  def photo_uploader
-    initializers
     @builder.file_field(
       attribute_name,
-      class: 'photo-upload',
-      type: 'file',
-      id: @input_id,
-      name: @input_name
-    )
+      class: 'file',
+      multiple: input_options[:multiple] || false,
+      'data-preview-file-type' => 'any',
+      value: (object.try(attribute_name) if attr_blank?)
+    ) + script
+  end
+
+  def script
+    initializers
+    template.content_tag(:script, type: 'text/javascript') do
+      "$('##{@input_id}').fileinput({
+        language: '#{I18n.locale}',
+        showUpload: false,
+        showCancel: false,
+        #{methods_in_string}
+      })".html_safe
+    end
   end
 
   private
+
+  def methods_in_string
+    "
+    #{init_preview + ',' if object.id}
+    #{init_preview_details},
+    #{preview_zoom_button_icons},
+    #{preview_zoom_button_classes},
+    #{preview_details},
+    #{icons},
+    #{dimensions}".html_safe
+  end
+
+  def init_preview
+    initializers
+    images = []
+    @images.each do |img|
+      tag =
+        "<img class='kv-preview-data file-preview-image' src=\'/" +
+        img.file.file.split('/')[-5..-1].join('/') + "\'>"
+      images.push(tag)
+    end
+    ('initialPreview:' + images.to_s).html_safe
+  end
+
+  def init_preview_details
+    "layoutTemplates: {
+      actionDelete: '',
+      actionDrag: '',
+    }".html_safe
+  end
+
+  def preview_zoom_button_icons
+    "previewZoomButtonIcons: {
+      prev: '<i class=\"glyphicon glyphicon-triangle-left\"></i>',
+      next: '<i class=\"glyphicon glyphicon-triangle-right\"></i>',
+      toggleheader: '<i class=\"glyphicon glyphicon-resize-vertical\"></i>',
+      fullscreen: '<i class=\"glyphicon glyphicon-fullscreen\"></i>',
+      borderless: '<i class=\"glyphicon glyphicon-resize-full\"></i>',
+      close: '<i class=\"glyphicon glyphicon-remove\"></i>'
+    }".html_safe
+  end
+
+  def preview_zoom_button_classes
+    "previewZoomButtonClasses: {
+      prev: 'btn btn-navigate',
+      next: 'btn btn-navigate',
+      toggleheader: 'btn btn-default btn-header-toggle',
+      fullscreen: 'btn btn-default',
+      borderless: 'btn btn-default',
+      close: 'btn btn-default'
+    }".html_safe
+  end
+
+  def preview_details
+    "allowedPreviewMimeTypes: null,
+    allowedFileTypes: #{input_options[:type] || []},
+    allowedFileExtensions: #{input_options[:formats] || []},
+    defaultPreviewContent: null".html_safe
+  end
+
+  def icons
+    "previewFileIcon: '<i class=\"glyphicon glyphicon-file\"></i>',
+    buttonLabelClass: 'hidden-xs',
+    browseIcon: '<i class=\"icon-folder-alt\"></i>&nbsp;',
+    browseClass: 'btn btn-primary',
+    removeIcon: '<i class=\"icon-trash\"></i>',
+    removeClass: 'btn btn-default',
+    cancelIcon: '<i class=\"glyphicon glyphicon-ban-circle\"></i>',
+    cancelClass: 'btn btn-default',
+    uploadIcon: '<i class=\"glyphicon glyphicon-upload\"></i>',
+    uploadClass: 'btn btn-default'".html_safe
+  end
+
+  def dimensions
+    "minImageWidth: 300,
+    minImageHeight: 300,
+    maxImageWidth: 5000,
+    maxImageHeight: 5000,
+    maxFileSize: 0,
+    maxFilePreviewSize: 25600, // 25 MB
+    minFileCount: 0,
+    maxFileCount: 0".html_safe
+  end
 
   def attr_blank?
     object.try(attribute_name).blank?
@@ -66,5 +120,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     @attribute = reflection_or_attribute_name
     @input_id = "#{@model}_#{@attribute}"
     @input_name = "#{@model}[#{@attribute}]"
+    images = object.try(attribute_name)
+    @images = images.is_a?(Array) ? images : []
   end
 end

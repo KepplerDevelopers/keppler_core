@@ -33,7 +33,6 @@ gem 'uglifier', '4.1.8'
 
 # Database
 gem 'pg', '1.0.0'
-# gem 'mysql2', '~> 0.3.18'
 
 # SEO
 gem 'sitemap_generator', '6.0.1'
@@ -46,7 +45,6 @@ source 'http://insecure.rails-assets.org/' do
   gem 'rails-assets-adminlte'
   gem 'rails-assets-animate-css'
   gem 'rails-assets-noty'
-  gem 'rails-assets-simple-line-icons'
 end
 
 # Soft delete
