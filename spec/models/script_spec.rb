@@ -33,7 +33,7 @@ RSpec.describe Script, type: :model do
   context 'concerns' do
     it 'clone record' do
       original = script
-      duplicated = Script.clone_record(script.id)
+      duplicated = Script.clone_record(original.id)
       expect(duplicated.url).to eq(original.url)
       expect(duplicated.name).to eq(original.name)
       expect(duplicated.script).to eq(original.script)
