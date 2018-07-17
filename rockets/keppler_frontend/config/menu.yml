@@ -1,0 +1,12 @@
+menu:
+  keppler_frontend:
+    name: Keppler Frontend
+    current: ['']
+    url_path: /
+    icon: layers
+    model: User
+    # submenu:
+    #   - option:
+    #       name: name
+    #       url_path: url_path
+    #       current: ['current']

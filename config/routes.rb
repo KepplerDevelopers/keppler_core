@@ -149,6 +149,9 @@ Rails.application.routes.draw do
   # Dashboard routes engine
   mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'
 
+  # Frontend routes engine
+  mount KepplerFrontend::Engine, at: '/', as: 'frontend'
+
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
 

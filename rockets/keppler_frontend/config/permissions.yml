@@ -1,0 +1,9 @@
+modules:
+ views:
+    name: View
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  
