@@ -14,7 +14,7 @@ class MetaTag < ApplicationRecord
   validates_presence_of :title, :meta_tags, :url
 
   def self.get_by_url(url)
-    url = url.split('//').last.split('/').join('/').split('www.').last
+    url = url.split('//').last.split('www.').last
     find_by_url(url)
   end
 
@@ -49,6 +49,6 @@ class MetaTag < ApplicationRecord
   private
 
   def split_url
-    self.url = url.split('//').last.split('/').join('/').split('www.').last
+    self.url = url.split('//').last.split('www.').last
   end
 end
