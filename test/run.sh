@@ -7,5 +7,5 @@ haml-lint app/views/admin
 echo '##################### Test Ruby ##########################################'
 bundle exec rubocop
 echo '##################### RSpec ##############################################'
-#bundle exec rspec
+bundle exec rspec
 echo '##################### Ready ##############################################'
