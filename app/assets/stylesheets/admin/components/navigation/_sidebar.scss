@@ -66,6 +66,13 @@
   }
 }
 
+.sidebar-menu {
+
+  .treeview-menu > li > a {
+    padding: 5px 5px 5px 40px;
+  }
+}
+
 .treeview-menu {
   background: $white;
   border-radius: none;
@@ -76,7 +83,6 @@
 
   a {
     color: $light-grey;
-    padding: 5px 5px 5px 40px;
 
     &:hover,
     &.active {
