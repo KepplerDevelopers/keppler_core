@@ -8,6 +8,7 @@ module KepplerFrontend
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
       include KepplerFrontend::Concerns::History
       include KepplerFrontend::Concerns::DestroyMultiple
@@ -82,7 +83,7 @@ module KepplerFrontend
       def destroy_multiple
         View.destroy redefine_ids(params[:multiple_ids])
         redirect_to(
-          admin_views_path(page: @current_page, search: @query),
+          admin_frontend_views_path(page: @current_page, search: @query),
           notice: actions_messages(View.new)
         )
       end
@@ -90,7 +91,7 @@ module KepplerFrontend
       def upload
         View.upload(params[:file])
         redirect_to(
-          admin_views_path(page: @current_page, search: @query),
+          admin_frontend_views_path(page: @current_page, search: @query),
           notice: actions_messages(View.new)
         )
       end
@@ -122,6 +123,13 @@ module KepplerFrontend
 
       def authorization
         authorize View
+      end
+
+      def update_view_yml
+        views = View.all
+        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/views.yml")
+        data = views.as_json.to_yaml
+        File.write(file, data)
       end
 
       def set_attachments

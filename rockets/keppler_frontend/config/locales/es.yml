@@ -1,13 +1,19 @@
 es:
   keppler:
     sidebar-menu:
-      keppler-frontend: Keppler Frontend
+      keppler-frontend: Frontend
       keppler-frontend-submenu:
     models:
       singularize:
+        keppler_frontend/view: vista
+        view: vista
       pluralize:
+        keppler_frontend/views: vistas
+        views: vistas
     modules:
-    settings: 
+      new: Nuevo
+      keppler_frontend/admin/views: Frontend
+    settings:
     actions:
       created: Creado
       updated: Actualizado
@@ -50,6 +56,10 @@ es:
       full_name: 'Nombre Completo'
       email: Correo
       role: Rol
+      menu: Menú
+      format_result: Formato
+      active: Activo
+      method: Método
       phone: Teléfono
       phone_number: 'Número de Teléfono'
       phone_number: 'Código de Area'
@@ -136,4 +146,3 @@ es:
         restrict_dependent_destroy:
           has_one: "No se puede borrar el registro porque un registro dependiente %{record} existe"
           has_many: "No se puede borrar el registro porque registros dependientes %{record} existen"
-  

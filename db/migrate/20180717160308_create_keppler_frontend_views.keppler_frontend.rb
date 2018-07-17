@@ -4,7 +4,6 @@ class CreateKepplerFrontendViews < ActiveRecord::Migration[5.2]
     create_table :keppler_frontend_views do |t|
       t.string :name
       t.string :url
-      t.boolean :root_path
       t.string :method
       t.boolean :active
       t.string :format_result

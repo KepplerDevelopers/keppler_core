@@ -18,15 +18,13 @@
     %td.hidden-xs.hidden-sm
       = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
         %span
-          = view.root_path
+          .label{class: "bg-#{view.color}"}
+            = view.method
     %td.hidden-xs.hidden-sm
       = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
         %span
-          = view.method
-    %td.hidden-xs.hidden-sm
-      = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
-        %span
-          = view.active
+          .label{class: "bg-#{view.active ? 'green' : 'gray'}"}
+            = view.active.to_s.capitalize
     %td.hidden-xs.hidden-sm
       = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
         %span
@@ -45,11 +43,11 @@
             = link_to edit_admin_frontend_view_path(view), class: 'new-menu', title: t('keppler.actions.edit') do
               %i.icon-pencil
               = t('keppler.actions.edit')
-        - if can?(KepplerFrontend::View).clone?
-          %li
-            = link_to admin_frontend_view_clone_path(view), class: 'new-menu', title: t('keppler.actions.clone') do
-              %i.icon-docs
-              = t('keppler.actions.clone')
+        -# - if can?(KepplerFrontend::View).clone?
+        -#   %li
+        -#     = link_to admin_frontend_view_clone_path(view), class: 'new-menu', title: t('keppler.actions.clone') do
+        -#       %i.icon-docs
+        -#       = t('keppler.actions.clone')
         - if can?(KepplerFrontend::View).destroy?
           %li
             = link_to admin_frontend_view_path(view), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do

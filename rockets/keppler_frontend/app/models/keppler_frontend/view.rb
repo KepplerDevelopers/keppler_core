@@ -7,7 +7,7 @@ module KepplerFrontend
     acts_as_list
     # Fields for the search form in the navbar
     def self.search_field
-      fields = ["name", "url", "root_path", "method", "active", "format_result", "position", "deleted_at"]
+      fields = ['name', 'url', 'method', 'format_result']
       build_query(fields, :or, :cont)
     end
 
@@ -31,6 +31,13 @@ module KepplerFrontend
       query = fields.join("_#{operator}_")
       query << "_#{conf}"
       query.to_sym
+    end
+
+    def color
+      return 'olive' if ['GET', 'POST'].include?(method)
+      return 'blue' if ['ROOT'].include?(method)
+      return 'orange' if ['PATCH', 'PUT'].include?(method)
+      return 'red' if ['DELETE'].include?(method)
     end
   end
 end

@@ -1,12 +1,15 @@
 en:
   keppler:
     sidebar-menu:
-      keppler-frontend: Keppler Frontend
+      keppler-frontend: Frontend
       keppler-frontend-submenu:
     models:
       singularize:
+        view: view
       pluralize:
+        views: views
     modules:
+      keppler_frontend/admin/views: Frontend
     actions:
       created: Created
       updated: Updated
@@ -101,4 +104,3 @@ en:
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists"
           has_many: "Cannot delete record because dependent %{record} exist"
-  
