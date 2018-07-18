@@ -48,7 +48,7 @@ module KepplerFrontend
       def create
         @view = View.new(view_params)
 
-        if @view.save
+        if @view.save && @view.install
           redirect(@view, params)
         else
           render :new
@@ -76,6 +76,7 @@ module KepplerFrontend
 
       # DELETE /views/1
       def destroy
+        @view.uninstall
         @view.destroy
         redirect_to admin_frontend_views_path, notice: actions_messages(@view)
       end
@@ -145,6 +146,13 @@ module KepplerFrontend
       # Only allow a trusted parameter "white list" through.
       def view_params
         params.require(:view).permit(:name, :url, :root_path, :method, :active, :format_result, :position, :deleted_at)
+      end
+
+      def redefine_ids(ids)
+        ids.delete('[]').split(',').select do |id|
+          View.find(id).uninstall
+          id if model.exists? id
+        end
       end
 
       def show_history

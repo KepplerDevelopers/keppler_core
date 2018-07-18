@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get '/index', to: 'app/front#index', as: :app_index
   end
 
-  root to: 'app/front#index'
+  # root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
   post '/filter', to: 'admin/users#filter_by_role', as: :filter_by_role
