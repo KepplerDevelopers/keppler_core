@@ -57,7 +57,11 @@ module KepplerFrontend
 
       # PATCH/PUT /views/1
       def update
+        @view.delete_route
+        @view.update_action(view_params)
+        @view.update_html(view_params)
         if @view.update(view_params)
+          @view.add_route
           redirect(@view, params)
         else
           render :edit
@@ -119,6 +123,8 @@ module KepplerFrontend
         @objects = views.page(@current_page)
         render :index
       end
+
+      def editor; end
 
       private
 

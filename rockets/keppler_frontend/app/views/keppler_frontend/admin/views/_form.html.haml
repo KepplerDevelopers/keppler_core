@@ -24,9 +24,10 @@
                   .col-xs-3
                     = f.input :url
                   .col-xs-2
-                    = f.input :method, collection: [:GET, :POST, :PATCH, :PUT, :DELETE, :ROOT], prompt: false
-                  .col-xs-2
-                    = f.input :format_result, collection: [:HTML, :JS, :JSON], prompt: false
+                    = f.input :method, collection: [:GET, :POST, :PATCH, :PUT, :DELETE], prompt: false
+                  -# .col-xs-2
+                    -# = f.input :format_result, collection: [:HTML, :JS, :JSON], prompt: false
+                  = f.input :format_result, as: :hidden, input_html: { value: 'HTML' }
                   .col-xs-2
                     = f.input :active, as: :keppler_boolean
                   .col-xs-12

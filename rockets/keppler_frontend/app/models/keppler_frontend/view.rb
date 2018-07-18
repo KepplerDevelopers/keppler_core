@@ -44,6 +44,10 @@ module KepplerFrontend
       return 'red' if ['DELETE'].include?(method)
     end
 
+    def path
+      "#{name}_path"
+    end
+
     def install
       if format_result.eql?('HTML')
         create_action_html
@@ -60,28 +64,12 @@ module KepplerFrontend
       delete_route
     end
 
-    private
-
-    def url_front
-      "#{Rails.root}/rockets/keppler_frontend"
-    end
-
-    def convert_to_downcase
-      self.url.downcase!
-      self.name.downcase!
-    end
-
-    def without_spaces
-      self.url.gsub!(' ', '_')
-      self.name.gsub!(' ', '_')
-    end
-
     def create_action_html
       file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
       index_html = File.readlines(file)
       head_idx = 0
       index_html.each do |i|
-        head_idx = index_html.find_index(i) if i.include?('  class App::FrontendController < ApplicationController')
+        head_idx = index_html.find_index(i) if i.include?("    layout 'layouts/templates/application'")
       end
       index_html.insert(head_idx.to_i + 1, "    # begin #{name}\n")
       index_html.insert(head_idx.to_i + 2, "    def #{name}\n")
@@ -108,6 +96,25 @@ module KepplerFrontend
       true
     end
 
+    def update_action(action)
+      obj = View.find(id)
+      file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
+      index_html = File.readlines(file)
+      begin_idx = 0
+      end_idx = 0
+      index_html.each do |i|
+        begin_idx = index_html.find_index(i) if i.include?("    # begin #{obj.name}\n")
+        end_idx = index_html.find_index(i) if i.include?("    # end #{obj.name}\n")
+      end
+      return if begin_idx==0
+      index_html[begin_idx] = "    # begin #{action[:name]}\n"
+      index_html[begin_idx+1] = "    def #{action[:name]}\n"
+      index_html[end_idx] = "    # end #{action[:name]}\n"
+      index_html = index_html.join('')
+      File.write(file, index_html)
+      true
+    end
+
     def install_html
       out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.haml", "w")
       out_file.puts("%h1 #{name} template")
@@ -121,6 +128,13 @@ module KepplerFrontend
       true
     end
 
+    def update_html(html)
+      obj = View.find(id)
+      old_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{obj.name}.html.haml"
+      new_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{html[:name]}.html.haml"
+      File.rename(old_name, new_name)
+    end
+
     def add_route
       file = "#{url_front}/config/routes.rb"
       index_html = File.readlines(file)
@@ -128,10 +142,10 @@ module KepplerFrontend
       index_html.each do |i|
         head_idx = index_html.find_index(i) if i.include?('KepplerFrontend::Engine.routes.draw do')
       end
-      if method.eql?('ROOT')
-        index_html.insert(head_idx.to_i + 1, "  root to: 'app/frontend##{name}'\n")
+      if active.eql?(false)
+        index_html.insert(head_idx.to_i + 1, "#  #{method.downcase!} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
       else
-        index_html.insert(head_idx.to_i + 1, "  #{method.downcase!} '#{url}', to: 'app/frontend##{name}'\n")
+        index_html.insert(head_idx.to_i + 1, "  #{method.downcase!} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
       end
       index_html = index_html.join('')
       File.write(file, index_html)
@@ -143,10 +157,10 @@ module KepplerFrontend
       index_html = File.readlines(file)
       head_idx = 0
       index_html.each do |idx|
-        if method.eql?('ROOT')
-          head_idx = index_html.find_index(idx) if idx.include?("  root to: 'app/frontend##{name}'\n")
+        if active.eql?(false)
+          head_idx = index_html.find_index(idx) if idx.include?("#  #{method.downcase} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
         else
-          head_idx = index_html.find_index(idx) if idx.include?("  #{method.downcase} '#{url}', to: 'app/frontend##{name}'\n")
+          head_idx = index_html.find_index(idx) if idx.include?("  #{method.downcase} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
         end
       end
       return if head_idx==0
@@ -154,6 +168,22 @@ module KepplerFrontend
       index_html = index_html.join('')
       File.write(file, index_html)
       true
+    end
+
+    private
+
+    def url_front
+      "#{Rails.root}/rockets/keppler_frontend"
+    end
+
+    def convert_to_downcase
+      self.url.downcase!
+      self.name.downcase!
+    end
+
+    def without_spaces
+      self.url.gsub!(' ', '_')
+      self.name.gsub!(' ', '_')
     end
   end
 end

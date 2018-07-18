@@ -7,5 +7,9 @@ module KepplerFrontend
       @user = user
       @objects = objects
     end
+
+    def editor?
+      keppler_admin? || user_can?(@objects, 'edit_html')
+    end
   end
 end
