@@ -52,6 +52,8 @@ end
 # Soft delete
 gem 'paranoia', '2.4.1'
 
+gem 'codemirror-rails', '5.15.2'
+
 # Forms
 gem 'cocoon', '1.2.11'
 gem 'jquery-minicolors-rails', '~> 2.2', '>= 2.2.6.0'

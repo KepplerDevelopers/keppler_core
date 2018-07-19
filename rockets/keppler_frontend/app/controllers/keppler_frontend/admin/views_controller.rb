@@ -18,7 +18,7 @@ module KepplerFrontend
       def index
         @q = View.ransack(params[:q])
         views = @q.result(distinct: true)
-        @objects = views.page(@current_page).order(position: :asc)
+        @objects = views.page(@current_page).where.not(name: 'keppler').order(position: :asc)
         @total = views.size
         @views = @objects.all
         if !@objects.first_page? && @objects.size.zero?
@@ -80,8 +80,10 @@ module KepplerFrontend
 
       # DELETE /views/1
       def destroy
-        @view.uninstall
-        @view.destroy
+        if @view
+          @view.uninstall
+          @view.destroy
+        end
         redirect_to admin_frontend_views_path, notice: actions_messages(@view)
       end
 
@@ -124,7 +126,16 @@ module KepplerFrontend
         render :index
       end
 
-      def editor; end
+      def editor
+        @view = View.find(params[:view_id])
+        @view_html = @view.html_code
+      end
+
+      def editor_save
+        @view = View.find(params[:view_id])
+        @view.code_save(params[:html], 'html')
+        render json: {result: true}
+      end
 
       private
 
@@ -146,7 +157,7 @@ module KepplerFrontend
 
       # Use callbacks to share common setup or constraints between actions.
       def set_view
-        @view = View.find(params[:id])
+        @view = View.where(id: params[:id]).first
       end
 
       # Only allow a trusted parameter "white list" through.
@@ -156,7 +167,7 @@ module KepplerFrontend
 
       def redefine_ids(ids)
         ids.delete('[]').split(',').select do |id|
-          View.find(id).uninstall
+          View.find(id).uninstall if model.exists? id
           id if model.exists? id
         end
       end

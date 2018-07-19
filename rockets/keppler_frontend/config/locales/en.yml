@@ -15,7 +15,9 @@ en:
       updated: Updated
       create: Create
       update: Update
+      preview: Preview
       deleted: Deleted
+      view_list: Views list
       new: New
       show: Show
       edit: Update

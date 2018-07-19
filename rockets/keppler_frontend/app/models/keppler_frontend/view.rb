@@ -116,22 +116,30 @@ module KepplerFrontend
     end
 
     def install_html
-      out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.haml", "w")
-      out_file.puts("%h1 #{name} template")
+      out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", "w")
+      html = ["<!DOCTYPE html>\n", "<html>\n", "  <head>\n",
+              "    <meta charset='utf-8'>\n", "    <title></title>\n",
+              "    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\n",
+              "    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>\n",
+              "    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\n",
+              "  </head>\n", "  <body>\n", "    <h1> #{name} template </h1>\n",
+              "  </body>\n", "</html>\n"]
+      hteml = html.join('')
+      out_file.puts(html);
       out_file.close
       true
     end
 
     def uninstall_html
-      file = "#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.haml"
+      file = "#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb"
       File.delete(file) if File.exist?(file)
       true
     end
 
     def update_html(html)
       obj = View.find(id)
-      old_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{obj.name}.html.haml"
-      new_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{html[:name]}.html.haml"
+      old_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{obj.name}.html.erb"
+      new_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{html[:name]}.html.erb"
       File.rename(old_name, new_name)
     end
 
@@ -168,6 +176,20 @@ module KepplerFrontend
       index_html = index_html.join('')
       File.write(file, index_html)
       true
+    end
+
+    def html_code
+      index_html = File.readlines("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb")
+      index_html.map { |idx| idx.gsub('"', "'") }
+      index_html = index_html.join('')
+    end
+
+    def code_save(code, type_code)
+      if type_code.eql?('html')
+        out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", "w")
+        out_file.puts(code)
+        out_file.close
+      end
     end
 
     private

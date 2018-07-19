@@ -9,7 +9,11 @@ module KepplerFrontend
     end
 
     def editor?
-      keppler_admin? || user_can?(@objects, 'edit_html')
+      keppler_admin? || user_can?(@objects, 'editor')
+    end
+
+    def editor_save?
+      keppler_admin? || user_can?(@objects, 'editor_save')
     end
   end
 end
