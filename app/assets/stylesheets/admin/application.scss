@@ -6,6 +6,9 @@
 //Vendor folder
 @import 'vendor/admin-lte/skin-blue';
 
+// Bootstrap File Input
+@import 'bootstrap-file-input/*';
+
 //Libraries and plugins as gems
 @import 'bourbon';
 @import 'font-awesome-sprockets';
@@ -19,6 +22,9 @@
 @import 'utils/mixins';
 @import 'utils/theme';
 @import 'utils/base';
+
+// Bootstrap File Input
+@import 'bootstrap-file-input/*';
 
 //Components folder
 @import 'components/navigation/navbar';

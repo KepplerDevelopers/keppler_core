@@ -9,6 +9,7 @@
         %i.icon-trash
         %span= t('keppler.actions.delete')
     %a.pull-right#close-index-show
+    %a.pull-right.close-index-show
       %i.icon-close
   %p.control-sidebar-heading
     %i.icon-graph
@@ -21,6 +22,9 @@
             %small
               %strong.display-value= t("activerecord.attributes.#{attribute}")
               %p.display-label= value
+<<<<<<< HEAD
 :coffee
   $('#close-index-show').click ->
     $('.index-show').css 'right', -$('.index-show').outerWidth()
+=======
+>>>>>>> 2feba2060703aa7f54bb89fefc0c6662c3c78394

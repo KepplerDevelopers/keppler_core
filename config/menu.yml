@@ -34,7 +34,7 @@ menu:
   customize:
     name: keppler design
     icon: pencil
-    current: ['admin/customizes']
+    current: ['admin/customizes', 'admin/settings/appearance']
     model: Customize
     submenu:
       - customize:

@@ -73,6 +73,8 @@ en:
       not_authorized_page: You have no authorization to access this page
       not_authorized_action: You have no authorization to perform this action
       not_found_records: "No %{model} found"
+      not_supported: Sorry, your browser doesn't support this media, but don't worry, you can
+      enjoy_it: and enjoy it with your favorite multimedia player!
       no_events: No activities
       data_confirm: Are you sure?
       records: records

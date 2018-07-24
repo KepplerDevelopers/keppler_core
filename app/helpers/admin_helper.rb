@@ -61,8 +61,6 @@ module AdminHelper
     klass.classify.constantize.search_field
   end
 
-  private
-
   # ------------ preload
   def spinner_layer(_color)
     content_tag :div, class: "spinner-layer spinner-#{color}" do
