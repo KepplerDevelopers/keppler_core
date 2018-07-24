@@ -35,3 +35,62 @@
 .action_signal {
   display: none;
 }
+
+.nav-tabs-custom > .tab-content {
+  background: #fff;
+  padding: 0 !important;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.cm-matchhighlight {background-color: #4b4b4b}
+.CodeMirror-selection-highlight-scrollbar {background-color: #4b4b4b}
+.cm-trailingspace {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAYAAAB/qH1jAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUXCToH00Y1UgAAACFJREFUCNdjPMDBUc/AwNDAAAFMTAwMDA0OP34wQgX/AQBYgwYEx4f9lQAAAABJRU5ErkJggg==);
+  background-position: bottom left;
+  background-repeat: repeat-x;
+}
+
+
+/// THEME MONOKAI
+
+.html {
+  .cm-s-monokai span.cm-bracket {
+    color: #ffffff;
+  }
+  .cm-s-monokai span.cm-property {
+    color: #ffffff;
+  }
+}
+
+.css {
+  .cm-s-monokai span.cm-qualifier,
+  .cm-s-monokai span.cm-builtin  {
+    color: #a6e22e;
+  }
+  .cm-s-monokai span.cm-property{
+    color: #40eded;
+  }
+}
+
+.js {
+  .cm-s-monokai span.cm-keyword {
+    color: #40eded;
+  }
+  .cm-s-monokai span.cm-property {
+    color: #ffffff;
+  }
+}
+
+.action {
+  .cm-s-monokai span.cm-property {
+    color: #ffffff;
+  }
+
+  .cm-s-monokai span.cm-tag {
+    color: #40eded;
+  }
+
+  .cm-s-monokai span.cm-variable-2 {
+    color: #fff;
+  }
+}

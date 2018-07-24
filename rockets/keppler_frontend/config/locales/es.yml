@@ -3,6 +3,7 @@ es:
     sidebar-menu:
       keppler-frontend: Frontend
       keppler-frontend-submenu:
+        views: Vistas
     models:
       singularize:
         keppler_frontend/view: vista

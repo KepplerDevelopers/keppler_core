@@ -2,13 +2,15 @@ require_dependency "keppler_frontend/application_controller"
 
 module KepplerFrontend
   class App::FrontendController < App::AppController
-    layout 'layouts/templates/application'
-    # begin andres
-    def andres
+    layout 'layouts/keppler_frontend/application'
+    # begin friend
+    def friend
+      @views = View.all.select { |v| v unless v.name.eql?("keppler") }
     end
-    # end andres
+    # end friend
     # begin index
     def index
+      # Insert ruby code...
     end
     # end index
     # begin keppler

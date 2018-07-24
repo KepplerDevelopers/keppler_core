@@ -12,13 +12,10 @@
 #= require jquery.minicolors
 #= require vue
 #= require jquery.remotipart
-#= require codemirror
-#= require codemirror/modes/xml
-#= require codemirror/modes/htmlmixed
-#= require codemirror/modes/javascript
-#= require codemirror/modes/ruby
-#= require codemirror/modes/haml
-#= require codemirror/modes/sass
-#= require codemirror/keymaps/sublime
-#= require keppler_frontend/application
+#= require admin/codemirror/codemirror
+#= require_tree ./codemirror/mode
+#= require_tree ./codemirror/keymap
+#= require_tree ./codemirror/addon
+
+#= require keppler_frontend/admin/application
 #= require_tree .

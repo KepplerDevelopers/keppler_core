@@ -3,6 +3,7 @@ en:
     sidebar-menu:
       keppler-frontend: Frontend
       keppler-frontend-submenu:
+        views: Views
     models:
       singularize:
         view: view

@@ -3,22 +3,25 @@
     %ul.nav.nav-tabs
       %li.active
         %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
-          HAML
+          = "#{@view.name}.html.erb"
           .signal.html_signal
       %li
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
-          SCSS
+          = "#{@view.name}.scss"
           .signal.scss_signal
       %li
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
-          Javascript
+          = "#{@view.name}.js"
           .signal.js_signal
       %li
-        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_4"}
+          Multimedia
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
           Action
           .signal.action_signal
       %li.pull-right
-        %a{href: "#", onclick: "codeMaster.save(#{@view.id})"}
+        %a{href: "#", onclick: "controls.save(#{@view.id})"}
           %i.fa.fa-save
           = t('keppler.actions.save')
       %li.pull-right
@@ -32,33 +35,65 @@
     .tab-content
       #tab_1.tab-pane.active
         %div.html.code-container
-          %textarea#code-html{:name => "code"}
-
-        :javascript
-          var code = `#{@view_html}`;
-          code = codeMaster.formatHtml(code);
-          $("#code-html").val(code);
-          var editor = codeMaster.codeMirrorHtml();
-
-          editor.on('change', function () {
-            $('.html_signal').css('display', 'block');
-          });
+          %textarea#code-html{name: "code"}
+            = @view.html_code
       #tab_2.tab-pane
-        The European languages are members of the same family. Their separate existence is a myth.
-        For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-        in their grammar, their pronunciation and their most common words. Everyone realizes why a
-        new common language would be desirable: one could refuse to pay expensive translators. To
-        achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-        words. If several languages coalesce, the grammar of the resulting language is more simple
-        and regular than that of the individual languages.
-      / /.tab-pane
+        %div.css.code-container
+          %textarea#code-css{:name => "code"}
+            = @view.scss_code
       #tab_3.tab-pane
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-        like Aldus PageMaker including versions of Lorem Ipsum.
-      / /.tab-pane
-    / /.tab-content
+        %div.js.code-container
+          %textarea#code-js{:name => "code"}
+            = @view.js_code
+      #tab_4.tab-pane
+        .row
+          .col-lg-4
+            = simple_form_for @view, url: admin_frontend_view_upload_multimedia_path, remote: true, method: :post do |f|
+              = f.input :file, as: :keppler_file, label: false
+              .pull-right
+                = f.button :submit, t('keppler.permissions.upload'), class: 'btn-primary'
+          .col-lg-8
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      #tab_5.tab-pane
+        %div.action.code-container
+          %textarea#code-action{:name => "code"}
+            = @view.action_code
+
+:javascript
+  codeHTML.codeMirrorHtml();
+  codeCSS.codeMirrorCSS();
+  codeJs.codeMirrorJs();
+  codeAction.codeMirrorAction();
+  var tab = 'HTML';
+  var id = `#{@view.id}`;
+  var ready = { css: false, js: false, action: false }
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    tab = $(this)[0].innerText
+    if ( tab===`#{@view.name}.scss` && ready.css === false ){
+      codeCSS.codeMirrorCSS();
+      ready.css = true;
+    } else if( tab===`#{@view.name}.js` && ready.js === false ) {
+      codeJs.codeMirrorJs();
+      ready.js = true;
+    } else if( tab==="Action" && ready.action === false ) {
+      codeAction.codeMirrorAction();
+      ready.action = true;
+    }
+
+  })
+
+  $(document).keypress("s",function(e) {
+    if(e.ctrlKey && e.key=='s') {
+      e.preventDefault();
+      if ( tab === `#{@view.name}.html.erb`) {
+        codeHTML.save(id);
+      } else if (tab === `#{@view.name}.scss`) {
+        codeCSS.save(id);
+      } else if (tab === `#{@view.name}.js`) {
+        codeJs.save(id);
+      } else if (tab === 'Action') {
+        codeAction.save(id);
+      }
+    }
+  });

@@ -1,5 +1,5 @@
 KepplerFrontend::Engine.routes.draw do
-  get '/andres', to: 'app/frontend#andres', as: :andres
+  get '/friend', to: 'app/frontend#friend', as: :friend
   get '/', to: 'app/frontend#index', as: :index
   root to: 'app/frontend#keppler', as: :keppler
   namespace :admin do
@@ -11,6 +11,7 @@ KepplerFrontend::Engine.routes.draw do
         post '/editor/save', action: 'editor_save'
         post '/sort', action: :sort, on: :collection
         post '/upload', action: 'upload', as: 'upload'
+        post '/upload_multimedia', action: 'upload_multimedia', as: 'upload_multimedia'
         get '/download', action: 'download', as: 'download'
         get(
           '/reload',

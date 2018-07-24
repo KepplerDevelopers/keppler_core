@@ -1,0 +1,43 @@
+.navbar-default {
+  background-color: #f31717 !important;
+  border: none !important;
+  border-radius: 0px !important;
+
+  .container-fluid .navbar-brand {
+    color: #ffffff !important;
+	}
+
+  .navbar-nav {
+    .open > a,
+    .open > a:hover,
+    .open > a:focus {
+      background-color: #f25656 !important;
+    }
+
+    .dropdown-menu {
+      a {
+        color: #5c5c5c !important
+      }
+
+      a:hover {
+        color: #ffffff !important;
+      }
+    }
+
+    li > a {
+      color: #ffffff !important;
+    }
+
+    li > a:hover {
+      background-color: #f25656 !important;
+    }
+  }
+}
+
+.pizza {
+  background-image: url('/assets/keppler_frontend/app/pizza.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 300px;
+  width: 300px;
+}

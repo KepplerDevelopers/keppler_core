@@ -8,6 +8,7 @@ module KepplerFrontend
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      before_action :reload_views, only: [:index]
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
       include KepplerFrontend::Concerns::History
@@ -58,14 +59,13 @@ module KepplerFrontend
       # PATCH/PUT /views/1
       def update
         @view.delete_route
-        @view.update_action(view_params)
-        @view.update_html(view_params)
+        @view.update_files(view_params)
         if @view.update(view_params)
-          @view.add_route
           redirect(@view, params)
         else
           render :edit
         end
+        @view.add_route
       end
 
       def clone
@@ -128,19 +128,46 @@ module KepplerFrontend
 
       def editor
         @view = View.find(params[:view_id])
-        @view_html = @view.html_code
       end
 
       def editor_save
         @view = View.find(params[:view_id])
-        @view.code_save(params[:html], 'html')
+        @view.code_save(params[:html], 'html') if params[:html]
+        @view.code_save(params[:scss], 'scss') if params[:scss]
+        @view.code_save(params[:js], 'js') if params[:js]
+        @view.code_save(params[:ruby], 'action') if params[:ruby]
         render json: {result: true}
+      end
+
+      def upload_multimedia
+        uploader = ImgFileUploader.new
+        File.open(params[:file]) do |file|
+          uploader.store!(file)
+        end
+        render json: { result: true }
       end
 
       private
 
       def authorization
         authorize View
+      end
+
+      def reload_views
+        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/views.yml")
+        routes = YAML.load_file(file)
+        routes.each do |route|
+          view = KepplerFrontend::View.where(url: route['url']).first
+          unless view
+            KepplerFrontend::View.create(
+              name:route['name'],
+              url: route['url'],
+              method: route['method'],
+              active: route['active'],
+              format_result: route['format_result']
+            )
+          end
+        end
       end
 
       def update_view_yml

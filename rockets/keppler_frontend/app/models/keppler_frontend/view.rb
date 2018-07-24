@@ -3,6 +3,11 @@ module KepplerFrontend
   class View < ActiveRecord::Base
     include ActivityHistory
     include CloneRecord
+    include KepplerFrontend::Concerns::HtmlFile
+    include KepplerFrontend::Concerns::ScssFile
+    include KepplerFrontend::Concerns::JsFile
+    include KepplerFrontend::Concerns::RouteFile
+    include KepplerFrontend::Concerns::ActionFile
     require 'csv'
     acts_as_list
     validates_presence_of :name, :url
@@ -52,6 +57,8 @@ module KepplerFrontend
       if format_result.eql?('HTML')
         create_action_html
         install_html
+        install_scss
+        install_js
       end
       add_route
     end
@@ -60,136 +67,36 @@ module KepplerFrontend
       if format_result.eql?('HTML')
         delete_action_html
         uninstall_html
+        uninstall_scss
+        uninstall_js
       end
       delete_route
     end
 
-    def create_action_html
-      file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-      index_html = File.readlines(file)
-      head_idx = 0
-      index_html.each do |i|
-        head_idx = index_html.find_index(i) if i.include?("    layout 'layouts/templates/application'")
-      end
-      index_html.insert(head_idx.to_i + 1, "    # begin #{name}\n")
-      index_html.insert(head_idx.to_i + 2, "    def #{name}\n")
-      index_html.insert(head_idx.to_i + 3, "    end\n")
-      index_html.insert(head_idx.to_i + 4, "    # end #{name}\n")
-      index_html = index_html.join('')
-      File.write(file, index_html)
-      true
-    end
-
-    def delete_action_html
-      file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-      index_html = File.readlines(file)
-      begin_idx = 0
-      end_idx = 0
-      index_html.each do |i|
-        begin_idx = index_html.find_index(i) if i.include?("    # begin #{name}\n")
-        end_idx = index_html.find_index(i) if i.include?("    # end #{name}\n")
-      end
-      return if begin_idx==0
-      index_html.slice!(begin_idx..end_idx)
-      index_html = index_html.join('')
-      File.write(file, index_html)
-      true
-    end
-
-    def update_action(action)
-      obj = View.find(id)
-      file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-      index_html = File.readlines(file)
-      begin_idx = 0
-      end_idx = 0
-      index_html.each do |i|
-        begin_idx = index_html.find_index(i) if i.include?("    # begin #{obj.name}\n")
-        end_idx = index_html.find_index(i) if i.include?("    # end #{obj.name}\n")
-      end
-      return if begin_idx==0
-      index_html[begin_idx] = "    # begin #{action[:name]}\n"
-      index_html[begin_idx+1] = "    def #{action[:name]}\n"
-      index_html[end_idx] = "    # end #{action[:name]}\n"
-      index_html = index_html.join('')
-      File.write(file, index_html)
-      true
-    end
-
-    def install_html
-      out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", "w")
-      html = ["<!DOCTYPE html>\n", "<html>\n", "  <head>\n",
-              "    <meta charset='utf-8'>\n", "    <title></title>\n",
-              "    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\n",
-              "    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>\n",
-              "    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\n",
-              "  </head>\n", "  <body>\n", "    <h1> #{name} template </h1>\n",
-              "  </body>\n", "</html>\n"]
-      hteml = html.join('')
-      out_file.puts(html);
-      out_file.close
-      true
-    end
-
-    def uninstall_html
-      file = "#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb"
-      File.delete(file) if File.exist?(file)
-      true
-    end
-
-    def update_html(html)
-      obj = View.find(id)
-      old_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{obj.name}.html.erb"
-      new_name = "#{url_front}/app/views/keppler_frontend/app/frontend/#{html[:name]}.html.erb"
-      File.rename(old_name, new_name)
-    end
-
-    def add_route
-      file = "#{url_front}/config/routes.rb"
-      index_html = File.readlines(file)
-      head_idx = 0
-      index_html.each do |i|
-        head_idx = index_html.find_index(i) if i.include?('KepplerFrontend::Engine.routes.draw do')
-      end
-      if active.eql?(false)
-        index_html.insert(head_idx.to_i + 1, "#  #{method.downcase!} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
-      else
-        index_html.insert(head_idx.to_i + 1, "  #{method.downcase!} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
-      end
-      index_html = index_html.join('')
-      File.write(file, index_html)
-      true
-    end
-
-    def delete_route
-      file = "#{url_front}/config/routes.rb"
-      index_html = File.readlines(file)
-      head_idx = 0
-      index_html.each do |idx|
-        if active.eql?(false)
-          head_idx = index_html.find_index(idx) if idx.include?("#  #{method.downcase} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
-        else
-          head_idx = index_html.find_index(idx) if idx.include?("  #{method.downcase} '#{url}', to: 'app/frontend##{name}', as: :#{name}\n")
-        end
-      end
-      return if head_idx==0
-      index_html.delete_at(head_idx.to_i)
-      index_html = index_html.join('')
-      File.write(file, index_html)
-      true
-    end
-
-    def html_code
-      index_html = File.readlines("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb")
-      index_html.map { |idx| idx.gsub('"', "'") }
-      index_html = index_html.join('')
+    def update_files(params)
+      update_html(params) if self.format_result.eql?('HTML')
+      update_css(params) if self.format_result.eql?('HTML')
+      update_js(params) if self.format_result.eql?('HTML')
+      update_action(params)
     end
 
     def code_save(code, type_code)
       if type_code.eql?('html')
-        out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", "w")
-        out_file.puts(code)
-        out_file.close
+        save_code("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", code)
+      elsif type_code.eql?('scss')
+        save_code("#{url_front}/app/assets/stylesheets/keppler_frontend/app/#{name}.scss", code)
+      elsif type_code.eql?('js')
+        save_code("#{url_front}/app/assets/javascripts/keppler_frontend/app/#{name}.js", code)
+      elsif type_code.eql?('action')
+        save_action(code)
       end
+    end
+
+    def save_code(file, code)
+      File.delete(file) if File.exist?(file)
+      out_file = File.open(file, "w")
+      out_file.puts(code)
+      out_file.close
     end
 
     private
@@ -206,6 +113,8 @@ module KepplerFrontend
     def without_spaces
       self.url.gsub!(' ', '_')
       self.name.gsub!(' ', '_')
+      self.name.gsub!('/', '')
+      self.name.gsub!('.', '')
     end
   end
 end
