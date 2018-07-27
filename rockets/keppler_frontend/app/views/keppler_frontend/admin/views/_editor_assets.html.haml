@@ -1,0 +1,29 @@
+%aside.control-sidebar.control-sidebar-light#side-assets
+  = link_to "#", "data-toggle": "control-sidebar" do
+    .label
+      Cerrar
+  %ul.timeline.nav-tabs-custom
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#editor_tab_1"}
+          %i.fa.fa-image
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_tab_2"}
+          %i.fa.fa-film
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_tab_3"}
+          %i.fa.fa-music
+  .tab-content
+    #editor_tab_1.tab-pane.active
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    #editor_tab_2.tab-pane
+    #editor_tab_3.tab-pane
+    -# %li
+    -#   .timeline-item
+    -#     %h6.timeline-header.no-border
+    -#       %small
+    -#         %b
+    -#           parte 1
+    -#       %small
+    -#         parte 2
+.control-sidebar-bg

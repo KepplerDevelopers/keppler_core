@@ -1,0 +1,145 @@
+.row
+  .col-lg-12
+    .container-files
+      %h1 Assets
+      = simple_form_for @view, url: admin_frontend_upload_multimedia_path, method: :post do |f|
+        = f.input :file, as: :file, label: false
+        - if flash[:notice]
+          .keppler-frontend-message{class: "#{ flash[:notice].last.eql?('success') ? 'text-green' : 'text-red' }"}
+            = flash[:notice].first
+        .pull-right
+          = f.button :submit, t('keppler.permissions.upload'), class: 'btn-primary'
+  .col-lg-12
+    .container-files
+      #file-listing
+        .nav-tabs-custom
+          %ul.nav.nav-tabs
+            %li{ class: "#{'active' if flash[:notice].second.eql?('images') }"}
+              %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+                %i.fa.fa-image
+                %span.hidden-xs
+                  Images
+            %li{ class: "#{'active' if flash[:notice].second.eql?('videos') }"}
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+                %i.fa.fa-film
+                %span.hidden-xs
+                  Videos
+            %li{ class: "#{'active' if flash[:notice].second.eql?('audios') }"}
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+                %i.fa.fa-music
+                %span.hidden-xs
+                  Audios
+            %li{ class: "#{'active' if flash[:notice].second.eql?('fonts') }"}
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_4"}
+                %i.fa.fa-text-height
+                %span.hidden-xs
+                  Fonts
+          .tab-content
+            #tab_1.tab-pane.bg-gray{ class: "#{'active' if flash[:notice].second.eql?('images') }"}
+              .row
+                - @files_list.each_with_index do |file, i|
+                  - if file[:folder].eql?("images")
+                    .col-lg-4
+                      .box.box-solid
+                        .box-header.with-border{title: "#{file[:name]}"}
+                          .row
+                            .col-lg-10
+                              %h4.box-title
+                                %i.fa.fa-image
+                                = truncate(file[:name], length: 40, omission: '...')
+                            .col-lg-2
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                                %i.fa.fa-trash
+                        .box-body.no-padding
+                          .back-file
+                            .file-image{style:"background-image:url('#{file[:path]}')"}
+                        .box-body
+                          %span.box-title
+                            = file[:size]
+                            %button.btn.btn-default.pull-right{onclick: "copy('#{file[:id]}')"}
+                              %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
+                              %i.fa.fa-save
+                              = t('keppler.keppler_frontend.multimedia.copy')
+            #tab_2.tab-pane.bg-gray{ class: "#{'active' if flash[:notice].second.eql?('videos') }"}
+              .row
+                - @files_list.each_with_index do |file, i|
+                  - if file[:folder].eql?("videos")
+                    .col-lg-4
+                      .box.box-solid
+                        .box-header.with-border{title: "#{file[:name]}"}
+                          .row
+                            .col-lg-10
+                              %h4.box-title
+                                %i.fa.fa-film
+                                = truncate(file[:name], length: 40, omission: '...')
+                            .col-lg-2
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete , data: { confirm: t("keppler.messages.data_confirm") } do
+                                %i.fa.fa-trash
+                        .box-body.no-padding
+                          .back-file
+                            .center
+                              %video{ controls: 'true'}
+                                %source{ src:"#{file[:path]}", type:"video/#{file[:format]}" }
+                                Su navegador no soporta contenido multimedia.
+                        .box-body
+                          %span.box-title
+                            = file[:size]
+                            %button.btn.btn-default.pull-right{onclick: "copy('#{file[:id]}')"}
+                              %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
+                              %i.fa.fa-save
+                              = t('keppler.keppler_frontend.multimedia.copy')
+            #tab_3.tab-pane.bg-gray{ class: "#{'active' if flash[:notice].second.eql?('audios') }"}
+              .row
+                - @files_list.each_with_index do |file, i|
+                  - if file[:folder].eql?("audios")
+                    .col-lg-4
+                      .box.box-solid
+                        .box-header.with-border{title: "#{file[:name]}"}
+                          .row
+                            .col-lg-10
+                              %h4.box-title
+                                %i.fa.fa-music
+                                = truncate(file[:name], length: 40, omission: '...')
+                            .col-lg-2
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete , data: { confirm: t("keppler.messages.data_confirm") } do
+                                %i.fa.fa-trash
+                        .box-body.no-padding
+                          .back-file
+                            .center
+                              %audio{controls: true}
+                                %source{ src:"#{file[:path]}", type:"audio/#{file[:format]}" }
+                                Your browser does not support the audio tag.
+                        .box-body
+                          %span.box-title
+                            = file[:size]
+                            %button.btn.btn-default.pull-right{onclick: "copy('#{file[:id]}')"}
+                              %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
+                              %i.fa.fa-save
+                              = t('keppler.keppler_frontend.multimedia.copy')
+
+            #tab_4.tab-pane.bg-gray{ class: "#{'active' if flash[:notice].second.eql?('fonts') }"}
+              .row
+                - @files_list.each_with_index do |file, i|
+                  - if file[:folder].eql?("fonts")
+                    .col-lg-3
+                      .box.box-solid
+                        .box-header.with-border{title: "#{file[:name]}"}
+                          .row
+                            .col-lg-10
+                              %h4.box-title
+                                %i.fa.fa-text-height
+                                = truncate(file[:name], length: 35, omission: '...')
+                            .col-lg-2
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :post, data: { confirm: t("keppler.messages.data_confirm") }  do
+                                %i.fa.fa-trash
+                        .box-body.no-padding
+                          .back-file
+                            .center
+                              %i.fa.fa-text-height#font-icon-size
+                        .box-body
+                          %span.box-title
+                            = file[:size]
+                            %button.btn.btn-default.pull-right{onclick: "copy('#{file[:id]}')"}
+                              %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
+                              %i.fa.fa-save
+                              = t('keppler.keppler_frontend.multimedia.copy')

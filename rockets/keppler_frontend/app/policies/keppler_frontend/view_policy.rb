@@ -15,5 +15,13 @@ module KepplerFrontend
     def editor_save?
       keppler_admin? || user_can?(@objects, 'editor_save')
     end
+
+    def multimedia?
+      keppler_admin? || user_can?(@objects, 'multimedia')
+    end
+
+    def upload_multimedia?
+      keppler_admin? || user_can?(@objects, 'upload_multimedia')
+    end
   end
 end

@@ -4,6 +4,10 @@ KepplerFrontend::Engine.routes.draw do
   root to: 'app/frontend#keppler', as: :keppler
   namespace :admin do
     scope :frontend, as: :frontend do
+      get '/assets', to: 'multimedia#index', as: 'multimedia'
+      post '/assets/upload', to: 'multimedia#upload', as: 'upload_multimedia'
+      post '/assets/:search/:fileformat', to: 'multimedia#destroy', as: 'destroy_multimedia'
+
       resources :views do
         get '(page/:page)', action: :index, on: :collection, as: ''
         get '/clone', action: 'clone'
@@ -11,7 +15,6 @@ KepplerFrontend::Engine.routes.draw do
         post '/editor/save', action: 'editor_save'
         post '/sort', action: :sort, on: :collection
         post '/upload', action: 'upload', as: 'upload'
-        post '/upload_multimedia', action: 'upload_multimedia', as: 'upload_multimedia'
         get '/download', action: 'download', as: 'download'
         get(
           '/reload',

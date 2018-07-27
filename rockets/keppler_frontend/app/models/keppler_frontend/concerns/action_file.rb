@@ -11,7 +11,7 @@ module KepplerFrontend
         index_html = File.readlines(file)
         head_idx = 0
         index_html.each do |i|
-          head_idx = index_html.find_index(i) if i.include?("    layout 'layouts/keppler_frontend/application'")
+          head_idx = index_html.find_index(i) if i.include?("    layout 'layouts/keppler_frontend/app/layouts/application'")
         end
         index_html.insert(head_idx.to_i + 1, "    # begin #{name}\n")
         index_html.insert(head_idx.to_i + 2, "    def #{name}\n")

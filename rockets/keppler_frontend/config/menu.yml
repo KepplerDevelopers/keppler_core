@@ -9,3 +9,7 @@ menu:
           name: views
           url_path: /admin/frontend/views
           current: ['current']
+      - option:
+          name: Assets
+          url_path: /admin/frontend/assets
+          current: ['current']

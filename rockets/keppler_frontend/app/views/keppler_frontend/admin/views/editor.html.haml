@@ -4,34 +4,36 @@
       %li.active
         %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
           = "#{@view.name}.html.erb"
-          .signal.html_signal
+          .kf-signal.html_signal
       %li
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
           = "#{@view.name}.scss"
-          .signal.scss_signal
+          .kf-signal.scss_signal
       %li
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
           = "#{@view.name}.js"
-          .signal.js_signal
-      %li
-        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_4"}
-          Multimedia
+          .kf-signal.js_signal
       %li
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
           Action
-          .signal.action_signal
+          .kf-signal.action_signal
       %li.pull-right
-        %a{href: "#", onclick: "controls.save(#{@view.id})"}
-          %i.fa.fa-save
-          = t('keppler.actions.save')
+        %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.download') }
+          %i.fa.fa-download
       %li.pull-right
-        = link_to @view.url, target: '_blank' do
+        = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
           %i.fa.fa-globe
-          = t('keppler.actions.preview')
+      %li.pull-right
+        %a{href: "#", onclick: "controls.save(#{@view.id})", "data-toggle": "control-sidebar", title: t('keppler.actions.assets')}
+          %i.fa.fa-folder
+      %li.pull-right
+        %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.save')}
+          %i.fa.fa-save
       %li.pull-right
         = link_to admin_frontend_views_path do
           %i.fa.fa-list
-          = t('keppler.actions.view_list')
+          %span.hidden-xs
+            = t('keppler.actions.view_list')
     .tab-content
       #tab_1.tab-pane.active
         %div.html.code-container
@@ -45,19 +47,13 @@
         %div.js.code-container
           %textarea#code-js{:name => "code"}
             = @view.js_code
-      #tab_4.tab-pane
-        .row
-          .col-lg-4
-            = simple_form_for @view, url: admin_frontend_view_upload_multimedia_path, remote: true, method: :post do |f|
-              = f.input :file, as: :keppler_file, label: false
-              .pull-right
-                = f.button :submit, t('keppler.permissions.upload'), class: 'btn-primary'
-          .col-lg-8
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       #tab_5.tab-pane
         %div.action.code-container
           %textarea#code-action{:name => "code"}
             = @view.action_code
+
+
+= render "editor_assets"
 
 :javascript
   codeHTML.codeMirrorHtml();

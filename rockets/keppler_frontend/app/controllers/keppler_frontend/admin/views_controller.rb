@@ -139,14 +139,6 @@ module KepplerFrontend
         render json: {result: true}
       end
 
-      def upload_multimedia
-        uploader = ImgFileUploader.new
-        File.open(params[:file]) do |file|
-          uploader.store!(file)
-        end
-        render json: { result: true }
-      end
-
       private
 
       def authorization
@@ -160,7 +152,7 @@ module KepplerFrontend
           view = KepplerFrontend::View.where(url: route['url']).first
           unless view
             KepplerFrontend::View.create(
-              name:route['name'],
+              name: route['name'],
               url: route['url'],
               method: route['method'],
               active: route['active'],
