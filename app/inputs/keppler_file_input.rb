@@ -33,31 +33,29 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   private
 
   def init_preview
+    return if !object.id || @obj_attr.file.nil?
     initializers
-    preview = []
-    return unless object.id
-    if @preview.is_a?(Array)
-      @preview.each do |img|
-        tag =
-          "<img class='kv-preview-data file-preview-image' src=\'/" +
-          img.file.file.split('/')[-5..-1].join('/') + "\'>"
-        preview.push(tag)
-      end
+    if @obj_attr.is_a?(Array)
+      @obj_attr.each { |img| preview_tag(img) }
     else
-      tag =
-        "<img class='kv-preview-data file-preview-image' src='
-        /#{@preview.file.file.split('/')[-5..-1].join('/') unless @preview.nil? || @preview.file.nil?}'>"
-      preview.push(tag)
+      preview_tag(@obj_attr)
     end
-    ('initialPreview: ' + preview.to_s).html_safe + ','
+    ('initialPreview: ' + @previews.to_s).html_safe + ','
   end
 
-  def init_preview_details
-    "layoutTemplates: {
-      actionDelete: '',
-      actionDrag: '',
-    }".html_safe
+  def preview_tag(preview)
+    tag =
+      "<img class='kv-preview-data file-preview-image' src='/uploads
+      #{preview.file.file.split('/uploads').last}'>"
+    @previews.push(tag)
   end
+
+  # def init_preview_details
+  #   "layoutTemplates: {
+  #     actionDelete: '',
+  #     actionDrag: '',
+  #   }".html_safe
+  # end
 
   def preview_zoom_button_icons
     "previewZoomButtonIcons: {
@@ -123,6 +121,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     @attribute = reflection_or_attribute_name
     @input_id = "#{@model}_#{@attribute}"
     @input_name = "#{@model}[#{@attribute}]"
-    @preview = object.try(attribute_name)
+    @obj_attr = object.try(attribute_name)
+    @previews = []
   end
 end

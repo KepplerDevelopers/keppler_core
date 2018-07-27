@@ -3,7 +3,7 @@
     %span.info-box-img.info-box-icon#logo{ style: "background-image: url(#{f.object.logo? ? f.object.logo : '/assets/admin/profile-menu.jpg'})" }
     .info-box-content
       %span.info-box-text
-        = f.input :logo, as: :keppler_file
+        = f.input :logo
 
   .info-box
     %span.info-box-img.info-box-icon#favicon{ style: "background-image: url(#{f.object.favicon? ? f.object.favicon : '/assets/admin/profile-menu.jpg'})" }
