@@ -5,7 +5,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   def input(_wrapper_options)
     @builder.file_field(
       attribute_name,
-      class: 'file',
+      class: 'keppler-file',
       multiple: input_options[:multiple] || false,
       'data-preview-file-type' => 'any',
       value: (object.try(attribute_name) if attr_blank?)
