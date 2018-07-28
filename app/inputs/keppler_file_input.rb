@@ -19,7 +19,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         language: '#{I18n.locale}',
         showUpload: false,
         showCancel: false,
-        #{init_preview}
+        #{init_preview},
         // #{init_preview_details},
         #{preview_zoom_button_icons},
         #{preview_zoom_button_classes},
@@ -40,7 +40,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     else
       preview_tag(@obj_attr)
     end
-    ('initialPreview: ' + @previews.to_s).html_safe + ','
+    ('initialPreview: ' + @previews.to_s).html_safe
   end
 
   def preview_tag(preview)
@@ -105,7 +105,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     maxImageWidth: 5000,
     maxImageHeight: 5000,
     maxFileSize: #{input_options[:max_size] || 225},
-    maxFilePreviewSize: 25600, // 25 MB
+    maxFilePreviewSize: #{input_options[:max_preview_size] || 25_600}, // 25 MB
     minFileCount: 0,
     maxFileCount: 0".html_safe
   end
