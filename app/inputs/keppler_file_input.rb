@@ -20,11 +20,11 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         showUpload: false,
         showCancel: false,
         #{init_preview}
-        // init_preview_details,
-        #{preview_zoom_button_icons},
-        #{preview_zoom_button_classes},
-        #{preview_details},
-        #{icons},
+        // init_preview_details
+        #{preview_zoom_button_icons}
+        #{preview_zoom_button_classes}
+        #{preview_details}
+        #{icons}
         #{dimensions}
       })".html_safe
     end
@@ -54,7 +54,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   #   "layoutTemplates: {
   #     actionDelete: '',
   #     actionDrag: '',
-  #   }".html_safe
+  #   }".html_safe + ','
   # end
 
   def preview_zoom_button_icons
@@ -65,7 +65,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
       fullscreen: '<i class=\"glyphicon glyphicon-fullscreen\"></i>',
       borderless: '<i class=\"glyphicon glyphicon-resize-full\"></i>',
       close: '<i class=\"glyphicon glyphicon-remove\"></i>'
-    }".html_safe
+    }".html_safe + ','
   end
 
   def preview_zoom_button_classes
@@ -76,14 +76,14 @@ class KepplerFileInput < SimpleForm::Inputs::Base
       fullscreen: 'btn btn-default',
       borderless: 'btn btn-default',
       close: 'btn btn-default'
-    }".html_safe
+    }".html_safe + ','
   end
 
   def preview_details
     "allowedPreviewMimeTypes: null,
     allowedFileTypes: #{input_options[:type] || []},
     allowedFileExtensions: #{input_options[:formats] || []},
-    defaultPreviewContent: null".html_safe
+    defaultPreviewContent: null".html_safe + ','
   end
 
   def icons
@@ -96,7 +96,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     cancelIcon: '<i class=\"glyphicon glyphicon-ban-circle\"></i>',
     cancelClass: 'btn btn-default',
     uploadIcon: '<i class=\"glyphicon glyphicon-upload\"></i>',
-    uploadClass: 'btn btn-default'".html_safe
+    uploadClass: 'btn btn-default'".html_safe + ','
   end
 
   def dimensions
@@ -107,7 +107,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     maxFileSize: #{input_options[:max_size] || 225},
     maxFilePreviewSize: #{input_options[:max_preview_size] || 25_600}, // 25 MB
     minFileCount: 0,
-    maxFileCount: 0".html_safe
+    maxFileCount: 0".html_safe + ','
   end
 
   def attr_blank?
