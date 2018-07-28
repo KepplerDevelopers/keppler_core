@@ -45,7 +45,8 @@ module KepplerFrontend
         path: "/assets/keppler_frontend/app/#{file}",
         folder: folder,
         size: filesize(size),
-        format: file_format.split('.').last
+        format: file_format.split('.').last,
+        html: folder.eql?('html') ? "</h1>hola</h1> \n    </h1>chao</h1>" : ''
       }
     end
 
@@ -70,7 +71,7 @@ module KepplerFrontend
     end
 
     def folders
-      ['audios', 'fonts', 'images', 'videos']
+      ['audios', 'fonts', 'images', 'videos', 'html']
     end
 
     def file_formats
@@ -79,8 +80,6 @@ module KepplerFrontend
         fonts: ['.eot', '.otf', '.ttf', '.woff', '.woff2'],
         images: ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.tiff', '.bmp'],
         videos: ['.mp4', '.mpeg', '.webm'],
-        stylesheets: ['.css', '.sass', '.scss'],
-        javascripts: ['.json', '.js', '.coffee'],
         html: ['.html', '.html.erb']
       }
     end

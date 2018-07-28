@@ -34,6 +34,11 @@
                 %i.fa.fa-text-height
                 %span.hidden-xs
                   Fonts
+            %li{ class: "#{'active' if flash[:notice].second.eql?('html') }"}
+              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
+                %i.fa.fa-code
+                %span.hidden-xs
+                  HTML
           .tab-content
             #tab_1.tab-pane.bg-gray{ class: "#{'active' if flash[:notice].second.eql?('images') }"}
               .row
@@ -116,7 +121,6 @@
                               %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
                               %i.fa.fa-save
                               = t('keppler.keppler_frontend.multimedia.copy')
-
             #tab_4.tab-pane.bg-gray{ class: "#{'active' if flash[:notice].second.eql?('fonts') }"}
               .row
                 - @files_list.each_with_index do |file, i|
@@ -143,3 +147,30 @@
                               %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
                               %i.fa.fa-save
                               = t('keppler.keppler_frontend.multimedia.copy')
+
+            #tab_5.tab-pane.bg-gray{ class: "#{'active' if flash[:notice].second.eql?('html') }"}
+              .row
+                - @files_list.each_with_index do |file, i|
+                  - if file[:folder].eql?("html")
+                    .col-lg-3
+                      .box.box-solid
+                        .box-header.with-border{title: "#{file[:name]}"}
+                          .row
+                            .col-lg-10
+                              %h4.box-title
+                                %i.fa.fa-code
+                                = truncate(file[:name], length: 35, omission: '...')
+                            .col-lg-2
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :post, data: { confirm: t("keppler.messages.data_confirm") }  do
+                                %i.fa.fa-trash
+                        .box-body.no-padding
+                          .back-file
+                            .center
+                              %i.fa.fa-code#font-icon-size
+                        .box-body
+                          %span.box-title
+                            = file[:size]
+                            %button.btn.btn-default.pull-right{onclick: "copyHtml('#{file[:id]}')"}
+                              %textarea.hidden{id: "#{file[:id]}", value: "#{file[:html]}"}
+                              %i.fa.fa-save
+                              = t('keppler.keppler_frontend.multimedia.copy_html')

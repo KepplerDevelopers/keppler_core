@@ -3,11 +3,36 @@
   height: 80vh;
 }
 
-#side-assets {
-  .control-sidebar.control-sidebar-open,
-  .control-sidebar.control-sidebar-open + .control-sidebar-bg {
-    right: 0;
-    width: 400px !important;
+.aside-close {
+  position: absolute !important;
+  top: 50px !important;
+  z-index: 1 !important;
+  right: 0px !important;
+}
+
+#assets-editor {
+  .box-title {
+    font-size:  11px;
+
+    i {
+      font-size:  11px;
+    }
+  }
+
+  .tab-content {
+    padding: 0 !important;
+  }
+
+  .box {
+    margin-bottom: 10px;
+  }
+
+  .row {
+    width: 107%;
+  }
+
+  #aside-audio {
+    width: 100% !important;
   }
 }
 
@@ -72,6 +97,19 @@
       background: #c0c0c0;
       width: 100%;
       height: 200px;
+
+      .file-image {
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .back-file-xs{
+      background: #c0c0c0;
+      width: 100%;
+      height: 117px;
 
       .file-image {
         background-position: center;

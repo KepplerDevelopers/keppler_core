@@ -6,6 +6,7 @@ es:
       destroy: El archivo se ha sido eliminado satisfactoriamente
       multimedia:
         copy: Copiar Url
+        copy_html: Copiar Html
     sidebar-menu:
       keppler-frontend: Frontend
       keppler-frontend-submenu:
@@ -28,7 +29,9 @@ es:
       show: Ver
       preview: Visualizar
       download: Descargar
+      user_interfaces: Interfaces de Usuario
       assets: Assets
+      ui: User Interface
       view_list: Lista de vistas
       edit: Actualizar
       clone: Clonar

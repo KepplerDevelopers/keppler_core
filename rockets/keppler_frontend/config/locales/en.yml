@@ -3,9 +3,10 @@ en:
     keppler_frontend:
       success: Your file has been successfully uploaded
       fail: The file format is not valid
+      destroy: The file has been successfully deleted
       multimedia:
-        destroy: The file has been successfully deleted
         copy: Copy Url
+        copy_html: Copy Html
     sidebar-menu:
       keppler-frontend: Frontend
       keppler-frontend-submenu:
@@ -22,6 +23,7 @@ en:
       updated: Updated
       create: Create
       update: Update
+      user_interfaces: User Interfaces
       preview: Preview
       download: Download
       assets: Assets

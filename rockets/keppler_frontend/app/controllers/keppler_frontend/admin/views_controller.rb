@@ -128,6 +128,8 @@ module KepplerFrontend
 
       def editor
         @view = View.find(params[:view_id])
+        filesystem = FileUploadSystem.new
+        @files_list = filesystem.files_list
       end
 
       def editor_save
