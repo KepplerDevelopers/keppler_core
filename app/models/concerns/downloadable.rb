@@ -4,7 +4,6 @@
 module Downloadable
   extend ActiveSupport::Concern
   included do
-
     require 'csv'
 
     def self.to_csv(options = {})

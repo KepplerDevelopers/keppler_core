@@ -4,7 +4,6 @@
 module Uploadable
   extend ActiveSupport::Concern
   included do
-
     require 'csv'
 
     def self.upload(file)
