@@ -19,8 +19,8 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         language: '#{I18n.locale}',
         showUpload: false,
         showCancel: false,
-        #{init_preview},
-        // #{init_preview_details},
+        #{init_preview}
+        // init_preview_details,
         #{preview_zoom_button_icons},
         #{preview_zoom_button_classes},
         #{preview_details},
@@ -40,7 +40,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     else
       preview_tag(@obj_attr)
     end
-    ('initialPreview: ' + @previews.to_s).html_safe
+    ('initialPreview: ' + @previews.to_s).html_safe + ','
   end
 
   def preview_tag(preview)
