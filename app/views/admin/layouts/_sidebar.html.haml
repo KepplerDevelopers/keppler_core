@@ -13,7 +13,7 @@
           %span= t('keppler.sidebar-menu.dashboard')
         - @sidebar.each do |menu|
           - menu.each do |key, _value|
-            - if menu[key]['submenu'] # ontetab sidebar link
+            - if menu[key]['submenu']
               - unless menu[key]['model'].eql?('Customize') && Rails.env.production?
                 - if menu[key]['model'] && can?(menu[key]['model'].constantize).index?
                   %li.sidebar-item{ class: ('active' if menu[key]['current'].include?(controller_path)) }
