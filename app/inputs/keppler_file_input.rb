@@ -20,7 +20,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         showUpload: false,
         showCancel: false,
         #{init_preview}
-        #{init_preview_details},
+        // #{init_preview_details},
         #{preview_zoom_button_icons},
         #{preview_zoom_button_classes},
         #{preview_details},
