@@ -6,7 +6,7 @@ KepplerFrontend::Engine.routes.draw do
     scope :frontend, as: :frontend do
       get '/assets', to: 'multimedia#index', as: 'multimedia'
       post '/assets/upload', to: 'multimedia#upload', as: 'upload_multimedia'
-      post '/assets/:search/:fileformat', to: 'multimedia#destroy', as: 'destroy_multimedia'
+      delete '/assets/:search/:fileformat', to: 'multimedia#destroy', as: 'destroy_multimedia'
 
       resources :views do
         get '(page/:page)', action: :index, on: :collection, as: ''

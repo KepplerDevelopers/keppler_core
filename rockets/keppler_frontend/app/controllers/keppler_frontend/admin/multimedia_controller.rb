@@ -5,24 +5,23 @@ module KepplerFrontend
     class MultimediaController < ApplicationController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :authorization
+      before_action :set_filesystem
 
       def index
-        filesystem = FileUploadSystem.new
-        set_data(filesystem)
+        set_data(@filesystem )
         flash[:notice] = [nil, 'images', 'success']
       end
 
       def upload
         uploader = ImgFileUploader.new
-        filesystem = FileUploadSystem.new
         message = "fail"
         unless params[:view].nil?
-          fotmat_valid = filesystem.validate_format(params[:view][:file].original_filename)
+          fotmat_valid = @filesystem .validate_format(params[:view][:file].original_filename)
           message = "success"
           if fotmat_valid
             File.open(params[:view][:file].path) do |file|
               uploader.store!(file)
-              filesystem.move_and_rename_file(uploader, params[:view][:file])
+              @filesystem .move_and_rename_file(uploader, params[:view][:file])
             end
             filename = params[:view][:file].original_filename
             tab = select_tab(fotmat_valid, filename)
@@ -31,21 +30,22 @@ module KepplerFrontend
             message = "fail"
           end
         end
-        set_data(filesystem)
+        set_data(@filesystem )
         flash[:notice] = [ t("keppler.keppler_frontend.#{message}"), tab, message ]
         render :index
       end
 
       def destroy
-        filesystem = FileUploadSystem.new
-        file = filesystem.search_with_format(params[:search], params[:fileformat])[0]
+        file = @filesystem .search_with_format(params[:search], params[:fileformat])[0]
         unless file.nil?
-          fotmat_valid = filesystem.validate_format(file[:name])
-          session[:tab] = select_tab(fotmat_valid, file[:name])
-          File.delete(file[:url]) if File.exist?(file[:url])
+          fotmat_valid = @filesystem .validate_format(file[:name])
+          tab = select_tab(fotmat_valid, file[:name])
+          [:cover_url, :url].each { |atr| File.delete(file[atr]) if File.exist?(file[atr]) }
+        else
+          tab = select_tab_by_format(params[:fileformat])
         end
-        set_data(filesystem)
-        flash[:notice] = [ t("keppler.keppler_frontend.destroy"), session[:tab], "success" ]
+        set_data(@filesystem)
+        flash[:notice] = [ t("keppler.keppler_frontend.destroy"), tab, "success" ]
         render :index
       end
 
@@ -55,16 +55,25 @@ module KepplerFrontend
         authorize View
       end
 
-      def set_data(filesystem)
+      def set_filesystem
+        @filesystem  = FileUploadSystem.new
+      end
+
+      def set_data(filesystem )
         @view = View.new
-        @files_list = filesystem.files_list
+        @files_list = filesystem .files_list
       end
 
       def select_tab(fotmat_valid, file)
         return nil unless fotmat_valid
-        filesystem = FileUploadSystem.new
-        file = filesystem.file_object(file)
+        @filesystem  = FileUploadSystem.new
+        file = @filesystem .file_object(file)
         file[:folder]
+      end
+
+      def select_tab_by_format(content_type)
+        filesystem  = FileUploadSystem.new
+        file = filesystem .select_folder_by_format(content_type)
       end
     end
   end

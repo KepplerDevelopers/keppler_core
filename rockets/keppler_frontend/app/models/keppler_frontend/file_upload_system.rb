@@ -26,17 +26,19 @@ module KepplerFrontend
         files = Dir.entries("#{url_front}/app/assets/#{folder}/keppler_frontend/app")
         files = files.select { |f| f if validate_format(f) }
         files = files.map do |f|
-          file_object(f)
+          file_object(f) unless html_cover?(f)
         end
         files_result = files_result + files
       end
-      files_result
+      files_result.select { |f| f unless f.nil? }
     end
 
     def file_object(file)
       folder = select_folder(file)
       file_format = File.extname(file)
       size = File.size("#{url_front}/app/assets/#{folder}/keppler_frontend/app/#{file}")
+      cover = "/assets/keppler_frontend/app/#{file.split('.').first}.png"
+      cover_url = "#{url_front}/app/assets/html/keppler_frontend/app/#{file.split('.').first}.png"
       {
         id: SecureRandom.uuid,
         name: file,
@@ -46,7 +48,9 @@ module KepplerFrontend
         folder: folder,
         size: filesize(size),
         format: file_format.split('.').last,
-        html: folder.eql?('html') ? code_html(file) : ''
+        html: folder.eql?('html') ? code_html(file) : '',
+        cover: File.file?(cover_url) ? cover : nil,
+        cover_url: File.file?(cover_url) ? cover_url : ''
       }
     end
 
@@ -56,9 +60,11 @@ module KepplerFrontend
 
     def files_list_bootstrap
       files = Dir.entries("#{url_front}/app/assets/html/keppler_frontend/bootstrap")
-      files = files.select { |f| f if validate_format(f) }
+      files = files.select { |f| f if validate_format(f) && select_folder(f).eql?('html') }
       files = files.map do |file|
         size = File.size("#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{file}")
+        cover = "/assets/keppler_frontend/bootstrap/#{file.split('.').first}.png"
+        cover_url = "#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{file.split('.').first}.png"
         {
           id: SecureRandom.uuid,
           name: file,
@@ -68,10 +74,19 @@ module KepplerFrontend
           folder: "bootstrap",
           size: filesize(size),
           format: 'html',
-          html: code_bootstrap(file)
+          html: code_bootstrap(file),
+          cover: File.file?(cover_url) ? cover : nil
         }
       end
       files
+    end
+
+    def select_folder_by_format(content_type)
+      result = ''
+      file_formats.each do |key, value|
+        result = key.to_s if value.include?(".#{content_type}")
+      end
+      result
     end
 
     private
@@ -84,6 +99,17 @@ module KepplerFrontend
     def code_html(name)
       html = File.readlines("#{url_front}/app/assets/html/keppler_frontend/app/#{name}")
       html.join
+    end
+
+    def html_cover?(file)
+      files = []
+      folders.each do |folder|
+        files = Dir.entries("#{url_front}/app/assets/#{folder}/keppler_frontend/app")
+        folder_img = select_folder(file)
+        files = files.select { |f| f.eql?(file) && folder_img.eql?('images') }
+        return true if !files.count.zero? && folder.eql?('html')
+      end
+      return false if files.count.zero?
     end
 
     def url_front

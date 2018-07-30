@@ -23,7 +23,10 @@
             .box-body.no-padding
               .back-file-xs
                 .center
-                  %i.fa.fa-code#font-icon-size
+                  - if file[:cover].nil?
+                    %i.fa.fa-code#font-icon-size
+                  - else
+                    = image_tag file[:cover]
             .box-body
               %span.box-title
                 = file[:size]
@@ -37,12 +40,15 @@
             .row
               .col-lg-12
                 %h4.box-title
-                  %i.fa.fa-code
+                  %i.fa.fa-tint
                   = truncate(file[:name], length: 30, omission: '...')
           .box-body.no-padding
             .back-file-xs
               .center
-                %i.fa.fa-code#font-icon-size
+                - if file[:cover].nil?
+                  %i.fa.fa-tint#font-icon-size
+                - else
+                  = image_tag file[:cover]
           .box-body
             %span.box-title
               = file[:size]
@@ -52,6 +58,14 @@
 .control-sidebar-bg
 
 :javascript
+  codeHTML.codeMirrorHtml();
+  codeCSS.codeMirrorCSS();
+  codeJs.codeMirrorJs();
+  codeAction.codeMirrorAction();
+  var tab = `#{@view.name}.html.erb`;
+  var id = `#{@view.id}`;
+  var ready = { css: false, js: false, action: false }
+
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     tab = $(this)[0].innerText
     if ( tab===`#{@view.name}.scss` && ready.css === false ){
@@ -64,5 +78,20 @@
       codeAction.codeMirrorAction();
       ready.action = true;
     }
-    console.log($(this))
+
   })
+
+  $(document).keypress("s",function(e) {
+    if(e.ctrlKey && e.key=='s') {
+      e.preventDefault();
+      if ( tab === `#{@view.name}.html.erb`) {
+        codeHTML.save(id);
+      } else if (tab === `#{@view.name}.scss`) {
+        codeCSS.save(id);
+      } else if (tab === `#{@view.name}.js`) {
+        codeJs.save(id);
+      } else if (tab === 'Action') {
+        codeAction.save(id);
+      }
+    }
+  });

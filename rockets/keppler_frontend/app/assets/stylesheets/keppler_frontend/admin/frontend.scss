@@ -120,7 +120,7 @@
 
   .box-body {
     .back-file{
-      background: #c0c0c0;
+      background: #eaeaea;
       width: 100%;
       height: 200px;
 
@@ -133,7 +133,7 @@
     }
 
     .back-file-xs{
-      background: #c0c0c0;
+      background: #eaeaea;
       width: 100%;
       height: 117px;
 
@@ -142,6 +142,10 @@
         background-size: cover;
         width: 100%;
         height: 100%;
+      }
+
+      #font-icon-size {
+        font-size: 3rem;
       }
     }
   }
@@ -213,5 +217,9 @@
 
   .cm-s-monokai span.cm-variable-2 {
     color: #fff;
+  }
+
+  .cm-s-monokai span.cm-atom {
+    color: #40eded;
   }
 }

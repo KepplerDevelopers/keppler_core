@@ -134,7 +134,7 @@
                                 %i.fa.fa-text-height
                                 = truncate(file[:name], length: 35, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :post, data: { confirm: t("keppler.messages.data_confirm") }  do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
@@ -161,12 +161,16 @@
                                 %i.fa.fa-code
                                 = truncate(file[:name], length: 35, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :post, data: { confirm: t("keppler.messages.data_confirm") }  do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
                             .center
-                              %i.fa.fa-code#font-icon-size
+                              = file[:cover]
+                              - if file[:cover].nil?
+                                %i.fa.fa-code#font-icon-size
+                              - else
+                                = image_tag file[:cover]
                         .box-body
                           %span.box-title
                             = file[:size]

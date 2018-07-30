@@ -5,7 +5,7 @@ module KepplerFrontend
     layout 'layouts/keppler_frontend/app/layouts/application'
     # begin friend
     def friend
-      @views = View.all.select { |v| v unless v.name.eql?("keppler") }
+      @views = View.all.select { |v| v unless v.name.eql?('keppler') }
     end
     # end friend
     # begin index
