@@ -10,6 +10,32 @@
   right: 0px !important;
 }
 
+#theme-editor {
+  .box-title {
+    font-size:  11px;
+
+    i {
+      font-size:  11px;
+    }
+  }
+
+  .tab-content {
+    padding: 0 !important;
+  }
+
+  .box {
+    margin-bottom: 10px;
+  }
+
+  .row {
+    width: 107%;
+  }
+
+  #aside-audio {
+    width: 100% !important;
+  }
+}
+
 #assets-editor {
   .box-title {
     font-size:  11px;

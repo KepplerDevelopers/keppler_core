@@ -130,6 +130,7 @@ module KepplerFrontend
         @view = View.find(params[:view_id])
         filesystem = FileUploadSystem.new
         @files_list = filesystem.files_list
+        @files_bootstrap = filesystem.files_list_bootstrap
       end
 
       def editor_save

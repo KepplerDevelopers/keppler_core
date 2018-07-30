@@ -1,0 +1,68 @@
+%aside.control-sidebar.control-sidebar-light#theme-editor
+  = link_to "#", "data-toggle": "control-sidebar", class: 'aside-close' do
+    .label.bg-gray
+      X
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#editor_theme_tab_1"}
+        %i.fa.fa-code
+    %li
+      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_theme_tab_2"}
+        %i.fa.fa-tint
+  .tab-content.container-files.bg-gray
+    #editor_theme_tab_1.tab-pane.active
+      - @files_list.each_with_index do |file, i|
+        - if file[:folder].eql?("html")
+          .box.box-solid
+            .box-header.with-border{title: "#{file[:name]}"}
+              .row
+                .col-lg-12
+                  %h4.box-title
+                    %i.fa.fa-code
+                    = truncate(file[:name], length: 30, omission: '...')
+            .box-body.no-padding
+              .back-file-xs
+                .center
+                  %i.fa.fa-code#font-icon-size
+            .box-body
+              %span.box-title
+                = file[:size]
+                %button.btn.btn-default.pull-right{onclick: "copyHtml('#{file[:id]}')"}
+                  %textarea.hidden{id: "#{file[:id]}", value: "#{file[:html]}"}
+                  %i.fa.fa-save
+    #editor_theme_tab_2.tab-pane
+      - @files_bootstrap.each_with_index do |file, i|
+        .box.box-solid
+          .box-header.with-border{title: "#{file[:name]}"}
+            .row
+              .col-lg-12
+                %h4.box-title
+                  %i.fa.fa-code
+                  = truncate(file[:name], length: 30, omission: '...')
+          .box-body.no-padding
+            .back-file-xs
+              .center
+                %i.fa.fa-code#font-icon-size
+          .box-body
+            %span.box-title
+              = file[:size]
+              %button.btn.btn-default.pull-right{onclick: "copyHtml('#{file[:id]}')"}
+                %textarea.hidden{id: "#{file[:id]}", value: "#{file[:html]}"}
+                %i.fa.fa-save
+.control-sidebar-bg
+
+:javascript
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    tab = $(this)[0].innerText
+    if ( tab===`#{@view.name}.scss` && ready.css === false ){
+      codeCSS.codeMirrorCSS();
+      ready.css = true;
+    } else if( tab===`#{@view.name}.js` && ready.js === false ) {
+      codeJs.codeMirrorJs();
+      ready.js = true;
+    } else if( tab==="Action" && ready.action === false ) {
+      codeAction.codeMirrorAction();
+      ready.action = true;
+    }
+    console.log($(this))
+  })

@@ -24,10 +24,10 @@
         = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
           %i.fa.fa-globe
       %li.pull-right
-        %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.user_interfaces') }
+        %a#btn-theme-editor{href: "#", title: t('keppler.actions.user_interfaces') }
           %i.fa.fa-paint-brush
       %li.pull-right
-        %a{href: "#", onclick: "controls.save(#{@view.id})", "data-toggle": "control-sidebar", title: t('keppler.actions.assets')}
+        %a#btn-assets-editor{href: "#", title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
         %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.save')}
@@ -57,13 +57,14 @@
 
 
 = render "editor_assets"
+= render "editor_themes"
 
 :javascript
   codeHTML.codeMirrorHtml();
   codeCSS.codeMirrorCSS();
   codeJs.codeMirrorJs();
   codeAction.codeMirrorAction();
-  var tab = 'HTML';
+  var tab = `#{@view.name}.html.erb`;
   var id = `#{@view.id}`;
   var ready = { css: false, js: false, action: false }
 

@@ -41,12 +41,12 @@ module KepplerFrontend
         id: SecureRandom.uuid,
         name: file,
         url: "#{url_front}/app/assets/#{folder}/keppler_frontend/app/#{file}",
-        search: "#{file.split('.').first}",
+        search: file.split('.').first,
         path: "/assets/keppler_frontend/app/#{file}",
         folder: folder,
         size: filesize(size),
         format: file_format.split('.').last,
-        html: folder.eql?('html') ? "</h1>hola</h1> \n    </h1>chao</h1>" : ''
+        html: folder.eql?('html') ? code_html(file) : ''
       }
     end
 
@@ -54,7 +54,37 @@ module KepplerFrontend
       files_list.select { |f| f if f[:search].eql?(search) && f[:format].eql?(file_format) }
     end
 
+    def files_list_bootstrap
+      files = Dir.entries("#{url_front}/app/assets/html/keppler_frontend/bootstrap")
+      files = files.select { |f| f if validate_format(f) }
+      files = files.map do |file|
+        size = File.size("#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{file}")
+        {
+          id: SecureRandom.uuid,
+          name: file,
+          url: "#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{file}",
+          search: file.split('.').first,
+          path: "/assets/keppler_frontend/bootstrap/#{file}",
+          folder: "bootstrap",
+          size: filesize(size),
+          format: 'html',
+          html: code_bootstrap(file)
+        }
+      end
+      files
+    end
+
     private
+
+    def code_bootstrap(name)
+      html = File.readlines("#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{name}")
+      html.join
+    end
+
+    def code_html(name)
+      html = File.readlines("#{url_front}/app/assets/html/keppler_frontend/app/#{name}")
+      html.join
+    end
 
     def url_front
       "#{Rails.root}/rockets/keppler_frontend"
