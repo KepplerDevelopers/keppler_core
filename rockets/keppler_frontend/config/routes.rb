@@ -1,5 +1,4 @@
 KepplerFrontend::Engine.routes.draw do
-  get '/friend', to: 'app/frontend#friend', as: :friend
   get '/', to: 'app/frontend#index', as: :index
   root to: 'app/frontend#keppler', as: :keppler
   namespace :admin do

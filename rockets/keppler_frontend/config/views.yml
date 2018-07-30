@@ -32,19 +32,3 @@
     utc: 2018-07-24 15:30:34.365100000 Z
     zone: *1
     time: 2018-07-24 11:30:34.365100000 Z
-- id: 109
-  name: friend
-  url: "/friend"
-  method: GET
-  active: true
-  format_result: HTML
-  position: 3
-  deleted_at: 
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-07-24 15:59:00.239004000 Z
-    zone: *1
-    time: 2018-07-24 11:59:00.239004000 Z
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-07-24 15:59:14.247172000 Z
-    zone: *1
-    time: 2018-07-24 11:59:14.247172000 Z

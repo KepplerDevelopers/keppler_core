@@ -30,7 +30,8 @@ module KepplerFrontend
         end
         files_result = files_result + files
       end
-      files_result.select { |f| f unless f.nil? }
+      files_result = files_result.select { |f| f unless f.nil? }
+      files_result.sort_by { |k| k[:name] }
     end
 
     def file_object(file)
@@ -78,7 +79,7 @@ module KepplerFrontend
           cover: File.file?(cover_url) ? cover : nil
         }
       end
-      files
+      files.sort_by { |k| k[:name] }
     end
 
     def select_folder_by_format(content_type)
