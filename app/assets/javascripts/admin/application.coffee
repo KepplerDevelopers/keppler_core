@@ -12,6 +12,7 @@
 #= require jquery.minicolors
 #= require vue
 #= require jquery.remotipart
+#= require jquery.slick
 #= require admin/codemirror/codemirror
 #= require_tree ./codemirror/mode
 #= require_tree ./codemirror/keymap

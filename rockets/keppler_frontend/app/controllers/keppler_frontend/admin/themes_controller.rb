@@ -22,6 +22,7 @@ module KepplerFrontend
         @objects = themes.page(@current_page).order(position: :asc)
         @total = themes.size
         @themes = @objects.all
+        @theme = Theme.first
         if !@objects.first_page? && @objects.size.zero?
           redirect_to themes_path(page: @current_page.to_i.pred, search: @query)
         end
@@ -56,21 +57,34 @@ module KepplerFrontend
           uploader.store!(file)
         end
 
-        if @theme.save
-          @theme.install(uploader, params[:theme][:file])
-          redirect(@theme, params)
+        if @theme.validate_theme(uploader, params[:theme][:file])
+          @theme.save
+          @theme.install(params[:theme][:file])
+          redirect_to(
+            admin_frontend_themes_path(page: @current_page, search: @query),
+            notice: t("keppler.keppler_frontend.theme.success")
+          )
         else
+          flash[:notice] = t("keppler.keppler_frontend.theme.fail")
           render :new
         end
       end
 
       # PATCH/PUT /themes/1
       def update
-        if @theme.update(theme_params)
-          redirect(@theme, params)
-        else
-          render :edit
+        if params[:theme][:active].eql?('true')
+          @theme.desactived
+          change_all_to_false
+          if @theme.update(theme_params)
+            @theme.actived
+          else
+            render :edit
+          end
         end
+        redirect_to(
+          admin_frontend_themes_path(page: @current_page, search: @query),
+          notice: t("keppler.keppler_frontend.theme.apply")
+        )
       end
 
       def clone
@@ -85,7 +99,7 @@ module KepplerFrontend
 
       # DELETE /themes/1
       def destroy
-        @theme.destroy if @theme
+        @theme.destroy if @theme && @theme.active.eql?(false)
         redirect_to admin_frontend_themes_path, notice: actions_messages(@theme)
       end
 
@@ -128,6 +142,10 @@ module KepplerFrontend
         render :index
       end
 
+      def show_covers
+        @theme = Theme.find(params[:theme_id])
+      end
+
       private
 
       def authorization
@@ -150,8 +168,12 @@ module KepplerFrontend
         end
       end
 
+      def change_all_to_false
+        Theme.all.each { |t| t.update(active: false) }
+      end
+
       def name_format(file)
-        file.original_filename.split('.').first
+        file.original_filename.split('.').first.downcase.gsub(' ', '_').gsub('-', '_')
       end
 
       def update_theme_yml

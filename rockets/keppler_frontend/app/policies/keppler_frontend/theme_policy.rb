@@ -7,5 +7,9 @@ module KepplerFrontend
       @user = user
       @objects = objects
     end
+
+    def show_covers?
+      keppler_admin? || user_can?(@objects, 'show_covers')
+    end
   end
 end

@@ -13,9 +13,6 @@
           .box-header.with-border
             %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
             .box-tools.pull-right
-              - if can?(KepplerFrontend::Theme).update?
-                = link_to edit_admin_frontend_theme_path(@theme), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
-                  %i.icon-pencil
               - if can?(KepplerFrontend::Theme).destroy?
                 = link_to admin_frontend_theme_path(@theme), class: "btn btn-box-tool", title: "#{t('keppler.actions.delete')}", method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
                   %i.icon-trash

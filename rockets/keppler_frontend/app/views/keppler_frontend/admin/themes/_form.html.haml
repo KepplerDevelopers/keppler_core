@@ -21,6 +21,9 @@
                 .form-padding
                   .col-xs-12
                     = f.input :file, as: :file, label: false
+                    - if flash[:notice]
+                      .keppler-frontend-message{class: "#{ flash[:notice].last.eql?('success') ? 'text-green' : 'text-red' }"}
+                        = flash[:notice]
                   .col-xs-12
                     = f.input :position, as: :hidden
                   .col-xs-12

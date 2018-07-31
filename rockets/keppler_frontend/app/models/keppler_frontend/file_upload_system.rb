@@ -88,6 +88,15 @@ module KepplerFrontend
         result = key.to_s if value.include?(".#{content_type}")
       end
       result
+    end    
+
+    def select_folder(file)
+      content_type = File.extname(file)
+      result = ''
+      file_formats.each do |key, value|
+        result = key.to_s if value.include?(content_type)
+      end
+      result
     end
 
     private
@@ -139,15 +148,6 @@ module KepplerFrontend
         videos: ['.mp4', '.mpeg', '.webm'],
         html: ['.html', '.html.erb']
       }
-    end
-
-    def select_folder(file)
-      content_type = File.extname(file)
-      result = ''
-      file_formats.each do |key, value|
-        result = key.to_s if value.include?(content_type)
-      end
-      result
     end
 
   end

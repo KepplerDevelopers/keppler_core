@@ -51,7 +51,7 @@ end
 
 # Soft delete
 gem 'paranoia', '2.4.1'
-# 
+#
 # gem 'codemirror-rails', '5.15.2'
 
 # Forms
@@ -69,6 +69,7 @@ gem 'rmagick', '2.16.0' # fix issue: 'sudo apt install libmagick++-dev'
 gem 'bootstrap-sass', '3.3.7'
 gem 'bourbon', '5.0.0'
 gem 'font-awesome-sass', '5.0.9'
+gem 'jquery-slick-rails', '1.9.0'
 
 # Authentication and Authorization
 gem 'devise', '4.4.3'

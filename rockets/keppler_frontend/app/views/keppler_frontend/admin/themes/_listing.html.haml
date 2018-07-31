@@ -1,20 +1,14 @@
 - objects.each do |theme|
   %tr{ id: "row-#{theme.id}" }
     %td.item-check{ style: 'width: 10%' }
-      - if can?(KepplerFrontend::Theme).destroy_multiple? && !theme.name.eql?('Keppler Default')
-        .checkbox
-          %label{ for: "checkbox-#{theme.id}" }
-            %input{ type:"checkbox", id: "checkbox-#{theme.id}", 'checklist-model' => 'check', 'checklist-value' => "#{theme.id}", '@click' => "listDelete(#{theme.id})"}
-            %span.cr
-              %i.cr-icon.glyphicon.glyphicon-ok
-    %td.hidden-xs
-      = link_to admin_frontend_theme_path(theme, search: @query), remote: true, class: 'show-row' do
+    %td
+      = link_to admin_frontend_theme_show_covers_path(theme), remote: true, class: 'show-row' do
         %span
           = theme.name
     %td.hidden-xs
-      = link_to admin_frontend_theme_path(theme, search: @query), remote: true, class: 'show-row' do
-        %span
-          = simple_form_for [:admin, :frontend, theme] do |f|
+      %span
+        = simple_form_for [:admin, :frontend, theme], url: admin_frontend_theme_path(theme) , method: :patch do |f|
+          .check_active{onclick: "installTemplate(#{theme.id})"}
             = f.input :active, as: :keppler_boolean, label: false
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{theme.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
@@ -25,22 +19,14 @@
             = link_to admin_frontend_theme_path(theme), class: 'new-menu', title: t('keppler.actions.show') do
               %i.icon-eye
               = t('keppler.actions.show')
-        - if can?(KepplerFrontend::Theme).update?
-          %li
-            = link_to edit_admin_frontend_theme_path(theme), class: 'new-menu', title: t('keppler.actions.edit') do
-              %i.icon-pencil
-              = t('keppler.actions.edit')
-        - if can?(KepplerFrontend::Theme).clone?
-          %li
-            = link_to admin_frontend_theme_clone_path(theme), class: 'new-menu', title: t('keppler.actions.clone') do
-              %i.icon-docs
-              = t('keppler.actions.clone')
-        - if can?(KepplerFrontend::Theme).destroy? && !theme.name.eql?('Keppler Default')
+        - if can?(KepplerFrontend::Theme).destroy? && !theme.name.eql?('keppler_default')
           %li
             = link_to admin_frontend_theme_path(theme), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash
               = t('keppler.actions.delete')
 
-    %td{:style => 'width: 5%;'}
-      %a.drop{:href=>"#"}
-        %i.icon-cursor-move
+    :javascript
+      function installTemplate(customize_id) {
+        $('.spinner').css('display', 'block');
+        $('#edit_theme_'+customize_id).submit()
+      }

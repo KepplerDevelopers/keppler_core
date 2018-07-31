@@ -7,6 +7,10 @@ es:
       multimedia:
         copy: Copiar Url
         copy_html: Copiar Html
+      theme:
+        success: El tema ha sido agregado satisfactoriamente
+        fail: El archivo es reconocido como un tema de keppler
+        apply: El cambio ha sido aplicado satisfactoriamente
     sidebar-menu:
       keppler-frontend: Frontend
       keppler-frontend-submenu:
