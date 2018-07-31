@@ -11,16 +11,21 @@ es:
       keppler-frontend: Frontend
       keppler-frontend-submenu:
         views: Vistas
+        assets: Assets
+        themes: Temas
     models:
       singularize:
         keppler_frontend/view: vista
         view: vista
+        theme: tema
       pluralize:
         keppler_frontend/views: vistas
         views: vistas
+        themes: temas
     modules:
       new: Nuevo
       keppler_frontend/admin/views: Frontend
+      keppler_frontend/admin/themes: Temas
     settings:
     actions:
       created: Creado

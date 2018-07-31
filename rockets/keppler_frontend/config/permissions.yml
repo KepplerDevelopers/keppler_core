@@ -1,4 +1,12 @@
 modules:
+ themes:
+    name: Theme
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  
  views:
     name: View
     actions: [

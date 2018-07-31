@@ -11,13 +11,18 @@ en:
       keppler-frontend: Frontend
       keppler-frontend-submenu:
         views: Views
+        assets: Assets
+        themes: Themes
     models:
       singularize:
         view: view
+        theme: theme
       pluralize:
         views: views
+        themes: themes
     modules:
       keppler_frontend/admin/views: Frontend
+      keppler_frontend/admin/themes: Themes
     actions:
       created: Created
       updated: Updated

@@ -58,11 +58,14 @@
 .control-sidebar-bg
 
 :javascript
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
     $(document).keypress("s",function(e) {
       if(e.ctrlKey && e.key=='s') {
         e.preventDefault();
-        var tab = `#{@view.name}.html.erb`;
+        var tab = ev.target.innerText;
+        if (tab==='') {
+          var tab = `#{@view.name}.html.erb`;
+        }
         var id = `#{@view.id}`
         if ( tab === `#{@view.name}.html.erb`) {
           codeHTML.save(id);

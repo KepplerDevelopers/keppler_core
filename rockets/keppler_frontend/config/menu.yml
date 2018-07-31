@@ -13,3 +13,7 @@ menu:
           name: Assets
           url_path: /admin/frontend/assets
           current: ['current']
+      - option:
+          name: Themes
+          url_path: /admin/frontend/themes
+          current: ['current']

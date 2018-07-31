@@ -17,9 +17,9 @@
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
           Action
           .kf-signal.action_signal
-      %li.pull-right
-        %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.download') }
-          %i.fa.fa-download
+      -# %li.pull-right
+      -#   %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.download') }
+      -#     %i.fa.fa-download
       %li.pull-right
         = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
           %i.fa.fa-globe
