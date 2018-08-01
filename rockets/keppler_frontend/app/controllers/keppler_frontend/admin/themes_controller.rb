@@ -22,7 +22,7 @@ module KepplerFrontend
         @objects = themes.page(@current_page).order(position: :asc)
         @total = themes.size
         @themes = @objects.all
-        @theme = Theme.first
+        @theme = Theme.where(active: true).first
         if !@objects.first_page? && @objects.size.zero?
           redirect_to themes_path(page: @current_page.to_i.pred, search: @query)
         end

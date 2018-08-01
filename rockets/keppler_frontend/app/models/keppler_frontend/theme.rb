@@ -138,7 +138,7 @@ module KepplerFrontend
 
     def actived
       new_theme = self.name
-      new_layout = "#{url_front}/app/views/layouts/keppler_frontend/themes/#{new_theme}/application.html.erb"
+      new_layout = "#{url_front}/app/views/layouts/themes/#{new_theme}/application.html.erb"
       app_folder = "#{url_front}/app/views/layouts/keppler_frontend/app/layouts/"
       FileUtils.cp(new_layout, app_folder) if File.exist?(new_layout)
 
