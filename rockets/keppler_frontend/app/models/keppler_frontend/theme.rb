@@ -41,7 +41,7 @@ module KepplerFrontend
       File.rename(old_name, new_name)
       system("unzip #{new_name}")
       theme_folder = new_file.original_filename.split('.').first
-      assets_folder = File.directory?("#{Rails.root}/#{theme_folder}/assets/keppler_frontend/themes/")
+      assets_folder = File.directory?("#{Rails.root}/#{theme_folder}/assets/themes/")
       html_folder = File.directory?("#{Rails.root}/#{theme_folder}/html")
       covers_folder = File.directory?("#{Rails.root}/#{theme_folder}/covers")
       layout_field = File.file?("#{Rails.root}/#{theme_folder}/layouts/application.html.erb")
@@ -64,7 +64,7 @@ module KepplerFrontend
 
 
     def install_layout(folder)
-      new_folder = "#{url_front}/app/views/layouts/keppler_frontend/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
+      new_folder = "#{url_front}/app/views/layouts/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
       FileUtils::mkdir_p new_folder
       layout_file = "#{Rails.root}/#{folder}/layouts/application.html.erb"
       FileUtils.mv(layout_file, new_folder)
@@ -73,7 +73,7 @@ module KepplerFrontend
     def install_html(folder)
       old_theme_folder = "#{Rails.root}/#{folder}/html"
       scripts = Dir.entries(old_theme_folder)
-      theme_folder = "#{url_front}/app/assets/html/keppler_frontend/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
+      theme_folder = "#{url_front}/app/assets/html/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
       covers_folder = "#{Rails.root}/#{folder}/covers"
       FileUtils::mkdir_p theme_folder
       FileUtils.mv(covers_folder, theme_folder)
@@ -85,13 +85,13 @@ module KepplerFrontend
     end
 
     def install_assets(folder)
-      assets_theme = "#{Rails.root}/#{folder.split('.').first}/assets/keppler_frontend/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
+      assets_theme = "#{Rails.root}/#{folder.split('.').first}/assets/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
       assets_core = "#{url_front}/app/assets"
       assets = Dir.entries(assets_theme)
       assets.each do |asset|
         if validate_format(asset)
           assets_type = select_folder(asset)
-          theme_folder = "#{assets_core}/#{assets_type}/keppler_frontend/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
+          theme_folder = "#{assets_core}/#{assets_type}/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
           FileUtils::mkdir_p theme_folder unless File.directory?(theme_folder)
           FileUtils.mv("#{assets_theme}/#{asset}", theme_folder)
         end
@@ -100,20 +100,20 @@ module KepplerFrontend
 
     def uninstall
       return if !self || self.active.eql?(true)
-      views_folder = "#{url_front}/app/views/layouts/keppler_frontend/themes/#{self.name}"
+      views_folder = "#{url_front}/app/views/layouts/themes/#{self.name}"
       FileUtils.rm_rf(views_folder)
       all_folders.each do |folder|
-        assets_folder = "#{url_front}/app/assets/#{folder}/keppler_frontend/themes/#{self.name}"
+        assets_folder = "#{url_front}/app/assets/#{folder}/themes/#{self.name}"
         FileUtils.rm_rf(assets_folder)
       end
     end
 
     def covers
       theme = self.name.downcase.gsub(' ', '_')
-      covers = Dir.entries("#{url_front}/app/assets/html/keppler_frontend/themes/#{theme}/covers")
+      covers = Dir.entries("#{url_front}/app/assets/html/themes/#{theme}/covers")
       result = []
       covers.each do |cover|
-        result << "/assets/keppler_frontend/themes/#{theme}/covers/#{cover}" if validate_format(cover)
+        result << "/assets/themes/#{theme}/covers/#{cover}" if validate_format(cover)
       end
       result.sort
     end
@@ -124,7 +124,7 @@ module KepplerFrontend
       File.delete(old_layout) if File.exist?(old_layout)
 
       ['html'].each do |folder|
-        theme_folder = "#{url_front}/app/assets/#{folder}/keppler_frontend/themes/#{old_theme}"
+        theme_folder = "#{url_front}/app/assets/#{folder}/themes/#{old_theme}"
         app_folder = "#{url_front}/app/assets/#{folder}/keppler_frontend/app"
         if File.directory?(theme_folder)
           Dir.entries(theme_folder).each do |asset|
@@ -143,7 +143,7 @@ module KepplerFrontend
       FileUtils.cp(new_layout, app_folder) if File.exist?(new_layout)
 
       ['html'].each do |folder|
-        theme_folder = "#{url_front}/app/assets/#{folder}/keppler_frontend/themes/#{new_theme}"
+        theme_folder = "#{url_front}/app/assets/#{folder}/themes/#{new_theme}"
         app_folder = "#{url_front}/app/assets/#{folder}/keppler_frontend/app"
         if File.directory?(theme_folder)
           Dir.entries(theme_folder).each do |asset|
