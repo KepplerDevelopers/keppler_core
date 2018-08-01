@@ -64,7 +64,7 @@ module KepplerFrontend
 
 
     def install_layout(folder)
-      new_folder = "#{url_front}/app/views/layouts/keppler_frontend/themes/#{folder}"
+      new_folder = "#{url_front}/app/views/layouts/keppler_frontend/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
       FileUtils::mkdir_p new_folder
       layout_file = "#{Rails.root}/#{folder}/layouts/application.html.erb"
       FileUtils.mv(layout_file, new_folder)
@@ -73,7 +73,7 @@ module KepplerFrontend
     def install_html(folder)
       old_theme_folder = "#{Rails.root}/#{folder}/html"
       scripts = Dir.entries(old_theme_folder)
-      theme_folder = "#{url_front}/app/assets/html/keppler_frontend/themes/#{folder}"
+      theme_folder = "#{url_front}/app/assets/html/keppler_frontend/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
       covers_folder = "#{Rails.root}/#{folder}/covers"
       FileUtils::mkdir_p theme_folder
       FileUtils.mv(covers_folder, theme_folder)
@@ -91,7 +91,7 @@ module KepplerFrontend
       assets.each do |asset|
         if validate_format(asset)
           assets_type = select_folder(asset)
-          theme_folder = "#{assets_core}/#{assets_type}/keppler_frontend/themes/#{folder.split('.').first}"
+          theme_folder = "#{assets_core}/#{assets_type}/keppler_frontend/themes/#{folder.split('.').first.downcase.gsub(' ', '_').gsub('-', '_')}"
           FileUtils::mkdir_p theme_folder unless File.directory?(theme_folder)
           FileUtils.mv("#{assets_theme}/#{asset}", theme_folder)
         end
@@ -163,7 +163,7 @@ module KepplerFrontend
 
     def post_install(theme)
       theme_folder = "#{Rails.root}/#{theme.split('.').first}"
-      theme_zip = "#{Rails.root}/public/keppler_frontend/#{theme}"
+      theme_zip = "#{Rails.root}/public/keppler_frontend/#{theme.downcase.gsub(' ', '_').gsub('-', '_')}"
       FileUtils.rm_rf(theme_folder)
       FileUtils.rm_rf(theme_zip)
     end
