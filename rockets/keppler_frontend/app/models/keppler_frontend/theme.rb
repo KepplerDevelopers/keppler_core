@@ -55,7 +55,7 @@ module KepplerFrontend
     end
 
     def install(new_file)
-      theme_folder = new_file.original_filename.split('.').first
+      theme_folder = new_file.original_filename.downcase.gsub(' ', '_').gsub('-', '_')
       install_layout(theme_folder)
       install_html(theme_folder)
       install_assets(theme_folder)
