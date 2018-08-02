@@ -17,9 +17,19 @@ module ObjectQuery
   def respond_to_formats(objects)
     respond_to do |format|
       format.html
-      format.csv { send_data objects.to_csv }
-      format.xls { send_data objects.to_xls }
-      format.json { render json: objects }
+      format.csv { send_data objects.model.all.to_csv }
+      format.xls { send_data objects.model.all.to_xls }
+      format.json { render json: json_objects(objects) }
+    end
+  end
+
+  protected
+
+  def json_objects(objects)
+    if request.url.include?('page')
+      objects.page(@current_page).order(position: :desc)
+    else
+      objects.model.all
     end
   end
 end
