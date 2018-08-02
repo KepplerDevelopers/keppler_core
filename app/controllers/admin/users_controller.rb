@@ -81,7 +81,7 @@ module Admin
       @q = User.ransack(params[:q])
       users = @q.result(distinct: true).where('id != ?', User.first.id)
       users = users.order(created_at: :desc)
-      @objects = users.page(@current_page)
+      @objects = users.page(@current_page).order(position: :desc)
       @total = users.size
     end
 
