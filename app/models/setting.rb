@@ -6,7 +6,7 @@ class Setting < ApplicationRecord
 
   has_one :smtp_setting
   has_one :google_analytics_setting
-  has_one :social_account
+  has_one :social_account, dependent: :destroy
   has_one :appearance
 
   accepts_nested_attributes_for(
