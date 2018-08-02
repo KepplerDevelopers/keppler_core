@@ -1,0 +1,133 @@
+//colors
+$zorba: #a2958a !default;
+$mine-shaft: #333 !default;
+
+//standard measures
+$radius: 4px !default;
+$pad: 5px !default;
+$border: 1px !default;
+
+//operations
+@function multiply($pixels, $multiplier) {
+  @return $pixels * $multiplier;
+}
+
+//@extend-elements
+%set-float-left {
+  float: left;
+}
+
+%set-float-right {
+  float: right;
+}
+
+%set-text-right {
+  text-align: right;
+}
+
+.kv-rtl {
+  direction: rtl;
+
+  .floating-buttons {
+    left: multiply($pad, 2);
+    right: auto;
+
+    .btn-kv {
+      margin-left: 0;
+      margin-right: multiply($pad, .6);
+    }
+  }
+
+  .file-caption-icon {
+    left: auto;
+    right: multiply($pad, 1.6);
+  }
+
+  .close {
+    @extend %set-float-left;
+  }
+
+  .file-zoom-dialog {
+    @extend %set-text-right;
+  }
+
+  .file-error-message {
+    pre {
+      @extend %set-text-right;
+    }
+
+    ul {
+      @extend %set-text-right;
+    }
+  }
+
+  .file-drop-zone {
+    margin: multiply($pad, 2.4) multiply($pad, 2.4) multiply($pad, 2.4) multiply($pad, 3);
+  }
+
+  .btn-prev {
+    left: auto;
+    right: multiply($pad, .2);
+  }
+
+  .btn-next {
+    left: multiply($pad, .2);
+    right: auto;
+  }
+
+  .kv-zoom-title {
+    direction: ltr;
+  }
+
+  .krajee-default {
+    &.file-preview-frame {
+      @extend %set-float-right;
+      box-shadow: (-$border) $border multiply($border, 5) 0 $zorba;
+    }
+
+    &.file-preview-frame:not(.file-preview-error):hover {
+      box-shadow: multiply($border, -3) multiply($border, 3) multiply($border, 5) 0 $mine-shaft;
+    }
+
+    .file-actions {
+      @extend %set-float-left;
+    }
+
+    .file-other-error {
+      @extend %set-float-left;
+    }
+
+    .file-drag-handle {
+      @extend %set-float-right;
+    }
+
+    .file-upload-indicator {
+      @extend %set-float-right;
+    }
+  }
+
+  .kv-zoom-actions .btn-kv {
+    margin-left: 0;
+    margin-right: multiply($pad, .6);
+  }
+
+  .file-caption.icon-visible .file-caption-name {
+    padding-left: 0;
+    padding-right: multiply($pad, 3);
+  }
+
+  .input-group-btn > .btn:last-child {
+    border-radius: $radius 0 0 $radius;
+  }
+
+  .input-group .form-control:first-child {
+    border-radius: 0 $radius $radius 0;
+  }
+
+  .btn-file [type=file] {
+    background: none repeat scroll 100% 0 transparent;
+    left: auto;
+    right: 0;
+    text-align: left;
+  }
+}
