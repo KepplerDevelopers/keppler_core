@@ -110,7 +110,9 @@ module KepplerFrontend
 
     def covers
       theme = self.name.downcase.gsub(' ', '_')
-      covers = Dir.entries("#{url_front}/app/assets/html/themes/#{theme}/covers")
+      covers_files = "#{url_front}/app/assets/html/themes/#{theme}/covers"
+      return [] unless File.directory?(covers_files)
+      covers = Dir.entries(covers_files)
       result = []
       covers.each do |cover|
         result << "/assets/themes/#{theme}/covers/#{cover}" if validate_format(cover)
