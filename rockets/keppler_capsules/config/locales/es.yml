@@ -8,12 +8,16 @@ es:
     modules:
       keppler_capsules/admin/capsules: Capsulas
     actions:
-      add_capsule_field: Agregar nuevo campo
+      add_capsule_field: Agregar nuevo atributo
+    form:
+      capsule: Capsula
+      fields: Atributos
+      validations: Validaciones
   keppler:
     sidebar-menu:
       keppler-capsules: Capsulas
       keppler-capsules-submenu:
-        add_capsule: + Nueva Capsula
+        add_capsule: + Manejo de Capsula
     models:
       singularize:
       pluralize:
@@ -52,8 +56,8 @@ es:
     attributes:
       id: Identificador
       title: Título
-      name_field: Nombre del campo
-      format_field: Tipo de campo
+      name_field: Nombre
+      format_field: Tipo
       subtitle: Subtítulo
       tags: Etiquetas
       name: Nombre

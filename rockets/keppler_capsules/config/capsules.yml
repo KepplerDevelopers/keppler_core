@@ -1,0 +1,14 @@
+---
+- id: 13
+  name: catalogs
+  position: 1
+  deleted_at: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-03 18:53:24.484992000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2018-08-03 14:53:24.484992000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-03 18:53:24.484992000 Z
+    zone: *1
+    time: 2018-08-03 14:53:24.484992000 Z

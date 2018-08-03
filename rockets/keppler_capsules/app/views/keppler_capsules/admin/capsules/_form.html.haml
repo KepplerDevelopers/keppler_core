@@ -11,7 +11,7 @@
       .col-lg-12
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{action_name.underscore}")
+            %h3.box-title= t("keppler_capsules.form.capsule")
             .box-tools.pull-right
               %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
                 %i.fa.fa-minus
@@ -20,17 +20,43 @@
               %tbody
                 .form-padding
                   .col-xs-12
-                    = f.input :name
+                    - if action_name.eql?('edit')
+                      = f.input :name, disabled: true
+                    - else
+                      = f.input :name
                   .col-xs-12
                     = f.input :position, as: :hidden
                   .col-xs-12
                     = f.input :deleted_at, as: :hidden
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler_capsules.form.fields")
+            .box-tools.pull-right
+              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-minus
+          .box-body
+            %table.table.table-bordered
+              %tbody
+                .form-padding
                   .col-xs-12
                     = f.simple_fields_for :capsule_fields do |capsule_field|
                       = render 'capsule_field_fields', f: capsule_field
-                      .links
-                        = link_to_add_association "<button class'btn'>#{t('keppler_capsules.actions.add_capsule_field')}</button>".html_safe, f, :capsule_fields 
-                  .col-xs-12
-                    .pull-right
-                      = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
-                      = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'
+                    .links
+                      = link_to_add_association "<button class'btn'> + #{t('keppler_capsules.actions.add_capsule_field')}</button>".html_safe, f, :capsule_fields
+                    %br
+                    %br
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler_capsules.form.validations")
+            .box-tools.pull-right
+              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-minus
+          .box-body
+            %br
+            %br
+          .box-footer
+            .pull-right
+              = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+              = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'

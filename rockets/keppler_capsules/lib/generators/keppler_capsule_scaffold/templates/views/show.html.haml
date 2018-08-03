@@ -12,7 +12,7 @@
       .col-lg-12
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+            %h3.box-title= "<%= plural_table_name %>".capitalize
             .box-tools.pull-right
               - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).update?
                 = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
@@ -36,19 +36,11 @@
       <%- @attr = attributes.map{|attr| attr.name}.select{|attr| @attachments.include?(attr)} %>
       .col-lg-5
         - @<%= singular_table_name %>.as_json(only: <%= @attr %>).each do |attribute, value|
-          .box.slice-box
-            .box-header.with-border
-              %h3.box-title= attribute.capitalize
-              .box-tools.pull-right
-                %a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
-                  %i.fa.fa-minus
-            .box-body.box-body-no-padding
-              - unless value.url.blank?
-                = image_tag value.url, class: 'img-show'
+          = image_tag value.url, class: 'img-show' unless value.url.blank?
       .col-lg-7
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+            %h3.box-title= "<%= plural_table_name %>".capitalize
             .box-tools.pull-right
               = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", title: "#{t('keppler.actions.edit') }" do
                 %i.icon-pencil

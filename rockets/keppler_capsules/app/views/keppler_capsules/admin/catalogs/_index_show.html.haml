@@ -1,15 +1,15 @@
 .tab-content
   %h6.actions
-    - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).update?
-      = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), title: t("keppler.actions.edit"), class: 'pull-left' do
+    - if can?(KepplerCapsules::Catalog).update?
+      = link_to edit_admin_capsules_catalog_path(@catalog), title: t("keppler.actions.edit"), class: 'pull-left' do
         %i.icon-pencil
         %span= t('keppler.actions.edit')
     %a#close-index-show.pull-right
       %i.icon-close
   %h3.control-sidebar-heading
-    = t("keppler.modules.#{controller_path.underscore}")
+    = "catalogs".capitalize
   %ul.timeline
-    - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name} %>).each do |attribute, value|
+    - @catalog.as_json(only: ["photo", "name", "description", "position", "deleted_at"]).each do |attribute, value|
       -unless attribute.eql?('position') || attribute.eql?('deleted_at')
         %li.list-row
           .timeline-item

@@ -8,6 +8,10 @@ module KepplerCapsules
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      before_action :reload_capsules, only: [:index]
+      after_action :update_capsules_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+      before_action :reload_capsule_fields, only: [:index]
+      after_action :update_capsule_fields_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerCapsules::Concerns::Commons
       include KepplerCapsules::Concerns::History
       include KepplerCapsules::Concerns::DestroyMultiple
@@ -49,8 +53,8 @@ module KepplerCapsules
         @capsule = Capsule.new(capsule_params)
 
         if @capsule.save
-          @capsule.generate
-          redirect(@capsule, params)
+          @capsule.install
+          redirect_to admin_capsules_capsules_path, notice: actions_messages(@capsule)
         else
           render :new
         end
@@ -77,7 +81,7 @@ module KepplerCapsules
 
       # DELETE /capsules/1
       def destroy
-        @capsule.destroy
+        @capsule.destroy if @capsule
         redirect_to admin_capsules_capsules_path, notice: actions_messages(@capsule)
       end
 
@@ -131,9 +135,54 @@ module KepplerCapsules
                         'picture', 'banner', 'attachment', 'pic', 'file']
       end
 
+      def reload_capsules
+        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsules.yml")
+        capsules = YAML.load_file(file)
+        if capsules
+          capsules.each do |capsule|
+            capsule_db = KepplerCapsules::Capsule.where(name: capsule['name']).first
+            unless capsule_db
+              KepplerCapsules::Capsule.create(
+                name: capsule['name']
+              )
+            end
+          end
+        end
+      end
+
+      def reload_capsule_fields
+        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsule_fields.yml")
+        capsule_fields = YAML.load_file(file)
+        if capsule_fields
+          capsule_fields.each do |capsule_field|
+            capsule_db = KepplerCapsules::CapsuleField.where(name_field: capsule_field['name_field']).first
+            unless capsule_db
+              KepplerCapsules::CapsuleField.create(
+                name_field: capsule_field['name_field'],
+                format_field: capsule_field['format_field']
+              )
+            end
+          end
+        end
+      end
+
+      def update_capsules_yml
+        capsules = KepplerCapsules::Capsule.all
+        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsules.yml")
+        data = capsules.as_json.to_yaml
+        File.write(file, data)
+      end
+
+      def update_capsule_fields_yml
+        capsule_fields = KepplerCapsules::CapsuleField.all
+        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsule_fields.yml")
+        data = capsule_fields.as_json.to_yaml
+        File.write(file, data)
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_capsule
-        @capsule = Capsule.find(params[:id])
+        @capsule = Capsule.where(id: params[:id]).first
       end
 
       # Only allow a trusted parameter "white list" through.

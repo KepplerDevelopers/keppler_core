@@ -3,7 +3,7 @@ require 'rails/generators/resource_helpers'
 module Rails
   module Generators
     # KepplerScaffold
-    class KepplerScaffoldGenerator < ResourceGenerator
+    class KepplerCapsuleScaffoldGenerator < ResourceGenerator
       remove_hook_for :resource_controller
       remove_class_option :actions
 
@@ -35,17 +35,17 @@ module Rails
         inject_into_file(
           'config/routes.rb',
           "\n #{indent(str_route)}",
-          after: 'scope :capsules, as: :capsules do'
+          after: '  #new routes'
         )
       end
 
-      #def add_option_menu
-      #  inject_into_file(
-      #    'config/menu.yml',
-      #    str_menu,
-      #    before: '  user:'
-      #  )
-      #end
+      def add_option_menu
+       inject_into_file(
+         'config/menu.yml',
+         str_menu,
+         before: '      # end capusules generated'
+       )
+      end
 
       #def add_access_ability
       #  inject_into_file(
@@ -150,7 +150,7 @@ module Rails
       end
 
       def str_menu
-        "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: insert_chart\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
+        "      - option:\n          name: #{controller_file_name.humanize.downcase}\n          url_path: /admin/space/#{controller_file_name}\n          current: ['admin/#{controller_file_name}']\n "
       end
 
       def str_ability

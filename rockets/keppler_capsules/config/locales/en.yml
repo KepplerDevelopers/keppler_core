@@ -8,12 +8,16 @@ en:
     modules:
       keppler_capsules/admin/capsules: Capsules
     actions:
-      add_capsule_field: Add new field
+      add_capsule_field: Add new attribute
+    form:
+      capsule: Capsule
+      fields: Attributes
+      validations: Validations
   keppler:
     sidebar-menu:
       keppler-capsules: Capsules
       keppler-capsules-submenu:
-        add_capsule: + New Capsule
+        add_capsule: + Capsule Manage
     models:
       singularize:
       pluralize:
@@ -51,8 +55,8 @@ en:
       id: Id
       title: Title
       subtitle: Subtitle
-      name_field: Field name
-      format_field: Type of field
+      name_field: Name
+      format_field: Type
       tags: Etiquetas
       name: Name
       first_name: 'First Name'
