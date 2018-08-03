@@ -1,0 +1,13 @@
+menu:
+  keppler_capsules:
+    name: Keppler Capsules
+    current: ['']
+    url_path: /
+    icon: cursor
+    model: User
+    submenu:
+      - option:
+          name: add_capsule
+          url_path: /admin/space/capsules
+          current: ['current']
+          enviroment: development

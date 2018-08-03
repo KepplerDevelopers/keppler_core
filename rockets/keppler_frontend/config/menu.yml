@@ -4,6 +4,7 @@ menu:
     current: ['']
     icon: layers
     model: KepplerFrontend::View
+    enviroment: development
     submenu:
       - option:
           name: views

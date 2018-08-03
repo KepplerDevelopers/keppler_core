@@ -31,7 +31,7 @@ module KepplerFrontend
           end
         end
         set_data(@filesystem )
-        flash[:notice] = [ t("keppler.keppler_frontend.#{message}"), tab, message ]
+        flash[:notice] = [ t("keppler_frontend.#{message}"), tab, message ]
         render :index
       end
 
@@ -45,7 +45,7 @@ module KepplerFrontend
           tab = select_tab_by_format(params[:fileformat])
         end
         set_data(@filesystem)
-        flash[:notice] = [ t("keppler.keppler_frontend.destroy"), tab, "success" ]
+        flash[:notice] = [ t("keppler_frontend.destroy"), tab, "success" ]
         render :index
       end
 
