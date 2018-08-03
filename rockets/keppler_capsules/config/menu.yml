@@ -12,8 +12,4 @@ menu:
           current: ['current']
           enviroment: development
       # begin capusules generated (please, don't delete)
-      - option:
-          name: catalogs
-          url_path: /admin/space/catalogs
-          current: ['admin/catalogs']
-       # end capusules generated
+      # end capusules generated

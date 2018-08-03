@@ -1,12 +1,4 @@
 modules:
- catalogs:
-    name: Catalog
-    actions: [
-      'index', 'create', 'update',
-      'destroy', 'download', 'upload',
-      'clone'
-    ]
-  
  # capsules:
  #    name: Capsule
  #    actions: [
