@@ -41,7 +41,10 @@
                 .form-padding
                   .col-xs-12
                     = f.simple_fields_for :capsule_fields do |capsule_field|
-                      = render 'capsule_field_fields', f: capsule_field
+                      - if capsule_field.object.name_field
+                        = render 'capsule_field_fields_edit', f: capsule_field
+                      - else
+                        = render 'capsule_field_fields', f: capsule_field
                     .links
                       = link_to_add_association "<button class'btn'> + #{t('keppler_capsules.actions.add_capsule_field')}</button>".html_safe, f, :capsule_fields
                     %br

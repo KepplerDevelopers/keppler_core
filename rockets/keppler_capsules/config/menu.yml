@@ -12,4 +12,8 @@ menu:
           current: ['current']
           enviroment: development
       # begin capusules generated (please, don't delete)
-      # end capusules generated
+      - option:
+          name: students
+          url_path: /admin/space/students
+          current: ['admin/students']
+       # end capusules generated

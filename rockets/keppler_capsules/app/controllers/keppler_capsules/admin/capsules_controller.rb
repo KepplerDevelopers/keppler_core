@@ -63,7 +63,9 @@ module KepplerCapsules
       # PATCH/PUT /capsules/1
       def update
         if @capsule.update(capsule_params)
-          redirect(@capsule, params)
+          capsule = capsule_params.to_h
+          @capsule.new_attributes(@capsule.name, capsule[:capsule_fields_attributes])
+          render :edit
         else
           render :edit
         end
@@ -91,6 +93,12 @@ module KepplerCapsules
           admin_capsules_capsules_path(page: @current_page, search: @query),
           notice: actions_messages(Capsule.new)
         )
+      end
+
+      def destroy_field
+        @capsule_field = CapsuleField.find(params[:capsule_field_id])
+        @capsule_field.destroy if @capsule_field
+        # @capsule_field.destroy_migrate
       end
 
       def upload

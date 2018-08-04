@@ -1,13 +1,7 @@
 .nested-fields.row
-  - if f.object.name_field
-    .col-lg-4
-      = f.input :name_field, label: t('activerecord.attributes.name_field'), disabled: true
-    .col-lg-4
-      = f.input :format_field, label: t('activerecord.attributes.format_field'), disabled: true, collection: [ :string, :text, :integer, :float, :boolean], include_blank: false
-  - else
-    .col-lg-4
-      = f.input :name_field, label: t('activerecord.attributes.name_field')
-    .col-lg-4
-      = f.input :format_field, label: t('activerecord.attributes.format_field'), collection: [ :string, :text, :integer, :float, :boolean], include_blank: false
+  .col-lg-4
+    = f.input :name_field, label: t('activerecord.attributes.name_field')
+  .col-lg-4
+    = f.input :format_field, label: t('activerecord.attributes.format_field'), collection: [ :string, :text, :integer, :float, :boolean], include_blank: false
   .col-lg-4
     = link_to_remove_association "<button class='btn btn-default btn-delete-field'><i class='icon-trash'></i></button>".html_safe, f

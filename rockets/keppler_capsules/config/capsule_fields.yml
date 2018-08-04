@@ -1,1 +1,62 @@
---- []
+---
+- id: 17
+  name_field: name
+  format_field: string
+  capsule_id: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 13:55:11.320278000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2018-08-04 09:55:11.320278000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 13:55:11.320278000 Z
+    zone: *1
+    time: 2018-08-04 09:55:11.320278000 Z
+- id: 18
+  name_field: bio
+  format_field: text
+  capsule_id: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 13:55:11.322320000 Z
+    zone: *1
+    time: 2018-08-04 09:55:11.322320000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 13:55:11.322320000 Z
+    zone: *1
+    time: 2018-08-04 09:55:11.322320000 Z
+- id: 22
+  name_field: team
+  format_field: string
+  capsule_id: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 15:15:16.449098000 Z
+    zone: *1
+    time: 2018-08-04 11:15:16.449098000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 15:15:16.449098000 Z
+    zone: *1
+    time: 2018-08-04 11:15:16.449098000 Z
+- id: 23
+  name_field: age
+  format_field: integer
+  capsule_id: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 15:15:50.065390000 Z
+    zone: *1
+    time: 2018-08-04 11:15:50.065390000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 15:15:50.065390000 Z
+    zone: *1
+    time: 2018-08-04 11:15:50.065390000 Z
+- id: 24
+  name_field: room
+  format_field: integer
+  capsule_id: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 15:15:50.066802000 Z
+    zone: *1
+    time: 2018-08-04 11:15:50.066802000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-04 15:15:50.066802000 Z
+    zone: *1
+    time: 2018-08-04 11:15:50.066802000 Z

@@ -7,5 +7,9 @@ module KepplerCapsules
       @user = user
       @objects = objects
     end
+
+    def destroy_field?
+      keppler_admin? || user_can?(@objects, 'destroy_field')
+    end
   end
 end

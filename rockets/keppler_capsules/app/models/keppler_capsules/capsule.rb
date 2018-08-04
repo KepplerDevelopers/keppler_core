@@ -51,10 +51,19 @@ module KepplerCapsules
     end
 
     def uninstall
-      return unless self
       system("cd rockets/keppler_capsules && rails d keppler_capsule_scaffold #{self.name}")
       FileUtils.rm_rf("#{url_capsule}/app/views/keppler_capsules/admin/#{self.name}")
       delete_pg_table("keppler_capsules_#{self.name}")
+      system('rake keppler_capsules:install:migrations')
+      system('rake db:migrate')
+    end
+
+    def new_attributes(table, attributes)
+      attributes.each do |key, value|
+        if value[:name_field]
+          add_field_pg_table(value, table)
+        end
+      end
       system('rake keppler_capsules:install:migrations')
       system('rake db:migrate')
     end
@@ -66,7 +75,7 @@ module KepplerCapsules
     end
 
     def convert_to_downcase
-      self.name.downcase!
+      self.name.pluralize.downcase!
     end
 
     def without_special_characters
@@ -90,6 +99,13 @@ module KepplerCapsules
       out_file = File.open("#{url_capsule}/db/migrate/#{migration}", "w")
       out_file.puts(migrate_delete_format(table));
       out_file.close
+    end
+
+    def add_field_pg_table(column, table)
+      system("cd rockets/keppler_capsules && rails g migration add_#{column[:name_field]}_to_keppler_capsules_#{table} #{column[:name_field]}:#{column[:format_field]}")
+    end
+
+    def delete_field_pg_table(column, table)
     end
 
     def migrate_delete_format(table)
