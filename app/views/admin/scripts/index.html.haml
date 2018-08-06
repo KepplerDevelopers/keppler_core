@@ -60,7 +60,7 @@
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects, query: @query
 
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description', activities: @activities
