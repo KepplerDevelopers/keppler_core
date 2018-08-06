@@ -8,9 +8,12 @@
           = entries(@total, @objects)
           .toolbar
             - if can?(MetaTag).download?
-              .toolbar-item
-                = link_to admin_meta_tags_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
+              %li.toolbar-item.dropdown
+                %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#', title: t('keppler.actions.download_records') }
                   %i.icon-cloud-download
+                %ul.dropdown-menu
+                  %li= link_to 'Descargar CSV', admin_meta_tags_path(format: :csv), class: 'tool-btn'
+                  %li= link_to 'Descargar XLS', admin_meta_tags_path(format: :xls), class: 'tool-btn'
             - if can?(MetaTag).upload?
               .toolbar-item
                 = link_to '#', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
