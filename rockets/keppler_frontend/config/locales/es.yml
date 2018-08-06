@@ -17,6 +17,7 @@ es:
         views: Vistas
         assets: Assets
         themes: Temas
+        partials: Partials
     models:
       singularize:
         keppler_frontend/view: vista
@@ -26,10 +27,12 @@ es:
         keppler_frontend/views: vistas
         views: vistas
         themes: temas
+        partials: partials
     modules:
       new: Nuevo
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Temas
+      keppler_frontend/admin/partials: Partials
     settings:
     actions:
       created: Creado
