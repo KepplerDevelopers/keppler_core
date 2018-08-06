@@ -55,7 +55,7 @@
               %tbody.objects-container{ 'data-update-url' => sort_admin_roles_path.to_s }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @roles
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render 'description', activities: @activities

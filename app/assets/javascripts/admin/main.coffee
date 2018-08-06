@@ -47,6 +47,9 @@ $(window).load ->
     # Ver documentación en https://jqueryui.com/datepicker
   })
 
+  $('.close-index-show').click ->
+    $('.index-show').css 'right', -$('.index-show').outerWidth()
+
   preloaderFadeOutTime = 500
   hidePreloader()
   searchButton()
