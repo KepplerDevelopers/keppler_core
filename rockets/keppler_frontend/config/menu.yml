@@ -17,3 +17,7 @@ menu:
           name: Themes
           url_path: /admin/frontend/themes
           current: ['current']
+      - option:
+          name: partials
+          url_path: /admin/frontend/partials
+          current: ['current']
