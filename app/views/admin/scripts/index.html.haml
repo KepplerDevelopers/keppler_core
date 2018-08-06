@@ -8,15 +8,18 @@
           = entries(@total, @objects)
           .toolbar
             - if can?(Script).download?
-              .toolbar-item
-                = link_to admin_scripts_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
+              %li.toolbar-item.dropdown
+                %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#', title: t('keppler.actions.download_records') }
                   %i.icon-cloud-download
+                %ul.dropdown-menu
+                  %li= link_to 'Descargar CSV', admin_scripts_path(format: :csv), class: 'tool-btn'
+                  %li= link_to 'Descargar XLS', admin_scripts_path(format: :xls), class: 'tool-btn'
             - if can?(Script).upload?
               .toolbar-item
                 = link_to '#', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_scripts_path, class: 'tool-btn', remote: true do
+              = link_to reload_admin_scripts_path, class: 'tool-btn', remote: true, title: 'Recargar página' do
                 %i.icon-reload
             - if can?(Script).destroy_multiple?
               .toolbar-item
@@ -57,7 +60,7 @@
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects, query: @query
 
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description', activities: @activities

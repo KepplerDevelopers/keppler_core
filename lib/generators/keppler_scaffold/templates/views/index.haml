@@ -8,9 +8,12 @@
           = entries(@total, @objects)
           .toolbar
             - if can?(<%= singular_table_name.camelcase %>).download?
-              .toolbar-item
-                = link_to admin_<%= plural_table_name %>_path(format: :csv), class: 'tool-btn', title: t('keppler.actions.download_records') do
+              %li.toolbar-item.dropdown
+                %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#', title: t('keppler.actions.download_records') }
                   %i.icon-cloud-download
+                %ul.dropdown-menu
+                  %li= link_to 'Descargar CSV', admin_<%= plural_table_name %>_path(format: :csv), class: 'tool-btn'
+                  %li= link_to 'Descargar XLS', admin_<%= plural_table_name %>_path(format: :xls), class: 'tool-btn'
             - if can?(<%= singular_table_name.camelcase %>).upload?
               .toolbar-item
                 = link_to '#', id: 'upload', class: 'tool-btn', title: t('keppler.actions.upload_records') do
@@ -70,7 +73,7 @@
               %tbody.objects-container{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render 'description'
