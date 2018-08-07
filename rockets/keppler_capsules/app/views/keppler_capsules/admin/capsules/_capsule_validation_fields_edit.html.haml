@@ -3,7 +3,7 @@
     = f.input :name, label: t('capsule.attributes.validation'), collection: f.object.simple_validations.map { |v| [t("keppler_capsules.validations.#{v}"), v] }, include_blank: false, disabled: true
   .col-lg-3
     = f.input :field, label: t('capsule.attributes.capsule_field'), collection: @capsule.capsule_fields.map(&:name_field), include_blank: false, disabled: true
-  - if f.object.validation
+  - unless f.object.validation.blank?
     .col-lg-3
       = f.input :validation, label: t('capsule.attributes.value'), disabled: true
   .col-lg-2

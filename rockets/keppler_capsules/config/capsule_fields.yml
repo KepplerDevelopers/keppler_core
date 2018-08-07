@@ -1,50 +1,50 @@
 ---
-- id: 1
+- id: 10
   name_field: name
   format_field: string
   capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-06 20:21:59.266962000 Z
+    utc: 2018-08-07 20:23:58.215825000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone
       name: America/Caracas
-    time: 2018-08-06 16:21:59.266962000 Z
+    time: 2018-08-07 16:23:58.215825000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-06 20:21:59.266962000 Z
+    utc: 2018-08-07 20:23:58.215825000 Z
     zone: *1
-    time: 2018-08-06 16:21:59.266962000 Z
-- id: 2
+    time: 2018-08-07 16:23:58.215825000 Z
+- id: 11
   name_field: description
-  format_field: text
+  format_field: string
   capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-06 20:21:59.276931000 Z
+    utc: 2018-08-07 20:23:58.218826000 Z
     zone: *1
-    time: 2018-08-06 16:21:59.276931000 Z
+    time: 2018-08-07 16:23:58.218826000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-06 20:21:59.276931000 Z
+    utc: 2018-08-07 20:23:58.218826000 Z
     zone: *1
-    time: 2018-08-06 16:21:59.276931000 Z
-- id: 3
+    time: 2018-08-07 16:23:58.218826000 Z
+- id: 12
   name_field: avatar
   format_field: string
   capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-07 13:22:37.762746000 Z
+    utc: 2018-08-07 20:26:41.229273000 Z
     zone: *1
-    time: 2018-08-07 09:22:37.762746000 Z
+    time: 2018-08-07 16:26:41.229273000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-07 13:22:37.762746000 Z
+    utc: 2018-08-07 20:26:41.229273000 Z
     zone: *1
-    time: 2018-08-07 09:22:37.762746000 Z
-- id: 9
-  name_field: age
-  format_field: integer
+    time: 2018-08-07 16:26:41.229273000 Z
+- id: 13
+  name_field: bio
+  format_field: text
   capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-07 15:09:53.779775000 Z
+    utc: 2018-08-07 20:27:57.601989000 Z
     zone: *1
-    time: 2018-08-07 11:09:53.779775000 Z
+    time: 2018-08-07 16:27:57.601989000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-07 15:09:53.779775000 Z
+    utc: 2018-08-07 20:27:57.601989000 Z
     zone: *1
-    time: 2018-08-07 11:09:53.779775000 Z
+    time: 2018-08-07 16:27:57.601989000 Z

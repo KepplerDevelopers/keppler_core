@@ -100,11 +100,19 @@ module KepplerCapsules
       end
 
       def destroy_field
+        @capsule = Capsule.where(id: params[:capsule_id]).first
         @capsule_field = CapsuleField.where(id: params[:capsule_field_id]).first
         if @capsule_field
           @capsule_field.destroy
           @capsule_field.destroy_migrate
+          @capsule.capsule_validations.each do |v|
+            if v.field.eql?(@capsule_field.name_field)
+              v.destroy
+              v.delete_validation_line
+            end
+          end
         end
+        redirect_to edit_admin_capsules_capsule_path(@capsule), notice: actions_messages(@capsule)
       end
 
       def destroy_validation

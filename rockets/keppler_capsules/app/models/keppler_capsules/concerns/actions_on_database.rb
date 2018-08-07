@@ -105,7 +105,7 @@ module KepplerCapsules
           :validates_max_number => "validates :#{validation[:field]}, length: { maximum: #{validation[:validation]} }",
           :validates_min_number => "validates :#{validation[:field]}, length: { minimum: #{validation[:validation]} }",
           :validates_character_quantity_of => "validates :#{validation[:field]}, length: { is: #{validation[:validation] }",
-          :validates_format_of => "validates :keywords, format: { with: #{validation[:field]} }"
+          :validates_format_of => "validates :#{validation[:field]}, format: { with: #{validation[:validation]} }"
         }
         validation_list[validation[:name].to_sym]
       end

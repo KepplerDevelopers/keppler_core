@@ -81,6 +81,7 @@ module KepplerCapsules
     end
 
     def new_validations(table, attributes)
+      return unless attributes
       attributes.each do |key, value|
         if value[:name]
           validation = CapsuleValidation.where(name: value[:name], field: value[:field])
