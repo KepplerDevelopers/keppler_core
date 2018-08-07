@@ -20,7 +20,7 @@ module KepplerFrontend
         end
 
         def uninstall_scss
-          file = "#{url_front}/app/assets/stylesheets/keppler_frontend/app/#{name}.scss"
+          file = "#{url_front}/app/assets/stylesheets/keppler_frontend/app/partials/#{underscore_name}.scss"
           File.delete(file) if File.exist?(file)
           true
         end

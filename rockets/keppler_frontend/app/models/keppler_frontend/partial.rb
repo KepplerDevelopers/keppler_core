@@ -5,6 +5,18 @@ module KepplerFrontend
     include CloneRecord
     require 'csv'
     acts_as_list
+    validates_presence_of :name
+    validates_uniqueness_of :name
+    before_save :convert_to_downcase, :without_spaces
+
+    include KepplerFrontend::Concerns::Partials::HtmlFile
+    include KepplerFrontend::Concerns::Partials::ScssFile
+    include KepplerFrontend::Concerns::Partials::JsFile
+
+    def underscore_name
+      '_' + name.split(' ').join('_').downcase
+    end
+
     # Fields for the search form in the navbar
     def self.search_field
       fields = ["name", "position", "deleted_at"]
@@ -31,6 +43,33 @@ module KepplerFrontend
       query = fields.join("_#{operator}_")
       query << "_#{conf}"
       query.to_sym
+    end
+
+    def convert_to_downcase
+      self.name.downcase!
+    end
+
+    def without_spaces
+      self.name.gsub!(' ', '_')
+      self.name.gsub!('/', '')
+      self.name.gsub!('.', '')
+    end
+
+    def install
+      install_html
+      install_scss
+      install_js
+    end
+
+    def uninstall
+      uninstall_html
+      uninstall_scss
+      uninstall_js
+    end
+    private
+
+    def url_front
+      "#{Rails.root}/rockets/keppler_frontend"
     end
   end
 end

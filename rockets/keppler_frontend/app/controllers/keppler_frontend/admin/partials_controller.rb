@@ -32,6 +32,9 @@ module KepplerFrontend
 
       # GET /partials/1
       def show
+        filesystem = FileUploadSystem.new
+        @files_list = filesystem.files_list
+        @files_bootstrap = filesystem.files_list_bootstrap
       end
 
       # GET /partials/new
@@ -40,14 +43,14 @@ module KepplerFrontend
       end
 
       # GET /partials/1/edit
-      def edit
-      end
+      def edit; end
 
+      def editor; end
       # POST /partials
       def create
         @partial = Partial.new(partial_params)
 
-        if @partial.save
+        if @partial.save && @partial.install
           redirect(@partial, params)
         else
           render :new
@@ -75,7 +78,9 @@ module KepplerFrontend
 
       # DELETE /partials/1
       def destroy
+        @partial.uninstall
         @partial.destroy
+        
         redirect_to admin_frontend_partials_path, notice: actions_messages(@partial)
       end
 
