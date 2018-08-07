@@ -1,62 +1,50 @@
 ---
-- id: 17
+- id: 1
   name_field: name
   format_field: string
-  capsule_id: 8
+  capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 13:55:11.320278000 Z
+    utc: 2018-08-06 20:21:59.266962000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone
       name: America/Caracas
-    time: 2018-08-04 09:55:11.320278000 Z
+    time: 2018-08-06 16:21:59.266962000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 13:55:11.320278000 Z
+    utc: 2018-08-06 20:21:59.266962000 Z
     zone: *1
-    time: 2018-08-04 09:55:11.320278000 Z
-- id: 18
-  name_field: bio
+    time: 2018-08-06 16:21:59.266962000 Z
+- id: 2
+  name_field: description
   format_field: text
-  capsule_id: 8
+  capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 13:55:11.322320000 Z
+    utc: 2018-08-06 20:21:59.276931000 Z
     zone: *1
-    time: 2018-08-04 09:55:11.322320000 Z
+    time: 2018-08-06 16:21:59.276931000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 13:55:11.322320000 Z
+    utc: 2018-08-06 20:21:59.276931000 Z
     zone: *1
-    time: 2018-08-04 09:55:11.322320000 Z
-- id: 22
-  name_field: team
+    time: 2018-08-06 16:21:59.276931000 Z
+- id: 3
+  name_field: avatar
   format_field: string
-  capsule_id: 8
+  capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 15:15:16.449098000 Z
+    utc: 2018-08-07 13:22:37.762746000 Z
     zone: *1
-    time: 2018-08-04 11:15:16.449098000 Z
+    time: 2018-08-07 09:22:37.762746000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 15:15:16.449098000 Z
+    utc: 2018-08-07 13:22:37.762746000 Z
     zone: *1
-    time: 2018-08-04 11:15:16.449098000 Z
-- id: 23
+    time: 2018-08-07 09:22:37.762746000 Z
+- id: 9
   name_field: age
   format_field: integer
-  capsule_id: 8
+  capsule_id: 3
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 15:15:50.065390000 Z
+    utc: 2018-08-07 15:09:53.779775000 Z
     zone: *1
-    time: 2018-08-04 11:15:50.065390000 Z
+    time: 2018-08-07 11:09:53.779775000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 15:15:50.065390000 Z
+    utc: 2018-08-07 15:09:53.779775000 Z
     zone: *1
-    time: 2018-08-04 11:15:50.065390000 Z
-- id: 24
-  name_field: room
-  format_field: integer
-  capsule_id: 8
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 15:15:50.066802000 Z
-    zone: *1
-    time: 2018-08-04 11:15:50.066802000 Z
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-04 15:15:50.066802000 Z
-    zone: *1
-    time: 2018-08-04 11:15:50.066802000 Z
+    time: 2018-08-07 11:09:53.779775000 Z

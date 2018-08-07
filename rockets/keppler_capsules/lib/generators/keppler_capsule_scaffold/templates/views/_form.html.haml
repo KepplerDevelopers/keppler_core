@@ -19,30 +19,24 @@
             %table.table.table-bordered
               %tbody
                 .form-padding
-                  <%- attributes.each do |attribute| -%>
+                  - @capsule.capsule_fields.each do |field|
+                    .col-xs-12
+                      - if @attachments.include?(field.name_field)
+                        = f.input field.name_field.to_sym, as: :keppler_file, label: false
+                      - elsif field.format_field.eql?('text')
+                        = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), input_html: { ckeditor: { toolbar: 'mini' } }
+                      - elsif field.format_field.eql?('date')
+                        = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), as: :string, input_html: { class: 'datepicker' }
+                      - elsif field.format_field.eql?('boolean')
+                        = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), as: :keppler_boolean
+                      - elsif ['integer', 'float', 'decimal'].include?(field.format_field)
+                        = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), input_html: { min: 0 }
+                      - else
+                        = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}")
                   .col-xs-12
-                    <%- if @attachments.include?(attribute.name) -%>
-                    = f.input :<%= attribute.name %>, as: :keppler_file, label: false
-                    <%- elsif attribute.reference? -%>
-                    = f.association :<%= attribute.name %>, include_blank: false
-                    <%- elsif attribute.type.to_s == 'text' -%>
-                    = f.input :<%= attribute.name %>, input_html: { ckeditor: { toolbar: 'mini' } }
-                    <%- elsif %[position deleted_at].include?(attribute.name.to_s) || attribute.type.to_s == 'timestamp' -%>
-                    = f.input :<%= attribute.name %>, as: :hidden
-                    <%- elsif attribute.type.to_s == 'date' -%>
-                    = f.input :<%= attribute.name %>, as: :string, input_html: { class: 'datepicker' }
-                    <%- elsif attribute.type.to_s == 'boolean' -%>
-                    = f.input :<%= attribute.name %>, as: :keppler_boolean
-                    <%- elsif %w[integer float decimal].include?(attribute.type.to_s) -%>
-                    = f.input :<%= attribute.name %>, input_html: { min: 0 }
-                    <%- elsif attribute.type.to_s == 'binary' -%>
-                    = f.input :<%= attribute.name %>, as: :string
-                    <%- elsif attribute.name.to_s == "position" || attribute.name.to_s == "deleted_at" -%>
-                    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, as: :hidden
-                    <%- else -%>
-                    = f.input :<%= attribute.name %>
-                    <%- end -%>
-                  <%- end -%>
+                    = f.input :position, as: :hidden
+                  .col-xs-12
+                    = f.input :deleted_at, as: :hidden
                   .col-xs-12
                     .pull-right
                       = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'

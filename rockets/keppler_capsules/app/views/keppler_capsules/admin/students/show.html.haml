@@ -22,10 +22,10 @@
           .box-body.box-body-no-padding
             %table.table.table-striped
               %tbody
-                - @student.as_json(only: ["name", "bio", "position", "deleted_at"]).each do |attribute, value|
+                - @student.as_json(only: @capsule.capsule_fields.map(&:name_field)).each do |attribute, value|
                   - unless attribute.eql?('position') || attribute.eql?('deleted_at')
                     %tr.list-row
-                      %th.display-label= t("activerecord.attributes.#{attribute}")
+                      %th.display-label= t("capsule.attributes.#{attribute}")
                       %td.display-value.fs-body-1.tc-black-2
                         - if @attachments.include?(attribute)
                           = image_tag value.url unless value.url.blank?

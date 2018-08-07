@@ -7,10 +7,14 @@
             %input{ type:"checkbox", id: "checkbox-#{student.id}", 'checklist-model' => 'check', 'checklist-value' => "#{student.id}", '@click' => "listDelete(#{student.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
-    %td.hidden-xs
-      = link_to admin_capsules_student_path(student, search: @query), remote: true, class: 'show-row' do
-        %span
-          = student.name
+    - @capsule.capsule_fields.take(3).each do |field|
+      %td
+        = link_to admin_capsules_student_path(student, search: @query), remote: true, class: 'show-row' do
+          %span
+            - if student[field.name_field]
+              = truncate(student[field.name_field].to_s, length: 20, omission: '...')
+            - else
+              ="-----"
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{student.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical

@@ -15,8 +15,8 @@ module KepplerCapsules
       visit students_url
       click_on "New Student"
 
-      fill_in "Bio", with: @student.bio
       fill_in "Deleted At", with: @student.deleted_at
+      fill_in "Description", with: @student.description
       fill_in "Name", with: @student.name
       fill_in "Position", with: @student.position
       click_on "Create Student"
@@ -29,8 +29,8 @@ module KepplerCapsules
       visit students_url
       click_on "Edit", match: :first
 
-      fill_in "Bio", with: @student.bio
       fill_in "Deleted At", with: @student.deleted_at
+      fill_in "Description", with: @student.description
       fill_in "Name", with: @student.name
       fill_in "Position", with: @student.position
       click_on "Update Student"

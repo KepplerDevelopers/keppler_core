@@ -3,23 +3,43 @@ es:
     models:
       singularize:
         capsule: capsula
+        keppler_capsules/capsule: capsula
       pluralize:
         capsules: capsulas
+        keppler_capsules/capsules: capsulas
     modules:
       keppler_capsules/admin/capsules: Capsulas
     actions:
       add_capsule_field: Agregar nuevo atributo
+      add_validation: Agregar nueva validación
+      add_simple_validation: Agregar nueva validación simple
+      add_format_validation: Agregar nueva validación de formato
+      add_value_validation: Agregar nueva validación de valor
+      add_association: Agregar nueva relación
     form:
       capsule: Capsula
       fields: Atributos
       validations: Validaciones
+      associations: Relaciones
+      value: Valor
+    validations:
+      validates_presence_of: Validar presencia de
+      validates_numericality_of: Validar numéricamente a
+      validates_numericality_integer_on: Validar números enteros en
+      validates_uniqueness_of: Validar valor único en
+      validates_email_format_on: Validar formato de email en
+      validates_max_number: Validar valor máximo en
+      validates_min_number: Validar valor minimo en
+      validates_format_of: Validar formato de
+      validates_character_quantity_of: Validar cantidad de caracteres en
   keppler:
     sidebar-menu:
       keppler-capsules: Capsulas
       keppler-capsules-submenu:
-        add_capsule: + Manejo de Capsula
+        add_capsule: + Manejo de Capsulas
     models:
       singularize:
+        keppler_capsules/capsule: capsula
       pluralize:
     modules:
     settings:
@@ -52,12 +72,14 @@ es:
       download_records: Descargar registros
       upload_records: Cargar registros
       reserve: Reservar
-  activerecord:
+  capsule:
     attributes:
       id: Identificador
       title: Título
       name_field: Nombre
       format_field: Tipo
+      capsule_field: Atributo
+      validation: Validación
       subtitle: Subtítulo
       tags: Etiquetas
       name: Nombre
@@ -131,7 +153,7 @@ es:
       updated_at: Ultima actualización
       password: Contraseña
       password_confirmation: Confirmar contraseña
-      address: Dirección del servidor
+      address_ip: Dirección del servidor
       port: Puerto
       domain_name: Dominio
       url: Url
@@ -146,6 +168,9 @@ es:
       ga_status: Habilitar Google Analytics
       price_local: Precio en moneda local
       price_dollar: Precio en dólares
+      sold: Vendido
+      rooms: Habitaciones
+      room: Habitación
     errors:
       messages:
         record_invalid: "Validación fallida: %{errors}"

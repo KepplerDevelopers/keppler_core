@@ -23,6 +23,7 @@ KepplerCapsules::Engine.routes.draw do
 
       resources :capsules do
         delete '/destroy_field/:capsule_field_id', action: :destroy_field, as: :destroy_field
+        delete '/destroy_validation/:capsule_validation_id', action: :destroy_validation, as: :destroy_validation
         get '(page/:page)', action: :index, on: :collection, as: ''
         get '/clone', action: 'clone'
         post '/sort', action: :sort, on: :collection

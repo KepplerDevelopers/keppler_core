@@ -2,18 +2,17 @@ menu:
   keppler_capsules:
     name: Keppler Capsules
     current: ['']
-    url_path: /
     icon: cursor
-    model: User
+    model: KepplerCapsules::Capsule
+    enviroment: development
     submenu:
       - option:
           name: add_capsule
           url_path: /admin/space/capsules
           current: ['current']
-          enviroment: development
-      # begin capusules generated (please, don't delete)
+      # begin capusules generated (don't delete)
       - option:
           name: students
           url_path: /admin/space/students
           current: ['admin/students']
-       # end capusules generated
+      # end capusules generated

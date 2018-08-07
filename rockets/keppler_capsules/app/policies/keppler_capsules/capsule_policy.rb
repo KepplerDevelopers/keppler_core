@@ -8,6 +8,10 @@ module KepplerCapsules
       @objects = objects
     end
 
+    def destroy_validation?
+      keppler_admin? || user_can?(@objects, 'destroy_validation')
+    end
+
     def destroy_field?
       keppler_admin? || user_can?(@objects, 'destroy_field')
     end

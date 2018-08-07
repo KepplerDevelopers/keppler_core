@@ -76,15 +76,15 @@ module KepplerCapsules
 
       # DELETE /students/1
       def destroy
-        @student.destroy
-        redirect_to admin_capsules_students_path, notice: actions_messages(@student)
+        @student.destroy if @student
+        redirect_to admin_capsules_students_path, notice: ''
       end
 
       def destroy_multiple
         Student.destroy redefine_ids(params[:multiple_ids])
         redirect_to(
-          admin_students_path(page: @current_page, search: @query),
-          notice: actions_messages(Student.new)
+          admin_capsules_students_path(page: @current_page, search: @query),
+          notice: ''
         )
       end
 
@@ -92,7 +92,7 @@ module KepplerCapsules
         Student.upload(params[:file])
         redirect_to(
           admin_students_path(page: @current_page, search: @query),
-          notice: actions_messages(Student.new)
+          notice: ''
         )
       end
 
@@ -136,12 +136,13 @@ module KepplerCapsules
 
       # Use callbacks to share common setup or constraints between actions.
       def set_student
-        @student = Student.find(params[:id])
+        @student = Student.where(id: params[:id]).first
       end
 
       # Only allow a trusted parameter "white list" through.
       def student_params
-        params.require(:student).permit(:name, :bio, :position, :deleted_at)
+        attributes = @capsule.capsule_fields.map(&:name_field.to_sym)
+        params.require(:student).permit(attributes)
       end
 
       def show_history
@@ -157,11 +158,11 @@ module KepplerCapsules
       # Get submit key to redirect, only [:create, :update]
       def redirect(object, commit)
         if commit.key?('_save')
-          redirect_to([:admin, :capsules, object], notice: actions_messages(object))
+          redirect_to([:admin, :capsules, object], notice: '')
         elsif commit.key?('_add_other')
           redirect_to(
             send("new_admin_capsules_#{underscore(object)}_path"),
-            notice: actions_messages(object)
+            notice: ''
           )
         end
       end

@@ -12,9 +12,12 @@ module KepplerCapsules
       after_action :update_capsules_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :reload_capsule_fields, only: [:index]
       after_action :update_capsule_fields_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+      before_action :reload_capsule_validations, only: [:index]
+      after_action :update_capsule_validations_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerCapsules::Concerns::Commons
       include KepplerCapsules::Concerns::History
       include KepplerCapsules::Concerns::DestroyMultiple
+      include KepplerCapsules::Concerns::YmlSave
 
 
       # GET /capsules
@@ -41,7 +44,6 @@ module KepplerCapsules
       # GET /capsules/new
       def new
         @capsule = Capsule.new
-        @capsule.capsule_fields << CapsuleField.new
       end
 
       # GET /capsules/1/edit
@@ -51,10 +53,11 @@ module KepplerCapsules
       # POST /capsules
       def create
         @capsule = Capsule.new(capsule_params)
+        @capsule.name = @capsule.name.pluralize.downcase
 
         if @capsule.save
           @capsule.install
-          redirect_to admin_capsules_capsules_path, notice: actions_messages(@capsule)
+          redirect_to edit_admin_capsules_capsule_path(@capsule), notice: actions_messages(@capsule)
         else
           render :new
         end
@@ -65,7 +68,8 @@ module KepplerCapsules
         if @capsule.update(capsule_params)
           capsule = capsule_params.to_h
           @capsule.new_attributes(@capsule.name, capsule[:capsule_fields_attributes])
-          render :edit
+          @capsule.new_validations(@capsule.name, capsule[:capsule_validations_attributes])
+          redirect_to edit_admin_capsules_capsule_path(@capsule), notice: actions_messages(@capsule)
         else
           render :edit
         end
@@ -96,9 +100,19 @@ module KepplerCapsules
       end
 
       def destroy_field
-        @capsule_field = CapsuleField.find(params[:capsule_field_id])
-        @capsule_field.destroy if @capsule_field
-        # @capsule_field.destroy_migrate
+        @capsule_field = CapsuleField.where(id: params[:capsule_field_id]).first
+        if @capsule_field
+          @capsule_field.destroy
+          @capsule_field.destroy_migrate
+        end
+      end
+
+      def destroy_validation
+        @capsule_validation = CapsuleValidation.where(id: params[:capsule_validation_id]).first
+        if @capsule_validation
+          @capsule_validation.destroy
+          @capsule_validation.delete_validation_line
+        end
       end
 
       def upload
@@ -143,51 +157,6 @@ module KepplerCapsules
                         'picture', 'banner', 'attachment', 'pic', 'file']
       end
 
-      def reload_capsules
-        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsules.yml")
-        capsules = YAML.load_file(file)
-        if capsules
-          capsules.each do |capsule|
-            capsule_db = KepplerCapsules::Capsule.where(name: capsule['name']).first
-            unless capsule_db
-              KepplerCapsules::Capsule.create(
-                name: capsule['name']
-              )
-            end
-          end
-        end
-      end
-
-      def reload_capsule_fields
-        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsule_fields.yml")
-        capsule_fields = YAML.load_file(file)
-        if capsule_fields
-          capsule_fields.each do |capsule_field|
-            capsule_db = KepplerCapsules::CapsuleField.where(name_field: capsule_field['name_field']).first
-            unless capsule_db
-              KepplerCapsules::CapsuleField.create(
-                name_field: capsule_field['name_field'],
-                format_field: capsule_field['format_field']
-              )
-            end
-          end
-        end
-      end
-
-      def update_capsules_yml
-        capsules = KepplerCapsules::Capsule.all
-        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsules.yml")
-        data = capsules.as_json.to_yaml
-        File.write(file, data)
-      end
-
-      def update_capsule_fields_yml
-        capsule_fields = KepplerCapsules::CapsuleField.all
-        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsule_fields.yml")
-        data = capsule_fields.as_json.to_yaml
-        File.write(file, data)
-      end
-
       # Use callbacks to share common setup or constraints between actions.
       def set_capsule
         @capsule = Capsule.where(id: params[:id]).first
@@ -196,11 +165,17 @@ module KepplerCapsules
       # Only allow a trusted parameter "white list" through.
       def capsule_params
         params.require(:capsule).permit(:name, :position, :deleted_at,
-                                        capsule_fields_attributes: capsule_fields_attributes)
+                                        capsule_fields_attributes: capsule_fields_attributes,
+                                        capsule_validations_attributes: capsule_validations_attributes
+                                       )
       end
 
       def capsule_fields_attributes
-        [:name_field, :format_field, :_destroy]
+        [:id, :name_field, :format_field, :_destroy]
+      end
+
+      def capsule_validations_attributes
+        [:id, :field, :validation, :name, :_destroy]
       end
 
       def show_history

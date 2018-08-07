@@ -5,9 +5,14 @@ module KepplerCapsules
     include CloneRecord
     require 'csv'
     acts_as_list
+
+    # Begin validations area (don't delete)
+    # End validations area
+
     # Fields for the search form in the navbar
     def self.search_field
-      fields = ["name", "bio", "position", "deleted_at"]
+      capsule = Capsule.find_by_name('students')
+      fields = capsule.capsule_fields.map(&:name_field)
       build_query(fields, :or, :cont)
     end
 

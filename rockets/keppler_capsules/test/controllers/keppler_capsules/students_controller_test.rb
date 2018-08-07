@@ -20,7 +20,7 @@ module KepplerCapsules
 
     test "should create student" do
       assert_difference('Student.count') do
-        post students_url, params: { student: { bio: @student.bio, deleted_at: @student.deleted_at, name: @student.name, position: @student.position } }
+        post students_url, params: { student: { deleted_at: @student.deleted_at, description: @student.description, name: @student.name, position: @student.position } }
       end
 
       assert_redirected_to student_url(Student.last)
@@ -37,7 +37,7 @@ module KepplerCapsules
     end
 
     test "should update student" do
-      patch student_url(@student), params: { student: { bio: @student.bio, deleted_at: @student.deleted_at, name: @student.name, position: @student.position } }
+      patch student_url(@student), params: { student: { deleted_at: @student.deleted_at, description: @student.description, name: @student.name, position: @student.position } }
       assert_redirected_to student_url(@student)
     end
 

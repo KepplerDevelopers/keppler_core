@@ -10,6 +10,7 @@ module Admin
     before_action :show_history, only: [:index]
     before_action :set_attachments
     before_action :authorization
+    before_action :set_capsule
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::Commons
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::History
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::DestroyMultiple
@@ -77,15 +78,15 @@ module Admin
 
     # DELETE <%= route_url %>/1
     def destroy
-      @<%= orm_instance.destroy %>
-      redirect_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path, notice: actions_messages(@<%= singular_table_name %>)
+      @<%= orm_instance.destroy %> if @<%= singular_table_name %>
+      redirect_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path, notice: ''
     end
 
     def destroy_multiple
       <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
       redirect_to(
-        admin_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
+        admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path(page: @current_page, search: @query),
+        notice: ''
       )
     end
 
@@ -93,7 +94,7 @@ module Admin
       <%= class_name %>.upload(params[:file])
       redirect_to(
         admin_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
+        notice: ''
       )
     end
 
@@ -131,17 +132,22 @@ module Admin
                       'picture', 'banner', 'attachment', 'pic', 'file']
     end
 
+    def set_capsule
+      @capsule = Capsule.find_by_name('<%= controller_class_name.downcase %>')
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>
-      @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
+      @<%= singular_table_name %> = <%= singular_table_name.capitalize %>.where(id: params[:id]).first
     end
 
     # Only allow a trusted parameter "white list" through.
     def <%= "#{singular_table_name}_params" %>
+      attributes = @capsule.capsule_fields.map(&:name_field.to_sym)
       <%- if attributes_names.empty? -%>
       params[:<%= singular_table_name %>]
       <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+      params.require(:<%= singular_table_name %>).permit(attributes)
       <%- end -%>
     end
 
@@ -158,11 +164,11 @@ module Admin
     # Get submit key to redirect, only [:create, :update]
     def redirect(object, commit)
       if commit.key?('_save')
-        redirect_to([:admin, :<%= namespaced_path.split('_').drop(1).join('_') %>, object], notice: actions_messages(object))
+        redirect_to([:admin, :<%= namespaced_path.split('_').drop(1).join('_') %>, object], notice: '')
       elsif commit.key?('_add_other')
         redirect_to(
           send("new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_#{underscore(object)}_path"),
-          notice: actions_messages(object)
+          notice: ''
         )
       end
     end

@@ -1,8 +1,17 @@
 module KepplerCapsules
   class CapsuleField < ApplicationRecord
+    include KepplerCapsules::Concerns::StringActions
+    include KepplerCapsules::Concerns::ActionsOnDatabase
     belongs_to :capsule
     validates_presence_of :name_field
     before_validation :convert_to_downcase, :without_special_characters
+
+
+    def destroy_migrate
+      delete_field_pg_table("keppler_capsules_#{self.capsule.name}", self.name_field)
+      system('rake keppler_capsules:install:migrations')
+      system('rake db:migrate')
+    end
 
     private
 
@@ -13,16 +22,6 @@ module KepplerCapsules
     def without_special_characters
       self.name_field.gsub!(' ', '_')
       special_characters.each { |sc| self.name_field.gsub!(sc, '') }
-    end
-
-    def special_characters
-      [
-        '/', '.', '@', '"', "'", '%', '&', '$',
-        '?', '¿', '/', '=', ')', '(', '#', '{',
-        '}', ',', ';', ':', '[', ']', '^', '`',
-        '¨', '~', '+', '-', '*', '¡', '!', '|',
-        '¬', '°', '<', '>', '·', '½'
-      ]
     end
   end
 end

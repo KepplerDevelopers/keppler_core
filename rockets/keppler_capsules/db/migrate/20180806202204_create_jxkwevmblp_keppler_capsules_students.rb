@@ -1,8 +1,8 @@
-class CreateKepplerCapsulesStudents < ActiveRecord::Migration[5.2]
+class CreateJxkwevmblpKepplerCapsulesStudents < ActiveRecord::Migration[5.2]
   def change
     create_table :keppler_capsules_students do |t|
       t.string :name
-      t.text :bio
+      t.text :description
       t.integer :position
       t.datetime :deleted_at
 

@@ -160,7 +160,7 @@ es:
       updated_at: Ultima actualización
       password: Contraseña
       password_confirmation: Confirmar contraseña
-      address: Dirección del servidor
+      address_ip: Dirección del servidor
       port: Puerto
       domain_name: Dominio
       url: Url

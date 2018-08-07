@@ -150,7 +150,7 @@ module Rails
       end
 
       def str_menu
-        "      - option:\n          name: #{controller_file_name.humanize.downcase}\n          url_path: /admin/space/#{controller_file_name}\n          current: ['admin/#{controller_file_name}']\n "
+        "      - option:\n          name: #{controller_file_name.humanize.downcase}\n          url_path: /admin/space/#{controller_file_name}\n          current: ['admin/#{controller_file_name}']\n"
       end
 
       def str_ability

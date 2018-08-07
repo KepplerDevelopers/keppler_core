@@ -10,9 +10,14 @@ class <%= class_name %> < ActiveRecord::Base
     <%- end -%>
   <%- end -%>
   acts_as_list
+
+  # Begin validations area (don't delete)
+  # End validations area
+
   # Fields for the search form in the navbar
   def self.search_field
-    fields = <%= attributes_names.map { |name| name } %>
+    capsule = Capsule.find_by_name('<%= class_name.pluralize.downcase %>')
+    fields = capsule.capsule_fields.map(&:name_field)
     build_query(fields, :or, :cont)
   end
 

@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  bio: MyText
+  description: MyText
   position: 1
-  deleted_at: 2018-08-04 09:55:15
+  deleted_at: 2018-08-06 16:22:04
 
 two:
   name: MyString
-  bio: MyText
+  description: MyText
   position: 1
-  deleted_at: 2018-08-04 09:55:15
+  deleted_at: 2018-08-06 16:22:04
