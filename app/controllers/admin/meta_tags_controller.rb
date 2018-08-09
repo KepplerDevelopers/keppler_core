@@ -11,8 +11,8 @@ module Admin
     # GET /meta_tags
     def index
       @q = MetaTag.ransack(params[:q])
-      @meta_tags = @q.result(distinct: true).order(:position)
-      @objects = @meta_tags.page(@current_page)
+      @meta_tags = @q.result(distinct: true)
+      @objects = @meta_tags.page(@current_page).order(position: :desc)
       @total = @meta_tags.size
       redirect_to_index(meta_tags_path) if nothing_in_first_page?(@objects)
       respond_to_formats(@meta_tags)
