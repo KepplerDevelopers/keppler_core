@@ -50,7 +50,7 @@ module KepplerFrontend
         @view = View.new(view_params)
 
         if @view.save && @view.install
-          redirect(@view, params)
+          redirect_to admin_frontend_view_editor_path(@view), notice: actions_messages(@view)
         else
           render :new
         end
