@@ -1,34 +1,18 @@
 ---
-- id: 6
+- id: 1
   name: keppler
   url: "/keppler"
   method: GET
   active: true
   format_result: HTML
   position: 1
-  deleted_at: 
+  deleted_at:
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-09 20:12:30.968142000 Z
+    utc: 2018-08-07 21:02:46.992655000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone
       name: America/Caracas
-    time: 2018-08-09 16:12:30.968142000 Z
+    time: 2018-08-07 17:02:46.992655000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-09 20:12:30.968142000 Z
+    utc: 2018-08-07 21:02:46.992655000 Z
     zone: *1
-    time: 2018-08-09 16:12:30.968142000 Z
-- id: 8
-  name: index
-  url: "/"
-  method: GET
-  active: true
-  format_result: HTML
-  position: 2
-  deleted_at: 
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-09 20:15:38.108627000 Z
-    zone: *1
-    time: 2018-08-09 16:15:38.108627000 Z
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-09 20:15:38.108627000 Z
-    zone: *1
-    time: 2018-08-09 16:15:38.108627000 Z
+    time: 2018-08-07 17:02:46.992655000 Z
