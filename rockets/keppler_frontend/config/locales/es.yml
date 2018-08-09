@@ -8,7 +8,7 @@ es:
       copy_html: Copiar Html
     theme:
       success: El tema ha sido agregado satisfactoriamente
-      fail: El archivo es reconocido como un tema de keppler
+      fail: El archivo no es reconocido como un tema de keppler
       apply: El cambio ha sido aplicado satisfactoriamente
     models:
       singularize:
@@ -30,20 +30,6 @@ es:
         views: Vistas
         assets: Assets
         themes: Temas
-    models:
-      singularize:
-        keppler_frontend/view: vista
-        view: vista
-        theme: tema
-      pluralize:
-        keppler_frontend/views: vistas
-        views: vistas
-        themes: temas
-    modules:
-      new: Nuevo
-      keppler_frontend/admin/views: Frontend
-      keppler_frontend/admin/themes: Temas
-    settings:
     actions:
       created: Creado
       updated: Actualizado
