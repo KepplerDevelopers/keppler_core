@@ -24,13 +24,13 @@
         = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
           %i.fa.fa-globe
       %li.pull-right
-        %a#btn-theme-editor{href: "#", title: t('keppler.actions.user_interfaces') }
+        %a#btn-theme-editor{title: t('keppler.actions.user_interfaces') }
           %i.fa.fa-paint-brush
       %li.pull-right
-        %a#btn-assets-editor{href: "#", title: t('keppler.actions.assets')}
+        %a#btn-assets-editor{title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
-        %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.save')}
+        %a{onclick: "controls.save(#{@view.id})", title: t('keppler.actions.save')}
           %i.fa.fa-save
       %li.pull-right
         = link_to admin_frontend_views_path do

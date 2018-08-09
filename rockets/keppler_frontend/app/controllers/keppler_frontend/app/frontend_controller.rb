@@ -8,11 +8,6 @@ module KepplerFrontend
       # Insert ruby code...
     end
     # end index
-    # begin asd
-    def asd
-      # Insert ruby code...
-    end
-    # end asd
     # begin keppler
     def keppler
     end
