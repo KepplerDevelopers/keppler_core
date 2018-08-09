@@ -75,7 +75,7 @@ module Admin
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
-      authorize @script
+      authorize Script
     end
 
     def upload
