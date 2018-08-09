@@ -1,4 +1,4 @@
-$(window).load ->
+$(document).on 'turbolinks:load', ->
 
   hidePreloader = ->
     preloader = $('.spinner')

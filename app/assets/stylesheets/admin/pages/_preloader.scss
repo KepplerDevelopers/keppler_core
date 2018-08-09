@@ -10,7 +10,7 @@
 
 .preloader {
   animation: moveback 20s infinite linear;
-  background: $white;
+  background: $white !important;
   display: table;
   height: 100vh;
   transition: .3s ease-in-out;
