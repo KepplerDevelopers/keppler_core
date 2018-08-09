@@ -80,17 +80,16 @@
       codeAction.codeMirrorAction();
       ready.action = true;
     }
-
   })
 
-  $(document).keypress("s",function(e) {
-    if(e.ctrlKey && e.key=='s') {
+  $(document).keypress("s", function(e) {
+    if( e.ctrlKey && e.key == 's' ) {
       e.preventDefault();
-      if ( tab === `#{@view.name}.html.erb`) {
+      if ( tab === `#{@view.name}.html.erb` ) {
         codeHTML.save(id);
-      } else if (tab === `#{@view.name}.scss`) {
+      } else if (tab === `#{@view.name}.scss` ) {
         codeCSS.save(id);
-      } else if (tab === `#{@view.name}.js`) {
+      } else if (tab === `#{@view.name}.js` ) {
         codeJs.save(id);
       } else if (tab === 'Action') {
         codeAction.save(id);

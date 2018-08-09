@@ -26,8 +26,8 @@ module KepplerFrontend
 
         def update_html(html)
           obj = Partial.find(id)
-          old_name = "#{url_front}/app/views/keppler_frontend/app/partials/#{obj.undersocre_name}.html.erb"
-          new_name = "#{url_front}/app/views/keppler_frontend/app/partials/#{html[:name]}.html.erb"
+          old_name = "#{url_front}/app/views/keppler_frontend/app/partials/#{obj.underscore_name}.html.erb"
+          new_name = "#{url_front}/app/views/keppler_frontend/app/partials/#{'_' + html[:name]}.html.erb"
           File.rename(old_name, new_name)
         end
 

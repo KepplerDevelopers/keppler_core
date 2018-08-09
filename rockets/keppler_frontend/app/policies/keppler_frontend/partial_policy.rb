@@ -7,5 +7,10 @@ module KepplerFrontend
       @user = user
       @objects = objects
     end
+
+    def editor_save?
+      true
+    end
+
   end
 end

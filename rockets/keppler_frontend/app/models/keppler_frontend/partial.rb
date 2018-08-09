@@ -12,6 +12,7 @@ module KepplerFrontend
     include KepplerFrontend::Concerns::Partials::HtmlFile
     include KepplerFrontend::Concerns::Partials::ScssFile
     include KepplerFrontend::Concerns::Partials::JsFile
+    include KepplerFrontend::Concerns::Partials::HelperFile
 
     def underscore_name
       '_' + name.split(' ').join('_').downcase
@@ -59,13 +60,40 @@ module KepplerFrontend
       install_html
       install_scss
       install_js
+      create_helper
     end
 
     def uninstall
       uninstall_html
       uninstall_scss
       uninstall_js
+      delete_helper
     end
+
+    def update_files(params)
+      update_html(params)
+      update_css(params)
+      update_js(params)
+      update_helper(params)
+    end
+
+    def code_save(code, type_code)
+      if type_code.eql?('html')
+        save_code("#{url_front}/app/views/keppler_frontend/app/partials/#{underscore_name}.html.erb", code)
+      elsif type_code.eql?('scss')
+        save_code("#{url_front}/app/assets/stylesheets/keppler_frontend/app/partials/#{underscore_name}.scss", code)
+      elsif type_code.eql?('js')
+        save_code("#{url_front}/app/assets/javascripts/keppler_frontend/app/partials/#{name}.js", code)
+      end
+    end
+
+    def save_code(file, code)
+      File.delete(file) if File.exist?(file)
+      out_file = File.open(file, "w")
+      out_file.puts(code)
+      out_file.close
+    end
+
     private
 
     def url_front

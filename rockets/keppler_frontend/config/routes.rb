@@ -1,4 +1,5 @@
 KepplerFrontend::Engine.routes.draw do
+  get '/', to: 'app/frontend#index', as: :index
   root to: 'app/frontend#keppler', as: :keppler
   namespace :admin do
     scope :frontend, as: :frontend do
@@ -7,6 +8,7 @@ KepplerFrontend::Engine.routes.draw do
         get '/clone', action: 'clone'
         post '/sort', action: :sort, on: :collection
         post '/upload', action: 'upload', as: 'upload'
+        post '/editor/save', action: 'editor_save'
         get '/download', action: 'download', as: 'download'
         get(
           '/reload',

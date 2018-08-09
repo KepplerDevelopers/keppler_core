@@ -46,6 +46,15 @@ module KepplerFrontend
       def edit; end
 
       def editor; end
+
+      def editor_save
+        @partial = Partial.find(params[:partial_id])
+        @partial.code_save(params[:html], 'html') if params[:html]
+        @partial.code_save(params[:scss], 'scss') if params[:scss]
+        @partial.code_save(params[:js], 'js') if params[:js]
+        render json: {result: true}
+      end
+
       # POST /partials
       def create
         @partial = Partial.new(partial_params)
@@ -59,6 +68,7 @@ module KepplerFrontend
 
       # PATCH/PUT /partials/1
       def update
+        @partial.update_files(partial_params)
         if @partial.update(partial_params)
           redirect(@partial, params)
         else
@@ -80,7 +90,7 @@ module KepplerFrontend
       def destroy
         @partial.uninstall
         @partial.destroy
-        
+
         redirect_to admin_frontend_partials_path, notice: actions_messages(@partial)
       end
 

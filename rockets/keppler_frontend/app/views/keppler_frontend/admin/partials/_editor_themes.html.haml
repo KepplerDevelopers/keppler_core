@@ -9,9 +9,6 @@
     %li
       %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_theme_tab_2"}
         %i.fa.fa-tint
-    %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_partials_tab_3"}
-        %i.fa.fa-list
   .tab-content.container-files.bg-gray
     #editor_theme_tab_1.tab-pane.active
       - @files_list.each_with_index do |file, i|
@@ -58,24 +55,6 @@
               %button.btn.btn-default.pull-right{onclick: "copyHtml('#{file[:id]}')"}
                 %textarea.hidden{id: "#{file[:id]}", value: "#{file[:html]}"}
                 %i.fa.fa-save
-    #editor_partials_tab_3.tab-pane
-      - @partials.each_with_index do |partial, i|
-
-        .box.box-solid
-          .box-header.with-border{ title: "#{partial[:name]}" }
-            .row
-              .col-lg-12
-                %h4.box-title
-                  = partial[:id]
-                  = truncate(partial[:name], length: 30, omission: '...')
-          .box-body.no-padding
-            .back-file-xs
-              .center
-                %i.fa.fa-code#font-icon-size
-          .box-body
-            %button.btn.btn-default.pull-right{onclick: "copyPartial('#{partial[:id]}')"}
-              %textarea.hidden{ id: "partial#{partial[:id]}", value: "<%= #{partial[:name]} %>" }
-              %i.fa.fa-save
 .control-sidebar-bg
 
 :javascript
@@ -85,17 +64,15 @@
         e.preventDefault();
         var tab = ev.target.innerText;
         if (tab==='') {
-          var tab = `#{@view.name}.html.erb`;
+          var tab = `#{@partial.underscore_name}.html.erb`;
         }
-        var id = `#{@view.id}`
-        if ( tab === `#{@view.name}.html.erb`) {
-          codeHTML.save(id);
-        } else if (tab === `#{@view.name}.scss`) {
-          codeCSS.save(id);
-        } else if (tab === `#{@view.name}.js`) {
-          codeJs.save(id);
-        } else if (tab === 'Action') {
-          codeAction.save(id);
+        var id = `#{@partial.id}`
+        if ( tab === `#{@partial.underscore_name}.html.erb`) {
+          codeHTML.savePartial(id);
+        } else if (tab === `#{@partial.underscore_name}.scss`) {
+          codeCSS.savePartial(id);
+        } else if (tab === `#{@partial.name}.js`) {
+          codeJs.savePartial(id);
         }
       }
     });

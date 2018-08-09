@@ -3,15 +3,18 @@
     %ul.nav.nav-tabs
       %li.active
         %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+          -# %i.fa.fa-html5
           = "#{@partial.underscore_name}.html.erb"
           .kf-signal.html_signal
       %li
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+          -# %i.fa.fa-css3
           = "#{@partial.underscore_name}.scss"
           .kf-signal.scss_signal
       %li
         %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
-          = "#{@partial.underscore_name}.js"
+          -# %i.fa.fa-js
+          = "#{@partial.name}.js"
           .kf-signal.js_signal
       %li.pull-right
         %a#btn-theme-editor{href: "#", title: t('keppler.actions.user_interfaces') }
@@ -20,7 +23,7 @@
         %a#btn-assets-editor{href: "#", title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
-        %a{href: "#", onclick: "controls.save(#{@partial.id})", title: t('keppler.actions.save')}
+        %a{href: "#", onclick: "controls.savePartial(#{@partial.id})", title: t('keppler.actions.save')}
           %i.fa.fa-save
       %li.pull-right
         = link_to admin_frontend_partials_path do
@@ -40,13 +43,20 @@
         %div.js.code-container
           %textarea#code-js{:name => "code"}
             = @partial.js_code
--# = render "keppler_frontend/admin/views/editor_assets"
--# = render "keppler_frontend/admin/views/editor_themes"
+= render "keppler_frontend/admin/partials/editor_assets"
+= render "keppler_frontend/admin/partials/editor_themes"
 
 :javascript
-  codeHTML.codeMirrorHtml();
-  codeCSS.codeMirrorCSS();
-  codeJs.codeMirrorJs();
+  $(document).bind('keydown', function(e) {
+    if(e.ctrlKey && (e.which == 83)) {
+      e.preventDefault();
+      save()
+    }
+  });
+
+  codePartialHTML.codeMirrorHtml();
+  codePartialCSS.codeMirrorCSS();
+  codePartialJs.codeMirrorJs();
 
   var tab = `#{@partial.underscore_name}.html.erb`;
   var id = `#{@partial.id}`;
@@ -54,24 +64,21 @@
 
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     tab = $(this)[0].innerText
-    if ( tab===`#{@partial.underscore_name}.scss` && ready.css === false ){
-      codeCSS.codeMirrorCSS();
+    if ( tab === `#{@partial.underscore_name}.scss` && ready.css === false ) {
+      codePartialCSS.codeMirrorCSS();
       ready.css = true;
-    } else if( tab===`#{@partial.underscore_name}.js` && ready.js === false ) {
-      codeJs.codeMirrorJs();
+    } else if( tab === `#{@partial.underscore_name}.js` && ready.js === false ) {
+      codePartialJs.codeMirrorJs();
       ready.js = true;
     }
   })
 
-  $(document).keypress("s", function(e) {
-    if(e.ctrlKey && e.key=='s') {
-      e.preventDefault();
-      if ( tab === `#{@partial.underscore_name}.html.erb`) {
-        codeHTML.save(id);
-      } else if (tab === `#{@partial.underscore_name}.scss`) {
-        codeCSS.save(id);
-      } else if (tab === `#{@partial.underscore_name}.js`) {
-        codeJs.save(id);
-      }
+  function save() {
+    if ( tab === `#{@partial.underscore_name}.html.erb`) {
+      codePartialHTML.savePartial(id);
+    } else if (tab === `#{@partial.underscore_name}.scss`) {
+      codePartialCSS.savePartial(id);
+    } else if (tab === `#{@partial.name}.js`) {
+      codePartialJs.savePartial(id);
     }
-  });
+  }

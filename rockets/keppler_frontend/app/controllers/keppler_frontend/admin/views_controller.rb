@@ -131,6 +131,7 @@ module KepplerFrontend
         filesystem = FileUploadSystem.new
         @files_list = filesystem.files_list
         @files_bootstrap = filesystem.files_list_bootstrap
+        @partials = Partial.all
       end
 
       def editor_save
