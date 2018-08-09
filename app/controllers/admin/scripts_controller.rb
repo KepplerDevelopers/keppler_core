@@ -12,7 +12,7 @@ module Admin
     def index
       @q = Script.ransack(params[:q])
       @scripts = @q.result(distinct: true)
-      @objects = @scripts.page(@current_page)
+      @objects = @scripts.page(@current_page).order(position: :desc)
       @total = @scripts.size
       redirect_to_index(scripts_path) if nothing_in_first_page?(@objects)
       respond_to_formats(@scripts)
@@ -89,7 +89,7 @@ module Admin
     def reload
       @q = Script.ransack(params[:q])
       scripts = @q.result(distinct: true)
-      @objects = scripts.page(@current_page)
+      @objects = scripts.page(@current_page).order(position: :desc)
     end
 
     private
