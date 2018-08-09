@@ -56,7 +56,7 @@ module KepplerFrontend
         end
       end
 
-      # PATCH/PUT /views/1
+      # PATCH/PUT /views/1 
       def update
         @view.delete_route
         @view.update_files(view_params)
