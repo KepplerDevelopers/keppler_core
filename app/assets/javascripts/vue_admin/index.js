@@ -22,21 +22,21 @@ var app = new Vue({
       items: [],
       deleteList:[],
       controller: "",
-      current_page: "",
+      current_path: "",
       states: {
         checkall: false
       }
     },
     mounted: function(){
-      var that;
-      that = this;
+      var that = this;
       that.controller = that._vnode.data.attrs.controller;
-      that.current_page = window.location.pathname;
+      wlp = window.location.pathname;
+      that.current_path = wlp.includes('page') ? wlp : `${wlp}/page/1`;
       $.ajax({
-        url: `${that.current_page}.json`,
+        url: `${that.current_path}.json`,
         success: function(res){
           that.items = res;
-          //console.log(res);
+          console.log(res)
         }
       });
     },
@@ -45,7 +45,7 @@ var app = new Vue({
         return this.deleteList.length > 0
       },
       link: function(){
-        return `${this.current_page}/destroy_multiple?multiple_ids=[${this.deleteList}]`
+        return `${this.current_path}/destroy_multiple?multiple_ids=[${this.deleteList}]`
       },
       checkItems: function(){
         return this.items.length > 0

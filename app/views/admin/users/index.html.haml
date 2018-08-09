@@ -57,7 +57,7 @@
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @users, size: @objects.size
-        %center#paginator-module
+        %center.paginator-module
           = paginate @objects, window: 1
 
   .listing-show.hidden-xs
