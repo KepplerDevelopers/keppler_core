@@ -14,7 +14,7 @@
       = link_to admin_meta_tag_path(meta_tag, search: query), remote: true, class: 'show-row' do
         %span= meta_tag.url
     %td{ style: 'padding-right: 30px;' }
-      %a.action-btn.pull-right{ id: "menu-#{meta_tag.id}", 'aria-e,panded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }
+      %a.action-btn.pull-right{ id: "menu-#{meta_tag.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }
         %i.icon-options-vertical
       %ul.actions.dropdown-menu{ 'aria-labelledby' => "menu-#{meta_tag.id}" }
         - if can?(MetaTag).show?

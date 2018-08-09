@@ -4,7 +4,7 @@
       = link_to edit_admin_role_path(@role), title: t('keppler.actions.edit'), class: 'pull-left' do
         %i.icon-pencil
         %span= t('keppler.actions.edit')
-    %a.pull-right#close-index-show
+    %a.pull-right.close-index-show
       %i.icon-close
   %h3.control-sidebar-heading
     = t("keppler.modules.#{controller_path.underscore}")
@@ -19,6 +19,3 @@
                 .display-label= image_tag value
               - else
                 %p.display-label= value
-:coffee
-  $('#close-index-show').click ->
-    $('.index-show').css 'right', -$('.index-show').outerWidth()
