@@ -39,7 +39,7 @@ var app = new Vue({
       return this.deleteList.length > 0
     },
     link: function(){
-      return `${this.current_path}/destroy_multiple?multiple_ids=[${this.deleteList}]`
+      return `${window.location.pathname}/destroy_multiple?multiple_ids=[${this.deleteList}]`
     },
     checkItems: function(){
       return this.items.length > 0
