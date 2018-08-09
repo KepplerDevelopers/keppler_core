@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   include AdminHelper
 
+  helper KepplerCapsules::CapsulesHelper
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # rescue_from Faraday::ConnectionFailed do |error|
   #   redirect_to main_app.admin_users_path, notice: "Sin conexión a internet"

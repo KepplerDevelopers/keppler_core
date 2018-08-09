@@ -12,9 +12,6 @@
         .box.slice-box
           .box-header.with-border
             %h3.box-title= t("keppler_capsules.form.capsule")
-            .box-tools.pull-right
-              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                %i.fa.fa-minus
           .box-body
             %table.table.table-bordered
               %tbody
@@ -32,9 +29,6 @@
         .box.slice-box
           .box-header.with-border
             %h3.box-title= t("keppler_capsules.form.fields")
-            .box-tools.pull-right
-              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                %i.fa.fa-minus
           .box-body
             %table.table.table-bordered
               %tbody
@@ -59,16 +53,13 @@
           .box.slice-box
             .box-header.with-border
               %h3.box-title= t("keppler_capsules.form.validations")
-              .box-tools.pull-right
-                %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                  %i.fa.fa-minus
             .box-body
               %table.table.table-bordered
                 %tbody
                   .form-padding
                     .col-xs-12
                       = f.simple_fields_for :capsule_validations do |capsule_validation|
-                        - if action_name.eql?('edit') || action_name.eql?('update')
+                        - if (action_name.eql?('edit') || action_name.eql?('update')) && !capsule_validation.object.id.blank?
                           = render 'capsule_validation_fields_edit', f: capsule_validation
                         - else
                           = render 'capsule_validation_fields', f: capsule_validation
@@ -80,24 +71,23 @@
           .box.slice-box
             .box-header.with-border
               %h3.box-title= t("keppler_capsules.form.associations")
-              .box-tools.pull-right
-                %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                  %i.fa.fa-minus
             .box-body
               %table.table.table-bordered
                 %tbody
                   .form-padding
                     .col-xs-12
-                      = f.simple_fields_for :capsule_validations do |capsule_validation|
-                        - if action_name.eql?('edit') || action_name.eql?('update')
-                          = render 'capsule_validation_fields_edit', f: capsule_validation
-                        - else
-                          = render 'capsule_validation_fields', f: capsule_validation
+                      = f.simple_fields_for :capsule_associations do |capsule_association|
+                        - if capsule_association.object.capsules_valids.count > 0
+                          - if (action_name.eql?('edit') || action_name.eql?('update')) && !capsule_association.object.id.blank?
+                            = render 'capsule_association_fields_edit', f: capsule_association
+                          - else
+                            = render 'capsule_association_fields', f: capsule_association
                       .links
-                        = link_to_add_association "<button class'btn'> + #{t('keppler_capsules.actions.add_association')}</button>".html_safe, f, :capsule_validations
+                        = link_to_add_association "<button class'btn'> + #{t('keppler_capsules.actions.add_association')}</button>".html_safe, f, :capsule_associations
               %br
               %br
             .box-footer
               .pull-right
                 = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
-                = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'
+                - if action_name.eql?('new') || action_name.eql?('create')
+                  = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'

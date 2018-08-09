@@ -1,4 +1,15 @@
 es:
+  activerecord:
+    errors:
+      models:
+        keppler_capsules/capsule_association:
+          attributes:
+            association_type:
+              uniqueness_association: Yá esta relación existe
+        keppler_capsules/capsule_validation:
+          attributes:
+            name:
+              uniqueness_validation: Yá esta validación existe
   keppler_capsules:
     models:
       singularize:
@@ -22,6 +33,14 @@ es:
       validations: Validaciones
       associations: Relaciones
       value: Valor
+    dependent:
+      nothing: Ningúna
+      destroy: Al borrar
+    associations:
+      has_many: Tiene muchos (has_many)
+      has_one: Tiene un (has_one)
+      belongs_to: Pertenece a (belongs_to)
+      has_and_belongs_to_many: Tiene y pertenece a muchos (has_and_belongs_to_many)
     validations:
       validates_presence_of: Validar presencia de
       validates_numericality_of: Validar numéricamente a
@@ -77,6 +96,9 @@ es:
       id: Identificador
       title: Título
       name_field: Nombre
+      association_type: Tipo de relación
+      capsule_name: Capsula
+      dependention_destroy: Dependencia
       format_field: Tipo
       capsule_field: Atributo
       validation: Validación

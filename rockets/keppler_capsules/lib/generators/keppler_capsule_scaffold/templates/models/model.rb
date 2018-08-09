@@ -11,6 +11,9 @@ class <%= class_name %> < ActiveRecord::Base
   <%- end -%>
   acts_as_list
 
+  # Begin associations area (don't delete)
+  # End associations area
+
   # Begin validations area (don't delete)
   # End validations area
 

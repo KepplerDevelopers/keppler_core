@@ -11,8 +11,4 @@ menu:
           url_path: /admin/space/capsules
           current: ['current']
       # begin capusules generated (don't delete)
-      - option:
-          name: students
-          url_path: /admin/space/students
-          current: ['admin/students']
       # end capusules generated

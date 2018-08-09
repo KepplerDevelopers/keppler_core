@@ -23,6 +23,8 @@
                     .col-xs-12
                       - if @attachments.include?(field.name_field)
                         = f.input field.name_field.to_sym, as: :keppler_file, label: false
+                      - elsif field.name_field.eql?('country') || field.name_field.eql?('pais')
+                        = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), as: :country
                       - elsif field.format_field.eql?('text')
                         = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), input_html: { ckeditor: { toolbar: 'mini' } }
                       - elsif field.format_field.eql?('date')
@@ -31,6 +33,8 @@
                         = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), as: :keppler_boolean
                       - elsif ['integer', 'float', 'decimal'].include?(field.format_field)
                         = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), input_html: { min: 0 }
+                      - elsif field.format_field.eql?('association')
+                        = f.association field.name_field.split('_').first.singularize.to_sym, label: t("capsule.attributes.#{field.name_field}")
                       - else
                         = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}")
                   .col-xs-12

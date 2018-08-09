@@ -6,13 +6,13 @@
   active: true
   format_result: HTML
   position: 1
-  deleted_at:
+  deleted_at: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-03 17:36:55.377446000 Z
+    utc: 2018-08-07 21:02:46.992655000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone
       name: America/Caracas
-    time: 2018-08-03 13:36:55.377446000 Z
+    time: 2018-08-07 17:02:46.992655000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-03 17:36:55.377446000 Z
+    utc: 2018-08-07 21:02:46.992655000 Z
     zone: *1
-    time: 2018-08-03 13:36:55.377446000 Z
+    time: 2018-08-07 17:02:46.992655000 Z

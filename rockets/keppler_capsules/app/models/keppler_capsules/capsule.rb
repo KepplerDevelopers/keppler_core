@@ -3,15 +3,19 @@ module KepplerCapsules
   class Capsule < ActiveRecord::Base
     include ActivityHistory
     include CloneRecord
-    include KepplerCapsules::Concerns::ActionsOnDatabase
+    include KepplerCapsules::Concerns::GeneratorActions
+    include KepplerCapsules::Concerns::ValidationActions
+    include KepplerCapsules::Concerns::AssociationActions
     include KepplerCapsules::Concerns::StringActions
     require 'csv'
     acts_as_list
     has_many :capsule_fields, dependent: :destroy, inverse_of: :capsule
     has_many :capsule_validations, dependent: :destroy, inverse_of: :capsule
+    has_many :capsule_associations, dependent: :destroy, inverse_of: :capsule
     before_destroy :uninstall
     accepts_nested_attributes_for :capsule_fields, reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :capsule_validations, reject_if: :all_blank, allow_destroy: true
+    accepts_nested_attributes_for :capsule_associations, reject_if: :all_blank, allow_destroy: true
 
     validates_presence_of :name
     validates_uniqueness_of :name
@@ -69,7 +73,7 @@ module KepplerCapsules
       attributes.each do |key, value|
         if value[:name_field]
           field = CapsuleField.where(name_field: value[:name_field])
-          if field.count == 1
+          if field.count <= 1
             add_field_pg_table(value, table)
           else
             field.last.delete
@@ -90,6 +94,21 @@ module KepplerCapsules
       end
     end
 
+    def new_associations(table, associations)
+      return unless associations
+      associations.each do |key, value|
+        if value[:association_type]
+          association = CapsuleAssociation.where(association_type: value[:association_type], capsule_name: value[:capsule_name])
+          add_association_to(table, value) if association.count == 1
+          if require_field?(value[:association_type])
+            CapsuleField.create(name_field: "#{value[:capsule_name].singularize}_id", format_field: 'association', capsule_id: self.id)
+            attributes = { "0" =>{ name_field: "#{value[:capsule_name].singularize}_id", format_field: 'integer' }}
+            new_attributes(table, attributes)
+          end
+        end
+      end
+    end
+
     private
 
     def without_special_characters
@@ -99,6 +118,10 @@ module KepplerCapsules
 
     def table_exists?(table)
       ActiveRecord::Base.connection.table_exists?(table)
+    end
+
+    def require_field?(association_type)
+      ['has_one', 'belongs_to'].include?(association_type)
     end
 
   end

@@ -1,15 +1,1 @@
----
-- id: 35
-  capsule_id: 3
-  field: name
-  validation: ''
-  name: validates_presence_of
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-07 20:28:59.317825000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/Caracas
-    time: 2018-08-07 16:28:59.317825000 Z
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-07 20:28:59.317825000 Z
-    zone: *1
-    time: 2018-08-07 16:28:59.317825000 Z
+--- []

@@ -58,6 +58,7 @@ gem 'paranoia', '2.4.1'
 gem 'cocoon', '1.2.11'
 gem 'jquery-minicolors-rails', '~> 2.2', '>= 2.2.6.0'
 gem 'simple_form', '4.0.0'
+gem 'country_select', '3.1.1'
 
 # Upload
 gem 'carrierwave', '1.2.2'

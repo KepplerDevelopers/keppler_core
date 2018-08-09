@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  association_type: MyString
+  capsule_name: MyString
+  dependention_destroy: false
+
+two:
+  association_type: MyString
+  capsule_name: MyString
+  dependention_destroy: false

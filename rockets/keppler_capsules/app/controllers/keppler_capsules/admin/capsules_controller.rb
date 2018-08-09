@@ -4,7 +4,7 @@ module KepplerCapsules
     # CapsulesController
     class CapsulesController < ApplicationController
       layout 'keppler_capsules/admin/layouts/application'
-      before_action :set_capsule, only: [:show, :edit, :update, :destroy]
+      before_action :set_capsule, only: [:show, :edit, :update, :destroy, :destroy_validation]
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
@@ -14,6 +14,8 @@ module KepplerCapsules
       after_action :update_capsule_fields_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :reload_capsule_validations, only: [:index]
       after_action :update_capsule_validations_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+      before_action :reload_capsule_associations, only: [:index]
+      after_action :update_capsule_associations_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerCapsules::Concerns::Commons
       include KepplerCapsules::Concerns::History
       include KepplerCapsules::Concerns::DestroyMultiple
@@ -69,6 +71,7 @@ module KepplerCapsules
           capsule = capsule_params.to_h
           @capsule.new_attributes(@capsule.name, capsule[:capsule_fields_attributes])
           @capsule.new_validations(@capsule.name, capsule[:capsule_validations_attributes])
+          @capsule.new_associations(@capsule.name, capsule[:capsule_associations_attributes])
           redirect_to edit_admin_capsules_capsule_path(@capsule), notice: actions_messages(@capsule)
         else
           render :edit
@@ -123,6 +126,14 @@ module KepplerCapsules
         end
       end
 
+      def destroy_association
+        @capsule_association = CapsuleAssociation.where(id: params[:capsule_association_id]).first
+        if @capsule_association
+          @capsule_association.destroy
+          @capsule_association.delete_association_line
+        end
+      end
+
       def upload
         Capsule.upload(params[:file])
         redirect_to(
@@ -174,7 +185,8 @@ module KepplerCapsules
       def capsule_params
         params.require(:capsule).permit(:name, :position, :deleted_at,
                                         capsule_fields_attributes: capsule_fields_attributes,
-                                        capsule_validations_attributes: capsule_validations_attributes
+                                        capsule_validations_attributes: capsule_validations_attributes,
+                                        capsule_associations_attributes: capsule_associations_attributes
                                        )
       end
 
@@ -184,6 +196,10 @@ module KepplerCapsules
 
       def capsule_validations_attributes
         [:id, :field, :validation, :name, :_destroy]
+      end
+
+      def capsule_associations_attributes
+        [:id, :association_type, :capsule_name, :dependention_destroy, :_destroy]
       end
 
       def show_history

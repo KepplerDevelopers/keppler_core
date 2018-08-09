@@ -2,7 +2,7 @@
   .col-lg-4
     = f.input :name_field, label: t('capsule.attributes.name_field'), disabled: true
   .col-lg-4
-    = f.input :format_field, label: t('capsule.attributes.format_field'), disabled: true, collection: [ :string, :text, :integer, :float, :decimal, :date, :boolean], include_blank: false
+    = f.input :format_field, label: t('capsule.attributes.format_field'), disabled: true, collection: f.object.formats, include_blank: false
   .col-lg-4
     = link_to admin_capsules_capsule_destroy_field_path(@capsule.id, f.object.id.to_i), class: "btn btn-default btn-delete-field" , method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
       %i.icon-trash

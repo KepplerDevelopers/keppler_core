@@ -1,7 +1,7 @@
 module KepplerCapsules
   class CapsuleField < ApplicationRecord
     include KepplerCapsules::Concerns::StringActions
-    include KepplerCapsules::Concerns::ActionsOnDatabase
+    include KepplerCapsules::Concerns::GeneratorActions
     belongs_to :capsule
     validates_presence_of :name_field
     before_validation :convert_to_downcase, :without_special_characters
@@ -11,6 +11,10 @@ module KepplerCapsules
       delete_field_pg_table("keppler_capsules_#{self.capsule.name}", self.name_field)
       system('rake keppler_capsules:install:migrations')
       system('rake db:migrate')
+    end
+
+    def formats
+      [ :string, :text, :integer, :float, :decimal, :date, :boolean, :association ]
     end
 
     private

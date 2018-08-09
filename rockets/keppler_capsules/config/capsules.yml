@@ -1,14 +1,1 @@
----
-- id: 3
-  name: students
-  position: 1
-  deleted_at: 
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-06 20:21:59.260412000 Z
-    zone: &1 !ruby/object:ActiveSupport::TimeZone
-      name: America/Caracas
-    time: 2018-08-06 16:21:59.260412000 Z
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-08-06 20:21:59.260412000 Z
-    zone: *1
-    time: 2018-08-06 16:21:59.260412000 Z
+--- []

@@ -3,7 +3,7 @@
 # ActionsOnDatabase Module
 module KepplerCapsules
   module Concerns
-    module ActionsOnDatabase
+    module GeneratorActions
       extend ActiveSupport::Concern
 
       private
@@ -65,11 +65,11 @@ module KepplerCapsules
 
       def migrate_delete_column_format(table, column, migrate_id)
         table_class = table.split('_').map(&:capitalize).join('')
-        column = column.split('_').map(&:capitalize).join('')
+        column_class = column.split('_').map(&:capitalize).join('')
         [
-          "class Remove#{migrate_id}#{column}From#{table_class} < ActiveRecord::Migration[5.2]\n",
+          "class Remove#{migrate_id}#{column_class}From#{table_class} < ActiveRecord::Migration[5.2]\n",
           "  def change\n",
-          "    remove_column :#{table}, :#{column.downcase}\n",
+          "    remove_column :#{table}, :#{column}\n",
           "  end\n",
           "end"
         ].join
@@ -79,54 +79,6 @@ module KepplerCapsules
         o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
         string = (0...10).map { o[rand(o.length)] }.join
         string = string.downcase.capitalize
-      end
-
-      def add_validation_to(table, validation)
-        file = "#{url_capsule}/app/models/keppler_capsules/#{table.singularize}.rb"
-        code = File.readlines(file)
-        head_idx = 0
-        code.each do |i|
-          head_idx = code.find_index(i) if i.include?("    # Begin validations area (don't delete)")
-        end
-        if search_validation_line(table, validation) == 0
-          code.insert(head_idx.to_i + 1, "    #{validation_line(validation)}\n")
-        end
-        code = code.join('')
-        File.write(file, code)
-      end
-
-      def validation_line(validation)
-        validation_list = {
-          :validates_presence_of => "validates_presence_of :#{validation[:field]}",
-          :validates_numericality_of => "validates_numericality_of :#{validation[:field]}",
-          :validates_numericality_integer_on => "validates :#{validation[:field]}, :numericality => { :only_integer => true }",
-          :validates_uniqueness_of => "validates_uniqueness_of :#{validation[:field]}",
-          :validates_email_format_on => "validates :#{validation[:field]}, format: { with: URI::MailTo::EMAIL_REGEXP }",
-          :validates_max_number => "validates :#{validation[:field]}, length: { maximum: #{validation[:validation]} }",
-          :validates_min_number => "validates :#{validation[:field]}, length: { minimum: #{validation[:validation]} }",
-          :validates_character_quantity_of => "validates :#{validation[:field]}, length: { is: #{validation[:validation] }",
-          :validates_format_of => "validates :#{validation[:field]}, format: { with: #{validation[:validation]} }"
-        }
-        validation_list[validation[:name].to_sym]
-      end
-
-      def search_validation_line(table, validation)
-        file = "#{url_capsule}/app/models/keppler_capsules/#{table.singularize}.rb"
-        code = File.readlines(file)
-        result = 0
-        code.each do |i|
-          result = code.find_index(i) if i.include?("    #{validation_line(validation)}\n")
-        end
-        result
-      end
-
-      def delete_validation(table, validation)
-        file = "#{url_capsule}/app/models/keppler_capsules/#{table.singularize}.rb"
-        validation_index = search_validation_line(table, validation)
-        code = File.readlines(file)
-        code.delete_at(validation_index)
-        code = code.join('')
-        File.write(file, code)
       end
 
       def table_exists?(table)

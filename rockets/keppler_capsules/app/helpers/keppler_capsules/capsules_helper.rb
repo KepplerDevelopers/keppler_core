@@ -1,4 +1,4 @@
 module KepplerCapsules
-  module CapsulesHelper
+  module CapsulesHelper    
   end
 end

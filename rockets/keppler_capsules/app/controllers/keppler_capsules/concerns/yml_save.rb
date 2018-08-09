@@ -57,6 +57,23 @@ module KepplerCapsules
         end
       end
 
+      def reload_capsule_associations
+        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsule_associations.yml")
+        capsule_fields = YAML.load_file(file)
+        if capsule_fields
+          capsule_fields.each do |capsule_associations|
+            capsule_db = KepplerCapsules::CapsuleAssociation.where(id: capsule_associations['id']).first
+            unless capsule_db
+              KepplerCapsules::CapsuleAssociation.create(
+                association_type: capsule_associations['name'],
+                capsule_name: capsule_associations['field'],
+                dependention_destroy: capsule_associations['validation']
+              )
+            end
+          end
+        end
+      end
+
       def update_capsules_yml
         capsules = KepplerCapsules::Capsule.all
         file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsules.yml")
@@ -74,6 +91,13 @@ module KepplerCapsules
       def update_capsule_validations_yml
         capsules = KepplerCapsules::CapsuleValidation.all
         file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsule_validations.yml")
+        data = capsules.as_json.to_yaml
+        File.write(file, data)
+      end
+
+      def update_capsule_associations_yml
+        capsules = KepplerCapsules::CapsuleAssociation.all
+        file =  File.join("#{Rails.root}/rockets/keppler_capsules/config/capsule_associations.yml")
         data = capsules.as_json.to_yaml
         File.write(file, data)
       end

@@ -1,4 +1,15 @@
 en:
+  activerecord:
+    errors:
+      models:
+        keppler_capsules/capsule_association:
+          attributes:
+            association_type:
+              uniqueness_association: This association already exists
+        keppler_capsules/capsule_validation:
+          attributes:
+            name:
+              uniqueness_validation: This validation already exists
   keppler_capsules:
     models:
       singularize:
@@ -20,6 +31,14 @@ en:
       validations: Validations
       associations: Associations
       value: Value
+    dependent:
+      nothing: Any
+      destroy: Destroy
+    associations:
+      has_many: Has many
+      has_one: Has one
+      belongs_to: Belongs to
+      has_and_belongs_to_many: Has and belongs to many
     validations:
       validates_presence_of: Validates presence of
       validates_numericality_of: Validates numericality of
@@ -76,6 +95,9 @@ en:
       format_field: Type
       capsule_field: Attribute
       validation: Validation
+      association_type: Association
+      capsule_name: Capsule
+      dependention_destroy: Dependent
       tags: Etiquetas
       name: Name
       first_name: 'First Name'
