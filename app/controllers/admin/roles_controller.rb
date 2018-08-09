@@ -13,7 +13,7 @@ module Admin
     def index
       @q = Role.ransack(params[:q])
       @roles = @q.result(distinct: true)
-      @objects = @roles.page(@current_page).order(:position)
+      @objects = @roles.page(@current_page).order(position: :desc)
       @total = @roles.size
       redirect_to_index(roles_path) if nothing_in_first_page?(@objects)
       respond_to_formats(@roles)
