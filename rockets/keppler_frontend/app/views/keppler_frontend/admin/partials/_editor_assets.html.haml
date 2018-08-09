@@ -100,23 +100,26 @@
                   %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
                   %i.fa.fa-save
 .control-sidebar-bg
+
 :javascript
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
-    $(document).keypress("s",function(e) {
-      if(e.ctrlKey && e.key=='s') {
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+    var tab = $(this)[0].innerText;
+
+    alert(tab)
+    $(document).bind('keydown', function(e) {
+      if(e.ctrlKey && (e.which == 83)) {
         e.preventDefault();
-        var tab = ev.target.innerText;
-        if (tab==='') {
-          var tab = `#{@partial.underscore_name}.html.erb`;
-        }
-        var id = `#{@partial.id}`
-        if ( tab === `#{@partial.underscore_name}.html.erb`) {
-          codeHTML.savePartial(id);
-        } else if (tab === `#{@partial.underscore_name}.scss`) {
-          codeCSS.savePartial(id);
-        } else if (tab === `#{@partial.name}.js`) {
-          codeJs.savePartial(id);
-        }
+        save()
       }
     });
+
+    function save() {
+      if ( tab === `#{@partial.underscore_name}.html.erb`) {
+        codePartialHTML.savePartial(id);
+      } else if (tab === `#{@partial.underscore_name}.scss`) {
+        codePartialCSS.savePartial(id);
+      } else if (tab === `#{@partial.name}.js`) {
+        codePartialJs.savePartial(id);
+      }
+    }
   })

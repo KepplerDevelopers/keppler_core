@@ -68,6 +68,25 @@
   var id = `#{@view.id}`;
   var ready = { css: false, js: false, action: false }
 
+  $(document).bind('keydown', function(e) {
+    if(e.ctrlKey && (e.which == 83)) {
+      e.preventDefault();
+      save()
+    }
+  });
+
+  function save() {
+    if ( tab === `#{@view.name}.html.erb` ) {
+      codeHTML.save(id);
+    } else if (tab === `#{@view.name}.scss` ) {
+      codeCSS.save(id);
+    } else if (tab === `#{@view.name}.js` ) {
+      codeJs.save(id);
+    } else if (tab === 'Action') {
+      codeAction.save(id);
+    }
+  }
+
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     tab = $(this)[0].innerText
     if ( tab===`#{@view.name}.scss` && ready.css === false ){
@@ -81,18 +100,3 @@
       ready.action = true;
     }
   })
-
-  $(document).keypress("s", function(e) {
-    if( e.ctrlKey && e.key == 's' ) {
-      e.preventDefault();
-      if ( tab === `#{@view.name}.html.erb` ) {
-        codeHTML.save(id);
-      } else if (tab === `#{@view.name}.scss` ) {
-        codeCSS.save(id);
-      } else if (tab === `#{@view.name}.js` ) {
-        codeJs.save(id);
-      } else if (tab === 'Action') {
-        codeAction.save(id);
-      }
-    }
-  });

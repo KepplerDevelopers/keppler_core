@@ -17,13 +17,13 @@
           = "#{@partial.name}.js"
           .kf-signal.js_signal
       %li.pull-right
-        %a#btn-theme-editor{href: "#", title: t('keppler.actions.user_interfaces') }
+        %a#btn-theme-editor{ title: t('keppler.actions.user_interfaces') }
           %i.fa.fa-paint-brush
       %li.pull-right
-        %a#btn-assets-editor{href: "#", title: t('keppler.actions.assets')}
+        %a#btn-assets-editor{ title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
-        %a{href: "#", onclick: "controls.savePartial(#{@partial.id})", title: t('keppler.actions.save')}
+        %a{onclick: "controls.savePartial(#{@partial.id})", title: t('keppler.actions.save')}
           %i.fa.fa-save
       %li.pull-right
         = link_to admin_frontend_partials_path do
@@ -54,6 +54,15 @@
     }
   });
 
+  function save() {
+    if ( tab === `#{@partial.underscore_name}.html.erb`) {
+      codePartialHTML.savePartial(id);
+    } else if (tab === `#{@partial.underscore_name}.scss`) {
+      codePartialCSS.savePartial(id);
+    } else if (tab === `#{@partial.name}.js`) {
+      codePartialJs.savePartial(id);
+    }
+  }
   codePartialHTML.codeMirrorHtml();
   codePartialCSS.codeMirrorCSS();
   codePartialJs.codeMirrorJs();
@@ -67,18 +76,8 @@
     if ( tab === `#{@partial.underscore_name}.scss` && ready.css === false ) {
       codePartialCSS.codeMirrorCSS();
       ready.css = true;
-    } else if( tab === `#{@partial.underscore_name}.js` && ready.js === false ) {
+    } else if( tab === `#{@partial.name}.js` && ready.js === false ) {
       codePartialJs.codeMirrorJs();
       ready.js = true;
     }
   })
-
-  function save() {
-    if ( tab === `#{@partial.underscore_name}.html.erb`) {
-      codePartialHTML.savePartial(id);
-    } else if (tab === `#{@partial.underscore_name}.scss`) {
-      codePartialCSS.savePartial(id);
-    } else if (tab === `#{@partial.name}.js`) {
-      codePartialJs.savePartial(id);
-    }
-  }
