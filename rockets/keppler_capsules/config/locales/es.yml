@@ -60,6 +60,7 @@ es:
       singularize:
         keppler_capsules/capsule: capsula
       pluralize:
+        keppler_capsules/capsules: capsulas
     modules:
     settings:
     actions:

@@ -19,7 +19,10 @@ module KepplerCapsules
     end
 
     def validation_exists?
-      validation = CapsuleValidation.where(field: self.field, name: self.name)
+      validation = CapsuleValidation.where(
+        field: self.field,
+        name: self.name,
+        capsule_id: self.capsule)
       validation.count == 0 ? false : true
     end
 

@@ -56,7 +56,9 @@ en:
         add_capsule: + Capsule Manage
     models:
       singularize:
+        keppler_capsules/capsule: capsule
       pluralize:
+        keppler_capsules/capsules: capsules
     modules:
     actions:
       created: Created

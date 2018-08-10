@@ -91,3 +91,8 @@
                 = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
                 - if action_name.eql?('new') || action_name.eql?('create')
                   = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'
+
+:javascript
+  $("#new_capsule").submit(function (e) {
+    $(".spinner").css('display', 'block');// "this" is a reference to the submitted form
+  });
