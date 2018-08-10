@@ -21,6 +21,7 @@ en:
         google-analytics: 'Google Analytics'
         appearance: Appearance
       meta_tags: Meta tags
+      scripts: Scripts
       google-analytics-tracks: 'Scripts'
       keppler-messages: Messages
       keppler-blog: Blog

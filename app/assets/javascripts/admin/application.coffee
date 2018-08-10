@@ -1,10 +1,10 @@
 #= require bounce.min
 #= require noty
 #= require jquery
-#= require jquery.turbolinks
 #= require jquery-ui/widgets/datepicker
 #= require jquery-ui/widgets/sortable
 #= require jquery_ujs
+#= require turbolinks
 #= require nprogress
 #= require nprogress-turbolinks
 #= require ckeditor/init
@@ -20,9 +20,9 @@
 #= require_tree ./codemirror/keymap
 #= require_tree ./codemirror/addon
 #= require keppler_frontend/admin/application
+#= require keppler_capsules/admin/application
 #= require admin/img_preview
 #= require admin/file_upload
 #= require admin/dropdown_top
 #= require admin/sort
-#= require turbolinks
 #= require_tree .

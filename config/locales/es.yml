@@ -30,7 +30,7 @@ es:
         google-analytics: 'Google Analytics'
         appearance: Apariencia
       meta_tags: Meta tags
-      scripts: 'Scripts'
+      scripts: Scripts
       keppler-messages: Mensajes
       keppler-messages-submenu:
         messages: Mensajes

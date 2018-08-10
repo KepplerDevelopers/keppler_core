@@ -65,20 +65,3 @@
     - if can?(KepplerCapsules::Capsule).create?
       = link_to new_admin_capsules_capsule_path, class: "btn-float" do
         +
-
-:javascript
-  $(document).ready(function(){
-    $('#capsule').click(function() {
-      $('#upload_file_capsule').click()
-      $('#upload_file_capsule').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_capsule').submit()
-      })
-    });
-
-    renderImg();
-
-    $("#delete_multiple").click(function (e) {
-      $(".spinner").css('display', 'block');
-    });
-  });
