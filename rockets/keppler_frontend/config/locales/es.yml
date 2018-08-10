@@ -21,6 +21,7 @@ es:
     models:
       singularize:
         keppler_frontend/view: vista
+        keppler_frontend/partial: partial
         view: vista
         theme: tema
       pluralize:

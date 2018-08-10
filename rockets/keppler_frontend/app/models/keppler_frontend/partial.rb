@@ -81,7 +81,7 @@ module KepplerFrontend
       if type_code.eql?('html')
         save_code("#{url_front}/app/views/keppler_frontend/app/partials/#{underscore_name}.html.erb", code)
       elsif type_code.eql?('scss')
-        save_code("#{url_front}/app/assets/stylesheets/keppler_frontend/app/partials/#{underscore_name}.scss", code)
+        save_css(code)
       elsif type_code.eql?('js')
         save_code("#{url_front}/app/assets/javascripts/keppler_frontend/app/partials/#{name}.js", code)
       end

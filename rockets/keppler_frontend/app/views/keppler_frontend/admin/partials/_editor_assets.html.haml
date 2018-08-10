@@ -104,8 +104,6 @@
 :javascript
   $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
     var tab = $(this)[0].innerText;
-
-    alert(tab)
     $(document).bind('keydown', function(e) {
       if(e.ctrlKey && (e.which == 83)) {
         e.preventDefault();
