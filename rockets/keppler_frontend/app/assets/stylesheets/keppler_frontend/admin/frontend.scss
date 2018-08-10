@@ -62,6 +62,14 @@
   }
 }
 
+#btn-assets-editor,
+#btn-theme-editor,
+#close-assets-editor,
+#close-theme-editor{
+  cursor: pointer;
+}
+
+
 .CodeMirror {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
