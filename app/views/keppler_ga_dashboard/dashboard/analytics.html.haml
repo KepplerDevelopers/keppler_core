@@ -23,12 +23,12 @@
 							-# 	%select.form-control
 							-# 		%option Opción 1
 							.row
-								.col-lg-12.separator-dash
-									.col-lg-6
+								.col-lg-12.col-md-12.col-sm-12.col-xs-12.separator-dash
+									.col-lg-6.col-md-6.col-sm-12.col-xs-12
 										#view-name.hide-on-small-only
-									.col-lg-6
+									.col-lg-6.col-md-6.col-sm-12.col-xs-12
 										#active-users-container
-								.col-lg-12
+								.col-lg-12.col-md-12.col-sm-12.col-xs-12
 									#view-selector-container.hide-on-small-only
 		.row
 			.col-lg-6
@@ -575,10 +575,19 @@
 
 
 :scss
+	#active-users-container {
+		display: flex;
+		justify-content: flex-end;
+
+		@media only screen and (min-width:0) and (max-width: 991px) {
+			justify-content: flex-start;
+			margin-bottom: 15px;
+			margin-left: -13px;
+			margin-top: 15px;
+		}
+	}
+
 	.ActiveUsers{
-		position: absolute;
-		top: -3px;
-		right: 10px;
 		background: none;
 		border: 1px solid #d4d2d0;
 		border-radius: 4px;
