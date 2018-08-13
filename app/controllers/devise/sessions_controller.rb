@@ -20,7 +20,7 @@ module Devise
 
     # POST /resource/sign_in
     def create
-      self.resource = warden.authenticate!(auth_options)
+      self.resource = warden.authenticate!(auth_options(params))
       set_flash_message(:notice, :signed_in) if is_flashing_format?
       sign_in(resource_name, resource)
       yield resource if block_given?
@@ -51,8 +51,12 @@ module Devise
       { methods: methods, only: [:password] }
     end
 
-    def auth_options
-      { scope: resource_name, recall: "#{controller_path}#new" }
+    def auth_options(params)
+      if params[:user].has_key?(:path)
+        { scope: resource_name, recall: params[:user][:path] }
+      else
+        { scope: resource_name, recall: "#{controller_path}#new" }
+      end
     end
 
     def translation_scope

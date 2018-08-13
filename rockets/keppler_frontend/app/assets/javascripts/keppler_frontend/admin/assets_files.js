@@ -1,27 +1,28 @@
-$(document).on('turbolinks:load', function() {
-  function copy(id) {
-    // Crea un campo de texto "oculto"
-    var aux = document.createElement("input");
-    // Asigna el contenido del elemento especificado al valor del campo
-    aux.setAttribute("value", $("#"+id).val());
-    // Añade el campo a la página
-    document.body.appendChild(aux);
-    // Selecciona el contenido del campo
-    aux.select();
-    // Copia el texto seleccionado
-    document.execCommand("copy");
-    // Elimina el campo de la página
-    document.body.removeChild(aux);
-  }
+function copy(id) {
+  // Crea un campo de texto "oculto"
+  var aux = document.createElement("input");
+  // Asigna el contenido del elemento especificado al valor del campo
+  aux.setAttribute("value", $("#"+id).val());
+  // Añade el campo a la página
+  document.body.appendChild(aux);
+  // Selecciona el contenido del campo
+  aux.select();
+  // Copia el texto seleccionado
+  document.execCommand("copy");
+  // Elimina el campo de la página
+  document.body.removeChild(aux);
+}
 
-  function copyHtml(id) {
-    const el = document.createElement('textarea');
-    el.value = $("#"+id)[0].attributes.value.value;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-  }
+function copyHtml(id) {
+  const el = document.createElement('textarea');
+  el.value = $("#"+id)[0].attributes.value.value;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}
+
+$(document).on('turbolinks:load', function() {
 
   $(document).ready(function(){
     $('#btn-assets-editor').click(function(){

@@ -13,4 +13,22 @@ module FrontsHelper
   def set_social
     Setting.first.social_account
   end
+
+  def permit_users(roles)
+    roles = [] << roles if roles.class.to_s.eql?("String")
+    permit = false
+    if current_user
+      roles.each { |r| permit = true if r.eql?(current_user.rol) }
+    end
+    permit
+  end
+
+  def permit_users_or_redirect_to(roles, path)
+    roles = [] << roles if roles.class.to_s.eql?("String")
+    permit = false
+    if current_user
+      roles.each { |r| permit = true if r.eql?(current_user.rol) }
+    end
+    redirect_to path if permit.eql?(false)
+  end
 end
