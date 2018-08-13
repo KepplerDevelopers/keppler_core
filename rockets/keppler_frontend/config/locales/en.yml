@@ -19,9 +19,11 @@ en:
         themes: Themes
     models:
       singularize:
+        keppler_frontend/view: view
         view: view
         theme: theme
       pluralize:
+        keppler_frontend/views: views
         views: views
         themes: themes
     modules:
