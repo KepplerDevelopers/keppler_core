@@ -97,7 +97,7 @@ module KepplerFrontend
       def destroy_multiple
         Partial.destroy redefine_ids(params[:multiple_ids])
         redirect_to(
-          admin_partials_path(page: @current_page, search: @query),
+          admin_frontend_partials_path(page: @current_page, search: @query),
           notice: actions_messages(Partial.new)
         )
       end

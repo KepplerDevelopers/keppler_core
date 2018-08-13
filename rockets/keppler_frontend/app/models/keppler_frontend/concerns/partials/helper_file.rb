@@ -16,7 +16,7 @@ module KepplerFrontend
           end
           index_html.insert(head_idx.to_i + 1, "    def #{name}(hash = {})\n")
           index_html.insert(head_idx.to_i + 2, "      render 'keppler_frontend/app/partials/#{name}'\n")
-          index_html.insert(head_idx.to_i + 3, "    end\n")
+          index_html.insert(head_idx.to_i + 3, "    end\n\n")
           index_html = index_html.join('')
           File.write(file, index_html)
           true
