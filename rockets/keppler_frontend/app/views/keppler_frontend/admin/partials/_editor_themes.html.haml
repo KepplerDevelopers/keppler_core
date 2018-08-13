@@ -58,10 +58,14 @@
 .control-sidebar-bg
 
 :javascript
-  var tab = `#{@partial.underscore_name}.html.erb`;
-
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
-    // tab = $(this)[0].innerText;
+    var tab = ev.target.innerText;
+    var id = `#{@partial.id}`;
+
+    if (tab === '') {
+      tab = `#{@partial.underscore_name}.html.erb`
+    }
+
     $(document).bind('keydown', function(e) {
       if(e.ctrlKey && (e.which == 83)) {
         e.preventDefault();

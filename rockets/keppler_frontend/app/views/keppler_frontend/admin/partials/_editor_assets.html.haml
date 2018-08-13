@@ -102,8 +102,14 @@
 .control-sidebar-bg
 
 :javascript
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
-    var tab = $(this)[0].innerText;
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
+    var tab = ev.target.innerText;
+    var id = `#{@partial.id}`;
+
+    if (tab === '') {
+      tab = `#{@partial.underscore_name}.html.erb`
+    }
+
     $(document).bind('keydown', function(e) {
       if(e.ctrlKey && (e.which == 83)) {
         e.preventDefault();
