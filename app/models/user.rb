@@ -19,6 +19,10 @@ class User < ApplicationRecord
     roles.first.name
   end
 
+  def permissions?
+    roles.first.permissions?
+  end
+
   def self.filter_by_role(obj, role_id)
     obj.select { |u| u.rol.eql?(role_id) }
   end
