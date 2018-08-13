@@ -172,3 +172,12 @@ function copyHtml(id) {
   document.execCommand('copy');
   document.body.removeChild(el);
 }
+
+function copyPartial(id) {
+  const el = document.createElement('textarea');
+  el.value = $("#partial"+id)[0].attributes.value.value;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}

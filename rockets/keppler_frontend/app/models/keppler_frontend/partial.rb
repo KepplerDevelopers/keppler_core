@@ -79,7 +79,7 @@ module KepplerFrontend
 
     def code_save(code, type_code)
       if type_code.eql?('html')
-        save_code("#{url_front}/app/views/keppler_frontend/app/partials/#{underscore_name}.html.erb", code)
+        save_html(code)
       elsif type_code.eql?('scss')
         save_css(code)
       elsif type_code.eql?('js')

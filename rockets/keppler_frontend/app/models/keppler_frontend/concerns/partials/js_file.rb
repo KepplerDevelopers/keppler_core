@@ -13,7 +13,7 @@ module KepplerFrontend
 
         def install_js
           out_file = File.open("#{url_front}/app/assets/javascripts/keppler_frontend/app/partials/#{name}.js", "w")
-          out_file.puts("// Keppler - #{name}.js file");
+          out_file.puts("// Insert js code here...");
           out_file.close
           true
         end

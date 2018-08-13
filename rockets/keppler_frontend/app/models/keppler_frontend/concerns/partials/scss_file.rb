@@ -13,7 +13,7 @@ module KepplerFrontend
           head_idx = 0
           index_html.insert(head_idx.to_i + 1, "// begin #{name}\n")
           index_html.insert(head_idx.to_i + 2, "##{name} {\n")
-          index_html.insert(head_idx.to_i + 3, " // Insert scss code...")
+          index_html.insert(head_idx.to_i + 3, "  // Insert scss code...")
           index_html.insert(head_idx.to_i + 4, "\n}\n")
           index_html.insert(head_idx.to_i + 5, "// end #{name}\n")
           index_html = index_html.join('')
@@ -51,19 +51,21 @@ module KepplerFrontend
           new_name = "#{url_front}/app/assets/stylesheets/keppler_frontend/app/partials/#{'_' + css[:name]}.scss"
           File.rename(old_name, new_name)
 
-          file = new_name
-          index_html = File.readlines(file)
-          begin_idx = 0
-          end_idx = 0
-          index_html.each do |i|
-            begin_idx = index_html.find_index(i) if i.include?("##{name} {\n")
-            # end_idx = index_html.find_index(i) if i.include?("    end\n")
-          end
-          # return if begin_idx==0
-          index_html[begin_idx] = "##{name} {\n"
-          # index_html[begin_idx+1] = "      render 'keppler_frontend/app/partials/#{helper[:name]}'\n"
-          index_html = index_html.join('')
-          File.write(file, index_html)
+          # file = old_name
+          #
+          # index_html = File.readlines(file)
+          # begin_idx = 0
+          # end_idx = 0
+          # index_html.each do |i|
+          #   begin_idx = index_html.find_index(i) if i.include?("// begin #{name}\n")
+          #   end_idx = index_html.find_index(i) if i.include?("// end #{name}\n")
+          # end
+          # # return if begin_idx==0
+          # index_html[begin_idx] = "##{name} {\n"
+          # # index_html[begin_idx+1] = "      render 'keppler_frontend/app/partials/#{helper[:name]}'\n"
+          # index_html = index_html.join('')
+          # File.write(file, index_html)
+
           true
         end
 
