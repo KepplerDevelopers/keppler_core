@@ -46,27 +46,24 @@ module KepplerFrontend
         end
 
         def update_css(css)
+          file = "#{url_front}/app/assets/stylesheets/keppler_frontend/app/partials/#{underscore_name}.scss"
+          index_html = File.readlines(file)
+          begin_idx = 0
+          end_idx = 0
+          index_html.each do |idx|
+            begin_idx = index_html.find_index(idx) if idx.include?("// begin #{name}\n")
+            end_idx = index_html.find_index(idx) if idx.include?("// end #{name}\n")
+          end
+          index_html[begin_idx] = "// begin #{css[:name]}\n"
+          index_html[begin_idx+1] = "##{css[:name]} {\n"
+          index_html[end_idx] = "// end #{css[:name]}\n"
+          index_html = index_html.join('')
+          File.write(file, index_html)
+
           obj = Partial.find(id)
           old_name = "#{url_front}/app/assets/stylesheets/keppler_frontend/app/partials/#{obj.underscore_name}.scss"
           new_name = "#{url_front}/app/assets/stylesheets/keppler_frontend/app/partials/#{'_' + css[:name]}.scss"
           File.rename(old_name, new_name)
-
-          # file = old_name
-          #
-          # index_html = File.readlines(file)
-          # begin_idx = 0
-          # end_idx = 0
-          # index_html.each do |i|
-          #   begin_idx = index_html.find_index(i) if i.include?("// begin #{name}\n")
-          #   end_idx = index_html.find_index(i) if i.include?("// end #{name}\n")
-          # end
-          # # return if begin_idx==0
-          # index_html[begin_idx] = "##{name} {\n"
-          # # index_html[begin_idx+1] = "      render 'keppler_frontend/app/partials/#{helper[:name]}'\n"
-          # index_html = index_html.join('')
-          # File.write(file, index_html)
-
-          true
         end
 
         def save_css(code)

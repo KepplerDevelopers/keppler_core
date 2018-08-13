@@ -56,8 +56,6 @@ module KepplerFrontend
             end_idx = index_html.find_index(idx) if idx.include?("<!-- end #{name} -->\n")
             default_idx = index_html.find_index(idx) if idx.include?("  <h1> #{name} partial </h1>")
           end
-          # return if begin_idx==0
-          byebug
           index_html[begin_idx] = "<!-- begin #{html[:name]} -->\n"
           index_html[begin_idx+1] = "<div id='#{html[:name]}'>\n"
           index_html[end_idx] = "<!-- end #{html[:name]} -->\n"
