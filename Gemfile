@@ -128,4 +128,4 @@ end
 gem 'google-api-client', '~> 0.7.1'
 gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
-gem 'keppler_language', path: 'rockets/keppler_language'
+gem 'keppler_languages', path: 'rockets/keppler_languages'

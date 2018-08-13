@@ -18,6 +18,6 @@
 #= require_tree ./codemirror/keymap
 #= require_tree ./codemirror/addon
 
-#= require keppler_language/admin/application
+#= require keppler_languages/application
 #= require keppler_frontend/admin/application
 #= require_tree .

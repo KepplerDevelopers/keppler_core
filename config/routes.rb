@@ -153,7 +153,7 @@ Rails.application.routes.draw do
   mount KepplerFrontend::Engine, at: '/', as: 'frontend'
 
   # Language routes engine
-  mount KepplerLanguage::Engine, at: '/', as: 'language'
+  mount KepplerLanguages::Engine, at: '/', as: 'language'
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'

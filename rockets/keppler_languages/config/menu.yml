@@ -1,0 +1,7 @@
+menu:
+  keppler_languages:
+    name: Keppler Languages
+    current: ['/admin/language/languages']
+    url_path: /admin/languages/languages
+    icon: layers
+    model: KepplerLanguages::Language
