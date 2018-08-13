@@ -6,6 +6,7 @@ module KepplerFrontend
     include KepplerFrontend::Concerns::HtmlFile
     include KepplerFrontend::Concerns::ScssFile
     include KepplerFrontend::Concerns::JsFile
+    include KepplerFrontend::Concerns::ViewJsFile
     include KepplerFrontend::Concerns::RouteFile
     include KepplerFrontend::Concerns::ActionFile
     require 'csv'
@@ -54,21 +55,31 @@ module KepplerFrontend
     end
 
     def install
-      if format_result.eql?('HTML')
+      if self.format_result.eql?('HTML')
         create_action_html
         install_html
         install_scss
         install_js
+      elsif self.format_result.eql?('JS')
+        create_action_html
+        install_view_js
+      elsif self.format_result.eql?('Action')
+        create_action_html
       end
       add_route
     end
 
     def uninstall
-      if format_result.eql?('HTML')
+      if self.format_result.eql?('HTML')
         delete_action_html
         uninstall_html
         uninstall_scss
         uninstall_js
+      elsif self.format_result.eql?('JS')
+        delete_action_html
+        uninstall_view_js
+      elsif self.format_result.eql?('Action')
+        delete_action_html
       end
       delete_route
     end
@@ -87,6 +98,8 @@ module KepplerFrontend
         save_code("#{url_front}/app/assets/stylesheets/keppler_frontend/app/#{name}.scss", code)
       elsif type_code.eql?('js')
         save_code("#{url_front}/app/assets/javascripts/keppler_frontend/app/#{name}.js", code)
+      elsif type_code.eql?('js_erb')
+        save_code("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.js.erb", code)
       elsif type_code.eql?('action')
         save_action(code)
       end

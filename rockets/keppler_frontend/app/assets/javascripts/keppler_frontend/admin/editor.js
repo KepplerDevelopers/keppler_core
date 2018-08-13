@@ -1,6 +1,7 @@
 var editor = '';
 var editor_css = '';
 var editor_js = '';
+var editor_js_erb = '';
 var editor_action = '';
 
 var controls = {
@@ -21,6 +22,27 @@ var controls = {
       $('.scss_signal').css('display', 'none');
       $('.js_signal').css('display', 'none');
       $('.action_signal').css('display', 'none');
+    })
+  },
+  saveOnlyAction: function(){
+    this.codes = {
+      ruby: editor_action.getValue()
+    }
+    $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
+      $("#code-action").val(editor_action.getValue())
+      $('.action_signal').css('display', 'none');
+    })
+  },
+  saveViewJs: function(){
+    this.codes = {
+      ruby: editor_action.getValue(),
+      js_erb: editor_js_erb.getValue(),
+    }
+    $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
+      $("#code-action").val(editor_action.getValue())
+      $("#code-js-erb").val(editor_js_erb.getValue())
+      $('.action_signal').css('display', 'none');
+      $('.js_erb_signal').css('display', 'none');
     })
   }
 }
@@ -162,6 +184,52 @@ var codeJs = {
       $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
         $("#code-js").val(editor_js.getValue())
         $('.js_signal').css('display', 'none');
+      })
+    }
+  }
+}
+
+var codeJsErb = {
+  codeMirrorJsErb: function() {
+    $("#code-js-erb").each(function() {
+      CodeMirror.commands.autocomplete = function(cm) {
+        cm.showHint({hint: CodeMirror.hint.anyword});
+      }
+      editor_js_erb =  CodeMirror.fromTextArea($(this).get(0), {
+        lineNumbers: true,
+        mode: "text/javascript",
+        keyMap: "sublime",
+        theme: 'monokai',
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        indentUnit: 2,
+        tabSize: 2,
+        showTrailingSpace: true,
+        highlightSelectionMatches: {
+          showToken: /\w/,
+          annotateScrollbar: true
+        },
+        extraKeys: {"Ctrl-Space": "autocomplete"}
+      });
+
+      editor_js_erb.on('change', function () {
+        if(editor_js_erb.getValue() === $("#code-js").val()) {
+          $('.js_erb_signal').css('display', 'none');
+        } else {
+          $('.js_erb_signal').css('display', 'block');
+        }
+      });
+    });
+    return editor_js;
+  },
+  save: function(id) {
+    if(editor_js_erb.getValue() !== $("#code-js-erb").val()) {
+      this.codes = {
+        js_erb: editor_js_erb.getValue()
+      }
+      $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
+        $("#code-js-erb").val(editor_js_erb.getValue())
+        $('.js_erb_signal').css('display', 'none');
       })
     }
   }
