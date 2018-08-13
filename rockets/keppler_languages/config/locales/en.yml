@@ -6,8 +6,10 @@ en:
     models:
       singularize:
         language: Language
+        keppler_languages/language: Language
       pluralize:
         languages: Languages
+        keppler_languages/languages: Languages
     modules:
       language: Language
     actions:

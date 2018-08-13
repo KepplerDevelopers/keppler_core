@@ -5,6 +5,7 @@ module Admin
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
     before_action :authenticate_user!
+    before_action :validate_permissions
     before_action :paginator_params
     before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
@@ -25,6 +26,14 @@ module Admin
     end
 
     private
+
+    def validate_permissions
+      return if current_user.rol.eql?('keppler_admin')
+
+      unless current_user.permissions?
+        redirect_to frontend_path
+      end
+    end
 
     def get_history(model)
       @activities = PublicActivity::Activity.where(

@@ -1,23 +1,16 @@
-# Language Model
+# Field Model
 module KepplerLanguages
-  class Language < ActiveRecord::Base
+  class Field < ActiveRecord::Base
     include ActivityHistory
     include CloneRecord
     require 'csv'
     acts_as_list
 
-    include KepplerLanguages::Concerns::YmlFile
-
-    validates_presence_of :name
-    validates_uniqueness_of :name
-    has_many :fields
-
-    has_many :fields, dependent: :destroy, inverse_of: :language
-    accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
+    belongs_to :language
     
     # Fields for the search form in the navbar
     def self.search_field
-      fields = ["name", "position", "deleted_at"]
+      fields = ["key", "value", "position", "deleted_at"]
       build_query(fields, :or, :cont)
     end
 
@@ -42,10 +35,5 @@ module KepplerLanguages
       query << "_#{conf}"
       query.to_sym
     end
-
-    def install_yml
-      create_yml
-    end
-
   end
 end

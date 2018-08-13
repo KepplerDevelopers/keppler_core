@@ -1,8 +1,8 @@
-= simple_form_for [:admin, :languages, @language] do |f|
+= simple_form_for [:admin, :languages, @field] do |f|
   .container
     .row
       .col-lg-2
-        = link_to admin_languages_languages_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+        = link_to admin_languages_fields_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
           .arrow-back.btn.btn-default
             %i.fa.fa-angle-left
             = t('keppler.actions.back')
@@ -20,8 +20,9 @@
               %tbody
                 .form-padding
                   .col-xs-12
-                    = f.input :name
-                    -# = f.country_select :name,  collection: [""], label: false, include_blank: "Seleccione un pais"
+                    = f.input :key
+                  .col-xs-12
+                    = f.input :value
                   .col-xs-12
                     = f.input :position, as: :hidden
                   .col-xs-12
@@ -29,3 +30,4 @@
                   .col-xs-12
                     .pull-right
                       = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+                      = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'

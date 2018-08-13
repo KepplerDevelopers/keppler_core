@@ -6,7 +6,9 @@ es:
     models:
       singularize:
         language: Idioma
+        keppler_languages/language: Idioma
       pluralize:
+        keppler_languages/languages: Idiomas
         languages: Idiomas
     modules:
       language: Idiomas

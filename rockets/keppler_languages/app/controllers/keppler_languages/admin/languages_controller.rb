@@ -48,7 +48,7 @@ module KepplerLanguages
         @language = Language.new(language_params)
 
         if @language.save && @language.create_yml
-          redirect(@language, params)
+          redirect_to admin_languages_language_add_fields_path(@language)
         else
           render :new
         end
@@ -56,11 +56,16 @@ module KepplerLanguages
 
       # PATCH/PUT /languages/1
       def update
+        @language.update_yml(language_params)
         if @language.update(language_params)
           redirect(@language, params)
         else
           render :edit
         end
+      end
+
+      def add_fields
+        @language = Language.find(params[:language_id])
       end
 
       def clone
