@@ -46,6 +46,27 @@ module KepplerFrontend
         end
 
         def update_html(html)
+          file = "#{url_front}/app/views/keppler_frontend/app/partials/#{underscore_name}.html.erb"
+          index_html = File.readlines(file)
+          begin_idx = 0
+          end_idx = 0
+          default_idx = 0
+          index_html.each do |idx|
+            begin_idx = index_html.find_index(idx) if idx.include?("<!-- begin #{name} -->\n")
+            end_idx = index_html.find_index(idx) if idx.include?("<!-- end #{name} -->\n")
+            default_idx = index_html.find_index(idx) if idx.include?("  <h1> #{name} partial </h1>")
+          end
+          # return if begin_idx==0
+          byebug
+          index_html[begin_idx] = "<!-- begin #{html[:name]} -->\n"
+          index_html[begin_idx+1] = "<div id='#{html[:name]}'>\n"
+          index_html[end_idx] = "<!-- end #{html[:name]} -->\n"
+          index_html[default_idx] = "  <h1> #{html[:name]} partial </h1>\n" unless default_idx.eql?(0)
+          index_html = index_html.join('')
+          File.write(file, index_html)
+          # file.close
+          true
+
           obj = Partial.find(id)
           old_name = "#{url_front}/app/views/keppler_frontend/app/partials/#{obj.underscore_name}.html.erb"
           new_name = "#{url_front}/app/views/keppler_frontend/app/partials/#{'_' + html[:name]}.html.erb"
