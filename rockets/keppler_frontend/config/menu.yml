@@ -1,0 +1,19 @@
+menu:
+  keppler_frontend:
+    name: Keppler Frontend
+    current: ['']
+    icon: layers
+    model: KepplerFrontend::View
+    submenu:
+      - option:
+          name: views
+          url_path: /admin/frontend/views
+          current: ['current']
+      - option:
+          name: Assets
+          url_path: /admin/frontend/assets
+          current: ['current']
+      - option:
+          name: Themes
+          url_path: /admin/frontend/themes
+          current: ['current']

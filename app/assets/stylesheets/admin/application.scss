@@ -1,6 +1,10 @@
 //= require animate-css
 //= require jquery.minicolors
 //= require noty
+//= require admin/codemirror/codemirror
+//= require_tree ./codemirror/theme
+//= require_tree ./codemirror/addon
+//= require keppler_frontend/admin/application
 //= require_self
 
 //Vendor folder
@@ -16,6 +20,8 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'adminlte';
+@import 'slick';
+@import 'slick-theme';
 
 //Utils folder
 @import 'utils/variables';

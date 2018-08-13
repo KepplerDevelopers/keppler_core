@@ -1,0 +1,99 @@
+.container
+  .nav-tabs-custom
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+          = "#{@view.name}.html.erb"
+          .kf-signal.html_signal
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+          = "#{@view.name}.scss"
+          .kf-signal.scss_signal
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+          = "#{@view.name}.js"
+          .kf-signal.js_signal
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
+          Action
+          .kf-signal.action_signal
+      -# %li.pull-right
+      -#   %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.download') }
+      -#     %i.fa.fa-download
+      %li.pull-right
+        = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
+          %i.fa.fa-globe
+      %li.pull-right
+        %a#btn-theme-editor{href: "#", title: t('keppler.actions.user_interfaces') }
+          %i.fa.fa-paint-brush
+      %li.pull-right
+        %a#btn-assets-editor{href: "#", title: t('keppler.actions.assets')}
+          %i.fa.fa-folder
+      %li.pull-right
+        %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.save')}
+          %i.fa.fa-save
+      %li.pull-right
+        = link_to admin_frontend_views_path do
+          %i.fa.fa-list
+          %span.hidden-xs
+            = t('keppler.actions.view_list')
+    .tab-content
+      #tab_1.tab-pane.active
+        %div.html.code-container
+          %textarea#code-html{name: "code"}
+            = @view.html_code
+      #tab_2.tab-pane
+        %div.css.code-container
+          %textarea#code-css{:name => "code"}
+            = @view.scss_code
+      #tab_3.tab-pane
+        %div.js.code-container
+          %textarea#code-js{:name => "code"}
+            = @view.js_code
+      #tab_5.tab-pane
+        %div.action.code-container
+          %textarea#code-action{:name => "code"}
+            = @view.action_code
+
+
+= render "editor_assets"
+= render "editor_themes"
+
+:javascript
+  codeHTML.codeMirrorHtml();
+  codeCSS.codeMirrorCSS();
+  codeJs.codeMirrorJs();
+  codeAction.codeMirrorAction();
+  var tab = `#{@view.name}.html.erb`;
+  var id = `#{@view.id}`;
+  var ready = { css: false, js: false, action: false }
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    tab = $(this)[0].innerText
+    if ( tab===`#{@view.name}.scss` && ready.css === false ){
+      codeCSS.codeMirrorCSS();
+      ready.css = true;
+    } else if( tab===`#{@view.name}.js` && ready.js === false ) {
+      codeJs.codeMirrorJs();
+      ready.js = true;
+    } else if( tab==="Action" && ready.action === false ) {
+      codeAction.codeMirrorAction();
+      ready.action = true;
+    }
+
+  })
+
+  $(document).keypress("s",function(e) {
+    if(e.ctrlKey && e.key=='s') {
+      e.preventDefault();
+      if ( tab === `#{@view.name}.html.erb`) {
+        codeHTML.save(id);
+      } else if (tab === `#{@view.name}.scss`) {
+        codeCSS.save(id);
+      } else if (tab === `#{@view.name}.js`) {
+        codeJs.save(id);
+      } else if (tab === 'Action') {
+        codeAction.save(id);
+      }
+    }
+  });

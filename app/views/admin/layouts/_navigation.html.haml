@@ -5,7 +5,7 @@
         %span K
       %span.logo-lg
         %span K
-    %a.sidebar-toggle{ 'data-toggle' => 'offcanvas', href: '#', role: 'button' }
+    %a.sidebar-toggle{ 'data-toggle' => 'offcanvas', role: 'button' }
       %i.icon-menu
       %span.sr-only Toggle navigation
     - if listing? && q
@@ -22,7 +22,7 @@
     .navbar-custom-menu
       %ul.nav.navbar-nav
         %li.dropdown.user.user-menu
-          %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#' }
+          %a.dropdown-toggle{ 'data-toggle' => 'dropdown' }
             = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu

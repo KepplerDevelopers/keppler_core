@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get '/index', to: 'app/front#index', as: :app_index
   end
 
-  root to: 'app/front#index'
+  # root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
   post '/filter', to: 'admin/users#filter_by_role', as: :filter_by_role
@@ -63,12 +63,12 @@ Rails.application.routes.draw do
       )
     end
 
-    resources :customizes do
-      get '(page/:page)', action: :index, on: :collection, as: ''
-      get '/clone', action: 'clone'
-      post '/upload', action: 'upload', as: :upload
-      post '/install_default', action: 'install_default'
-    end
+    # resources :customizes do
+    #   get '(page/:page)', action: :index, on: :collection, as: ''
+    #   get '/clone', action: 'clone'
+    #   post '/upload', action: 'upload', as: :upload
+    #   post '/install_default', action: 'install_default'
+    # end
 
 
     resources :users do
@@ -148,6 +148,9 @@ Rails.application.routes.draw do
 
   # Dashboard routes engine
   mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'
+
+  # Frontend routes engine
+  mount KepplerFrontend::Engine, at: '/', as: 'frontend'
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
