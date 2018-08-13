@@ -15,7 +15,7 @@ module FrontsHelper
   end
 
   def permit_users(roles)
-    roles = [] << roles if roles.class.to_s.eql?("String")
+    roles = [] << roles if roles.class.to_s.eql?('String')
     permit = false
     if current_user
       roles.each { |r| permit = true if r.eql?(current_user.rol) }
@@ -24,7 +24,7 @@ module FrontsHelper
   end
 
   def permit_users_or_redirect_to(roles, path)
-    roles = [] << roles if roles.class.to_s.eql?("String")
+    roles = [] << roles if roles.class.to_s.eql?('String')
     permit = false
     if current_user
       roles.each { |r| permit = true if r.eql?(current_user.rol) }
