@@ -56,7 +56,7 @@ module KepplerFrontend
         end
       end
 
-      # PATCH/PUT /views/1 
+      # PATCH/PUT /views/1
       def update
         @view.delete_route
         @view.update_files(view_params)
@@ -139,6 +139,7 @@ module KepplerFrontend
         @view.code_save(params[:html], 'html') if params[:html]
         @view.code_save(params[:scss], 'scss') if params[:scss]
         @view.code_save(params[:js], 'js') if params[:js]
+        @view.code_save(params[:js_erb], 'js_erb') if params[:js_erb]
         @view.code_save(params[:ruby], 'action') if params[:ruby]
         render json: {result: true}
       end
