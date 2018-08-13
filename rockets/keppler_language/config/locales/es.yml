@@ -1,13 +1,13 @@
 es:
   keppler:
     sidebar-menu:
-      keppler-language: Keppler Language
+      keppler-language: Idiomas
       keppler-language-submenu:
     models:
       singularize:
       pluralize:
     modules:
-    settings: 
+    settings:
     actions:
       created: Creado
       updated: Actualizado
@@ -136,4 +136,3 @@ es:
         restrict_dependent_destroy:
           has_one: "No se puede borrar el registro porque un registro dependiente %{record} existe"
           has_many: "No se puede borrar el registro porque registros dependientes %{record} existen"
-  

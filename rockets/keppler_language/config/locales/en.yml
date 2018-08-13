@@ -1,7 +1,7 @@
 en:
   keppler:
     sidebar-menu:
-      keppler-language: Keppler Language
+      keppler-language: Language
       keppler-language-submenu:
     models:
       singularize:
@@ -101,4 +101,3 @@ en:
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists"
           has_many: "Cannot delete record because dependent %{record} exist"
-  

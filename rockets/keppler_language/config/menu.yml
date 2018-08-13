@@ -1,12 +1,7 @@
 menu:
   keppler_language:
     name: Keppler Language
-    current: ['']
-    url_path: /
+    current: ['/admin/language/languages']
+    url_path: /admin/language/languages
     icon: layers
-    model: User
-    # submenu:
-    #   - option:
-    #       name: name
-    #       url_path: url_path
-    #       current: ['current']
+    model: KepplerLanguage::Language

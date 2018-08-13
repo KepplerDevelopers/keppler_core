@@ -1,1 +1,9 @@
 modules:
+ languages:
+    name: Language
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  

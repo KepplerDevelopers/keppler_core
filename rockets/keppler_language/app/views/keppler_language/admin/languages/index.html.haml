@@ -1,0 +1,80 @@
+#index-container{ :controller => "languages" }
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1{ style: 'display: inline-block' }
+            = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
+          .toolbar
+            - if can?(KepplerLanguage::Language).download?
+              .toolbar-item
+                = link_to admin_language_language_download_path(KepplerLanguage::Language, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                  %i.icon-cloud-download
+            - if can?(KepplerLanguage::Language).upload?
+              .toolbar-item
+                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "language" do
+                  %i.icon-cloud-upload
+            .toolbar-item
+              = link_to reload_admin_language_languages_path, class: "tool-btn", remote: true do
+                %i.icon-reload
+            - if can?(KepplerLanguage::Language).destroy_multiple?
+              .toolbar-item
+                .checkbox
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
+                %i.icon-trash
+          .hide
+            = form_tag admin_language_language_upload_path(@objects), id: "upload_form_languages", multipart: true, method: :post do
+              = file_field_tag :file, id: "upload_file_language"
+          %ol.breadcrumb
+            %li
+              %a{ href: '#' }
+                %i.icon-directions
+                = t("keppler.modules.#{action_name.underscore}")
+
+        .box.slice-box
+          .box-body.no-padding
+
+            %table.table
+              %thead
+                - if @objects.size.zero?
+                  %tr
+                    %th{style: 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.languages"))
+                - else
+                  %tr
+                    %th
+                    %th.hidden-xs= t('activerecord.attributes.name')
+                    %th.center Menu
+                    %th
+              %tbody#objects-container
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @objects
+        %center#paginator-module
+          = paginate @objects, window: 1
+  %aside.control-sidebar
+    = render "description"
+  %aside#index-show.control-sidebar
+
+  .mixed-btn
+    - if can?(KepplerLanguage::Language).create?
+      = link_to new_admin_language_language_path, class: "btn-float" do
+        +
+
+:javascript
+  $(document).ready(function(){
+    $('#language').click(function() {
+      $('#upload_file_language').click()
+      $('#upload_file_language').change(function() {
+        $('.waiting').css('display', 'block')
+        $('#upload_form_language').submit()
+      })
+    });
+
+    renderImg();
+  });
