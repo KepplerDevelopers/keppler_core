@@ -8,6 +8,7 @@ module KepplerCapsules
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      before_action :only_development
       before_action :reload_capsules, only: [:index]
       after_action :update_capsules_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :reload_capsule_fields, only: [:index]
@@ -166,6 +167,10 @@ module KepplerCapsules
       end
 
       private
+
+      def only_development
+        redirect_to '/admin' if Rails.env.eql?("production")
+      end
 
       def authorization
         authorize Capsule
