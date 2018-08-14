@@ -7,7 +7,8 @@ module KepplerFrontend
       before_action :set_view, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
       before_action :set_attachments
-      before_action :authorization
+      before_action :authorization      
+      before_action :only_development
       before_action :reload_views, only: [:index]
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
