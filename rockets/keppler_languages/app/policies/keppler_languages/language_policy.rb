@@ -12,5 +12,9 @@ module KepplerLanguages
       true
     end
 
+    def create_fields?
+      true
+    end
+
   end
 end

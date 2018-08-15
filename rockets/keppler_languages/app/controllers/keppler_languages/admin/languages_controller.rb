@@ -8,9 +8,12 @@ module KepplerLanguages
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      # after_action :update_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+
       include KepplerLanguages::Concerns::Commons
       include KepplerLanguages::Concerns::History
       include KepplerLanguages::Concerns::DestroyMultiple
+      include KepplerLanguages::Concerns::Yml
 
 
       # GET /languages
@@ -48,7 +51,8 @@ module KepplerLanguages
         @language = Language.new(language_params)
 
         if @language.save && @language.create_yml
-          redirect_to admin_languages_language_add_fields_path(@language)
+          update_yml(@language.id)
+          redirect_to admin_languages_languages_path(@language)
         else
           render :new
         end
@@ -58,6 +62,7 @@ module KepplerLanguages
       def update
         @language.update_yml(language_params)
         if @language.update(language_params)
+          update_yml(@language.id)
           redirect(@language, params)
         else
           render :edit
@@ -66,6 +71,11 @@ module KepplerLanguages
 
       def add_fields
         @language = Language.find(params[:language_id])
+      end
+
+      def create_fields
+        fields = language_params.to_h
+        @fields = Field.create()
       end
 
       def clone
@@ -128,6 +138,10 @@ module KepplerLanguages
 
       private
 
+      def fields_attributes
+        [:id, :key, :value, :_destroy]
+      end
+
       def authorization
         authorize Language
       end
@@ -144,7 +158,12 @@ module KepplerLanguages
 
       # Only allow a trusted parameter "white list" through.
       def language_params
-        params.require(:language).permit(:name, :position, :deleted_at)
+        params.require(:language).permit(
+          :name,
+          :position,
+          :deleted_at,
+          fields_attributes: fields_attributes,
+        )
       end
 
       def show_history
