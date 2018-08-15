@@ -5,6 +5,7 @@ module Admin
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
     before_action :authenticate_user!
+    before_action :validate_permissions
     before_action :paginator_params
     before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
@@ -22,6 +23,11 @@ module Admin
       @search_field = model.search_field if listing?
       @query = params[:search] unless params[:search].blank?
       @current_page = params[:page] unless params[:page].blank?
+    end
+
+    def validate_permissions
+      return if current_user.rol.eql?('keppler_admin')
+      redirect_to frontend_path unless current_user.permissions?
     end
 
     private
