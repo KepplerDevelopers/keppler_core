@@ -30,6 +30,15 @@ en:
         views: Views
         assets: Assets
         themes: Themes
+    models:
+      singularize:
+        keppler_frontend/view: view
+        view: view
+        theme: theme
+      pluralize:
+        keppler_frontend/views: views
+        views: views
+        themes: themes
     actions:
       created: Created
       updated: Updated

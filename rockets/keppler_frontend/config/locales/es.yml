@@ -30,6 +30,15 @@ es:
         views: Vistas
         assets: Assets
         themes: Temas
+    models:
+      singularize:
+        keppler_frontend/view: vista
+        view: vista
+        theme: tema
+      pluralize:
+        keppler_frontend/views: vistas
+        views: vistas
+        themes: temas
     actions:
       created: Creado
       updated: Actualizado
