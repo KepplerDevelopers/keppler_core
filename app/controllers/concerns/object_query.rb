@@ -30,8 +30,8 @@ module ObjectQuery
   def respond_to_formats(objects)
     respond_to do |format|
       format.html
-      format.csv { send_data objects.model.all.to_csv }
-      format.xls { send_data objects.model.all.to_xls }
+      format.csv { send_format_data(objects.model.all, 'csv') }
+      format.xls { send_format_data(objects.model.all, 'xls') }
       format.json { render json: json_objects(objects) }
     end
   end
