@@ -48,6 +48,18 @@ module KepplerCapsules
         result
       end
 
+      def add_mount_image(table, field)
+        file = "#{url_capsule}/app/models/keppler_capsules/#{table.singularize}.rb"
+        code = File.readlines(file)
+        head_idx = 0
+        code.each do |i|
+          head_idx = code.find_index(i) if i.include?("    require 'csv'")
+        end
+        code.insert(head_idx.to_i + 1, "    mount_uploader :#{field}, AttachmentUploader\n")
+        code = code.join('')
+        File.write(file, code)
+      end
+
       def delete_association(table, association)
         file = "#{url_capsule}/app/models/keppler_capsules/#{table.singularize}.rb"
         association_index = search_association_line(table, association)

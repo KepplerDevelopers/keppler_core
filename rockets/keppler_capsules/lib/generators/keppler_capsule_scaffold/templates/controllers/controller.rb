@@ -167,7 +167,7 @@ module Admin
         redirect_to([:admin, :<%= namespaced_path.split('_').drop(1).join('_') %>, object], notice: '')
       elsif commit.key?('_add_other')
         redirect_to(
-          send("new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_#{underscore(object)}_path"),
+          send("new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_#{underscore(object).split('/').last}_path"),
           notice: ''
         )
       end

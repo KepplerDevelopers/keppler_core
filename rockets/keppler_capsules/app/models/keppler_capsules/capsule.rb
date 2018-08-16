@@ -73,6 +73,7 @@ module KepplerCapsules
       attributes.each do |key, value|
         if value[:name_field]
           field = CapsuleField.where(name_field: value[:name_field])
+          add_mount_image(table, value[:name_field]) if attachments.include?(value[:name_field])
           if field.count <= 1
             add_field_pg_table(value, table)
           else
@@ -122,6 +123,11 @@ module KepplerCapsules
 
     def require_field?(association_type)
       ['has_one', 'belongs_to'].include?(association_type)
+    end
+
+    def attachments
+      ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
+       'picture', 'banner', 'attachment', 'pic', 'file']
     end
 
   end
