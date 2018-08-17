@@ -41,11 +41,8 @@ module KepplerCapsules
       def search_association_line(table, association)
         file = "#{url_capsule}/app/models/keppler_capsules/#{table.singularize}.rb"
         code = File.readlines(file)
-        result = 0
-        code.each do |i|
-          result = code.find_index(i) if i.include?("    #{association_line(association)}\n")
-        end
-        result
+        line = "    #{association_line(association)}\n"
+        result = code.include?(line) ? code.find_index(line) : 0
       end
 
       def add_mount_image(table, field)

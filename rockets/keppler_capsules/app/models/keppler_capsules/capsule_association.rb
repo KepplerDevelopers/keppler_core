@@ -23,7 +23,10 @@ module KepplerCapsules
     end
 
     def association_exists?
-      association = CapsuleAssociation.where(association_type: self.association_type, capsule_name: self.capsule_name)
+      association = CapsuleAssociation.where(
+        capsule_id: self.capsule,
+        association_type: self.association_type,
+        capsule_name: self.capsule_name)
       association.count == 0 ? false : true
     end
 

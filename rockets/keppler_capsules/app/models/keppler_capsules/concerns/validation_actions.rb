@@ -44,11 +44,8 @@ module KepplerCapsules
       def search_validation_line(table, validation)
         file = "#{url_capsule}/app/models/keppler_capsules/#{table.singularize}.rb"
         code = File.readlines(file)
-        result = 0
-        code.each do |i|
-          result = code.find_index(i) if i.include?("    #{validation_line(validation)}\n")
-        end
-        result
+        line = "    #{validation_line(validation)}\n"
+        result = code.include?(line) ? code.find_index(line) : 0
       end
 
       def delete_validation(table, validation)

@@ -99,9 +99,12 @@ module KepplerCapsules
       return unless associations
       associations.each do |key, value|
         if value[:association_type]
-          association = CapsuleAssociation.where(association_type: value[:association_type], capsule_name: value[:capsule_name])
+          association = CapsuleAssociation.where(
+            association_type: value[:association_type],
+            capsule_name: value[:capsule_name],
+            capsule_id: self.id)
           add_association_to(table, value) if association.count == 1
-          if require_field?(value[:association_type])
+          if value[:association_type].eql?('belongs_to')
             CapsuleField.create(name_field: "#{value[:capsule_name].singularize}_id", format_field: 'association', capsule_id: self.id)
             attributes = { "0" =>{ name_field: "#{value[:capsule_name].singularize}_id", format_field: 'integer' }}
             new_attributes(table, attributes)
@@ -119,10 +122,6 @@ module KepplerCapsules
 
     def table_exists?(table)
       ActiveRecord::Base.connection.table_exists?(table)
-    end
-
-    def require_field?(association_type)
-      ['has_one', 'belongs_to'].include?(association_type)
     end
 
     def attachments
