@@ -54,6 +54,10 @@ module KepplerFrontend
       "#{name}_path"
     end
 
+    def route
+      "/admin/frontend/views/#{self.id}/editor"
+    end
+
     def install
       if self.format_result.eql?('HTML')
         create_action_html

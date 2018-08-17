@@ -32,10 +32,8 @@
       %a{onclick: "controls.save(#{@view.id})", title: t('keppler.actions.save')}
         %i.fa.fa-save
     %li.pull-right
-      = link_to admin_frontend_views_path do
-        %i.fa.fa-list
-        %span.hidden-xs
-          = t('keppler.actions.view_list')
+      %a#btn-views-editor{title: t('keppler.actions.views')}
+        %i.fa.fa-cog
   .tab-content
     #tab_1.tab-pane.active
       %div.html.code-container
@@ -57,6 +55,7 @@
 
 = render "editor_assets"
 = render "editor_themes"
+= render "editor_views"
 
 :javascript
   codeHTML.codeMirrorHtml();

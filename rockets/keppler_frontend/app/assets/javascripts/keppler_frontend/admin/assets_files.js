@@ -35,12 +35,21 @@ $(document).on('turbolinks:load', function() {
       loadSave()
     })
 
+    $('#btn-views-editor').click(function(){
+      $('#views-editor').addClass('control-sidebar-open');
+      loadSave()
+    })
+
     $('#close-assets-editor').click(function(){
       $('#assets-editor').removeClass('control-sidebar-open');
     })
 
     $('#close-theme-editor').click(function(){
       $('#theme-editor').removeClass('control-sidebar-open');
+    })
+
+    $('#close-views-editor').click(function(){
+      $('#views-editor').removeClass('control-sidebar-open');
     })
   })
 

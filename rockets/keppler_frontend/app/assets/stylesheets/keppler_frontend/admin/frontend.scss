@@ -62,10 +62,38 @@
   }
 }
 
+#views-editor {
+  .box-title {
+    font-size:  11px;
+
+    i {
+      font-size:  11px;
+    }
+  }
+
+  .tab-content {
+    padding: 0 !important;
+  }
+
+  .box {
+    margin-bottom: 10px;
+  }
+
+  .row {
+    width: 107%;
+  }
+
+  #aside-audio {
+    width: 100% !important;
+  }
+}
+
 #btn-assets-editor,
 #btn-theme-editor,
+#btn-views-editor,
 #close-assets-editor,
-#close-theme-editor{
+#close-theme-editor,
+#close-views-editor{
   cursor: pointer;
 }
 

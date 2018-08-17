@@ -16,3 +16,35 @@
     utc: 2018-08-07 21:02:46.992655000 Z
     zone: *1
     time: 2018-08-07 17:02:46.992655000 Z
+- id: 21
+  name: index
+  url: "/"
+  method: GET
+  active: true
+  format_result: HTML
+  position: 2
+  deleted_at: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-17 12:46:40.630764000 Z
+    zone: *1
+    time: 2018-08-17 08:46:40.630764000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-17 12:46:40.630764000 Z
+    zone: *1
+    time: 2018-08-17 08:46:40.630764000 Z
+- id: 22
+  name: show
+  url: "/show"
+  method: GET
+  active: true
+  format_result: HTML
+  position: 3
+  deleted_at: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-17 12:46:55.434219000 Z
+    zone: *1
+    time: 2018-08-17 08:46:55.434219000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-17 12:46:55.434219000 Z
+    zone: *1
+    time: 2018-08-17 08:46:55.434219000 Z
