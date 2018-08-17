@@ -8,6 +8,7 @@ module KepplerFrontend
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      before_action :only_development
       before_action :reload_views, only: [:index]
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
@@ -131,6 +132,7 @@ module KepplerFrontend
         filesystem = FileUploadSystem.new
         @files_list = filesystem.files_list
         @files_bootstrap = filesystem.files_list_bootstrap
+        @views = View.where.not(name: 'keppler').order(position: :asc)
       end
 
       def editor_save
