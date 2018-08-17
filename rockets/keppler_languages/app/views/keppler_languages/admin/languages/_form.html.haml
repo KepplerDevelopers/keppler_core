@@ -20,8 +20,7 @@
               %tbody
                 .form-padding
                   .col-xs-12
-                    = f.input :name
-                    -# = f.country_select :name,  collection: [""], label: false, include_blank: "Seleccione un pais"
+                    = f.input :name, collection: @languages.first.map { |k, v| [v["name"], k] }, include_blank: 'Selecciona un lenguaje'
                   .col-xs-12
                     = f.input :position, as: :hidden
                   .col-xs-12

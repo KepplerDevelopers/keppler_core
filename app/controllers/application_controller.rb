@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :set_apparience_colors
   before_action :set_sidebar
   before_action :set_modules
+  before_action :set_languages
   skip_around_action :set_locale_from_url
   include Pundit
   include PublicActivity::StoreController
@@ -84,6 +85,18 @@ class ApplicationController < ActionController::Base
       @modules[0] = @modules[0].merge(module_name[0])
     end
   end
+
+  def set_languages
+    languages = YAML.load_file(
+      "#{Rails.root}/rockets/keppler_languages/config/languages.yml"
+    ).values.each(&:symbolize_keys!)
+
+    @languages = languages.first.keys
+
+    I18n.available_locales = @languages
+  end
+
+
 
   protected
 

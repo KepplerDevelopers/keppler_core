@@ -12,26 +12,28 @@ module KepplerLanguages
       def update_yml(id)
         fields = KepplerLanguages::Language.find(id)
         file = "#{url}/config/locales/#{fields.name}.yml"
-        yml = File.readlines(file)
-        head_idx = 0
-        yml.each do |i|
-          head_idx = yml.find_index(i) if i.include?("keppler_languages:")
-        end
-        data = fields.fields.map { |f| "#{f.key}: #{f.value}" }
+        yml = YAML.load_file(file)
+
+        data = fields.fields.map { |f| Hash[f.key, f.value] }
         data = data.uniq
 
-        data.each_with_index do |d, index|
-          yml.insert(head_idx.to_i + index + 1, "  #{d}\n")
+        new_hash = fields.fields.map { |f| Hash[f.key, f.value] }
+        yml[fields.name.to_s]["keppler_languages"] = new_hash.uniq
+
+        File.open(file, 'w') { |f| YAML.dump(yml, f) }
+        delete_underscores(file)
+      end
+
+      def delete_underscores(file)
+        yml = File.readlines(file)
+        yml.each_with_index do |line, index|
+          if yml[index].include?('-') && yml[index] != ("---\n")
+            yml[index] = yml[index].gsub('-', ' ')
+          end
         end
 
         yml = yml.join('')
         File.write(file, yml)
-      end
-
-      def reset_yml(fields)
-        file = "#{url}/config/locales/#{fields.name}.yml"
-
-
       end
 
       def url

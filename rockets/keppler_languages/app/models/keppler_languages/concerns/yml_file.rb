@@ -8,7 +8,8 @@ module KepplerLanguages
 
       def create_yml
         file = File.open("#{url}/config/locales/#{name}.yml", "w")
-        file.puts("keppler_languages: \n");
+        file.puts("#{name}: \n");
+        file.puts("  keppler_languages: \n");
         file.close
         true
       end
@@ -20,10 +21,24 @@ module KepplerLanguages
       end
 
       def update_yml(yml)
+        file = "#{url}/config/locales/#{name}.yml"
         obj = Language.find(id)
         old_name = "#{url}/config/locales/#{obj.name}.yml"
         new_name = "#{url}/config/locales/#{yml[:name]}.yml"
+
+        yml_file = File.readlines(file)
+
+        head_idx = 0
+
+        yml_file.each do |i|
+          head_idx = yml_file.find_index(i) if i.include?("#{obj.name}:")
+        end
+
+        yml_file[head_idx] = "#{yml[:name]}:\n"
+        yml_file = yml_file.join('')
+        File.write(file, yml_file)
         File.rename(old_name, new_name)
+        true
       end
 
       private

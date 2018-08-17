@@ -61,22 +61,23 @@ module KepplerLanguages
       # PATCH/PUT /languages/1
       def update
         @language.update_yml(language_params)
-        if @language.update(language_params)
+        update_fields(@language, params[:language][:fields_attributes].values)
+        if @language.update(name: params[:language][:name])
           update_yml(@language.id)
           redirect(@language, params)
         else
           render :edit
         end
       end
-
-      def add_fields
-        @language = Language.find(params[:language_id])
-      end
-
-      def create_fields
-        fields = language_params.to_h
-        @fields = Field.create()
-      end
+      #
+      # def add_fields
+      #   @language = Language.find(params[:language_id])
+      # end
+      #
+      # def create_fields
+      #   fields = language_params.to_h
+      #   @fields = Field.create()
+      # end
 
       def clone
         @language = Language.clone_record params[:language_id]
@@ -137,6 +138,16 @@ module KepplerLanguages
       end
 
       private
+
+      def update_fields(language, fields)
+        language.fields.destroy_all unless fields.empty?
+        fields.each do |field|
+          language.fields.create(
+            key: field['key'],
+            value: field['value'],
+          )
+        end
+      end
 
       def fields_attributes
         [:id, :key, :value, :_destroy]
