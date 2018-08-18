@@ -1,10 +1,5 @@
 $(document).on 'turbolinks:load', ->
 
-  hidePreloader = ->
-    preloader = $('.spinner')
-    preloader.fadeOut preloaderFadeOutTime
-    return
-
   toggleMenu = ->
     $slice = $('#sidebar-footer .brand')
     $slice.toggleClass 'hidden'
@@ -50,7 +45,17 @@ $(document).on 'turbolinks:load', ->
   $('.close-index-show').click ->
     $('.index-show').css 'right', -$('.index-show').outerWidth()
 
-  preloaderFadeOutTime = 500
-  hidePreloader()
+  $('#open-historial').click ->
+    $('.listing-show .control-sidebar').toggleClass 'control-sidebar-open'
+
+  $('.customize-index .icon-trash').click ->
+    $('.spinner').css('display', 'block')
+  
   searchButton()
   return
+
+$(document).ready ->
+  $('.spinner').css 'display', 'block'
+
+$(window).load ->
+  $('.spinner').fadeOut 500

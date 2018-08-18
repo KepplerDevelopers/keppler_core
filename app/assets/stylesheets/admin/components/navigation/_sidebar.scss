@@ -37,6 +37,8 @@
   }
 
   &:hover,
+  &:active,
+  &:focus,
   &.current,
   &.active {
     background: $white;
