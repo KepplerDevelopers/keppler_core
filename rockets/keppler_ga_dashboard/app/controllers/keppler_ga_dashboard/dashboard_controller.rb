@@ -3,7 +3,7 @@ require 'google/api_client'
 module KepplerGaDashboard
   # DashboarController
   class DashboardController < ::ApplicationController
-    layout 'admin/layouts/application'
+    layout 'keppler_ga_dashboard/admin/layouts/application'
     before_action :dashboard_access, only: [:analytics]
     before_action :authenticate_user!
 
