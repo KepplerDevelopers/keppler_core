@@ -8,7 +8,7 @@
         = render 'admin/layouts/navigation', q: @q, appearance: @appearance
         = render 'admin/layouts/sidebar', render: @render
         = render 'admin/layouts/messages'
-        .content-wrapper{ style: 'min-height: 901px;' }
+        .content-wrapper
           = yield
 
       .spinner
