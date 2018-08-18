@@ -8,6 +8,7 @@ main
       top: 150px
       transform: translateX(-50%)
       width: 100%
+      z-index: 2
       @include respond-to(xs)
         top: 180px
     .front-social
@@ -46,20 +47,21 @@ main
   #documentation
     padding: 50px
     font-family: $raleway
-    color: #fff
-    background: linear-gradient(to right, #2a3d5b, #445b7a, #516b8a, #425978, #2a3d5b)
-    @include respond-to(sm)
-      background-image: -webkit-linear-gradient(left, #354a69, #516b8a, #354a67)
-      background-image: -o-linear-gradient(left, #354a69, #516b8a, #354a67)
-      background-image: linear-gradient(to right, #354a69, #516b8a, #354a67)
-    @include respond-to(xs)
-      background-image: -webkit-linear-gradient(left, #445b7a, #516b8a, #425978)
-      background-image: -o-linear-gradient(left, #445b7a, #516b8a, #425978)
-      background-image: linear-gradient(to right, #445b7a, #516b8a, #425978)
+    color: rgba(36,45,75,1)
+    // background: linear-gradient(to right, #2a3d5b, #445b7a, #516b8a, #425978, #2a3d5b)
+    background-color: $white
+    // @include respond-to(sm)
+    //   background-image: -webkit-linear-gradient(left, #354a69, #516b8a, #354a67)
+    //   background-image: -o-linear-gradient(left, #354a69, #516b8a, #354a67)
+    //   background-image: linear-gradient(to right, #354a69, #516b8a, #354a67)
+    // @include respond-to(xs)
+    //   background-image: -webkit-linear-gradient(left, #445b7a, #516b8a, #425978)
+    //   background-image: -o-linear-gradient(left, #445b7a, #516b8a, #425978)
+    //   background-image: linear-gradient(to right, #445b7a, #516b8a, #425978)
     h3
       font-family: $putua
     a, a:focus, a:hover
-      color: #04baf3
+      color: #f33e3c
 
   @keyframes scroll-down
     0%
