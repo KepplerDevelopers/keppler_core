@@ -20,7 +20,7 @@ menu:
   user:
     name: users
     icon: user
-    current: ["admin/users"]
+    current: ['admin/users', 'admin/roles']
     model: User
     submenu:
       - users:
@@ -34,7 +34,7 @@ menu:
   customize:
     name: keppler design
     icon: pencil
-    current: ['admin/customizes']
+    current: ['admin/customizes', 'settings/appearance']
     model: Customize
     submenu:
       - customize:

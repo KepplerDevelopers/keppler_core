@@ -103,10 +103,11 @@
 }
 
 .actions.dropdown-menu {
+  box-shadow: $box-shadow-collapse;
   left: auto;
   min-width: 130px;
-  padding: 0;
-  right: 60px;
+  right: 70px;
+  top: 10px;
   width: 100px;
 
   li {
@@ -322,13 +323,15 @@
 }
 
 .objects-container {
-
   td {
     padding: 0;
+    padding-bottom: 0;
+    padding-top: 0;
 
     &:first-child {
       padding: 10px 20px;
       vertical-align: middle;
+      width: 1px;
     }
 
     .item-check {
@@ -349,11 +352,5 @@
 }
 
 .tools {
-<<<<<<< HEAD
-  padding: {
-    top: 5px;
-  }
-=======
   padding-top: 5px;
->>>>>>> 7d70ba6fc3a18aa7e169b291739d157695460dcd
 }
