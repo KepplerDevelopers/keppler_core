@@ -1,5 +1,5 @@
 .main-sidebar {
-  background: $sidebar-background;
+  background-color: $gray-lighten !important;
   padding-top: 50px;
 
   .sidebar {
@@ -131,7 +131,7 @@
   }
 
   li:hover span {
-    background: inherit;
+    background: $white !important;
     box-shadow: 0 1px 3px $light-transparent;
     margin-left: -3px;
     padding: 12px 5px 12px 20px;
@@ -179,7 +179,7 @@
 
   .user-panel {
     padding: {
-      left: 4px;
+      left: 5px;
       right: 2px;
     }
 
