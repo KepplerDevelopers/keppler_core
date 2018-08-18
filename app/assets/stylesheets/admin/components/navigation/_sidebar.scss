@@ -19,7 +19,7 @@
 .sidebar-item.active > a {
   background: $white;
   border-left-color: $keppler-color;
-  box-shadow: 0 1px 3px $light-transparent;
+  // box-shadow: 0 1px 3px $light-transparent;
   color: $dark-grey;
   transition: .3s ease-out;
 
@@ -43,7 +43,7 @@
   &.active {
     background: $white;
     border-left-color: $keppler-color;
-    box-shadow: 0 1px 3px $light-transparent;
+    // box-shadow: 0 1px 3px $light-transparent;
     color: $dark-grey;
     transition: .3s ease-out;
 
@@ -59,7 +59,7 @@
     &.active {
       background: $white;
       border-left-color: $keppler-color;
-      box-shadow: 0 1px 3px $light-transparent;
+      // box-shadow: 0 1px 3px $light-transparent;
     }
 
     > a {
@@ -68,12 +68,20 @@
   }
 }
 
+.sidebar-menu {
+
+  .treeview-menu > li > a {
+    padding: 5px 5px 5px 40px;
+  }
+}
+
 .treeview-menu {
-  background: $dark-white;
+  background: $white;
   border-radius: none;
-  box-shadow: 0 1px 3px $light-transparent;
+  // box-shadow: 0 1px 3px $light-transparent;
   color: $dark-grey;
   margin: 0 1px;
+  padding: 7px 0;
 
   a {
     color: $light-grey;
@@ -113,13 +121,24 @@
   color: $text-success;
 }
 
-.sidebar-mini.sidebar-collapse li:hover span {
-  background: inherit;
-  box-shadow: 0 1px 3px $light-transparent;
-  margin-left: -3px;
-  padding: 12px 5px 12px 20px;
-  top: 0;
+.sidebar-mini.sidebar-collapse {
+  .treeview-menu {
+    box-shadow: 0 1px 3px $light-transparent;
+
+    a {
+      padding: 5px 5px 5px 15px;
+    }
+  }
+
+  li:hover span {
+    background: inherit;
+    box-shadow: 0 1px 3px $light-transparent;
+    margin-left: -3px;
+    padding: 12px 5px 12px 20px;
+    top: 0;
+  }
 }
+
 
 .new-message {
   margin-top: -45px;
