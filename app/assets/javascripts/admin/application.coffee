@@ -22,6 +22,5 @@
 #= require keppler_frontend/admin/application
 #= require admin/img_preview
 #= require admin/file_upload
-#= require admin/dropdown_top
 #= require admin/sort
 #= require_tree .
