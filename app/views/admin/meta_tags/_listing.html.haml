@@ -1,6 +1,6 @@
 - objects.each do |meta_tag|
   %tr{ id: "row-#{meta_tag.id}" }
-    %td.item-check{ style: 'width: 10%' }
+    %td.item-check
       - if can?(MetaTag).destroy_multiple?
         .checkbox
           %label{ for: "checkbox-#{meta_tag.id}" }
@@ -13,27 +13,27 @@
     %td.text-overflow{ style: 'max-width: 200px' }
       = link_to admin_meta_tag_path(meta_tag, search: query), remote: true, class: 'show-row' do
         %span= meta_tag.url
-    %td{ style: 'padding-right: 30px;' }
-      %a.action-btn.pull-right{ id: "menu-#{meta_tag.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }
+    %td.dropdown{ style: 'padding-right: 30px;' }
+      %a.dropdown-toggle.pull-right{ id: "menu-#{meta_tag.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }
         %i.icon-options-vertical
       %ul.actions.dropdown-menu{ 'aria-labelledby' => "menu-#{meta_tag.id}" }
         - if can?(MetaTag).show?
           %li
-            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: t('keppler.actions.show') do
+            = link_to admin_meta_tag_path(meta_tag), title: t('keppler.actions.show') do
               %i.icon-eye
               = t('keppler.actions.show')
         - if can?(MetaTag).update?
           %li
-            = link_to edit_admin_meta_tag_path(meta_tag), class: 'new-menu', title: t('keppler.actions.edit') do
+            = link_to edit_admin_meta_tag_path(meta_tag), title: t('keppler.actions.edit') do
               %i.icon-pencil
               = t('keppler.actions.edit')
         - if can?(MetaTag).clone?
           %li
-            = link_to admin_meta_tag_clone_path(meta_tag), class: 'new-menu', title: t('keppler.actions.clone') do
+            = link_to admin_meta_tag_clone_path(meta_tag), title: t('keppler.actions.clone') do
               %i.icon-docs
               = t('keppler.actions.clone')
         - if can?(MetaTag).destroy?
           %li
-            = link_to admin_meta_tag_path(meta_tag), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+            = link_to admin_meta_tag_path(meta_tag), title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
               %i.icon-trash
               = t('keppler.actions.delete')

@@ -4,11 +4,11 @@
       .box-header.with-border
         %h3.box-title Preview
         .box-tools.pull-right#tools
-          %i.icon-screen-smartphone#xs
-          %i.icon-screen-tablet#md
-          %i.icon-screen-desktop#lg
+          %i.icon-screen-smartphone#xs{ onclick: "$('.iframe-body').animate({ 'width': '35%' }, 300)" }
+          %i.icon-screen-tablet#md{ onclick: "$('.iframe-body').animate({ 'width': '70%' }, 300)" }
+          %i.icon-screen-desktop#lg{ onclick: "$('.iframe-body').animate({ 'width': '100%' }, 300)" }
           -# %span.separator-line
-          %i.icon-reload#reload
+          %i.icon-reload#reload{ onclick: "$('iframe').attr('src', '/')" }
           = link_to root_path, target: '_blank' do
             %i.icon-size-fullscreen
 

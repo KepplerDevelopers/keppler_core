@@ -8,7 +8,7 @@
         %small= current_user.rol.humanize
     %ul.sidebar-menu.tree{ 'data-widget': 'tree' }
       %li.sidebar-item
-        = link_to '/admin/dashboard', class: "sidebar-link #{'active' if request.env['REQUEST_PATH'].eql?('/admin/dashboard')}" do
+        = link_to '/admin/dashboard', class: "sidebar-link #{'active' if request.env['REQUEST_PATH'].eql?('/admin/dashboard')}", 'data-turbolinks': false do
           %i.icon-pie-chart
           %span= t('keppler.sidebar-menu.dashboard')
         - @sidebar.each do |menu|
