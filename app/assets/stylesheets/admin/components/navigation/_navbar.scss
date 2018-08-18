@@ -35,6 +35,7 @@
       background: $white;
       box-shadow: 0 1px 3px $transparent-black-12;
       margin: 0;
+      overflow: hidden;
     }
 
     .user-header {
@@ -48,6 +49,9 @@
 
   .sidebar-toggle {
     color: $navbar-static-top-link;
+    display: flex;
+    align-items: center;
+    padding: 18px;
 
     &::before {
       display: none;
@@ -55,6 +59,7 @@
 
     &:hover {
       background-color: $sidebar-toggle-hover;
+      color: #949494;
     }
   }
 

@@ -7,9 +7,9 @@
   // @include display(flex);
   // @include flex-direction(column);
   // @include justify-content(center);
-  background-image: url("Home_Keppler.png");
+  background: url("Cohete_nubes_new.png"), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
   background-size: cover;
-  background-position: 100% 90%;
+  background-position: 100% 70%;
   height: 100%;
 
   &-logo {
@@ -39,7 +39,7 @@
 
     a {
       color: $white;
-      font-size: 4rem;
+      font-size: 3.5rem;
 
       @include respond-to(xs) {
         font-size: 2rem;
