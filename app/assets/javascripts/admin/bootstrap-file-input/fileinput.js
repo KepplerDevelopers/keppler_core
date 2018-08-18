@@ -1147,7 +1147,7 @@
             }
         },
         _validate: function () {
-            var self = this, status = self.$element.attr('type') === 'file';
+            var self = this, status = self.$element.attr('class').includes('keppler-file');
             if (!status) {
                 self._log('The input "type" must be set to "file" for initializing the "bootstrap-fileinput" plugin.');
             }

@@ -16,17 +16,6 @@ Rails.application.routes.draw do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
       post '/upload', action: 'upload', as: :upload
-      # post '/show_description/:module/:action_name', action: 'show_description', as: :show_description
-      # get(
-      #   '/add_permissions',
-      #   action: 'add_permissions',
-      #   as: :add_permissions
-      # )
-      # post(
-      #   '/create_permissions',
-      #   action: 'create_permissions',
-      #   as: :create_permissions
-      # )
       get '/download', action: 'download', as: :download
       post(
         '/sort',
@@ -43,7 +32,18 @@ Rails.application.routes.draw do
         action: :destroy_multiple,
         on: :collection,
         as: :destroy_multiple
-      )
+      )      
+      # post '/show_description/:module/:action_name', action: 'show_description', as: :show_description
+      # get(
+      #   '/add_permissions',
+      #   action: 'add_permissions',
+      #   as: :add_permissions
+      # )
+      # post(
+      #   '/create_permissions',
+      #   action: 'create_permissions',
+      #   as: :create_permissions
+      # )
     end
 
     scope :roles do

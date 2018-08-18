@@ -14,7 +14,7 @@ module Admin
     def index
       @q = <%= class_name %>.ransack(params[:q])
       <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :asc)
+      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
       @total = <%= plural_table_name %>.size
       @attributes = <%= class_name %>.Gallery.attribute_names[1..4]
       redirect_to_index(<%= plural_table_name %>_path) if nothing_in_first_page?(@objects)
@@ -94,7 +94,7 @@ module Admin
       <%= class_name %>.sorter(params[:row])
       @q = <%= class_name %>.ransack(params[:q])
       <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page)
+      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
     end
 
     private

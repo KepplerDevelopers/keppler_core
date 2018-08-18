@@ -6,8 +6,12 @@
 //Vendor folder
 @import 'vendor/admin-lte/skin-blue';
 
-// Bootstrap File Input
+//Vendor folder
 @import 'bootstrap-file-input/*';
+
+//Fonts and icons
+@import 'fonts-and-icons/fonts';
+@import 'fonts-and-icons/icons';
 
 //Libraries and plugins as gems
 @import 'bourbon';

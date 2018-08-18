@@ -5,7 +5,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   def input(_wrapper_options)
     @builder.file_field(
       attribute_name,
-      class: 'file',
+      class: 'keppler-file',
       multiple: input_options[:multiple] || false,
       'data-preview-file-type' => 'any',
       value: (object.try(attribute_name) if attr_blank?)
@@ -19,42 +19,43 @@ class KepplerFileInput < SimpleForm::Inputs::Base
         language: '#{I18n.locale}',
         showUpload: false,
         showCancel: false,
-        #{methods_in_string}
+        #{init_preview}
+        // init_preview_details
+        #{preview_zoom_button_icons}
+        #{preview_zoom_button_classes}
+        #{preview_details}
+        #{icons}
+        #{dimensions}
       })".html_safe
     end
   end
 
   private
 
-  def methods_in_string
-    "
-    #{init_preview + ',' if object.id}
-    #{init_preview_details},
-    #{preview_zoom_button_icons},
-    #{preview_zoom_button_classes},
-    #{preview_details},
-    #{icons},
-    #{dimensions}".html_safe
-  end
-
   def init_preview
+    return if !object.id || @obj_attr.file.nil?
     initializers
-    images = []
-    @images.each do |img|
-      tag =
-        "<img class='kv-preview-data file-preview-image' src=\'/" +
-        img.file.file.split('/')[-5..-1].join('/') + "\'>"
-      images.push(tag)
+    if @obj_attr.is_a?(Array)
+      @obj_attr.each { |img| preview_tag(img) }
+    else
+      preview_tag(@obj_attr)
     end
-    ('initialPreview:' + images.to_s).html_safe
+    ('initialPreview: ' + @previews.to_s).html_safe + ','
   end
 
-  def init_preview_details
-    "layoutTemplates: {
-      actionDelete: '',
-      actionDrag: '',
-    }".html_safe
+  def preview_tag(preview)
+    tag =
+      "<img class='kv-preview-data file-preview-image' src='/uploads
+      #{preview.file.file.split('/uploads').last}'>"
+    @previews.push(tag)
   end
+
+  # def init_preview_details
+  #   "layoutTemplates: {
+  #     actionDelete: '',
+  #     actionDrag: '',
+  #   }".html_safe + ','
+  # end
 
   def preview_zoom_button_icons
     "previewZoomButtonIcons: {
@@ -64,7 +65,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
       fullscreen: '<i class=\"glyphicon glyphicon-fullscreen\"></i>',
       borderless: '<i class=\"glyphicon glyphicon-resize-full\"></i>',
       close: '<i class=\"glyphicon glyphicon-remove\"></i>'
-    }".html_safe
+    }".html_safe + ','
   end
 
   def preview_zoom_button_classes
@@ -75,14 +76,14 @@ class KepplerFileInput < SimpleForm::Inputs::Base
       fullscreen: 'btn btn-default',
       borderless: 'btn btn-default',
       close: 'btn btn-default'
-    }".html_safe
+    }".html_safe + ','
   end
 
   def preview_details
     "allowedPreviewMimeTypes: null,
     allowedFileTypes: #{input_options[:type] || []},
     allowedFileExtensions: #{input_options[:formats] || []},
-    defaultPreviewContent: null".html_safe
+    defaultPreviewContent: null".html_safe + ','
   end
 
   def icons
@@ -95,7 +96,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     cancelIcon: '<i class=\"glyphicon glyphicon-ban-circle\"></i>',
     cancelClass: 'btn btn-default',
     uploadIcon: '<i class=\"glyphicon glyphicon-upload\"></i>',
-    uploadClass: 'btn btn-default'".html_safe
+    uploadClass: 'btn btn-default'".html_safe + ','
   end
 
   def dimensions
@@ -103,10 +104,10 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     minImageHeight: 300,
     maxImageWidth: 5000,
     maxImageHeight: 5000,
-    maxFileSize: 0,
-    maxFilePreviewSize: 25600, // 25 MB
-    minFileCount: 0,
-    maxFileCount: 0".html_safe
+    maxFileSize: #{input_options[:max_size] || 225},
+    maxFilePreviewSize: #{input_options[:max_preview_size] || 25_600}, // 25 MB
+    minFileCount: #{input_options[:min_file_count] || 0},
+    maxFileCount: #{input_options[:max_file_count] || 0}".html_safe + ','
   end
 
   def attr_blank?
@@ -120,7 +121,7 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     @attribute = reflection_or_attribute_name
     @input_id = "#{@model}_#{@attribute}"
     @input_name = "#{@model}[#{@attribute}]"
-    images = object.try(attribute_name)
-    @images = images.is_a?(Array) ? images : []
+    @obj_attr = object.try(attribute_name)
+    @previews = []
   end
 end

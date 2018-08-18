@@ -1,3 +1,4 @@
+
 function renderImg(){
   xOffset = 20; // separacion de la imagen con respecto al puntero en X
   yOffset = 20; // separacion de la imagen con respecto al puntero en Y
