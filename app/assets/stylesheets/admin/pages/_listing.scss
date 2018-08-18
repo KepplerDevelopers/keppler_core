@@ -12,10 +12,18 @@
 }
 
 .show-row {
+  audio,
   img {
-    border-radius: 2px;
-    object-fit: cover;
-    width: 25px;
+    max-height: 50px;
+    max-width: 100%;
+
+    &:hover {
+      cursor: zoom-in;
+    }
+  }
+
+  video {
+    max-height: 50px;
   }
 
   a {

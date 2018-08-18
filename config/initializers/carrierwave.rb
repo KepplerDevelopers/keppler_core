@@ -1,4 +1,3 @@
-
 module CarrierWave
   module RMagick
     def quality(percentage)

@@ -106,8 +106,8 @@ class KepplerFileInput < SimpleForm::Inputs::Base
     maxImageHeight: 5000,
     maxFileSize: #{input_options[:max_size] || 225},
     maxFilePreviewSize: #{input_options[:max_preview_size] || 25_600}, // 25 MB
-    minFileCount: 0,
-    maxFileCount: 0".html_safe + ','
+    minFileCount: #{input_options[:min_file_count] || 0},
+    maxFileCount: #{input_options[:max_file_count] || 0}".html_safe + ','
   end
 
   def attr_blank?

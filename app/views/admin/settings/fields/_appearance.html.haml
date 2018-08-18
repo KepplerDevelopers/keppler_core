@@ -2,7 +2,7 @@
   {{ changeColors }}
   = f.simple_fields_for :appearance, html: { multipart: true } do |f|
     .col-md-7.col-lg-6
-      .box.slice-box.hidden-xs
+      .box.slice-box.hidden-xs{ style: 'margin: 0' }
         .box-header.with-border
           %h3.box-title Preview
         / /.box-header

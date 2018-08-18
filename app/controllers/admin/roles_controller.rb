@@ -5,7 +5,6 @@ module Admin
   class RolesController < AdminController
     before_action :set_role, only: %i[show edit update destroy]
     before_action :show_history, only: [:index]
-    before_action :set_attachments
     before_action :authorization, except: %i[reload]
     include ObjectQuery
 
@@ -102,11 +101,6 @@ module Admin
     end
 
     private
-
-    def set_attachments
-      @attachments = %i[ logo brand photo avatar cover image
-                         picture banner attachment pic file ]
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_role

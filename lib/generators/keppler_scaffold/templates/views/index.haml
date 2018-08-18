@@ -50,24 +50,8 @@
                 - else
                   %tr
                     %th
-                    <%- attributes.each do |attribute| -%>
-                      <%- if @attachments.include?(attribute.name) -%>
-                    %th= t('activerecord.attributes.<%= attribute.name %>')
-                      <%- end -%>
-                    <%- end -%>
-                    <%- attributes.each_with_index do |attribute, index| -%>
-                      <%- if index < 6 -%>
-                        <%- unless attribute.type.to_s == 'text' || attribute.name.eql?('position') || attribute.name.eql?('deleted_at') -%>
-                          <%- unless @attachments.include?(attribute.name) -%>
-                            <%- if index < 2 -%>
-                    %th.hidden-xs= t('activerecord.attributes.<%= attribute.name %>')
-                            <%- else -%>
-                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.<%= attribute.name %>')
-                            <%- end -%>
-                          <%- end -%>
-                        <%- end -%>
-                      <%- end -%>
-                    <%- end -%>
+                    - @attributes.each do |attribute|
+                      %th.hidden-xs= t("activerecord.attributes.#{attribute}")
                     %th.center Menu
                     %th
               %tbody.objects-container{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
