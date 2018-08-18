@@ -99,6 +99,7 @@ group :development do
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'byebug', '10.0.2'
   gem 'commands', '0.2.1'
+  gem 'brakeman', '4.3.0'
   # gem 'guard'
   # gem 'guard-coffeescript'
   gem 'guard-livereload', '2.5.2', require: false
