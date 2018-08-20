@@ -35,15 +35,19 @@
       background: $white;
       box-shadow: 0 1px 3px $transparent-black-12;
       margin: 0;
-      overflow: hidden;
     }
 
     .user-header {
-      background-image: url('profile-menu.jpg');
+      background: url("Cohete_nubes_new.png"), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
       background-position: center;
       background-size: cover;
-      border-bottom: 2px solid $keppler-color;
-      border-color: $keppler-color;
+      height: 150px;
+      display: flex;
+      align-items: center;
+    }
+
+    .user-footer {
+      background-color: $white !important;
     }
   }
 
@@ -108,4 +112,34 @@
 
 .navbar-nav {
   transition: .4s .5s ease-in-out;
+}
+
+.current-user {
+  align-items: center;
+  display: flex;
+  margin-top: -15px;
+  flex-direction: column;
+
+  p {
+    color: $primary-color;
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 0;
+  }
+
+  small {
+    color: $almost-black;
+  }
+}
+
+.btn-user {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 10px 10px 10px;
+}
+
+.user-menu {
+  .dropdown-menu {
+    box-shadow: $box-shadow-collapse;
+  }
 }
