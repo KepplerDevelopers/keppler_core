@@ -15,7 +15,7 @@
         = preloader
       = render 'admin/layouts/footer'
     - else
-      %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil }
+      %main.devise{ class: "#{@appearance.image_background? ? 'devise-new-img' : 'devise-default-img'}", style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil }
         = yield
     - if action_name.eql?('index')
       %script{ src: '/assets/vue_admin/index.js' }
