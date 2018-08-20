@@ -1,7 +1,15 @@
-.devise {
+.devise-default-img {
   background: url("profile-menu.jpg"), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
   background-position: center;
   background-size: cover;
+}
+
+.devise-new-img {
+  background-position: center;
+  background-size: cover;
+}
+
+.devise {
   height: 100%;
   position: absolute;
   width: 100%;

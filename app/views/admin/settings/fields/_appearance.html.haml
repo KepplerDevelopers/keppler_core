@@ -8,22 +8,18 @@
         / /.box-header
         .box-body.box-body-no-padding
           - if f.object.image_background?
-            .appearance-img{ style: "background-image:url(#{f.object.image_background_url})" }
-              = render 'admin/settings/components/preview'
+            .appearance-img.devise-new-img{ style: "background-image:url(#{f.object.image_background_url})" }
+              = render 'admin/settings/components/preview', f: f
           - else
             .appearance-img{ style: "background-image:url('/assets/admin/profile-menu.jpg')" }
-              = render 'admin/settings/components/preview'
+              = render 'admin/settings/components/preview', f: f
     .col-md-5.col-lg-6
       .box.slice-box
         .box-header.with-border
           %h3.box-title Admin Theme
 
         .box-body
-          .upload-image
-            .files.form-group.trigger{ class: ('files-absolute' unless f.object.image_background.blank?) }
-              = f.file_field :image_background, class: 'photo-upload'
-            %center.image-show
-              = image_tag f.object.image_background.url.blank? ? '' : f.object.image_background.url, class: "#{'hidden' if f.object.image_background.blank?} image_to_upload"
+          = f.input :image_background, as: :file, label: false
           %p Principal
           %input{ type: 'color', name: 'color', placeholder: 'Color', value: color, 'v-model' => 'main' }
           .pull-right
