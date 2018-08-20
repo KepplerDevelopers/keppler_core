@@ -49,4 +49,8 @@ jobs:
       - run: bundle exec rubocop
       - run: gem install haml_lint
       - run: haml-lint app/views/admin
+      - run: scss-lint app/assets/stylesheets/admin/components
+      - run: scss-lint app/assets/stylesheets/admin/pages
+      - run: scss-lint app/assets/stylesheets/admin/utils
+      - run: scss-lint app/assets/stylesheets/admin/application.scss
       - run: bundle exec rspec
