@@ -38,12 +38,12 @@
     }
 
     .user-header {
-      background: url("profile-menu.jpg"), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
+      align-items: center;
+      background: url('profile-menu.jpg'), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
       background-position: center;
       background-size: cover;
       height: 150px;
       display: flex;
-      align-items: center;
     }
 
     .user-footer {

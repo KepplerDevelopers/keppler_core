@@ -1,4 +1,4 @@
-.devise{ class: "#{'devise-default-img' unless f.object.image_background? }"}
+.devise{ class: f.object.image_background? ? nil : 'devise-default-img' }
   .container{ style: 'position: inherit' }
     .login-box{ style: 'transform: scale(0.4);' }
       .center
