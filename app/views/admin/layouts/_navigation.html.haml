@@ -26,7 +26,7 @@
             = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
-            %li.user-header{ style: appearance.image_background? ? "background-image: url( #{appearance.image_background}) " : nil }
+            %li.user-header
               = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle nav-profile-img', alt: current_user.name
             %li.user-footer
               .current-user
