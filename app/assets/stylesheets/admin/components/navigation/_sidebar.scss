@@ -1,5 +1,5 @@
 .main-sidebar {
-  background-color: $gray-lighten !important;
+  background-color: $gray-lighten !important; // scss-lint:disable ImportantRule
   padding-top: 50px;
 
   .sidebar {
@@ -66,12 +66,11 @@
       border-left: 3px solid transparent;
     }
   }
-}
 
-.sidebar-menu {
-
-  .treeview-menu > li > a {
-    padding: 5px 5px 5px 40px;
+  .treeview-menu {
+    a {
+      padding: 5px 5px 5px 40px;
+    }
   }
 }
 
@@ -131,7 +130,7 @@
   }
 
   li:hover span {
-    background: $white !important;
+    background: $white !important; // scss-lint:disable ImportantRule
     box-shadow: 0 1px 3px $light-transparent;
     margin-left: -3px;
     padding: 12px 5px 12px 20px;
