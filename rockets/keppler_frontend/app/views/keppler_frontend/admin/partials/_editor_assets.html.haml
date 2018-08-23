@@ -1,5 +1,5 @@
 %aside.control-sidebar.control-sidebar-light#assets-editor
-  %a.aside-close#close-assets-editor
+  = link_to "#", "data-toggle": "control-sidebar", class: 'aside-close' do
     .label.bg-gray
       X
   %ul.nav.nav-tabs
@@ -100,13 +100,14 @@
                   %input.hidden{id: "#{file[:id]}", value: "#{file[:path]}"}
                   %i.fa.fa-save
 .control-sidebar-bg
+
 :javascript
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
     var tab = ev.target.innerText;
-    var id = `#{@view.id}`;
+    var id = `#{@partial.id}`;
 
     if (tab === '') {
-      tab = `#{@view.name}.html.erb`
+      tab = `#{@partial.underscore_name}.html.erb`
     }
 
     $(document).bind('keydown', function(e) {
@@ -117,14 +118,12 @@
     });
 
     function save() {
-      if ( tab === `#{@view.name}.html.erb` ) {
-        codeHTML.save(id);
-      } else if (tab === `#{@view.name}.scss` ) {
-        codeCSS.save(id);
-      } else if (tab === `#{@view.name}.js` ) {
-        codeJs.save(id);
-      } else if (tab === 'Action') {
-        codeAction.save(id);
+      if ( tab === `#{@partial.underscore_name}.html.erb`) {
+        codePartialHTML.savePartial(id);
+      } else if (tab === `#{@partial.underscore_name}.scss`) {
+        codePartialCSS.savePartial(id);
+      } else if (tab === `#{@partial.name}.js`) {
+        codePartialJs.savePartial(id);
       }
     }
   })

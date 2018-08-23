@@ -30,6 +30,7 @@ en:
         views: Views
         assets: Assets
         themes: Themes
+        partials: Partials
     models:
       singularize:
         keppler_frontend/view: view
@@ -39,6 +40,11 @@ en:
         keppler_frontend/views: views
         views: views
         themes: themes
+        partials: partials
+    modules:
+      keppler_frontend/admin/views: Frontend
+      keppler_frontend/admin/themes: Themes
+      keppler_frontend/admin/partials: Partials
     actions:
       created: Created
       updated: Updated
