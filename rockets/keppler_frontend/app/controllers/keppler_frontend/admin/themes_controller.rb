@@ -7,7 +7,8 @@ module KepplerFrontend
       before_action :set_theme, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
       before_action :set_attachments
-      before_action :authorization
+      before_action :authorization      
+      before_action :only_development
       before_action :reload_themes, only: [:index]
       after_action :update_theme_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
@@ -62,10 +63,10 @@ module KepplerFrontend
           @theme.install(params[:theme][:file])
           redirect_to(
             admin_frontend_themes_path(page: @current_page, search: @query),
-            notice: t("keppler.keppler_frontend.theme.success")
+            notice: t("keppler_frontend.theme.success")
           )
         else
-          flash[:notice] = t("keppler.keppler_frontend.theme.fail")
+          flash[:notice] = t("keppler_frontend.theme.fail")
           render :new
         end
       end
@@ -83,7 +84,7 @@ module KepplerFrontend
         end
         redirect_to(
           admin_frontend_themes_path(page: @current_page, search: @query),
-          notice: t("keppler.keppler_frontend.theme.apply")
+          notice: t("keppler_frontend.theme.apply")
         )
       end
 

@@ -70,10 +70,8 @@
 }
 
 .appearance-img {
-  background-position: center;
-  background-size: cover;
-  height: 350px;
-  width: 100%;
+  height: 350px !important; // scss-lint:disable ImportantRule
+  width: 100% !important; // scss-lint:disable ImportantRule
 }
 
 .minicolors-theme-default .minicolors-input {

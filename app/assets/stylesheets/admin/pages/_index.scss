@@ -103,10 +103,11 @@
 }
 
 .actions.dropdown-menu {
+  box-shadow: $box-shadow-collapse;
   left: auto;
   min-width: 130px;
-  padding: 0;
-  right: 60px;
+  right: 70px;
+  top: 10px;
   width: 100px;
 
   li {
@@ -116,7 +117,6 @@
 }
 
 .dropdown-menu  a {
-  border-bottom: 1px solid $gray-lighten;
   overflow: hidden;
   padding: 10px;
   text-overflow: ellipsis;
@@ -322,13 +322,15 @@
 }
 
 .objects-container {
-
   td {
     padding: 0;
+    padding-bottom: 0;
+    padding-top: 0;
 
     &:first-child {
       padding: 10px 20px;
       vertical-align: middle;
+      width: 1px;
     }
 
     .item-check {

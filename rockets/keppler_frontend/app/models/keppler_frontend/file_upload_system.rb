@@ -88,7 +88,7 @@ module KepplerFrontend
         result = key.to_s if value.include?(".#{content_type}")
       end
       result
-    end    
+    end
 
     def select_folder(file)
       content_type = File.extname(file)

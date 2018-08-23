@@ -1,0 +1,33 @@
+.nested-fields.row
+  .col-lg-4
+    = f.input :name, label: t('capsule.attributes.validation'), collection: f.object.simple_validations.map { |v| [t("keppler_capsules.validations.#{v}"), v] }, include_blank: false, input_html: { id: "select"}
+  .col-lg-3
+    = f.input :field, label: t('capsule.attributes.capsule_field'), collection: @capsule.capsule_fields.map(&:name_field), include_blank: false
+  .col-lg-3{style: "display:none"}
+    = f.input :validation, label: t('capsule.attributes.value')
+  .col-lg-1
+    = link_to_remove_association "<button class='btn btn-default btn-delete-field'><i class='icon-trash'></i></button>".html_safe, f
+    .clearfix
+:javascript
+  $(document).on('cocoon:after-insert', function(e, insertedItem) {
+    $("select[name='capsule[capsule_validations_attributes]["+get_form_id()+"][name]']").change(function(){
+      var validationValid = [
+        'validates_max_number', 'validates_min_number',
+        'validates_format_of', 'validates_character_quantity_of'
+      ];
+
+      if(validationValid.includes(this.value)) {
+        $(insertedItem[0].childNodes[5]).css("display", "block");
+      } else {
+        $(insertedItem[0].childNodes[5]).css("display", "none");
+      }
+    })
+
+    function get_form_id() {
+      var element = insertedItem[0];
+      for(var i=0; i < 3; i++) {
+        element = element.childNodes[1];
+      }
+      return element.name.split("][")[1]
+    }
+  });

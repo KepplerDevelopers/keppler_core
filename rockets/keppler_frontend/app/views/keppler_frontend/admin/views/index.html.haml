@@ -4,7 +4,7 @@
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1{ style: 'display: inline-block' }
-            = t("keppler.modules.#{controller_path.underscore}")
+            = t("keppler_frontend.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
             - if can?(KepplerFrontend::View).download?
@@ -35,7 +35,7 @@
             %li
               %a{ href: '#' }
                 %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+                = t("keppler_frontend.modules.#{action_name.underscore}")
 
         .box.slice-box
           .box-body.no-padding
@@ -45,7 +45,8 @@
                 - if @objects.size.zero?
                   %tr
                     %th{style: 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.views"))
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
+
                 - else
                   %tr
                     %th

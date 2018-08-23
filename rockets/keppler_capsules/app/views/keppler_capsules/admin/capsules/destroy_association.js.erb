@@ -1,0 +1,5 @@
+var formId = $("#association-<%= @capsule_association.id %> select")[0].id.split('_')[4]
+
+$("#capsule_capsule_associations_attributes_"+formId+"_id").remove();
+$("#association-<%= @capsule_association.id %>").remove();
+$(".spinner").css('display', 'none');

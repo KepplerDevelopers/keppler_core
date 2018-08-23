@@ -1,0 +1,21 @@
+!!!
+%html
+  = render 'admin/layouts/head'
+  %body.sidebar-mini.skin-blue{ style: 'height: auto; min-height: 100%;' }
+    - if loggedin?
+      .wrapper{ style: 'height: auto; min-height: 100vh;' }
+        = render 'admin/layouts/navigation', q: @q, appearance: @appearance
+        = render 'admin/layouts/sidebar', render: @render
+        = render 'admin/layouts/messages'
+        .content-wrapper
+          = yield
+
+      .spinner
+        = preloader
+      = render 'admin/layouts/footer'
+    - else
+      %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil }
+        = yield
+    - if action_name.eql?('index')
+      %script{ src: '/assets/vue_admin/index.js' }
+    = keppler_boolean_script

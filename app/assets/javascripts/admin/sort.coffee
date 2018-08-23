@@ -6,4 +6,3 @@ $(document).on 'turbolinks:load', ->
       distance: 20
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))
-        moveDropdown()
