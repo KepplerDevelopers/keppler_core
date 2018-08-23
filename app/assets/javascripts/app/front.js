@@ -30,7 +30,8 @@ function scrollFunction(){
     // })
     if (scroll <= 10) {
       Keppler.css({
-        transform: 'scale(1)'
+        transform: 'scale(1)',
+        opacity: 1-('0.'+scroll)*0.1
       })
       Social.css('opacity', '1')
       Slice.css({
@@ -40,7 +41,8 @@ function scrollFunction(){
     }
     if (scroll > 10 && scroll <= 60) {
       Keppler.css({
-        transform: 'scale('+(1-('0.'+scroll)*0.1)+')'
+        transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+        opacity: 1-('0.'+scroll)*0.1
       })
       Social.css('opacity', 1-('0.'+scroll))
       Mouse.css('opacity', 1-('0.'+scroll))
@@ -51,7 +53,8 @@ function scrollFunction(){
     }
     if (scroll > 60 && scroll <= 99) {
       Keppler.css({
-        transform: 'scale('+(1-('0.'+scroll)*0.1)+')'
+        transform: 'scale('+(1-('0.'+scroll)*0.1)+')',
+        opacity: 1-('0.'+scroll)*0.1
       })
       Social.css('opacity', 1-('0.'+scroll))
       Mouse.css('opacity', 1-('0.'+scroll))
@@ -62,7 +65,8 @@ function scrollFunction(){
     }
     if (scroll > 99 && scroll <= 559) {
       Keppler.css({
-        transform: 'translate(0%, -'+(scroll-(100))*0.41+'px) scale('+(1-('0.'+scroll)*1.2)+')'
+        transform: 'translate(0%, -'+(scroll-(100))*0.41+'px) scale('+(1-('0.'+scroll)*1.2)+')',
+        opacity: 1-('0.'+scroll)*0.1
       })
       Social.css({
         display: 'none',
@@ -89,7 +93,8 @@ function scrollFunction(){
       top: '-554.4px'
     })
     Keppler.css({
-      transform: 'translate(0%, -186.96px) scale(0.3328)'
+      // transform: 'translate(0%, -186.96px) scale(0.3328)',
+      opacity: 0
     })
     Social.css({
       display: 'none',
