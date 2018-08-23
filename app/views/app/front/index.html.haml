@@ -5,30 +5,30 @@
   %body
     %header
       = #render 'app/layouts/navigation'
-    %main#keppler{:role => "main"}
+    %main#keppler{ role: 'main' }
       = #render 'app/layouts/messages'
       .front
         .front-logo
-          = image_tag "app/keppler-front.png", class: "img-responsive"
+          = image_tag 'app/keppler-front.png', class: 'img-responsive'
 
         .front-social
           %ul
             %li
-              =  link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
+              =  link_to 'https://twitter.com/slicegroupxyz', target: '_blank' do
                 = icon 'fab', 'twitter'
             %li
-              =  link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
+              =  link_to 'https://www.facebook.com/slicegroupxyz/', target: '_blank' do
                 = icon 'fab', 'facebook'
             %li
-              =  link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
+              =  link_to 'https://www.instagram.com/slicegroupxyz/', target: '_blank' do
                 = icon 'fab', 'instagram'
             %li
-              =  link_to "https://github.com/SliceDevelopers", target: '_blank' do
+              =  link_to 'https://github.com/SliceDevelopers', target: '_blank' do
                 = icon 'fab', 'github'
         .mouse-scroll
           .mouse
             .scroll
-        %footer.front-footer
+        -# %footer.front-footer
           = render 'app/layouts/footer'
 
 
@@ -184,7 +184,7 @@
               = f.input :image, as: :keppler_file
 
                # Inputs de tipo select
-              = f.input :role_ids, collection: Role.all, label: false, include_blank: "Seleccione un rol"
+              = f.input :role_ids, collection: Role.all, label: false, include_blank: 'Seleccione un rol'
 
                # Inputs de tipo radio buttons
               = f.collection_radio_buttons :option, [['vegan', 'vegan'] ,['vegetarian', 'vegetarian']], :first, :last
