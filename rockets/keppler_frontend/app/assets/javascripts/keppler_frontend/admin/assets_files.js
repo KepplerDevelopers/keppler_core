@@ -23,6 +23,7 @@ function copyHtml(id) {
 }
 
 $(document).on('turbolinks:load', function() {
+
   $(document).ready(function(){
     $('#btn-assets-editor').click(function(){
       $('#assets-editor').addClass('control-sidebar-open');
