@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+
   $(function ($) {
     var $body = $('body'),
         $slice = $('#sidebar-footer .brand')

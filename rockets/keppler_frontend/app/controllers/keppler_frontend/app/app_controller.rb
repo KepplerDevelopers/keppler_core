@@ -7,6 +7,7 @@ module KepplerFrontend
     before_action :set_metas
     before_action :set_analytics
 
+    include KepplerCapsules::Concerns::Lib
     def set_metas
       @theme_color = nil
       # Descomentar el modelo que exista depende del proyecto

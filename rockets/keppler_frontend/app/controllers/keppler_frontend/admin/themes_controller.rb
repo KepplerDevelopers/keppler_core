@@ -63,10 +63,10 @@ module KepplerFrontend
           @theme.install(params[:theme][:file])
           redirect_to(
             admin_frontend_themes_path(page: @current_page, search: @query),
-            notice: t("keppler.keppler_frontend.theme.success")
+            notice: t("keppler_frontend.theme.success")
           )
         else
-          flash[:notice] = t("keppler.keppler_frontend.theme.fail")
+          flash[:notice] = t("keppler_frontend.theme.fail")
           render :new
         end
       end
@@ -84,7 +84,7 @@ module KepplerFrontend
         end
         redirect_to(
           admin_frontend_themes_path(page: @current_page, search: @query),
-          notice: t("keppler.keppler_frontend.theme.apply")
+          notice: t("keppler_frontend.theme.apply")
         )
       end
 

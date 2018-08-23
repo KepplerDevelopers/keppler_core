@@ -4,7 +4,7 @@
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1{ style: 'display: inline-block' }
-            = t("keppler.modules.#{controller_path.underscore}")
+            = t("keppler_frontend.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .hide
             = form_tag admin_frontend_theme_upload_path(@objects), id: "upload_form_themes", multipart: true, method: :post do
@@ -13,7 +13,7 @@
             %li
               %a{ href: '#' }
                 %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+                = t("keppler_frontend.modules.#{action_name.underscore}")
 
         .row
           .col-lg-5.col-xs-12
@@ -29,7 +29,8 @@
                     - if @objects.size.zero?
                       %tr
                         %th{style: 'text-align: center;'}
-                          %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.themes"))
+                          %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.themes"))
+
                     - else
                       %tr
                         %th
