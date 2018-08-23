@@ -70,8 +70,8 @@
 }
 
 .appearance-img {
-  height: 350px !important;
-  width: 100% !important;
+  height: 350px !important; // scss-lint:disable ImportantRule
+  width: 100% !important; // scss-lint:disable ImportantRule
 }
 
 .minicolors-theme-default .minicolors-input {
