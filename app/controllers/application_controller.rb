@@ -9,9 +9,12 @@ class ApplicationController < ActionController::Base
   before_action :set_sidebar
   before_action :set_modules
   before_action :set_languages
+  before_action :set_admin_locale
+
   skip_around_action :set_locale_from_url
   include Pundit
   include PublicActivity::StoreController
+  helper KepplerLanguages::LanguagesHelper
   include AdminHelper
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -86,12 +89,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_languages
-    languages = YAML.load_file(
-      "#{Rails.root}/rockets/keppler_languages/config/languages.yml"
-    ).values.each(&:symbolize_keys!)
 
-    @languages = languages.first.keys
+  def set_admin_locale
+    if controller_path.include?('admin')
+      I18n.locale = 'es'
+    end
+
+  end
+
+  def set_languages
+    languages = KepplerLanguages::Language.all.map { |l| l.name }
+    @languages = languages.push('es', 'en')
 
     I18n.available_locales = @languages
   end
