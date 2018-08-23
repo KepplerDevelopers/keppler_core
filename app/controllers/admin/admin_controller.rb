@@ -25,6 +25,11 @@ module Admin
       @current_page = params[:page] unless params[:page].blank?
     end
 
+    def validate_permissions
+      return if current_user.rol.eql?('keppler_admin')
+      redirect_to frontend_path unless current_user.permissions?
+    end
+
     private
 
     def validate_permissions

@@ -38,16 +38,24 @@
     }
 
     .user-header {
-      background-image: url('profile-menu.jpg');
+      align-items: center;
+      background: url('profile-menu.jpg'), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
       background-position: center;
       background-size: cover;
-      border-bottom: 2px solid $keppler-color;
-      border-color: $keppler-color;
+      height: 150px;
+      display: flex;
+    }
+
+    .user-footer {
+      background-color: $white !important;
     }
   }
 
   .sidebar-toggle {
     color: $navbar-static-top-link;
+    display: flex;
+    align-items: center;
+    padding: 18px;
 
     &::before {
       display: none;
@@ -55,6 +63,7 @@
 
     &:hover {
       background-color: $sidebar-toggle-hover;
+      color: #949494;
     }
   }
 
@@ -101,10 +110,36 @@
   }
 }
 
-.dropdown-toggle {
-  height: 50px;
-}
-
 .navbar-nav {
   transition: .4s .5s ease-in-out;
+}
+
+.current-user {
+  align-items: center;
+  display: flex;
+  margin-top: -15px;
+  flex-direction: column;
+
+  p {
+    color: $keppler-color;
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 0;
+  }
+
+  small {
+    color: $almost-black;
+  }
+}
+
+.btn-user {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 10px 10px 10px;
+}
+
+.user-menu {
+  .dropdown-menu {
+    box-shadow: $box-shadow-collapse;
+  }
 }

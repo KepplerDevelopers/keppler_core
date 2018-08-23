@@ -25,7 +25,7 @@
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
                     %span.cr
                       %i.cr-icon.glyphicon.glyphicon-ok
             .toolbar-item
@@ -47,7 +47,7 @@
                 - if @objects.size.zero?
                   %tr
                     %th{ style: 'text-align: center;' }
-                      %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.script'))
+                      %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.scripts'))
 
                 - else
                   %tr
@@ -62,7 +62,7 @@
 
         %center.paginator-module
           = paginate @objects, window: 1
-  .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+  .listing-show
     = render 'description', activities: @activities
   %aside.control-sidebar.index-show
   - if can?(Script).create?

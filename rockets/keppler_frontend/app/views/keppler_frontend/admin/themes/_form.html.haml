@@ -1,0 +1,34 @@
+= simple_form_for [:admin, :frontend, @theme] do |f|
+  .container
+    .row
+      .col-lg-2
+        = link_to admin_frontend_themes_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+          .arrow-back.btn.btn-default
+            %i.fa.fa-angle-left
+            = t('keppler.actions.back')
+
+    .row
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler.modules.#{action_name.underscore}")
+            .box-tools.pull-right
+              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-minus
+          .box-body
+            %table.table.table-bordered
+              %tbody
+                .form-padding
+                  .col-xs-12
+                    = f.input :file, as: :file, label: false
+                    - if flash[:notice]
+                      .keppler-frontend-message{class: "#{ flash[:notice].last.eql?('success') ? 'text-green' : 'text-red' }"}
+                        = flash[:notice]
+                  .col-xs-12
+                    = f.input :position, as: :hidden
+                  .col-xs-12
+                    = f.input :deleted_at, as: :hidden
+                  .col-xs-12
+                    .pull-right
+                      = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+                      = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'
