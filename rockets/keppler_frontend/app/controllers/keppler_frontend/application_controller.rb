@@ -6,5 +6,9 @@ module KepplerFrontend
       return if current_user
       redirect_to main_app.new_user_session_path
     end
+    
+    def only_development
+      redirect_to '/admin' if Rails.env.eql?('production')
+    end
   end
 end

@@ -8,6 +8,7 @@ module KepplerFrontend
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      before_action :only_development
       before_action :reload_views, only: [:index]
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
@@ -50,7 +51,7 @@ module KepplerFrontend
         @view = View.new(view_params)
 
         if @view.save && @view.install
-          redirect(@view, params)
+          redirect_to admin_frontend_view_editor_path(@view), notice: actions_messages(@view)
         else
           render :new
         end
@@ -131,6 +132,7 @@ module KepplerFrontend
         filesystem = FileUploadSystem.new
         @files_list = filesystem.files_list
         @files_bootstrap = filesystem.files_list_bootstrap
+        @views = View.where.not(name: 'keppler').order(position: :asc)
       end
 
       def editor_save
@@ -138,6 +140,7 @@ module KepplerFrontend
         @view.code_save(params[:html], 'html') if params[:html]
         @view.code_save(params[:scss], 'scss') if params[:scss]
         @view.code_save(params[:js], 'js') if params[:js]
+        @view.code_save(params[:js_erb], 'js_erb') if params[:js_erb]
         @view.code_save(params[:ruby], 'action') if params[:ruby]
         render json: {result: true}
       end
