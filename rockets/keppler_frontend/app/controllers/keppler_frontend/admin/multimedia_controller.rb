@@ -5,7 +5,8 @@ module KepplerFrontend
     class MultimediaController < ApplicationController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :authorization
-      before_action :set_filesystem
+      before_action :set_filesystem      
+      before_action :only_development
 
       def index
         set_data(@filesystem )
