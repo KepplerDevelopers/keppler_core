@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         action: :destroy_multiple,
         on: :collection,
         as: :destroy_multiple
-      )      
+      )
       # post '/show_description/:module/:action_name', action: 'show_description', as: :show_description
       # get(
       #   '/add_permissions',
@@ -152,8 +152,9 @@ Rails.application.routes.draw do
   # Frontend routes engine
   mount KepplerFrontend::Engine, at: '/', as: 'frontend'
 
-  # Capsules routes engine
-  mount KepplerCapsules::Engine, at: '/', as: 'capsules'
+  # Language routes engine
+  mount KepplerLanguages::Engine, at: '/', as: 'languages'
+
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
 

@@ -1,0 +1,20 @@
+.col-lg-12
+  = simple_form_for @language, url: admin_languages_language_path(@language) do |f|
+    .box.slice-box
+      .box-header.with-border
+        %h3.box-title= t("keppler_capsules.form.fields")
+      .box-body
+        %table.table.table-bordered
+          %tbody
+            .form-padding
+              .col-xs-12
+                = f.simple_fields_for :fields do |field|
+                  - if field.object.key
+                    = render 'field_fields_edit', f: field
+                  - else
+                    = render 'field_fields', f: field
+                .links
+                  = link_to_add_association "<button class='btn btn-default'> + Añadir atributo </button>".html_safe, f, :fields
+      .box-footer
+        .pull-right
+          = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'

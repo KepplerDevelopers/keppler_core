@@ -8,12 +8,14 @@ class ApplicationController < ActionController::Base
   before_action :set_apparience_colors
   before_action :set_sidebar
   before_action :set_modules
+  before_action :set_languages
+  before_action :set_admin_locale
+
   skip_around_action :set_locale_from_url
   include Pundit
   include PublicActivity::StoreController
+  helper KepplerLanguages::LanguagesHelper
   include AdminHelper
-
-  helper KepplerCapsules::CapsulesHelper
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # rescue_from Faraday::ConnectionFailed do |error|
@@ -86,6 +88,23 @@ class ApplicationController < ActionController::Base
       @modules[0] = @modules[0].merge(module_name[0])
     end
   end
+
+
+  def set_admin_locale
+    if controller_path.include?('admin')
+      I18n.locale = 'es'
+    end
+
+  end
+
+  def set_languages
+    languages = KepplerLanguages::Language.all.map { |l| l.name }
+    @languages = languages.push('es', 'en')
+
+    I18n.available_locales = @languages
+  end
+
+
 
   protected
 
