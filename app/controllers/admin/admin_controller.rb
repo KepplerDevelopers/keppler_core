@@ -32,14 +32,6 @@ module Admin
 
     private
 
-    def validate_permissions
-      return if current_user.rol.eql?('keppler_admin')
-
-      unless current_user.permissions?
-        redirect_to frontend_path
-      end
-    end
-
     def get_history(model)
       @activities = PublicActivity::Activity.where(
         trackable_type: model.to_s
