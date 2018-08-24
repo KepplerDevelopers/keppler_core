@@ -102,23 +102,29 @@
 .control-sidebar-bg
 :javascript
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
-    $(document).keypress("s",function(e) {
-      if(e.ctrlKey && e.key=='s') {
+    var tab = ev.target.innerText;
+    var id = `#{@view.id}`;
+
+    if (tab === '') {
+      tab = `#{@view.name}.html.erb`
+    }
+
+    $(document).bind('keydown', function(e) {
+      if(e.ctrlKey && (e.which == 83)) {
         e.preventDefault();
-        var tab = ev.target.innerText;
-        if (tab==='') {
-          var tab = `#{@view.name}.html.erb`;
-        }
-        var id = `#{@view.id}`
-        if ( tab === `#{@view.name}.html.erb`) {
-          codeHTML.save(id);
-        } else if (tab === `#{@view.name}.scss`) {
-          codeCSS.save(id);
-        } else if (tab === `#{@view.name}.js`) {
-          codeJs.save(id);
-        } else if (tab === 'Action') {
-          codeAction.save(id);
-        }
+        save()
       }
     });
+
+    function save() {
+      if ( tab === `#{@view.name}.html.erb` ) {
+        codeHTML.save(id);
+      } else if (tab === `#{@view.name}.scss` ) {
+        codeCSS.save(id);
+      } else if (tab === `#{@view.name}.js` ) {
+        codeJs.save(id);
+      } else if (tab === 'Action') {
+        codeAction.save(id);
+      }
+    }
   })

@@ -1,22 +1,15 @@
 es:
-  keppler:
-    keppler_frontend:
-      success: Su archivo se ha subido satisfactoriamente
-      fail: El formato del archivo no es válido
-      destroy: El archivo se ha sido eliminado satisfactoriamente
-      multimedia:
-        copy: Copiar Url
-        copy_html: Copiar Html
-      theme:
-        success: El tema ha sido agregado satisfactoriamente
-        fail: El archivo no es reconocido como un tema de keppler
-        apply: El cambio ha sido aplicado satisfactoriamente
-    sidebar-menu:
-      keppler-frontend: Frontend
-      keppler-frontend-submenu:
-        views: Vistas
-        assets: Assets
-        themes: Temas
+  keppler_frontend:
+    success: Su archivo se ha subido satisfactoriamente
+    fail: El formato del archivo no es válido
+    destroy: El archivo se ha sido eliminado satisfactoriamente
+    multimedia:
+      copy: Copiar Url
+      copy_html: Copiar Html
+    theme:
+      success: El tema ha sido agregado satisfactoriamente
+      fail: El archivo no es reconocido como un tema de keppler
+      apply: El cambio ha sido aplicado satisfactoriamente
     models:
       singularize:
         keppler_frontend/view: vista
@@ -30,6 +23,30 @@ es:
       new: Nuevo
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Temas
+  keppler:
+    sidebar-menu:
+      keppler-frontend: Frontend
+      keppler-frontend-submenu:
+        views: Vistas
+        assets: Assets
+        themes: Temas
+        partials: Partials
+    models:
+      singularize:
+        keppler_frontend/view: vista
+        keppler_frontend/partial: partial
+        view: vista
+        theme: tema
+      pluralize:
+        keppler_frontend/views: vistas
+        views: vistas
+        themes: temas
+        partials: partials
+    modules:
+      new: Nuevo
+      keppler_frontend/admin/views: Frontend
+      keppler_frontend/admin/themes: Temas
+      keppler_frontend/admin/partials: Partials
     settings:
     actions:
       created: Creado
@@ -147,7 +164,7 @@ es:
       updated_at: Ultima actualización
       password: Contraseña
       password_confirmation: Confirmar contraseña
-      address: Dirección del servidor
+      address_ip: Dirección del servidor
       port: Puerto
       domain_name: Dominio
       url: Url

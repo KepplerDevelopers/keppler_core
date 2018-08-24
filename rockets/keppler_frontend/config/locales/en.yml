@@ -1,22 +1,15 @@
 en:
-  keppler:
-    keppler_frontend:
-      success: Your file has been successfully uploaded
-      fail: The file format is not valid
-      destroy: The file has been successfully deleted
-      multimedia:
-        copy: Copy Url
-        copy_html: Copy Html
-      theme:
-        success: The theme has been successfully added
-        fail: The file is not recognized as a keppler theme
-        apply: The change has been successfully applied
-    sidebar-menu:
-      keppler-frontend: Frontend
-      keppler-frontend-submenu:
-        views: Views
-        assets: Assets
-        themes: Themes
+  keppler_frontend:
+    success: Your file has been successfully uploaded
+    fail: The file format is not valid
+    destroy: The file has been successfully deleted
+    multimedia:
+      copy: Copy Url
+      copy_html: Copy Html
+    theme:
+      success: The theme has been successfully added
+      fail: The file is not recognized as a keppler theme
+      apply: The change has been successfully applied
     models:
       singularize:
         keppler_frontend/view: view
@@ -27,8 +20,31 @@ en:
         views: views
         themes: themes
     modules:
+      new: new
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Themes
+  keppler:
+    sidebar-menu:
+      keppler-frontend: Frontend
+      keppler-frontend-submenu:
+        views: Views
+        assets: Assets
+        themes: Themes
+        partials: Partials
+    models:
+      singularize:
+        keppler_frontend/view: view
+        view: view
+        theme: theme
+      pluralize:
+        keppler_frontend/views: views
+        views: views
+        themes: themes
+        partials: partials
+    modules:
+      keppler_frontend/admin/views: Frontend
+      keppler_frontend/admin/themes: Themes
+      keppler_frontend/admin/partials: Partials
     actions:
       created: Created
       updated: Updated

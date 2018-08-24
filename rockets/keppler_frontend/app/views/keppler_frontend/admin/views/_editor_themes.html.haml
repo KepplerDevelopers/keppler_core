@@ -9,6 +9,9 @@
     %li
       %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_theme_tab_2"}
         %i.fa.fa-tint
+    %li
+      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_partials_tab_3"}
+        %i.fa.fa-list
   .tab-content.container-files.bg-gray
     #editor_theme_tab_1.tab-pane.active
       - @files_list.each_with_index do |file, i|
@@ -55,27 +58,50 @@
               %button.btn.btn-default.pull-right{onclick: "copyHtml('#{file[:id]}')"}
                 %textarea.hidden{id: "#{file[:id]}", value: "#{file[:html]}"}
                 %i.fa.fa-save
+    #editor_partials_tab_3.tab-pane
+      - @partials.each_with_index do |partial, i|
+
+        .box.box-solid
+          .box-header.with-border{ title: "#{partial[:name]}" }
+            .row
+              .col-lg-12
+                %h4.box-title
+                  = truncate(partial[:name], length: 30, omission: '...')
+          .box-body.no-padding
+            .back-file-xs
+              .center
+                %i.fa.fa-code#font-icon-size
+          .box-body
+            %button.btn.btn-default.pull-right{onclick: "copyPartial('#{partial[:id]}')"}
+              %textarea.hidden{ id: "partial#{partial[:id]}", value: "<%= #{partial[:name]} %>" }
+              %i.fa.fa-save
 .control-sidebar-bg
 
 :javascript
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
-    $(document).keypress("s",function(e) {
-      if(e.ctrlKey && e.key=='s') {
+    var tab = ev.target.innerText;
+    var id = `#{@view.id}`;
+
+    if (tab === '') {
+      tab = `#{@view.name}.html.erb`
+    }
+
+    $(document).bind('keydown', function(e) {
+      if(e.ctrlKey && (e.which == 83)) {
         e.preventDefault();
-        var tab = ev.target.innerText;
-        if (tab==='') {
-          var tab = `#{@view.name}.html.erb`;
-        }
-        var id = `#{@view.id}`
-        if ( tab === `#{@view.name}.html.erb`) {
-          codeHTML.save(id);
-        } else if (tab === `#{@view.name}.scss`) {
-          codeCSS.save(id);
-        } else if (tab === `#{@view.name}.js`) {
-          codeJs.save(id);
-        } else if (tab === 'Action') {
-          codeAction.save(id);
-        }
+        save()
       }
     });
+
+    function save() {
+      if ( tab === `#{@view.name}.html.erb` ) {
+        codeHTML.save(id);
+      } else if (tab === `#{@view.name}.scss` ) {
+        codeCSS.save(id);
+      } else if (tab === `#{@view.name}.js` ) {
+        codeJs.save(id);
+      } else if (tab === 'Action') {
+        codeAction.save(id);
+      }
+    }
   })
