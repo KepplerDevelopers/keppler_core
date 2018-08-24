@@ -7,7 +7,7 @@ module KepplerLanguages
       extend ActiveSupport::Concern
 
       def create_yml
-        file = File.open("#{url}/config/locales/#{name}.yml", "w")
+        file = File.open("#{url}/config/locales/kl.#{name}.yml", "w")
         file.puts("#{name}: \n");
         file.puts("  keppler_languages: \n");
         file.close
@@ -15,16 +15,16 @@ module KepplerLanguages
       end
 
       def delete_yml
-        file = "#{url}/config/locales/#{name}.yml"
+        file = "#{url}/config/locales/kl.#{name}.yml"
         File.delete(file) if File.exist?(file)
         true
       end
 
       def update_yml(yml)
-        file = "#{url}/config/locales/#{name}.yml"
+        file = "#{url}/config/locales/kl.#{name}.yml"
         obj = Language.find(id)
-        old_name = "#{url}/config/locales/#{obj.name}.yml"
-        new_name = "#{url}/config/locales/#{yml[:name]}.yml"
+        old_name = "#{url}/config/locales/kl.#{obj.name}.yml"
+        new_name = "#{url}/config/locales/kl.#{yml[:name]}.yml"
 
         yml_file = File.readlines(file)
 
@@ -46,7 +46,6 @@ module KepplerLanguages
       def url
         "#{Rails.root}/rockets/keppler_languages"
       end
-
     end
   end
 end

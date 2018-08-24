@@ -11,7 +11,7 @@ module KepplerLanguages
 
       def update_yml(id)
         fields = KepplerLanguages::Language.find(id)
-        file = "#{url}/config/locales/#{fields.name}.yml"
+        file = "#{url}/config/locales/kl.#{fields.name}.yml"
         yml = YAML.load_file(file)
 
         data = fields.fields.map { |f| Hash[f.key, f.value] }
