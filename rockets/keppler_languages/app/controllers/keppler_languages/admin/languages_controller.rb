@@ -64,20 +64,20 @@ module KepplerLanguages
         update_fields(@language, params[:language][:fields_attributes].values)
         if @language.update(name: params[:language][:name])
           update_yml(@language.id)
-          redirect(@language, params)
+          redirect_to admin_languages_languages_path
         else
           render :edit
         end
       end
-      #
-      # def add_fields
-      #   @language = Language.find(params[:language_id])
-      # end
-      #
-      # def create_fields
-      #   fields = language_params.to_h
-      #   @fields = Field.create()
-      # end
+
+      def destroy_field
+        language = Language.find(params[:language_id])
+        field = Field.find(params[:field_id])
+        field.destroy
+
+        update_yml(language.id)
+        redirect_to edit_admin_languages_language_path(language)
+      end
 
       def clone
         @language = Language.clone_record params[:language_id]

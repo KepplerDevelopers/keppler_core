@@ -35,10 +35,10 @@
                 .form-padding
                   .col-xs-12
                     = f.simple_fields_for :fields do |field|
-                      -# - if field.object.key
-                      -#   = render 'field_fields_edit', f: field
-                      -# - else
-                      = render 'field_fields', f: field
+                      - if field.object.key
+                        = render 'field_fields_edit', f: field
+                      - else
+                        = render 'field_fields', f: field
                     .links
                       = link_to_add_association "<button class='btn btn-default'> + Añadir atributo </button>".html_safe, f, :fields
                   .col-xs-12

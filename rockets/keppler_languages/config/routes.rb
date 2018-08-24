@@ -22,6 +22,7 @@ KepplerLanguages::Engine.routes.draw do
 
       resources :languages do
         get '(page/:page)', action: :index, on: :collection, as: ''
+        delete '/destroy_field/:field_id', action: :destroy_field, as: :destroy_field
         get '/clone', action: 'clone'
         post '/sort', action: :sort, on: :collection
         post '/upload', action: 'upload', as: 'upload'

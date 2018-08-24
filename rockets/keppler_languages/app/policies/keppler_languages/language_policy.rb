@@ -8,11 +8,7 @@ module KepplerLanguages
       @objects = objects
     end
 
-    def add_fields?
-      true
-    end
-
-    def create_fields?
+    def destroy_field?
       true
     end
 
