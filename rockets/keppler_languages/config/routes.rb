@@ -1,6 +1,6 @@
 KepplerLanguages::Engine.routes.draw do
   namespace :admin do
-    scope :languages, as: :languages do
+    scope :locales, as: :languages do
       resources :fields do
         get '(page/:page)', action: :index, on: :collection, as: ''
         get '/clone', action: 'clone'

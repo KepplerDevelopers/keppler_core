@@ -10,7 +10,8 @@
     %td.hidden-xs
       = link_to admin_languages_language_path(language, search: @query), remote: true, class: 'show-row' do
         %span
-          = language.name
+          = @names[0][language.name.to_sym]['name']
+          (#{language.name})
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{language.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
