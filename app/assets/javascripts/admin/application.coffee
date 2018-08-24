@@ -21,7 +21,6 @@
 #= require_tree ./codemirror/addon
 #= require keppler_languages/application
 #= require keppler_frontend/admin/application
-#= require keppler_capsules/admin/application
 #= require admin/img_preview
 #= require admin/file_upload
 #= require admin/sort

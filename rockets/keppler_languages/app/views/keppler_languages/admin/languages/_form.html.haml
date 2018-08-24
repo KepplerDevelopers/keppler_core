@@ -35,7 +35,7 @@
                 .form-padding
                   .col-xs-12
                     = f.simple_fields_for :fields do |field|
-                      - if field.object.key
+                      - if field.object.key && action_name.eql?('edit')
                         = render 'field_fields_edit', f: field
                       - else
                         = render 'field_fields', f: field

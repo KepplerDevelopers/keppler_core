@@ -6,12 +6,17 @@ module KepplerLanguages
     require 'csv'
     acts_as_list
 
+    before_save :underscore_name
     belongs_to :language
-    
+
     # Fields for the search form in the navbar
     def self.search_field
       fields = ["key", "value", "position", "deleted_at"]
       build_query(fields, :or, :cont)
+    end
+
+    def underscore_name
+      self.key = self.key.split(' ').join('_')
     end
 
     def self.upload(file)

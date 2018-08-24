@@ -1,9 +1,0 @@
-modules:
- # capsules:
- #    name: Capsule
- #    actions: [
- #      'index', 'create', 'update',
- #      'destroy', 'download', 'upload',
- #      'clone'
- #    ]
- #
