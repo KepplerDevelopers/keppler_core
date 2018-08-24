@@ -81,8 +81,8 @@
 
   })
 
-  $(document).keypress("s",function(e) {
-    if(e.ctrlKey && e.key=='s') {
+  $(document).bind('keydown',function(e) {
+    if(e.ctrlKey && (e.which == 83)) {
       e.preventDefault();
       if ( tab === `#{@view.name}.html.erb`) {
         codeHTML.save(id);
