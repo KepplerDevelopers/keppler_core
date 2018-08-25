@@ -97,7 +97,6 @@
   cursor: pointer;
 }
 
-
 .CodeMirror {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -127,9 +126,11 @@
 .js_signal {
   display: none;
 }
+
 .js_erb_signal {
   display: none;
 }
+
 .action_signal {
   display: none;
 }

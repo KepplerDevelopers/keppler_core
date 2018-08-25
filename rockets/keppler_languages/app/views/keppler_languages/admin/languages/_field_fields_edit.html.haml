@@ -1,0 +1,8 @@
+.nested-fields.row{ id: "field-#{f.object.id}" }
+  .col-lg-5
+    = f.input :key, label: 'Nombre'
+  .col-lg-5
+    = f.input :value, label: 'Valor'
+  .col-lg-2{ style: 'margin-top: 35px;' }
+    = link_to admin_languages_language_destroy_field_path(@language.id, f.object.id.to_i), class: "btn btn-default btn-delete-field" , method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+      %i.icon-trash{ style: 'color: red' }
