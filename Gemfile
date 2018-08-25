@@ -10,6 +10,9 @@ gem 'jquery-rails', '4.3' # jQuery library
 gem 'nprogress-rails', '0.2.0.2' #
 gem 'remotipart', '1.3.0'
 gem 'vuejs-rails', '2.5.13' # VueJS library
+# gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+# gem 'sweet-alert2-rails'
+gem 'sweetalert2'
 
 # Server
 gem 'puma', '~> 3.11', '>= 3.11.3'
@@ -45,7 +48,6 @@ gem 'public_activity', '1.5.0'
 source 'http://insecure.rails-assets.org/' do
   gem 'rails-assets-adminlte'
   gem 'rails-assets-animate-css'
-  gem 'rails-assets-noty'
   gem 'rails-assets-simple-line-icons'
 end
 

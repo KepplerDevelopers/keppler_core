@@ -1,14 +1,14 @@
-function notify(notice){
+function notify(notice) {
   const toast = swal.mixin({
     toast: true,
-    position: 'bottom',
+    position: 'top',
     showConfirmButton: false,
     timer: 3000,
-    grow: 'fullscreen'
+    customClass: 'animated tada'
   });
 
   toast({
     type: 'success',
-    title: notice
+    html: `<h5>${notice}</h5>`
   })
 }

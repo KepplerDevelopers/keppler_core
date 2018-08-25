@@ -1,6 +1,5 @@
 //= require animate-css
 //= require jquery.minicolors
-//= require noty
 //= require admin/codemirror/codemirror
 //= require_tree ./codemirror/theme
 //= require_tree ./codemirror/addon
@@ -9,17 +8,11 @@
 //= require keppler_capsules/admin/application
 //= require_self
 
-//Vendor folder
-@import 'vendor/admin-lte/skin-blue';
-
-//Vendor folder
-@import 'bootstrap-file-input/*';
-
-//Fonts and icons
+// Fonts and icons
 @import 'fonts-and-icons/fonts';
 @import 'fonts-and-icons/icons';
 
-//Libraries and plugins as gems
+// Libraries and plugins as gems
 @import 'bourbon';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -29,20 +22,26 @@
 @import 'slick';
 @import 'slick-theme';
 
-//Utils folder
+// Utils folder
 @import 'utils/variables';
 @import 'utils/mixins';
 @import 'utils/theme';
 @import 'utils/base';
 
-//Components folder
+// Vendor folder
+@import 'vendor/admin-lte/skin-blue';
+@import 'vendor/sweetalert2/sweetalert2';
+
+// Bootstrap File Input
+@import 'bootstrap-file-input/*';
+
+// Components folder
 @import 'components/navigation/navbar';
 @import 'components/navigation/sidebar';
 @import 'components/navigation/turbolinks';
 @import 'components/layouts/footer';
 @import 'components/layouts/settings';
 @import 'components/paginator/paginator';
-@import 'components/sweetalert2/sweetalert2';
 
 // Page folder
 @import 'pages/*';
