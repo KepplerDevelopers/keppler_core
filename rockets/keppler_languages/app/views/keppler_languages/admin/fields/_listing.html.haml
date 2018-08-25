@@ -1,0 +1,45 @@
+- objects.each do |field|
+  %tr{ id: "row-#{field.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can?(KepplerLanguages::Field).destroy_multiple?
+        .checkbox
+          %label{ for: "checkbox-#{field.id}" }
+            %input{ type:"checkbox", id: "checkbox-#{field.id}", 'checklist-model' => 'check', 'checklist-value' => "#{field.id}", '@click' => "listDelete(#{field.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+    %td.hidden-xs
+      = link_to admin_languages_field_path(field, search: @query), remote: true, class: 'show-row' do
+        %span
+          = field.key
+    %td.hidden-xs
+      = link_to admin_languages_field_path(field, search: @query), remote: true, class: 'show-row' do
+        %span
+          = field.value
+    %td{ style: 'width: 15px;padding-right:15px;' }
+      %a.action-btn.pull-right{:id => "menu-#{field.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{field.id}" }
+        - if can?(KepplerLanguages::Field).index?
+          %li
+            = link_to admin_languages_field_path(field), class: 'new-menu', title: t('keppler.actions.show') do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can?(KepplerLanguages::Field).update?
+          %li
+            = link_to edit_admin_languages_field_path(field), class: 'new-menu', title: t('keppler.actions.edit') do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can?(KepplerLanguages::Field).clone?
+          %li
+            = link_to admin_languages_field_clone_path(field), class: 'new-menu', title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can?(KepplerLanguages::Field).destroy?
+          %li
+            = link_to admin_languages_field_path(field), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+              %i.icon-trash
+              = t('keppler.actions.delete')
+
+    %td{:style => 'width: 5%;'}
+      %a.drop{:href=>"#"}
+        %i.icon-cursor-move

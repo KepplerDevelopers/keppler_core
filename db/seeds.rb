@@ -49,3 +49,18 @@ if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
   )
   puts 'KepplerContactUs mailer_to and mailer_from has been created'
 end
+
+if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
+  file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/views.yml")
+  routes = YAML.load_file(file)
+  routes.each do |route|
+    KepplerFrontend::View.create(
+      name: route['name'],
+      url: route['url'],
+      method: route['method'],
+      active: route['active'],
+      format_result: route['format_result']
+    )
+  end
+  puts 'Views has been created'
+end

@@ -51,11 +51,14 @@ end
 
 # Soft delete
 gem 'paranoia', '2.4.1'
+#
+# gem 'codemirror-rails', '5.15.2'
 
 # Forms
 gem 'cocoon', '1.2.11'
 gem 'jquery-minicolors-rails', '~> 2.2', '>= 2.2.6.0'
 gem 'simple_form', '4.0.0'
+gem 'country_select', '3.1.1'
 
 # Upload
 gem 'carrierwave', '1.2.2'
@@ -67,6 +70,7 @@ gem 'rmagick', '2.16.0' # fix issue: 'sudo apt install libmagick++-dev'
 gem 'bootstrap-sass', '3.3.7'
 gem 'bourbon', '5.0.0'
 gem 'font-awesome-sass', '5.0.9'
+gem 'jquery-slick-rails', '1.9.0'
 
 # Authentication and Authorization
 gem 'devise', '4.4.3'
@@ -95,6 +99,7 @@ group :development do
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'byebug', '10.0.2'
   gem 'commands', '0.2.1'
+  gem 'brakeman', '4.3.0'
   # gem 'guard'
   # gem 'guard-coffeescript'
   gem 'guard-livereload', '2.5.2', require: false
@@ -124,3 +129,6 @@ end
 #---- keppler_ga_dashboard ----
 gem 'google-api-client', '~> 0.7.1'
 gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
+gem 'keppler_frontend', path: 'rockets/keppler_frontend'
+gem 'keppler_languages', path: 'rockets/keppler_languages'
+gem 'keppler_capsules', path: 'rockets/keppler_capsules'

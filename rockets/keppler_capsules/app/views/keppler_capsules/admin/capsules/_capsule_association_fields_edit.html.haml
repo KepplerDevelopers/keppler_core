@@ -1,0 +1,11 @@
+.nested-fields.row{id: "association-#{f.object.id}"}
+  .col-lg-5
+    = f.input :association_type, label: t('capsule.attributes.association_type'), collection: f.object.relationships.map { |v| [t("keppler_capsules.associations.#{v}"), v] }, include_blank: false, disabled: true
+  .col-lg-3
+    = f.input :capsule_name, label: t('capsule.attributes.capsule_name'), collection: f.object.capsules_valids.map(&:name), include_blank: false, disabled: true
+  .col-lg-2
+    = f.input :dependention_destroy, label: t('capsule.attributes.dependention_destroy'), include_blank: false, collection: f.object.dependentions.map { |v| [t("keppler_capsules.dependent.#{v[1]}"), v[0]] }, disabled: true
+  .col-lg-1
+    = link_to admin_capsules_capsule_destroy_association_path(@capsule.id, f.object.id.to_i), remote: true, class: "btn btn-default btn-delete-field" , method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+      %i.icon-trash
+    .clearfix

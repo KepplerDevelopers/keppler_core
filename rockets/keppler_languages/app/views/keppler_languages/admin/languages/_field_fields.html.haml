@@ -1,0 +1,7 @@
+.nested-fields.row
+  .col-lg-5
+    = f.input :key, label: 'Nombre'
+  .col-lg-5
+    = f.input :value, label: 'Valor'
+  .col-lg-2{ style: 'margin-top: 35px;' }
+    = link_to_remove_association "<button class='btn btn-default btn-delete-field'><i class='icon-trash' style='color: red !important;'></i></button>".html_safe, f
