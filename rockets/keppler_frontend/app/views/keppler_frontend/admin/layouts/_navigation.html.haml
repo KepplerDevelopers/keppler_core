@@ -5,7 +5,7 @@
         %span K
       %span.logo-lg
         %span K
-    %a.sidebar-toggle{ 'data-toggle' => 'offcanvas', href: '#', role: 'button' }
+    %a.sidebar-toggle{ 'data-toggle' => 'offcanvas', role: 'button' }
       %i.icon-menu
       %span.sr-only Toggle navigation
     - if listing? && q
@@ -22,21 +22,21 @@
     .navbar-custom-menu
       %ul.nav.navbar-nav
         %li.dropdown.user.user-menu
-          %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#' }
+          %a.dropdown-toggle{ 'data-toggle' => 'dropdown' }
             = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
             %li.user-header{ style: appearance.image_background? ? "background-image: url( #{appearance.image_background}) " : nil }
               = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle nav-profile-img', alt: current_user.name
-              %p
-                = current_user.name
+            %li.user-footer
+              .current-user
+                %p
+                  = current_user.name
                 %small
                   = t('keppler.navigation.last_session')
                   = current_user.updated_at.strftime('%d %b %Y')
-            %li.user-footer
-              .pull-left
+              .btn-user
                 = link_to 'Profile', "/admin/users/#{current_user.id}", class: 'btn btn-default btn-flat'
-              .pull-right
                 = link_to t('devise.sign_out'), destroy_session_path(current_user), class: 'btn btn-default btn-flat'
         - if listing?
           %li.hidden-xs
