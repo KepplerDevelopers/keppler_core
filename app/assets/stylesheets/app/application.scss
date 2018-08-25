@@ -6,6 +6,8 @@
 @import 'plugins/bootstrap_override';
 @import 'plugins/font_awesome';
 @import 'plugins/npogress';
+@import 'slick';
+@import 'slick-theme';
 
 // Utils
 @import 'utils/variables';
@@ -24,6 +26,5 @@
 @import 'components/navbar';
 @import 'components/buttons';
 @import 'components/inputs';
-
 // Pages
 @import 'pages/*';

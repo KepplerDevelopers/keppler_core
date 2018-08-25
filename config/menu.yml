@@ -37,10 +37,11 @@ menu:
     current: ['admin/customizes', 'settings/appearance']
     model: Customize
     submenu:
-      - customize:
-          name: frontend templates
-          url_path: /admin/customizes
-          current: ['admin/customizes']
+      # - customize:
+      #     name: frontend templates
+      #     url_path: /admin/customizes
+      #     current: ['admin/customizes']
+      #     enviroment: development
       - appearance:
           name: admin appearance
           url_path: /admin/settings/appearance
