@@ -78,6 +78,8 @@ module Rails
       end
 
       def create_model_files
+        model_path = File.join('app/models', controller_class_path, "#{controller_file_name.singularize}.rb")
+        File.delete(model_path) if File.exist?(model_path)
         attachments
         template(
           'models/model.rb',

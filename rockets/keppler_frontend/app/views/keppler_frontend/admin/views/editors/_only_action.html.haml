@@ -1,0 +1,41 @@
+.nav-tabs-custom
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
+        Action
+        .kf-signal.action_signal
+    %li.pull-right
+      %a{onclick: "controls.saveOnlyAction(#{@view.id})", title: t('keppler.actions.save')}
+        %i.fa.fa-save
+    %li.pull-right
+      = link_to admin_frontend_views_path do
+        %i.fa.fa-list
+        %span.hidden-xs
+          = t('keppler.actions.view_list')
+  .tab-content
+    #tab_5.tab-pane.active
+      %div.action.code-container
+        %textarea#code-action{:name => "code"}
+          = @view.action_code
+
+
+:javascript
+  codeAction.codeMirrorAction();
+  var tab = `#{@view.name}.html.erb`;
+  var id = `#{@view.id}`;
+  var ready = { action: false }
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    if( ready.action === false ) {
+      codeAction.codeMirrorAction();
+      ready.action = true;
+    }
+
+  })
+
+  $(document).bind('keydown',function(e) {
+    if(e.ctrlKey && (e.which == 83)) {
+      e.preventDefault();
+      codeAction.save(id);
+    }
+  });

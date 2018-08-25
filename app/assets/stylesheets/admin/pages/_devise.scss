@@ -1,5 +1,9 @@
+$gradient1: rgba(51, 51, 102, 1);
+$gradient2: rgba(36, 45, 75, 1);
+$gradient3: rgba(30, 43, 64, 1);
+
 .devise-default-img {
-  background: url("profile-menu.jpg"), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
+  background: url('profile-menu.jpg') linear-gradient(to bottom $gradient1 0% $gradient2 51% $gradient3 100%);
   background-position: center;
   background-size: cover;
 }
