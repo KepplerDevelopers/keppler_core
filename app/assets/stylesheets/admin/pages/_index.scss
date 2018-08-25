@@ -18,6 +18,10 @@
   }
 }
 
+.content-actions {
+  display: flex;
+}
+
 .callout.callout-warning {
   background-color: $white;
   color: $almost-black;
@@ -249,17 +253,17 @@
 }
 
 .toolbar {
-  background-color: $almost-white;
+  // background-color: $almost-white;
   border-radius: 2px;
   display: inline-block;
   font-size: 1.4rem;
   padding: 0 5px;
-  position: absolute;
-  right: 70px;
-  top: 15px;
+  // position: absolute;
+  // right: 70px;
+  // top: 15px;
 
   @media screen and (min-width: 0) and (max-width: 991px) {
-    right: 15px;
+    // right: 15px;
   }
 
   &-item {
@@ -322,6 +326,7 @@
 }
 
 .objects-container {
+
   td {
     padding: 0;
     padding-bottom: 0;
@@ -352,4 +357,13 @@
 
 .tools {
   padding-top: 5px;
+}
+
+.select-filter {
+  select {
+    border: 0;
+    border-radius: 10px;
+    color: $grey;
+    padding: 6px 10px;
+  }
 }

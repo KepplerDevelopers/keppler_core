@@ -103,4 +103,19 @@
   @include respond-to(xs) {
     padding: 0 0 20px;
   }
+
+  thead {
+    background-color: #ededed;
+
+    th {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1px;
+      font-size: 14px;
+
+      &:first-child {
+        padding: 10px 20px;
+      }
+    }
+  }
 }

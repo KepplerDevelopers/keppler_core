@@ -6,41 +6,35 @@
           %h1
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
+          -# %ol.breadcrumb
+          -#   %li
+          -#     %a{ href: '#' }
+          -#       %i.icon-directions
+          -#       = t("keppler.modules.#{action_name.underscore}")
+        %section.content-actions
+          .form-group
+            -# %label.control-label.string.required{ for: 'user_name' }
+              Filtrar usuarios por rol
+            = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do
+              .select-filter
+                %select.form-control#filter_by_role{ name: 'role', onchange: '$(this).parent().submit()' }
+                  %option{ name: 'role', value: 'all' } Todos
+                  - @roles.each do |role|
+                    %option{ name: 'role', value: role.first.downcase }= role.first
           .toolbar
+            .toolbar-item
+              = link_to reload_admin_users_path, class: 'tool-btn', remote: true do
+                %i.icon-reload
             - if can?(User).download?
               .toolbar-item
                 = link_to admin_users_path(format: :xls), class: 'tool-btn', title: t('keppler.actions.download_records') do
                   %i.icon-cloud-download
             .toolbar-item
-              = link_to reload_admin_users_path, class: 'tool-btn', remote: true do
-                %i.icon-reload
-            - if can?(User).destroy_multiple?
-              .toolbar-item
-                .checkbox
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
-            .toolbar-item
               %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{ disabled: !checks }' }
                 %i.icon-trash
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
-
-        .form-group
-          %label.control-label.string.required{ for: 'user_name' }
-            Filtrar usuarios por rol
-          = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do
-            %select.form-control.form-control#filter_by_role{ name: 'role', onchange: '$(this).parent().submit()' }
-              %option{ name: 'role', value: 'all' } Todos
-              - @roles.each do |role|
-                %option{ name: 'role', value: role.first.downcase }= role.first
         .box.slice-box
           .box-body.no-padding
-            %table.table.table-striped
+            %table.table
               %thead
                 - if @objects.size.zero?
                   %tr
@@ -49,6 +43,13 @@
                 - else
                   %tr
                     %th
+                      - if can?(User).destroy_multiple?
+                        .item-check
+                          .checkbox
+                            %label{ for: 'checkbox-all' }
+                              %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
+                              %span.cr
+                                %i.cr-icon.glyphicon.glyphicon-ok
                     %th
                     %th.visible-lg.visible-md= t('activerecord.attributes.name')
                     %th= t('activerecord.attributes.email')
