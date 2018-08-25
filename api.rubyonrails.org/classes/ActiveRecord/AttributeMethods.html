@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::AttributeMethods</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::AttributeMethods">
+
+  
+    
+    <meta name="description" content="Active Record Attribute Methods.">
+    <meta property="og:description" content="Active Record Attribute Methods.">
+  
+
+    <meta name="keywords" content="ActiveRecord::AttributeMethods class">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActiveRecord::AttributeMethods
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods_rb.html">activerecord/lib/active_record/attribute_methods.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/before_type_cast_rb.html">activerecord/lib/active_record/attribute_methods/before_type_cast.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/dirty_rb.html">activerecord/lib/active_record/attribute_methods/dirty.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/primary_key_rb.html">activerecord/lib/active_record/attribute_methods/primary_key.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/query_rb.html">activerecord/lib/active_record/attribute_methods/query.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/read_rb.html">activerecord/lib/active_record/attribute_methods/read.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/serialization_rb.html">activerecord/lib/active_record/attribute_methods/serialization.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/time_zone_conversion_rb.html">activerecord/lib/active_record/attribute_methods/time_zone_conversion.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/attribute_methods/write_rb.html">activerecord/lib/active_record/attribute_methods/write.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/relation/query_methods_rb.html">activerecord/lib/active_record/relation/query_methods.rb</a></li>
+            
+            <li><a href="../../files/activerecord/lib/active_record/sanitization_rb.html">activerecord/lib/active_record/sanitization.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h1 id="module-ActiveRecord::AttributeMethods-label-Active+Record+Attribute+Methods">Active Record Attribute Methods</h1>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/BeforeTypeCast.html">ActiveRecord::AttributeMethods::BeforeTypeCast</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/ClassMethods.html">ActiveRecord::AttributeMethods::ClassMethods</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/Dirty.html">ActiveRecord::AttributeMethods::Dirty</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/PrimaryKey.html">ActiveRecord::AttributeMethods::PrimaryKey</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/Query.html">ActiveRecord::AttributeMethods::Query</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/Read.html">ActiveRecord::AttributeMethods::Read</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/Serialization.html">ActiveRecord::AttributeMethods::Serialization</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/TimeZoneConversion.html">ActiveRecord::AttributeMethods::TimeZoneConversion</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="AttributeMethods/Write.html">ActiveRecord::AttributeMethods::Write</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            <a href="../ActiveModel/AttributeMethods.html">
+              ActiveModel::AttributeMethods
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/Read.html">
+              ActiveRecord::AttributeMethods::Read
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/Write.html">
+              ActiveRecord::AttributeMethods::Write
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/BeforeTypeCast.html">
+              ActiveRecord::AttributeMethods::BeforeTypeCast
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/Query.html">
+              ActiveRecord::AttributeMethods::Query
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/PrimaryKey.html">
+              ActiveRecord::AttributeMethods::PrimaryKey
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/TimeZoneConversion.html">
+              ActiveRecord::AttributeMethods::TimeZoneConversion
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/Dirty.html">
+              ActiveRecord::AttributeMethods::Dirty
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="AttributeMethods/Serialization.html">
+              ActiveRecord::AttributeMethods::Serialization
+            </a>
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">AttrNames</td>
+            <td>=</td>
+            <td class="attr-value">Module.new {
+def self.set_name_cache(name, value)
+const_name = &quot;ATTR_#{name}&quot;
+unless const_defined? const_name
+const_set const_name, value.dup.freeze
+end
+end
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">BLACKLISTED_CLASS_METHODS</td>
+            <td>=</td>
+            <td class="attr-value">%w(private public protected allocate new name parent superclass)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

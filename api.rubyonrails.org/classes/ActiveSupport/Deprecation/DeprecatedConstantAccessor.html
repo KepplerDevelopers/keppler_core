@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveSupport::Deprecation::DeprecatedConstantAccessor</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveSupport::Deprecation::DeprecatedConstantAccessor">
+
+  
+    
+    <meta name="description" content="DeprecatedConstantAccessor transforms a constant into a deprecated one by hooking const_missing.">
+    <meta property="og:description" content="DeprecatedConstantAccessor transforms a constant into a deprecated one by hooking const_missing.">
+  
+
+    <meta name="keywords" content="ActiveSupport::Deprecation::DeprecatedConstantAccessor class">
+  
+    <meta name="keywords" content="included, const_missing, deprecate_constant">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActiveSupport::Deprecation::DeprecatedConstantAccessor
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/deprecation/constant_accessor_rb.html">activesupport/lib/active_support/deprecation/constant_accessor.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="DeprecatedConstantAccessor.html">DeprecatedConstantAccessor</a>
+transforms a constant into a deprecated one by hooking
+<code>const_missing</code>.</p>
+
+<p>It takes the names of an old (deprecated) constant and of a new constant
+(both in string form) and optionally a deprecator. The deprecator defaults
+to <code>ActiveSupport::Deprecator</code> if none is specified.</p>
+
+<p>The deprecated constant now returns the same object as the new one rather
+than a proxy object, so it can be used transparently in <code>rescue</code>
+blocks etc.</p>
+
+<pre><code>PLANETS = %w(mercury venus earth mars jupiter saturn uranus neptune pluto)
+
+# (In a later update, the original implementation of `PLANETS` has been removed.)
+
+PLANETS_POST_2006 = %w(mercury venus earth mars jupiter saturn uranus neptune)
+include ActiveSupport::Deprecation::DeprecatedConstantAccessor
+deprecate_constant &#39;PLANETS&#39;, &#39;PLANETS_POST_2006&#39;
+
+PLANETS.map { |planet| planet.capitalize }
+# =&gt; DEPRECATION WARNING: PLANETS is deprecated! Use PLANETS_POST_2006 instead.
+     (Backtrace information…)
+     [&quot;Mercury&quot;, &quot;Venus&quot;, &quot;Earth&quot;, &quot;Mars&quot;, &quot;Jupiter&quot;, &quot;Saturn&quot;, &quot;Uranus&quot;, &quot;Neptune&quot;]
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="DeprecatedConstantAccessor.html#method-i-const_missing">const_missing</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="DeprecatedConstantAccessor.html#method-i-deprecate_constant">deprecate_constant</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="DeprecatedConstantAccessor.html#method-c-included">included</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-included">
+            
+              <b>included</b>(base)
+            
+            <a href="DeprecatedConstantAccessor.html#method-c-included" name="method-c-included" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-included_source')" id="l_method-c-included_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/deprecation/constant_accessor.rb#L29" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-included_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/deprecation/constant_accessor.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">included</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;active_support/inflector/methods&quot;</span>
+
+  <span class="ruby-identifier">extension</span> = <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">const_missing</span>(<span class="ruby-identifier">missing_const_name</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">class_variable_defined?</span>(<span class="ruby-value">:@@_deprecated_constants</span>)
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">replacement</span> = <span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@_deprecated_constants</span>)[<span class="ruby-identifier">missing_const_name</span>.<span class="ruby-identifier">to_s</span>])
+          <span class="ruby-identifier">replacement</span>[<span class="ruby-value">:deprecator</span>].<span class="ruby-identifier">warn</span>(<span class="ruby-identifier">replacement</span>[<span class="ruby-value">:message</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{name}::#{missing_const_name} is deprecated! Use #{replacement[:new]} instead.&quot;</span>, <span class="ruby-identifier">caller_locations</span>)
+          <span class="ruby-keyword">return</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">constantize</span>(<span class="ruby-identifier">replacement</span>[<span class="ruby-value">:new</span>].<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">super</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deprecate_constant</span>(<span class="ruby-identifier">const_name</span>, <span class="ruby-identifier">new_constant</span>, <span class="ruby-value">message:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">deprecator:</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">instance</span>)
+      <span class="ruby-identifier">class_variable_set</span>(<span class="ruby-value">:@@_deprecated_constants</span>, {}) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">class_variable_defined?</span>(<span class="ruby-value">:@@_deprecated_constants</span>)
+      <span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@_deprecated_constants</span>)[<span class="ruby-identifier">const_name</span>.<span class="ruby-identifier">to_s</span>] = { <span class="ruby-value">new:</span> <span class="ruby-identifier">new_constant</span>, <span class="ruby-value">message:</span> <span class="ruby-identifier">message</span>, <span class="ruby-value">deprecator:</span> <span class="ruby-identifier">deprecator</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">base</span>.<span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">prepend</span> <span class="ruby-identifier">extension</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-const_missing">
+            
+              <b>const_missing</b>(missing_const_name)
+            
+            <a href="DeprecatedConstantAccessor.html#method-i-const_missing" name="method-i-const_missing" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-const_missing_source')" id="l_method-i-const_missing_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/deprecation/constant_accessor.rb#L33" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-const_missing_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/deprecation/constant_accessor.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">const_missing</span>(<span class="ruby-identifier">missing_const_name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">class_variable_defined?</span>(<span class="ruby-value">:@@_deprecated_constants</span>)
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">replacement</span> = <span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@_deprecated_constants</span>)[<span class="ruby-identifier">missing_const_name</span>.<span class="ruby-identifier">to_s</span>])
+      <span class="ruby-identifier">replacement</span>[<span class="ruby-value">:deprecator</span>].<span class="ruby-identifier">warn</span>(<span class="ruby-identifier">replacement</span>[<span class="ruby-value">:message</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{name}::#{missing_const_name} is deprecated! Use #{replacement[:new]} instead.&quot;</span>, <span class="ruby-identifier">caller_locations</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">constantize</span>(<span class="ruby-identifier">replacement</span>[<span class="ruby-value">:new</span>].<span class="ruby-identifier">to_s</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-deprecate_constant">
+            
+              <b>deprecate_constant</b>(const_name, new_constant, message: nil, deprecator: ActiveSupport::Deprecation.instance)
+            
+            <a href="DeprecatedConstantAccessor.html#method-i-deprecate_constant" name="method-i-deprecate_constant" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-deprecate_constant_source')" id="l_method-i-deprecate_constant_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/deprecation/constant_accessor.rb#L43" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-deprecate_constant_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/deprecation/constant_accessor.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deprecate_constant</span>(<span class="ruby-identifier">const_name</span>, <span class="ruby-identifier">new_constant</span>, <span class="ruby-value">message:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">deprecator:</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">instance</span>)
+  <span class="ruby-identifier">class_variable_set</span>(<span class="ruby-value">:@@_deprecated_constants</span>, {}) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">class_variable_defined?</span>(<span class="ruby-value">:@@_deprecated_constants</span>)
+  <span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@_deprecated_constants</span>)[<span class="ruby-identifier">const_name</span>.<span class="ruby-identifier">to_s</span>] = { <span class="ruby-value">new:</span> <span class="ruby-identifier">new_constant</span>, <span class="ruby-value">message:</span> <span class="ruby-identifier">message</span>, <span class="ruby-value">deprecator:</span> <span class="ruby-identifier">deprecator</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

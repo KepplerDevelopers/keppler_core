@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveStorage::Service::AzureStorageService</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveStorage::Service::AzureStorageService">
+
+  
+    
+    <meta name="description" content="Wraps the Microsoft Azure Storage Blob Service as an Active Storage service. See ActiveStorage::Service for the generic API documentation that applies to all services.">
+    <meta property="og:description" content="Wraps the Microsoft Azure Storage Blob Service as an Active Storage service. See ActiveStorage::Service for the generic API documentation that applies to all services.">
+  
+
+    <meta name="keywords" content="ActiveStorage::Service::AzureStorageService class">
+  
+    <meta name="keywords" content="new, upload, download, download_chunk, delete, delete_prefixed, exist?, url, url_for_direct_upload, headers_for_direct_upload, uri_for, blob_for, format_expiry, stream">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveStorage::Service::AzureStorageService
+            
+                <span class="parent">&lt;
+                    
+                    <a href="../Service.html">ActiveStorage::Service</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activestorage/lib/active_storage/service/azure_storage_service_rb.html">activestorage/lib/active_storage/service/azure_storage_service.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Wraps the Microsoft Azure Storage <a href="../Blob.html">Blob</a> <a
+href="../Service.html">Service</a> as an Active Storage service. See <a
+href="../Service.html">ActiveStorage::Service</a> for the generic API
+documentation that applies to all services.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-blob_for">blob_for</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-delete">delete</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-delete_prefixed">delete_prefixed</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-download">download</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-download_chunk">download_chunk</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-exist-3F">exist?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-format_expiry">format_expiry</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-headers_for_direct_upload">headers_for_direct_upload</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-stream">stream</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-upload">upload</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-uri_for">uri_for</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-url">url</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AzureStorageService.html#method-i-url_for_direct_upload">url_for_direct_upload</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>blobs</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>client</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>container</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>signer</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(storage_account_name:, storage_access_key:, container:)
+            
+            <a href="AzureStorageService.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-value">storage_account_name:</span>, <span class="ruby-value">storage_access_key:</span>, <span class="ruby-value">container:</span>)
+  <span class="ruby-ivar">@client</span> = <span class="ruby-constant">Azure</span><span class="ruby-operator">::</span><span class="ruby-constant">Storage</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">storage_account_name:</span> <span class="ruby-identifier">storage_account_name</span>, <span class="ruby-value">storage_access_key:</span> <span class="ruby-identifier">storage_access_key</span>)
+  <span class="ruby-ivar">@signer</span> = <span class="ruby-constant">Azure</span><span class="ruby-operator">::</span><span class="ruby-constant">Storage</span><span class="ruby-operator">::</span><span class="ruby-constant">Core</span><span class="ruby-operator">::</span><span class="ruby-constant">Auth</span><span class="ruby-operator">::</span><span class="ruby-constant">SharedAccessSignature</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">storage_account_name</span>, <span class="ruby-identifier">storage_access_key</span>)
+  <span class="ruby-ivar">@blobs</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">blob_client</span>
+  <span class="ruby-ivar">@container</span> = <span class="ruby-identifier">container</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-blob_for">
+            
+              <b>blob_for</b>(key)
+            
+            <a href="AzureStorageService.html#method-i-blob_for" name="method-i-blob_for" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-blob_for_source')" id="l_method-i-blob_for_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L125" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-blob_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">blob_for</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">get_blob_properties</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Azure</span><span class="ruby-operator">::</span><span class="ruby-constant">Core</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPError</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-delete">
+            
+              <b>delete</b>(key)
+            
+            <a href="AzureStorageService.html#method-i-delete" name="method-i-delete" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-delete_source')" id="l_method-i-delete_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L50" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-delete_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:delete</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">delete_blob</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Azure</span><span class="ruby-operator">::</span><span class="ruby-constant">Core</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPError</span>
+      <span class="ruby-comment"># Ignore files already deleted</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-delete_prefixed">
+            
+              <b>delete_prefixed</b>(prefix)
+            
+            <a href="AzureStorageService.html#method-i-delete_prefixed" name="method-i-delete_prefixed" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-delete_prefixed_source')" id="l_method-i-delete_prefixed_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L60" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-delete_prefixed_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 60</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_prefixed</span>(<span class="ruby-identifier">prefix</span>)
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:delete_prefixed</span>, <span class="ruby-value">prefix:</span> <span class="ruby-identifier">prefix</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">marker</span> = <span class="ruby-keyword">nil</span>
+
+      <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">results</span> = <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">list_blobs</span>(<span class="ruby-identifier">container</span>, <span class="ruby-value">prefix:</span> <span class="ruby-identifier">prefix</span>, <span class="ruby-value">marker:</span> <span class="ruby-identifier">marker</span>)
+
+        <span class="ruby-identifier">results</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">blob</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">delete_blob</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">blob</span>.<span class="ruby-identifier">name</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">break</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">marker</span> = <span class="ruby-identifier">results</span>.<span class="ruby-identifier">continuation_token</span>.<span class="ruby-identifier">presence</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exist?</span>(<span class="ruby-identifier">key</span>)
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:exist</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">blob_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">present?</span>
+      <span class="ruby-identifier">payload</span>[<span class="ruby-value">:exist</span>] = <span class="ruby-identifier">answer</span>
+      <span class="ruby-identifier">answer</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">url</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">expires_in:</span>, <span class="ruby-value">filename:</span>, <span class="ruby-value">disposition:</span>, <span class="ruby-value">content_type:</span>)
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:url</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">generated_url</span> = <span class="ruby-identifier">signer</span>.<span class="ruby-identifier">signed_uri</span>(
+        <span class="ruby-identifier">uri_for</span>(<span class="ruby-identifier">key</span>), <span class="ruby-keyword">false</span>,
+        <span class="ruby-value">service:</span> <span class="ruby-string">&quot;b&quot;</span>,
+        <span class="ruby-value">permissions:</span> <span class="ruby-string">&quot;r&quot;</span>,
+        <span class="ruby-value">expiry:</span> <span class="ruby-identifier">format_expiry</span>(<span class="ruby-identifier">expires_in</span>),
+        <span class="ruby-value">content_disposition:</span> <span class="ruby-identifier">content_disposition_with</span>(<span class="ruby-value">type:</span> <span class="ruby-identifier">disposition</span>, <span class="ruby-value">filename:</span> <span class="ruby-identifier">filename</span>),
+        <span class="ruby-value">content_type:</span> <span class="ruby-identifier">content_type</span>
+      ).<span class="ruby-identifier">to_s</span>
+
+      <span class="ruby-identifier">payload</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">generated_url</span>
+
+      <span class="ruby-identifier">generated_url</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">url_for_direct_upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">expires_in:</span>, <span class="ruby-value">content_type:</span>, <span class="ruby-value">content_length:</span>, <span class="ruby-value">checksum:</span>)
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:url</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">generated_url</span> = <span class="ruby-identifier">signer</span>.<span class="ruby-identifier">signed_uri</span>(
+        <span class="ruby-identifier">uri_for</span>(<span class="ruby-identifier">key</span>), <span class="ruby-keyword">false</span>,
+        <span class="ruby-value">service:</span> <span class="ruby-string">&quot;b&quot;</span>,
+        <span class="ruby-value">permissions:</span> <span class="ruby-string">&quot;rw&quot;</span>,
+        <span class="ruby-value">expiry:</span> <span class="ruby-identifier">format_expiry</span>(<span class="ruby-identifier">expires_in</span>)
+      ).<span class="ruby-identifier">to_s</span>
+
+      <span class="ruby-identifier">payload</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">generated_url</span>
+
+      <span class="ruby-identifier">generated_url</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">headers_for_direct_upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">content_type:</span>, <span class="ruby-value">checksum:</span>, <span class="ruby-operator">**</span>)
+    { <span class="ruby-string">&quot;Content-Type&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">content_type</span>, <span class="ruby-string">&quot;Content-MD5&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">checksum</span>, <span class="ruby-string">&quot;x-ms-blob-type&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;BlockBlob&quot;</span> }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">private</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uri_for</span>(<span class="ruby-identifier">key</span>)
+      <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">generate_uri</span>(<span class="ruby-node">&quot;#{container}/#{key}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">blob_for</span>(<span class="ruby-identifier">key</span>)
+      <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">get_blob_properties</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Azure</span><span class="ruby-operator">::</span><span class="ruby-constant">Core</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPError</span>
+      <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">format_expiry</span>(<span class="ruby-identifier">expires_in</span>)
+      <span class="ruby-identifier">expires_in</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-value">seconds:</span> <span class="ruby-identifier">expires_in</span>).<span class="ruby-identifier">iso8601</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Reads the object for the given key in chunks, yielding each to the block.</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stream</span>(<span class="ruby-identifier">key</span>)
+      <span class="ruby-identifier">blob</span> = <span class="ruby-identifier">blob_for</span>(<span class="ruby-identifier">key</span>)
+
+      <span class="ruby-identifier">chunk_size</span> = <span class="ruby-value">5</span>.<span class="ruby-identifier">megabytes</span>
+      <span class="ruby-identifier">offset</span> = <span class="ruby-value">0</span>
+
+      <span class="ruby-keyword">while</span> <span class="ruby-identifier">offset</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">blob</span>.<span class="ruby-identifier">properties</span>[<span class="ruby-value">:content_length</span>]
+        <span class="ruby-identifier">_</span>, <span class="ruby-identifier">chunk</span> = <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">get_blob</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>, <span class="ruby-value">start_range:</span> <span class="ruby-identifier">offset</span>, <span class="ruby-value">end_range:</span> <span class="ruby-identifier">offset</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">chunk_size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+        <span class="ruby-keyword">yield</span> <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+        <span class="ruby-identifier">offset</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">chunk_size</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-download">
+            
+              <b>download</b>(key, &amp;block)
+            
+            <a href="AzureStorageService.html#method-i-download" name="method-i-download" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-download_source')" id="l_method-i-download_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L30" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-download_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">download</span>(<span class="ruby-identifier">key</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:streaming_download</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">stream</span>(<span class="ruby-identifier">key</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:download</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>, <span class="ruby-identifier">io</span> = <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">get_blob</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>)
+      <span class="ruby-identifier">io</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-download_chunk">
+            
+              <b>download_chunk</b>(key, range)
+            
+            <a href="AzureStorageService.html#method-i-download_chunk" name="method-i-download_chunk" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-download_chunk_source')" id="l_method-i-download_chunk_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L43" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-download_chunk_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">download_chunk</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">range</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:download_chunk</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span>, <span class="ruby-value">range:</span> <span class="ruby-identifier">range</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">_</span>, <span class="ruby-identifier">io</span> = <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">get_blob</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>, <span class="ruby-value">start_range:</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">begin</span>, <span class="ruby-value">end_range:</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">exclude_end?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">end</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">range</span>.<span class="ruby-identifier">end</span>)
+    <span class="ruby-identifier">io</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-exist-3F">
+            
+              <b>exist?</b>(key)
+            
+            <a href="AzureStorageService.html#method-i-exist-3F" name="method-i-exist-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-exist-3F_source')" id="l_method-i-exist-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L76" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-exist-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exist?</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:exist</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">blob_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">payload</span>[<span class="ruby-value">:exist</span>] = <span class="ruby-identifier">answer</span>
+    <span class="ruby-identifier">answer</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-format_expiry">
+            
+              <b>format_expiry</b>(expires_in)
+            
+            <a href="AzureStorageService.html#method-i-format_expiry" name="method-i-format_expiry" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-format_expiry_source')" id="l_method-i-format_expiry_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L131" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-format_expiry_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">format_expiry</span>(<span class="ruby-identifier">expires_in</span>)
+  <span class="ruby-identifier">expires_in</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-value">seconds:</span> <span class="ruby-identifier">expires_in</span>).<span class="ruby-identifier">iso8601</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-headers_for_direct_upload">
+            
+              <b>headers_for_direct_upload</b>(key, content_type:, checksum:, **)
+            
+            <a href="AzureStorageService.html#method-i-headers_for_direct_upload" name="method-i-headers_for_direct_upload" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-headers_for_direct_upload_source')" id="l_method-i-headers_for_direct_upload_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L116" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-headers_for_direct_upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">headers_for_direct_upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">content_type:</span>, <span class="ruby-value">checksum:</span>, <span class="ruby-operator">**</span>)
+  { <span class="ruby-string">&quot;Content-Type&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">content_type</span>, <span class="ruby-string">&quot;Content-MD5&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">checksum</span>, <span class="ruby-string">&quot;x-ms-blob-type&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&quot;BlockBlob&quot;</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-stream">
+            
+              <b>stream</b>(key)
+            
+            <a href="AzureStorageService.html#method-i-stream" name="method-i-stream" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Reads the object for the given key in chunks, yielding each to the block.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-stream_source')" id="l_method-i-stream_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L136" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-stream_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stream</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">blob</span> = <span class="ruby-identifier">blob_for</span>(<span class="ruby-identifier">key</span>)
+
+  <span class="ruby-identifier">chunk_size</span> = <span class="ruby-value">5</span>.<span class="ruby-identifier">megabytes</span>
+  <span class="ruby-identifier">offset</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">offset</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">blob</span>.<span class="ruby-identifier">properties</span>[<span class="ruby-value">:content_length</span>]
+    <span class="ruby-identifier">_</span>, <span class="ruby-identifier">chunk</span> = <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">get_blob</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>, <span class="ruby-value">start_range:</span> <span class="ruby-identifier">offset</span>, <span class="ruby-value">end_range:</span> <span class="ruby-identifier">offset</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">chunk_size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+    <span class="ruby-identifier">offset</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">chunk_size</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-upload">
+            
+              <b>upload</b>(key, io, checksum: nil)
+            
+            <a href="AzureStorageService.html#method-i-upload" name="method-i-upload" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-upload_source')" id="l_method-i-upload_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L20" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">io</span>, <span class="ruby-value">checksum:</span> <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:upload</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span>, <span class="ruby-value">checksum:</span> <span class="ruby-identifier">checksum</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">create_block_blob</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">key</span>, <span class="ruby-constant">IO</span>.<span class="ruby-identifier">try_convert</span>(<span class="ruby-identifier">io</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">io</span>, <span class="ruby-value">content_md5:</span> <span class="ruby-identifier">checksum</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Azure</span><span class="ruby-operator">::</span><span class="ruby-constant">Core</span><span class="ruby-operator">::</span><span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPError</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveStorage</span><span class="ruby-operator">::</span><span class="ruby-constant">IntegrityError</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-uri_for">
+            
+              <b>uri_for</b>(key)
+            
+            <a href="AzureStorageService.html#method-i-uri_for" name="method-i-uri_for" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-uri_for_source')" id="l_method-i-uri_for_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L121" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-uri_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">uri_for</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">blobs</span>.<span class="ruby-identifier">generate_uri</span>(<span class="ruby-node">&quot;#{container}/#{key}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-url">
+            
+              <b>url</b>(key, expires_in:, filename:, disposition:, content_type:)
+            
+            <a href="AzureStorageService.html#method-i-url" name="method-i-url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-url_source')" id="l_method-i-url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L84" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">url</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">expires_in:</span>, <span class="ruby-value">filename:</span>, <span class="ruby-value">disposition:</span>, <span class="ruby-value">content_type:</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:url</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">generated_url</span> = <span class="ruby-identifier">signer</span>.<span class="ruby-identifier">signed_uri</span>(
+      <span class="ruby-identifier">uri_for</span>(<span class="ruby-identifier">key</span>), <span class="ruby-keyword">false</span>,
+      <span class="ruby-value">service:</span> <span class="ruby-string">&quot;b&quot;</span>,
+      <span class="ruby-value">permissions:</span> <span class="ruby-string">&quot;r&quot;</span>,
+      <span class="ruby-value">expiry:</span> <span class="ruby-identifier">format_expiry</span>(<span class="ruby-identifier">expires_in</span>),
+      <span class="ruby-value">content_disposition:</span> <span class="ruby-identifier">content_disposition_with</span>(<span class="ruby-value">type:</span> <span class="ruby-identifier">disposition</span>, <span class="ruby-value">filename:</span> <span class="ruby-identifier">filename</span>),
+      <span class="ruby-value">content_type:</span> <span class="ruby-identifier">content_type</span>
+    ).<span class="ruby-identifier">to_s</span>
+
+    <span class="ruby-identifier">payload</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">generated_url</span>
+
+    <span class="ruby-identifier">generated_url</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-url_for_direct_upload">
+            
+              <b>url_for_direct_upload</b>(key, expires_in:, content_type:, content_length:, checksum:)
+            
+            <a href="AzureStorageService.html#method-i-url_for_direct_upload" name="method-i-url_for_direct_upload" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-url_for_direct_upload_source')" id="l_method-i-url_for_direct_upload_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/azure_storage_service.rb#L101" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-url_for_direct_upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/azure_storage_service.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">url_for_direct_upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">expires_in:</span>, <span class="ruby-value">content_type:</span>, <span class="ruby-value">content_length:</span>, <span class="ruby-value">checksum:</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:url</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">generated_url</span> = <span class="ruby-identifier">signer</span>.<span class="ruby-identifier">signed_uri</span>(
+      <span class="ruby-identifier">uri_for</span>(<span class="ruby-identifier">key</span>), <span class="ruby-keyword">false</span>,
+      <span class="ruby-value">service:</span> <span class="ruby-string">&quot;b&quot;</span>,
+      <span class="ruby-value">permissions:</span> <span class="ruby-string">&quot;rw&quot;</span>,
+      <span class="ruby-value">expiry:</span> <span class="ruby-identifier">format_expiry</span>(<span class="ruby-identifier">expires_in</span>)
+    ).<span class="ruby-identifier">to_s</span>
+
+    <span class="ruby-identifier">payload</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">generated_url</span>
+
+    <span class="ruby-identifier">generated_url</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

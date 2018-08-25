@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::QueryCache</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::QueryCache">
+
+  
+    
+    <meta name="description" content="Active Record Query Cache.">
+    <meta property="og:description" content="Active Record Query Cache.">
+  
+
+    <meta name="keywords" content="ActiveRecord::QueryCache class">
+  
+    <meta name="keywords" content="run, complete, install_executor_hooks">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveRecord::QueryCache
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/query_cache_rb.html">activerecord/lib/active_record/query_cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h1 id="class-ActiveRecord::QueryCache-label-Active+Record+Query+Cache">Active Record Query Cache</h1>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="QueryCache/ClassMethods.html">ActiveRecord::QueryCache::ClassMethods</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="QueryCache.html#method-c-complete">complete</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="QueryCache.html#method-c-install_executor_hooks">install_executor_hooks</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="QueryCache.html#method-c-run">run</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-complete">
+            
+              <b>complete</b>(pools)
+            
+            <a href="QueryCache.html#method-c-complete" name="method-c-complete" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-complete_source')" id="l_method-c-complete_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/query_cache.rb#L33" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-complete_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/query_cache.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">complete</span>(<span class="ruby-identifier">pools</span>)
+  <span class="ruby-identifier">pools</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pool</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pool</span>.<span class="ruby-identifier">disable_query_cache!</span> }
+
+  <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection_handler</span>.<span class="ruby-identifier">connection_pool_list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pool</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">pool</span>.<span class="ruby-identifier">release_connection</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pool</span>.<span class="ruby-identifier">active_connection?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">pool</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">transaction_open?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-install_executor_hooks">
+            
+              <b>install_executor_hooks</b>(executor = ActiveSupport::Executor)
+            
+            <a href="QueryCache.html#method-c-install_executor_hooks" name="method-c-install_executor_hooks" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-install_executor_hooks_source')" id="l_method-c-install_executor_hooks_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/query_cache.rb#L41" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-install_executor_hooks_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/query_cache.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">install_executor_hooks</span>(<span class="ruby-identifier">executor</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Executor</span>)
+  <span class="ruby-identifier">executor</span>.<span class="ruby-identifier">register_hook</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-run">
+            
+              <b>run</b>()
+            
+            <a href="QueryCache.html#method-c-run" name="method-c-run" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-run_source')" id="l_method-c-run_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/query_cache.rb#L28" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-run_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/query_cache.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">run</span>
+  <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection_handler</span>.<span class="ruby-identifier">connection_pool_list</span>.
+    <span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">query_cache_enabled</span> }.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">enable_query_cache!</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActionDispatch::Request</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActionDispatch::Request">
+
+  
+
+    <meta name="keywords" content="ActionDispatch::Request class">
+  
+    <meta name="keywords" content="empty, new, controller_class, controller_class_for, key?, request_method, http_auth_salt, request_method_symbol, method, method_symbol, headers, send_early_hints, original_fullpath, fullpath, original_url, media_type, content_length, xml_http_request?, ip, remote_ip, remote_ip=, request_id, server_software, raw_post, body, form_data?, reset_session, session_options=, GET, POST, authorization, local?, request_parameters=, logger, commit_flash, ssl?, check_method, cookie_jar">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActionDispatch::Request
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/http/request_rb.html">actionpack/lib/action_dispatch/http/request.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/middleware/cookies_rb.html">actionpack/lib/action_dispatch/middleware/cookies.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/middleware/flash_rb.html">actionpack/lib/action_dispatch/middleware/flash.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/middleware/session/abstract_store_rb.html">actionpack/lib/action_dispatch/middleware/session/abstract_store.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/railtie_rb.html">actionpack/lib/action_dispatch/railtie.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/request/session_rb.html">actionpack/lib/action_dispatch/request/session.rb</a></li>
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/request/utils_rb.html">actionpack/lib/action_dispatch/request/utils.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-GET">GET</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-POST">POST</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-authorization">authorization</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-body">body</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-check_method">check_method</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-commit_flash">commit_flash</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-content_length">content_length</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-controller_class">controller_class</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-controller_class_for">controller_class_for</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-cookie_jar">cookie_jar</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-c-empty">empty</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-form_data-3F">form_data?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-fullpath">fullpath</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-headers">headers</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-http_auth_salt">http_auth_salt</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-ip">ip</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>K</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-key-3F">key?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-local-3F">local?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-logger">logger</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-media_type">media_type</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-method">method</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-method_symbol">method_symbol</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>O</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-original_fullpath">original_fullpath</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-original_url">original_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-raw_post">raw_post</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-remote_ip">remote_ip</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-remote_ip-3D">remote_ip=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-request_id">request_id</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-request_method">request_method</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-request_method_symbol">request_method_symbol</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-request_parameters-3D">request_parameters=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-reset_session">reset_session</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-send_early_hints">send_early_hints</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-server_software">server_software</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-session_options-3D">session_options=</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Request.html#method-i-ssl-3F">ssl?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>X</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Request.html#method-i-xml_http_request-3F">xml_http_request?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            Rack::Request::Helpers
+          
+        </li>
+      
+        <li>
+          
+            <a href="Http/Cache/Request.html">
+              ActionDispatch::Http::Cache::Request
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Http/MimeNegotiation.html">
+              ActionDispatch::Http::MimeNegotiation
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Http/Parameters.html">
+              ActionDispatch::Http::Parameters
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Http/FilterParameters.html">
+              ActionDispatch::Http::FilterParameters
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="Http/URL.html">
+              ActionDispatch::Http::URL
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href="ContentSecurityPolicy/Request.html">
+              ActionDispatch::ContentSecurityPolicy::Request
+            </a>
+          
+        </li>
+      
+        <li>
+          
+            Rack::Request::Env
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">ENV_METHODS</td>
+            <td>=</td>
+            <td class="attr-value">%w[ AUTH_TYPE GATEWAY_INTERFACE
+PATH_TRANSLATED REMOTE_HOST
+REMOTE_IDENT REMOTE_USER REMOTE_ADDR
+SERVER_NAME SERVER_PROTOCOL
+ORIGINAL_SCRIPT_NAME
+
+HTTP_ACCEPT HTTP_ACCEPT_CHARSET HTTP_ACCEPT_ENCODING
+HTTP_ACCEPT_LANGUAGE HTTP_CACHE_CONTROL HTTP_FROM
+HTTP_NEGOTIATE HTTP_PRAGMA HTTP_CLIENT_IP
+HTTP_X_FORWARDED_FOR HTTP_ORIGIN HTTP_VERSION
+HTTP_X_CSRF_TOKEN HTTP_X_REQUEST_ID HTTP_X_FORWARDED_HOST
+SERVER_ADDR
+].freeze</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">HTTP_METHODS</td>
+            <td>=</td>
+            <td class="attr-value">RFC2616 + RFC2518 + RFC3253 + RFC3648 + RFC3744 + RFC5323 + RFC4791 + RFC5789</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">HTTP_METHOD_LOOKUP</td>
+            <td>=</td>
+            <td class="attr-value">{}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">LOCALHOST</td>
+            <td>=</td>
+            <td class="attr-value">Regexp.union [/^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/, /^::1$/, /^0:0:0:0:0:0:0:1(%.*)?$/]</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC2518</td>
+            <td>=</td>
+            <td class="attr-value">%w(PROPFIND PROPPATCH MKCOL COPY MOVE LOCK UNLOCK)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC2616</td>
+            <td>=</td>
+            <td class="attr-value">%w(OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>List of HTTP request methods from the following RFCs: Hypertext Transfer
+Protocol – HTTP/1.1 (<a
+href="https://www.ietf.org/rfc/rfc2616.txt">www.ietf.org/rfc/rfc2616.txt</a>)
+HTTP Extensions for Distributed Authoring – WEBDAV (<a
+href="https://www.ietf.org/rfc/rfc2518.txt">www.ietf.org/rfc/rfc2518.txt</a>)
+Versioning Extensions to WebDAV (<a
+href="https://www.ietf.org/rfc/rfc3253.txt">www.ietf.org/rfc/rfc3253.txt</a>)
+Ordered Collections Protocol (WebDAV) (<a
+href="https://www.ietf.org/rfc/rfc3648.txt">www.ietf.org/rfc/rfc3648.txt</a>)
+Web Distributed Authoring and Versioning (WebDAV) Access Control Protocol
+(<a
+href="https://www.ietf.org/rfc/rfc3744.txt">www.ietf.org/rfc/rfc3744.txt</a>)
+Web Distributed Authoring and Versioning (WebDAV) SEARCH (<a
+href="https://www.ietf.org/rfc/rfc5323.txt">www.ietf.org/rfc/rfc5323.txt</a>)
+Calendar Extensions to WebDAV (<a
+href="https://www.ietf.org/rfc/rfc4791.txt">www.ietf.org/rfc/rfc4791.txt</a>)
+PATCH <a href="../Method.html">Method</a> for HTTP (<a
+href="https://www.ietf.org/rfc/rfc5789.txt">www.ietf.org/rfc/rfc5789.txt</a>)</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC3253</td>
+            <td>=</td>
+            <td class="attr-value">%w(VERSION-CONTROL REPORT CHECKOUT CHECKIN UNCHECKOUT MKWORKSPACE UPDATE LABEL MERGE BASELINE-CONTROL MKACTIVITY)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC3648</td>
+            <td>=</td>
+            <td class="attr-value">%w(ORDERPATCH)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC3744</td>
+            <td>=</td>
+            <td class="attr-value">%w(ACL)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC4791</td>
+            <td>=</td>
+            <td class="attr-value">%w(MKCALENDAR)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC5323</td>
+            <td>=</td>
+            <td class="attr-value">%w(SEARCH)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">RFC5789</td>
+            <td>=</td>
+            <td class="attr-value">%w(PATCH)</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-empty">
+            
+              <b>empty</b>()
+            
+            <a href="Request.html#method-c-empty" name="method-c-empty" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-empty_source')" id="l_method-c-empty_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-empty_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">empty</span>
+  <span class="ruby-identifier">new</span>({})
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(env)
+            
+            <a href="Request.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L59" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">env</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-ivar">@method</span>            = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@request_method</span>    = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@remote_ip</span>         = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@original_fullpath</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@fullpath</span>          = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@ip</span>                = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-GET">
+            
+              <b>GET</b>()
+            
+            <a href="Request.html#method-i-GET" name="method-i-GET" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Override Rack&#39;s <a href="Request.html#method-i-GET">#GET</a> method to
+support indifferent access.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-GET_source')" id="l_method-i-GET_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L366" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-GET_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 366</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">GET</span>
+  <span class="ruby-identifier ruby-title">fetch_header</span>(<span class="ruby-string">&quot;action_dispatch.request.query_parameters&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">rack_query_params</span> = <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> {}
+    <span class="ruby-comment"># Check for non UTF-8 parameter values, which would cause errors later</span>
+    <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_param_encoding</span>(<span class="ruby-identifier">rack_query_params</span>)
+    <span class="ruby-identifier">set_header</span> <span class="ruby-identifier">k</span>, <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">normalize_encode_params</span>(<span class="ruby-identifier">rack_query_params</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">ParameterTypeError</span>, <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidParameterError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">BadRequest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Invalid query parameters: #{e.message}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-POST">
+            
+              <b>POST</b>()
+            
+            <a href="Request.html#method-i-POST" name="method-i-POST" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Override Rack&#39;s <a href="Request.html#method-i-POST">#POST</a> method
+to support indifferent access.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-POST_source')" id="l_method-i-POST_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L379" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-POST_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 379</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">POST</span>
+  <span class="ruby-identifier ruby-title">fetch_header</span>(<span class="ruby-string">&quot;action_dispatch.request.request_parameters&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">pr</span> = <span class="ruby-identifier">parse_formatted_parameters</span>(<span class="ruby-identifier">params_parsers</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">params</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> {}
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">request_parameters</span> = <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">normalize_encode_params</span>(<span class="ruby-identifier">pr</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseError</span> <span class="ruby-comment"># one of the parse strategies blew up</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">request_parameters</span> = <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">normalize_encode_params</span>(<span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> {})
+  <span class="ruby-identifier">raise</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">ParameterTypeError</span>, <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidParameterError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">BadRequest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Invalid request parameters: #{e.message}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-authorization">
+            
+              <b>authorization</b>()
+            
+            <a href="Request.html#method-i-authorization" name="method-i-authorization" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the authorization header regardless of whether it was specified
+directly or through one of the proxy alternatives.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-authorization_source')" id="l_method-i-authorization_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L396" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-authorization_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 396</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorization</span>
+  <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;HTTP_AUTHORIZATION&quot;</span>)   <span class="ruby-operator">||</span>
+  <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;X-HTTP_AUTHORIZATION&quot;</span>) <span class="ruby-operator">||</span>
+  <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;X_HTTP_AUTHORIZATION&quot;</span>) <span class="ruby-operator">||</span>
+  <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;REDIRECT_X_HTTP_AUTHORIZATION&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-body">
+            
+              <b>body</b>()
+            
+            <a href="Request.html#method-i-body" name="method-i-body" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>The request body is an <a href="../IO.html">IO</a> input stream. If the
+RAW_POST_DATA environment variable is already set, wrap it in a StringIO.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-body_source')" id="l_method-i-body_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L322" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-body_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 322</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">body</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">raw_post</span> = <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>)
+    <span class="ruby-identifier">raw_post</span> = <span class="ruby-identifier">raw_post</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+    <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">raw_post</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">body_stream</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-check_method">
+            
+              <b>check_method</b>(name)
+            
+            <a href="Request.html#method-i-check_method" name="method-i-check_method" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-check_method_source')" id="l_method-i-check_method_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L425" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-check_method_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 425</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check_method</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-constant">HTTP_METHOD_LOOKUP</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">UnknownHttpMethod</span>, <span class="ruby-node">&quot;#{name}, accepted HTTP methods are #{HTTP_METHODS[0...-1].join(&#39;, &#39;)}, and #{HTTP_METHODS[-1]}&quot;</span>)
+  <span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-commit_flash">
+            
+              <b>commit_flash</b>()
+            
+            <a href="Request.html#method-i-commit_flash" name="method-i-commit_flash" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-commit_flash_source')" id="l_method-i-commit_flash_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L417" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-commit_flash_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 417</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">commit_flash</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-content_length">
+            
+              <b>content_length</b>()
+            
+            <a href="Request.html#method-i-content_length" name="method-i-content_length" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the content length of the request as an integer.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-content_length_source')" id="l_method-i-content_length_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L259" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-content_length_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">content_length</span>
+  <span class="ruby-keyword">super</span>.<span class="ruby-identifier">to_i</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-controller_class">
+            
+              <b>controller_class</b>()
+            
+            <a href="Request.html#method-i-controller_class" name="method-i-controller_class" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-controller_class_source')" id="l_method-i-controller_class_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L78" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-controller_class_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">controller_class</span>
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">path_parameters</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;index&quot;</span>
+  <span class="ruby-identifier">controller_class_for</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:controller</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-controller_class_for">
+            
+              <b>controller_class_for</b>(name)
+            
+            <a href="Request.html#method-i-controller_class_for" name="method-i-controller_class_for" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-controller_class_for_source')" id="l_method-i-controller_class_for_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L84" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-controller_class_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">controller_class_for</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">controller_param</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">underscore</span>
+    <span class="ruby-identifier">const_name</span> = <span class="ruby-node">&quot;#{controller_param.camelize}Controller&quot;</span>
+    <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Dependencies</span>.<span class="ruby-identifier">constantize</span>(<span class="ruby-identifier">const_name</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">PASS_NOT_FOUND</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-cookie_jar">
+            
+              <b>cookie_jar</b>()
+            
+            <a href="Request.html#method-i-cookie_jar" name="method-i-cookie_jar" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-cookie_jar_source')" id="l_method-i-cookie_jar_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/middleware/cookies.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-cookie_jar_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/middleware/cookies.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cookie_jar</span>
+  <span class="ruby-identifier">fetch_header</span>(<span class="ruby-string">&quot;action_dispatch.cookies&quot;</span>.<span class="ruby-identifier">freeze</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cookie_jar</span> = <span class="ruby-constant">Cookies</span><span class="ruby-operator">::</span><span class="ruby-constant">CookieJar</span>.<span class="ruby-identifier">build</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">cookies</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-form_data-3F">
+            
+              <b>form_data?</b>()
+            
+            <a href="Request.html#method-i-form_data-3F" name="method-i-form_data-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Determine whether the request body contains form-data by checking the
+request Content-Type for one of the media-types:
+“application/x-www-form-urlencoded” or “multipart/form-data”. The list of
+form-data media types can be modified through the
+<code>FORM_DATA_MEDIA_TYPES</code> array.</p>
+
+<p>A request body is not assumed to contain form-data when no Content-Type
+header is provided and the <a
+href="Request.html#method-i-request_method">#request_method</a> is <a
+href="Request.html#method-i-POST">#POST</a>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-form_data-3F_source')" id="l_method-i-form_data-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L339" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-form_data-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 339</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">form_data?</span>
+  <span class="ruby-constant">FORM_DATA_MEDIA_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">media_type</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-fullpath">
+            
+              <b>fullpath</b>()
+            
+            <a href="Request.html#method-i-fullpath" name="method-i-fullpath" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the <code>String</code> full path including params of the last URL
+requested.</p>
+
+<pre><code># get &quot;/articles&quot;
+request.fullpath # =&gt; &quot;/articles&quot;
+
+# get &quot;/articles?page=2&quot;
+request.fullpath # =&gt; &quot;/articles?page=2&quot;
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-fullpath_source')" id="l_method-i-fullpath_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L238" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-fullpath_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 238</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fullpath</span>
+  <span class="ruby-ivar">@fullpath</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-headers">
+            
+              <b>headers</b>()
+            
+            <a href="Request.html#method-i-headers" name="method-i-headers" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Provides access to the request&#39;s HTTP headers, for example:</p>
+
+<pre><code>request.headers[&quot;Content-Type&quot;] # =&gt; &quot;text/plain&quot;
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-headers_source')" id="l_method-i-headers_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L199" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-headers_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 199</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">headers</span>
+  <span class="ruby-ivar">@headers</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">Headers</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-http_auth_salt">
+            
+              <b>http_auth_salt</b>()
+            
+            <a href="Request.html#method-i-http_auth_salt" name="method-i-http_auth_salt" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-http_auth_salt_source')" id="l_method-i-http_auth_salt_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L168" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-http_auth_salt_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 168</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">http_auth_salt</span>
+  <span class="ruby-identifier">get_header</span> <span class="ruby-string">&quot;action_dispatch.http_auth_salt&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ip">
+            
+              <b>ip</b>()
+            
+            <a href="Request.html#method-i-ip" name="method-i-ip" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the IP address of client as a <code>String</code>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-ip_source')" id="l_method-i-ip_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L272" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-ip_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 272</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ip</span>
+  <span class="ruby-ivar">@ip</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-key-3F">
+            
+              <b>key?</b>(key)
+            
+            <a href="Request.html#method-i-key-3F" name="method-i-key-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns true if the request has a header matching the given key parameter.</p>
+
+<pre><code>request.key? :ip_spoofing_check # =&gt; true
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-key-3F_source')" id="l_method-i-key-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L97" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-key-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">key?</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">has_header?</span> <span class="ruby-identifier">key</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-local-3F">
+            
+              <b>local?</b>()
+            
+            <a href="Request.html#method-i-local-3F" name="method-i-local-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>True if the request came from localhost, 127.0.0.1, or ::1.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-local-3F_source')" id="l_method-i-local-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L404" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-local-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 404</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">local?</span>
+  <span class="ruby-constant">LOCALHOST</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">remote_addr</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">LOCALHOST</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">remote_ip</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-logger">
+            
+              <b>logger</b>()
+            
+            <a href="Request.html#method-i-logger" name="method-i-logger" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-logger_source')" id="l_method-i-logger_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L413" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-logger_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 413</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">logger</span>
+  <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;action_dispatch.logger&quot;</span>.<span class="ruby-identifier">freeze</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-media_type">
+            
+              <b>media_type</b>()
+            
+            <a href="Request.html#method-i-media_type" name="method-i-media_type" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>The <code>String</code> MIME type of the request.</p>
+
+<pre><code># get &quot;/articles&quot;
+request.media_type # =&gt; &quot;application/x-www-form-urlencoded&quot;
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-media_type_source')" id="l_method-i-media_type_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L254" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-media_type_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">media_type</span>
+  <span class="ruby-identifier">content_mime_type</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-method">
+            
+              <b>method</b>()
+            
+            <a href="Request.html#method-i-method" name="method-i-method" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the original value of the environment&#39;s REQUEST_METHOD, even if
+it was overridden by middleware. See <a
+href="Request.html#method-i-request_method">request_method</a> for more
+information.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-method_source')" id="l_method-i-method_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L187" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-method_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method</span>
+  <span class="ruby-ivar">@method</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">check_method</span>(<span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;rack.methodoverride.original_method&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;REQUEST_METHOD&quot;</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-method_symbol">
+            
+              <b>method_symbol</b>()
+            
+            <a href="Request.html#method-i-method_symbol" name="method-i-method_symbol" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns a symbol form of the <a
+href="Request.html#method-i-method">method</a>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-method_symbol_source')" id="l_method-i-method_symbol_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L192" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-method_symbol_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">method_symbol</span>
+  <span class="ruby-constant">HTTP_METHOD_LOOKUP</span>[<span class="ruby-identifier">method</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-original_fullpath">
+            
+              <b>original_fullpath</b>()
+            
+            <a href="Request.html#method-i-original_fullpath" name="method-i-original_fullpath" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns a <code>String</code> with the last requested path including their
+params.</p>
+
+<pre><code># get &#39;/foo&#39;
+request.original_fullpath # =&gt; &#39;/foo&#39;
+
+# get &#39;/foo?bar&#39;
+request.original_fullpath # =&gt; &#39;/foo?bar&#39;
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-original_fullpath_source')" id="l_method-i-original_fullpath_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L227" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-original_fullpath_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">original_fullpath</span>
+  <span class="ruby-ivar">@original_fullpath</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;ORIGINAL_FULLPATH&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">fullpath</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-original_url">
+            
+              <b>original_url</b>()
+            
+            <a href="Request.html#method-i-original_url" name="method-i-original_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the original request URL as a <code>String</code>.</p>
+
+<pre><code># get &quot;/articles?page=2&quot;
+request.original_url # =&gt; &quot;http://www.example.com/articles?page=2&quot;
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-original_url_source')" id="l_method-i-original_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L246" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-original_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">original_url</span>
+  <span class="ruby-identifier">base_url</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">original_fullpath</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-raw_post">
+            
+              <b>raw_post</b>()
+            
+            <a href="Request.html#method-i-raw_post" name="method-i-raw_post" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Read the request body. This is useful for web services that need to work
+with raw requests directly.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-raw_post_source')" id="l_method-i-raw_post_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L311" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-raw_post_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 311</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">raw_post</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">has_header?</span> <span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>
+    <span class="ruby-identifier">raw_post_body</span> = <span class="ruby-identifier">body</span>
+    <span class="ruby-identifier">set_header</span>(<span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>, <span class="ruby-identifier">raw_post_body</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">content_length</span>))
+    <span class="ruby-identifier">raw_post_body</span>.<span class="ruby-identifier">rewind</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">raw_post_body</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:rewind</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">get_header</span> <span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-remote_ip">
+            
+              <b>remote_ip</b>()
+            
+            <a href="Request.html#method-i-remote_ip" name="method-i-remote_ip" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the IP address of client as a <code>String</code>, usually set by
+the <a href="RemoteIp.html">RemoteIp</a> middleware.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-remote_ip_source')" id="l_method-i-remote_ip_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L278" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-remote_ip_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remote_ip</span>
+  <span class="ruby-ivar">@remote_ip</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;action_dispatch.remote_ip&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">ip</span>).<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-remote_ip-3D">
+            
+              <b>remote_ip=</b>(remote_ip)
+            
+            <a href="Request.html#method-i-remote_ip-3D" name="method-i-remote_ip-3D" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-remote_ip-3D_source')" id="l_method-i-remote_ip-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L282" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-remote_ip-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 282</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remote_ip=</span>(<span class="ruby-identifier">remote_ip</span>)
+  <span class="ruby-identifier">set_header</span> <span class="ruby-string">&quot;action_dispatch.remote_ip&quot;</span>.<span class="ruby-identifier">freeze</span>, <span class="ruby-identifier">remote_ip</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-request_id">
+            
+              <b>request_id</b>()
+            
+            <a href="Request.html#method-i-request_id" name="method-i-request_id" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the unique request id, which is based on either the X-Request-Id
+header that can be generated by a firewall, load balancer, or web server or
+by the <a href="RequestId.html">RequestId</a> middleware (which sets the
+action_dispatch.request_id environment variable).</p>
+
+<p>This unique ID is useful for tracing a request from end-to-end as part of
+logging or debugging. This relies on the Rack variable set by the <a
+href="RequestId.html">ActionDispatch::RequestId</a> middleware.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-request_id_source')" id="l_method-i-request_id_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L294" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-request_id_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 294</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_id</span>
+  <span class="ruby-identifier">get_header</span> <span class="ruby-constant">ACTION_DISPATCH_REQUEST_ID</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-request_method">
+            
+              <b>request_method</b>()
+            
+            <a href="Request.html#method-i-request_method" name="method-i-request_method" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the HTTP method that the application should see. In the case where
+the method was overridden by a middleware (for instance, if a HEAD request
+was converted to a <a href="Request.html#method-i-GET">#GET</a>, or if a
+_method parameter was used to determine the method the application should
+use), this method returns the overridden value, not the original.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-request_method_source')" id="l_method-i-request_method_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L134" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-request_method_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_method</span>
+  <span class="ruby-ivar">@request_method</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">check_method</span>(<span class="ruby-keyword">super</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-request_method_symbol">
+            
+              <b>request_method_symbol</b>()
+            
+            <a href="Request.html#method-i-request_method_symbol" name="method-i-request_method_symbol" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns a symbol form of the <a
+href="Request.html#method-i-request_method">request_method</a>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-request_method_symbol_source')" id="l_method-i-request_method_symbol_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L180" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-request_method_symbol_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_method_symbol</span>
+  <span class="ruby-constant">HTTP_METHOD_LOOKUP</span>[<span class="ruby-identifier">request_method</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-request_parameters-3D">
+            
+              <b>request_parameters=</b>(params)
+            
+            <a href="Request.html#method-i-request_parameters-3D" name="method-i-request_parameters-3D" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-request_parameters-3D_source')" id="l_method-i-request_parameters-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L408" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-request_parameters-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 408</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_parameters=</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">set_header</span>(<span class="ruby-string">&quot;action_dispatch.request.request_parameters&quot;</span>.<span class="ruby-identifier">freeze</span>, <span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-reset_session">
+            
+              <b>reset_session</b>()
+            
+            <a href="Request.html#method-i-reset_session" name="method-i-reset_session" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>TODO This should be broken apart into AD::Request::Session and probably be
+included by the session middleware.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-reset_session_source')" id="l_method-i-reset_session_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L349" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-reset_session_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 349</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset_session</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:destroy</span>)
+    <span class="ruby-identifier">session</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">session</span> = {}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-send_early_hints">
+            
+              <b>send_early_hints</b>(links)
+            
+            <a href="Request.html#method-i-send_early_hints" name="method-i-send_early_hints" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Early Hints is an HTTP/2 status code that indicates hints to help a client
+start making preparations for processing the final response.</p>
+
+<p>If the env contains <code>rack.early_hints</code> then the server accepts
+HTTP2 push for Link headers.</p>
+
+<p>The <code>send_early_hints</code> method accepts a hash of links as
+follows:</p>
+
+<pre><code>send_early_hints(&quot;Link&quot; =&gt; &quot;&lt;/style.css&gt;; rel=preload; as=style\n&lt;/script.js&gt;; rel=preload&quot;)
+</code></pre>
+
+<p>If you are using <code>javascript_include_tag</code> or
+<code>stylesheet_link_tag</code> the Early Hints headers are included by
+default if supported.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-send_early_hints_source')" id="l_method-i-send_early_hints_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L214" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-send_early_hints_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 214</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_early_hints</span>(<span class="ruby-identifier">links</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">env</span>[<span class="ruby-string">&quot;rack.early_hints&quot;</span>]
+
+    <span class="ruby-identifier">env</span>[<span class="ruby-string">&quot;rack.early_hints&quot;</span>].<span class="ruby-identifier">call</span>(<span class="ruby-identifier">links</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Returns a +String+ with the last requested path including their params.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#    # get &#39;/foo&#39;</span>
+  <span class="ruby-comment">#    request.original_fullpath # =&gt; &#39;/foo&#39;</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#    # get &#39;/foo?bar&#39;</span>
+  <span class="ruby-comment">#    request.original_fullpath # =&gt; &#39;/foo?bar&#39;</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">original_fullpath</span>
+    <span class="ruby-ivar">@original_fullpath</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;ORIGINAL_FULLPATH&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">fullpath</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Returns the +String+ full path including params of the last URL requested.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#    # get &quot;/articles&quot;</span>
+  <span class="ruby-comment">#    request.fullpath # =&gt; &quot;/articles&quot;</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#    # get &quot;/articles?page=2&quot;</span>
+  <span class="ruby-comment">#    request.fullpath # =&gt; &quot;/articles?page=2&quot;</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fullpath</span>
+    <span class="ruby-ivar">@fullpath</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">super</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Returns the original request URL as a +String+.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#    # get &quot;/articles?page=2&quot;</span>
+  <span class="ruby-comment">#    request.original_url # =&gt; &quot;http://www.example.com/articles?page=2&quot;</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">original_url</span>
+    <span class="ruby-identifier">base_url</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">original_fullpath</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># The +String+ MIME type of the request.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#    # get &quot;/articles&quot;</span>
+  <span class="ruby-comment">#    request.media_type # =&gt; &quot;application/x-www-form-urlencoded&quot;</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">media_type</span>
+    <span class="ruby-identifier">content_mime_type</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Returns the content length of the request as an integer.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">content_length</span>
+    <span class="ruby-keyword">super</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Returns true if the &quot;X-Requested-With&quot; header contains &quot;XMLHttpRequest&quot;</span>
+  <span class="ruby-comment"># (case-insensitive), which may need to be manually added depending on the</span>
+  <span class="ruby-comment"># choice of JavaScript libraries and frameworks.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">xml_http_request?</span>
+    <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;HTTP_X_REQUESTED_WITH&quot;</span>) <span class="ruby-operator">=~</span> <span class="ruby-regexp">/XMLHttpRequest/i</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">alias</span> <span class="ruby-value">:xhr?</span> <span class="ruby-value">:xml_http_request?</span>
+
+  <span class="ruby-comment"># Returns the IP address of client as a +String+.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ip</span>
+    <span class="ruby-ivar">@ip</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">super</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Returns the IP address of client as a +String+,</span>
+  <span class="ruby-comment"># usually set by the RemoteIp middleware.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remote_ip</span>
+    <span class="ruby-ivar">@remote_ip</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;action_dispatch.remote_ip&quot;</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">ip</span>).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remote_ip=</span>(<span class="ruby-identifier">remote_ip</span>)
+    <span class="ruby-identifier">set_header</span> <span class="ruby-string">&quot;action_dispatch.remote_ip&quot;</span>.<span class="ruby-identifier">freeze</span>, <span class="ruby-identifier">remote_ip</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">ACTION_DISPATCH_REQUEST_ID</span> = <span class="ruby-string">&quot;action_dispatch.request_id&quot;</span>.<span class="ruby-identifier">freeze</span> <span class="ruby-comment"># :nodoc:</span>
+
+  <span class="ruby-comment"># Returns the unique request id, which is based on either the X-Request-Id header that can</span>
+  <span class="ruby-comment"># be generated by a firewall, load balancer, or web server or by the RequestId middleware</span>
+  <span class="ruby-comment"># (which sets the action_dispatch.request_id environment variable).</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># This unique ID is useful for tracing a request from end-to-end as part of logging or debugging.</span>
+  <span class="ruby-comment"># This relies on the Rack variable set by the ActionDispatch::RequestId middleware.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_id</span>
+    <span class="ruby-identifier">get_header</span> <span class="ruby-constant">ACTION_DISPATCH_REQUEST_ID</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_id=</span>(<span class="ruby-identifier">id</span>) <span class="ruby-comment"># :nodoc:</span>
+    <span class="ruby-identifier">set_header</span> <span class="ruby-constant">ACTION_DISPATCH_REQUEST_ID</span>, <span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:uuid</span>, <span class="ruby-value">:request_id</span>
+
+  <span class="ruby-comment"># Returns the lowercase name of the HTTP server software.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">server_software</span>
+    (<span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;SERVER_SOFTWARE&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-regexp">/^([a-zA-Z]+)/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;SERVER_SOFTWARE&quot;</span>)) <span class="ruby-operator">?</span> <span class="ruby-node">$1</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Read the request \body. This is useful for web services that need to</span>
+  <span class="ruby-comment"># work with raw requests directly.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">raw_post</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">has_header?</span> <span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>
+      <span class="ruby-identifier">raw_post_body</span> = <span class="ruby-identifier">body</span>
+      <span class="ruby-identifier">set_header</span>(<span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>, <span class="ruby-identifier">raw_post_body</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">content_length</span>))
+      <span class="ruby-identifier">raw_post_body</span>.<span class="ruby-identifier">rewind</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">raw_post_body</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:rewind</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">get_header</span> <span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># The request body is an IO input stream. If the RAW_POST_DATA environment</span>
+  <span class="ruby-comment"># variable is already set, wrap it in a StringIO.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">body</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">raw_post</span> = <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;RAW_POST_DATA&quot;</span>)
+      <span class="ruby-identifier">raw_post</span> = <span class="ruby-identifier">raw_post</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+      <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">raw_post</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">body_stream</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Determine whether the request body contains form-data by checking</span>
+  <span class="ruby-comment"># the request Content-Type for one of the media-types:</span>
+  <span class="ruby-comment"># &quot;application/x-www-form-urlencoded&quot; or &quot;multipart/form-data&quot;. The</span>
+  <span class="ruby-comment"># list of form-data media types can be modified through the</span>
+  <span class="ruby-comment"># +FORM_DATA_MEDIA_TYPES+ array.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># A request body is not assumed to contain form-data when no</span>
+  <span class="ruby-comment"># Content-Type header is provided and the request_method is POST.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">form_data?</span>
+    <span class="ruby-constant">FORM_DATA_MEDIA_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">media_type</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">body_stream</span> <span class="ruby-comment">#:nodoc:</span>
+    <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;rack.input&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># TODO This should be broken apart into AD::Request::Session and probably</span>
+  <span class="ruby-comment"># be included by the session middleware.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset_session</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:destroy</span>)
+      <span class="ruby-identifier">session</span>.<span class="ruby-identifier">destroy</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">session</span> = {}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">session=</span>(<span class="ruby-identifier">session</span>) <span class="ruby-comment">#:nodoc:</span>
+    <span class="ruby-constant">Session</span>.<span class="ruby-identifier">set</span> <span class="ruby-keyword">self</span>, <span class="ruby-identifier">session</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">session_options=</span>(<span class="ruby-identifier">options</span>)
+    <span class="ruby-constant">Session</span><span class="ruby-operator">::</span><span class="ruby-constant">Options</span>.<span class="ruby-identifier">set</span> <span class="ruby-keyword">self</span>, <span class="ruby-identifier">options</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Override Rack&#39;s GET method to support indifferent access.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">GET</span>
+    <span class="ruby-identifier ruby-title">fetch_header</span>(<span class="ruby-string">&quot;action_dispatch.request.query_parameters&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">rack_query_params</span> = <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> {}
+      <span class="ruby-comment"># Check for non UTF-8 parameter values, which would cause errors later</span>
+      <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">check_param_encoding</span>(<span class="ruby-identifier">rack_query_params</span>)
+      <span class="ruby-identifier">set_header</span> <span class="ruby-identifier">k</span>, <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">normalize_encode_params</span>(<span class="ruby-identifier">rack_query_params</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">ParameterTypeError</span>, <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidParameterError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">BadRequest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Invalid query parameters: #{e.message}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">alias</span> <span class="ruby-value">:query_parameters</span> <span class="ruby-value">:GET</span>
+
+  <span class="ruby-comment"># Override Rack&#39;s POST method to support indifferent access.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-constant">POST</span>
+    <span class="ruby-identifier ruby-title">fetch_header</span>(<span class="ruby-string">&quot;action_dispatch.request.request_parameters&quot;</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">pr</span> = <span class="ruby-identifier">parse_formatted_parameters</span>(<span class="ruby-identifier">params_parsers</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">params</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> {}
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">request_parameters</span> = <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">normalize_encode_params</span>(<span class="ruby-identifier">pr</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Http</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseError</span> <span class="ruby-comment"># one of the parse strategies blew up</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">request_parameters</span> = <span class="ruby-constant">Request</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">normalize_encode_params</span>(<span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> {})
+    <span class="ruby-identifier">raise</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">ParameterTypeError</span>, <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidParameterError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">BadRequest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Invalid request parameters: #{e.message}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">alias</span> <span class="ruby-value">:request_parameters</span> <span class="ruby-value">:POST</span>
+
+  <span class="ruby-comment"># Returns the authorization header regardless of whether it was specified directly or through one of the</span>
+  <span class="ruby-comment"># proxy alternatives.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorization</span>
+    <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;HTTP_AUTHORIZATION&quot;</span>)   <span class="ruby-operator">||</span>
+    <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;X-HTTP_AUTHORIZATION&quot;</span>) <span class="ruby-operator">||</span>
+    <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;X_HTTP_AUTHORIZATION&quot;</span>) <span class="ruby-operator">||</span>
+    <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;REDIRECT_X_HTTP_AUTHORIZATION&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># True if the request came from localhost, 127.0.0.1, or ::1.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">local?</span>
+    <span class="ruby-constant">LOCALHOST</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">remote_addr</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">LOCALHOST</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">remote_ip</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">request_parameters=</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">set_header</span>(<span class="ruby-string">&quot;action_dispatch.request.request_parameters&quot;</span>.<span class="ruby-identifier">freeze</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">logger</span>
+    <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;action_dispatch.logger&quot;</span>.<span class="ruby-identifier">freeze</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">commit_flash</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ssl?</span>
+    <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">scheme</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;wss&quot;</span>.<span class="ruby-identifier">freeze</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">private</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">check_method</span>(<span class="ruby-identifier">name</span>)
+      <span class="ruby-constant">HTTP_METHOD_LOOKUP</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">UnknownHttpMethod</span>, <span class="ruby-node">&quot;#{name}, accepted HTTP methods are #{HTTP_METHODS[0...-1].join(&#39;, &#39;)}, and #{HTTP_METHODS[-1]}&quot;</span>)
+      <span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-server_software">
+            
+              <b>server_software</b>()
+            
+            <a href="Request.html#method-i-server_software" name="method-i-server_software" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the lowercase name of the HTTP server software.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-server_software_source')" id="l_method-i-server_software_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L305" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-server_software_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 305</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">server_software</span>
+  (<span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;SERVER_SOFTWARE&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-regexp">/^([a-zA-Z]+)/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;SERVER_SOFTWARE&quot;</span>)) <span class="ruby-operator">?</span> <span class="ruby-node">$1</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-session_options-3D">
+            
+              <b>session_options=</b>(options)
+            
+            <a href="Request.html#method-i-session_options-3D" name="method-i-session_options-3D" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-session_options-3D_source')" id="l_method-i-session_options-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L361" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-session_options-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 361</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">session_options=</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-constant">Session</span><span class="ruby-operator">::</span><span class="ruby-constant">Options</span>.<span class="ruby-identifier">set</span> <span class="ruby-keyword">self</span>, <span class="ruby-identifier">options</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ssl-3F">
+            
+              <b>ssl?</b>()
+            
+            <a href="Request.html#method-i-ssl-3F" name="method-i-ssl-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-ssl-3F_source')" id="l_method-i-ssl-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L420" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-ssl-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 420</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ssl?</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">scheme</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;wss&quot;</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-xml_http_request-3F">
+            
+              <b>xml_http_request?</b>()
+            
+            <a href="Request.html#method-i-xml_http_request-3F" name="method-i-xml_http_request-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns true if the “X-Requested-With” header contains “XMLHttpRequest”
+(case-insensitive), which may need to be manually added depending on the
+choice of JavaScript libraries and frameworks.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-xml_http_request-3F_source')" id="l_method-i-xml_http_request-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/http/request.rb#L266" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-xml_http_request-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/http/request.rb, line 266</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">xml_http_request?</span>
+  <span class="ruby-identifier">get_header</span>(<span class="ruby-string">&quot;HTTP_X_REQUESTED_WITH&quot;</span>) <span class="ruby-operator">=~</span> <span class="ruby-regexp">/XMLHttpRequest/i</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

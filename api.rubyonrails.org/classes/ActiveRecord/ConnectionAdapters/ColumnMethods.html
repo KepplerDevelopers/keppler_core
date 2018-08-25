@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::ConnectionAdapters::ColumnMethods</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::ConnectionAdapters::ColumnMethods">
+
+  
+
+    <meta name="keywords" content="ActiveRecord::ConnectionAdapters::ColumnMethods class">
+  
+    <meta name="keywords" content="primary_key">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActiveRecord::ConnectionAdapters::ColumnMethods
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/connection_adapters/abstract/schema_definitions_rb.html">activerecord/lib/active_record/connection_adapters/abstract/schema_definitions.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ColumnMethods.html#method-i-primary_key">primary_key</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-primary_key">
+            
+              <b>primary_key</b>(name, type = :primary_key, **options)
+            
+            <a href="ColumnMethods.html#method-i-primary_key" name="method-i-primary_key" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Appends a primary key definition to the table definition. Can be called
+multiple times, but this is probably not a good idea.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-primary_key_source')" id="l_method-i-primary_key_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/schema_definitions.rb#L204" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-primary_key_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/schema_definitions.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">primary_key</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span> = <span class="ruby-value">:primary_key</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">column</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">primary_key:</span> <span class="ruby-keyword">true</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

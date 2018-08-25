@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::MismatchedForeignKey</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::MismatchedForeignKey">
+
+  
+    
+    <meta name="description" content="Raised when a foreign key constraint cannot be added because the column type does not match the referenced column type.">
+    <meta property="og:description" content="Raised when a foreign key constraint cannot be added because the column type does not match the referenced column type.">
+  
+
+    <meta name="keywords" content="ActiveRecord::MismatchedForeignKey class">
+  
+    <meta name="keywords" content="new">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveRecord::MismatchedForeignKey
+            
+                <span class="parent">&lt;
+                    
+                    <a href="StatementInvalid.html">ActiveRecord::StatementInvalid</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/errors_rb.html">activerecord/lib/active_record/errors.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Raised when a foreign key constraint cannot be added because the column
+type does not match the referenced column type.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="MismatchedForeignKey.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(adapter = nil, message: nil, table: nil, foreign_key: nil, target_table: nil, primary_key: nil)
+            
+            <a href="MismatchedForeignKey.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/errors.rb#L120" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/errors.rb, line 120</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">adapter</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-value">message:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">table:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">foreign_key:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">target_table:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">primary_key:</span> <span class="ruby-keyword">nil</span>)
+      <span class="ruby-ivar">@adapter</span> = <span class="ruby-identifier">adapter</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">table</span>
+        <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">&lt;&lt;-EOM</span>.<span class="ruby-identifier">strip_heredoc</span>
+<span class="ruby-value">          Column `#{foreign_key}` on table `#{table}` has a type of `#{column_type(table, foreign_key)}`.
+          This does not match column `#{primary_key}` on `#{target_table}`, which has type `#{column_type(target_table, primary_key)}`.
+          To resolve this issue, change the type of the `#{foreign_key}` column on `#{table}` to be :integer. (For example `t.integer #{foreign_key}`).
+</span><span class="ruby-identifier">        EOM</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">&lt;&lt;-EOM</span>
+<span class="ruby-value">          There is a mismatch between the foreign key and primary key column types.
+          Verify that the foreign key column type and the primary key of the associated table match types.
+</span><span class="ruby-identifier">        EOM</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">message</span>
+        <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\nOriginal message: #{message}&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">super</span>(<span class="ruby-identifier">msg</span>)
+    <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

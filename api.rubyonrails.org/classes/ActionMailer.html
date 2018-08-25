@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActionMailer</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActionMailer">
+
+  
+
+    <meta name="keywords" content="ActionMailer class">
+  
+    <meta name="keywords" content="gem_version, version">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActionMailer
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/base_rb.html">actionmailer/lib/action_mailer/base.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/collector_rb.html">actionmailer/lib/action_mailer/collector.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/delivery_job_rb.html">actionmailer/lib/action_mailer/delivery_job.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/delivery_methods_rb.html">actionmailer/lib/action_mailer/delivery_methods.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/gem_version_rb.html">actionmailer/lib/action_mailer/gem_version.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/inline_preview_interceptor_rb.html">actionmailer/lib/action_mailer/inline_preview_interceptor.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/log_subscriber_rb.html">actionmailer/lib/action_mailer/log_subscriber.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/mail_helper_rb.html">actionmailer/lib/action_mailer/mail_helper.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/message_delivery_rb.html">actionmailer/lib/action_mailer/message_delivery.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/parameterized_rb.html">actionmailer/lib/action_mailer/parameterized.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/preview_rb.html">actionmailer/lib/action_mailer/preview.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/railtie_rb.html">actionmailer/lib/action_mailer/railtie.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/rescuable_rb.html">actionmailer/lib/action_mailer/rescuable.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/test_case_rb.html">actionmailer/lib/action_mailer/test_case.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/test_helper_rb.html">actionmailer/lib/action_mailer/test_helper.rb</a></li>
+            
+            <li><a href="../files/actionmailer/lib/action_mailer/version_rb.html">actionmailer/lib/action_mailer/version.rb</a></li>
+            
+            <li><a href="../files/railties/lib/rails/app_updater_rb.html">railties/lib/rails/app_updater.rb</a></li>
+            
+            <li><a href="../files/railties/lib/rails/mailers_controller_rb.html">railties/lib/rails/mailers_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="ActionMailer/DeliveryMethods.html">ActionMailer::DeliveryMethods</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="ActionMailer/MailHelper.html">ActionMailer::MailHelper</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="ActionMailer/Parameterized.html">ActionMailer::Parameterized</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="ActionMailer/Previews.html">ActionMailer::Previews</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="ActionMailer/Rescuable.html">ActionMailer::Rescuable</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="ActionMailer/TestHelper.html">ActionMailer::TestHelper</a>
+        </li>
+      
+        <li>
+          <span class="type">MODULE</span>
+          <a href="ActionMailer/VERSION.html">ActionMailer::VERSION</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/Base.html">ActionMailer::Base</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/Collector.html">ActionMailer::Collector</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/InlinePreviewInterceptor.html">ActionMailer::InlinePreviewInterceptor</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/LogSubscriber.html">ActionMailer::LogSubscriber</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/MessageDelivery.html">ActionMailer::MessageDelivery</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/NonInferrableMailerError.html">ActionMailer::NonInferrableMailerError</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/Preview.html">ActionMailer::Preview</a>
+        </li>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="ActionMailer/TestCase.html">ActionMailer::TestCase</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>G</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ActionMailer.html#method-c-gem_version">gem_version</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ActionMailer.html#method-c-version">version</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-gem_version">
+            
+              <b>gem_version</b>()
+            
+            <a href="ActionMailer.html#method-c-gem_version" name="method-c-gem_version" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the version of the currently loaded Action Mailer as a
+<code>Gem::Version</code>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-gem_version_source')" id="l_method-c-gem_version_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionmailer/lib/action_mailer/gem_version.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-gem_version_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionmailer/lib/action_mailer/gem_version.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">gem_version</span>
+  <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Version</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">VERSION</span><span class="ruby-operator">::</span><span class="ruby-constant">STRING</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-version">
+            
+              <b>version</b>()
+            
+            <a href="ActionMailer.html#method-c-version" name="method-c-version" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns the version of the currently loaded Action Mailer as a
+<code>Gem::Version</code>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-version_source')" id="l_method-c-version_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionmailer/lib/action_mailer/version.rb#L8" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-version_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionmailer/lib/action_mailer/version.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">version</span>
+  <span class="ruby-identifier">gem_version</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::ConnectionAdapters::SchemaCache</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::ConnectionAdapters::SchemaCache">
+
+  
+
+    <meta name="keywords" content="ActiveRecord::ConnectionAdapters::SchemaCache class">
+  
+    <meta name="keywords" content="new, initialize_dup, encode_with, init_with, primary_keys, data_source_exists?, add, data_sources, columns, columns_hash, clear!, size, clear_data_source_cache!, marshal_dump, marshal_load">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveRecord::ConnectionAdapters::SchemaCache
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/connection_adapters/schema_cache_rb.html">activerecord/lib/active_record/connection_adapters/schema_cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-add">add</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-clear-21">clear!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-clear_data_source_cache-21">clear_data_source_cache!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-columns">columns</a>,
+              </li>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-columns_hash">columns_hash</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-data_source_exists-3F">data_source_exists?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-data_sources">data_sources</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-encode_with">encode_with</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-init_with">init_with</a>,
+              </li>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-initialize_dup">initialize_dup</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-marshal_dump">marshal_dump</a>,
+              </li>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-marshal_load">marshal_load</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-primary_keys">primary_keys</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="SchemaCache.html#method-i-size">size</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>connection</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>version</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(conn)
+            
+            <a href="SchemaCache.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">conn</span>)
+  <span class="ruby-ivar">@connection</span> = <span class="ruby-identifier">conn</span>
+
+  <span class="ruby-ivar">@columns</span>      = {}
+  <span class="ruby-ivar">@columns_hash</span> = {}
+  <span class="ruby-ivar">@primary_keys</span> = {}
+  <span class="ruby-ivar">@data_sources</span> = {}
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add">
+            
+              <b>add</b>(table_name)
+            
+            <a href="SchemaCache.html#method-i-add" name="method-i-add" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Add internal cache for table with <code>table_name</code>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-add_source')" id="l_method-i-add_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-add_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span>(<span class="ruby-identifier">table_name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">data_source_exists?</span>(<span class="ruby-identifier">table_name</span>)
+    <span class="ruby-identifier">primary_keys</span>(<span class="ruby-identifier">table_name</span>)
+    <span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table_name</span>)
+    <span class="ruby-identifier">columns_hash</span>(<span class="ruby-identifier">table_name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-clear-21">
+            
+              <b>clear!</b>()
+            
+            <a href="SchemaCache.html#method-i-clear-21" name="method-i-clear-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Clears out internal caches</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-clear-21_source')" id="l_method-i-clear-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L81" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-clear-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clear!</span>
+  <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">clear</span>
+  <span class="ruby-ivar">@columns_hash</span>.<span class="ruby-identifier">clear</span>
+  <span class="ruby-ivar">@primary_keys</span>.<span class="ruby-identifier">clear</span>
+  <span class="ruby-ivar">@data_sources</span>.<span class="ruby-identifier">clear</span>
+  <span class="ruby-ivar">@version</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-clear_data_source_cache-21">
+            
+              <b>clear_data_source_cache!</b>(name)
+            
+            <a href="SchemaCache.html#method-i-clear_data_source_cache-21" name="method-i-clear_data_source_cache-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Clear out internal caches for the data source <code>name</code>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-clear_data_source_cache-21_source')" id="l_method-i-clear_data_source_cache-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L94" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-clear_data_source_cache-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">clear_data_source_cache!</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@columns_hash</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@primary_keys</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@data_sources</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-columns">
+            
+              <b>columns</b>(table_name)
+            
+            <a href="SchemaCache.html#method-i-columns" name="method-i-columns" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Get the columns for a table</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-columns_source')" id="l_method-i-columns_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L68" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-columns_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">columns</span>(<span class="ruby-identifier">table_name</span>)
+  <span class="ruby-ivar">@columns</span>[<span class="ruby-identifier">table_name</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table_name</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-columns_hash">
+            
+              <b>columns_hash</b>(table_name)
+            
+            <a href="SchemaCache.html#method-i-columns_hash" name="method-i-columns_hash" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Get the columns for a table as a hash, key is the column name value is the
+column object.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-columns_hash_source')" id="l_method-i-columns_hash_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L74" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-columns_hash_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">columns_hash</span>(<span class="ruby-identifier">table_name</span>)
+  <span class="ruby-ivar">@columns_hash</span>[<span class="ruby-identifier">table_name</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table_name</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span>
+    [<span class="ruby-identifier">col</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">col</span>]
+  }]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-data_source_exists-3F">
+            
+              <b>data_source_exists?</b>(name)
+            
+            <a href="SchemaCache.html#method-i-data_source_exists-3F" name="method-i-data_source_exists-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>A cached lookup for table existence.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-data_source_exists-3F_source')" id="l_method-i-data_source_exists-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L47" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-data_source_exists-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">data_source_exists?</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">prepare_data_sources</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@data_sources</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@data_sources</span>[<span class="ruby-identifier">name</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@data_sources</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">name</span>
+
+  <span class="ruby-ivar">@data_sources</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">data_source_exists?</span>(<span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-data_sources">
+            
+              <b>data_sources</b>(name)
+            
+            <a href="SchemaCache.html#method-i-data_sources" name="method-i-data_sources" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-data_sources_source')" id="l_method-i-data_sources_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L63" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-data_sources_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">data_sources</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-ivar">@data_sources</span>[<span class="ruby-identifier">name</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-encode_with">
+            
+              <b>encode_with</b>(coder)
+            
+            <a href="SchemaCache.html#method-i-encode_with" name="method-i-encode_with" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-encode_with_source')" id="l_method-i-encode_with_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L26" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-encode_with_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">encode_with</span>(<span class="ruby-identifier">coder</span>)
+  <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;columns&quot;</span>] = <span class="ruby-ivar">@columns</span>
+  <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;columns_hash&quot;</span>] = <span class="ruby-ivar">@columns_hash</span>
+  <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;primary_keys&quot;</span>] = <span class="ruby-ivar">@primary_keys</span>
+  <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;data_sources&quot;</span>] = <span class="ruby-ivar">@data_sources</span>
+  <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;version&quot;</span>] = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">migration_context</span>.<span class="ruby-identifier">current_version</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-init_with">
+            
+              <b>init_with</b>(coder)
+            
+            <a href="SchemaCache.html#method-i-init_with" name="method-i-init_with" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-init_with_source')" id="l_method-i-init_with_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L34" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-init_with_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">init_with</span>(<span class="ruby-identifier">coder</span>)
+  <span class="ruby-ivar">@columns</span> = <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;columns&quot;</span>]
+  <span class="ruby-ivar">@columns_hash</span> = <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;columns_hash&quot;</span>]
+  <span class="ruby-ivar">@primary_keys</span> = <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;primary_keys&quot;</span>]
+  <span class="ruby-ivar">@data_sources</span> = <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;data_sources&quot;</span>]
+  <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">coder</span>[<span class="ruby-string">&quot;version&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-initialize_dup">
+            
+              <b>initialize_dup</b>(other)
+            
+            <a href="SchemaCache.html#method-i-initialize_dup" name="method-i-initialize_dup" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-initialize_dup_source')" id="l_method-i-initialize_dup_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-initialize_dup_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize_dup</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-ivar">@columns</span>      = <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-ivar">@columns_hash</span> = <span class="ruby-ivar">@columns_hash</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-ivar">@primary_keys</span> = <span class="ruby-ivar">@primary_keys</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-ivar">@data_sources</span> = <span class="ruby-ivar">@data_sources</span>.<span class="ruby-identifier">dup</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-marshal_dump">
+            
+              <b>marshal_dump</b>()
+            
+            <a href="SchemaCache.html#method-i-marshal_dump" name="method-i-marshal_dump" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-marshal_dump_source')" id="l_method-i-marshal_dump_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L101" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-marshal_dump_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_dump</span>
+  <span class="ruby-comment"># if we get current version during initialization, it happens stack over flow.</span>
+  <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">migration_context</span>.<span class="ruby-identifier">current_version</span>
+  [<span class="ruby-ivar">@version</span>, <span class="ruby-ivar">@columns</span>, <span class="ruby-ivar">@columns_hash</span>, <span class="ruby-ivar">@primary_keys</span>, <span class="ruby-ivar">@data_sources</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-marshal_load">
+            
+              <b>marshal_load</b>(array)
+            
+            <a href="SchemaCache.html#method-i-marshal_load" name="method-i-marshal_load" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-marshal_load_source')" id="l_method-i-marshal_load_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-marshal_load_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">marshal_load</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-ivar">@version</span>, <span class="ruby-ivar">@columns</span>, <span class="ruby-ivar">@columns_hash</span>, <span class="ruby-ivar">@primary_keys</span>, <span class="ruby-ivar">@data_sources</span> = <span class="ruby-identifier">array</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-primary_keys">
+            
+              <b>primary_keys</b>(table_name)
+            
+            <a href="SchemaCache.html#method-i-primary_keys" name="method-i-primary_keys" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-primary_keys_source')" id="l_method-i-primary_keys_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L42" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-primary_keys_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">primary_keys</span>(<span class="ruby-identifier">table_name</span>)
+  <span class="ruby-ivar">@primary_keys</span>[<span class="ruby-identifier">table_name</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">data_source_exists?</span>(<span class="ruby-identifier">table_name</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">primary_key</span>(<span class="ruby-identifier">table_name</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-size">
+            
+              <b>size</b>()
+            
+            <a href="SchemaCache.html#method-i-size" name="method-i-size" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-size_source')" id="l_method-i-size_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/schema_cache.rb#L89" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-size_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/schema_cache.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">size</span>
+  [<span class="ruby-ivar">@columns</span>, <span class="ruby-ivar">@columns_hash</span>, <span class="ruby-ivar">@primary_keys</span>, <span class="ruby-ivar">@data_sources</span>].<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:size</span>).<span class="ruby-identifier">inject</span> <span class="ruby-value">:+</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

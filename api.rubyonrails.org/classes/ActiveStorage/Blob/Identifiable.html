@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveStorage::Blob::Identifiable</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveStorage::Blob::Identifiable">
+
+  
+
+    <meta name="keywords" content="ActiveStorage::Blob::Identifiable class">
+  
+    <meta name="keywords" content="identify, identified?">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActiveStorage::Blob::Identifiable
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activestorage/app/models/active_storage/blob/identifiable_rb.html">activestorage/app/models/active_storage/blob/identifiable.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Identifiable.html#method-i-identified-3F">identified?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Identifiable.html#method-i-identify">identify</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-identified-3F">
+            
+              <b>identified?</b>()
+            
+            <a href="Identifiable.html#method-i-identified-3F" name="method-i-identified-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-identified-3F_source')" id="l_method-i-identified-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/app/models/active_storage/blob/identifiable.rb#L8" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-identified-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/app/models/active_storage/blob/identifiable.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">identified?</span>
+  <span class="ruby-identifier">identified</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-identify">
+            
+              <b>identify</b>()
+            
+            <a href="Identifiable.html#method-i-identify" name="method-i-identify" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-identify_source')" id="l_method-i-identify_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/app/models/active_storage/blob/identifiable.rb#L4" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-identify_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/app/models/active_storage/blob/identifiable.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">identify</span>
+  <span class="ruby-identifier">update!</span> <span class="ruby-value">content_type:</span> <span class="ruby-identifier">identify_content_type</span>, <span class="ruby-value">identified:</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">identified?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

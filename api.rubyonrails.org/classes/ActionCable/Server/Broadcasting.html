@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActionCable::Server::Broadcasting</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActionCable::Server::Broadcasting">
+
+  
+    
+    <meta name="description" content="Broadcasting is how other parts of your application can send messages to a channel&#39;s subscribers.">
+    <meta property="og:description" content="Broadcasting is how other parts of your application can send messages to a channel&#39;s subscribers.">
+  
+
+    <meta name="keywords" content="ActionCable::Server::Broadcasting class">
+  
+    <meta name="keywords" content="broadcast, broadcaster_for">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActionCable::Server::Broadcasting
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actioncable/lib/action_cable/server/broadcasting_rb.html">actioncable/lib/action_cable/server/broadcasting.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="Broadcasting.html">Broadcasting</a> is how other parts of your
+application can send messages to a channel&#39;s subscribers. As explained
+in <a href="../Channel.html">Channel</a>, most of the time, these
+broadcastings are streamed directly to the clients subscribed to the named
+broadcasting. Let&#39;s explain with a full-stack example:</p>
+
+<pre><code>class WebNotificationsChannel &lt; ApplicationCable::Channel
+  def subscribed
+    stream_from &quot;web_notifications_#{current_user.id}&quot;
+  end
+end
+
+# Somewhere in your app this is called, perhaps from a NewCommentJob:
+ActionCable.server.broadcast \
+  &quot;web_notifications_1&quot;, { title: &quot;New things!&quot;, body: &quot;All that&#39;s fit for print&quot; }
+
+# Client-side CoffeeScript, which assumes you&#39;ve already requested the right to send web notifications:
+App.cable.subscriptions.create &quot;WebNotificationsChannel&quot;,
+  received: (data) -&gt;
+    new Notification data[&#39;title&#39;], body: data[&#39;body&#39;]
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Broadcasting/Broadcaster.html">ActionCable::Server::Broadcasting::Broadcaster</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Broadcasting.html#method-i-broadcast">broadcast</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Broadcasting.html#method-i-broadcaster_for">broadcaster_for</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-broadcast">
+            
+              <b>broadcast</b>(broadcasting, message, coder: ActiveSupport::JSON)
+            
+            <a href="Broadcasting.html#method-i-broadcast" name="method-i-broadcast" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Broadcast a hash directly to a named <code>broadcasting</code>. This will
+later be JSON encoded.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-broadcast_source')" id="l_method-i-broadcast_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actioncable/lib/action_cable/server/broadcasting.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-broadcast_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actioncable/lib/action_cable/server/broadcasting.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">broadcast</span>(<span class="ruby-identifier">broadcasting</span>, <span class="ruby-identifier">message</span>, <span class="ruby-value">coder:</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">JSON</span>)
+  <span class="ruby-identifier">broadcaster_for</span>(<span class="ruby-identifier">broadcasting</span>, <span class="ruby-value">coder:</span> <span class="ruby-identifier">coder</span>).<span class="ruby-identifier">broadcast</span>(<span class="ruby-identifier">message</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-broadcaster_for">
+            
+              <b>broadcaster_for</b>(broadcasting, coder: ActiveSupport::JSON)
+            
+            <a href="Broadcasting.html#method-i-broadcaster_for" name="method-i-broadcaster_for" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Returns a broadcaster for a named <code>broadcasting</code> that can be
+reused. Useful when you have an object that may need multiple spots to
+transmit to a specific broadcasting over and over.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-broadcaster_for_source')" id="l_method-i-broadcaster_for_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actioncable/lib/action_cable/server/broadcasting.rb#L30" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-broadcaster_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actioncable/lib/action_cable/server/broadcasting.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">broadcaster_for</span>(<span class="ruby-identifier">broadcasting</span>, <span class="ruby-value">coder:</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">JSON</span>)
+  <span class="ruby-constant">Broadcaster</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-constant">String</span>(<span class="ruby-identifier">broadcasting</span>), <span class="ruby-value">coder:</span> <span class="ruby-identifier">coder</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

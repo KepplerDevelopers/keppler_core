@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveSupport::StringInquirer</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveSupport::StringInquirer">
+
+  
+    
+    <meta name="description" content="Wrapping a string in this class gives you a prettier way to test for equality. The value returned by Rails.env is wrapped in a StringInquirer object, so instead of calling this:  Rails.">
+    <meta property="og:description" content="Wrapping a string in this class gives you a prettier way to test for equality. The value returned by Rails.env is wrapped in a StringInquirer object, so instead of calling this:  Rails.">
+  
+
+    <meta name="keywords" content="ActiveSupport::StringInquirer class">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveSupport::StringInquirer
+            
+                <span class="parent">&lt;
+                    
+                    <a href="../String.html">String</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/string_inquirer_rb.html">activesupport/lib/active_support/string_inquirer.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Wrapping a string in this class gives you a prettier way to test for
+equality. The value returned by <code>Rails.env</code> is wrapped in a <a
+href="StringInquirer.html">StringInquirer</a> object, so instead of calling
+this:</p>
+
+<pre><code>Rails.env == &#39;production&#39;
+</code></pre>
+
+<p>you can call this:</p>
+
+<pre><code>Rails.env.production?
+</code></pre>
+
+<h2 id="class-ActiveSupport::StringInquirer-label-Instantiating+a+new+StringInquirer">Instantiating a new <a href="StringInquirer.html">StringInquirer</a></h2>
+
+<pre><code>vehicle = ActiveSupport::StringInquirer.new(&#39;car&#39;)
+vehicle.car?   # =&gt; true
+vehicle.bike?  # =&gt; false
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActionDispatch::Routing::RoutesInspector::ConsoleFormatter</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActionDispatch::Routing::RoutesInspector::ConsoleFormatter">
+
+  
+
+    <meta name="keywords" content="ActionDispatch::Routing::RoutesInspector::ConsoleFormatter class">
+  
+    <meta name="keywords" content="new, result, section_title, section, header, no_routes">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActionDispatch::Routing::RoutesInspector::ConsoleFormatter
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/action_dispatch/routing/inspector_rb.html">actionpack/lib/action_dispatch/routing/inspector.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ConsoleFormatter.html#method-i-header">header</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ConsoleFormatter.html#method-c-new">new</a>,
+              </li>
+            
+              
+              <li>
+                <a href="ConsoleFormatter.html#method-i-no_routes">no_routes</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ConsoleFormatter.html#method-i-result">result</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ConsoleFormatter.html#method-i-section">section</a>,
+              </li>
+            
+              
+              <li>
+                <a href="ConsoleFormatter.html#method-i-section_title">section_title</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>()
+            
+            <a href="ConsoleFormatter.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/routing/inspector.rb#L130" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/routing/inspector.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
+  <span class="ruby-ivar">@buffer</span> = []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-header">
+            
+              <b>header</b>(routes)
+            
+            <a href="ConsoleFormatter.html#method-i-header" name="method-i-header" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-header_source')" id="l_method-i-header_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/routing/inspector.rb#L146" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-header_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/routing/inspector.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">header</span>(<span class="ruby-identifier">routes</span>)
+  <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">draw_header</span>(<span class="ruby-identifier">routes</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-no_routes">
+            
+              <b>no_routes</b>(routes)
+            
+            <a href="ConsoleFormatter.html#method-i-no_routes" name="method-i-no_routes" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-no_routes_source')" id="l_method-i-no_routes_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/routing/inspector.rb#L150" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-no_routes_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/routing/inspector.rb, line 150</span>
+      <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">no_routes</span>(<span class="ruby-identifier">routes</span>)
+        <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">none?</span>
+          <span class="ruby-identifier">&lt;&lt;-MESSAGE</span>.<span class="ruby-identifier">strip_heredoc</span>
+<span class="ruby-value">          You don&#39;t have any routes defined!
+
+          Please add some routes in config/routes.rb.
+</span><span class="ruby-identifier">          MESSAGE</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-string">&quot;No routes were found for this controller&quot;</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;For more information about routes, see the Rails guide: http://guides.rubyonrails.org/routing.html.&quot;</span>
+      <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-result">
+            
+              <b>result</b>()
+            
+            <a href="ConsoleFormatter.html#method-i-result" name="method-i-result" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-result_source')" id="l_method-i-result_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/routing/inspector.rb#L134" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-result_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/routing/inspector.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">result</span>
+  <span class="ruby-ivar">@buffer</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-section">
+            
+              <b>section</b>(routes)
+            
+            <a href="ConsoleFormatter.html#method-i-section" name="method-i-section" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-section_source')" id="l_method-i-section_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/routing/inspector.rb#L142" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-section_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/routing/inspector.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">section</span>(<span class="ruby-identifier">routes</span>)
+  <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">draw_section</span>(<span class="ruby-identifier">routes</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-section_title">
+            
+              <b>section_title</b>(title)
+            
+            <a href="ConsoleFormatter.html#method-i-section_title" name="method-i-section_title" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-section_title_source')" id="l_method-i-section_title_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionpack/lib/action_dispatch/routing/inspector.rb#L138" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-section_title_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionpack/lib/action_dispatch/routing/inspector.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">section_title</span>(<span class="ruby-identifier">title</span>)
+  <span class="ruby-ivar">@buffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n#{title}:&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

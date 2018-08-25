@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActionView::Helpers::AssetUrlHelper</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActionView::Helpers::AssetUrlHelper">
+
+  
+    
+    <meta name="description" content="This module provides methods for generating asset paths and URLs.  image_path(&quot;rails.png&quot;) # =&gt; &quot;/assets/rails.png&quot;  image_url(&quot;rails.png&quot;) # =&gt; &quot;http://www.">
+    <meta property="og:description" content="This module provides methods for generating asset paths and URLs.  image_path(&quot;rails.png&quot;) # =&gt; &quot;/assets/rails.png&quot;  image_url(&quot;rails.png&quot;) # =&gt; &quot;http://www.">
+  
+
+    <meta name="keywords" content="ActionView::Helpers::AssetUrlHelper class">
+  
+    <meta name="keywords" content="asset_path, path_to_asset, asset_url, url_to_asset, compute_asset_extname, compute_asset_path, compute_asset_host, javascript_path, javascript_url, stylesheet_path, stylesheet_url, image_path, image_url, video_path, video_url, audio_path, audio_url, font_path, font_url">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActionView::Helpers::AssetUrlHelper
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionview/lib/action_view/helpers/asset_url_helper_rb.html">actionview/lib/action_view/helpers/asset_url_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>This module provides methods for generating asset paths and URLs.</p>
+
+<pre><code>image_path(&quot;rails.png&quot;)
+# =&gt; &quot;/assets/rails.png&quot;
+
+image_url(&quot;rails.png&quot;)
+# =&gt; &quot;http://www.example.com/assets/rails.png&quot;
+</code></pre>
+
+<h3 id="module-ActionView::Helpers::AssetUrlHelper-label-Using+asset+hosts">Using asset hosts</h3>
+
+<p>By default, Rails links to these assets on the current host in the public
+folder, but you can direct Rails to link to assets from a dedicated asset
+server by setting <code>ActionController::Base.asset_host</code> in the
+application configuration, typically in
+<code>config/environments/production.rb</code>. For example, you&#39;d
+define <code>assets.example.com</code> to be your asset host this way,
+inside the <code>configure</code> block of your environment-specific
+configuration files or <code>config/application.rb</code>:</p>
+
+<pre><code>config.action_controller.asset_host = &quot;assets.example.com&quot;
+</code></pre>
+
+<p><a href="../Helpers.html">Helpers</a> take that into account:</p>
+
+<pre><code>image_tag(&quot;rails.png&quot;)
+# =&gt; &lt;img src=&quot;http://assets.example.com/assets/rails.png&quot; /&gt;
+stylesheet_link_tag(&quot;application&quot;)
+# =&gt; &lt;link href=&quot;http://assets.example.com/assets/application.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; /&gt;
+</code></pre>
+
+<p>Browsers open a limited number of simultaneous connections to a single
+host. The exact number varies by browser and version. This limit may cause
+some asset downloads to wait for previous assets to finish before they can
+begin. You can use the <code>%d</code> wildcard in the
+<code>asset_host</code> to distribute the requests over four hosts. For
+example, <code>assets%d.example.com</code> will spread the asset requests
+over “assets0.example.com”, …, “assets3.example.com”.</p>
+
+<pre><code>image_tag(&quot;rails.png&quot;)
+# =&gt; &lt;img src=&quot;http://assets0.example.com/assets/rails.png&quot; /&gt;
+stylesheet_link_tag(&quot;application&quot;)
+# =&gt; &lt;link href=&quot;http://assets2.example.com/assets/application.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; /&gt;
+</code></pre>
+
+<p>This may improve the asset loading performance of your application. It is
+also possible the combination of additional connection overhead (DNS, SSL)
+and the overall browser connection limits may result in this solution being
+slower. You should be sure to measure your actual performance across
+targeted browsers both before and after this change.</p>
+
+<p>To implement the corresponding hosts you can either setup four actual hosts
+or use wildcard DNS to CNAME the wildcard to a single asset host. You can
+read more about setting up your DNS CNAME records from your ISP.</p>
+
+<p>Note: This is purely a browser performance optimization and is not meant
+for server load balancing. See <a
+href="https://www.die.net/musings/page_load_time">www.die.net/musings/page_load_time</a>/
+for background and <a
+href="https://www.browserscope.org/?category=network">www.browserscope.org/?category=network</a>
+for connection limit data.</p>
+
+<p>Alternatively, you can exert more control over the asset host by setting
+<code>asset_host</code> to a proc like this:</p>
+
+<pre><code>ActionController::Base.asset_host = Proc.new { |source|
+  &quot;http://assets#{Digest::MD5.hexdigest(source).to_i(16) % 2 + 1}.example.com&quot;
+}
+image_tag(&quot;rails.png&quot;)
+# =&gt; &lt;img src=&quot;http://assets1.example.com/assets/rails.png&quot; /&gt;
+stylesheet_link_tag(&quot;application&quot;)
+# =&gt; &lt;link href=&quot;http://assets2.example.com/assets/application.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; /&gt;
+</code></pre>
+
+<p>The example above generates “<a
+href="http://assets1.example.com">assets1.example.com</a>” and “<a
+href="http://assets2.example.com">assets2.example.com</a>”. This option is
+useful for example if you need fewer/more than four hosts, custom host
+names, etc.</p>
+
+<p>As you see the proc takes a <code>source</code> parameter. That&#39;s a
+string with the absolute path of the asset, for example
+“/assets/rails.png”.</p>
+
+<pre><code> ActionController::Base.asset_host = Proc.new { |source|
+   if source.ends_with?(&#39;.css&#39;)
+     &quot;http://stylesheets.example.com&quot;
+   else
+     &quot;http://assets.example.com&quot;
+   end
+ }
+image_tag(&quot;rails.png&quot;)
+# =&gt; &lt;img src=&quot;http://assets.example.com/assets/rails.png&quot; /&gt;
+stylesheet_link_tag(&quot;application&quot;)
+# =&gt; &lt;link href=&quot;http://stylesheets.example.com/assets/application.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; /&gt;
+</code></pre>
+
+<p>Alternatively you may ask for a second parameter <code>request</code>. That
+one is particularly useful for serving assets from an SSL-protected page.
+The example proc below disables asset hosting for HTTPS connections, while
+still sending assets for plain HTTP requests from asset hosts. If you
+don&#39;t have SSL certificates for each of the asset hosts this technique
+allows you to avoid warnings in the client about mixed media. Note that the
+<code>request</code> parameter might not be supplied, e.g. when the assets
+are precompiled via a Rake task. Make sure to use a <code>Proc</code>
+instead of a lambda, since a <code>Proc</code> allows missing parameters
+and sets them to <code>nil</code>.</p>
+
+<pre><code>config.action_controller.asset_host = Proc.new { |source, request|
+  if request &amp;&amp; request.ssl?
+    &quot;#{request.protocol}#{request.host_with_port}&quot;
+  else
+    &quot;#{request.protocol}assets.example.com&quot;
+  end
+}
+</code></pre>
+
+<p>You can also implement a custom asset host object that responds to
+<code>call</code> and takes either one or two parameters just like the
+proc.</p>
+
+<pre><code>config.action_controller.asset_host = AssetHostingWithMinimumSsl.new(
+  &quot;http://asset%d.example.com&quot;, &quot;https://asset1.example.com&quot;
+)
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-asset_path">asset_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-asset_url">asset_url</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-audio_path">audio_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-audio_url">audio_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-compute_asset_extname">compute_asset_extname</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-compute_asset_host">compute_asset_host</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-compute_asset_path">compute_asset_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-font_path">font_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-font_url">font_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-image_path">image_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-image_url">image_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>J</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-javascript_path">javascript_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-javascript_url">javascript_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-path_to_asset">path_to_asset</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-stylesheet_path">stylesheet_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-stylesheet_url">stylesheet_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-url_to_asset">url_to_asset</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>V</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-video_path">video_path</a>,
+              </li>
+            
+              
+              <li>
+                <a href="AssetUrlHelper.html#method-i-video_url">video_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">ASSET_EXTENSIONS</td>
+            <td>=</td>
+            <td class="attr-value">{
+javascript: &quot;.js&quot;,
+stylesheet: &quot;.css&quot;
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">ASSET_PUBLIC_DIRECTORIES</td>
+            <td>=</td>
+            <td class="attr-value">{
+audio:      &quot;/audios&quot;,
+font:       &quot;/fonts&quot;,
+image:      &quot;/images&quot;,
+javascript: &quot;/javascripts&quot;,
+stylesheet: &quot;/stylesheets&quot;,
+video:      &quot;/videos&quot;
+}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Maps asset types to public directory.</p></td>
+            </tr>
+          
+        
+          <tr valign='top'>
+            <td class="attr-name">URI_REGEXP</td>
+            <td>=</td>
+            <td class="attr-value">%r{^[-a-z]+://|^(?:cid|data):|^//}i</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-asset_path">
+            
+              <b>asset_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-asset_path" name="method-i-asset_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>This is the entry point for all assets. When using the asset pipeline (i.e.
+sprockets and sprockets-rails), the behavior is “enhanced”. You can bypass
+the asset pipeline by passing in <code>skip_pipeline: true</code> to the
+options.</p>
+
+<p>All other asset *_path helpers delegate through this method.</p>
+
+<h3 id="method-i-asset_path-label-With+the+asset+pipeline">With the asset pipeline</h3>
+
+<p>All options passed to <code>asset_path</code> will be passed to
+<code>compute_asset_path</code> which is implemented by sprockets-rails.</p>
+
+<pre><code>asset_path(&quot;application.js&quot;) # =&gt; &quot;/assets/application-60aa4fdc5cea14baf5400fba1abf4f2a46a5166bad4772b1effe341570f07de9.js&quot;
+</code></pre>
+
+<h3 id="method-i-asset_path-label-Without+the+asset+pipeline+-28skip_pipeline-3A+true-29">Without the asset pipeline (<code>skip_pipeline: true</code>)</h3>
+
+<p>Accepts a <code>type</code> option that can specify the asset&#39;s
+extension. No error checking is done to verify the source passed into
+<code>asset_path</code> is valid and that the file exists on disk.</p>
+
+<pre><code>asset_path(&quot;application.js&quot;, skip_pipeline: true)                 # =&gt; &quot;application.js&quot;
+asset_path(&quot;filedoesnotexist.png&quot;, skip_pipeline: true)           # =&gt; &quot;filedoesnotexist.png&quot;
+asset_path(&quot;application&quot;, type: :javascript, skip_pipeline: true) # =&gt; &quot;/javascripts/application.js&quot;
+asset_path(&quot;application&quot;, type: :stylesheet, skip_pipeline: true) # =&gt; &quot;/stylesheets/application.css&quot;
+</code></pre>
+
+<h3 id="method-i-asset_path-label-Options+applying+to+all+assets">Options applying to all assets</h3>
+
+<p>Below lists scenarios that apply to <code>asset_path</code> whether or not
+you&#39;re using the asset pipeline.</p>
+<ul><li>
+<p>All fully qualified URLs are returned immediately. This bypasses the asset
+pipeline and all other behavior described.</p>
+
+<pre><code>asset_path(&quot;http://www.example.com/js/xmlhr.js&quot;) # =&gt; &quot;http://www.example.com/js/xmlhr.js&quot;
+</code></pre>
+</li><li>
+<p>All assets that begin with a forward slash are assumed to be full URLs and
+will not be expanded. This will bypass the asset pipeline.</p>
+
+<pre><code>asset_path(&quot;/foo.png&quot;) # =&gt; &quot;/foo.png&quot;
+</code></pre>
+</li><li>
+<p>All blank strings will be returned immediately. This bypasses the asset
+pipeline and all other behavior described.</p>
+
+<pre><code>asset_path(&quot;&quot;) # =&gt; &quot;&quot;
+</code></pre>
+</li><li>
+<p>If <code>config.relative_url_root</code> is specified, all assets will have
+that root prepended.</p>
+
+<pre><code>Rails.application.config.relative_url_root = &quot;bar&quot;
+asset_path(&quot;foo.js&quot;, skip_pipeline: true) # =&gt; &quot;bar/foo.js&quot;
+</code></pre>
+</li><li>
+<p>A different asset host can be specified via
+<code>config.action_controller.asset_host</code> this is commonly used in
+conjunction with a CDN.</p>
+
+<pre><code>Rails.application.config.action_controller.asset_host = &quot;assets.example.com&quot;
+asset_path(&quot;foo.js&quot;, skip_pipeline: true) # =&gt; &quot;http://assets.example.com/foo.js&quot;
+</code></pre>
+</li><li>
+<p>An extension name can be specified manually with <code>extname</code>.</p>
+
+<pre><code>asset_path(&quot;foo&quot;, skip_pipeline: true, extname: &quot;.js&quot;)     # =&gt; &quot;/foo.js&quot;
+asset_path(&quot;foo.css&quot;, skip_pipeline: true, extname: &quot;.js&quot;) # =&gt; &quot;/foo.css.js&quot;
+</code></pre>
+</li></ul>
+            </div>
+          
+
+          
+            <div class="aka">
+              Also aliased as: <a href="AssetUrlHelper.html#method-i-path_to_asset">path_to_asset</a>
+            </div>
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-asset_path_source')" id="l_method-i-asset_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L183" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-asset_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">asset_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;nil is not a valid asset source&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">source</span> = <span class="ruby-identifier">source</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">source</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">URI_REGEXP</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-identifier">source</span>)
+
+  <span class="ruby-identifier">tail</span>, <span class="ruby-identifier">source</span> = <span class="ruby-identifier">source</span>[<span class="ruby-regexp">/([\?#].+)$/</span>], <span class="ruby-identifier">source</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/([\?#].+)$/</span>, <span class="ruby-string">&quot;&quot;</span>.<span class="ruby-identifier">freeze</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">extname</span> = <span class="ruby-identifier">compute_asset_extname</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>)
+    <span class="ruby-identifier">source</span> = <span class="ruby-node">&quot;#{source}#{extname}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">source</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">!=</span> <span class="ruby-value">?/</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:skip_pipeline</span>]
+      <span class="ruby-identifier">source</span> = <span class="ruby-identifier">public_compute_asset_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">source</span> = <span class="ruby-identifier">compute_asset_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">relative_url_root</span> = <span class="ruby-keyword">defined?</span>(<span class="ruby-identifier">config</span>.<span class="ruby-identifier">relative_url_root</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">relative_url_root</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">relative_url_root</span>
+    <span class="ruby-identifier">source</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">relative_url_root</span>, <span class="ruby-identifier">source</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">starts_with?</span>(<span class="ruby-node">&quot;#{relative_url_root}/&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span> = <span class="ruby-identifier">compute_asset_host</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>)
+    <span class="ruby-identifier">source</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">source</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-node">&quot;#{source}#{tail}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-asset_url">
+            
+              <b>asset_url</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-asset_url" name="method-i-asset_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the full URL to an asset in the public directory. This will use
+<code>asset_path</code> internally, so most of their behaviors will be the
+same. If :host options is set, it overwrites global
+<code>config.action_controller.asset_host</code> setting.</p>
+
+<p>All other options provided are forwarded to <code>asset_path</code> call.</p>
+
+<pre><code>asset_url &quot;application.js&quot;                                 # =&gt; http://example.com/assets/application.js
+asset_url &quot;application.js&quot;, host: &quot;http://cdn.example.com&quot; # =&gt; http://cdn.example.com/assets/application.js
+</code></pre>
+            </div>
+          
+
+          
+            <div class="aka">
+              Also aliased as: <a href="AssetUrlHelper.html#method-i-url_to_asset">url_to_asset</a>
+            </div>
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-asset_url_source')" id="l_method-i-asset_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L227" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-asset_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">asset_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">protocol:</span> <span class="ruby-value">:request</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-audio_path">
+            
+              <b>audio_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-audio_path" name="method-i-audio_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the path to an audio asset in the public audios directory. Full
+paths from the document root will be passed through. Used internally by
+<code>audio_tag</code> to build the audio path.</p>
+
+<pre><code>audio_path(&quot;horse&quot;)                                            # =&gt; /audios/horse
+audio_path(&quot;horse.wav&quot;)                                        # =&gt; /audios/horse.wav
+audio_path(&quot;sounds/horse.wav&quot;)                                 # =&gt; /audios/sounds/horse.wav
+audio_path(&quot;/sounds/horse.wav&quot;)                                # =&gt; /sounds/horse.wav
+audio_path(&quot;http://www.example.com/sounds/horse.wav&quot;)          # =&gt; http://www.example.com/sounds/horse.wav
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-audio_path_source')" id="l_method-i-audio_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L426" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-audio_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 426</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">audio_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:audio</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-audio_url">
+            
+              <b>audio_url</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-audio_url" name="method-i-audio_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the full URL to an audio asset in the public audios directory.
+This will use <code>audio_path</code> internally, so most of their
+behaviors will be the same. Since <code>audio_url</code> is based on
+<code>asset_url</code> method you can set :host options. If :host options
+is set, it overwrites global
+<code>config.action_controller.asset_host</code> setting.</p>
+
+<pre><code>audio_url &quot;horse.wav&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/audios/horse.wav
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-audio_url_source')" id="l_method-i-audio_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L438" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-audio_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 438</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">audio_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:audio</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-compute_asset_extname">
+            
+              <b>compute_asset_extname</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-compute_asset_extname" name="method-i-compute_asset_extname" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Compute extname to append to asset path. Returns <code>nil</code> if
+nothing should be added.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-compute_asset_extname_source')" id="l_method-i-compute_asset_extname_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L239" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-compute_asset_extname_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 239</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compute_asset_extname</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:extname</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-identifier">extname</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:extname</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ASSET_EXTENSIONS</span>[<span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">extname</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">source</span>) <span class="ruby-operator">!=</span> <span class="ruby-identifier">extname</span>
+        <span class="ruby-identifier">extname</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">nil</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Maps asset types to public directory.</span>
+    <span class="ruby-constant">ASSET_PUBLIC_DIRECTORIES</span> = {
+      <span class="ruby-value">audio:</span>      <span class="ruby-string">&quot;/audios&quot;</span>,
+      <span class="ruby-value">font:</span>       <span class="ruby-string">&quot;/fonts&quot;</span>,
+      <span class="ruby-value">image:</span>      <span class="ruby-string">&quot;/images&quot;</span>,
+      <span class="ruby-value">javascript:</span> <span class="ruby-string">&quot;/javascripts&quot;</span>,
+      <span class="ruby-value">stylesheet:</span> <span class="ruby-string">&quot;/stylesheets&quot;</span>,
+      <span class="ruby-value">video:</span>      <span class="ruby-string">&quot;/videos&quot;</span>
+    }
+
+    <span class="ruby-comment"># Computes asset path to public directory. Plugins and</span>
+    <span class="ruby-comment"># extensions can override this method to point to custom assets</span>
+    <span class="ruby-comment"># or generate digested paths or query strings.</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compute_asset_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">dir</span> = <span class="ruby-constant">ASSET_PUBLIC_DIRECTORIES</span>[<span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-identifier">source</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">alias</span> <span class="ruby-value">:public_compute_asset_path</span> <span class="ruby-value">:compute_asset_path</span>
+
+    <span class="ruby-comment"># Pick an asset host for this source. Returns +nil+ if no host is set,</span>
+    <span class="ruby-comment"># the host if no wildcard is set, the host interpolated with the</span>
+    <span class="ruby-comment"># numbers 0-3 if it contains &lt;tt&gt;%d&lt;/tt&gt; (the number is the source hash mod 4),</span>
+    <span class="ruby-comment"># or the value returned from invoking call on an object responding to call</span>
+    <span class="ruby-comment"># (proc or otherwise).</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compute_asset_host</span>(<span class="ruby-identifier">source</span> = <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">request</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">request</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:request</span>)
+      <span class="ruby-identifier">host</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:host</span>]
+      <span class="ruby-identifier">host</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">asset_host</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">asset_host</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:call</span>)
+          <span class="ruby-identifier">arity</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:arity</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:call</span>).<span class="ruby-identifier">arity</span>
+          <span class="ruby-identifier">args</span> = [<span class="ruby-identifier">source</span>]
+          <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">request</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">arity</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">arity</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>)
+          <span class="ruby-identifier">host</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;%d&quot;</span>)
+          <span class="ruby-identifier">host</span> = <span class="ruby-identifier">host</span> <span class="ruby-operator">%</span> (<span class="ruby-constant">Zlib</span>.<span class="ruby-identifier">crc32</span>(<span class="ruby-identifier">source</span>) <span class="ruby-operator">%</span> <span class="ruby-value">4</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">host</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">base_url</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:protocol</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:request</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">host</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-constant">URI_REGEXP</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-identifier">host</span>)
+        <span class="ruby-identifier">host</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">protocol</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:protocol</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">default_asset_host_protocol</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">request</span> <span class="ruby-operator">?</span> <span class="ruby-value">:request</span> <span class="ruby-operator">:</span> <span class="ruby-value">:relative</span>)
+        <span class="ruby-keyword">case</span> <span class="ruby-identifier">protocol</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:relative</span>
+          <span class="ruby-node">&quot;//#{host}&quot;</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:request</span>
+          <span class="ruby-node">&quot;#{request.protocol}#{host}&quot;</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-node">&quot;#{protocol}://#{host}&quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Computes the path to a JavaScript asset in the public javascripts directory.</span>
+    <span class="ruby-comment"># If the +source+ filename has no extension, .js will be appended (except for explicit URIs)</span>
+    <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+    <span class="ruby-comment"># Used internally by +javascript_include_tag+ to build the script path.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   javascript_path &quot;xmlhr&quot;                              # =&gt; /assets/xmlhr.js</span>
+    <span class="ruby-comment">#   javascript_path &quot;dir/xmlhr.js&quot;                       # =&gt; /assets/dir/xmlhr.js</span>
+    <span class="ruby-comment">#   javascript_path &quot;/dir/xmlhr&quot;                         # =&gt; /dir/xmlhr.js</span>
+    <span class="ruby-comment">#   javascript_path &quot;http://www.example.com/js/xmlhr&quot;    # =&gt; http://www.example.com/js/xmlhr</span>
+    <span class="ruby-comment">#   javascript_path &quot;http://www.example.com/js/xmlhr.js&quot; # =&gt; http://www.example.com/js/xmlhr.js</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">javascript_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:javascript</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_javascript</span>, <span class="ruby-value">:javascript_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a javascript_path named route</span>
+
+    <span class="ruby-comment"># Computes the full URL to a JavaScript asset in the public javascripts directory.</span>
+    <span class="ruby-comment"># This will use +javascript_path+ internally, so most of their behaviors will be the same.</span>
+    <span class="ruby-comment"># Since +javascript_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+    <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   javascript_url &quot;js/xmlhr.js&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/js/xmlhr.js</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">javascript_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:javascript</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_javascript</span>, <span class="ruby-value">:javascript_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a javascript_url named route</span>
+
+    <span class="ruby-comment"># Computes the path to a stylesheet asset in the public stylesheets directory.</span>
+    <span class="ruby-comment"># If the +source+ filename has no extension, .css will be appended (except for explicit URIs).</span>
+    <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+    <span class="ruby-comment"># Used internally by +stylesheet_link_tag+ to build the stylesheet path.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   stylesheet_path &quot;style&quot;                                  # =&gt; /assets/style.css</span>
+    <span class="ruby-comment">#   stylesheet_path &quot;dir/style.css&quot;                          # =&gt; /assets/dir/style.css</span>
+    <span class="ruby-comment">#   stylesheet_path &quot;/dir/style.css&quot;                         # =&gt; /dir/style.css</span>
+    <span class="ruby-comment">#   stylesheet_path &quot;http://www.example.com/css/style&quot;       # =&gt; http://www.example.com/css/style</span>
+    <span class="ruby-comment">#   stylesheet_path &quot;http://www.example.com/css/style.css&quot;   # =&gt; http://www.example.com/css/style.css</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stylesheet_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:stylesheet</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_stylesheet</span>, <span class="ruby-value">:stylesheet_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a stylesheet_path named route</span>
+
+    <span class="ruby-comment"># Computes the full URL to a stylesheet asset in the public stylesheets directory.</span>
+    <span class="ruby-comment"># This will use +stylesheet_path+ internally, so most of their behaviors will be the same.</span>
+    <span class="ruby-comment"># Since +stylesheet_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+    <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   stylesheet_url &quot;css/style.css&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/css/style.css</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stylesheet_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:stylesheet</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_stylesheet</span>, <span class="ruby-value">:stylesheet_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a stylesheet_url named route</span>
+
+    <span class="ruby-comment"># Computes the path to an image asset.</span>
+    <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+    <span class="ruby-comment"># Used internally by +image_tag+ to build the image path:</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   image_path(&quot;edit&quot;)                                         # =&gt; &quot;/assets/edit&quot;</span>
+    <span class="ruby-comment">#   image_path(&quot;edit.png&quot;)                                     # =&gt; &quot;/assets/edit.png&quot;</span>
+    <span class="ruby-comment">#   image_path(&quot;icons/edit.png&quot;)                               # =&gt; &quot;/assets/icons/edit.png&quot;</span>
+    <span class="ruby-comment">#   image_path(&quot;/icons/edit.png&quot;)                              # =&gt; &quot;/icons/edit.png&quot;</span>
+    <span class="ruby-comment">#   image_path(&quot;http://www.example.com/img/edit.png&quot;)          # =&gt; &quot;http://www.example.com/img/edit.png&quot;</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># If you have images as application resources this method may conflict with their named routes.</span>
+    <span class="ruby-comment"># The alias +path_to_image+ is provided to avoid that. Rails uses the alias internally, and</span>
+    <span class="ruby-comment"># plugin authors are encouraged to do so.</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">image_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:image</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_image</span>, <span class="ruby-value">:image_path</span> <span class="ruby-comment"># aliased to avoid conflicts with an image_path named route</span>
+
+    <span class="ruby-comment"># Computes the full URL to an image asset.</span>
+    <span class="ruby-comment"># This will use +image_path+ internally, so most of their behaviors will be the same.</span>
+    <span class="ruby-comment"># Since +image_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+    <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   image_url &quot;edit.png&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/edit.png</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">image_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:image</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_image</span>, <span class="ruby-value">:image_url</span> <span class="ruby-comment"># aliased to avoid conflicts with an image_url named route</span>
+
+    <span class="ruby-comment"># Computes the path to a video asset in the public videos directory.</span>
+    <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+    <span class="ruby-comment"># Used internally by +video_tag+ to build the video path.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   video_path(&quot;hd&quot;)                                            # =&gt; /videos/hd</span>
+    <span class="ruby-comment">#   video_path(&quot;hd.avi&quot;)                                        # =&gt; /videos/hd.avi</span>
+    <span class="ruby-comment">#   video_path(&quot;trailers/hd.avi&quot;)                               # =&gt; /videos/trailers/hd.avi</span>
+    <span class="ruby-comment">#   video_path(&quot;/trailers/hd.avi&quot;)                              # =&gt; /trailers/hd.avi</span>
+    <span class="ruby-comment">#   video_path(&quot;http://www.example.com/vid/hd.avi&quot;)             # =&gt; http://www.example.com/vid/hd.avi</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">video_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:video</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_video</span>, <span class="ruby-value">:video_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a video_path named route</span>
+
+    <span class="ruby-comment"># Computes the full URL to a video asset in the public videos directory.</span>
+    <span class="ruby-comment"># This will use +video_path+ internally, so most of their behaviors will be the same.</span>
+    <span class="ruby-comment"># Since +video_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+    <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   video_url &quot;hd.avi&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/videos/hd.avi</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">video_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:video</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_video</span>, <span class="ruby-value">:video_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a video_url named route</span>
+
+    <span class="ruby-comment"># Computes the path to an audio asset in the public audios directory.</span>
+    <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+    <span class="ruby-comment"># Used internally by +audio_tag+ to build the audio path.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   audio_path(&quot;horse&quot;)                                            # =&gt; /audios/horse</span>
+    <span class="ruby-comment">#   audio_path(&quot;horse.wav&quot;)                                        # =&gt; /audios/horse.wav</span>
+    <span class="ruby-comment">#   audio_path(&quot;sounds/horse.wav&quot;)                                 # =&gt; /audios/sounds/horse.wav</span>
+    <span class="ruby-comment">#   audio_path(&quot;/sounds/horse.wav&quot;)                                # =&gt; /sounds/horse.wav</span>
+    <span class="ruby-comment">#   audio_path(&quot;http://www.example.com/sounds/horse.wav&quot;)          # =&gt; http://www.example.com/sounds/horse.wav</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">audio_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:audio</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_audio</span>, <span class="ruby-value">:audio_path</span> <span class="ruby-comment"># aliased to avoid conflicts with an audio_path named route</span>
+
+    <span class="ruby-comment"># Computes the full URL to an audio asset in the public audios directory.</span>
+    <span class="ruby-comment"># This will use +audio_path+ internally, so most of their behaviors will be the same.</span>
+    <span class="ruby-comment"># Since +audio_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+    <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   audio_url &quot;horse.wav&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/audios/horse.wav</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">audio_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:audio</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_audio</span>, <span class="ruby-value">:audio_url</span> <span class="ruby-comment"># aliased to avoid conflicts with an audio_url named route</span>
+
+    <span class="ruby-comment"># Computes the path to a font asset.</span>
+    <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   font_path(&quot;font&quot;)                                           # =&gt; /fonts/font</span>
+    <span class="ruby-comment">#   font_path(&quot;font.ttf&quot;)                                       # =&gt; /fonts/font.ttf</span>
+    <span class="ruby-comment">#   font_path(&quot;dir/font.ttf&quot;)                                   # =&gt; /fonts/dir/font.ttf</span>
+    <span class="ruby-comment">#   font_path(&quot;/dir/font.ttf&quot;)                                  # =&gt; /dir/font.ttf</span>
+    <span class="ruby-comment">#   font_path(&quot;http://www.example.com/dir/font.ttf&quot;)            # =&gt; http://www.example.com/dir/font.ttf</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">font_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:font</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_font</span>, <span class="ruby-value">:font_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a font_path named route</span>
+
+    <span class="ruby-comment"># Computes the full URL to a font asset.</span>
+    <span class="ruby-comment"># This will use +font_path+ internally, so most of their behaviors will be the same.</span>
+    <span class="ruby-comment"># Since +font_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+    <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment">#   font_url &quot;font.ttf&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/fonts/font.ttf</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">font_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:font</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_font</span>, <span class="ruby-value">:font_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a font_url named route</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-compute_asset_host">
+            
+              <b>compute_asset_host</b>(source = &quot;&quot;, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-compute_asset_host" name="method-i-compute_asset_host" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Pick an asset host for this source. Returns <code>nil</code> if no host is
+set, the host if no wildcard is set, the host interpolated with the numbers
+0-3 if it contains <code>%d</code> (the number is the source hash mod 4),
+or the value returned from invoking call on an object responding to call
+(proc or otherwise).</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-compute_asset_host_source')" id="l_method-i-compute_asset_host_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L273" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-compute_asset_host_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 273</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compute_asset_host</span>(<span class="ruby-identifier">source</span> = <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">request</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">request</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:request</span>)
+    <span class="ruby-identifier">host</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:host</span>]
+    <span class="ruby-identifier">host</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">asset_host</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">asset_host</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:call</span>)
+        <span class="ruby-identifier">arity</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:arity</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">method</span>(<span class="ruby-value">:call</span>).<span class="ruby-identifier">arity</span>
+        <span class="ruby-identifier">args</span> = [<span class="ruby-identifier">source</span>]
+        <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">request</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">arity</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">arity</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>)
+        <span class="ruby-identifier">host</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;%d&quot;</span>)
+        <span class="ruby-identifier">host</span> = <span class="ruby-identifier">host</span> <span class="ruby-operator">%</span> (<span class="ruby-constant">Zlib</span>.<span class="ruby-identifier">crc32</span>(<span class="ruby-identifier">source</span>) <span class="ruby-operator">%</span> <span class="ruby-value">4</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">host</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">base_url</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:protocol</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:request</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">host</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">URI_REGEXP</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-identifier">host</span>)
+      <span class="ruby-identifier">host</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">protocol</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:protocol</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">config</span>.<span class="ruby-identifier">default_asset_host_protocol</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">request</span> <span class="ruby-operator">?</span> <span class="ruby-value">:request</span> <span class="ruby-operator">:</span> <span class="ruby-value">:relative</span>)
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">protocol</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">:relative</span>
+        <span class="ruby-node">&quot;//#{host}&quot;</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">:request</span>
+        <span class="ruby-node">&quot;#{request.protocol}#{host}&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-node">&quot;#{protocol}://#{host}&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Computes the path to a JavaScript asset in the public javascripts directory.</span>
+  <span class="ruby-comment"># If the +source+ filename has no extension, .js will be appended (except for explicit URIs)</span>
+  <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+  <span class="ruby-comment"># Used internally by +javascript_include_tag+ to build the script path.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   javascript_path &quot;xmlhr&quot;                              # =&gt; /assets/xmlhr.js</span>
+  <span class="ruby-comment">#   javascript_path &quot;dir/xmlhr.js&quot;                       # =&gt; /assets/dir/xmlhr.js</span>
+  <span class="ruby-comment">#   javascript_path &quot;/dir/xmlhr&quot;                         # =&gt; /dir/xmlhr.js</span>
+  <span class="ruby-comment">#   javascript_path &quot;http://www.example.com/js/xmlhr&quot;    # =&gt; http://www.example.com/js/xmlhr</span>
+  <span class="ruby-comment">#   javascript_path &quot;http://www.example.com/js/xmlhr.js&quot; # =&gt; http://www.example.com/js/xmlhr.js</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">javascript_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:javascript</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_javascript</span>, <span class="ruby-value">:javascript_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a javascript_path named route</span>
+
+  <span class="ruby-comment"># Computes the full URL to a JavaScript asset in the public javascripts directory.</span>
+  <span class="ruby-comment"># This will use +javascript_path+ internally, so most of their behaviors will be the same.</span>
+  <span class="ruby-comment"># Since +javascript_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+  <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   javascript_url &quot;js/xmlhr.js&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/js/xmlhr.js</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">javascript_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:javascript</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_javascript</span>, <span class="ruby-value">:javascript_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a javascript_url named route</span>
+
+  <span class="ruby-comment"># Computes the path to a stylesheet asset in the public stylesheets directory.</span>
+  <span class="ruby-comment"># If the +source+ filename has no extension, .css will be appended (except for explicit URIs).</span>
+  <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+  <span class="ruby-comment"># Used internally by +stylesheet_link_tag+ to build the stylesheet path.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   stylesheet_path &quot;style&quot;                                  # =&gt; /assets/style.css</span>
+  <span class="ruby-comment">#   stylesheet_path &quot;dir/style.css&quot;                          # =&gt; /assets/dir/style.css</span>
+  <span class="ruby-comment">#   stylesheet_path &quot;/dir/style.css&quot;                         # =&gt; /dir/style.css</span>
+  <span class="ruby-comment">#   stylesheet_path &quot;http://www.example.com/css/style&quot;       # =&gt; http://www.example.com/css/style</span>
+  <span class="ruby-comment">#   stylesheet_path &quot;http://www.example.com/css/style.css&quot;   # =&gt; http://www.example.com/css/style.css</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stylesheet_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:stylesheet</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_stylesheet</span>, <span class="ruby-value">:stylesheet_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a stylesheet_path named route</span>
+
+  <span class="ruby-comment"># Computes the full URL to a stylesheet asset in the public stylesheets directory.</span>
+  <span class="ruby-comment"># This will use +stylesheet_path+ internally, so most of their behaviors will be the same.</span>
+  <span class="ruby-comment"># Since +stylesheet_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+  <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   stylesheet_url &quot;css/style.css&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/css/style.css</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stylesheet_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:stylesheet</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_stylesheet</span>, <span class="ruby-value">:stylesheet_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a stylesheet_url named route</span>
+
+  <span class="ruby-comment"># Computes the path to an image asset.</span>
+  <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+  <span class="ruby-comment"># Used internally by +image_tag+ to build the image path:</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   image_path(&quot;edit&quot;)                                         # =&gt; &quot;/assets/edit&quot;</span>
+  <span class="ruby-comment">#   image_path(&quot;edit.png&quot;)                                     # =&gt; &quot;/assets/edit.png&quot;</span>
+  <span class="ruby-comment">#   image_path(&quot;icons/edit.png&quot;)                               # =&gt; &quot;/assets/icons/edit.png&quot;</span>
+  <span class="ruby-comment">#   image_path(&quot;/icons/edit.png&quot;)                              # =&gt; &quot;/icons/edit.png&quot;</span>
+  <span class="ruby-comment">#   image_path(&quot;http://www.example.com/img/edit.png&quot;)          # =&gt; &quot;http://www.example.com/img/edit.png&quot;</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># If you have images as application resources this method may conflict with their named routes.</span>
+  <span class="ruby-comment"># The alias +path_to_image+ is provided to avoid that. Rails uses the alias internally, and</span>
+  <span class="ruby-comment"># plugin authors are encouraged to do so.</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">image_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:image</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_image</span>, <span class="ruby-value">:image_path</span> <span class="ruby-comment"># aliased to avoid conflicts with an image_path named route</span>
+
+  <span class="ruby-comment"># Computes the full URL to an image asset.</span>
+  <span class="ruby-comment"># This will use +image_path+ internally, so most of their behaviors will be the same.</span>
+  <span class="ruby-comment"># Since +image_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+  <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   image_url &quot;edit.png&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/edit.png</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">image_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:image</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_image</span>, <span class="ruby-value">:image_url</span> <span class="ruby-comment"># aliased to avoid conflicts with an image_url named route</span>
+
+  <span class="ruby-comment"># Computes the path to a video asset in the public videos directory.</span>
+  <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+  <span class="ruby-comment"># Used internally by +video_tag+ to build the video path.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   video_path(&quot;hd&quot;)                                            # =&gt; /videos/hd</span>
+  <span class="ruby-comment">#   video_path(&quot;hd.avi&quot;)                                        # =&gt; /videos/hd.avi</span>
+  <span class="ruby-comment">#   video_path(&quot;trailers/hd.avi&quot;)                               # =&gt; /videos/trailers/hd.avi</span>
+  <span class="ruby-comment">#   video_path(&quot;/trailers/hd.avi&quot;)                              # =&gt; /trailers/hd.avi</span>
+  <span class="ruby-comment">#   video_path(&quot;http://www.example.com/vid/hd.avi&quot;)             # =&gt; http://www.example.com/vid/hd.avi</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">video_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:video</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_video</span>, <span class="ruby-value">:video_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a video_path named route</span>
+
+  <span class="ruby-comment"># Computes the full URL to a video asset in the public videos directory.</span>
+  <span class="ruby-comment"># This will use +video_path+ internally, so most of their behaviors will be the same.</span>
+  <span class="ruby-comment"># Since +video_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+  <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   video_url &quot;hd.avi&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/videos/hd.avi</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">video_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:video</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_video</span>, <span class="ruby-value">:video_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a video_url named route</span>
+
+  <span class="ruby-comment"># Computes the path to an audio asset in the public audios directory.</span>
+  <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+  <span class="ruby-comment"># Used internally by +audio_tag+ to build the audio path.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   audio_path(&quot;horse&quot;)                                            # =&gt; /audios/horse</span>
+  <span class="ruby-comment">#   audio_path(&quot;horse.wav&quot;)                                        # =&gt; /audios/horse.wav</span>
+  <span class="ruby-comment">#   audio_path(&quot;sounds/horse.wav&quot;)                                 # =&gt; /audios/sounds/horse.wav</span>
+  <span class="ruby-comment">#   audio_path(&quot;/sounds/horse.wav&quot;)                                # =&gt; /sounds/horse.wav</span>
+  <span class="ruby-comment">#   audio_path(&quot;http://www.example.com/sounds/horse.wav&quot;)          # =&gt; http://www.example.com/sounds/horse.wav</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">audio_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:audio</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_audio</span>, <span class="ruby-value">:audio_path</span> <span class="ruby-comment"># aliased to avoid conflicts with an audio_path named route</span>
+
+  <span class="ruby-comment"># Computes the full URL to an audio asset in the public audios directory.</span>
+  <span class="ruby-comment"># This will use +audio_path+ internally, so most of their behaviors will be the same.</span>
+  <span class="ruby-comment"># Since +audio_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+  <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   audio_url &quot;horse.wav&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/audios/horse.wav</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">audio_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:audio</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_audio</span>, <span class="ruby-value">:audio_url</span> <span class="ruby-comment"># aliased to avoid conflicts with an audio_url named route</span>
+
+  <span class="ruby-comment"># Computes the path to a font asset.</span>
+  <span class="ruby-comment"># Full paths from the document root will be passed through.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   font_path(&quot;font&quot;)                                           # =&gt; /fonts/font</span>
+  <span class="ruby-comment">#   font_path(&quot;font.ttf&quot;)                                       # =&gt; /fonts/font.ttf</span>
+  <span class="ruby-comment">#   font_path(&quot;dir/font.ttf&quot;)                                   # =&gt; /fonts/dir/font.ttf</span>
+  <span class="ruby-comment">#   font_path(&quot;/dir/font.ttf&quot;)                                  # =&gt; /dir/font.ttf</span>
+  <span class="ruby-comment">#   font_path(&quot;http://www.example.com/dir/font.ttf&quot;)            # =&gt; http://www.example.com/dir/font.ttf</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">font_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:font</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:path_to_font</span>, <span class="ruby-value">:font_path</span> <span class="ruby-comment"># aliased to avoid conflicts with a font_path named route</span>
+
+  <span class="ruby-comment"># Computes the full URL to a font asset.</span>
+  <span class="ruby-comment"># This will use +font_path+ internally, so most of their behaviors will be the same.</span>
+  <span class="ruby-comment"># Since +font_url+ is based on +asset_url+ method you can set :host options. If :host</span>
+  <span class="ruby-comment"># options is set, it overwrites global +config.action_controller.asset_host+ setting.</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment">#   font_url &quot;font.ttf&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/fonts/font.ttf</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">font_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+    <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:font</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">alias_method</span> <span class="ruby-value">:url_to_font</span>, <span class="ruby-value">:font_url</span> <span class="ruby-comment"># aliased to avoid conflicts with a font_url named route</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-compute_asset_path">
+            
+              <b>compute_asset_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-compute_asset_path" name="method-i-compute_asset_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes asset path to public directory. Plugins and extensions can
+override this method to point to custom assets or generate digested paths
+or query strings.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-compute_asset_path_source')" id="l_method-i-compute_asset_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L262" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-compute_asset_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 262</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">compute_asset_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">dir</span> = <span class="ruby-constant">ASSET_PUBLIC_DIRECTORIES</span>[<span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-identifier">source</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-font_path">
+            
+              <b>font_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-font_path" name="method-i-font_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the path to a font asset. Full paths from the document root will
+be passed through.</p>
+
+<pre><code>font_path(&quot;font&quot;)                                           # =&gt; /fonts/font
+font_path(&quot;font.ttf&quot;)                                       # =&gt; /fonts/font.ttf
+font_path(&quot;dir/font.ttf&quot;)                                   # =&gt; /fonts/dir/font.ttf
+font_path(&quot;/dir/font.ttf&quot;)                                  # =&gt; /dir/font.ttf
+font_path(&quot;http://www.example.com/dir/font.ttf&quot;)            # =&gt; http://www.example.com/dir/font.ttf
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-font_path_source')" id="l_method-i-font_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L451" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-font_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 451</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">font_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:font</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-font_url">
+            
+              <b>font_url</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-font_url" name="method-i-font_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the full URL to a font asset. This will use <code>font_path</code>
+internally, so most of their behaviors will be the same. Since
+<code>font_url</code> is based on <code>asset_url</code> method you can set
+:host options. If :host options is set, it overwrites global
+<code>config.action_controller.asset_host</code> setting.</p>
+
+<pre><code>font_url &quot;font.ttf&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/fonts/font.ttf
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-font_url_source')" id="l_method-i-font_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L463" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-font_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 463</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">font_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:font</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-image_path">
+            
+              <b>image_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-image_path" name="method-i-image_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the path to an image asset. Full paths from the document root will
+be passed through. Used internally by <code>image_tag</code> to build the
+image path:</p>
+
+<pre><code>image_path(&quot;edit&quot;)                                         # =&gt; &quot;/assets/edit&quot;
+image_path(&quot;edit.png&quot;)                                     # =&gt; &quot;/assets/edit.png&quot;
+image_path(&quot;icons/edit.png&quot;)                               # =&gt; &quot;/assets/icons/edit.png&quot;
+image_path(&quot;/icons/edit.png&quot;)                              # =&gt; &quot;/icons/edit.png&quot;
+image_path(&quot;http://www.example.com/img/edit.png&quot;)          # =&gt; &quot;http://www.example.com/img/edit.png&quot;
+</code></pre>
+
+<p>If you have images as application resources this method may conflict with
+their named routes. The alias <code>path_to_image</code> is provided to
+avoid that. Rails uses the alias internally, and plugin authors are
+encouraged to do so.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-image_path_source')" id="l_method-i-image_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L374" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-image_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 374</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">image_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:image</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-image_url">
+            
+              <b>image_url</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-image_url" name="method-i-image_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the full URL to an image asset. This will use
+<code>image_path</code> internally, so most of their behaviors will be the
+same. Since <code>image_url</code> is based on <code>asset_url</code>
+method you can set :host options. If :host options is set, it overwrites
+global <code>config.action_controller.asset_host</code> setting.</p>
+
+<pre><code>image_url &quot;edit.png&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/edit.png
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-image_url_source')" id="l_method-i-image_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L386" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-image_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 386</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">image_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:image</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-javascript_path">
+            
+              <b>javascript_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-javascript_path" name="method-i-javascript_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the path to a JavaScript asset in the public javascripts
+directory. If the <code>source</code> filename has no extension, .js will
+be appended (except for explicit URIs) Full paths from the document root
+will be passed through. Used internally by
+<code>javascript_include_tag</code> to build the script path.</p>
+
+<pre><code>javascript_path &quot;xmlhr&quot;                              # =&gt; /assets/xmlhr.js
+javascript_path &quot;dir/xmlhr.js&quot;                       # =&gt; /assets/dir/xmlhr.js
+javascript_path &quot;/dir/xmlhr&quot;                         # =&gt; /dir/xmlhr.js
+javascript_path &quot;http://www.example.com/js/xmlhr&quot;    # =&gt; http://www.example.com/js/xmlhr
+javascript_path &quot;http://www.example.com/js/xmlhr.js&quot; # =&gt; http://www.example.com/js/xmlhr.js
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-javascript_path_source')" id="l_method-i-javascript_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L317" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-javascript_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 317</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">javascript_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:javascript</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-javascript_url">
+            
+              <b>javascript_url</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-javascript_url" name="method-i-javascript_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the full URL to a JavaScript asset in the public javascripts
+directory. This will use <code>javascript_path</code> internally, so most
+of their behaviors will be the same. Since <code>javascript_url</code> is
+based on <code>asset_url</code> method you can set :host options. If :host
+options is set, it overwrites global
+<code>config.action_controller.asset_host</code> setting.</p>
+
+<pre><code>javascript_url &quot;js/xmlhr.js&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/js/xmlhr.js
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-javascript_url_source')" id="l_method-i-javascript_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L329" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-javascript_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 329</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">javascript_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:javascript</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-path_to_asset">
+            
+              <b>path_to_asset</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-path_to_asset" name="method-i-path_to_asset" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+            <div class="aka">
+              Alias for: <a href="AssetUrlHelper.html#method-i-asset_path">asset_path</a>
+            </div>
+          
+
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-stylesheet_path">
+            
+              <b>stylesheet_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-stylesheet_path" name="method-i-stylesheet_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the path to a stylesheet asset in the public stylesheets
+directory. If the <code>source</code> filename has no extension, .css will
+be appended (except for explicit URIs). Full paths from the document root
+will be passed through. Used internally by <code>stylesheet_link_tag</code>
+to build the stylesheet path.</p>
+
+<pre><code>stylesheet_path &quot;style&quot;                                  # =&gt; /assets/style.css
+stylesheet_path &quot;dir/style.css&quot;                          # =&gt; /assets/dir/style.css
+stylesheet_path &quot;/dir/style.css&quot;                         # =&gt; /dir/style.css
+stylesheet_path &quot;http://www.example.com/css/style&quot;       # =&gt; http://www.example.com/css/style
+stylesheet_path &quot;http://www.example.com/css/style.css&quot;   # =&gt; http://www.example.com/css/style.css
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-stylesheet_path_source')" id="l_method-i-stylesheet_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L344" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-stylesheet_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 344</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stylesheet_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:stylesheet</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-stylesheet_url">
+            
+              <b>stylesheet_url</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-stylesheet_url" name="method-i-stylesheet_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the full URL to a stylesheet asset in the public stylesheets
+directory. This will use <code>stylesheet_path</code> internally, so most
+of their behaviors will be the same. Since <code>stylesheet_url</code> is
+based on <code>asset_url</code> method you can set :host options. If :host
+options is set, it overwrites global
+<code>config.action_controller.asset_host</code> setting.</p>
+
+<pre><code>stylesheet_url &quot;css/style.css&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/assets/css/style.css
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-stylesheet_url_source')" id="l_method-i-stylesheet_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L356" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-stylesheet_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 356</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">stylesheet_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:stylesheet</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-url_to_asset">
+            
+              <b>url_to_asset</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-url_to_asset" name="method-i-url_to_asset" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+            <div class="aka">
+              Alias for: <a href="AssetUrlHelper.html#method-i-asset_url">asset_url</a>
+            </div>
+          
+
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-video_path">
+            
+              <b>video_path</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-video_path" name="method-i-video_path" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the path to a video asset in the public videos directory. Full
+paths from the document root will be passed through. Used internally by
+<code>video_tag</code> to build the video path.</p>
+
+<pre><code>video_path(&quot;hd&quot;)                                            # =&gt; /videos/hd
+video_path(&quot;hd.avi&quot;)                                        # =&gt; /videos/hd.avi
+video_path(&quot;trailers/hd.avi&quot;)                               # =&gt; /videos/trailers/hd.avi
+video_path(&quot;/trailers/hd.avi&quot;)                              # =&gt; /trailers/hd.avi
+video_path(&quot;http://www.example.com/vid/hd.avi&quot;)             # =&gt; http://www.example.com/vid/hd.avi
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-video_path_source')" id="l_method-i-video_path_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L400" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-video_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 400</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">video_path</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">path_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:video</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-video_url">
+            
+              <b>video_url</b>(source, options = {})
+            
+            <a href="AssetUrlHelper.html#method-i-video_url" name="method-i-video_url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Computes the full URL to a video asset in the public videos directory. This
+will use <code>video_path</code> internally, so most of their behaviors
+will be the same. Since <code>video_url</code> is based on
+<code>asset_url</code> method you can set :host options. If :host options
+is set, it overwrites global
+<code>config.action_controller.asset_host</code> setting.</p>
+
+<pre><code>video_url &quot;hd.avi&quot;, host: &quot;http://stage.example.com&quot; # =&gt; http://stage.example.com/videos/hd.avi
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-video_url_source')" id="l_method-i-video_url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actionview/lib/action_view/helpers/asset_url_helper.rb#L412" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-video_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actionview/lib/action_view/helpers/asset_url_helper.rb, line 412</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">video_url</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">url_to_asset</span>(<span class="ruby-identifier">source</span>, { <span class="ruby-value">type:</span> <span class="ruby-value">:video</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

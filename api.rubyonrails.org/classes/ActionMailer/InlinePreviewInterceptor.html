@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActionMailer::InlinePreviewInterceptor</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActionMailer::InlinePreviewInterceptor">
+
+  
+    
+    <meta name="description" content="Implements a mailer preview interceptor that converts image tag src attributes that use inline cid: style URLs to data: style URLs so that they are visible when previewing an HTML email in a web brows.">
+    <meta property="og:description" content="Implements a mailer preview interceptor that converts image tag src attributes that use inline cid: style URLs to data: style URLs so that they are visible when previewing an HTML email in a web brows.">
+  
+
+    <meta name="keywords" content="ActionMailer::InlinePreviewInterceptor class">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActionMailer::InlinePreviewInterceptor
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionmailer/lib/action_mailer/inline_preview_interceptor_rb.html">actionmailer/lib/action_mailer/inline_preview_interceptor.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Implements a mailer preview interceptor that converts image tag src
+attributes that use inline cid: style URLs to data: style URLs so that they
+are visible when previewing an HTML email in a web browser.</p>
+
+<p>This interceptor is enabled by default. To disable it, delete it from the
+<code>ActionMailer::Base.preview_interceptors</code> array:</p>
+
+<pre><code>ActionMailer::Base.preview_interceptors.delete(ActionMailer::InlinePreviewInterceptor)
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+    <!-- Includes -->
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+      
+        <li>
+          
+            Base64
+          
+        </li>
+      
+    </ul>
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">PATTERN</td>
+            <td>=</td>
+            <td class="attr-value">/src=(?:&quot;cid:[^&quot;]+&quot;|&#39;cid:[^&#39;]+&#39;)/i</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

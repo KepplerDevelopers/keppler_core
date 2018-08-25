@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveJob::Enqueuing::ClassMethods</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveJob::Enqueuing::ClassMethods">
+
+  
+    
+    <meta name="description" content="Includes the perform_later method for job initialization.">
+    <meta property="og:description" content="Includes the perform_later method for job initialization.">
+  
+
+    <meta name="keywords" content="ActiveJob::Enqueuing::ClassMethods class">
+  
+    <meta name="keywords" content="perform_later, job_or_instantiate">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActiveJob::Enqueuing::ClassMethods
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activejob/lib/active_job/enqueuing_rb.html">activejob/lib/active_job/enqueuing.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Includes the <code>perform_later</code> method for job initialization.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>J</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ClassMethods.html#method-i-job_or_instantiate">job_or_instantiate</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ClassMethods.html#method-i-perform_later">perform_later</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-perform_later">
+            
+              <b>perform_later</b>(*args)
+            
+            <a href="ClassMethods.html#method-i-perform_later" name="method-i-perform_later" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Push a job onto the queue. The arguments must be legal JSON types
+(<code>string</code>, <code>int</code>, <code>float</code>,
+<code>nil</code>, <code>true</code>, <code>false</code>, <code>hash</code>
+or <code>array</code>) or GlobalID::Identification instances. Arbitrary
+Ruby objects are not supported.</p>
+
+<p>Returns an instance of the job class queued with arguments available in
+Job#arguments.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-perform_later_source')" id="l_method-i-perform_later_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activejob/lib/active_job/enqueuing.rb#L19" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-perform_later_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activejob/lib/active_job/enqueuing.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">perform_later</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">job_or_instantiate</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>).<span class="ruby-identifier">enqueue</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-job_or_instantiate">
+            
+              <b>job_or_instantiate</b>(*args)
+            
+            <a href="ClassMethods.html#method-i-job_or_instantiate" name="method-i-job_or_instantiate" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-job_or_instantiate_source')" id="l_method-i-job_or_instantiate_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activejob/lib/active_job/enqueuing.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-job_or_instantiate_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activejob/lib/active_job/enqueuing.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">job_or_instantiate</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) <span class="ruby-comment"># :doc:</span>
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-keyword">self</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

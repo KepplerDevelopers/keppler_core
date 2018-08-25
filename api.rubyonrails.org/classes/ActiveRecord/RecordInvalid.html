@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::RecordInvalid</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::RecordInvalid">
+
+  
+    
+    <meta name="description" content="Active Record RecordInvalid  Raised by ActiveRecord::Base#save! and ActiveRecord::Base#create! when the record is invalid. Use the record method to retrieve the record which did not validate.">
+    <meta property="og:description" content="Active Record RecordInvalid  Raised by ActiveRecord::Base#save! and ActiveRecord::Base#create! when the record is invalid. Use the record method to retrieve the record which did not validate.">
+  
+
+    <meta name="keywords" content="ActiveRecord::RecordInvalid class">
+  
+    <meta name="keywords" content="new">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveRecord::RecordInvalid
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ActiveRecordError.html">ActiveRecord::ActiveRecordError</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/validations_rb.html">activerecord/lib/active_record/validations.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<h1 id="class-ActiveRecord::RecordInvalid-label-Active+Record+RecordInvalid">Active Record RecordInvalid</h1>
+
+<p>Raised by <a
+href="Persistence.html#method-i-save-21">ActiveRecord::Base#save!</a> and
+<a
+href="Persistence/ClassMethods.html#method-i-create-21">ActiveRecord::Base#create!</a>
+when the record is invalid. Use the <a
+href="RecordInvalid.html#attribute-i-record">record</a> method to retrieve
+the record which did not validate.</p>
+
+<pre><code>begin
+  complex_operation_that_internally_calls_save!
+rescue ActiveRecord::RecordInvalid =&gt; invalid
+  puts invalid.record.errors
+end
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="RecordInvalid.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>record</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(record = nil)
+            
+            <a href="RecordInvalid.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/validations.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/validations.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">record</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">record</span>
+    <span class="ruby-ivar">@record</span> = <span class="ruby-identifier">record</span>
+    <span class="ruby-identifier">errors</span> = <span class="ruby-ivar">@record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">full_messages</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>)
+    <span class="ruby-identifier">message</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-value">:&quot;#{@record.class.i18n_scope}.errors.messages.record_invalid&quot;</span>, <span class="ruby-value">errors:</span> <span class="ruby-identifier">errors</span>, <span class="ruby-value">default:</span> <span class="ruby-value">:&quot;errors.messages.record_invalid&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">message</span> = <span class="ruby-string">&quot;Record invalid&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">message</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

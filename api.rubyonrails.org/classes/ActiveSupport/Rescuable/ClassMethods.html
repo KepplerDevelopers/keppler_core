@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveSupport::Rescuable::ClassMethods</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveSupport::Rescuable::ClassMethods">
+
+  
+
+    <meta name="keywords" content="ActiveSupport::Rescuable::ClassMethods class">
+  
+    <meta name="keywords" content="rescue_from, rescue_with_handler">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActiveSupport::Rescuable::ClassMethods
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/rescuable_rb.html">activesupport/lib/active_support/rescuable.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="ClassMethods.html#method-i-rescue_from">rescue_from</a>,
+              </li>
+            
+              
+              <li>
+                <a href="ClassMethods.html#method-i-rescue_with_handler">rescue_with_handler</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-rescue_from">
+            
+              <b>rescue_from</b>(*klasses, with: nil, &amp;block)
+            
+            <a href="ClassMethods.html#method-i-rescue_from" name="method-i-rescue_from" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Rescue exceptions raised in controller actions.</p>
+
+<p><code>rescue_from</code> receives a series of exception classes or class
+names, and a trailing <code>:with</code> option with the name of a method
+or a Proc object to be called to handle them. Alternatively a block can be
+given.</p>
+
+<p>Handlers that take one argument will be called with the exception, so that
+the exception can be inspected when dealing with it.</p>
+
+<p>Handlers are inherited. They are searched from right to left, from bottom
+to top, and up the hierarchy. The handler of the first class for which
+<code>exception.is_a?(klass)</code> holds true is the one invoked, if any.</p>
+
+<pre><code>class ApplicationController &lt; ActionController::Base
+  rescue_from User::NotAuthorized, with: :deny_access # self defined exception
+  rescue_from ActiveRecord::RecordInvalid, with: :show_errors
+
+  rescue_from &#39;MyAppError::Base&#39; do |exception|
+    render xml: exception, status: 500
+  end
+
+  private
+    def deny_access
+      ...
+    end
+
+    def show_errors(exception)
+      exception.record.new_record? ? ...
+    end
+end
+</code></pre>
+
+<p>Exceptions raised inside exception handlers are not propagated up.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-rescue_from_source')" id="l_method-i-rescue_from_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/rescuable.rb#L51" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rescue_from_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/rescuable.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rescue_from</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">klasses</span>, <span class="ruby-value">with:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">with</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+      <span class="ruby-identifier">with</span> = <span class="ruby-identifier">block</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;Need a handler. Pass the with: keyword argument or provide a block.&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">klasses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">key</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Module</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:===</span>)
+      <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+      <span class="ruby-identifier">klass</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;#{klass.inspect} must be an Exception class or a String referencing an Exception class&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Put the new handler at the end because the list is read in reverse.</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rescue_handlers</span> <span class="ruby-operator">+=</span> [[<span class="ruby-identifier">key</span>, <span class="ruby-identifier">with</span>]]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rescue_with_handler">
+            
+              <b>rescue_with_handler</b>(exception, object: self, visited_exceptions: [])
+            
+            <a href="ClassMethods.html#method-i-rescue_with_handler" name="method-i-rescue_with_handler" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Matches an exception to a handler based on the exception class.</p>
+
+<p>If no handler matches the exception, check for a handler matching the
+(optional) exception.cause. If no handler matches the exception or its
+cause, this returns <code>nil</code>, so you can deal with unhandled
+exceptions. Be sure to re-raise unhandled exceptions if this is what you
+expect.</p>
+
+<pre><code>begin
+  …
+rescue =&gt; exception
+  rescue_with_handler(exception) || raise
+end
+</code></pre>
+
+<p>Returns the exception if it was handled and <code>nil</code> if it was not.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-rescue_with_handler_source')" id="l_method-i-rescue_with_handler_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/rescuable.rb#L88" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rescue_with_handler_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/rescuable.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rescue_with_handler</span>(<span class="ruby-identifier">exception</span>, <span class="ruby-value">object:</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">visited_exceptions:</span> [])
+  <span class="ruby-identifier">visited_exceptions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">exception</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">handler</span> = <span class="ruby-identifier">handler_for_rescue</span>(<span class="ruby-identifier">exception</span>, <span class="ruby-value">object:</span> <span class="ruby-identifier">object</span>)
+    <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">call</span> <span class="ruby-identifier">exception</span>
+    <span class="ruby-identifier">exception</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">exception</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">visited_exceptions</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">exception</span>.<span class="ruby-identifier">cause</span>)
+      <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">rescue_with_handler</span>(<span class="ruby-identifier">exception</span>.<span class="ruby-identifier">cause</span>, <span class="ruby-value">object:</span> <span class="ruby-identifier">object</span>, <span class="ruby-value">visited_exceptions:</span> <span class="ruby-identifier">visited_exceptions</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::ConnectionAdapters::PostgreSQLTypeMetadata</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::ConnectionAdapters::PostgreSQLTypeMetadata">
+
+  
+
+    <meta name="keywords" content="ActiveRecord::ConnectionAdapters::PostgreSQLTypeMetadata class">
+  
+    <meta name="keywords" content="new, sql_type, ==, eql?, hash, attributes_for_hash">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveRecord::ConnectionAdapters::PostgreSQLTypeMetadata
+            
+                <span class="parent">&lt;
+                    
+                    DelegateClass(SqlTypeMetadata)
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/connection_adapters/postgresql/type_metadata_rb.html">activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>#</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="PostgreSQLTypeMetadata.html#method-i-3D-3D">==</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="PostgreSQLTypeMetadata.html#method-i-attributes_for_hash">attributes_for_hash</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="PostgreSQLTypeMetadata.html#method-i-eql-3F">eql?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="PostgreSQLTypeMetadata.html#method-i-hash">hash</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="PostgreSQLTypeMetadata.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="PostgreSQLTypeMetadata.html#method-i-sql_type">sql_type</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>array</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>fmod</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>oid</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(type_metadata, oid: nil, fmod: nil)
+            
+            <a href="PostgreSQLTypeMetadata.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb#L10" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">type_metadata</span>, <span class="ruby-value">oid:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">fmod:</span> <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">type_metadata</span>)
+  <span class="ruby-ivar">@type_metadata</span> = <span class="ruby-identifier">type_metadata</span>
+  <span class="ruby-ivar">@oid</span> = <span class="ruby-identifier">oid</span>
+  <span class="ruby-ivar">@fmod</span> = <span class="ruby-identifier">fmod</span>
+  <span class="ruby-ivar">@array</span> = <span class="ruby-regexp">/\[\]$/</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-identifier">type_metadata</span>.<span class="ruby-identifier">sql_type</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-3D-3D">
+            
+              <b>==</b>(other)
+            
+            <a href="PostgreSQLTypeMetadata.html#method-i-3D-3D" name="method-i-3D-3D" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+            <div class="aka">
+              Also aliased as: <a href="PostgreSQLTypeMetadata.html#method-i-eql-3F">eql?</a>
+            </div>
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-3D-3D_source')" id="l_method-i-3D-3D_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb#L22" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-3D-3D_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">==</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">PostgreSQLTypeMetadata</span>) <span class="ruby-operator">&amp;&amp;</span>
+    <span class="ruby-identifier">attributes_for_hash</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">attributes_for_hash</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-eql-3F">
+            
+              <b>eql?</b>(other)
+            
+            <a href="PostgreSQLTypeMetadata.html#method-i-eql-3F" name="method-i-eql-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+            <div class="aka">
+              Alias for: <a href="PostgreSQLTypeMetadata.html#method-i-3D-3D">==</a>
+            </div>
+          
+
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-hash">
+            
+              <b>hash</b>()
+            
+            <a href="PostgreSQLTypeMetadata.html#method-i-hash" name="method-i-hash" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-hash_source')" id="l_method-i-hash_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb#L28" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-hash_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hash</span>
+  <span class="ruby-identifier">attributes_for_hash</span>.<span class="ruby-identifier">hash</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-sql_type">
+            
+              <b>sql_type</b>()
+            
+            <a href="PostgreSQLTypeMetadata.html#method-i-sql_type" name="method-i-sql_type" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-sql_type_source')" id="l_method-i-sql_type_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-sql_type_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sql_type</span>
+  <span class="ruby-keyword">super</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\[\]$/</span>, <span class="ruby-string">&quot;&quot;</span>.<span class="ruby-identifier">freeze</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-attributes_for_hash">
+            
+              <b>attributes_for_hash</b>()
+            
+            <a href="PostgreSQLTypeMetadata.html#method-i-attributes_for_hash" name="method-i-attributes_for_hash" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-attributes_for_hash_source')" id="l_method-i-attributes_for_hash_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb#L34" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-attributes_for_hash_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/postgresql/type_metadata.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">attributes_for_hash</span>
+  [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-ivar">@type_metadata</span>, <span class="ruby-identifier">oid</span>, <span class="ruby-identifier">fmod</span>]
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

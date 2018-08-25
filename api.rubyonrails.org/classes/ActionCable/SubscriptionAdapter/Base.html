@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActionCable::SubscriptionAdapter::Base</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActionCable::SubscriptionAdapter::Base">
+
+  
+
+    <meta name="keywords" content="ActionCable::SubscriptionAdapter::Base class">
+  
+    <meta name="keywords" content="new, broadcast, subscribe, unsubscribe, shutdown">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActionCable::SubscriptionAdapter::Base
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actioncable/lib/action_cable/subscription_adapter/base_rb.html">actioncable/lib/action_cable/subscription_adapter/base.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Base.html#method-i-broadcast">broadcast</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Base.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Base.html#method-i-shutdown">shutdown</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Base.html#method-i-subscribe">subscribe</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Base.html#method-i-unsubscribe">unsubscribe</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>logger</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>server</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(server)
+            
+            <a href="Base.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actioncable/lib/action_cable/subscription_adapter/base.rb#L8" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actioncable/lib/action_cable/subscription_adapter/base.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">server</span>)
+  <span class="ruby-ivar">@server</span> = <span class="ruby-identifier">server</span>
+  <span class="ruby-ivar">@logger</span> = <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">logger</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-broadcast">
+            
+              <b>broadcast</b>(channel, payload)
+            
+            <a href="Base.html#method-i-broadcast" name="method-i-broadcast" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-broadcast_source')" id="l_method-i-broadcast_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actioncable/lib/action_cable/subscription_adapter/base.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-broadcast_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actioncable/lib/action_cable/subscription_adapter/base.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">broadcast</span>(<span class="ruby-identifier">channel</span>, <span class="ruby-identifier">payload</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-shutdown">
+            
+              <b>shutdown</b>()
+            
+            <a href="Base.html#method-i-shutdown" name="method-i-shutdown" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-shutdown_source')" id="l_method-i-shutdown_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actioncable/lib/action_cable/subscription_adapter/base.rb#L25" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-shutdown_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actioncable/lib/action_cable/subscription_adapter/base.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">shutdown</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-subscribe">
+            
+              <b>subscribe</b>(channel, message_callback, success_callback = nil)
+            
+            <a href="Base.html#method-i-subscribe" name="method-i-subscribe" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-subscribe_source')" id="l_method-i-subscribe_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actioncable/lib/action_cable/subscription_adapter/base.rb#L17" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-subscribe_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actioncable/lib/action_cable/subscription_adapter/base.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">subscribe</span>(<span class="ruby-identifier">channel</span>, <span class="ruby-identifier">message_callback</span>, <span class="ruby-identifier">success_callback</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-unsubscribe">
+            
+              <b>unsubscribe</b>(channel, message_callback)
+            
+            <a href="Base.html#method-i-unsubscribe" name="method-i-unsubscribe" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-unsubscribe_source')" id="l_method-i-unsubscribe_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/actioncable/lib/action_cable/subscription_adapter/base.rb#L21" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-unsubscribe_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File actioncable/lib/action_cable/subscription_adapter/base.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unsubscribe</span>(<span class="ruby-identifier">channel</span>, <span class="ruby-identifier">message_callback</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

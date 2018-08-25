@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::ConnectionAdapters::MySQL::DatabaseStatements</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::ConnectionAdapters::MySQL::DatabaseStatements">
+
+  
+
+    <meta name="keywords" content="ActiveRecord::ConnectionAdapters::MySQL::DatabaseStatements class">
+  
+    <meta name="keywords" content="execute, exec_query, exec_delete, exec_update">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Module</span>
+            ActiveRecord::ConnectionAdapters::MySQL::DatabaseStatements
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activerecord/lib/active_record/connection_adapters/mysql/database_statements_rb.html">activerecord/lib/active_record/connection_adapters/mysql/database_statements.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="DatabaseStatements.html#method-i-exec_delete">exec_delete</a>,
+              </li>
+            
+              
+              <li>
+                <a href="DatabaseStatements.html#method-i-exec_query">exec_query</a>,
+              </li>
+            
+              
+              <li>
+                <a href="DatabaseStatements.html#method-i-exec_update">exec_update</a>,
+              </li>
+            
+              
+              <li>
+                <a href="DatabaseStatements.html#method-i-execute">execute</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-exec_delete">
+            
+              <b>exec_delete</b>(sql, name = nil, binds = [])
+            
+            <a href="DatabaseStatements.html#method-i-exec_delete" name="method-i-exec_delete" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+            <div class="aka">
+              Also aliased as: <a href="DatabaseStatements.html#method-i-exec_update">exec_update</a>
+            </div>
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-exec_delete_source')" id="l_method-i-exec_delete_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/mysql/database_statements.rb#L43" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-exec_delete_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/mysql/database_statements.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exec_delete</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">binds</span> = [])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">without_prepared_statement?</span>(<span class="ruby-identifier">binds</span>)
+    <span class="ruby-identifier">execute_and_free</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>) { <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">affected_rows</span> }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">exec_stmt_and_free</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">binds</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">stmt</span><span class="ruby-operator">|</span> <span class="ruby-identifier">stmt</span>.<span class="ruby-identifier">affected_rows</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-exec_query">
+            
+              <b>exec_query</b>(sql, name = &quot;SQL&quot;, binds = [], prepare: false)
+            
+            <a href="DatabaseStatements.html#method-i-exec_query" name="method-i-exec_query" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-exec_query_source')" id="l_method-i-exec_query_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/mysql/database_statements.rb#L31" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-exec_query_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/mysql/database_statements.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exec_query</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-string">&quot;SQL&quot;</span>, <span class="ruby-identifier">binds</span> = [], <span class="ruby-value">prepare:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">without_prepared_statement?</span>(<span class="ruby-identifier">binds</span>)
+    <span class="ruby-identifier">execute_and_free</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Result</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>.<span class="ruby-identifier">fields</span>, <span class="ruby-identifier">result</span>.<span class="ruby-identifier">to_a</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">exec_stmt_and_free</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">binds</span>, <span class="ruby-value">cache_stmt:</span> <span class="ruby-identifier">prepare</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Result</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>.<span class="ruby-identifier">fields</span>, <span class="ruby-identifier">result</span>.<span class="ruby-identifier">to_a</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-exec_update">
+            
+              <b>exec_update</b>(sql, name = nil, binds = [])
+            
+            <a href="DatabaseStatements.html#method-i-exec_update" name="method-i-exec_update" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+            <div class="aka">
+              Alias for: <a href="DatabaseStatements.html#method-i-exec_delete">exec_delete</a>
+            </div>
+          
+
+          
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-execute">
+            
+              <b>execute</b>(sql, name = nil)
+            
+            <a href="DatabaseStatements.html#method-i-execute" name="method-i-execute" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Executes the SQL statement in the context of this connection.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-execute_source')" id="l_method-i-execute_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/mysql/database_statements.rb#L23" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-execute_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/mysql/database_statements.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">execute</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-comment"># make sure we carry over any changes to ActiveRecord::Base.default_timezone that have been</span>
+  <span class="ruby-comment"># made since we established the connection</span>
+  <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">query_options</span>[<span class="ruby-value">:database_timezone</span>] = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">default_timezone</span>
+
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::PreparedStatementInvalid</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::PreparedStatementInvalid">
+
+  
+    
+    <meta name="description" content="Raised when number of bind variables in statement given to :condition key (for example, when using ActiveRecord::Base.find method) does not match number of expected values supplied.">
+    <meta property="og:description" content="Raised when number of bind variables in statement given to :condition key (for example, when using ActiveRecord::Base.find method) does not match number of expected values supplied.">
+  
+
+    <meta name="keywords" content="ActiveRecord::PreparedStatementInvalid class">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveRecord::PreparedStatementInvalid
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ActiveRecordError.html">ActiveRecord::ActiveRecordError</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/errors_rb.html">activerecord/lib/active_record/errors.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Raised when number of bind variables in statement given to
+<code>:condition</code> key (for example, when using <a
+href="FinderMethods.html#method-i-find">ActiveRecord::Base.find</a> method)
+does not match number of expected values supplied.</p>
+
+<p>For example, when there are two placeholders with only one value supplied:</p>
+
+<pre><code>Location.where(&quot;lat = ? AND lng = ?&quot;, 53.7362)
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

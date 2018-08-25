@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveRecord::ConnectionAdapters::TransactionState</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveRecord::ConnectionAdapters::TransactionState">
+
+  
+
+    <meta name="keywords" content="ActiveRecord::ConnectionAdapters::TransactionState class">
+  
+    <meta name="keywords" content="new, add_child, finalized?, committed?, fully_committed?, rolledback?, fully_rolledback?, fully_completed?, completed?, set_state, rollback!, full_rollback!, commit!, full_commit!, nullify!">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveRecord::ConnectionAdapters::TransactionState
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/connection_adapters/abstract/transaction_rb.html">activerecord/lib/active_record/connection_adapters/abstract/transaction.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-add_child">add_child</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-commit-21">commit!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-committed-3F">committed?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-completed-3F">completed?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-finalized-3F">finalized?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-full_commit-21">full_commit!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-full_rollback-21">full_rollback!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-fully_committed-3F">fully_committed?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-fully_completed-3F">fully_completed?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-fully_rolledback-3F">fully_rolledback?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-c-new">new</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-nullify-21">nullify!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-rollback-21">rollback!</a>,
+              </li>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-rolledback-3F">rolledback?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="TransactionState.html#method-i-set_state">set_state</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(state = nil)
+            
+            <a href="TransactionState.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L6" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">state</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@state</span> = <span class="ruby-identifier">state</span>
+  <span class="ruby-ivar">@children</span> = []
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-add_child">
+            
+              <b>add_child</b>(state)
+            
+            <a href="TransactionState.html#method-i-add_child" name="method-i-add_child" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-add_child_source')" id="l_method-i-add_child_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-add_child_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_child</span>(<span class="ruby-identifier">state</span>)
+  <span class="ruby-ivar">@children</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">state</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-commit-21">
+            
+              <b>commit!</b>()
+            
+            <a href="TransactionState.html#method-i-commit-21" name="method-i-commit-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-commit-21_source')" id="l_method-i-commit-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L71" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-commit-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">commit!</span>
+  <span class="ruby-ivar">@state</span> = <span class="ruby-value">:committed</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-committed-3F">
+            
+              <b>committed?</b>()
+            
+            <a href="TransactionState.html#method-i-committed-3F" name="method-i-committed-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-committed-3F_source')" id="l_method-i-committed-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L19" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-committed-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">committed?</span>
+  <span class="ruby-ivar">@state</span> <span class="ruby-operator">==</span> <span class="ruby-value">:committed</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@state</span> <span class="ruby-operator">==</span> <span class="ruby-value">:fully_committed</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-completed-3F">
+            
+              <b>completed?</b>()
+            
+            <a href="TransactionState.html#method-i-completed-3F" name="method-i-completed-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-completed-3F_source')" id="l_method-i-completed-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L39" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-completed-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">completed?</span>
+  <span class="ruby-identifier">committed?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">rolledback?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-finalized-3F">
+            
+              <b>finalized?</b>()
+            
+            <a href="TransactionState.html#method-i-finalized-3F" name="method-i-finalized-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-finalized-3F_source')" id="l_method-i-finalized-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-finalized-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">finalized?</span>
+  <span class="ruby-ivar">@state</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-full_commit-21">
+            
+              <b>full_commit!</b>()
+            
+            <a href="TransactionState.html#method-i-full_commit-21" name="method-i-full_commit-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-full_commit-21_source')" id="l_method-i-full_commit-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L75" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-full_commit-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">full_commit!</span>
+  <span class="ruby-ivar">@state</span> = <span class="ruby-value">:fully_committed</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-full_rollback-21">
+            
+              <b>full_rollback!</b>()
+            
+            <a href="TransactionState.html#method-i-full_rollback-21" name="method-i-full_rollback-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-full_rollback-21_source')" id="l_method-i-full_rollback-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L66" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-full_rollback-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">full_rollback!</span>
+  <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">rollback!</span> }
+  <span class="ruby-ivar">@state</span> = <span class="ruby-value">:fully_rolledback</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-fully_committed-3F">
+            
+              <b>fully_committed?</b>()
+            
+            <a href="TransactionState.html#method-i-fully_committed-3F" name="method-i-fully_committed-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-fully_committed-3F_source')" id="l_method-i-fully_committed-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L23" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-fully_committed-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fully_committed?</span>
+  <span class="ruby-ivar">@state</span> <span class="ruby-operator">==</span> <span class="ruby-value">:fully_committed</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-fully_completed-3F">
+            
+              <b>fully_completed?</b>()
+            
+            <a href="TransactionState.html#method-i-fully_completed-3F" name="method-i-fully_completed-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-fully_completed-3F_source')" id="l_method-i-fully_completed-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-fully_completed-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fully_completed?</span>
+  <span class="ruby-identifier">completed?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-fully_rolledback-3F">
+            
+              <b>fully_rolledback?</b>()
+            
+            <a href="TransactionState.html#method-i-fully_rolledback-3F" name="method-i-fully_rolledback-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-fully_rolledback-3F_source')" id="l_method-i-fully_rolledback-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L31" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-fully_rolledback-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">fully_rolledback?</span>
+  <span class="ruby-ivar">@state</span> <span class="ruby-operator">==</span> <span class="ruby-value">:fully_rolledback</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-nullify-21">
+            
+              <b>nullify!</b>()
+            
+            <a href="TransactionState.html#method-i-nullify-21" name="method-i-nullify-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-nullify-21_source')" id="l_method-i-nullify-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L79" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-nullify-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">nullify!</span>
+  <span class="ruby-ivar">@state</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rollback-21">
+            
+              <b>rollback!</b>()
+            
+            <a href="TransactionState.html#method-i-rollback-21" name="method-i-rollback-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-rollback-21_source')" id="l_method-i-rollback-21_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L61" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rollback-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rollback!</span>
+  <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">rollback!</span> }
+  <span class="ruby-ivar">@state</span> = <span class="ruby-value">:rolledback</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rolledback-3F">
+            
+              <b>rolledback?</b>()
+            
+            <a href="TransactionState.html#method-i-rolledback-3F" name="method-i-rolledback-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-rolledback-3F_source')" id="l_method-i-rolledback-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L27" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-rolledback-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rolledback?</span>
+  <span class="ruby-ivar">@state</span> <span class="ruby-operator">==</span> <span class="ruby-value">:rolledback</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@state</span> <span class="ruby-operator">==</span> <span class="ruby-value">:fully_rolledback</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-set_state">
+            
+              <b>set_state</b>(state)
+            
+            <a href="TransactionState.html#method-i-set_state" name="method-i-set_state" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-set_state_source')" id="l_method-i-set_state_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activerecord/lib/active_record/connection_adapters/abstract/transaction.rb#L43" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-set_state_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activerecord/lib/active_record/connection_adapters/abstract/transaction.rb, line 43</span>
+      <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_state</span>(<span class="ruby-identifier">state</span>)
+        <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-identifier">&lt;&lt;-MSG</span>.<span class="ruby-identifier">squish</span>)
+<span class="ruby-value">          The set_state method is deprecated and will be removed in
+          Rails 6.0. Please use rollback! or commit! to set transaction
+          state directly.
+</span><span class="ruby-identifier">        MSG</span>
+        <span class="ruby-keyword">case</span> <span class="ruby-identifier">state</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:rolledback</span>
+          <span class="ruby-identifier">rollback!</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:committed</span>
+          <span class="ruby-identifier">commit!</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-keyword">nil</span>
+          <span class="ruby-identifier">nullify!</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Invalid transaction state: #{state}&quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

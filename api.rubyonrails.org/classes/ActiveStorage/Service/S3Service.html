@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveStorage::Service::S3Service</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveStorage::Service::S3Service">
+
+  
+    
+    <meta name="description" content="Wraps the Amazon Simple Storage Service (S3) as an Active Storage service. See ActiveStorage::Service for the generic API documentation that applies to all services.">
+    <meta property="og:description" content="Wraps the Amazon Simple Storage Service (S3) as an Active Storage service. See ActiveStorage::Service for the generic API documentation that applies to all services.">
+  
+
+    <meta name="keywords" content="ActiveStorage::Service::S3Service class">
+  
+    <meta name="keywords" content="new, upload, download, download_chunk, delete, delete_prefixed, exist?, url, url_for_direct_upload, headers_for_direct_upload">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveStorage::Service::S3Service
+            
+                <span class="parent">&lt;
+                    
+                    <a href="../Service.html">ActiveStorage::Service</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activestorage/lib/active_storage/service/s3_service_rb.html">activestorage/lib/active_storage/service/s3_service.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Wraps the Amazon Simple Storage <a href="../Service.html">Service</a> (S3)
+as an Active Storage service. See <a
+href="../Service.html">ActiveStorage::Service</a> for the generic API
+documentation that applies to all services.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-delete">delete</a>,
+              </li>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-delete_prefixed">delete_prefixed</a>,
+              </li>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-download">download</a>,
+              </li>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-download_chunk">download_chunk</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-exist-3F">exist?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-headers_for_direct_upload">headers_for_direct_upload</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="S3Service.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-upload">upload</a>,
+              </li>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-url">url</a>,
+              </li>
+            
+              
+              <li>
+                <a href="S3Service.html#method-i-url_for_direct_upload">url_for_direct_upload</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>bucket</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>client</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>upload_options</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(bucket:, upload: {}, **options)
+            
+            <a href="S3Service.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L12" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-value">bucket:</span>, <span class="ruby-value">upload:</span> {}, <span class="ruby-operator">**</span><span class="ruby-identifier">options</span>)
+  <span class="ruby-ivar">@client</span> = <span class="ruby-constant">Aws</span><span class="ruby-operator">::</span><span class="ruby-constant">S3</span><span class="ruby-operator">::</span><span class="ruby-constant">Resource</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">**</span><span class="ruby-identifier">options</span>)
+  <span class="ruby-ivar">@bucket</span> = <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">bucket</span>(<span class="ruby-identifier">bucket</span>)
+
+  <span class="ruby-ivar">@upload_options</span> = <span class="ruby-identifier">upload</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-delete">
+            
+              <b>delete</b>(key)
+            
+            <a href="S3Service.html#method-i-delete" name="method-i-delete" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-delete_source')" id="l_method-i-delete_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L47" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-delete_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:delete</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">object_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">delete</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-delete_prefixed">
+            
+              <b>delete_prefixed</b>(prefix)
+            
+            <a href="S3Service.html#method-i-delete_prefixed" name="method-i-delete_prefixed" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-delete_prefixed_source')" id="l_method-i-delete_prefixed_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L53" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-delete_prefixed_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_prefixed</span>(<span class="ruby-identifier">prefix</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:delete_prefixed</span>, <span class="ruby-value">prefix:</span> <span class="ruby-identifier">prefix</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">bucket</span>.<span class="ruby-identifier">objects</span>(<span class="ruby-value">prefix:</span> <span class="ruby-identifier">prefix</span>).<span class="ruby-identifier">batch_delete!</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-download">
+            
+              <b>download</b>(key, &amp;block)
+            
+            <a href="S3Service.html#method-i-download" name="method-i-download" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-download_source')" id="l_method-i-download_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L29" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-download_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">download</span>(<span class="ruby-identifier">key</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:streaming_download</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">stream</span>(<span class="ruby-identifier">key</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">instrument</span> <span class="ruby-value">:download</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">object_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">get</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">string</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-download_chunk">
+            
+              <b>download_chunk</b>(key, range)
+            
+            <a href="S3Service.html#method-i-download_chunk" name="method-i-download_chunk" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-download_chunk_source')" id="l_method-i-download_chunk_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L41" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-download_chunk_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">download_chunk</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">range</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:download_chunk</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span>, <span class="ruby-value">range:</span> <span class="ruby-identifier">range</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">object_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">get</span>(<span class="ruby-value">range:</span> <span class="ruby-node">&quot;bytes=#{range.begin}-#{range.exclude_end? ? range.end - 1 : range.end}&quot;</span>).<span class="ruby-identifier">body</span>.<span class="ruby-identifier">read</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-exist-3F">
+            
+              <b>exist?</b>(key)
+            
+            <a href="S3Service.html#method-i-exist-3F" name="method-i-exist-3F" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-exist-3F_source')" id="l_method-i-exist-3F_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L59" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-exist-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">exist?</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:exist</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">object_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">exists?</span>
+    <span class="ruby-identifier">payload</span>[<span class="ruby-value">:exist</span>] = <span class="ruby-identifier">answer</span>
+    <span class="ruby-identifier">answer</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-headers_for_direct_upload">
+            
+              <b>headers_for_direct_upload</b>(key, content_type:, checksum:, **)
+            
+            <a href="S3Service.html#method-i-headers_for_direct_upload" name="method-i-headers_for_direct_upload" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-headers_for_direct_upload_source')" id="l_method-i-headers_for_direct_upload_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L90" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-headers_for_direct_upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">headers_for_direct_upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">content_type:</span>, <span class="ruby-value">checksum:</span>, <span class="ruby-operator">**</span>)
+  { <span class="ruby-string">&quot;Content-Type&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">content_type</span>, <span class="ruby-string">&quot;Content-MD5&quot;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">checksum</span> }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-upload">
+            
+              <b>upload</b>(key, io, checksum: nil)
+            
+            <a href="S3Service.html#method-i-upload" name="method-i-upload" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-upload_source')" id="l_method-i-upload_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L19" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">io</span>, <span class="ruby-value">checksum:</span> <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:upload</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span>, <span class="ruby-value">checksum:</span> <span class="ruby-identifier">checksum</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">object_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">put</span>(<span class="ruby-identifier">upload_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">body:</span> <span class="ruby-identifier">io</span>, <span class="ruby-value">content_md5:</span> <span class="ruby-identifier">checksum</span>))
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Aws</span><span class="ruby-operator">::</span><span class="ruby-constant">S3</span><span class="ruby-operator">::</span><span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">BadDigest</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveStorage</span><span class="ruby-operator">::</span><span class="ruby-constant">IntegrityError</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-url">
+            
+              <b>url</b>(key, expires_in:, filename:, disposition:, content_type:)
+            
+            <a href="S3Service.html#method-i-url" name="method-i-url" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-url_source')" id="l_method-i-url_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L67" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">url</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">expires_in:</span>, <span class="ruby-value">filename:</span>, <span class="ruby-value">disposition:</span>, <span class="ruby-value">content_type:</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:url</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">generated_url</span> = <span class="ruby-identifier">object_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">presigned_url</span> <span class="ruby-value">:get</span>, <span class="ruby-value">expires_in:</span> <span class="ruby-identifier">expires_in</span>.<span class="ruby-identifier">to_i</span>,
+      <span class="ruby-value">response_content_disposition:</span> <span class="ruby-identifier">content_disposition_with</span>(<span class="ruby-value">type:</span> <span class="ruby-identifier">disposition</span>, <span class="ruby-value">filename:</span> <span class="ruby-identifier">filename</span>),
+      <span class="ruby-value">response_content_type:</span> <span class="ruby-identifier">content_type</span>
+
+    <span class="ruby-identifier">payload</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">generated_url</span>
+
+    <span class="ruby-identifier">generated_url</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-url_for_direct_upload">
+            
+              <b>url_for_direct_upload</b>(key, expires_in:, content_type:, content_length:, checksum:)
+            
+            <a href="S3Service.html#method-i-url_for_direct_upload" name="method-i-url_for_direct_upload" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-url_for_direct_upload_source')" id="l_method-i-url_for_direct_upload_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/s3_service.rb#L79" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-url_for_direct_upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/s3_service.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">url_for_direct_upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-value">expires_in:</span>, <span class="ruby-value">content_type:</span>, <span class="ruby-value">content_length:</span>, <span class="ruby-value">checksum:</span>)
+  <span class="ruby-identifier">instrument</span> <span class="ruby-value">:url</span>, <span class="ruby-value">key:</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">payload</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">generated_url</span> = <span class="ruby-identifier">object_for</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">presigned_url</span> <span class="ruby-value">:put</span>, <span class="ruby-value">expires_in:</span> <span class="ruby-identifier">expires_in</span>.<span class="ruby-identifier">to_i</span>,
+      <span class="ruby-value">content_type:</span> <span class="ruby-identifier">content_type</span>, <span class="ruby-value">content_length:</span> <span class="ruby-identifier">content_length</span>, <span class="ruby-value">content_md5:</span> <span class="ruby-identifier">checksum</span>
+
+    <span class="ruby-identifier">payload</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">generated_url</span>
+
+    <span class="ruby-identifier">generated_url</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

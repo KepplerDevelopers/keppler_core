@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveStorage::Service::MirrorService</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveStorage::Service::MirrorService">
+
+  
+    
+    <meta name="description" content="Wraps a set of mirror services and provides a single ActiveStorage::Service object that will all have the files uploaded to them.">
+    <meta property="og:description" content="Wraps a set of mirror services and provides a single ActiveStorage::Service object that will all have the files uploaded to them.">
+  
+
+    <meta name="keywords" content="ActiveStorage::Service::MirrorService class">
+  
+    <meta name="keywords" content="new, upload, delete, delete_prefixed">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveStorage::Service::MirrorService
+            
+                <span class="parent">&lt;
+                    
+                    <a href="../Service.html">ActiveStorage::Service</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activestorage/lib/active_storage/service/mirror_service_rb.html">activestorage/lib/active_storage/service/mirror_service.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Wraps a set of mirror services and provides a single <a
+href="../Service.html">ActiveStorage::Service</a> object that will all have
+the files uploaded to them. A <code>primary</code> service is designated to
+answer calls to <code>download</code>, <code>exists?</code>, and
+<code>url</code>.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="MirrorService.html#method-i-delete">delete</a>,
+              </li>
+            
+              
+              <li>
+                <a href="MirrorService.html#method-i-delete_prefixed">delete_prefixed</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="MirrorService.html#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="MirrorService.html#method-i-upload">upload</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>mirrors</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [R]
+            </td>
+            <td class='attr-name'>primary</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>(primary:, mirrors:)
+            
+            <a href="MirrorService.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/mirror_service.rb#L21" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/mirror_service.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-value">primary:</span>, <span class="ruby-value">mirrors:</span>)
+  <span class="ruby-ivar">@primary</span>, <span class="ruby-ivar">@mirrors</span> = <span class="ruby-identifier">primary</span>, <span class="ruby-identifier">mirrors</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-delete">
+            
+              <b>delete</b>(key)
+            
+            <a href="MirrorService.html#method-i-delete" name="method-i-delete" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Delete the file at the <code>key</code> on all services.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-delete_source')" id="l_method-i-delete_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/mirror_service.rb#L34" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-delete_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/mirror_service.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete</span>(<span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">perform_across_services</span> <span class="ruby-value">:delete</span>, <span class="ruby-identifier">key</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-delete_prefixed">
+            
+              <b>delete_prefixed</b>(prefix)
+            
+            <a href="MirrorService.html#method-i-delete_prefixed" name="method-i-delete_prefixed" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Delete files at keys starting with the <code>prefix</code> on all services.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-delete_prefixed_source')" id="l_method-i-delete_prefixed_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/mirror_service.rb#L39" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-delete_prefixed_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/mirror_service.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_prefixed</span>(<span class="ruby-identifier">prefix</span>)
+  <span class="ruby-identifier">perform_across_services</span> <span class="ruby-value">:delete_prefixed</span>, <span class="ruby-identifier">prefix</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-upload">
+            
+              <b>upload</b>(key, io, checksum: nil)
+            
+            <a href="MirrorService.html#method-i-upload" name="method-i-upload" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Upload the <code>io</code> to the <code>key</code> specified to all
+services. If a <code>checksum</code> is provided, all services will ensure
+a match when the upload has completed or raise an <a
+href="../IntegrityError.html">ActiveStorage::IntegrityError</a>.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-upload_source')" id="l_method-i-upload_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activestorage/lib/active_storage/service/mirror_service.rb#L27" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-upload_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activestorage/lib/active_storage/service/mirror_service.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">upload</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">io</span>, <span class="ruby-value">checksum:</span> <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">each_service</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">service</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">service</span>.<span class="ruby-identifier">upload</span> <span class="ruby-identifier">key</span>, <span class="ruby-identifier">io</span>.<span class="ruby-identifier">tap</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:rewind</span>), <span class="ruby-value">checksum:</span> <span class="ruby-identifier">checksum</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

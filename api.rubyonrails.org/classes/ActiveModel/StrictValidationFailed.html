@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveModel::StrictValidationFailed</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveModel::StrictValidationFailed">
+
+  
+    
+    <meta name="description" content="Raised when a validation cannot be corrected by end users and are considered exceptional.">
+    <meta property="og:description" content="Raised when a validation cannot be corrected by end users and are considered exceptional.">
+  
+
+    <meta name="keywords" content="ActiveModel::StrictValidationFailed class">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveModel::StrictValidationFailed
+            
+                <span class="parent">&lt;
+                    
+                    StandardError
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activemodel/lib/active_model/errors_rb.html">activemodel/lib/active_model/errors.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Raised when a validation cannot be corrected by end users and are
+considered exceptional.</p>
+
+<pre><code>class Person
+  include ActiveModel::Validations
+
+  attr_accessor :name
+
+  validates_presence_of :name, strict: true
+end
+
+person = Person.new
+person.name = nil
+person.valid?
+# =&gt; ActiveModel::StrictValidationFailed: Name can&#39;t be blank
+</code></pre>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

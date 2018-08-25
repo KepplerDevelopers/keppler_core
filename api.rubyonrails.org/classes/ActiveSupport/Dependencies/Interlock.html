@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveSupport::Dependencies::Interlock</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://api.rubyonrails.org/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://api.rubyonrails.org/css/github.css" type="text/css" media="screen" />
+<script src="https://api.rubyonrails.org/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://api.rubyonrails.org/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveSupport::Dependencies::Interlock">
+
+  
+
+    <meta name="keywords" content="ActiveSupport::Dependencies::Interlock class">
+  
+    <meta name="keywords" content="loading, unloading, start_unloading, done_unloading, start_running, done_running, running, permit_concurrent_loads">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+            <span>Ruby on Rails 5.2.1</span><br />
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveSupport::Dependencies::Interlock
+            
+                <span class="parent">&lt;
+                    
+                    <a href="https://api.rubyonrails.org/classes/Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/dependencies/interlock_rb.html">activesupport/lib/active_support/dependencies/interlock.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-done_running">done_running</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-done_unloading">done_unloading</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-loading">loading</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-permit_concurrent_loads">permit_concurrent_loads</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-running">running</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-start_running">start_running</a>,
+              </li>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-start_unloading">start_unloading</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="Interlock.html#method-i-unloading">unloading</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-done_running">
+            
+              <b>done_running</b>()
+            
+            <a href="Interlock.html#method-i-done_running" name="method-i-done_running" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-done_running_source')" id="l_method-i-done_running_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L36" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-done_running_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">done_running</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">stop_sharing</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-done_unloading">
+            
+              <b>done_unloading</b>()
+            
+            <a href="Interlock.html#method-i-done_unloading" name="method-i-done_unloading" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-done_unloading_source')" id="l_method-i-done_unloading_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L28" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-done_unloading_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">done_unloading</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">stop_exclusive</span>(<span class="ruby-value">compatible:</span> [<span class="ruby-value">:load</span>, <span class="ruby-value">:unload</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-loading">
+            
+              <b>loading</b>()
+            
+            <a href="Interlock.html#method-i-loading" name="method-i-loading" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-loading_source')" id="l_method-i-loading_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L12" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-loading_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">loading</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">exclusive</span>(<span class="ruby-value">purpose:</span> <span class="ruby-value">:load</span>, <span class="ruby-value">compatible:</span> [<span class="ruby-value">:load</span>], <span class="ruby-value">after_compatible:</span> [<span class="ruby-value">:load</span>]) <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-permit_concurrent_loads">
+            
+              <b>permit_concurrent_loads</b>()
+            
+            <a href="Interlock.html#method-i-permit_concurrent_loads" name="method-i-permit_concurrent_loads" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-permit_concurrent_loads_source')" id="l_method-i-permit_concurrent_loads_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L46" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-permit_concurrent_loads_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">permit_concurrent_loads</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">yield_shares</span>(<span class="ruby-value">compatible:</span> [<span class="ruby-value">:load</span>]) <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-running">
+            
+              <b>running</b>()
+            
+            <a href="Interlock.html#method-i-running" name="method-i-running" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-running_source')" id="l_method-i-running_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L40" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-running_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">running</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">sharing</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-start_running">
+            
+              <b>start_running</b>()
+            
+            <a href="Interlock.html#method-i-start_running" name="method-i-start_running" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-start_running_source')" id="l_method-i-start_running_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L32" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-start_running_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">start_running</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">start_sharing</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-start_unloading">
+            
+              <b>start_unloading</b>()
+            
+            <a href="Interlock.html#method-i-start_unloading" name="method-i-start_unloading" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-start_unloading_source')" id="l_method-i-start_unloading_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-start_unloading_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">start_unloading</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">start_exclusive</span>(<span class="ruby-value">purpose:</span> <span class="ruby-value">:unload</span>, <span class="ruby-value">compatible:</span> [<span class="ruby-value">:load</span>, <span class="ruby-value">:unload</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-unloading">
+            
+              <b>unloading</b>()
+            
+            <a href="Interlock.html#method-i-unloading" name="method-i-unloading" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-unloading_source')" id="l_method-i-unloading_source">show</a>
+                
+                  | <a href="https://github.com/rails/rails/blob/fc5dd0b85189811062c85520fd70de8389b55aeb/activesupport/lib/active_support/dependencies/interlock.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                
+              </p>
+              <div id="method-i-unloading_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File activesupport/lib/active_support/dependencies/interlock.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unloading</span>
+  <span class="ruby-ivar">@lock</span>.<span class="ruby-identifier">exclusive</span>(<span class="ruby-value">purpose:</span> <span class="ruby-value">:unload</span>, <span class="ruby-value">compatible:</span> [<span class="ruby-value">:load</span>, <span class="ruby-value">:unload</span>], <span class="ruby-value">after_compatible:</span> [<span class="ruby-value">:load</span>, <span class="ruby-value">:unload</span>]) <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>
