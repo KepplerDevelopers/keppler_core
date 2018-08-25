@@ -3,7 +3,7 @@ function notify(notice){
     toast: true,
     position: 'bottom',
     showConfirmButton: false,
-    timer: 3000,
+    timer: 300000,
     grow: 'fullscreen'
   });
 
