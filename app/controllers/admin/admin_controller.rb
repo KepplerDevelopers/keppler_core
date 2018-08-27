@@ -4,10 +4,10 @@ module Admin
   # AdminController
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
+    before_action :set_settings
     before_action :authenticate_user!
     before_action :validate_permissions
     before_action :paginator_params
-    before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
 
@@ -31,6 +31,14 @@ module Admin
     end
 
     private
+
+    def set_settings
+      @settings = YAML.load_file(
+        "#{Rails.root}/config/settings.yml"
+      ).values.each(&:symbolize_keys!)
+
+      @settings = @settings[0]
+    end
 
     def get_history(model)
       @activities = PublicActivity::Activity.where(
