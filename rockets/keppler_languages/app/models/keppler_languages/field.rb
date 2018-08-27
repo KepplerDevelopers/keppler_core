@@ -7,7 +7,8 @@ module KepplerLanguages
     acts_as_list
 
     belongs_to :language
-    
+    before_save :underscore_field
+
     # Fields for the search form in the navbar
     def self.search_field
       fields = ["key", "value", "position", "deleted_at"]
@@ -34,6 +35,12 @@ module KepplerLanguages
       query = fields.join("_#{operator}_")
       query << "_#{conf}"
       query.to_sym
+    end
+
+    private
+
+    def underscore_field
+      self.key = self.key.split(' ').join('_').downcase
     end
   end
 end

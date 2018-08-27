@@ -93,7 +93,6 @@ module KepplerLanguages
       # DELETE /languages/1
       def destroy
         if @language
-          @language.delete_yml
           @language.destroy
         end
         redirect_to admin_languages_languages_path, notice: actions_messages(@language)
