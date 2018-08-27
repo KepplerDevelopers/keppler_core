@@ -9,11 +9,12 @@ module KepplerFrontend
     include KepplerFrontend::Concerns::ViewJsFile
     include KepplerFrontend::Concerns::RouteFile
     include KepplerFrontend::Concerns::ActionFile
+    include KepplerFrontend::Concerns::StringActions
     require 'csv'
     acts_as_list
     validates_presence_of :name, :url
     validates_uniqueness_of :name, :url
-    before_validation :convert_to_downcase, :without_spaces
+    before_validation :convert_to_downcase, :without_special_characters
 
     # Fields for the search form in the navbar
     def self.search_field
@@ -127,11 +128,9 @@ module KepplerFrontend
       self.name.downcase!
     end
 
-    def without_spaces
-      self.url.gsub!(' ', '_')
-      self.name.gsub!(' ', '_')
-      self.name.gsub!('/', '')
-      self.name.gsub!('.', '')
+    def without_special_characters
+      self.name = self.name.split('').select { |x| x if not_special_chars.include?(x) } .join
+      self.url = self.url.split('').select { |x| x if not_special_chars.include?(x) || x.eql?('/')} .join
     end
   end
 end

@@ -1,1 +1,15 @@
---- []
+---
+- id: 16
+  name: set_client_info
+  description: ''
+  position: 1
+  deleted_at: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-27 14:29:08.598840000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2018-08-27 10:29:08.598840000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-27 14:31:26.345151000 Z
+    zone: *1
+    time: 2018-08-27 10:31:26.345151000 Z

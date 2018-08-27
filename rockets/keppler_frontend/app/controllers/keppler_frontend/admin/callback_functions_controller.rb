@@ -49,7 +49,7 @@ module KepplerFrontend
       def create
         @callback_function = CallbackFunction.new(callback_function_params)
 
-        if @callback_function.save
+        if @callback_function.save && @callback_function.create_callback
           redirect(@callback_function, params)
         else
           render :new
@@ -58,6 +58,7 @@ module KepplerFrontend
 
       # PATCH/PUT /callback_functions/1
       def update
+        @callback_function.update_callback(callback_function_params)
         if @callback_function.update(callback_function_params)
           redirect(@callback_function, params)
         else
@@ -84,7 +85,7 @@ module KepplerFrontend
       def destroy_multiple
         CallbackFunction.destroy redefine_ids(params[:multiple_ids])
         redirect_to(
-          admin_callback_functions_path(page: @current_page, search: @query),
+          admin_frontend_callback_functions_path(page: @current_page, search: @query),
           notice: actions_messages(CallbackFunction.new)
         )
       end
