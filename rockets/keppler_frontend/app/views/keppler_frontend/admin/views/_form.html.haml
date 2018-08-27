@@ -44,7 +44,7 @@
                 .form-padding
                   .col-xs-12
                     = f.simple_fields_for :view_callbacks do |view_callback|
-                      - if capsule_field.object.name_field
+                      - if view_callback.object.name
                         = render 'view_callback_fields_edit', f: view_callback
                       - else
                         = render 'view_callback_fields', f: view_callback

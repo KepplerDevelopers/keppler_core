@@ -10,6 +10,7 @@ module KepplerFrontend
     include KepplerFrontend::Concerns::RouteFile
     include KepplerFrontend::Concerns::ActionFile
     include KepplerFrontend::Concerns::StringActions
+    include KepplerFrontend::Concerns::CallbackActions
     require 'csv'
     acts_as_list
     validates_presence_of :name, :url
@@ -117,6 +118,16 @@ module KepplerFrontend
       out_file = File.open(file, "w")
       out_file.puts(code)
       out_file.close
+    end
+
+    def new_callback(callbacks)
+      return unless callbacks
+      callbacks.each do |key, value|
+        if value[:name]
+          callback = ViewCallback.where(name: value[:name], function_type: value[:function_type])
+          add_callback_to(value) if callback.count == 1
+        end
+      end
     end
 
     private

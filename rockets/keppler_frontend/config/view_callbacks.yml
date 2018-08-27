@@ -1,0 +1,26 @@
+---
+- id: 25
+  name: set_client_info
+  function_type: before_action
+  view_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-27 18:47:20.068213000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2018-08-27 14:47:20.068213000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-27 18:47:20.068213000 Z
+    zone: *1
+    time: 2018-08-27 14:47:20.068213000 Z
+- id: 26
+  name: client_params
+  function_type: before_action
+  view_id: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-27 18:53:38.294263000 Z
+    zone: *1
+    time: 2018-08-27 14:53:38.294263000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-27 18:53:38.294263000 Z
+    zone: *1
+    time: 2018-08-27 14:53:38.294263000 Z

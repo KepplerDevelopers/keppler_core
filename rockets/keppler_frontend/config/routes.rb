@@ -71,6 +71,7 @@ KepplerFrontend::Engine.routes.draw do
       delete '/assets/:search/:fileformat', to: 'multimedia#destroy', as: 'destroy_multimedia'
 
       resources :views do
+        delete '/destroy_callback/:view_callback_id', action: :destroy_callback, as: :destroy_callback
         get '(page/:page)', action: :index, on: :collection, as: ''
         get '/clone', action: 'clone'
         get '/editor', action: 'editor'

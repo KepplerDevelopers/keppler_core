@@ -1,4 +1,11 @@
 en:
+  activerecord:
+    errors:
+      models:
+        keppler_frontend/view_callback:
+          attributes:
+            name:
+              uniqueness_callback: This callback already exists
   keppler_frontend:
     success: Your file has been successfully uploaded
     fail: The file format is not valid
