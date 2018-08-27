@@ -27,6 +27,7 @@ var app = new Vue({
     that.controller = that._vnode.data.attrs.controller;
     wlp = window.location.pathname;
     that.current_path = wlp.includes('page') ? wlp : `${wlp}/page/1`;
+
     $.ajax({
       url: `${that.current_path}.json`,
       success: function(res){
@@ -39,7 +40,9 @@ var app = new Vue({
       return this.deleteList.length > 0
     },
     link: function(){
-      return `${window.location.pathname}/destroy_multiple?multiple_ids=[${this.deleteList}]`
+      original_url = window.location.pathname;
+      split_url = window.location.pathname.split('/page');
+      return `${split_url[0]}/destroy_multiple?multiple_ids=[${this.deleteList}]`
     },
     checkItems: function(){
       return this.items.length > 0
@@ -67,6 +70,8 @@ var app = new Vue({
     selectAll: function(){
       var that = this;
       let advice = false;
+
+      console.log(that.items)
       if(that.states.checkall){
         that.items.map(function(item, idx){
           let check = document.getElementById(`checkbox-${item.id}`)
