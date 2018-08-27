@@ -12,10 +12,8 @@
       %a{onclick: "controls.saveViewJs(#{@view.id})", title: t('keppler.actions.save')}
         %i.fa.fa-save
     %li.pull-right
-      = link_to admin_frontend_views_path do
-        %i.fa.fa-list
-        %span.hidden-xs
-          = t('keppler.actions.view_list')
+      %a#btn-views-editor{title: t('keppler.actions.views')}
+        %i.fa.fa-cog
   .tab-content
     #tab_1.tab-pane.active
       %div.action.code-container
@@ -26,7 +24,7 @@
         %textarea#code-js-erb{:name => "code"}
           = @view.view_js_code
 
-
+= render "editor_views"
 :javascript
   codeJsErb.codeMirrorJsErb();
   codeAction.codeMirrorAction();

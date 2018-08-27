@@ -66,6 +66,7 @@ es:
       assets: Assets
       ui: User Interface
       view_list: Lista de vistas
+      callbacks_list: Lista de callbacks
       edit: Actualizar
       clone: Clonar
       delete: Eliminar
@@ -90,6 +91,7 @@ es:
       download_records: Descargar registros
       upload_records: Cargar registros
       reserve: Reservar
+      views: Vistas
   activerecord:
     attributes:
       id: Identificador

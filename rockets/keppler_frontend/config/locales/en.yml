@@ -59,6 +59,7 @@ en:
       assets: Assets
       deleted: Deleted
       view_list: Views list
+      callbacks_list: Callbacks list
       new: New
       show: Show
       edit: Update
@@ -81,6 +82,7 @@ en:
       back_history: "Back to history"
       appearance_defaut: Set default
       apply: Apply
+      views: Views
   activerecord:
     attributes:
       id: Id

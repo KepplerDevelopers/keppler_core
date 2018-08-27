@@ -50,7 +50,7 @@ module KepplerFrontend
         @callback_function = CallbackFunction.new(callback_function_params)
 
         if @callback_function.save && @callback_function.create_callback
-          redirect(@callback_function, params)
+          redirect_to admin_frontend_callback_function_editor_path(@callback_function), notice: actions_messages(@callback_function)
         else
           render :new
         end
@@ -119,6 +119,17 @@ module KepplerFrontend
         callback_functions = @q.result(distinct: true)
         @objects = callback_functions.page(@current_page)
         render :index
+      end
+
+      def editor
+        @callback_function = CallbackFunction.find(params[:callback_function_id])
+        @views = View.all
+      end
+
+      def editor_save
+        @callback_function = CallbackFunction.find(params[:callback_function_id])
+        @callback_function.code_save(params[:ruby], 'callback') if params[:ruby]
+        render json: {result: true}
       end
 
       private

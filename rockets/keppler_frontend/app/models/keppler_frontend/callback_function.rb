@@ -40,6 +40,12 @@ module KepplerFrontend
       query.to_sym
     end
 
+    def code_save(code, type_code)
+      if type_code.eql?('callback')
+        save_callback(code)
+      end
+    end
+
     private
 
     def uninstall_callback

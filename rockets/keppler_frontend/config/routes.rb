@@ -10,6 +10,8 @@ KepplerFrontend::Engine.routes.draw do
         post '/sort', action: :sort, on: :collection
         post '/upload', action: 'upload', as: 'upload'
         get '/download', action: 'download', as: 'download'
+        get '/editor', action: 'editor'
+        post '/editor/save', action: 'editor_save'
         get(
           '/reload',
           action: :reload,

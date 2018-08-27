@@ -15,6 +15,11 @@ module KepplerFrontend
     # end keppler
 
     private
+    # begin callback client_params
+    def client_params
+      # Insert ruby code...
+    end
+    # end callback client_params
     # begin callback set_client_info
     def set_client_info
       # Insert ruby code...
