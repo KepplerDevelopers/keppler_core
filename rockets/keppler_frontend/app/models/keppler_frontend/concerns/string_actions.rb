@@ -5,7 +5,6 @@ module KepplerFrontend
   module Concerns
     module StringActions
       extend ActiveSupport::Concern
-
       private
 
       def not_special_chars
