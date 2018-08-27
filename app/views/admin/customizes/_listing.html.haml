@@ -3,7 +3,7 @@
     - if can?(Customize).destroy?
       - if !customize.id.eql?(1) && !customize.installed
         = link_to admin_customize_path(customize), method: :delete do
-          %i.icon-trash.icon-delete
+          %i.icon-trash.icon-delete{ onclick: "$('.spinner').css('display', 'block')" }
   %td
     %span.pull-left
       = customize.name

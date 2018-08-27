@@ -9,11 +9,15 @@ module KepplerFrontend
     include KepplerFrontend::Concerns::ViewJsFile
     include KepplerFrontend::Concerns::RouteFile
     include KepplerFrontend::Concerns::ActionFile
+    include KepplerFrontend::Concerns::StringActions
+    include KepplerFrontend::Concerns::CallbackActions
     require 'csv'
     acts_as_list
     validates_presence_of :name, :url
     validates_uniqueness_of :name, :url
-    before_validation :convert_to_downcase, :without_spaces
+    before_validation :convert_to_downcase, :without_special_characters
+    has_many :view_callbacks, dependent: :destroy, inverse_of: :view
+    accepts_nested_attributes_for :view_callbacks, reject_if: :all_blank, allow_destroy: true
 
     # Fields for the search form in the navbar
     def self.search_field
@@ -116,6 +120,16 @@ module KepplerFrontend
       out_file.close
     end
 
+    def new_callback(view, callbacks)
+      return unless callbacks
+      callbacks.each do |key, value|
+        if value[:name]
+          callback = ViewCallback.where(name: value[:name], function_type: value[:function_type])
+          add_callback_to(view, value) if callback.count == 1
+        end
+      end
+    end
+
     private
 
     def url_front
@@ -127,11 +141,9 @@ module KepplerFrontend
       self.name.downcase!
     end
 
-    def without_spaces
-      self.url.gsub!(' ', '_')
-      self.name.gsub!(' ', '_')
-      self.name.gsub!('/', '')
-      self.name.gsub!('.', '')
+    def without_special_characters
+      self.name = self.name.split('').select { |x| x if not_special_chars.include?(x) } .join
+      self.url = self.url.split('').select { |x| x if not_special_chars.include?(x) || x.eql?('/')} .join
     end
   end
 end

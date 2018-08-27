@@ -13,17 +13,27 @@ es:
     models:
       singularize:
         keppler_frontend/view: vista
+        callback_function: callback
         view: vista
         theme: tema
         partials: parciales
       pluralize:
         keppler_frontend/views: vistas
+        callback_functions: callbacks
         views: vistas
         themes: temas
     modules:
       new: Nuevo
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Temas
+      keppler_frontend/admin/callback_functions: Callbacks
+    form:
+      callbacks: Callbacks
+    actions:
+      add_callback: Agregar nuevo callback
+    attributes:
+      function: Función
+      callback: Callback
   keppler:
     sidebar-menu:
       keppler-frontend: Frontend
@@ -32,14 +42,17 @@ es:
         assets: Assets
         themes: Temas
         partials: Partials
+        callback_functions: Callbacks
     models:
       singularize:
         keppler_frontend/view: vista
         keppler_frontend/partial: partial
+        keppler_frontend/callback_function: callback
         view: vista
         theme: tema
       pluralize:
         keppler_frontend/views: vistas
+        keppler_frontend/callback_functions: callbacks
         views: vistas
         themes: temas
         partials: partials
@@ -48,6 +61,7 @@ es:
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Temas
       keppler_frontend/admin/partials: Partials
+      keppler_frontend/admin/callback_functions: Callbacks
     settings:
     actions:
       created: Creado
@@ -60,6 +74,7 @@ es:
       assets: Assets
       ui: User Interface
       view_list: Lista de vistas
+      callbacks_list: Lista de callbacks
       edit: Actualizar
       clone: Clonar
       editor: Editor
@@ -85,6 +100,7 @@ es:
       download_records: Descargar registros
       upload_records: Cargar registros
       reserve: Reservar
+      views: Vistas
   activerecord:
     attributes:
       id: Identificador
