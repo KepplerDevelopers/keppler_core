@@ -1,6 +1,7 @@
 module KepplerFrontend
   class ViewCallback < ApplicationRecord
     belongs_to :view
+    before_destroy :delete_callback_line
     validate :uniqueness_callback
 
     def set_function_types
@@ -20,6 +21,10 @@ module KepplerFrontend
     end
 
     private
+
+    def delete_callback_line
+      self.view.delete_callback(self.view, self)
+    end
 
     def uniqueness_callback
       errors.add(:name) if callback_exists?
