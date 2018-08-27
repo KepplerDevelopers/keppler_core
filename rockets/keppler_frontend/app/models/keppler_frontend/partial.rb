@@ -7,12 +7,13 @@ module KepplerFrontend
     acts_as_list
     validates_presence_of :name
     validates_uniqueness_of :name
-    before_save :convert_to_downcase, :without_spaces
+    before_save :convert_to_downcase, :without_special_characters
 
     include KepplerFrontend::Concerns::Partials::HtmlFile
     include KepplerFrontend::Concerns::Partials::ScssFile
     include KepplerFrontend::Concerns::Partials::JsFile
     include KepplerFrontend::Concerns::Partials::HelperFile
+    include KepplerFrontend::Concerns::StringActions
 
     def underscore_name
       '_' + name.split(' ').join('_').downcase
@@ -50,10 +51,8 @@ module KepplerFrontend
       self.name.downcase!
     end
 
-    def without_spaces
-      self.name.gsub!(' ', '_')
-      self.name.gsub!('/', '')
-      self.name.gsub!('.', '')
+    def without_special_characters
+      self.name = self.name.split('').select { |x| x if not_special_chars.include?(x) } .join
     end
 
     def install

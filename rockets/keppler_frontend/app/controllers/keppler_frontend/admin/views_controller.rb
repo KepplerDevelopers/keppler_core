@@ -11,6 +11,8 @@ module KepplerFrontend
       before_action :only_development
       before_action :reload_views, only: [:index]
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+      before_action :reload_view_callbacks, only: [:index]
+      after_action :update_view_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
       include KepplerFrontend::Concerns::History
       include KepplerFrontend::Concerns::DestroyMultiple
@@ -62,7 +64,9 @@ module KepplerFrontend
         @view.delete_route
         @view.update_files(view_params)
         if @view.update(view_params)
-          redirect(@view, params)
+          view = view_params.to_h
+          @view.new_callback(@view, view[:view_callbacks_attributes])
+          redirect_to edit_admin_frontend_view_path(@view), notice: actions_messages(@view)
         else
           render :edit
         end
@@ -86,6 +90,13 @@ module KepplerFrontend
           @view.destroy
         end
         redirect_to admin_frontend_views_path, notice: actions_messages(@view)
+      end
+
+      def destroy_callback
+        @view = View.find(params[:view_id])
+        @callback = ViewCallback.find(params[:view_callback_id])
+        @callback.destroy
+        @view.delete_callback(@view, @callback)
       end
 
       def destroy_multiple
@@ -177,6 +188,27 @@ module KepplerFrontend
         File.write(file, data)
       end
 
+      def reload_view_callbacks
+        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/view_callbacks.yml")
+        view_callbacks = YAML.load_file(file)
+        view_callbacks.each do |route|
+          callback = KepplerFrontend::ViewCallback.where(name: route['name']).first
+          unless callback
+            KepplerFrontend::ViewCallback.create(
+              name: route['name'],
+              function_type: route['function_type']
+            )
+          end
+        end
+      end
+
+      def update_view_callback_yml
+        view_callbacks = ViewCallback.all
+        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/view_callbacks.yml")
+        data = view_callbacks.as_json.to_yaml
+        File.write(file, data)
+      end
+
       def set_attachments
         @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
                         'picture', 'banner', 'attachment', 'pic', 'file']
@@ -189,7 +221,12 @@ module KepplerFrontend
 
       # Only allow a trusted parameter "white list" through.
       def view_params
-        params.require(:view).permit(:name, :url, :root_path, :method, :active, :format_result, :position, :deleted_at)
+        params.require(:view).permit(:name, :url, :root_path, :method, :active, :format_result, :position, :deleted_at,
+                                     view_callbacks_attributes: view_callbacks_attributes)
+      end
+
+      def view_callbacks_attributes
+        [:name, :function_type, :_destroy]
       end
 
       def redefine_ids(ids)
