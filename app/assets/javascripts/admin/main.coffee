@@ -47,9 +47,6 @@ $(document).on 'turbolinks:load', ->
 
   $('#open-historial').click ->
     $('.listing-show .control-sidebar').toggleClass 'control-sidebar-open'
-
-  $('.customize-index .icon-trash').click ->
-    $('.spinner').css('display', 'block')
   
   searchButton()
   return

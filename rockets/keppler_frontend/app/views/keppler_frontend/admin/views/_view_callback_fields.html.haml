@@ -1,0 +1,8 @@
+.nested-fields.row
+  .col-lg-3
+    = f.input :function_type, label: t('keppler_frontend.attributes.function'), collection: f.object.set_function_types.map { |v| [v.to_s.split('_').map(&:capitalize).join(" "), v] } , include_blank: false
+  .col-lg-4
+    = f.input :name, label: t('keppler_frontend.attributes.callback'), collection: f.object.set_callbacks, include_blank: false
+  .col-lg-1
+    = link_to_remove_association "<button class='btn btn-default btn-delete-field'><i class='icon-trash'></i></button>".html_safe, f
+    .clearfix

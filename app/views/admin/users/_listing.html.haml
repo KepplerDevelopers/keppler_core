@@ -1,14 +1,12 @@
 - objects.each do |user|
   %tr{ id: "row-#{user.id}" }
-    - if can?(User).destroy_multiple?
-      %td.item-check
-        - if user.id.eql?(current_user.id)
-        - else
-          .checkbox
-            %label{ for: "checkbox-#{user.id}" }
-              %input{ type: 'checkbox', id: "checkbox-#{user.id}", 'checklist-model' => 'check', 'checklist-value' => 'user.id.to_s', 'ng-click' => 'selectByCheck(size.to_s)', '@click' => 'listDelete(user.id.to_s)' }
-              %span.cr
-                %i.cr-icon.glyphicon.glyphicon-ok
+    %td.item-check
+      - if can?(User).destroy_multiple?
+        .checkbox
+          %label{ for: "checkbox-#{user.id}" }
+            %input{ type: 'checkbox', id: "checkbox-#{user.id}", 'checklist-model' => 'check', 'checklist-value' => user.id.to_s, '@click' => "listDelete(#{user.id})" }
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
 
     %td.avatar
       = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do

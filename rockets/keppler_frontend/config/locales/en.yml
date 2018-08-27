@@ -1,4 +1,11 @@
 en:
+  activerecord:
+    errors:
+      models:
+        keppler_frontend/view_callback:
+          attributes:
+            name:
+              uniqueness_callback: This callback already exists
   keppler_frontend:
     success: Your file has been successfully uploaded
     fail: The file format is not valid
@@ -13,17 +20,27 @@ en:
     models:
       singularize:
         keppler_frontend/view: view
+        callback_function: callback
         view: view
         theme: theme
         partials: partials
       pluralize:
         keppler_frontend/views: views
+        allback_functions: callbacks
         views: views
         themes: themes
     modules:
       new: new
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Themes
+      keppler_frontend/admin/callback_functions: Callbacks
+    form:
+      callbacks: Callbacks
+    actions:
+      add_callback: Add new callback
+    attributes:
+      function: Function
+      callback: Callback
   keppler:
     sidebar-menu:
       keppler-frontend: Frontend
@@ -57,6 +74,7 @@ en:
       assets: Assets
       deleted: Deleted
       view_list: Views list
+      callbacks_list: Callbacks list
       new: New
       show: Show
       edit: Update
@@ -80,6 +98,7 @@ en:
       back_history: "Back to history"
       appearance_defaut: Set default
       apply: Apply
+      views: Views
   activerecord:
     attributes:
       id: Id

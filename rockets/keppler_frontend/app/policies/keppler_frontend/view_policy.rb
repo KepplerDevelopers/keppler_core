@@ -23,5 +23,9 @@ module KepplerFrontend
     def upload_multimedia?
       keppler_admin? || user_can?(@objects, 'upload_multimedia')
     end
+
+    def destroy_callback?
+      keppler_admin? || user_can?(@objects, 'destroy_callback')
+    end
   end
 end
