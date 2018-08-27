@@ -11,7 +11,10 @@ module Admin
     include ObjectQuery
 
     def index
-      @users = User.all.drop(1)
+      @q = User.ransack(params[:q])
+      @users = @q.result(distinct: true).where.not(name: 'Keppler Admin')
+      @objects = @users.page(@current_page).order(position: :desc)
+      @total = @users.size
       redirect_to_index(users_path) if nothing_in_first_page?(@objects)
       respond_to_formats(@users)
     end
