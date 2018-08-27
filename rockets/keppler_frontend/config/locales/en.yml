@@ -13,16 +13,19 @@ en:
     models:
       singularize:
         keppler_frontend/view: view
+        callback_function: callback
         view: view
         theme: theme
       pluralize:
         keppler_frontend/views: views
+        allback_functions: callbacks
         views: views
         themes: themes
     modules:
       new: new
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Themes
+      keppler_frontend/admin/callback_functions: Callbacks
   keppler:
     sidebar-menu:
       keppler-frontend: Frontend

@@ -4,16 +4,16 @@
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1{ style: 'display: inline-block' }
-            = t("keppler.modules.#{controller_path.underscore}")
+            = t("keppler_frontend.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
             - if can?(KepplerFrontend::CallbackFunction).download?
               .toolbar-item
-                = link_to admin_frontend_callback_function_download_path(KepplerFrontend::CallbackFunction, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
+                = link_to admin_frontend_callback_function_download_path(KepplerFrontend::CallbackFunction, :format => :xls), class: "tool-btn", title: t('keppler_frontend.actions.download_records') do
                   %i.icon-cloud-download
             - if can?(KepplerFrontend::CallbackFunction).upload?
               .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "callback_function" do
+                = link_to "", class: "tool-btn", title: t('keppler_frontend.actions.upload_records'), id: "callback_function" do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_frontend_callback_functions_path, class: "tool-btn", remote: true do
@@ -35,7 +35,7 @@
             %li
               %a{ href: '#' }
                 %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+                = t("keppler_frontend.modules.#{action_name.underscore}")
 
         .box.slice-box
           .box-body.no-padding
@@ -45,7 +45,7 @@
                 - if @objects.size.zero?
                   %tr
                     %th{style: 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.callback_functions"))
+                      %h6= t('keppler_frontend.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.callback_functions"))
                 - else
                   %tr
                     %th

@@ -7,6 +7,8 @@ module KepplerFrontend
       before_action :set_callback_function, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
       before_action :set_attachments
+      before_action :reload_callbacks, only: [:index]
+      after_action :update_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :authorization
       include KepplerFrontend::Concerns::Commons
       include KepplerFrontend::Concerns::History
@@ -127,6 +129,29 @@ module KepplerFrontend
       def set_attachments
         @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
                         'picture', 'banner', 'attachment', 'pic', 'file']
+      end
+
+      def reload_callbacks
+        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/callbacks.yml")
+        callbacks = YAML.load_file(file)
+        if callbacks
+          callbacks.each do |callback|
+            callback_db = KepplerFrontend::CallbackFunction.where(name: callback['name']).first
+            unless callback_db
+              KepplerFrontend::CallbackFunction.create(
+                name: callback['name'],
+                description: callback['description']
+              )
+            end
+          end
+        end
+      end
+
+      def update_callback_yml
+        callbacks = CallbackFunction.all
+        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/callbacks.yml")
+        data = callbacks.as_json.to_yaml
+        File.write(file, data)
       end
 
       # Use callbacks to share common setup or constraints between actions.

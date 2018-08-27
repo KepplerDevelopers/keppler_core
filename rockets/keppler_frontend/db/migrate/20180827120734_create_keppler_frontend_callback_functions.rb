@@ -2,7 +2,7 @@ class CreateKepplerFrontendCallbackFunctions < ActiveRecord::Migration[5.2]
   def change
     create_table :keppler_frontend_callback_functions do |t|
       t.string :name
-      t.string :description
+      t.text :description
       t.integer :position
       t.datetime :deleted_at
 
