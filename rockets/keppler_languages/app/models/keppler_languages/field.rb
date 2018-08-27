@@ -8,6 +8,7 @@ module KepplerLanguages
 
     belongs_to :language
     before_save :underscore_field
+    validates_presence_of :key, :value
 
     # Fields for the search form in the navbar
     def self.search_field

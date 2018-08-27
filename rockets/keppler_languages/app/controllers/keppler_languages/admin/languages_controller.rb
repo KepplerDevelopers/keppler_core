@@ -9,7 +9,8 @@ module KepplerLanguages
       before_action :set_attachments
       before_action :authorization
       before_action :languages_names
-      # after_action :update_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+      after_action :update_languages_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+      after_action :update_fields_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
 
       include KepplerLanguages::Concerns::Commons
       include KepplerLanguages::Concerns::History
@@ -141,7 +142,7 @@ module KepplerLanguages
 
       def languages_names
         @names = YAML.load_file(
-          "#{Rails.root}/rockets/keppler_languages/config/languages.yml"
+          "#{Rails.root}/rockets/keppler_languages/config/locales.yml"
         ).values.each(&:symbolize_keys!)
       end
 
