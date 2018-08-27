@@ -15,6 +15,7 @@ es:
         keppler_frontend/view: vista
         view: vista
         theme: tema
+        partials: parciales
       pluralize:
         keppler_frontend/views: vistas
         views: vistas
@@ -61,6 +62,7 @@ es:
       view_list: Lista de vistas
       edit: Actualizar
       clone: Clonar
+      editor: Editor
       delete: Eliminar
       deleted: Eliminado
       index: Listado
