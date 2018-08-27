@@ -74,6 +74,8 @@ class ApplicationController < ActionController::Base
       ).values.each(&:symbolize_keys!)
       @sidebar[0] = @sidebar[0].merge(module_menu[0])
     end
+
+    @sidebar[0] = Hash[ @sidebar[0].map { |key, val| [key.to_s, val] }.sort ]
   end
 
   def set_modules
