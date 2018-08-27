@@ -15,6 +15,7 @@ en:
         keppler_frontend/view: view
         view: view
         theme: theme
+        partials: partials
       pluralize:
         keppler_frontend/views: views
         views: views
@@ -60,6 +61,7 @@ en:
       show: Show
       edit: Update
       clone: Clone
+      editor: Editor
       delete: Delete
       index: List
       change_rol: Change role

@@ -8,6 +8,7 @@ module KepplerFrontend
     validates_presence_of :name
     validates_uniqueness_of :name
     before_save :convert_to_downcase, :without_spaces
+    before_destroy :uninstall
 
     include KepplerFrontend::Concerns::Partials::HtmlFile
     include KepplerFrontend::Concerns::Partials::ScssFile

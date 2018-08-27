@@ -62,5 +62,14 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
       format_result: route['format_result']
     )
   end
-  puts 'Views has been created'
+
+  partials_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/partials.yml")
+  partials = YAML.load_file(partials_file)
+
+  partials.each do |partial|
+    KepplerFrontend::Partial.create(
+      name: partial['name'],
+    )
+  end
+  puts 'Views and Partials has been created'
 end
