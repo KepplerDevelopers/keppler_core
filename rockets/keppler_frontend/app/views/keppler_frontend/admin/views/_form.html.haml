@@ -33,7 +33,25 @@
                     = f.input :position, as: :hidden
                   .col-xs-12
                     = f.input :deleted_at, as: :hidden
+
+      .col-lg-12
+        .box.slice-box
+          .box-header.with-border
+            %h3.box-title= t("keppler_frontend.form.callbacks")
+            .box-body
+              %table.table.table-bordered
+              %tbody
+                .form-padding
                   .col-xs-12
-                    .pull-right
-                      = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
-                      -# = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'
+                    = f.simple_fields_for :view_callbacks do |view_callback|
+                      - if capsule_field.object.name_field
+                        = render 'view_callback_fields_edit', f: view_callback
+                      - else
+                        = render 'view_callback_fields', f: view_callback
+                    .links
+                      = link_to_add_association "<button class='btn btn-default'> + #{t('keppler_frontend.actions.add_callback')}</button>".html_safe, f, :view_callbacks
+                    %br
+                    %br
+            .box-footer
+              .pull-right
+                = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'

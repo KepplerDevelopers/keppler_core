@@ -26,6 +26,13 @@ en:
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Themes
       keppler_frontend/admin/callback_functions: Callbacks
+    form:
+      callbacks: Callbacks
+    actions:
+      add_callback: Add new callback
+    attributes:
+      function: Function
+      callback: Callback
   keppler:
     sidebar-menu:
       keppler-frontend: Frontend

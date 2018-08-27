@@ -13,6 +13,10 @@ menu:
       - option:
           name: callback_functions
           url_path: /admin/frontend/callback_functions
+          current: ['current']      
+      - option:
+          name: partials
+          url_path: /admin/frontend/partials
           current: ['current']
       - option:
           name: Assets
@@ -21,8 +25,4 @@ menu:
       - option:
           name: Themes
           url_path: /admin/frontend/themes
-          current: ['current']
-      - option:
-          name: partials
-          url_path: /admin/frontend/partials
           current: ['current']

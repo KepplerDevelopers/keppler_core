@@ -15,6 +15,8 @@ module KepplerFrontend
     validates_presence_of :name, :url
     validates_uniqueness_of :name, :url
     before_validation :convert_to_downcase, :without_special_characters
+    has_many :view_callbacks, dependent: :destroy, inverse_of: :view
+    accepts_nested_attributes_for :view_callbacks, reject_if: :all_blank, allow_destroy: true
 
     # Fields for the search form in the navbar
     def self.search_field
