@@ -11,14 +11,18 @@ menu:
           url_path: /admin/frontend/views
           current: ['current']
       - option:
+          name: callback_functions
+          url_path: /admin/frontend/callback_functions
+          current: ['current']      
+      - option:
+          name: partials
+          url_path: /admin/frontend/partials
+          current: ['current']
+      - option:
           name: Assets
           url_path: /admin/frontend/assets
           current: ['current']
       - option:
           name: Themes
           url_path: /admin/frontend/themes
-          current: ['current']
-      - option:
-          name: partials
-          url_path: /admin/frontend/partials
           current: ['current']
