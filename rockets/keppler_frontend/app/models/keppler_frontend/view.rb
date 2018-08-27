@@ -120,12 +120,12 @@ module KepplerFrontend
       out_file.close
     end
 
-    def new_callback(callbacks)
+    def new_callback(view, callbacks)
       return unless callbacks
       callbacks.each do |key, value|
         if value[:name]
           callback = ViewCallback.where(name: value[:name], function_type: value[:function_type])
-          add_callback_to(value) if callback.count == 1
+          add_callback_to(view, value) if callback.count == 1
         end
       end
     end

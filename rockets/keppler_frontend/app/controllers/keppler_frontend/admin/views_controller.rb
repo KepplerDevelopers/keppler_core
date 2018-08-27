@@ -65,7 +65,7 @@ module KepplerFrontend
         @view.update_files(view_params)
         if @view.update(view_params)
           view = view_params.to_h
-          @view.new_callback(view[:view_callbacks_attributes])
+          @view.new_callback(@view, view[:view_callbacks_attributes])
           redirect_to edit_admin_frontend_view_path(@view), notice: actions_messages(@view)
         else
           render :edit
@@ -96,7 +96,7 @@ module KepplerFrontend
         @view = View.find(params[:view_id])
         @callback = ViewCallback.find(params[:view_callback_id])
         @callback.destroy
-        @view.delete_callback(@callback)
+        @view.delete_callback(@view, @callback)
       end
 
       def destroy_multiple
