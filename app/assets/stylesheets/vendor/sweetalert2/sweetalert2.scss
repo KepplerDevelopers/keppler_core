@@ -1,0 +1,11 @@
+.swal2-popup {
+  font-size: 15px;
+}
+
+.swal2-popup .swal2-styled.swal2-confirm {
+  background: $keppler-color !important;
+}
+
+.swal2-popup .swal2-styled:focus {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px tint($keppler-color, 40%) !important;
+}

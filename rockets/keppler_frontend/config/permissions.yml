@@ -1,4 +1,12 @@
 modules:
+ callback_functions:
+    name: CallbackFunction
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  
 #  themes:
 #     name: Theme
 #     actions: [
