@@ -8,6 +8,7 @@ module KepplerFrontend
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
+      after_action :update_partials_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       include KepplerFrontend::Concerns::Commons
       include KepplerFrontend::Concerns::History
       include KepplerFrontend::Concerns::DestroyMultiple
@@ -134,6 +135,13 @@ module KepplerFrontend
       end
 
       private
+
+      def update_partials_yml
+        partials = KepplerFrontend::Partial.all
+        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/partials.yml")
+        data = partials.as_json.to_yaml
+        File.write(file, data)
+      end
 
       def authorization
         authorize Partial

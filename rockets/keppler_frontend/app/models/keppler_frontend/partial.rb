@@ -8,6 +8,7 @@ module KepplerFrontend
     validates_presence_of :name
     validates_uniqueness_of :name
     before_save :convert_to_downcase, :without_special_characters
+    before_destroy :uninstall
 
     include KepplerFrontend::Concerns::Partials::HtmlFile
     include KepplerFrontend::Concerns::Partials::ScssFile
@@ -19,7 +20,6 @@ module KepplerFrontend
       '_' + name.split(' ').join('_').downcase
     end
 
-    # Fields for the search form in the navbar
     def self.search_field
       fields = ["name", "position", "deleted_at"]
       build_query(fields, :or, :cont)
