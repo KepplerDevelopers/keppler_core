@@ -3,7 +3,6 @@ module App
   class AppController < ::ApplicationController
     layout 'app/layouts/application'
     skip_before_action :verify_authenticity_token
-    before_action :set_settings
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
@@ -26,14 +25,6 @@ module App
 
     private
 
-    def set_settings
-      @settings = YAML.load_file(
-        "#{Rails.root}/config/settings.yml"
-      ).values.each(&:symbolize_keys!)
-
-      @settings = @settings[0]
-    end
-    
     def set_locale
       if params[:locale]
         @locale = I18n.locale = params[:locale]

@@ -30,9 +30,7 @@ class ApplicationController < ActionController::Base
   def set_settings
     @settings = YAML.load_file(
       "#{Rails.root}/config/settings.yml"
-    ).values.each(&:symbolize_keys!)
-
-    @settings = @settings[0]
+    ).values.each(&:symbolize_keys!)[0]
   end
 
   def class_exists?(klass)
@@ -40,12 +38,6 @@ class ApplicationController < ActionController::Base
   end
 
   def appearance
-    @settings = YAML.load_file(
-      "#{Rails.root}/config/settings.yml"
-    ).values.each(&:symbolize_keys!)
-
-    @settings = @settings[0]
-
     @appearance = @settings[:appearance]
   end
 

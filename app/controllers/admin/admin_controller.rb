@@ -4,7 +4,6 @@ module Admin
   # AdminController
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
-    before_action :set_settings
     before_action :authenticate_user!
     before_action :validate_permissions
     before_action :paginator_params
@@ -31,14 +30,6 @@ module Admin
     end
 
     private
-
-    def set_settings
-      @settings = YAML.load_file(
-        "#{Rails.root}/config/settings.yml"
-      ).values.each(&:symbolize_keys!)
-
-      @settings = @settings[0]
-    end
 
     def get_history(model)
       @activities = PublicActivity::Activity.where(
