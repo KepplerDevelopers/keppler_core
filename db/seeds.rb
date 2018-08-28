@@ -73,3 +73,26 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
   end
   puts 'Views and Partials has been created'
 end
+
+if defined?(KepplerLanguages) && KepplerLanguages.is_a?(Module)
+  languages =  File.join("#{Rails.root}/rockets/keppler_languages/config/languages.yml")
+  langs = YAML.load_file(languages)
+
+  langs.each do |lang|
+    KepplerLanguages::Language.create(
+      name: lang['name']
+    )
+  end
+
+  file_fields =  File.join("#{Rails.root}/rockets/keppler_languages/config/fields.yml")
+  fields = YAML.load_file(file_fields)
+
+  fields.each do |field|
+    KepplerLanguages::Field.create(
+      key: field['key'],
+      value: field['value'],
+      language_id: field['language_id']
+    )
+  end
+  puts 'Languages has been created'
+end

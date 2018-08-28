@@ -25,7 +25,7 @@
           %li
             = link_to edit_admin_languages_language_path(language), class: 'new-menu', title: t('keppler.actions.edit') do
               %i.icon-pencil
-              = t('keppler.actions.edit')
+              = t('keppler.actions.add')
         - if can?(KepplerLanguages::Language).clone?
           %li
             = link_to admin_languages_language_clone_path(language), class: 'new-menu', title: t('keppler.actions.clone') do
