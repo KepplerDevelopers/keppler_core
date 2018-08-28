@@ -16,6 +16,7 @@ es:
         callback_function: callback
         view: vista
         theme: tema
+        partials: parciales
       pluralize:
         keppler_frontend/views: vistas
         callback_functions: callbacks
@@ -76,6 +77,7 @@ es:
       callbacks_list: Lista de callbacks
       edit: Actualizar
       clone: Clonar
+      editor: Editor
       delete: Eliminar
       deleted: Eliminado
       index: Listado
