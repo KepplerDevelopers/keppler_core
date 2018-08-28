@@ -20,7 +20,6 @@ module KepplerFrontend
       '_' + name.split(' ').join('_').downcase
     end
 
-    # Fields for the search form in the navbar
     def self.search_field
       fields = ["name", "position", "deleted_at"]
       build_query(fields, :or, :cont)
