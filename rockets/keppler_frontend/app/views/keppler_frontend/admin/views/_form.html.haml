@@ -26,7 +26,10 @@
                   .col-xs-2
                     = f.input :method, collection: [:GET, :POST, :PATCH, :PUT, :DELETE], prompt: false
                   .col-xs-2
-                    = f.input :format_result, collection: [:HTML, :JS, :Action], prompt: false
+                    - if ['new', 'create'].include?(action_name)
+                      = f.input :format_result, collection: [:HTML, :JS, :Action], prompt: false
+                    - else
+                      = f.input :format_result, collection: [:HTML, :JS, :Action], prompt: false, disabled: true
                   .col-xs-2
                     = f.input :active, as: :keppler_boolean
                   .col-xs-12
@@ -34,8 +37,9 @@
                   .col-xs-12
                     = f.input :deleted_at, as: :hidden
           .box-footer
-            .pull-right
-              = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+            - if ['new', 'create'].include?(action_name)
+              .pull-right
+                = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
       - if action_name.eql?('edit') || action_name.eql?('update')
         .col-lg-12
           .box.slice-box

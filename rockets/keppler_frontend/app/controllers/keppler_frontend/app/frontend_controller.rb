@@ -12,5 +12,10 @@ module KepplerFrontend
     # end keppler
 
     private
+    # begin callback user_authenticate
+    def user_authenticate
+      redirect_to '/' unless user_signed_in?
+    end
+    # end callback user_authenticate
   end
 end
