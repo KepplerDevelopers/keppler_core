@@ -33,7 +33,7 @@ module KepplerFrontend
       end
     end
 
-    # Funcion para armar el query de ransack
+
     def self.build_query(fields, operator, conf)
       query = fields.join("_#{operator}_")
       query << "_#{conf}"
