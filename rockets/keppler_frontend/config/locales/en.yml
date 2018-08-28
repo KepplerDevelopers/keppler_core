@@ -23,6 +23,7 @@ en:
         callback_function: callback
         view: view
         theme: theme
+        partials: partials
       pluralize:
         keppler_frontend/views: views
         allback_functions: callbacks
@@ -78,6 +79,7 @@ en:
       show: Show
       edit: Update
       clone: Clone
+      editor: Editor
       delete: Delete
       index: List
       change_rol: Change role

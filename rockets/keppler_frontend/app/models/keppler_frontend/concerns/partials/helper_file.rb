@@ -12,11 +12,13 @@ module KepplerFrontend
           index_html = File.readlines(file)
           head_idx = 0
           index_html.each do |i|
-            head_idx = index_html.find_index(i) if i.include?(" module App::FrontendHelper")
+            head_idx = index_html.find_index(i) if i.include?("  module App::FrontendHelper")
           end
-          index_html.insert(head_idx.to_i + 1, "    def #{name}(hash = {})\n")
-          index_html.insert(head_idx.to_i + 2, "      render 'keppler_frontend/app/partials/#{name}'\n")
-          index_html.insert(head_idx.to_i + 3, "    end\n\n")
+          index_html.insert(head_idx.to_i + 1, "    # begin #{name}\n")
+          index_html.insert(head_idx.to_i + 2, "    def #{name}(hash = {})\n")
+          index_html.insert(head_idx.to_i + 3, "      render 'keppler_frontend/app/partials/#{name}'\n")
+          index_html.insert(head_idx.to_i + 4, "    end\n")
+          index_html.insert(head_idx.to_i + 5, "    # end #{name}\n")
           index_html = index_html.join('')
           File.write(file, index_html)
           true
@@ -28,8 +30,8 @@ module KepplerFrontend
           begin_idx = 0
           end_idx = 0
           index_html.each do |i|
-            begin_idx = index_html.find_index(i) if i.include?("    def #{name}(hash = {})\n")
-            end_idx = index_html.find_index(i) if i.include?("    end\n")
+            begin_idx = index_html.find_index(i) if i.include?("    # begin #{name}\n")
+            end_idx = index_html.find_index(i) if i.include?("    # end #{name}\n")
           end
           return if begin_idx==0
           index_html.slice!(begin_idx..end_idx)
@@ -45,12 +47,14 @@ module KepplerFrontend
           begin_idx = 0
           end_idx = 0
           index_html.each do |i|
-            begin_idx = index_html.find_index(i) if i.include?("    def #{name}(hash = {})\n")
-            end_idx = index_html.find_index(i) if i.include?("    end\n")
+            begin_idx = index_html.find_index(i) if i.include?("    # begin #{name}\n")
+            end_idx = index_html.find_index(i) if i.include?("    # end #{name}\n")
           end
           return if begin_idx==0
-          index_html[begin_idx] = "    def #{helper[:name]}(hash = {})\n"
-          index_html[begin_idx+1] = "      render 'keppler_frontend/app/partials/#{helper[:name]}'\n"
+          index_html[begin_idx] = "    # begin #{helper[:name]}\n"
+          index_html[begin_idx+1] = "    def #{helper[:name]}(hash = {})\n"
+          index_html[begin_idx+2] = "      render 'keppler_frontend/app/partials/#{helper[:name]}'\n"
+          index_html[begin_idx+4] = "    # end #{helper[:name]}\n"
           index_html = index_html.join('')
           File.write(file, index_html)
           true
