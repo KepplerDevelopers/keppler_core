@@ -126,8 +126,9 @@ group :development, :test do
   gem 'rails-controller-testing'
 end
 
-#---- keppler_ga_dashboard ----
 gem 'google-api-client', '~> 0.7.1'
+
+# ----- Rockets ----- #
 gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'

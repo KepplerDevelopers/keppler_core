@@ -1,0 +1,27 @@
+Description:
+    RocketInstall is a generator to copy migrations from rocket's db/migrate folder, 
+    add a gem in Gemfile and EngineRoutes to config/routes.rb.
+    Also, run rake bundle install, rake db:migrate and restart server
+
+Example:
+    rails generate rocket_install RocketName
+
+    This will create:
+        insert  Gemfile
+        insert  config/routes.rb
+
+    === Installing KepplerContactUs ===
+    The Gemfile's dependencies are satisfied
+
+    === Updating database ===
+    == 20180727215904 CreateMyCustomTable: migrating ===================
+    -- create_table(:my_custom_table)
+    -> 0.5282s
+    -- add_index(:my_custom_table, :deleted_at)
+    -> 0.0750s
+    == 20180727215904 CreateMyCustomTable: migrated (0.6034s) ==========
+
+
+    === Removing old logs and tempfiles ===
+
+    === Restarting application server ===
