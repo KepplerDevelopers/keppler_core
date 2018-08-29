@@ -23,10 +23,6 @@ module KepplerLanguages
         @current_page = params[:page] unless params[:page].blank?
       end
 
-      def set_setting
-        @setting = Setting.first
-      end
-
       def module_name
         self.class.to_s.split('::').first.constantize
       end
