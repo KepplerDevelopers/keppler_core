@@ -1,0 +1,365 @@
+languages:
+  ab:
+    name: 'Abkhazian'
+  aa:
+    name: 'Afar'
+  af:
+    name: 'Afrikaans'
+  ak:
+    name: 'Akan'
+  sq:
+    name: 'Albanian'
+  am:
+    name: 'Amharic'
+  ar:
+    name: 'Arabic'
+  an:
+    name: 'Aragonese'
+  hy:
+    name: 'Armenian'
+  as:
+    name: 'Assamese'
+  av:
+    name: 'Avaric'
+  ae:
+    name: 'Avestan'
+  ay:
+    name: 'Aymara'
+  az:
+    name: 'Azerbaijani'
+  bm:
+    name: 'Bambara'
+  ba:
+    name: 'Bashkir'
+  eu:
+    name: 'Basque'
+  be:
+    name: 'Belarusian'
+  bn:
+    name: 'Bengali'
+  bh:
+    name: 'Bihari'
+  bi:
+    name: 'Bislama'
+  bs:
+    name: 'Bosnian'
+  br:
+    name: 'Breton'
+  bg:
+    name: 'Bulgarian'
+  my:
+    name: 'Burmese'
+  ca:
+    name: 'Catalan'
+  ch:
+    name: 'Chamorro'
+  ce:
+    name: 'Chechen'
+  ny:
+    name: 'Chichewa'
+  zh:
+    name: 'Chinese'
+  nt:
+    name: 'Chinese'
+  cv:
+    name: 'Chuvash'
+  kw:
+    name: 'Cornish'
+  co:
+    name: 'Corsican'
+  cr:
+    name: 'Cree'
+  hr:
+    name: 'Croatian'
+  cs:
+    name: 'Czech'
+  da:
+    name: 'Danish'
+  dv:
+    name: 'Maldivian'
+  nl:
+    name: 'Dutch'
+  dz:
+    name: 'Dzongkha'
+  en:
+    name: 'English'
+  eo:
+    name: 'Esperanto'
+  et:
+    name: 'Estonian'
+  ee:
+    name: 'Ewe'
+  fo:
+    name: 'Faroese'
+  fj:
+    name: 'Fijian'
+  fi:
+    name: 'Finnish'
+  fr:
+    name: 'French'
+  ff:
+    name: 'Fula'
+  gl:
+    name: 'Galician'
+  gd:
+    name: 'Gaelic'
+  gv:
+    name: 'Gaelic'
+  ka:
+    name: 'Georgian'
+  de:
+    name: 'German'
+  el:
+    name: 'Greek'
+  kl:
+    name: 'Greenlandic'
+  gn:
+    name: 'Guarani'
+  gu:
+    name: 'Gujarati'
+  ht:
+    name: 'Haitian_Creole'
+  ha:
+    name: 'Hausa'
+  he:
+    name: 'Hebrew'
+  hz:
+    name: 'Herero'
+  hi:
+    name: 'Hindi'
+  ho:
+    name: 'Hiri_Motu'
+  hu:
+    name: 'Hungarian'
+  is:
+    name: 'Icelandic'
+  io:
+    name: 'Ido'
+  ig:
+    name: 'Igbo'
+  in:
+    name: 'Indonesian'
+  ia:
+    name: 'Interlingua'
+  ie:
+    name: 'Interlingue'
+  iu:
+    name: 'Inuktitut'
+  ik:
+    name: 'Inupiak'
+  ga:
+    name: 'Irish'
+  it:
+    name: 'Italian'
+  ja:
+    name: 'Japanese'
+  jv:
+    name: 'Javanese'
+  kn:
+    name: 'Kannada'
+  kr:
+    name: 'Kanuri'
+  ks:
+    name: 'Kashmiri'
+  kk:
+    name: 'Kazakh'
+  km:
+    name: 'Khmer'
+  ki:
+    name: 'Kikuyu'
+  rw:
+    name: 'Kinyarwanda'
+  rn:
+    name: 'Kirundi'
+  ky:
+    name: 'Kyrgyz'
+  kv:
+    name: 'Komi'
+  kg:
+    name: 'Kongo'
+  ko:
+    name: 'Korean'
+  ku:
+    name: 'Kurdish'
+  kj:
+    name: 'Kwanyama'
+  lo:
+    name: 'Lao'
+  la:
+    name: 'Latin'
+  lv:
+    name: 'Latvian'
+  li:
+    name: 'Limburgish'
+  ln:
+    name: 'Lingala'
+  lt:
+    name: 'Lithuanian'
+  lu:
+    name: 'Luga_Katanga'
+  lg:
+    name: 'Luganda'
+  lb:
+    name: 'Luxembourgish'
+  mk:
+    name: 'Macedonian'
+  mg:
+    name: 'Malagasy'
+  ms:
+    name: 'Malay'
+  ml:
+    name: 'Malayalam'
+  mt:
+    name: 'Maltese'
+  mi:
+    name: 'Maori'
+  mr:
+    name: 'Marathi'
+  mh:
+    name: 'Marshallese'
+  mo:
+    name: 'Moldavian'
+  mn:
+    name: 'Mongolian'
+  na:
+    name: 'Nauru'
+  nv:
+    name: 'Navajo'
+  ng:
+    name: 'Ndonga'
+  nd:
+    name: 'Northern_Ndebele'
+  ne:
+    name: 'Nepali'
+  nb:
+    name: 'Norwegian_bokmål'
+  nn:
+    name: 'Norwegian_nynorsk'
+  ii:
+    name: 'Nuosu'
+  oc:
+    name: 'Occitan'
+  oj:
+    name: 'Ojibwe'
+  cu:
+    name: 'Bulgarian'
+  or:
+    name: 'Oriya'
+  om:
+    name: 'Oromo'
+  os:
+    name: 'Ossetian'
+  pi:
+    name: 'Pāli'
+  ps:
+    name: 'Pashto'
+  fa:
+    name: 'Persian'
+  pl:
+    name: 'Polish'
+  pt:
+    name: 'Portuguese'
+  pa:
+    name: 'Punjabi'
+  qu:
+    name: 'Quechua'
+  rm:
+    name: 'Romansh'
+  ro:
+    name: 'Romanian'
+  ru:
+    name: 'Russian'
+  se:
+    name: 'Sami'
+  sm:
+    name: 'Samoan'
+  sg:
+    name: 'Sango'
+  sa:
+    name: 'Sanskrit'
+  sr:
+    name: 'Serbian'
+  sh:
+    name: 'Serbo_Croatian'
+  st:
+    name: 'Sesotho'
+  tn:
+    name: 'Setswana'
+  sn:
+    name: 'Shona'
+  si:
+    name: 'Sinhalese'
+  ss:
+    name: 'Siswati'
+  sk:
+    name: 'Slovak'
+  sl:
+    name: 'Slovenian'
+  so:
+    name: 'Somali'
+  nr:
+    name: 'Southern_Ndebele'
+  es:
+    name: 'Spanish'
+  su:
+    name: 'Sundanese'
+  sw:
+    name: 'Swahili'
+  ty:
+    name: 'Tahitian'
+  tg:
+    name: 'Tajik'
+  ta:
+    name: 'Tamil'
+  tt:
+    name: 'Tatar'
+  te:
+    name: 'Telugu'
+  th:
+    name: 'Thai'
+  bo:
+    name: 'Tibetan'
+  ti:
+    name: 'Tigrinya'
+  to:
+    name: 'Tonga'
+  ts:
+    name: 'Tsonga'
+  tr:
+    name: 'Turkish'
+  tk:
+    name: 'Turkmen'
+  tw:
+    name: 'Twi'
+  ug:
+    name: 'Uyghur'
+  uk:
+    name: 'Ukrainian'
+  ur:
+    name: 'Urdu'
+  uz:
+    name: 'Uzbek'
+  ve:
+    name: 'Venda'
+  vi:
+    name: 'Vietnamese'
+  vo:
+    name: 'Volapük'
+  wa:
+    name: 'Wallon'
+  cy:
+    name: 'Welsh'
+  wo:
+    name: 'Wolof'
+  fy:
+    name: 'Western_Frisian'
+  xh:
+    name: 'Xhosa'
+  ji:
+    name: 'Yiddish_yi'
+  yo:
+    name: 'Yoruba'
+  za:
+    name: 'Chuang'
+  zu:
+    name: 'Zulu'

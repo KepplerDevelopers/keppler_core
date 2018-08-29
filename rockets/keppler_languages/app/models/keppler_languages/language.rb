@@ -5,6 +5,7 @@ module KepplerLanguages
     include CloneRecord
     require 'csv'
     acts_as_list
+    before_destroy :delete_yml
 
     include KepplerLanguages::Concerns::YmlFile
 
@@ -15,6 +16,7 @@ module KepplerLanguages
     has_many :fields, dependent: :destroy, inverse_of: :language
     accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
 
+    
     # Fields for the search form in the navbar
     def self.search_field
       fields = ["name", "position", "deleted_at"]

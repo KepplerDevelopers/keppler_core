@@ -13,13 +13,13 @@ es:
   keppler_capsules:
     models:
       singularize:
-        capsule: capsula
-        keppler_capsules/capsule: capsula
+        capsule: cápsula
+        keppler_capsules/capsule: cápsula
       pluralize:
-        capsules: capsulas
-        keppler_capsules/capsules: capsulas
+        capsules: cápsulas
+        keppler_capsules/capsules: cápsulas
     modules:
-      keppler_capsules/admin/capsules: Capsulas
+      keppler_capsules/admin/capsules: Cápsulas
     actions:
       add_capsule_field: Agregar nuevo atributo
       add_validation: Agregar nueva validación
@@ -28,7 +28,7 @@ es:
       add_value_validation: Agregar nueva validación de valor
       add_association: Agregar nueva relación
     form:
-      capsule: Capsula
+      capsule: cápsula
       fields: Atributos
       validations: Validaciones
       associations: Relaciones
@@ -53,14 +53,14 @@ es:
       validates_character_quantity_of: Validar cantidad de caracteres en
   keppler:
     sidebar-menu:
-      keppler-capsules: Capsulas
+      keppler-capsules: Cápsulas
       keppler-capsules-submenu:
-        add_capsule: + Manejo de Capsulas
+        add_capsule: + Manejo de cápsulas
     models:
       singularize:
-        keppler_capsules/capsule: capsula
+        keppler_capsules/capsule: cápsula
       pluralize:
-        keppler_capsules/capsules: capsulas
+        keppler_capsules/capsules: cápsulas
     modules:
     settings:
     actions:
@@ -98,7 +98,7 @@ es:
       title: Título
       name_field: Nombre
       association_type: Tipo de relación
-      capsule_name: Capsula
+      capsule_name: cápsula
       dependention_destroy: Dependencia
       format_field: Tipo
       capsule_field: Atributo
