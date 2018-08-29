@@ -2,13 +2,13 @@
 = render 'app/layouts/meta_tags'
 
 // Stylesheets
-= stylesheet_link_tag 'app/application', media: 'all', 'data-turbolinks-track' => true, async: true
-= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Patua+One', 'data-turbolinks-track' => true, async: true
-= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css', 'data-turbolinks-track' => true, async: true
+= stylesheet_link_tag 'app/application', media: 'all', 'data-turbolinks-track': 'reload' , async: true
+= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Patua+One', 'data-turbolinks-track': 'reload' , async: true
+= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css', 'data-turbolinks-track': 'reload' , async: true
 
 // Javascripts
-= javascript_include_tag 'app/application', 'data-turbolinks-track' => true, async: true
-= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js', 'data-turbolinks-track' => true, async: true
+= javascript_include_tag 'app/application', 'data-turbolinks-track': 'reload' , async: true
+= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js', 'data-turbolinks-track': 'reload' , async: true
 
 // Google Analytics
 = render 'app/layouts/google_analytics'
