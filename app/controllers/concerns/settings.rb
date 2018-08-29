@@ -22,8 +22,7 @@ module Settings
       Hash['address', smtp.address],
       Hash['port', smtp.port],
       Hash['domain_name', smtp.domain_name],
-      Hash['smtp_email', smtp.email],
-      Hash['password', smtp.password]
+      Hash['smtp_email', smtp.email]
     ]
   end
 
