@@ -1,4 +1,5 @@
 KepplerFrontend::Engine.routes.draw do
+  get '/', to: 'app/frontend#index', as: :index
   root to: 'app/frontend#keppler', as: :keppler
   namespace :admin do
     scope :frontend, as: :frontend do
