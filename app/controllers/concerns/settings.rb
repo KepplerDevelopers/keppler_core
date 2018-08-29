@@ -17,7 +17,6 @@ module Settings
 
   def smtp_fields
     smtp = Setting.first.smtp_setting
-
     [
       Hash['address', smtp.address],
       Hash['port', smtp.port],
@@ -70,14 +69,22 @@ module Settings
     yml.each_with_index do |_line, index|
       if yml[index].include?('-') && yml[index] != "---\n"
         yml[index] = yml[index].tr('-', ' ')
+        yml[index] = tracking_id(yml[index]) if yml[index].include?('UA')
       end
     end
-
     yml = yml.join('')
     File.write(file, yml)
   end
 
   private
+
+  def tracking_id(string)
+    return unless string.include?('UA')
+    a = string.split(' ').last(3)
+    b = a.first
+    c = a.last(2).join('-')
+    "  ga_tracking_id: #{b}-#{c}\n"
+  end
 
   def socials
     %i[
