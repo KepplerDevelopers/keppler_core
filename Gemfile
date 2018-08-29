@@ -53,6 +53,8 @@ end
 
 # Soft delete
 gem 'paranoia', '2.4.1'
+
+gem 'goldiloader', '2.1.1'
 #
 # gem 'codemirror-rails', '5.15.2'
 
