@@ -1,5 +1,5 @@
 // Favicon
-= favicon_link_tag @settings[:favicon].nil? ? '/assets/admin/favicon.png' : @settings[:favicon]
+= favicon_link_tag @setting.favicon || '/assets/admin/favicon.png'
 
 %meta{ charset: 'utf-8' }
 %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }
@@ -25,7 +25,6 @@
 %meta{ name: 'twitter:app:country', content: @country_code }
 %meta{ name: "twitter:creator", content: (@post.user.name unless @post.blank?) }
 -# %meta{ name: 'twitter:app:name:iphone/ipda/googleplay', content: 'name' }
-
 = csrf_meta_tags
 
 - if @meta
@@ -33,9 +32,9 @@
   %meta{ name: 'keywords', content: @meta.meta_tags }
   %title= content_for?(:title) ? yield(:title) : @meta.title
 - else
-  %meta{ name: 'description', content: (content_for?(:description) ? yield(:description) : @settings[:description]) }
+  %meta{ name: 'description', content: (content_for?(:description) ? yield(:description) : @setting.description) }
   %meta{ name: 'keywords', content: 'keppler, diseño web, desarrollo web, desarrollo de software, ecommerce, development, cms, web develpment, web design, Punto Fijo, slice, slicegroup, Venezuela, keppler, keppler cms'}
-  %title= content_for?(:title) ? yield(:title) : @settings[:name]
+  %title= content_for?(:title) ? yield(:title) : @setting.name
 
 - @scripts.each do |script|
   = raw script.script

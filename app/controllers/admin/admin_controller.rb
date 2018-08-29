@@ -7,6 +7,7 @@ module Admin
     before_action :authenticate_user!
     before_action :validate_permissions
     before_action :paginator_params
+    before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
 

@@ -1,8 +1,8 @@
-- if Rails.env.production? && @settings[:google_analytics_setting]['ga_status']
+- if Rails.env.production? && @setting.google_analytics_setting.ga_status
 	- if Script.get_script(request)
 		- tracking = Script.get_script(request).script
 	- unless tracking
-		- tracking = @settings[:google_analytics_setting]['ga_tracking_id']
+		- tracking = @setting.google_analytics_setting.ga_tracking_id
 
 	:javascript
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

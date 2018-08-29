@@ -12,12 +12,12 @@ module App
       # Descomentar el modelo que exista depende del proyecto
       # @post = KepplerBlog::Post.find(params[:id])
       # @product = Product.find(params[:id])
-      # @setting = Setting.first
+      @setting = Setting.first
       @meta = MetaTag.get_by_url(request.url)
       @social = SocialAccount.last
-      @meta_title = MetaTag.title(@post, @product, @settings)
-      @meta_description = MetaTag.description(@post, @product, @settings)
-      @meta_image = MetaTag.image(request, @post, @product, @settings)
+      @meta_title = MetaTag.title(@post, @product, @setting)
+      @meta_description = MetaTag.description(@post, @product, @setting)
+      @meta_image = MetaTag.image(request, @post, @product, @setting)
       @meta_locale = @locale.eql?('es') ? 'es_VE' : 'en_US'
       @meta_locale_alternate = @locale.eql?('es') ? 'en_US' : 'es_VE'
       @country_code = @locale.eql?('es') ? 'VE' : 'US'

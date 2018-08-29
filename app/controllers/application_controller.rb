@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   layout :layout_by_resource
-  before_action :set_settings
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :appearance
   before_action :set_apparience_colors
@@ -27,18 +26,12 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_settings
-    @settings = YAML.load_file(
-      "#{Rails.root}/config/settings.yml"
-    ).values.each(&:symbolize_keys!)[0]
-  end
-
   def class_exists?(klass)
     defined?(klass) && klass.is_a?(Class)
   end
 
   def appearance
-    @appearance = @settings[:appearance]
+    @appearance = Setting.first.appearance
   end
 
   def set_apparience_colors
