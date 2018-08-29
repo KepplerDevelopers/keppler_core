@@ -21,7 +21,7 @@ class MetaTag < ApplicationRecord
   def self.title(post_param, product_param, setting)
     post = post_param&.title
     product = product_param&.title || product_param&.name
-    post || product || setting[:name]
+    post || product || setting.name
   end
 
   def self.description(post_param, product_param, setting)
@@ -30,13 +30,13 @@ class MetaTag < ApplicationRecord
       post = sanitize(body, tags: []).truncate(300)
     end
     product = product_param&.description || product_param&.body
-    post || product || setting[:description]
+    post || product || setting.description
   end
 
   def self.image(request, post_param, product_param, setting_param)
     post = post_param&.image
     product = product_param&.image || product_param&.photo
-    setting = setting_param[:logo] unless setting_param[:logo].blank?
+    setting = setting_param&.logo unless setting_param&.logo.blank?
     image = '/assets/admin/slice.png'
     url = request.protocol + request.host_with_port
     url + (post || product || setting || image).to_s
