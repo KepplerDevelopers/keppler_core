@@ -53,6 +53,8 @@ end
 
 # Soft delete
 gem 'paranoia', '2.4.1'
+
+gem 'goldiloader', '2.1.1'
 #
 # gem 'codemirror-rails', '5.15.2'
 
@@ -111,6 +113,7 @@ group :development do
   gem 'spring', '2.0.2'
   # gem 'table_print'
   gem 'web-console', '>= 3.3.0'
+  gem 'lol_dba'
 end
 
 group :development, :test do
