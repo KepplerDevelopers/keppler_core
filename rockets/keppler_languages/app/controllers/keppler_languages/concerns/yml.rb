@@ -36,6 +36,20 @@ module KepplerLanguages
         File.write(file, yml)
       end
 
+      def update_languages_yml
+        languages = KepplerLanguages::Language.all
+        file =  File.join("#{Rails.root}/rockets/keppler_languages/config/languages.yml")
+        data = languages.as_json.to_yaml
+        File.write(file, data)
+      end
+
+      def update_fields_yml
+        fields = KepplerLanguages::Field.all
+        file =  File.join("#{Rails.root}/rockets/keppler_languages/config/fields.yml")
+        data = fields.as_json.to_yaml
+        File.write(file, data)
+      end
+
       def url
         "#{Rails.root}/rockets/keppler_languages"
       end
