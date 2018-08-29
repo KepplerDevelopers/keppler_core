@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#root'
 
+    get 'rockets', to: 'rockets#index', as: :admin_rockets
+
     resources :roles do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
