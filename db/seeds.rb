@@ -25,21 +25,21 @@ puts 'admin@keppler.io has been created'
 Customize.create(file: '', installed: true)
 puts 'Keppler Template has been created'
 # Create setting deafult
-setting = Setting.create(
-  name: 'Keppler Admin', description: 'Welcome to Keppler Admin',
-  smtp_setting_attributes: {
-    address: 'test', port: '25', domain_name: 'keppler.com',
-    email: 'info@keppler.com', password: '12345678'
-  },
-  google_analytics_setting_attributes: {
-    ga_account_id: '60688852',
-    ga_tracking_id: 'UA-60688852-1',
-    ga_status: true
-  }
-)
-setting.social_account = SocialAccount.new
-setting.appearance = Appearance.new(theme_name: 'keppler')
-setting.save
+# setting = Setting.create(
+#   name: 'Keppler Admin', description: 'Welcome to Keppler Admin',
+#   smtp_setting_attributes: {
+#     address: 'test', port: '25', domain_name: 'keppler.com',
+#     email: 'info@keppler.com', password: '12345678'
+#   },
+#   google_analytics_setting_attributes: {
+#     ga_account_id: '60688852',
+#     ga_tracking_id: 'UA-60688852-1',
+#     ga_status: true
+#   }
+# )
+# setting.social_account = SocialAccount.new
+# setting.appearance = Appearance.new(theme_name: 'keppler')
+# setting.save
 puts 'Setting default has been created'
 
 if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
