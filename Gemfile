@@ -113,6 +113,7 @@ group :development do
   gem 'spring', '2.0.2'
   # gem 'table_print'
   gem 'web-console', '>= 3.3.0'
+  gem 'lol_dba'
 end
 
 group :development, :test do
