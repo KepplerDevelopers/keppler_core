@@ -5,6 +5,7 @@ module Admin
   class SettingsController < AdminController
     before_action :set_setting, only: %i[edit update appearance_default]
     before_action :authorization, except: %i[reload appearance_default]
+    after_action :update_settings_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
 
     def edit
       @social_medias = social_account_permit_attributes
@@ -30,6 +31,97 @@ module Admin
     end
 
     private
+
+    def basic_information_fields
+      setting = Setting.first
+
+      basic_information = [
+        Hash['name', setting.name],
+        Hash['description', setting.description],
+        Hash['email', setting.email],
+        Hash['phone', setting.phone],
+        Hash['mobile', setting.mobile]
+      ]
+    end
+
+    def smtp_fields
+      smtp = Setting.first.smtp_setting
+
+      smtp_settings = [
+        Hash['address', smtp.address],
+        Hash['port', smtp.port],
+        Hash['domain_name', smtp.domain_name],
+        Hash['smtp_email', smtp.email],
+        Hash['password', smtp.password]
+      ]
+    end
+
+    def google_analytics_fields
+      google = Setting.first.google_analytics_setting
+
+      google_analytics_setting = [
+        Hash['ga_account_id', google.ga_account_id],
+        Hash['ga_tracking_id', google.ga_tracking_id],
+        Hash['ga_status', google.ga_status]
+      ]
+    end
+
+    def social_accounts_fields
+      social = Setting.first.social_account
+
+      social_accounts = [
+        Hash['facebook', social.facebook],
+        Hash['twitter', social.twitter],
+        Hash['instagram', social.instagram],
+        Hash['google_plus', social.google_plus],
+        Hash['tripadvisor', social.tripadvisor],
+        Hash['pinterest', social.pinterest],
+        Hash['flickr', social.flickr],
+        Hash['behance', social.behance],
+        Hash['dribbble', social.dribbble],
+        Hash['tumblr', social.tumblr],
+        Hash['github', social.github],
+        Hash['linkedin', social.linkedin],
+        Hash['soundcloud', social.soundcloud],
+        Hash['youtube', social.youtube],
+        Hash['skype', social.skype],
+        Hash['vimeo', social.vimeo]
+      ]
+    end
+
+    def appearance_fields
+      fields = Setting.first.appearance
+
+      appearance = [
+        Hash['theme_name', fields.theme_name]
+      ]
+    end
+
+    def update_settings_yml
+      file =  File.join("#{Rails.root}/config/settings.yml")
+
+      data = basic_information_fields.push(
+        smtp_fields,
+        google_analytics_fields,
+        social_accounts_fields,
+        appearance_fields
+      ).flatten.as_json.to_yaml
+
+      File.write(file, data)
+      delete_underscores(file)
+    end
+
+    def delete_underscores(file)
+      yml = File.readlines(file)
+      yml.each_with_index do |line, index|
+        if yml[index].include?('-') && yml[index] != ("---\n")
+          yml[index] = yml[index].gsub('-', ' ')
+        end
+      end
+
+      yml = yml.join('')
+      File.write(file, yml)
+    end
 
     def appearance_service
       Admin::AppearanceService.new
