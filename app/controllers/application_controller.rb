@@ -44,6 +44,10 @@ class ApplicationController < ActionController::Base
     "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
   end
 
+  def set_setting
+    @setting = Setting.first
+  end
+
   def user_not_authorized
     flash[:alert] = t('keppler.messages.not_authorized_action')
     redirect_to(request.referrer || root_path)
@@ -101,6 +105,8 @@ class ApplicationController < ActionController::Base
 
     I18n.available_locales = @languages
   end
+
+
 
   protected
 
