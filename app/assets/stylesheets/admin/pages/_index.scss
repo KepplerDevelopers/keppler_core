@@ -1,3 +1,6 @@
+.btn {
+  border-radius: 15px;
+}
 
 .content-header.index-header {
   margin: 0;
@@ -111,8 +114,8 @@
   box-shadow: $box-shadow-collapse;
   left: auto;
   min-width: 130px;
-  right: 70px;
-  top: 10px;
+  right: 45px;
+  top: 15px;
   width: 100px;
 
   li {

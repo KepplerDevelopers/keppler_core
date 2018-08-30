@@ -78,7 +78,6 @@ $gray-color: #949494;
 
     &:hover {
       background-color: $sidebar-toggle-hover;
-      color: $gray-color;
     }
   }
 
@@ -88,7 +87,7 @@ $gray-color: #949494;
     display: flex;
     font-size: 2.3rem;
     justify-content: flex-start;
-    width: 170px;
+    width: 185px;
     z-index: 9;
 
     span {
@@ -120,7 +119,7 @@ $gray-color: #949494;
   }
 
   .main-header .logo {
-    width: 170px;
+    width: 185px;
 
     .logo-mini span {
       margin-left: 15px;

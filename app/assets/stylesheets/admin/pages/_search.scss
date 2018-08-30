@@ -16,7 +16,7 @@
 
   .search-bar {
     // animation: .5s cubic-bezier(0.4, 0, 0.2, 1) 1s change_input forwards;
-    border: solid .5px $gray-hover;
+    border: 0;
     border-radius: 15px 0 0 15px;
     padding: 0;
     transition: .3s ease-in-out;
@@ -38,7 +38,6 @@
   .search-button {
     // animation: .3s ease-in-out .5s change_button forwards;
     background-color: transparent;
-    border: 50%;
     transition: .3s ease-in-out;
 
     @include respond-to(xs) {
@@ -149,10 +148,12 @@
 
 @keyframes change_input {
   from {
+    border: 0;
     padding: 6px 0;
   }
 
   to {
+    border: solid .5px $gray-hover;
     padding: 6px 12px;
   }
 }

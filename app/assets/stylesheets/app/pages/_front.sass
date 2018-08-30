@@ -6,7 +6,7 @@ main
     z-index: 1
     .languages
       display: flex
-      margin: 40px
+      margin: 50px
       position: absolute
       z-index: 9
       a
@@ -28,7 +28,7 @@ main
       color:  white
       cursor: pointer
       font-weight:  600
-      margin: 50px
+      margin: 40px 50px
       padding: 11px 20px 8px 20px
       position: absolute
       right: 0
@@ -81,22 +81,48 @@ main
           animation-name: scroll-down
           animation-duration: 1s
           animation-iteration-count: infinite
-  #documentation
-    padding: 50px
-    font-family: $raleway
-    color: rgba(36,45,75,1)
-    background-color: $white
-    h3
-      font-family: $putua
-    a, a:focus, a:hover
-      color: #f33e3c
+  // #documentation
+  //   padding: 50px
+  //   color: rgba(36,45,75,1)
+  //   background-color: $white
+  //   h3
+  //     font-family: $putua
+  //   a, a:focus, a:hover
+  //     color: #f33e3c
 
-  @keyframes scroll-down
-    0%
-      margin-top: 0
-    30%
-      margin-top: 5px
-    50%
-      margin-top: 3px
-    100%
-      margin-top: 0
+  // @keyframes scroll-down
+  //   0%
+  //     margin-top: 0
+  //   30%
+  //     margin-top: 5px
+  //   50%
+  //     margin-top: 3px
+  //   100%
+  //     margin-top: 0
+
+
+  #documentation
+    font-family: $raleway
+    padding: 20px 60px
+
+    .board
+      width: 100%
+      background-color: $white
+    
+    .nav-tabs
+      display: flex
+      justify-content: space-evenly
+    
+    .tab-pane
+      position: relative
+    
+    .tab-content
+      height: 400px
+      overflow-y: scroll
+
+::-webkit-scrollbar
+  width: 6px
+  background-color: #fff
+::-webkit-scrollbar-thumb
+  border-radius: 5px
+  background: #bbb
