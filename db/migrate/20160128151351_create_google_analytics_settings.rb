@@ -8,5 +8,6 @@ class CreateGoogleAnalyticsSettings < ActiveRecord::Migration[5.1]
 
       t.timestamps null: false
     end
+    add_index :google_analytics_settings, :setting_id
   end
 end

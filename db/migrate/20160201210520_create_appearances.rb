@@ -7,5 +7,6 @@ class CreateAppearances < ActiveRecord::Migration[5.1]
 
       t.timestamps null: false
     end
+    add_index :appearances, :setting_id
   end
 end

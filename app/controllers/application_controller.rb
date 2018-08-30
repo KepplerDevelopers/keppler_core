@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = t('keppler.messages.not_authorized_action')
-    redirect_to(request.referrer || root_path)
+    redirect_to not_authorized_path
   end
 
   # block access dashboard
