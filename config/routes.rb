@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#root'
 
-    get 'rockets', to: 'rockets#index', as: :admin_rockets
+    get 'rockets', to: 'rockets#rockets', as: :rockets
+    post 'install_rocket', to: 'rockets#install_rocket', as: :install_rocket
 
     resources :roles do
       get '(page/:page)', action: :index, on: :collection, as: ''

@@ -1,0 +1,34 @@
+.row.customize-index#index-container
+  .col-md-6.col-lg-6
+    .box.slice-box
+      .box-header.with-border
+        %h3.box-title Upload rocket
+      .box-body.box-body-no-padding
+        .form-group
+          = simple_form_for '', url: admin_install_rocket_path do
+            .fileDrop
+              .fileDropTarget
+                %i.icon-rocket
+                %h5 Drop rockets or press here
+                %input.inputAddFiles{ type: 'file', name: 'rocket' }
+              %button#installRocket{ type: 'submit' }
+                %i.icon-rocket
+                Let's go
+
+  .col-md-6.col-lg-6
+    .box.slice-box
+      .box-header.with-border
+        %h3.box-title Rockets
+      .box-body.no-padding
+        %table.table
+          %tbody
+            - @rockets.each do |rocket|
+              %tr
+                %td
+                  %i.icon-rocket
+                  = rocket
+            - if @rockets.blank?
+              %tr
+                %td{ colspan: 4 }
+                  %center
+                    = 'There is not rockets here :('

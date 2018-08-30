@@ -1,0 +1,66 @@
+.fileDrop {
+  .fileDropTarget {
+    align-items: center;
+    border: dashed 2px #999;
+    display: flex;
+    justify-content: center;
+    min-height: 250px;
+    position: relative;
+    width: 100%;
+
+    >i {
+      font-size: 5rem;
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+    }
+
+    >h5 {
+      font-size: 2rem;
+      position: absolute;
+      text-align: center;
+      top: 60%;
+      transform: translateY(-50%);
+    }
+
+    >div {
+      margin-top: 2.75em;
+      position: relative;
+    }
+
+    >input {
+      cursor: pointer;
+      height: 100%;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    >p {
+      font-size: 1.5rem;
+      position: absolute;
+      text-align: center;
+      top: 75%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+  }
+
+  button,
+  a,
+  [type=submit] {
+    background: $keppler-color;
+    border: none;
+    color: #fff;
+    display: table;
+    margin: 20px auto;
+    outline: none;
+    padding: 10px 20px;
+    transition: .3s;
+
+    &:hover {
+      filter: brightness(110%);
+      transition: .3s;
+    }
+  }
+}
