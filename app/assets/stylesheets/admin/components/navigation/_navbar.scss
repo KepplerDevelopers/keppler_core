@@ -1,5 +1,6 @@
 $gradient1: rgba(51, 51, 102, 1);
 $gradient2: rgba(30, 43, 64, 1);
+$gradient3: rgba(30, 43, 64, 1);
 $gray-color: #949494;
 
 .skin-blue {
@@ -43,7 +44,7 @@ $gray-color: #949494;
 
     .user-header {
       align-items: center;
-      background: url('profile-menu.jpg') linear-gradient(to bottom 0% $gradient1 51% $gradient2 100%);
+      background: url('profile-menu.jpg'), linear-gradient(to bottom, $gradient1 0%, $gradient2 51%, $gradient3 100%);
       background-position: center;
       background-size: cover;
       display: flex;
@@ -57,9 +58,14 @@ $gray-color: #949494;
 
   .sidebar-toggle {
     align-items: center;
-    color: $navbar-static-top-link;
+    background-color: $primary-color;
+    color: $white;
     display: flex;
-    padding: 18px;
+    padding: 15px;
+
+    i {
+      font-size: 20px;
+    }
 
     &::before {
       display: none;
@@ -72,18 +78,19 @@ $gray-color: #949494;
   }
 
   .logo {
-    background: $keppler-color;
+    background: transparent;
     border-bottom: 0 solid transparent;
-    color: $white;
+    display: flex;
     font-size: 2.3rem;
-    width: 50px;
+    justify-content: flex-start;
+    width: 170px;
     z-index: 9;
 
     span {
-      color: $white;
-      font-family: 'Patua One' cursive;
+      color: $keppler-color;
+      font-family: 'Patua One', cursive;
       font-size: 2.6rem;
-      text-shadow: 1px 1px 1px $logo-span-text-shadow;
+      // text-shadow: 1px 1px 1px $logo-span-text-shadow;
     }
   }
 }
@@ -105,6 +112,14 @@ $gray-color: #949494;
 .sidebar-mini.sidebar-collapse {
   .main-header .navbar {
     margin-left: 0;
+  }
+
+  .main-header .logo {
+    width: 170px;
+
+    .logo-mini span {
+      margin-left: 15px;
+    }
   }
 
   .main-sidebar {

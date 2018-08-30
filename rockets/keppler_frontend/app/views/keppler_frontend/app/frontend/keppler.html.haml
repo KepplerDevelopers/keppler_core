@@ -3,33 +3,27 @@
   %header
     = render 'app/layouts/head'
   %body
-    %header
-      = #render 'app/layouts/navigation'
     %main#keppler{:role => "main"}
-      = #render 'app/layouts/messages'
       .front
-        .front-logo
-          = image_tag "app/keppler-front.png", class: "img-responsive"
+        %a.btn-main{href: '/admin'} Ir a admin
+        .front-content
+          .front-logo
+            = image_tag "app/keppler-front.png", class: "img-responsive"
 
-        .front-social
-          %ul
-            %li
-              =  link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
-                = icon 'fab', 'twitter'
-            %li
-              =  link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
-                = icon 'fab', 'facebook'
-            %li
-              =  link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
-                = icon 'fab', 'instagram'
-            %li
-              =  link_to "https://github.com/SliceDevelopers", target: '_blank' do
-                = icon 'fab', 'github'
-        .mouse-scroll
-          .mouse
-            .scroll
-        %footer.front-footer
-          = render 'app/layouts/footer'
+          .front-social
+            %ul
+              %li
+                =  link_to "https://twitter.com/slicegroupxyz", target: '_blank' do
+                  = icon 'fab', 'twitter'
+              %li
+                =  link_to "https://www.facebook.com/slicegroupxyz/", target: '_blank' do
+                  = icon 'fab', 'facebook'
+              %li
+                =  link_to "https://www.instagram.com/slicegroupxyz/", target: '_blank' do
+                  = icon 'fab', 'instagram'
+              %li
+                =  link_to "https://github.com/SliceDevelopers", target: '_blank' do
+                  = icon 'fab', 'github'
 
 
       %section#documentation

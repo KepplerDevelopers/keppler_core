@@ -1,26 +1,41 @@
 main
   .front
-    height: 616px
-    z-index: 1
+    height: 120vh
+    position: relative
     width: 100%
+    z-index: 1
+    .btn-main
+      background-color:  #f44336
+      color:  white
+      font-weight:  600
+      padding: 11px 20px 8px 20px
+      border-radius: 30px
+      float: right
+      margin: 50px
+    .front-content
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      height: 80%
+      left: 0px
+      top: 0px
+      // padding: 0px 60px
+      position: absolute
+      width: 100%
     .front-logo
-      position: fixed
-      top: 150px
-      transform: translateX(-50%)
-      width: 100%
       z-index: 2
-      @include respond-to(xs)
-        top: 180px
+      img
+        margin: 0
     .front-social
-      position: fixed
-      top: 300px
-      width: 100%
       ul
+        margin: 0
         display: table
-        margin: 0 auto
         li
           display: inline-flex
           list-style: none
+          &:first-child
+            margin-left:  0
     .front-footer
       position: fixed
       top: 400px
@@ -48,16 +63,7 @@ main
     padding: 50px
     font-family: $raleway
     color: rgba(36,45,75,1)
-    // background: linear-gradient(to right, #2a3d5b, #445b7a, #516b8a, #425978, #2a3d5b)
     background-color: $white
-    // @include respond-to(sm)
-    //   background-image: -webkit-linear-gradient(left, #354a69, #516b8a, #354a67)
-    //   background-image: -o-linear-gradient(left, #354a69, #516b8a, #354a67)
-    //   background-image: linear-gradient(to right, #354a69, #516b8a, #354a67)
-    // @include respond-to(xs)
-    //   background-image: -webkit-linear-gradient(left, #445b7a, #516b8a, #425978)
-    //   background-image: -o-linear-gradient(left, #445b7a, #516b8a, #425978)
-    //   background-image: linear-gradient(to right, #445b7a, #516b8a, #425978)
     h3
       font-family: $putua
     a, a:focus, a:hover
