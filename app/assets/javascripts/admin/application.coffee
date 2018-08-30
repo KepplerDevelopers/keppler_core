@@ -4,7 +4,6 @@
 #= require jquery-ui/widgets/sortable
 #= require jquery_ujs
 #= require sweetalert2
-# require sweet-alert2-rails
 #= require turbolinks
 #= require nprogress
 #= require nprogress-turbolinks

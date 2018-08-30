@@ -10,6 +10,7 @@ class <%= class_name %> < ActiveRecord::Base
     <%- end -%>
   <%- end -%>
   acts_as_list
+  acts_as_paranoid
 
   # Begin associations area (don't delete)
   # End associations area
