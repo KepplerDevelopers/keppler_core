@@ -6,15 +6,8 @@
           %h1
             = t("keppler.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
-          -# %ol.breadcrumb
-          -#   %li
-          -#     %a{ href: '#' }
-          -#       %i.icon-directions
-          -#       = t("keppler.modules.#{action_name.underscore}")
         %section.content-actions
-          .form-group
-            -# %label.control-label.string.required{ for: 'user_name' }
-              Filtrar usuarios por rol
+          %div
             = simple_form_for Role.last, url: filter_by_role_path, method: :post, remote: true do
               .select-filter
                 %select.form-control#filter_by_role{ name: 'role', onchange: '$(this).parent().submit()' }
@@ -32,6 +25,9 @@
             .toolbar-item
               %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{ disabled: !checks }' }
                 %i.icon-trash
+          .add
+            = link_to new_admin_user_path, class: 'btn-add' do
+              + Agregar
         .box.slice-box
           .box-body.no-padding
             %table.table
@@ -64,10 +60,10 @@
   .listing-show.hidden-xs
     = render 'description', activities: @activities
   %aside.control-sidebar.index-show
-  - if can?(User).create?
-    .mixed-btn
-      = link_to new_admin_user_path, class: 'btn-float' do
-        +
+  -# - if can?(User).create?
+  -#   .mixed-btn
+  -#     = link_to new_admin_user_path, class: 'btn-float' do
+  -#       +
 
 :javascript
   $('#role-1').fadeOut()

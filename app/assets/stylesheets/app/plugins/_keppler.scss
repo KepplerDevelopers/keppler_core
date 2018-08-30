@@ -3,8 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .front {
-  background: url("Cohete_nubes_new.png"), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
+  background: url("../admin/profile-menu.jpg"), linear-gradient(to bottom, #333366 0%, #242d4b 51%, #1e2b40 100%);
   background-size: cover;
+  background-position: center;
   height: 100%;
 
   &-logo {

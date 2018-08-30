@@ -4,14 +4,35 @@ main
     position: relative
     width: 100%
     z-index: 1
+    .languages
+      display: flex
+      margin: 40px
+      position: absolute
+      z-index: 9
+      a
+        color: #fff
+        display: block
+        font-family: "Open Sans", sans-serif
+        font-size: 17px
+        padding: 0 1rem
+        line-height: 20px
+        position: relative
+        transition: all ease-in-out .3s
+        &:first-child
+          border-right: 2px solid $white
+        &.active-lang
+          font-weight: bold
     .btn-main
       background-color:  #f44336
-      color:  white
-      font-weight:  600
-      padding: 11px 20px 8px 20px
       border-radius: 30px
-      float: right
+      color:  white
+      cursor: pointer
+      font-weight:  600
       margin: 50px
+      padding: 11px 20px 8px 20px
+      position: absolute
+      right: 0
+      z-index: 9
     .front-content
       display: flex
       flex-direction: column
@@ -20,13 +41,14 @@ main
       height: 80%
       left: 0px
       top: 0px
-      // padding: 0px 60px
       position: absolute
       width: 100%
     .front-logo
       z-index: 2
-      img
-        margin: 0
+      span
+        color: $white
+        font-family: $putua
+        font-size: 140px
     .front-social
       ul
         margin: 0

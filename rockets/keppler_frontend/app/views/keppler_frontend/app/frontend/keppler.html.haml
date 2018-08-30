@@ -5,10 +5,14 @@
   %body
     %main#keppler{:role => "main"}
       .front
+        .languages
+          %a.active-lang{ href: '#' } ESP
+          %a{ href: '#' } ENG
         %a.btn-main{href: '/admin'} Ir a admin
         .front-content
           .front-logo
-            = image_tag "app/keppler-front.png", class: "img-responsive"
+            %span Keppler
+            -# = image_tag "app/keppler-front.png", class: "img-responsive"
 
           .front-social
             %ul

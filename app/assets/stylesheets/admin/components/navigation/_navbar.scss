@@ -53,6 +53,11 @@ $gray-color: #949494;
 
     .user-footer {
       background-color: $white !important; // scss-lint:disable ImportantRule
+
+      .btn-default {
+        border-radius: 15px;
+        padding: 5px 20px;
+      }
     }
   }
 
