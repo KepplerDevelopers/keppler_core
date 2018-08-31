@@ -7,14 +7,6 @@
             = t("keppler_frontend.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
-            - if can?(KepplerFrontend::CallbackFunction).download?
-              .toolbar-item
-                = link_to admin_frontend_callback_function_download_path(KepplerFrontend::CallbackFunction, :format => :xls), class: "tool-btn", title: t('keppler_frontend.actions.download_records') do
-                  %i.icon-cloud-download
-            - if can?(KepplerFrontend::CallbackFunction).upload?
-              .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler_frontend.actions.upload_records'), id: "callback_function" do
-                  %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_frontend_callback_functions_path, class: "tool-btn", remote: true do
                 %i.icon-reload
