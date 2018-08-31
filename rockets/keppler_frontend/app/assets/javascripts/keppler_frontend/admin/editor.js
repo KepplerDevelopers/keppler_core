@@ -26,9 +26,18 @@ var controls = {
       $('.action_signal').css('display', 'none');
     })
   },
+  saveLayout: function(id){
+    this.codes = {
+      html: editor.getValue()
+    }
+    $.post("/admin/frontend/themes/"+id+"/editor/save", this.codes, function(data){
+      $("#code-html").val(editor.getValue())
+      $('.html_signal').css('display', 'none');
+    })
+  },
   saveOnlyAction: function(){
     this.codes = {
-      ruby: editor_action.getValue()
+      ruby: editor.getValue()
     }
     $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
       $("#code-action").val(editor_action.getValue())
@@ -96,7 +105,19 @@ var codeHTML = {
         $('.html_signal').css('display', 'none');
       })
     }
-  }
+  },
+
+  saveLayout: function(id){
+    if(editor.getValue() !== $("#code-html").val()) {
+      this.codes = {
+        html: editor.getValue()
+      }
+      $.post("/admin/frontend/themes/"+id+"/editor/save", this.codes, function(data){
+        $("#code-html").val(editor.getValue())
+        $('.html_signal').css('display', 'none');
+      })
+    }
+  },
 }
 
 var codeCSS = {

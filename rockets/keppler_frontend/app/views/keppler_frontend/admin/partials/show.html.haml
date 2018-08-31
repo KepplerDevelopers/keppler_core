@@ -23,7 +23,7 @@
         %a#btn-assets-editor{ title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
-        %a{onclick: "controls.savePartial(#{@partial.id})", title: t('keppler.actions.save')}
+        %a{onclick: "controlsPartial.savePartial(#{@partial.id})", title: t('keppler.actions.save')}
           %i.fa.fa-save
       %li.pull-right
         = link_to admin_frontend_partials_path do
