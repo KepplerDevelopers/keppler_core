@@ -11,5 +11,13 @@ module KepplerFrontend
     def show_covers?
       keppler_admin? || user_can?(@objects, 'show_covers')
     end
+
+    def editor?
+      keppler_admin? || user_can?(@objects, 'editor')
+    end
+
+    def editor_save?
+      keppler_admin? || user_can?(@objects, 'editor_save')
+    end
   end
 end
