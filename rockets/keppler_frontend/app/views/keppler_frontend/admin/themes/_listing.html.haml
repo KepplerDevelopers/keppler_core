@@ -18,7 +18,7 @@
               %i.icon-trash
           - if can?(KepplerFrontend::Theme).editor? && theme.active?
             = link_to admin_frontend_theme_editor_path(theme), class: 'new-menu', title: t('keppler.actions.editor') do
-              %i.icon-screen-desktop
+              %i.icon-note
 
     :javascript
       function installTemplate(customize_id) {
