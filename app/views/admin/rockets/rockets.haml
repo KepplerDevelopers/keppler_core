@@ -6,8 +6,8 @@
       .box-body.box-body-no-padding
         .form-group
           = simple_form_for '', url: admin_install_rocket_path, html: { multipart: true } do
-            .fileDrop
-              .fileDropTarget
+            .file-drop
+              .file-drop-target
                 %i.icon-rocket
                 %h5 Drop rockets or press here
                 = file_field_tag :rocket
@@ -41,6 +41,3 @@
                 %td{ colspan: 4 }
                   %center
                     There is not rockets here :(
-- if flash[:built]
-  :coffee
-    'Gemfile.lock'.download()

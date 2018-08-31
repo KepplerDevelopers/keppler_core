@@ -2,7 +2,6 @@
 
 # Rocket Model
 class Rocket
-
   # Rockets list
   def self.names_list
     Dir["#{Rails.root}/rockets/*"].map { |x| x.split('/').last }
@@ -24,7 +23,8 @@ class Rocket
   # Unzipping into rockets folder
   def self.unzip(rocket_file, rocket_name)
     require 'zip'
-    Zip::File.open("#{Rails.root}/public/rockets/#{rocket_file.original_filename}") do |zip_file|
+    rocket_zip = "#{Rails.root}/public/rockets/#{rocket_file.original_filename}"
+    Zip::File.open(rocket_zip) do |zip_file|
       dir = Rails.root.join('rockets', rocket_name)
       Dir.mkdir(dir) unless Dir.exist?(dir)
       zip_file.each do |entry|
@@ -50,6 +50,6 @@ class Rocket
     system "cd #{Rails.root}"
     dir = Rails.root.join('public', 'rockets')
     Dir.mkdir(dir) unless Dir.exist?(dir)
-    system "cp #{Rails.root}/rockets/#{rocket}/pkg/#{rocket}.rocket #{Rails.root}/public/rockets"
+    system "cp #{Rails.root}/rockets/#{rocket}/pkg/#{rocket}.rocket #{dir}"
   end
 end

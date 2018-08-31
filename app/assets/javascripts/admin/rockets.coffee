@@ -21,14 +21,14 @@ processFiles = (files) ->
       continue if typeof f isnt 'object' and f.toString() isnt '[object File]'
       $files.push f
       $fileNames.push f.name
-      if $('.fileDrop input[type=file]').attr('multiple') != undefined
+      if $('.file-drop input[type=file]').attr('multiple') != undefined
         continue if -1 isnt $fileNames.indexOf f.name
         fileList.append "<li>#{f.name} (#{calcSize f.size}) - #{f.type || 'unknown'}</li>"
         return false
       else
         isRocket = f.name.includes('.rocket')
         rocketType = 'KepplerRocket' if isRocket
-        $ '.fileDrop .fileDropTarget p'
+        $ '.file-drop .file-drop-target p'
           .text "#{f.name} (#{calcSize f.size}) - #{rocketType || f.type || 'unknown'}"
           return isRocket
   return
@@ -48,7 +48,7 @@ handleFileInput = (evt) ->
   processFiles evt.target.files
 
 clearFiles = ->
-  $ '.fileDrop #fileList'
+  $ '.file-drop #fileList'
     .empty()
     $files = []
     $fileNames = []
@@ -61,7 +61,7 @@ showSpinner = ->
 
 installRocket = (evt) ->
   evt.preventDefault()
-  rocket_file = $('.fileDrop input[type=file]').val()
+  rocket_file = $('.file-drop input[type=file]').val()
   can_install = true
   console.log rocket_file == ''
   if rocket_file isnt ''
@@ -82,10 +82,10 @@ installRocket = (evt) ->
 $ document
 .ready ->
 
-  $container = $ '.fileDrop'
-  $input = $ '.fileDrop input[type=file]'
-  $target = $ '.fileDrop .fileDropTarget'
-  $rocketInstaller = $ '.fileDrop #installRocket'
+  $container = $ '.file-drop'
+  $input = $ '.file-drop input[type=file]'
+  $target = $ '.file-drop .file-drop-target'
+  $rocketInstaller = $ '.file-drop #installRocket'
   $rocketUninstaller = $ '.uninstallRocket'
 
   if $input.attr('multiple') != undefined
@@ -100,7 +100,7 @@ $ document
   else
     $target.append('<p></p>')
   
-  $clearListButton = $ '.fileDrop .clearListButton'
+  $clearListButton = $ '.file-drop .clearListButton'
 
   $target
     .on 'drop', handleDrop

@@ -1,7 +1,7 @@
-.fileDrop {
-  .fileDropTarget {
+.file-drop {
+  .file-drop-target {
     align-items: center;
-    border: dashed 2px #999;
+    border: dashed 2px $grey;
     display: flex;
     justify-content: center;
     min-height: 250px;
@@ -50,8 +50,8 @@
   a,
   [type=submit] {
     background: $keppler-color;
-    border: none;
-    color: #fff;
+    border: 0;
+    color: $white;
     display: table;
     margin: 20px auto;
     outline: none;
