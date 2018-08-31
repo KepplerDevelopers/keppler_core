@@ -41,12 +41,12 @@
                   HTML
             %li{ class: "#{'active' if flash[:notice].second.eql?('javascripts') }"}
               %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_6"}
-                %i.fa.fa-code
+                %i.fa.fa-magic
                 %span.hidden-xs
                   Javascripts
             %li{ class: "#{'active' if flash[:notice].second.eql?('stylesheets') }"}
               %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_7"}
-                %i.fa.fa-code
+                %i.fa.fa-paint-brush
                 %span.hidden-xs
                   Stylesheets
           .tab-content
@@ -198,7 +198,7 @@
                           .row
                             .col-lg-10
                               %h4.box-title
-                                %i.fa.fa-code
+                                %i.fa.fa-magic
                                 = truncate(file[:name], length: 35, omission: '...')
                             .col-lg-2
                               = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
@@ -206,7 +206,7 @@
                         .box-body.no-padding
                           .back-file
                             .center
-                              %i.fa.fa-code#font-icon-size
+                              %i.fa.fa-magic#font-icon-size
                         .box-body
                           %span.box-title
                             = file[:size]
@@ -224,7 +224,7 @@
                           .row
                             .col-lg-10
                               %h4.box-title
-                                %i.fa.fa-code
+                                %i.fa.fa-paint-brush
                                 = truncate(file[:name], length: 35, omission: '...')
                             .col-lg-2
                               = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
@@ -232,7 +232,7 @@
                         .box-body.no-padding
                           .back-file
                             .center
-                              %i.fa.fa-code#font-icon-size
+                              %i.fa.fa-paint-brush#font-icon-size
                         .box-body
                           %span.box-title
                             = file[:size]
