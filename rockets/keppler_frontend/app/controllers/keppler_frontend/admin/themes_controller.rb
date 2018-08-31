@@ -7,7 +7,7 @@ module KepplerFrontend
       before_action :set_theme, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
       before_action :set_attachments
-      before_action :authorization      
+      before_action :authorization
       before_action :only_development
       before_action :reload_themes, only: [:index]
       after_action :update_theme_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
@@ -145,6 +145,20 @@ module KepplerFrontend
 
       def show_covers
         @theme = Theme.find(params[:theme_id])
+      end
+
+      def editor
+        @theme = Theme.find(params[:theme_id])
+        filesystem = FileUploadSystem.new
+        @files_list = filesystem.files_list
+        @files_bootstrap = filesystem.files_list_bootstrap
+        @partials = Partial.all
+      end
+
+      def editor_save
+        @theme = Theme.find(params[:theme_id])
+        @theme.code_save(params[:html]) if params[:html]
+        render json: {result: true}
       end
 
       private

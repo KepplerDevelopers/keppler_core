@@ -1,0 +1,44 @@
+.container
+  .nav-tabs-custom
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+          = "application.html.erb"
+          .kf-signal.html_signal
+      %li.pull-right
+        = link_to "/", target: '_blank',title: t('keppler.actions.preview') do
+          %i.fa.fa-globe
+      %li.pull-right
+        %a#btn-theme-editor{title: t('keppler.actions.user_interfaces') }
+          %i.fa.fa-paint-brush
+      %li.pull-right
+        %a#btn-assets-editor{title: t('keppler.actions.assets')}
+          %i.fa.fa-folder
+      %li.pull-right
+        %a{onclick: "controls.saveLayout(#{@theme.id})", title: t('keppler.actions.save')}
+          %i.fa.fa-save
+      %li.pull-right
+        = link_to admin_frontend_themes_path,title: t('keppler.actions.preview') do
+          %i.fa.fa-list
+          =t('keppler_frontend.models.pluralize.themes').capitalize
+    .tab-content
+      #tab_1.tab-pane.active
+        %div.html.code-container
+          %textarea#code-html{name: "code"}
+            = @theme.layout_code
+
+
+  = render "editor_assets"
+  = render "editor_themes"
+
+  :javascript
+    codeHTML.codeMirrorHtml();
+    var tab = `application.html.erb`;
+    var id = `#{@theme.id}`;
+
+    $(document).bind('keydown',function(e) {
+      if(e.ctrlKey && (e.which == 83)) {
+        e.preventDefault();
+        codeHTML.saveLayout(id);
+      }
+    });
