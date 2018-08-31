@@ -19,16 +19,16 @@ processFiles = (files) ->
     fileList = $ '#fileList'
     for k, f of files
       continue if typeof f isnt 'object' and f.toString() isnt '[object File]'
-      continue if -1 isnt $fileNames.indexOf f.name
       $files.push f
       $fileNames.push f.name
-      if $('.inputAddFiles').attr('multiple') != undefined
+      if $('.fileDrop input[type=file]').attr('multiple') != undefined
+        continue if -1 isnt $fileNames.indexOf f.name
         fileList.append "<li>#{f.name} (#{calcSize f.size}) - #{f.type || 'unknown'}</li>"
         return false
       else
         isRocket = f.name.includes('.rocket')
         rocketType = 'KepplerRocket' if isRocket
-        $ '.fileDropTarget p'
+        $ '.fileDrop .fileDropTarget p'
           .text "#{f.name} (#{calcSize f.size}) - #{rocketType || f.type || 'unknown'}"
           return isRocket
   return
@@ -54,20 +54,39 @@ clearFiles = ->
     $fileNames = []
   return
 
-installRocket = ->
-  $ '.fileDrop #fileList'
-    .empty()
-    $files = []
-    $fileNames = []
+showSpinner = ->
+  $ '.spinner'
+    .css 'display', 'block'
   return
-  
+
+installRocket = (evt) ->
+  evt.preventDefault()
+  rocket_file = $('.fileDrop input[type=file]').val()
+  can_install = true
+  console.log rocket_file == ''
+  if rocket_file isnt ''
+    if rocket_file.includes('.rocket')
+      $('.rocket-name').each ->
+        if rocket_file.includes $(this).text()
+          alert 'This rocket is already installed :('
+          can_install = false
+      if can_install
+        $ 'form'
+          .submit()
+        showSpinner()
+    else
+      alert 'Houston! That file isn\'t a rocket :('
+  else
+    alert 'Please upload a rocket!'
 
 $ document
 .ready ->
 
   $container = $ '.fileDrop'
-  $input = $ '.fileDrop .inputAddFiles'
+  $input = $ '.fileDrop input[type=file]'
   $target = $ '.fileDrop .fileDropTarget'
+  $rocketInstaller = $ '.fileDrop #installRocket'
+  $rocketUninstaller = $ '.uninstallRocket'
 
   if $input.attr('multiple') != undefined
     $container
@@ -93,6 +112,10 @@ $ document
   $clearListButton
     .on 'click', clearFiles
 
-  $installRocket
+  $rocketInstaller
     .on 'click', installRocket
+
+  $rocketUninstaller
+    .on 'click', uninstallRocket
+
   return

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
     get 'rockets', to: 'rockets#rockets', as: :rockets
     post 'install_rocket', to: 'rockets#install_rocket', as: :install_rocket
+    delete 'uninstall_rocket/:rocket', to: 'rockets#uninstall_rocket', as: :uninstall_rocket
+    post 'build_rocket/:rocket', to: 'rockets#build_rocket', as: :build_rocket
 
     resources :roles do
       get '(page/:page)', action: :index, on: :collection, as: ''

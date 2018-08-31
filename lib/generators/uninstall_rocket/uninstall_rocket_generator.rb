@@ -2,9 +2,10 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   def uninstall_rocket
+    remove_rocket
     remove_migrations
-    remove_gem_line
     remove_route_line
+    remove_gem_line
     bundle_install
     clear_temps_and_logs
     restart_server
@@ -12,22 +13,38 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
 
   private
 
+  def remove_rocket
+    rocket_folder = "#{Rails.root}/rockets/#{file_name}"
+    if File.directory?(rocket_folder)
+      say "\n*** Removing #{file_name} folder ***"
+      if FileUtils.rm_rf rocket_folder
+        say "=== #{class_name} folder removed ===", :green
+      end
+    end
+  end
+
   def remove_migrations
     removed_files = false
     Dir.glob('db/migrate/*').each do |migration|
       if migration.include?(file_name)
         say "\n*** Removing #{class_name} migrations ***" unless removed_files
-        ActiveRecord::Migration.drop_table(table_name(migration).to_sym) if migration.include?('create')
-        say "--- #{table_name(migration).underscore} table dropped ---", :green
-        FileUtils.rm migration
-        say "--- #{migration_name(migration)} migration file has been removed ---"
+        if ActiveRecord::Base.connection.table_exists? table_name(migration).to_sym
+          if migration.include?('create')
+            if ActiveRecord::Migration.drop_table(table_name(migration).to_sym)
+              say "--- #{table_name(migration)} table dropped ---", :green
+            end
+          end
+        end
+        if FileUtils.rm migration
+          say "--- #{migration_name(migration)} migration file has been removed ---"
+        end
         removed_files = true
       end
     end
     if removed_files
       say "=== #{class_name} migrations has been removed ===", :green
     else
-      say "\n!!! ERROR: Doesn' t exist migrations with this rocket name. Skipping... !!!", :red
+      say "\n!!! Doesn' t exist migrations with this rocket name. Skipping... !!!", :red
     end
   end
 
@@ -46,7 +63,7 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
   def bundle_install
     say "\n*** Uninstalling #{class_name} ***"
     system('bundle check') || system('bundle install')
-    say "\n=== Bundle list is updated ===", :green
+    say "=== Bundle list is updated ===", :green
   end
 
   def clear_temps_and_logs

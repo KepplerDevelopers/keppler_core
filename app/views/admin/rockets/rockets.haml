@@ -5,13 +5,13 @@
         %h3.box-title Upload rocket
       .box-body.box-body-no-padding
         .form-group
-          = simple_form_for '', url: admin_install_rocket_path do
+          = simple_form_for '', url: admin_install_rocket_path, html: { multipart: true } do
             .fileDrop
               .fileDropTarget
                 %i.icon-rocket
                 %h5 Drop rockets or press here
-                %input.inputAddFiles{ type: 'file', name: 'rocket' }
-              %button#installRocket{ type: 'submit' }
+                = file_field_tag :rocket
+              %a.spinnerTrigger#installRocket
                 %i.icon-rocket
                 Let's go
 
@@ -26,9 +26,21 @@
               %tr
                 %td
                   %i.icon-rocket
-                  = rocket
+                  %span.rocket-name= rocket
+                  .pull-right
+                    = link_to admin_build_rocket_path(rocket), class: 'buildRocket', method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Build' do
+                      %i.icon-puzzle
+                    - if rocket_is_built?(rocket)
+                      = link_to "rockets/#{rocket}.rocket", dowload: "#{rocket}.rocket", 'data-toggle': 'tooltip', 'data-original-title': 'Download' do
+                        %i.icon-cloud-download
+                    -# %a{ download: "#{rocket}.rocket", href: "/rockets/#{rocket}.rocket  ", 'data-toggle': 'tooltip', 'data-original-title': 'Download' }
+                    = link_to admin_uninstall_rocket_path(rocket), class: 'uninstallRocket', method: :delete, data: { confirm: t('keppler.messages.data_confirm') }, 'data-toggle': 'tooltip', 'data-original-title': 'Uninstall' do
+                      %i.icon-trash.text-red
             - if @rockets.blank?
               %tr
                 %td{ colspan: 4 }
                   %center
-                    = 'There is not rockets here :('
+                    There is not rockets here :(
+- if flash[:built]
+  :coffee
+    'Gemfile.lock'.download()

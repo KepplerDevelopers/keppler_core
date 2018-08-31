@@ -4,10 +4,10 @@ class InstallRocketGenerator < Rails::Generators::NamedBase
   def install_rocket
     rocket_directory = "#{Rails.root}/rockets/#{file_name}"
     if File.directory?(rocket_directory)
-      copy_migrations_files
       add_gem_line
       add_route_line
       bundle_install
+      copy_migrations_files
       migrate_database
       clear_temps_and_logs
       restart_server

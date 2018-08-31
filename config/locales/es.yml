@@ -5,40 +5,28 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
-      roles: Roles
-      customizes: Personalización
       dashboard: Tablero
+      scripts: Scripts
+      meta_tags: Meta tags
       users: Usuarios
       users-submenu:
         users: Usuarios
         roles: Roles
         clients: Clientes
         admins: Administradores
-      development: 'Desarrollo Keppler'
-      setting: Configuración
+      roles: Roles
       keppler-design: 'Diseño Keppler'
       keppler-design-submenu:
         frontend-templates: 'Plantillas y Temas'
         admin-appearance: 'Apariencia de Keppler'
-      plugins: Plugins
-      plugins-submenu:
-        install: Instalar plugin
+      rockets: KepplerRockets
+      setting: Configuración
       setting-submenu:
         basic-information: 'Información básica'
         email-setting-smtp: 'Configuración SMTP'
         social-accounts: 'Redes sociales'
         google-analytics: 'Google Analytics'
         appearance: Apariencia
-      meta_tags: Meta tags
-      scripts: Scripts
-      keppler-messages: Mensajes
-      keppler-messages-submenu:
-        messages: Mensajes
-        message-settings: Configuración de mensajes
-      keppler-blog: Blog
-      keppler-blog-submenu:
-        posts: Posts
-        categories: Categorías
     permissions:
       index: Listar
       create: Crear
