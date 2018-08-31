@@ -6,6 +6,7 @@ module KepplerFrontend
     require 'csv'
     acts_as_list
     before_destroy :uninstall
+    include KepplerFrontend::Concerns::LayoutFile
     # Fields for the search form in the navbar
     def self.search_field
       fields = ["name", "active", "position", "deleted_at"]
@@ -155,6 +156,17 @@ module KepplerFrontend
           end
         end
       end
+    end
+
+    def code_save(code)
+      save_code("#{url_front}/app/views/layouts/keppler_frontend/app/layouts/application.html.erb", code)
+    end
+
+    def save_code(file, code)
+      File.delete(file) if File.exist?(file)
+      out_file = File.open(file, "w")
+      out_file.puts(code)
+      out_file.close
     end
 
     private
