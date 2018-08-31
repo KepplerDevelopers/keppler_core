@@ -8,10 +8,16 @@ module KepplerFrontend
     acts_as_paranoid
     before_save :underscore_and_downcase_name
     before_destroy :delete_function
+    before_validation :without_special_characters
+
     include KepplerFrontend::Concerns::Functions::FunctionsFile
+    include KepplerFrontend::Concerns::StringActions
 
     has_many :parameters, dependent: :destroy, inverse_of: :function
     accepts_nested_attributes_for :parameters, reject_if: :all_blank, allow_destroy: true
+
+    validates_presence_of :name, :description
+    validates_uniqueness_of :name
 
     def underscore_and_downcase_name
       self.name = self.name.split(' ').join('_').downcase

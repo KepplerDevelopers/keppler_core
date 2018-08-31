@@ -7,6 +7,12 @@ module KepplerFrontend
     acts_as_list
     belongs_to :function
     # Fields for the search form in the navbar
+
+    include KepplerFrontend::Concerns::StringActions
+
+    validates_presence_of :name
+    before_validation :without_special_characters
+
     def self.search_field
       fields = ["name", "position", "deleted_at"]
       build_query(fields, :or, :cont)

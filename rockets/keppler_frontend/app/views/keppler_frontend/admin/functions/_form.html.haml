@@ -25,14 +25,10 @@
                     = f.input :name
                   .col-xs-12
                     = f.input :description
-                  -# .col-xs-12
-                  -#   = f.input :name, input_html: { 'data-role': 'tagsinput' }, class: 'form-control bootstrap-tagsinput'
                   .col-xs-12
                     = f.input :position, as: :hidden
                   .col-xs-12
                     = f.input :deleted_at, as: :hidden
-                  -# .col-xs-12
-                    -# .pull-right
 
     .row
       .col-lg-12
@@ -45,7 +41,7 @@
                 .form-padding
                   .col-xs-12
                     = f.simple_fields_for :parameters do |parameter|
-                      - if parameter.object.name
+                      - if parameter.object.name && @function.id
                         = render 'parameter_fields_edit', f: parameter
                       - else
                         = render 'parameter_fields', f: parameter
