@@ -20,10 +20,12 @@ es:
       pluralize:
         keppler_frontend/views: vistas
         callback_functions: callbacks
+        functions: funciones
         views: vistas
         themes: temas
     modules:
       new: Nuevo
+      functions: Funciones
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Temas
       keppler_frontend/admin/callback_functions: Callbacks
@@ -56,12 +58,14 @@ es:
         views: vistas
         themes: temas
         partials: partials
+        functions: funciones
     modules:
       new: Nuevo
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Temas
       keppler_frontend/admin/partials: Partials
       keppler_frontend/admin/callback_functions: Callbacks
+      functions: Funciones
     settings:
     actions:
       created: Creado
