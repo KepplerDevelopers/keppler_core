@@ -12,7 +12,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
   process :optimize
-  process quality: 100
+  process quality: 40
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -20,9 +20,9 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def size_range
-    return_size_type(file.content_type)
-  end
+  # def size_range
+  #   return_size_type(file.content_type)
+  # end
 
   version :thumb do
     process resize_to_fit: [200, 200]
@@ -52,10 +52,10 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  private
+  # private
 
-  def return_size_type(file)
-    return 0..1.megabytes if file.include?('image')
-    0..5.megabytes
-  end
+  # def return_size_type(file)
+  #   return 0..1.megabytes if file.include?('image')
+  #   0..10.megabytes
+  # end
 end
