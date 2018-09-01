@@ -11,7 +11,7 @@
   .content-wrapper {
     background: $gray-lighten;
     min-height: 100vh;
-    padding-top: 60px;
+    padding-top: 70px;
   }
 }
 
@@ -111,4 +111,8 @@
       }
     }
   }
+}
+
+.form-control {
+  border-radius: 15px;
 }

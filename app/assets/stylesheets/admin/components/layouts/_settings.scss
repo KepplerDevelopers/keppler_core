@@ -1,7 +1,8 @@
+
 .slice-box {
   border-top: 0;
   padding: 0;
-
+  
   &.file-box {
     padding: 25px;
   }
@@ -10,7 +11,7 @@
 .pure-input {
   .form-group {
     margin-bottom: 25px;
-
+    
     &:last-child {
       margin-bottom: 20px;
     }
@@ -21,11 +22,11 @@
   border-bottom-left-radius: 75px;
   border-top-left-radius: 75px;
   min-height: 160px;
-
+  
   &:first-child {
     margin-bottom: 35px;
   }
-
+  
   .info-box-img {
     background-position: center;
     background-repeat: no-repeat;
@@ -35,8 +36,12 @@
     margin: 5px;
     width: 150px;
   }
-
+  
   .file {
     padding: 12px;
   }
+}
+
+.p-15 {
+  padding: 15px;
 }

@@ -34,7 +34,7 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th.center{ style: 'background-color: white; border: 0;' }
+                    %th.not-records.center
                       %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.user'))
                 - else
                   %tr

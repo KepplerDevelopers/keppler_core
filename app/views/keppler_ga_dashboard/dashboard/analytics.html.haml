@@ -13,15 +13,12 @@
 	.dashboard
 		.row
 			.col-lg-12
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Información
 					.box-body.pure-input
 						.dashboard-head
-							-# .form-group
-							-# 	%select.form-control
-							-# 		%option Opción 1
 							.row
 								.col-lg-12.col-md-12.col-sm-12.col-xs-12.separator-dash
 									.col-lg-6.col-md-6.col-sm-12.col-xs-12
@@ -32,19 +29,16 @@
 									#view-selector-container.hide-on-small-only
 		.row
 			.col-lg-6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Uso por semana
-						-# .box-tools.pull-right
-						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
-						-# 		%i.icon-minus
 					.box-body.pure-input
 						%canvas#chart-1-container{:height => "300", :width => "350"}
 						#legend-1-container.charts-legend
 
 			.col-lg-6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Uso por semana
@@ -53,7 +47,7 @@
 						#legend-2-container.charts-legend
 		.row
 			.col-lg-6.m6.l6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Usuarios por navegador
@@ -62,7 +56,7 @@
 							%canvas#chart-3-container{:height => "300", :width => "350"}
 
 			.col-lg-6.m6.l6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Usuarios por países

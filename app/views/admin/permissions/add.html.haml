@@ -16,21 +16,21 @@
         - module_name.each do |key|
           - unless module_name[key.first]['name'].eql?('dashboard')
             .col-lg-12
-              .box.slice-box.collapsed-box
+              .box.slice-box.collapsed-box.p-15
                 .box-header.with-border
-                  %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].parameterize.pluralize}")
+                  %span.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].parameterize.pluralize}")
                   .box-tools.pull-right
                     %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
                       %i.icon-plus
                 .box-body
-                  %table.table.table-bordered
+                  %table.table
                     %tbody
                       - module_name[key.first]['actions'].each do |action|
                         %tr
                           %td.row-selectable.table-data
                             = link_to admin_role_show_description_path(@role, module_name[key.first]['name'].split('::').join(''), action), method: :post, remote: true do
                               .pull-left
-                                %h4= t("keppler.permissions.#{action}")
+                                %span= t("keppler.permissions.#{action}")
                               .pull-right.switch-div
                                 = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['name'], action: action, children: false
 

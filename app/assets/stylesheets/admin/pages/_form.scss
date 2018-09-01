@@ -82,7 +82,7 @@
 }
 
 .form-padding {
-  padding: 2rem;
+  padding: 2rem 0;
 
   @include respond-to(xs) {
     padding: 2rem 0;
