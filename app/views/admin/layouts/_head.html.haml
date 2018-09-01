@@ -1,7 +1,7 @@
 %head
   %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
   %title= content_for?(:title) ? yield(:title) : 'Keppler Admin'
-  = stylesheet_link_tag 'admin/application', media: 'all', 'data-turbolinks-track' => true
-  = javascript_include_tag 'admin/application', 'data-turbolinks-track' => true
+  = stylesheet_link_tag 'admin/application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'admin/application', 'data-turbolinks-track': 'reload'
   = csrf_meta_tags
   = favicon_link_tag 'admin/favicon.png'

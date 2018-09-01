@@ -4,16 +4,15 @@
       .box-header.with-border
         %h3.box-title Upload rocket
       .box-body.box-body-no-padding
-        .form-group
-          = simple_form_for '', url: admin_install_rocket_path, html: { multipart: true } do
-            .file-drop
-              .file-drop-target
-                %i.icon-rocket
-                %h5 Drop rockets or press here
-                = file_field_tag :rocket
-              %a.spinnerTrigger#installRocket
-                %i.icon-rocket
-                Let's go
+        = simple_form_for '', url: admin_install_rocket_path, html: { multipart: true } do
+          .file-uploader
+            .file-container
+              = file_field_tag :rocket#, multiple: true
+              %i.icon-rocket.file-icon
+              %h5.file-text Drop rockets or press here
+            %a.spinnerTrigger#installRocket
+              %i.icon-rocket
+              Let's go
 
   .col-md-6.col-lg-6
     .box.slice-box
@@ -28,13 +27,15 @@
                   %i.icon-rocket
                   %span.rocket-name= rocket
                   .pull-right
-                    = link_to admin_build_rocket_path(rocket), class: 'buildRocket', method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Build' do
-                      %i.icon-puzzle
                     - if rocket_is_built?(rocket)
-                      = link_to "rockets/#{rocket}.rocket", dowload: "#{rocket}.rocket", 'data-toggle': 'tooltip', 'data-original-title': 'Download' do
+                      = link_to admin_build_rocket_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Update' do
+                        %i.icon-refresh
+                      = link_to "/rockets/#{rocket}.rocket", dowload: "#{rocket}.rocket", 'data-toggle': 'tooltip', 'data-original-title': 'Download' do
                         %i.icon-cloud-download
-                    -# %a{ download: "#{rocket}.rocket", href: "/rockets/#{rocket}.rocket  ", 'data-toggle': 'tooltip', 'data-original-title': 'Download' }
-                    = link_to admin_uninstall_rocket_path(rocket), class: 'uninstallRocket', method: :delete, data: { confirm: t('keppler.messages.data_confirm') }, 'data-toggle': 'tooltip', 'data-original-title': 'Uninstall' do
+                    - else
+                      = link_to admin_build_rocket_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Build' do
+                        %i.icon-wrench
+                    = link_to admin_uninstall_rocket_path(rocket), class: 'uninstallRocket', 'data-toggle': 'tooltip', 'data-original-title': 'Uninstall', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                       %i.icon-trash.text-red
             - if @rockets.blank?
               %tr

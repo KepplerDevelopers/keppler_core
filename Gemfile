@@ -11,6 +11,9 @@ gem 'jquery-rails', '4.3' # jQuery library
 gem 'nprogress-rails', '0.2.0.2' #
 gem 'remotipart', '1.3.0'
 gem 'vuejs-rails', '2.5.13' # VueJS library
+# gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+# gem 'sweet-alert2-rails'
+gem 'sweetalert2'
 
 # Server
 gem 'puma', '~> 3.11', '>= 3.11.3'
@@ -46,12 +49,13 @@ gem 'public_activity', '1.5.0'
 source 'http://insecure.rails-assets.org/' do
   gem 'rails-assets-adminlte'
   gem 'rails-assets-animate-css'
-  gem 'rails-assets-noty'
   gem 'rails-assets-simple-line-icons'
 end
 
 # Soft delete
 gem 'paranoia', '2.4.1'
+
+gem 'goldiloader', '2.1.1'
 #
 # gem 'codemirror-rails', '5.15.2'
 
@@ -111,6 +115,7 @@ group :development do
   gem 'spring', '2.0.2'
   # gem 'table_print'
   gem 'web-console', '>= 3.3.0'
+  gem 'lol_dba'
 end
 
 group :development, :test do
@@ -135,3 +140,13 @@ gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'
 gem 'keppler_capsules', path: 'rockets/keppler_capsules'
+
+
+
+
+
+
+
+
+
+

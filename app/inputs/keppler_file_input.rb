@@ -100,11 +100,8 @@ class KepplerFileInput < SimpleForm::Inputs::Base
   end
 
   def dimensions
-    "minImageWidth: 0,
-    minImageHeight: 0,
-    maxImageWidth: 5000,
-    maxImageHeight: 5000,
-    maxFileSize: #{input_options[:max_size] || 225},
+    "
+    maxFileSize: #{input_options[:max_size] || 6_600},
     maxFilePreviewSize: #{input_options[:max_preview_size] || 25_600}, // 25 MB
     minFileCount: 0,
     maxFileCount: 0".html_safe + ','

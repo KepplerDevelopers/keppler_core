@@ -1,8 +1,28 @@
 KepplerFrontend::Engine.routes.draw do
-  get 'hola', to: 'app/frontend#hola', as: :hola
   root to: 'app/frontend#keppler', as: :keppler
   namespace :admin do
     scope :frontend, as: :frontend do
+      resources :callback_functions do
+        get '(page/:page)', action: :index, on: :collection, as: ''
+        get '/clone', action: 'clone'
+        post '/sort', action: :sort, on: :collection
+        post '/upload', action: 'upload', as: 'upload'
+        get '/download', action: 'download', as: 'download'
+        get '/editor', action: 'editor'
+        post '/editor/save', action: 'editor_save'
+        get(
+          '/reload',
+          action: :reload,
+          on: :collection,
+        )
+        delete(
+          '/destroy_multiple',
+          action: :destroy_multiple,
+          on: :collection,
+          as: :destroy_multiple
+        )
+      end
+
       resources :partials do
         get '(page/:page)', action: :index, on: :collection, as: ''
         get '/clone', action: 'clone'
@@ -31,6 +51,8 @@ KepplerFrontend::Engine.routes.draw do
         post '/upload', action: 'upload', as: 'upload'
         get '/download', action: 'download', as: 'download'
         get '/show_covers', action: 'show_covers', as: 'show_covers'
+        get '/editor', action: 'editor'
+        post '/editor/save', action: 'editor_save'
         get(
           '/reload',
           action: :reload,
@@ -49,6 +71,7 @@ KepplerFrontend::Engine.routes.draw do
       delete '/assets/:search/:fileformat', to: 'multimedia#destroy', as: 'destroy_multimedia'
 
       resources :views do
+        delete '/destroy_callback/:view_callback_id', action: :destroy_callback, as: :destroy_callback
         get '(page/:page)', action: :index, on: :collection, as: ''
         get '/clone', action: 'clone'
         get '/editor', action: 'editor'

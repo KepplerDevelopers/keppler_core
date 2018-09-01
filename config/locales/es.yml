@@ -19,7 +19,7 @@ es:
       keppler-design-submenu:
         frontend-templates: 'Plantillas y Temas'
         admin-appearance: 'Apariencia de Keppler'
-      rockets: KepplerRockets
+      rockets: Rockets
       setting: Configuración
       setting-submenu:
         basic-information: 'Información básica'

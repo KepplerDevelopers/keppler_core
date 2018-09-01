@@ -12,9 +12,9 @@ module Admin
 
     def install_rocket
       if @rocket_file && @rocket_ext.eql?('rocket')
-        Rocket.catch_and_save(@rocket_file)
+        Rocket.save_and_rename(@rocket_file)
         Rocket.unzip(@rocket_file, @rocket_name)
-        Rocket.run_install(@rocket_name)
+        Rocket.install(@rocket_name)
         flash[:notice] = "#{@rocket_name} has been installed"
       else
         flash[:error] = "#{@rocket_name} has not been installed"
@@ -34,7 +34,7 @@ module Admin
     def build_rocket
       if params[:rocket]
         rocket_built = Rocket.build(params[:rocket])
-        flash[:built] = "Rocket has #{'not' unless rocket_built} been built"
+        flash[:built] = "Rocket has #{'not' unless rocket_built} been updated"
         redirect_to admin_rockets_path
       else
         render :rockets, notice: 'Rocket don\'t found! :('

@@ -4,17 +4,9 @@
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1{ style: 'display: inline-block' }
-            = t("keppler.modules.#{controller_path.underscore}")
+            = t("keppler.modules.partials")
           = entries(@total, @objects)
           .toolbar
-            - if can?(KepplerFrontend::Partial).download?
-              .toolbar-item
-                = link_to admin_frontend_partial_download_path(KepplerFrontend::Partial, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                  %i.icon-cloud-download
-            - if can?(KepplerFrontend::Partial).upload?
-              .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "partial" do
-                  %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_frontend_partials_path, class: "tool-btn", remote: true do
                 %i.icon-reload

@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
   end
 
   def appearance
-    @appearance = Setting.first.appearance
+    @setting = Setting.includes(:appearance, :social_account).first
+    @appearance = @setting.appearance
   end
 
   def set_apparience_colors
@@ -50,7 +51,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = t('keppler.messages.not_authorized_action')
-    redirect_to(request.referrer || root_path)
+    redirect_to not_authorized_path
   end
 
   # block access dashboard
@@ -69,10 +70,12 @@ class ApplicationController < ActionController::Base
     ).values.each(&:symbolize_keys!)
     modules = Dir[File.join("#{Rails.root}/rockets", '*')]
     modules.each do |m|
-      module_menu = YAML.load_file(
-        "#{m}/config/menu.yml"
-      ).values.each(&:symbolize_keys!)
-      @sidebar[0] = @sidebar[0].merge(module_menu[0])
+      if File.file?("#{m}/config/menu.yml")
+        module_menu = YAML.load_file(
+          "#{m}/config/menu.yml"
+        ).values.each(&:symbolize_keys!)
+        @sidebar[0] = @sidebar[0].merge(module_menu[0])
+      end
     end
   end
 
@@ -82,12 +85,14 @@ class ApplicationController < ActionController::Base
     ).values.each(&:symbolize_keys!)
     modules = Dir[File.join("#{Rails.root}/rockets", '*')]
     modules.each do |m|
-      module_name = YAML.load_file(
-        "#{m}/config/permissions.yml"
-      ).values
-      return if module_name.first.nil?
-      module_name.each(&:symbolize_keys!)
-      @modules[0] = @modules[0].merge(module_name[0])
+      if File.file?("#{m}/config/permissions.yml")
+        module_name = YAML.load_file(
+          "#{m}/config/permissions.yml"
+        ).values
+        return if module_name.first.nil?
+        module_name.each(&:symbolize_keys!)
+        @modules[0] = @modules[0].merge(module_name[0])
+      end
     end
   end
 

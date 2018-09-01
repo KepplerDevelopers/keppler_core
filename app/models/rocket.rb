@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 # Rocket Model
-class Rocket
+class Rocket < ApplicationRecord
   # Rockets list
   def self.names_list
     Dir["#{Rails.root}/rockets/*"].map { |x| x.split('/').last }
   end
 
   # Catching rocket file and saving in public/rockets
-  def self.catch_and_save(rocket_file)
+  def self.save_and_rename(rocket_file)
     dir = Rails.root.join('public', 'rockets')
     Dir.mkdir(dir) unless Dir.exist?(dir)
     tmp = rocket_file.tempfile
@@ -35,7 +35,7 @@ class Rocket
   end
 
   # Installing rocket
-  def self.run_install(rocket_name)
+  def self.install(rocket_name)
     system "rails g install_rocket #{rocket_name}"
   end
 

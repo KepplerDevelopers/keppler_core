@@ -1,0 +1,15 @@
+---
+- id: 3
+  name: user_authenticate
+  description: Function to block a view if the user is not authenticated
+  position: 1
+  deleted_at: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-28 16:05:10.561162000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2018-08-28 12:05:10.561162000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-08-28 16:05:10.561162000 Z
+    zone: *1
+    time: 2018-08-28 12:05:10.561162000 Z

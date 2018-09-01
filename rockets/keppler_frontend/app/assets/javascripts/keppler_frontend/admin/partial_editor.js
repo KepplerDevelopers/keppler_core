@@ -2,7 +2,7 @@ var editor = '';
 var partial_editor_css = '';
 var partial_editor_js = '';
 
-var controls = {
+var controlsPartial = {
   codes: {},
   savePartial: function(id) {
     this.codes = {

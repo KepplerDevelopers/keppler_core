@@ -51,4 +51,5 @@ menu:
     icon: rocket
     current: ['/admin/rockets']
     model: Rocket
+    enviroment: development
     url_path: /admin/rockets

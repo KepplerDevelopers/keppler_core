@@ -2,7 +2,8 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   def uninstall_rocket
-    remove_rocket
+    remove_rocket_directory
+    remove_rocket_built
     remove_migrations
     remove_route_line
     remove_gem_line
@@ -13,13 +14,31 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
 
   private
 
-  def remove_rocket
-    rocket_folder = "#{Rails.root}/rockets/#{file_name}"
-    if File.directory?(rocket_folder)
-      say "\n*** Removing #{file_name} folder ***"
-      if FileUtils.rm_rf rocket_folder
-        say "=== #{class_name} folder removed ===", :green
+  def remove_rocket_directory
+    rocket_directory = "#{Rails.root}/rockets/#{file_name}"
+    if File.directory?(rocket_directory)
+      say "\n*** Removing #{class_name} directory ***"
+      if FileUtils.rm_rf rocket_directory
+        say "=== #{class_name} directory removed ===", :green
+      else
+        say "!!! Error: Cannot remove #{class_name} rocket directory !!!", :red
       end
+    else
+      say "\n... #{class_name} doesn't have a rocket directory. Skipping ..."
+    end
+  end
+
+  def remove_rocket_built
+    rocket_built = "#{Rails.root}/public/rockets/#{file_name}.rocket"
+    if File.file?(rocket_built)
+      say "\n*** Removing #{class_name} rocket built ***"
+      if FileUtils.rm rocket_built
+        say "=== #{class_name} rocket built removed ===", :green
+      else
+        say "!!! Error: Cannot remove #{class_name} rocket built !!!", :red
+      end
+    else
+      say "\n... #{class_name} doesn't have a rocket built. Skipping ..."
     end
   end
 
@@ -31,7 +50,7 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
         if ActiveRecord::Base.connection.table_exists? table_name(migration).to_sym
           if migration.include?('create')
             if ActiveRecord::Migration.drop_table(table_name(migration).to_sym)
-              say "--- #{table_name(migration)} table dropped ---", :green
+              say "--- #{table_name(migration)} table dropped ---"
             end
           end
         end
@@ -44,7 +63,7 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
     if removed_files
       say "=== #{class_name} migrations has been removed ===", :green
     else
-      say "\n!!! Doesn' t exist migrations with this rocket name. Skipping... !!!", :red
+      say "\n... Doesn' t exist migrations with this rocket name. Skipping ..."
     end
   end
 
@@ -74,6 +93,7 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
 
   def restart_server
     say "\n*** Restarting application server ***"
+    system 'bin/rails restart'
     system 'bin/rails restart'
     say "=== Application server has been restarted ===\n", :green
   end
