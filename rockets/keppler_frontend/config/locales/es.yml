@@ -16,17 +16,21 @@ es:
         callback_function: callback
         view: vista
         theme: tema
-        partials: parciales
+        partial: parcial
+        functions: funciones
       pluralize:
         keppler_frontend/views: vistas
         callback_functions: callbacks
+        functions: funciones
         views: vistas
         themes: temas
+        funciones: funciones
     modules:
       new: Nuevo
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Temas
       keppler_frontend/admin/callback_functions: Callbacks
+      keppler_frontend/admin/functions: Funciones
     form:
       callbacks: Callbacks
     actions:
@@ -43,19 +47,24 @@ es:
         themes: Temas
         partials: Partials
         callback_functions: Callbacks
+        functions: Funciones
     models:
       singularize:
         keppler_frontend/view: vista
         keppler_frontend/partial: partial
         keppler_frontend/callback_function: callback
+        keppler_frontend/function: funcion
         view: vista
         theme: tema
+        function: funcion
       pluralize:
         keppler_frontend/views: vistas
         keppler_frontend/callback_functions: callbacks
+        keppler_frontend/functions: funciones
         views: vistas
         themes: temas
         partials: partials
+        functions: funciones
     modules:
       new: Nuevo
       keppler_frontend/admin/views: Frontend
