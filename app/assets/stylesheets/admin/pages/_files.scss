@@ -16,17 +16,6 @@
     position: relative;
     transition: outline-offset .15s ease;
 
-    &:hover {
-      outline: 2px dashed $gray;
-      outline-offset: -5px;
-      transition: outline-offset .15s ease;
-
-      .opacity {
-        opacity: 1;
-        transition: .3s;
-      }
-    }
-
     .opacity {
       color: $white;
       opacity: 0;
@@ -68,6 +57,17 @@
     }
   }
 
+  .file-container:hover {
+    outline: 2px dashed $gray;
+    outline-offset: -5px;
+    transition: outline-offset .15s ease;
+
+    .opacity {
+      opacity: 1;
+      transition: .3s;
+    }
+  }
+
   button,
   a,
   [type=submit] {
@@ -85,117 +85,114 @@
       transition: .3s;
     }
   }
+}
 
-  ///////////////////// File Multiple /////////////////////
+///////////////////// File Multiple /////////////////////
 
-  &.file-multiple {
+.file-multiple {
+  align-items: center;
+  display: flex;
+  flex-flow: wrap;
+  max-width: 100%;
+  min-height: 100px;
+
+  .file-container {
+    height: 100px;
+    margin: 5px;
+    width: 100px;
+
+    input {
+      padding: 50px;
+    }
+
+    .file-icon {
+      font-size: 2rem;
+    }
+
+    .file-text {
+      font-size: 1rem;
+    }
+  }
+
+  .file-list {
     align-items: center;
-    display: flex;
+    display: inline-flex;
     flex-flow: wrap;
-    max-width: 100%;
-    min-height: 100px;
+    justify-content: center;
+    margin: 5px;
+    padding: 0;
+    width: 100%;
+  }
 
-    .file-container {
-      height: 100px;
-      margin: 5px;
-      width: 100px;
+  .file-item {
+    align-items: center;
+    background: $white;
+    box-shadow: $btn-float-shadow;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    list-style: none;
+    margin: 5px;
+    max-width: 100px;
+    padding: 5px;
+    position: relative;
+    transition: .12s ease-in-out;
+    width: 100px;
+  }
 
-      input {
-        padding: 50px;
-      }
+  .file-item-background {
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    transition: .2s ease-in-out;
+    width: 100%;
 
-      .file-icon {
-        font-size: 2rem;
-      }
+    i {
+      font-size: 3rem;
+    }
+  }
 
-      .file-text {
-        font-size: 1rem;
-      }
+  .file-icon-delete {
+    font-size: 3rem;
+
+    &.item-opacity {
+      cursor: pointer;
+      font-size: 2rem;
+      opacity: 0;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      transition: .02s ease-in-out;
+    }
+  }
+
+  .file-item:hover {
+    box-shadow: $btn-float-shadow-hover;
+    transition: .12s ease-in-out;
+
+    .file-item-background {
+      filter: opacity(20%);
+      transition: .2s ease-in-out;
     }
 
-    .file-list {
-      align-items: center;
-      display: inline-flex;
-      flex-flow: wrap;
-      justify-content: center;
-      margin: 5px;
-      padding: 0;
-      width: 100%;
+    .file-icon-delete::before {
+      content: '\e082'; // icon-close
+      // content: '\e054'; // icon-trash
     }
 
-    .file-item {
-      align-items: center;
-      background: $white;
-      box-shadow: $btn-float-shadow;
-      display: flex;
-      height: 100px;
-      justify-content: center;
-      list-style: none;
-      margin: 5px;
-      max-width: 100px;
-      padding: 5px;
-      position: relative;
-      width: 100px;
-      transition: .12s ease-in-out;
+    .file-icon-delete:hover {
+      color: $error-color;
+      transition: .02s ease-in-out;
+    }
 
-      .file-item-background {
-        align-items: center;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        display: flex;
-        height: 100%;
-        justify-content: center;
-        position: absolute;
-        transition: .2s ease-in-out;
-        width: 100%;
-
-        i {
-          font-size: 3rem;
-        }
-      }
-
-      .file-icon-delete {
-        font-size: 3rem;
-
-        &.item-opacity {
-          cursor: pointer;
-          font-size: 2rem;
-          opacity: 0;
-          right: 5px;
-          top: 5px;
-          position: absolute;
-          transition: .02s ease-in-out;
-        }
-      }
-
-      &:hover {
-        box-shadow: $btn-float-shadow-hover;
-        transition: .12s ease-in-out;
-
-        .file-item-background {
-          filter: opacity(20%);
-          transition: .2s ease-in-out;
-        }
-
-        .file-icon-delete {
-
-          &::before {
-            content: "\e082"; // icon-close
-            // content: "\e054"; // icon-trash
-          }
-
-          &:hover {
-            color: $error-color;
-            transition: .02s ease-in-out;
-          }
-
-          &.item-opacity {
-            opacity: 1;
-            transition: .02s ease-in-out;
-          }
-        }
-      }
+    .file-icon-delete.item-opacity {
+      opacity: 1;
+      transition: .02s ease-in-out;
     }
   }
 }
