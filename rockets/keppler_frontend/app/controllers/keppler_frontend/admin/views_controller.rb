@@ -144,6 +144,7 @@ module KepplerFrontend
         @files_bootstrap = filesystem.files_list_bootstrap
         @partials = Partial.all
         @views = View.where.not(name: 'keppler').order(position: :asc)
+        @functions = KepplerFrontend::Function.all
 
       end
 
