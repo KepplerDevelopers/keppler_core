@@ -143,7 +143,7 @@ module KepplerFrontend
         param = Parameter.find(params[:param_id])
         param.destroy
 
-        function.update_function(function)
+        function.update_function(function.name, function)
         redirect_to edit_admin_frontend_function_path(function)
       end
 

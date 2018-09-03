@@ -2,7 +2,6 @@ require_dependency "keppler_frontend/application_controller"
 
 module KepplerFrontend
   class App::FrontendController < App::AppController
-    # Begin callbacks area (don't delete)
     # End callbacks area (don't delete)
     layout 'layouts/keppler_frontend/app/layouts/application'
     include FrontsHelper
@@ -18,8 +17,5 @@ module KepplerFrontend
       redirect_to '/' unless user_signed_in?
     end
     # end callback user_authenticate
-
-    #Begin functions area (don't delete)
-    # End functions area (don't delete)
   end
 end

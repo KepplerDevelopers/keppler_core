@@ -16,7 +16,7 @@ module KepplerFrontend
           end
           index_html.insert(head_idx.to_i + 1, "    # begin #{name}\n")
           index_html.insert(head_idx.to_i + 2, "    def #{name}(#{parse_parameters})\n")
-          index_html.insert(head_idx.to_i + 3, "\n")
+          index_html.insert(head_idx.to_i + 3, "      # This function receives these parameters: #{parse_parameters}\n")
           index_html.insert(head_idx.to_i + 4, "    end\n")
           index_html.insert(head_idx.to_i + 5, "    # end #{name}\n")
           index_html = index_html.join('')
@@ -52,7 +52,8 @@ module KepplerFrontend
           # return if begin_idx==0
           index_html[begin_idx] = "    # begin #{function.name}\n"
           index_html[begin_idx+1] = "    def #{function.name}(#{parse_parameters})\n"
-          index_html[begin_idx+4] = "    # end #{function.name}\n"
+          index_html[begin_idx+2] = "      # This function receives these parameters: #{parse_parameters}\n"
+          index_html[end_idx] = "    # end #{function.name}\n"
           index_html = index_html.join('')
           File.write(file, index_html)
           true
