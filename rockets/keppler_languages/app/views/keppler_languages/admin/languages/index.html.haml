@@ -6,7 +6,11 @@
           %h1{ style: 'display: inline-block' }
             = t("keppler.modules.language")
           = entries(@total, @objects)
+        %section.content-actions
           .toolbar
+            .toolbar-item
+              = link_to reload_admin_languages_languages_path, class: "tool-btn", remote: true do
+                %i.icon-reload
             - if can?(KepplerLanguages::Language).download?
               .toolbar-item
                 = link_to admin_languages_language_download_path(KepplerLanguages::Language, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
@@ -16,26 +20,14 @@
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "language" do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_languages_languages_path, class: "tool-btn", remote: true do
-                %i.icon-reload
-            - if can?(KepplerLanguages::Language).destroy_multiple?
-              .toolbar-item
-                .checkbox
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
-            .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
             = form_tag admin_languages_language_upload_path(@objects), id: "upload_form_languages", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_language"
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+          .add
+            = link_to new_admin_languages_language_path, class: 'btn-add' do
+              + Agregar
 
         .box.slice-box
           .box-body.no-padding
@@ -44,15 +36,22 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{style: 'text-align: center;'}
+                    %th.not-records.center
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.languages"))
                 - else
                   %tr
                     %th
+                      - if can?(KepplerLanguages::Language).destroy_multiple?
+                        .item-check
+                          .checkbox
+                            %label{ for: 'checkbox-all' }
+                              %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
+                              %span.cr
+                                %i.cr-icon.glyphicon.glyphicon-ok                      
                     %th.hidden-xs= t('activerecord.attributes.name')
                     %th.center Menu
                     %th
-              %tbody#objects-container
+              %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
         %center#paginator-module
@@ -60,11 +59,6 @@
   %aside.control-sidebar
     = render "description"
   %aside#index-show.control-sidebar
-
-  .mixed-btn
-    - if can?(KepplerLanguages::Language).create?
-      = link_to new_admin_languages_language_path, class: "btn-float" do
-        +
 
 :javascript
   $(document).ready(function(){
