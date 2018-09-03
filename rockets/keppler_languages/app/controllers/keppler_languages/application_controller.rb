@@ -11,7 +11,7 @@ module KepplerLanguages
 
     def set_languages
       @languages = YAML.load_file(
-        "#{Rails.root}/rockets/keppler_languages/config/languages.yml"
+        "#{Rails.root}/rockets/keppler_languages/config/locales.yml"
       ).values.each(&:symbolize_keys!)
     end
   end

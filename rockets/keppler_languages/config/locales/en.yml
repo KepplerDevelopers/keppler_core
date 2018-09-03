@@ -21,6 +21,7 @@ en:
       new: New
       show: Show
       edit: Edit
+      add: Add Fields
       clone: Clone
       delete: Delete
       index: List

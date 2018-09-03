@@ -24,23 +24,67 @@ puts 'admin@keppler.io has been created'
 
 Customize.create(file: '', installed: true)
 puts 'Keppler Template has been created'
+
 # Create setting deafult
-setting = Setting.create(
-  name: 'Keppler Admin', description: 'Welcome to Keppler Admin',
-  smtp_setting_attributes: {
-    address: 'test', port: '25', domain_name: 'keppler.com',
-    email: 'info@keppler.com', password: '12345678'
-  },
-  google_analytics_setting_attributes: {
-    ga_account_id: '60688852',
-    ga_tracking_id: 'UA-60688852-1',
-    ga_status: true
-  }
-)
-setting.social_account = SocialAccount.new
-setting.appearance = Appearance.new(theme_name: 'keppler')
-setting.save
-puts 'Setting default has been created'
+if yml = YAML.load_file("#{Rails.root}/config/settings.yml")
+  setting = Setting.create(
+    name: yml['name'],
+    description: yml['description'],
+    email: yml['email'],
+    phone: yml['phone'],
+    mobile: yml['mobile'],
+    smtp_setting_attributes: {
+      address: yml['address'],
+      port: yml['port'],
+      domain_name: yml['domain_name'],
+      email: yml['smtp_email'],
+      password: yml['password']
+    },
+    google_analytics_setting_attributes: {
+      ga_account_id: yml['ga_account_id'],
+      ga_tracking_id: yml['ga_tracking_id'],
+      ga_status: yml['ga_status']
+    }
+  )
+  setting.social_account = SocialAccount.new(
+    facebook: yml['facebook'],
+    twitter: yml['twitter'],
+    instagram: yml['instagram'],
+    google_plus: yml['google_plus'],
+    tripadvisor: yml['tripadvisor'],
+    pinterest: yml['pinterest'],
+    flickr: yml['flickr'],
+    behance: yml['behance'],
+    dribbble: yml['dribbble'],
+    tumblr: yml['tumblr'],
+    github: yml['github'],
+    linkedin: yml['linkedin'],
+    soundcloud: yml['soundcloud'],
+    youtube: yml['youtube'],
+    skype: yml['skype'],
+    vimeo: yml['vimeo']
+  )
+  setting.appearance = Appearance.new(theme_name: yml['theme_name'])
+  setting.save!
+  puts 'Setting has been created'
+else
+  setting = Setting.create(
+    name: 'Keppler Admin', description: 'Welcome to Keppler Admin',
+    smtp_setting_attributes: {
+      address: 'test', port: '25', domain_name: 'keppler.com',
+      email: 'info@keppler.com', password: '12345678'
+    },
+    google_analytics_setting_attributes: {
+      ga_account_id: '60688852',
+      ga_tracking_id: 'UA-60688852-1',
+      ga_status: true
+    }
+  )
+  setting.social_account = SocialAccount.new
+  setting.appearance = Appearance.new(theme_name: 'keppler')
+  setting.save
+  puts 'Setting default has been created'
+end
 
 if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
   KepplerContactUs::MessageSetting.create(
@@ -62,5 +106,37 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
       format_result: route['format_result']
     )
   end
-  puts 'Views has been created'
+
+  partials_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/partials.yml")
+  partials = YAML.load_file(partials_file)
+
+  partials.each do |partial|
+    KepplerFrontend::Partial.create(
+      name: partial['name'],
+    )
+  end
+  puts 'Views and Partials has been created'
+end
+
+if defined?(KepplerLanguages) && KepplerLanguages.is_a?(Module)
+  languages =  File.join("#{Rails.root}/rockets/keppler_languages/config/languages.yml")
+  langs = YAML.load_file(languages)
+
+  langs.each do |lang|
+    KepplerLanguages::Language.create(
+      name: lang['name']
+    )
+  end
+
+  file_fields =  File.join("#{Rails.root}/rockets/keppler_languages/config/fields.yml")
+  fields = YAML.load_file(file_fields)
+
+  fields.each do |field|
+    KepplerLanguages::Field.create(
+      key: field['key'],
+      value: field['value'],
+      language_id: field['language_id']
+    )
+  end
+  puts 'Languages has been created'
 end

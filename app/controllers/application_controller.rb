@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
   end
 
   def appearance
-    @appearance = Setting.first.appearance
+    @setting = Setting.includes(:appearance, :social_account).first
+    @appearance = @setting.appearance
   end
 
   def set_apparience_colors
@@ -50,7 +51,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = t('keppler.messages.not_authorized_action')
-    redirect_to(request.referrer || root_path)
+    redirect_to not_authorized_path
   end
 
   # block access dashboard
