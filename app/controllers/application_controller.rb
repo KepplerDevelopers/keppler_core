@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
   end
 
   def appearance
-    @appearance = Setting.first.appearance
+    @setting = Setting.includes(:appearance, :social_account).first
+    @appearance = @setting.appearance
   end
 
   def set_apparience_colors

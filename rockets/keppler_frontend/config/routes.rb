@@ -91,6 +91,8 @@ KepplerFrontend::Engine.routes.draw do
         post '/upload', action: 'upload', as: 'upload'
         get '/download', action: 'download', as: 'download'
         get '/show_covers', action: 'show_covers', as: 'show_covers'
+        get '/editor', action: 'editor'
+        post '/editor/save', action: 'editor_save'
         get(
           '/reload',
           action: :reload,

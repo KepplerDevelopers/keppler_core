@@ -6,7 +6,7 @@
   active: true
   format_result: HTML
   position: 1
-  deleted_at: 
+  deleted_at:
   created_at: !ruby/object:ActiveSupport::TimeWithZone
     utc: 2018-08-30 18:53:43.223111000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone

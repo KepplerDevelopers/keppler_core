@@ -13,9 +13,9 @@ module KepplerFrontend
       # Descomentar el modelo que exista depende del proyecto
       # @post = KepplerBlog::Post.find(params[:id])
       # @product = Product.find(params[:id])
-      @setting = Setting.first
+      # @setting = Setting.includes(:social_account).first
       @meta = MetaTag.get_by_url(request.url)
-      @social = SocialAccount.last
+      @social = @setting.social_account
       @meta_title = MetaTag.title(@post, @product, @setting)
       @meta_description = MetaTag.description(@post, @product, @setting)
       @meta_image = MetaTag.image(request, @post, @product, @setting)

@@ -145,7 +145,6 @@ module KepplerFrontend
         @partials = Partial.all
         @views = View.where.not(name: 'keppler').order(position: :asc)
         @functions = KepplerFrontend::Function.all
-
       end
 
       def editor_save

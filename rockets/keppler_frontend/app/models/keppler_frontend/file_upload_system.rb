@@ -137,7 +137,7 @@ module KepplerFrontend
     end
 
     def folders
-      ['audios', 'fonts', 'images', 'videos', 'html']
+      ['audios', 'fonts', 'images', 'videos', 'html', 'javascripts', 'stylesheets']
     end
 
     def file_formats
@@ -146,7 +146,9 @@ module KepplerFrontend
         fonts: ['.eot', '.otf', '.ttf', '.woff', '.woff2'],
         images: ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.tiff', '.bmp'],
         videos: ['.mp4', '.mpeg', '.webm'],
-        html: ['.html', '.html.erb']
+        html: ['.html', '.html.erb'],
+        javascripts: ['.js', '.coffee', '.js.erb', '.json'],
+        stylesheets: ['.css', '.scss', 'sass', '.scss.erb']
       }
     end
 
