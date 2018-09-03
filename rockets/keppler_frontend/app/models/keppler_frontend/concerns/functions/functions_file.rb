@@ -40,7 +40,7 @@ module KepplerFrontend
           true
         end
 
-        def update_function(function)
+        def update_function(name, function)
           file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
           index_html = File.readlines(file)
           begin_idx = 0

@@ -58,9 +58,10 @@ module KepplerFrontend
 
       # PATCH/PUT /functions/1
       def update
+        old_name = @function.name
         update_params(@function, params[:function][:parameters_attributes].values)
-        @function.update_function(@function)
         if @function.update(name: params[:function][:name])
+          @function.update_function(old_name, @function)
           redirect(@function, params)
         else
           render :edit
