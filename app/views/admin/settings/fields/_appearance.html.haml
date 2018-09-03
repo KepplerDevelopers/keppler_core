@@ -14,7 +14,7 @@
             .appearance-img{ style: "background-image:url('/assets/admin/profile-menu.jpg')" }
               = render 'admin/settings/components/preview', f: f
     .col-md-5.col-lg-6
-      .box.slice-box
+      .box.slice-box.p-15
         .box-header.with-border
           %h3.box-title Admin Theme
 
@@ -23,10 +23,10 @@
           %p Principal
           %input{ type: 'color', name: 'color', placeholder: 'Color', value: color, 'v-model' => 'main' }
           .pull-right
+            = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
             - if @render.eql?('appearance')
               = link_to appearance_default_admin_settings_path(@render), class: 'btn btn-default', method: :put do
                 = t('keppler.actions.appearance_defaut')
-            = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
 
 :javascript
   var vm = new Vue({
@@ -37,11 +37,11 @@
     computed: {
       changeColors() {
         if (this.main) {
-          $('.keppler-color').css('color', this.main)
+          $('.logo span').css('color', this.main)
           $('.keppler-background').css('background', this.main)
           $('.keppler-border-top-color').css('border-top-color', this.main)
           $('.keppler-border-left-color').css('border-left-color', this.main)
-          $('.logo').css('background', this.main)
+          $('.sidebar-toggle').css('background', this.main)
           $('.btn-primary').css('background', this.main)
           $('.slice-box').css('border-top-color', this.main)
           $('#span').css('color', this.main)
