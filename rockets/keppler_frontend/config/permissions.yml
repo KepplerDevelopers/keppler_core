@@ -1,4 +1,20 @@
 modules:
+ parameters:
+    name: Parameter
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  
+ functions:
+    name: Function
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  
  callback_functions:
     name: CallbackFunction
     actions: [
