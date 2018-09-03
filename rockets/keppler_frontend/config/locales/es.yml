@@ -78,6 +78,7 @@ es:
       assets: Assets
       ui: User Interface
       view_list: Lista de vistas
+      themes_list: Lista de temas
       callbacks_list: Lista de callbacks
       edit: Actualizar
       clone: Clonar
