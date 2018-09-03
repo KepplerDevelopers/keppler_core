@@ -5,7 +5,7 @@
     #log
     - if loggedin?
       .wrapper{ style: 'height: auto; min-height: 100vh;' }
-        = render 'admin/layouts/navigation', q: @q, appearance: @appearance
+        = render 'admin/layouts/navigation', q: @q, appearance: @appearance, model_obj: [:admin, @q]
         = render 'admin/layouts/sidebar', render: @render
         = render 'admin/layouts/messages'
         .content-wrapper
