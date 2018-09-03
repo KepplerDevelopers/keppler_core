@@ -4,7 +4,7 @@
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1{ style: 'display: inline-block' }
-            = t("keppler.modules.functions")
+            = t("keppler_frontend.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
           .toolbar
             - if can?(KepplerFrontend::Function).download?
