@@ -7,8 +7,8 @@
         = simple_form_for '', url: admin_install_rocket_path, html: { multipart: true } do
           .file-uploader
             .file-container
-              = file_field_tag :rocket#, multiple: true
-              %i.icon-rocket.file-icon
+              = file_field_tag :rocket, multiple: true
+              %i.file-icon.icon-rocket
               %h5.file-text Drop rockets or press here
             %a.spinnerTrigger#installRocket
               %i.icon-rocket

@@ -1,18 +1,24 @@
 .file-uploader {
+  background: $white;
   margin: 0 auto;
   max-width: 500px;
   min-height: 300px;
 
   .file-container {
-    position: relative;
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    height: 240px;
+    justify-content: center;
+    margin: 0 auto;
     outline: 2px dashed tint($gray, 50%);
-    outline-offset: 0px;
+    outline-offset: 0;
+    position: relative;
     transition: outline-offset .15s ease;
 
-    &:focus,
     &:hover {
       outline: 2px dashed $gray;
-      outline-offset: -10px;
+      outline-offset: -5px;
       transition: outline-offset .15s ease;
 
       .opacity {
@@ -24,42 +30,26 @@
     .opacity {
       color: $white;
       opacity: 0;
-      text-shadow: 0px 0px 5px $light-black;
+      text-shadow: 0 0 5px $light-black;
       transition: .3s;
     }
 
     input {
       cursor: pointer;
+      height: 0;
       opacity: 0;
-      // outline: 2px dashed tint($gray, 50%);
-      // outline-offset: -10px;
       padding: 120px 50px;
+      position: absolute;
       width: 100%;
-      transition: outline-offset .15s ease-in-out;
-
-      &:focus,
-      &:hover {
-        // outline: 2px dashed $gray;
-        // outline-offset: -20px;
-        transition: .15s;
-      }
     }
 
     .file-icon {
       font-size: 5rem;
-      left: 50%;
-      position: absolute;
-      top: 40%;
-      transform: translate(-50%, -50%);
     }
 
     .file-text {
       font-size: 2rem;
-      left: 50%;
-      position: absolute;
       text-align: center;
-      top: 60%;
-      transform: translate(-50%, -50%);
     }
 
     .file-image {
@@ -67,7 +57,6 @@
     }
 
     .file-name {
-      // color: $medium-grey;
       font-size: 1.5rem;
       left: 50%;
       max-width: 80%;
@@ -97,31 +86,115 @@
     }
   }
 
-  .file-list {
-    display: inline-flex;
-    padding: 0;
-    width: 100%;
+  ///////////////////// File Multiple /////////////////////
 
-    li {
+  &.file-multiple {
+    align-items: center;
+    display: flex;
+    flex-flow: wrap;
+    max-width: 100%;
+    min-height: 100px;
+
+    .file-container {
+      height: 100px;
+      margin: 5px;
+      width: 100px;
+
+      input {
+        padding: 50px;
+      }
+
+      .file-icon {
+        font-size: 2rem;
+      }
+
+      .file-text {
+        font-size: 1rem;
+      }
+    }
+
+    .file-list {
       align-items: center;
+      display: inline-flex;
+      flex-flow: wrap;
+      justify-content: center;
+      margin: 5px;
+      padding: 0;
+      width: 100%;
+    }
+
+    .file-item {
+      align-items: center;
+      background: $white;
       box-shadow: $btn-float-shadow;
       display: flex;
       height: 100px;
       justify-content: center;
       list-style: none;
-      margin: 5px auto;
+      margin: 5px;
       max-width: 100px;
       padding: 5px;
-      width: 25%;
+      position: relative;
+      width: 100px;
       transition: .12s ease-in-out;
+
+      .file-item-background {
+        align-items: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        position: absolute;
+        transition: .2s ease-in-out;
+        width: 100%;
+
+        i {
+          font-size: 3rem;
+        }
+      }
+
+      .file-icon-delete {
+        font-size: 3rem;
+
+        &.item-opacity {
+          cursor: pointer;
+          font-size: 2rem;
+          opacity: 0;
+          right: 5px;
+          top: 5px;
+          position: absolute;
+          transition: .02s ease-in-out;
+        }
+      }
 
       &:hover {
         box-shadow: $btn-float-shadow-hover;
         transition: .12s ease-in-out;
-      }
 
-      i {
-        font-size: 3rem;
+        .file-item-background {
+          filter: opacity(20%);
+          transition: .2s ease-in-out;
+        }
+
+        .file-icon-delete {
+
+          &::before {
+            content: "\e082"; // icon-close
+            // content: "\e054"; // icon-trash
+          }
+
+          &:hover {
+            color: $error-color;
+            transition: .02s ease-in-out;
+          }
+
+          &.item-opacity {
+            opacity: 1;
+            transition: .02s ease-in-out;
+          }
+        }
       }
     }
   }
