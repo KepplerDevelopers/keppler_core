@@ -18,7 +18,7 @@
         %a{onclick: "controls.saveLayout(#{@theme.id})", title: t('keppler.actions.save')}
           %i.fa.fa-save
       %li.pull-right
-        = link_to admin_frontend_themes_path,title: t('keppler.actions.preview') do
+        = link_to admin_frontend_themes_path, title: t('keppler.actions.themes_list') do
           %i.fa.fa-list
           =t('keppler_frontend.models.pluralize.themes').capitalize
     .tab-content
