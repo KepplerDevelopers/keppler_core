@@ -371,16 +371,16 @@
   margin-left: auto;
 
   .btn-add {
-    background-color:  $keppler-color;
+    background-color: $keppler-color;
     border-radius: 15px;
-    color:  white;
+    color: $white;
     cursor: pointer;
-    font-weight:  600;
+    font-weight: 600;
     padding: 5px 20px;
   }
 }
 
 .not-records {
-  background-color: white; 
+  background-color: $white;
   border: 0;
 }

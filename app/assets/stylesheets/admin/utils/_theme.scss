@@ -98,17 +98,17 @@
   }
 
   thead {
-    background-color: #ededed;
+    background-color: $ededed;
 
     th {
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1px;
       font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .1px;
+      text-transform: uppercase;
+    }
 
-      &:first-child {
-        padding: 10px 20px;
-      }
+    th:first-child {
+      padding: 10px 20px;
     }
   }
 }

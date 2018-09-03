@@ -51,13 +51,14 @@ $gray-color: #949494;
       height: 150px;
     }
 
-    .user-footer {
-      background-color: $white !important; // scss-lint:disable ImportantRule
+  }
 
-      .btn-default {
-        border-radius: 15px;
-        padding: 5px 20px;
-      }
+  .user-footer {
+    background-color: $white !important; // scss-lint:disable ImportantRule
+
+    .btn-default {
+      border-radius: 15px;
+      padding: 5px 20px;
     }
   }
 
@@ -120,10 +121,10 @@ $gray-color: #949494;
 
   .main-header .logo {
     width: 185px;
+  }
 
-    .logo-mini span {
-      margin-left: 15px;
-    }
+  .logo-mini span {
+    margin-left: 15px;
   }
 
   .main-sidebar {

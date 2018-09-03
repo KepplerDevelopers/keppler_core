@@ -1,11 +1,5 @@
 %aside.main-sidebar
   %section.sidebar.sidebar-collapse
-    -# .user-panel
-    -#   .pull-left.image
-    -#     = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle side-img-profile keppler-background', alt: current_user.name
-    -#   .info
-    -#     %p= current_user.name
-    -#     %small= current_user.rol.humanize
     %ul.sidebar-menu.tree{ 'data-widget': 'tree' }
       %li.sidebar-item
         = link_to '/admin/dashboard', class: "sidebar-link #{'active' if request.env['REQUEST_PATH'].eql?('/admin/dashboard')}", 'data-turbolinks': false do
