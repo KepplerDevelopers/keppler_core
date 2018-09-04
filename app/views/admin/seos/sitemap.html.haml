@@ -9,13 +9,9 @@
         %a{onclick: "controls.save()", title: t('keppler.actions.save')}
           %i.fa.fa-save
       %li.pull-right
-        %a#btn-views-editor{title: t('keppler.actions.views')}
-          %i.fa.fa-cog
-      -# %li.pull-right
-      -#   = link_to admin_frontend_sitemaps_path do
-      -#     %i.fa.fa-list
-      -#     %span.hidden-xs
-      -#       = t('keppler.actions.sitemaps_list')
+        %a{ title: t('keppler.actions.documentation'), href: 'https://github.com/kjvarga/sitemap_generator', target: '_blank' }
+          %i.fa.fa-book
+          = t('keppler.actions.documentation')
     .tab-content
       #tab_5.tab-pane.active
         %div.action.code-container
