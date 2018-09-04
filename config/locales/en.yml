@@ -106,6 +106,7 @@ en:
       new: "%{model} - New"
       history: Activities
     actions:
+      documentation: Documentation
       created: Created
       updated: Updated
       create: Create

@@ -122,6 +122,7 @@ es:
       new: "%{model} - Nuevo"
       history: Historial
     actions:
+      documentation: Documentación
       created: Creado
       updated: Actualizado
       new: Nuevo
