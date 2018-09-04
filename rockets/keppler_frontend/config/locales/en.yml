@@ -23,17 +23,20 @@ en:
         callback_function: callback
         view: view
         theme: theme
-        partials: partials
+        partial: partial
+        function: function
       pluralize:
         keppler_frontend/views: views
-        allback_functions: callbacks
+        callback_functions: callbacks
         views: views
         themes: themes
+        functions: functions
     modules:
       new: new
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Themes
       keppler_frontend/admin/callback_functions: Callbacks
+      keppler_frontend/admin/functions: Function
     form:
       callbacks: Callbacks
     actions:

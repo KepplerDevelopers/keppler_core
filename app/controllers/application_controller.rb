@@ -97,7 +97,6 @@ class ApplicationController < ActionController::Base
     if controller_path.include?('admin')
       I18n.locale = 'es'
     end
-
   end
 
   def set_languages
