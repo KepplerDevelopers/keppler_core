@@ -6,7 +6,11 @@
           %h1{ style: 'display: inline-block' }
             = t("keppler.modules.partials")
           = entries(@total, @objects)
+        %section.content-actions
           .toolbar
+            .toolbar-item
+              = link_to reload_admin_frontend_partials_path, class: "tool-btn", remote: true do
+                %i.icon-reload
             - if can?(KepplerFrontend::Partial).download?
               .toolbar-item
                 = link_to admin_frontend_partial_download_path(KepplerFrontend::Partial, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
@@ -16,26 +20,14 @@
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "partial" do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_frontend_partials_path, class: "tool-btn", remote: true do
-                %i.icon-reload
-            - if can?(KepplerFrontend::Partial).destroy_multiple?
-              .toolbar-item
-                .checkbox
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
-            .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
             = form_tag admin_frontend_partial_upload_path(@objects), id: "upload_form_partials", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_partial"
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+          .add
+            = link_to new_admin_frontend_partial_path, class: "btn-add" do
+              + Agregar
 
         .box.slice-box
           .box-body.no-padding
@@ -44,15 +36,22 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{style: 'text-align: center;'}
+                    %th.not-records.center
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.partials"))
                 - else
                   %tr
                     %th
+                      - if can?(KepplerFrontend::Partial).destroy_multiple?
+                        .item-check
+                          .checkbox
+                            %label{ for: 'checkbox-all' }
+                              %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
+                              %span.cr
+                                %i.cr-icon.glyphicon.glyphicon-ok
                     %th.hidden-xs= t('activerecord.attributes.name')
                     %th.center Menu
                     %th
-              %tbody#objects-container
+              %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
         %center#paginator-module
@@ -60,11 +59,6 @@
   %aside.control-sidebar
     = render "description"
   %aside#index-show.control-sidebar
-
-  .mixed-btn
-    - if can?(KepplerFrontend::Partial).create?
-      = link_to new_admin_frontend_partial_path, class: "btn-float" do
-        +
 
 :javascript
   $(document).ready(function(){

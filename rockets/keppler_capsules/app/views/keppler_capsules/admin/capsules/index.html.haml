@@ -6,7 +6,11 @@
           %h1{ style: 'display: inline-block' }
             = t("keppler_capsules.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
+        %section.content-actions
           .toolbar
+            .toolbar-item
+              = link_to reload_admin_capsules_capsules_path, class: "tool-btn", remote: true do
+                %i.icon-reload
             - if can?(KepplerCapsules::Capsule).download?
               .toolbar-item
                 = link_to admin_capsules_capsule_download_path(KepplerCapsules::Capsule, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
@@ -16,26 +20,15 @@
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "capsule" do
                   %i.icon-cloud-upload
             .toolbar-item
-              = link_to reload_admin_capsules_capsules_path, class: "tool-btn", remote: true do
-                %i.icon-reload
-            - if can?(KepplerCapsules::Capsule).destroy_multiple?
-              .toolbar-item
-                .checkbox
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
-            .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
             = form_tag admin_capsules_capsule_upload_path(@objects), id: "upload_form_capsules", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_capsule"
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+          .add
+            = link_to new_admin_capsules_capsule_path, class: "btn-add" do
+              + Agregar
+
 
         .box.slice-box
           .box-body.no-padding
@@ -44,15 +37,22 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{style: 'text-align: center;'}
+                    %th.not-records.center
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler_capsules.models.pluralize.capsules"))
                 - else
                   %tr
                     %th
+                      - if can?(KepplerCapsules::Capsule).destroy_multiple?
+                        .item-check
+                          .checkbox
+                            %label{ for: 'checkbox-all' }
+                              %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
+                              %span.cr
+                                %i.cr-icon.glyphicon.glyphicon-ok
                     %th.hidden-xs= t('activerecord.attributes.name')
                     %th.center Menu
                     %th
-              %tbody#objects-container
+              %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
         %center#paginator-module
@@ -60,8 +60,3 @@
   %aside.control-sidebar
     = render "description"
   %aside#index-show.control-sidebar
-
-  .mixed-btn
-    - if can?(KepplerCapsules::Capsule).create?
-      = link_to new_admin_capsules_capsule_path, class: "btn-float" do
-        +

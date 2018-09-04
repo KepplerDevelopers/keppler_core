@@ -31,10 +31,8 @@
         %span
           = view.format_result
     %td.hidden-xs.hidden-sm
-      = link_to nil, remote: true, class: 'show-row' do
-        %span
-          = link_to view.url, class: "btn btn-default #{'disabled' if !view.method.eql?('GET') || view.active.eql?(false) }", target: '_blank' do
-            = view.path
+      = link_to view.url, class: "#{'disabled' if !view.method.eql?('GET') || view.active.eql?(false) }", target: '_blank' do
+        = view.path
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{view.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical

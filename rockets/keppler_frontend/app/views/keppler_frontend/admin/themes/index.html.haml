@@ -6,14 +6,14 @@
           %h1{ style: 'display: inline-block' }
             = t("keppler_frontend.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
+        %section.content-actions
           .hide
             = form_tag admin_frontend_theme_upload_path(@objects), id: "upload_form_themes", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_theme"
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler_frontend.modules.#{action_name.underscore}")
+          .add
+            = link_to new_admin_frontend_theme_path, class: "btn-add" do
+              + Agregar
+
 
         .row
           .col-lg-5.col-xs-12
@@ -38,7 +38,7 @@
                         %th.hidden-xs= t('activerecord.attributes.active')
                         %th.center Menu
                         %th
-                  %tbody#objects-container
+                  %tbody.objects-container
                     = render 'admin/layouts/listing_preloader'
                     = render 'listing', objects: @objects
             %center#paginator-module
@@ -46,11 +46,6 @@
   %aside.control-sidebar
     = render "description"
   %aside#index-show.control-sidebar
-
-  .mixed-btn
-    - if can?(KepplerFrontend::Theme).create?
-      = link_to new_admin_frontend_theme_path, class: "btn-float" do
-        +
 
 :javascript
   $(document).ready(function(){
