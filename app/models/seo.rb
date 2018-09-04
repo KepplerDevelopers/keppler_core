@@ -29,8 +29,19 @@ class Seo < ApplicationRecord
     index_html.join('')
   end
 
+  def self.robots_code
+    file = "#{Rails.root}/public/robots.txt"
+    index_html = File.readlines(file)
+    index_html.join('')
+  end
+
   def self.save_sitemap(code)
     file = "#{Rails.root}/config/sitemap.rb"
+    File.write(file, code)
+  end
+
+  def self.save_robots(code)
+    file = "#{Rails.root}/public/robots.txt"
     File.write(file, code)
   end
 end

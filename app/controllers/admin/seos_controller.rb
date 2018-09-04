@@ -12,7 +12,8 @@ module Admin
     end
 
     def editor_save
-      Seo.save_sitemap(params[:ruby])
+      Seo.save_sitemap(params[:ruby]) if params[:ruby]
+      Seo.save_robots(params[:txt]) if params[:txt]
     end
 
     private
