@@ -11,12 +11,27 @@ menu:
     icon: chart
     current: ['admin/scripts']
     model: Script
-  meta_tags:
-    name: meta_tags
+  seo:
+    name: Seo
     current: ['admin/meta_tags']
     icon: graph
     model: MetaTag
     url_path: /admin/meta_tags
+    submenu:
+      - metatags:
+          name: metatags
+          url_path: /admin/meta_tags
+          current: ['admin/meta_tags']
+      - sitemap:
+          name: sitemap
+          url_path: /admin/seo/sitemap
+          current: ['admin/seo/sitemap']
+          enviroment: development
+      - robots:
+          name: robots
+          url_path: /admin/seo/robots
+          current: ['/admin/seo/robots']
+          enviroment: development
   user:
     name: users
     icon: user
