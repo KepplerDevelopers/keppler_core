@@ -38,6 +38,8 @@ class Seo < ApplicationRecord
   def self.save_sitemap(code)
     file = "#{Rails.root}/config/sitemap.rb"
     File.write(file, code)
+
+    system "ruby #{Rails.root}/config/sitemap.rb"
   end
 
   def self.save_robots(code)
