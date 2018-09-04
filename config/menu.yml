@@ -28,8 +28,8 @@ menu:
           current: ['admin/seo/sitemap']
       - robots:
           name: robots
-          url_path: /admin/robots
-          current: ['admin/robots']
+          url_path: /admin/seo/robots
+          current: ['/admin/seo/robots']
   user:
     name: users
     icon: user

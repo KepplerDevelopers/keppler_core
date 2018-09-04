@@ -7,6 +7,10 @@ module Admin
       @sitemap = Seo.new
     end
 
+    def robots
+      @robots = Seo.new
+    end
+
     def editor_save
       Seo.save_sitemap(params[:ruby])
     end

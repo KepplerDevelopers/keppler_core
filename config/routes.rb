@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     root to: 'admin#root'
 
     get '/seo/sitemap', to: 'seos#sitemap'
+    get '/seo/robots', to: 'seos#robots'
     post '/seo/editor/save', to: 'seos#editor_save'
 
     resources :seos do
