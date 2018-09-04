@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Policy for Seo model
 class SeoPolicy < ControllerPolicy
   attr_reader :user, :objects
