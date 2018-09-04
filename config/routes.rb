@@ -11,6 +11,27 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#root'
 
+    get '/seo/sitemap', to: 'seos#sitemap'
+    post '/seo/editor/save', to: 'seos#editor_save'
+
+    resources :seos do
+      post '/sort', action: :sort, on: :collection
+      get '(page/:page)', action: :index, on: :collection, as: ''
+      get '/clone', action: 'clone'
+      post '/upload', action: 'upload', as: :upload
+      get(
+        '/reload',
+        action: :reload,
+        on: :collection,
+      )
+      delete(
+        '/destroy_multiple',
+        action: :destroy_multiple,
+        on: :collection,
+        as: :destroy_multiple
+      )
+    end
+
     resources :roles do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/clone', action: 'clone'
@@ -31,7 +52,7 @@ Rails.application.routes.draw do
         action: :destroy_multiple,
         on: :collection,
         as: :destroy_multiple
-      )      
+      )
       # post '/show_description/:module/:action_name', action: 'show_description', as: :show_description
       # get(
       #   '/add_permissions',
@@ -151,7 +172,7 @@ Rails.application.routes.draw do
 
   # Frontend routes engine
   mount KepplerFrontend::Engine, at: '/', as: 'frontend'
-  
+
   # Language routes engine
   mount KepplerLanguages::Engine, at: '/', as: 'languages'
 

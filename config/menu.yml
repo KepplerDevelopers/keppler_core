@@ -24,16 +24,12 @@ menu:
           current: ['admin/meta_tags']
       - sitemap:
           name: sitemap
-          url_path: /admin/sitemap
-          current: ['admin/sitemap']
+          url_path: /admin/seo/sitemap
+          current: ['admin/seo/sitemap']
       - robots:
           name: robots
           url_path: /admin/robots
           current: ['admin/robots']
-      - humans:
-          name: humans
-          url_path: /admin/humans
-          current: ['admin/humans']
   user:
     name: users
     icon: user
