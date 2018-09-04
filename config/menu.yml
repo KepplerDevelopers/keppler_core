@@ -26,10 +26,12 @@ menu:
           name: sitemap
           url_path: /admin/seo/sitemap
           current: ['admin/seo/sitemap']
+          enviroment: development
       - robots:
           name: robots
           url_path: /admin/seo/robots
           current: ['/admin/seo/robots']
+          enviroment: development
   user:
     name: users
     icon: user
