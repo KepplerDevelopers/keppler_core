@@ -5,6 +5,7 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
+      seos: Seos
       roles: Roles
       customizes: Personalización
       dashboard: Tablero
@@ -57,6 +58,7 @@ es:
         clone: Permite al usuario clonar un registro existente dentro del módulo
     models:
       singularize:
+        seo: seo
         role: role
         customize: customize
         meta_tag: meta tag
@@ -65,6 +67,7 @@ es:
         configuration: configuración
         user: usuario
       pluralize:
+        seos: seos
         roles: roles
         customizes: customizes
         meta_tags: meta tags
@@ -74,6 +77,7 @@ es:
         user: usuarios
         script: scripts
     modules:
+      admin/seos: Seos
       admin/roles: Roles
       admin/customizes: Customizes
       admin/meta_tags: 'Meta tags'
@@ -118,6 +122,7 @@ es:
       new: "%{model} - Nuevo"
       history: Historial
     actions:
+      documentation: Documentación
       created: Creado
       updated: Actualizado
       new: Nuevo

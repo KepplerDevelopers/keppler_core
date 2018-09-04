@@ -1,0 +1,36 @@
+.container
+  .nav-tabs-custom
+    %ul.nav.nav-tabs
+      %li.active
+        %a{ 'aria-expanded': 'false', 'data-toggle': 'tab', href: '#tab_5' }
+          sitemap.rb
+          .kf-signal.sitemap_signal
+      %li.pull-right
+        %a{ onclick: 'controls.save()', title: t('keppler.actions.save') }
+          %i.fa.fa-save
+      %li.pull-right
+        %a{ title: t('keppler.actions.documentation'), href: 'https://github.com/kjvarga/sitemap_generator', target: '_blank' }
+          %i.fa.fa-book
+          = t('keppler.actions.documentation')
+    .tab-content
+      .active.tab-pane#tab_5
+        .action.code-container
+          %textarea#code-sitemap{ name: 'code' }
+            = Seo.sitemap_code
+
+:javascript
+  $('.sitemap_signal').css('display', 'none');
+  codeSitemap.codeMirrorSitemap();
+  var tab = 'sitemap';
+  var ready = { sitemap: false }
+
+  $(document).bind('keydown', function(e) {
+    if(e.ctrlKey && (e.which == 83)) {
+      e.preventDefault();
+      save()
+    }
+  });
+
+  function save() {
+    controls.save()
+  }
