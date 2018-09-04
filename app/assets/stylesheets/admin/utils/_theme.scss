@@ -116,3 +116,9 @@
 .form-control {
   border-radius: 15px;
 }
+
+.box-header {
+  @include respond-to(xs) {
+    padding: 10px 0;
+  }
+}
