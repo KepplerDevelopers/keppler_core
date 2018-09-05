@@ -64,7 +64,7 @@ $gray-color: #949494;
 
   .sidebar-toggle {
     align-items: center;
-    background-color: $primary-color;
+    background-color: $keppler-color;
     color: $white;
     display: flex;
     padding: 15px;
@@ -78,7 +78,7 @@ $gray-color: #949494;
     }
 
     &:hover {
-      background-color: $sidebar-toggle-hover;
+      background-color: darken($keppler-color, 10%);
     }
   }
 
