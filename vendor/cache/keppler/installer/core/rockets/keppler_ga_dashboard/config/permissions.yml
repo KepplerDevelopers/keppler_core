@@ -1,4 +1,0 @@
-modules:
-  dashboard:
-    name: dashboard
-    actions: [ 'index' ]

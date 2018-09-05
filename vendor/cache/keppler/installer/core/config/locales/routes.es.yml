@@ -1,5 +1,0 @@
-es:
-  routes:
-    index: index
-    route: ruta
-    # para palabras separadas, utilizar-guiones-en-vez-de-espacios

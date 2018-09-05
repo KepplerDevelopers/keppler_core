@@ -1,9 +1,0 @@
-I"§(function() {
-  $(document).on('turbolinks:load', function() {
-    return $('body').tooltip({
-      selector: "[data-toggle~='tooltip']"
-    });
-  });
-
-}).call(this);
-:ET
