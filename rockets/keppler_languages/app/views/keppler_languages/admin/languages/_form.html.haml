@@ -9,38 +9,37 @@
 
     .row
       .col-lg-12
-        .box.slice-box
+        .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title= t("keppler.modules.#{action_name.underscore}")
-            .box-tools.pull-right
-              %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                %i.fa.fa-minus
           .box-body
             %table.table.table-bordered
               %tbody
                 .form-padding
-                  .col-xs-12
-                    = f.input :name, collection: @languages.first.map { |k, v| [v["name"], k] }, include_blank: 'Selecciona un lenguaje'
-                  .col-xs-12
-                    = f.input :position, as: :hidden
-                  .col-xs-12
-                    = f.input :deleted_at, as: :hidden
+                  .row
+                    .col-xs-12
+                      = f.input :name, collection: @languages.first.map { |k, v| [v["name"], k] }, include_blank: 'Selecciona un lenguaje'
+                    .col-xs-12
+                      = f.input :position, as: :hidden
+                    .col-xs-12
+                      = f.input :deleted_at, as: :hidden
 
-        .box.slice-box
+        .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title= t("keppler_capsules.form.fields")
           .box-body
             %table.table.table-bordered
               %tbody
                 .form-padding
-                  .col-xs-12
-                    = f.simple_fields_for :fields do |field|
-                      - if field.object.key
-                        = render 'field_fields_edit', f: field
-                      - else
-                        = render 'field_fields', f: field
-                    .links
-                      = link_to_add_association "<button class='btn btn-default'> + Añadir atributo </button>".html_safe, f, :fields
-                  .col-xs-12
-                    .pull-right
-                      = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
+                  .row
+                    .col-xs-12
+                      = f.simple_fields_for :fields do |field|
+                        - if field.object.key
+                          = render 'field_fields_edit', f: field
+                        - else
+                          = render 'field_fields', f: field
+                      .links
+                        = link_to_add_association "<button class='btn btn-default'> + Añadir atributo </button>".html_safe, f, :fields
+                    .col-xs-12
+                      .pull-right
+                        = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'
