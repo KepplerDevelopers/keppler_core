@@ -1,0 +1,139 @@
+es:
+  keppler:
+    sidebar-menu:
+      keppler-checkin: Reservaciones
+      keppler-checkin-submenu:
+    models:
+      singularize:
+      pluralize:
+    modules:
+    settings: 
+    actions:
+      created: Creado
+      updated: Actualizado
+      new: Nuevo
+      show: Ver
+      edit: Editar
+      clone: Clonar
+      delete: Eliminar
+      deleted: Eliminado
+      index: Listado
+      change_rol: Cambiar rol
+      select_all: Seleccionar todo
+      refresh: Refrescar
+      search: Buscar
+      go_to_web: Ir a la web
+      edit_profile: Editar perfil
+      sign_out: Sign out
+      back: Volver
+      cancel: Cancelar
+      assing_rol: Asignar rol
+      select_rol: Seleccionar rol
+      save: Guardar
+      save_and_add_another: Guardar y añadir otro
+      back_history: "Volver al historial"
+      appearance_defaut: Por defecto
+      apply: Aplicar
+      download_records: Descargar registros
+      upload_records: Cargar registros
+      reserve: Reservar
+  activerecord:
+    attributes:
+      id: Identificador
+      title: Título
+      subtitle: Subtítulo
+      tags: Etiquetas
+      name: Nombre
+      quantity: Cantidad
+      first_name: 'Nombre'
+      last_name: 'Apellido'
+      full_name: 'Nombre Completo'
+      email: Correo
+      role: Rol
+      phone: Teléfono
+      phone_number: 'Número de Teléfono'
+      phone_number: 'Código de Area'
+      area_number: 'Código de Area'
+      phone_one: 'Teléfono #1'
+      phone_two: 'Teléfono #2'
+      approved: Aprobado
+      age: Edad
+      adults: Adultos
+      childs: Niños
+      little_childs: Bebés
+      motive: Motivo
+      procedence: Procedencia
+      payment_method: Método de pago
+      observations: Observaciones
+      image: Imagen
+      photo: Foto
+      attachment: Adjunto
+      file: Archivo
+      pdf: PDF
+      avatar: Avatar
+      brand: Logo
+      logo: Logo
+      favicon: Favicon
+      icon: Icono
+      image_background: 'Imagen de fondo'
+      country: País
+      state: Estado
+      city: Ciudad
+      company: Empresa
+      product: Producto
+      client: Cliente
+      partner: Socio
+      code: Código
+      alliance: Alianza
+      ally: Aliado
+      author: Autor
+      category: Categoría
+      subcategory: Subcategoría
+      service: Servicio
+      project: Proyecto
+      type: Tipo
+      address: Dirección
+      size: Tamaño
+      distance: Distancia
+      description: Descripción
+      short_description: 'Descripción Corta'
+      long_description: 'Descripción Larga'
+      details: Detalles
+      message: Mensaje
+      content: Contenido
+      date: Fecha
+      date_begin: 'Fecha Inicial'
+      date_end: 'Fecha Final'
+      begin: Inicio
+      end: Fin
+      check_in: Entrada
+      check_out: Salida
+      permalink: Permalink
+      sign_in_count: Veces logeado
+      created_at: Fecha de creación
+      updated_at: Ultima actualización
+      password: Contraseña
+      password_confirmation: Confirmar contraseña
+      address: Dirección del servidor
+      port: Puerto
+      domain_name: Dominio
+      url: Url
+      meta_tags: 'Meta Tags'
+      script: 'Script'
+      campaign_name: Campaña
+      script: Script
+      mailer_from: 'Enviar desde'
+      mailer_to: 'Hacia'
+      ga_account_id: Identificador de la cuenta
+      ga_tracking: Identificador de segumiento
+      ga_status: Habilitar Google Analytics
+      price_local: Precio en moneda local
+      price_dollar: Precio en dólares
+    errors:
+      messages:
+        record_invalid: "Validación fallida: %{errors}"
+        restrict_destroy: "No se puede borrar el registro"
+        restrict_dependent_destroy:
+          has_one: "No se puede borrar el registro porque un registro dependiente %{record} existe"
+          has_many: "No se puede borrar el registro porque registros dependientes %{record} existen"
+  

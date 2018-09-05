@@ -1,0 +1,22 @@
+.bg-profile {
+  @extend %circle-img;
+  height: 100px;
+  width: 100px;
+}
+
+.img-show {
+  box-shadow: 2px 2px 5px 0 $transparent-black-2;
+  max-width: 300px;
+  position: absolute;
+}
+
+.list-row {
+  img {
+    max-height: 300px;
+    max-width: 100%;
+  }
+}
+
+.attr-name {
+  font-weight: bold;
+}

@@ -1,0 +1,47 @@
+
+:coffee
+  showSpinner = ->
+    $ '.spinner'
+      .css 'display', 'block'
+
+  #Only for rockets
+  installRocket = (evt) ->
+    evt.preventDefault()
+    rocket_file = $fileInput.val()
+    can_install = true
+    if rocket_file isnt ''
+      if rocket_file.includes('.rocket')
+        $('.rocket-name').each ->
+          if rocket_file.includes $(this).text()
+            swal 'That rocket is already installed :('
+            can_install = false
+        if can_install
+          showSpinner()
+          $ '.file_uploader_form'
+            .submit()
+      else
+        swal 'Houston! That file isn\'t a rocket :('
+    else
+      swal 'First upload a rocket please!'
+
+  uninstallRocket = (evt) ->
+    evt.preventDefault()
+    swal {
+      title: 'Are you sure?'
+      text: 'But you will still be able to retrieve this file.'
+      type: 'warning'
+      showCancelButton: true
+      confirmButtonText: 'Yes, install it!'
+      cancelButtonText: 'No, cancel please!'
+      closeOnConfirm: false
+      closeOnCancel: false
+    }, (isConfirm) ->
+      if isConfirm
+        swal 'Installed!', 'Your rocket has been installed.', 'success'
+        showSpinner()
+      else
+        swal 'Cancelled', 'Your rocket is safe :)', 'error'
+      return
+
+  $('#installRocket').on 'click', installRocket
+  # $('.uninstallRocket').on 'click', uninstallRocket

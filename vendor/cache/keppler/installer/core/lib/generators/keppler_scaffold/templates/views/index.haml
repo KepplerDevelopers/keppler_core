@@ -1,0 +1,84 @@
+#index-container{ controller: '<%= plural_table_name %>' }
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1
+            = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
+          .toolbar
+            - if can?(<%= singular_table_name.camelcase %>).download?
+              %li.toolbar-item.dropdown
+                %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#', title: t('keppler.actions.download_records') }
+                  %i.icon-cloud-download
+                %ul.dropdown-menu
+                  %li= link_to 'Descargar CSV', admin_<%= plural_table_name %>_path(format: :csv), class: 'tool-btn'
+                  %li= link_to 'Descargar XLS', admin_<%= plural_table_name %>_path(format: :xls), class: 'tool-btn'
+            - if can?(<%= singular_table_name.camelcase %>).upload?
+              .toolbar-item
+                = link_to '#', id: 'upload', class: 'tool-btn', title: t('keppler.actions.upload_records') do
+                  %i.icon-cloud-upload
+            .toolbar-item
+              = link_to reload_admin_<%= plural_table_name %>_path, class: 'tool-btn', remote: true do
+                %i.icon-reload
+            - if can?(<%= singular_table_name.camelcase %>).destroy_multiple?
+              .toolbar-item
+                .checkbox
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
+                %i.icon-trash
+          .hide
+            = form_tag admin_<%= singular_table_name %>_upload_path(@objects), id: 'upload-form', multipart: true, method: :post do
+              = file_field_tag :file, id: 'upload-file'
+          %ol.breadcrumb
+            %li
+              %a{ href: '#' }
+                %i.icon-directions
+                = t("keppler.modules.#{action_name.underscore}")
+        .box.slice-box
+          .box-body.no-padding
+            %table.table
+              %thead
+                - if @objects.size.zero?
+                  %tr
+                    %th{style: 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t('keppler.models.pluralize.<%= plural_table_name %>'))
+                - else
+                  %tr
+                    %th
+                    <%- attributes.each do |attribute| -%>
+                      <%- if @attachments.include?(attribute.name) -%>
+                    %th= t('activerecord.attributes.<%= attribute.name %>')
+                      <%- end -%>
+                    <%- end -%>
+                    <%- attributes.each_with_index do |attribute, index| -%>
+                      <%- if index < 6 -%>
+                        <%- unless attribute.type.to_s == 'text' || attribute.name.eql?('position') || attribute.name.eql?('deleted_at') -%>
+                          <%- unless @attachments.include?(attribute.name) -%>
+                            <%- if index < 2 -%>
+                    %th.hidden-xs= t('activerecord.attributes.<%= attribute.name %>')
+                            <%- else -%>
+                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.<%= attribute.name %>')
+                            <%- end -%>
+                          <%- end -%>
+                        <%- end -%>
+                      <%- end -%>
+                    <%- end -%>
+                    %th.center Menu
+                    %th
+              %tbody.objects-container{ 'data-update-url' => "#{sort_admin_<%= plural_table_name %>_path}" }
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @objects
+        %center.paginator-module
+          = paginate @objects, window: 1
+  %aside.control-sidebar
+    = render 'description'
+  %aside.index-show.control-sidebar
+
+  .mixed-btn
+    - if can?(<%= singular_table_name.camelcase %>).create?
+      = link_to '+', new_admin_<%= singular_table_name %>_path, class: 'btn-float'

@@ -3,26 +3,32 @@
 module Admin
   # MetaTagController
   class RocketsController < AdminController
-    before_action :rocket_params, only: %i[install_rocket]
+    before_action :rocket_name_params, only: %i[create uninstall build]
+    before_action :rocket_file_params, only: %i[install]
 
     # GET /meta_tags
     def rockets
       @rockets = Rocket.names_list
     end
 
-    def install_rocket
-      if @rocket_file && @rocket_ext.eql?('rocket')
-        Rocket.save_and_rename(@rocket_file)
-        Rocket.unzip(@rocket_file, @rocket_name)
-        Rocket.install(@rocket_name)
-        flash[:notice] = "#{@rocket_name} has been installed"
+    def create
+      Rocket.new_rocket(@rocket_undescore_name)
+      redirect_to admin_rockets_path
+    end
+
+    def install
+      if params[:rocket] && @rocket_file_ext.eql?('rocket')
+        Rocket.save_and_rename(params[:rocket])
+        Rocket.unzip(params[:rocket], @rocket_file_name)
+        Rocket.install(@rocket_file_name)
+        flash[:notice] = "#{@rocket_file_name} has been installed"
       else
-        flash[:error] = "#{@rocket_name} has not been installed"
+        flash[:error] = "#{@rocket_file_name} has not been installed"
       end
       redirect_to admin_rockets_path
     end
 
-    def uninstall_rocket
+    def uninstall
       if params[:rocket]
         Rocket.uninstall(params[:rocket])
         redirect_to admin_rockets_path
@@ -31,7 +37,7 @@ module Admin
       end
     end
 
-    def build_rocket
+    def build
       if params[:rocket]
         rocket_built = Rocket.build(params[:rocket])
         flash[:built] = "Rocket has #{'not' unless rocket_built} been updated"
@@ -43,10 +49,14 @@ module Admin
 
     private
 
-    def rocket_params
-      @rocket_file = params[:rocket]
-      @rocket_name = @rocket_file.original_filename.split('.').first
-      @rocket_ext = @rocket_file.original_filename.split('.').last
+    def rocket_name_params
+      @rocket_undescore_name = params[:rocket].parameterize.underscore
+      @rocket_class_name = @rocket_undescore_name.classify
+    end
+
+    def rocket_file_params
+      @rocket_file_name = params[:rocket].original_filename.split('.').first
+      @rocket_file_ext = params[:rocket].original_filename.split('.').last
     end
   end
 end

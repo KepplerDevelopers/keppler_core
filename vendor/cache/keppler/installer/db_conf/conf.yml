@@ -1,0 +1,50 @@
+# Be sure to restart your server when you modify this file.
+
+# Your secret key is used for verifying the integrity of signed cookies.
+# If you change this key, all old signed cookies will become invalid!
+
+# Make sure the secret is at least 30 characters and all random,
+# no regular words or you'll be exposed to dictionary attacks.
+# You can use `rake secret` to generate a secure secret key.
+
+# Make sure the secrets in this file are kept private
+# if you're sharing your code publicly.
+
+development:
+  email: example@gmail.com
+  password:
+  domain: gmail.com
+  secret_key_base: 84ef9e3a3032d77467dc6d95e988f2f128e6acc7513661e3e6b67a875d99bebabf19571d02d2ddb9face07dc45cb9aba821b4e93c2619deb2fee55a23818292c
+  database:
+    :host: localhost
+    :name: database
+    :username: username
+    :password: password
+  ga_auth:
+    :service_account_email_address: 911375046727-9n50de61u7flmue7s76qelsthlhqhnnl@developer.gserviceaccount.com
+    :file_key_name: gauth_key.p12
+    :account_id: 60688852
+
+test:
+  domain_name: example.com
+  secret_key_base: b45cfc98355d328196d2e264760de949067607165e9c8d88f76aeba0dc486469e6c2ec641c49c92270961c4c6ff40645108f65e239ed4a10dcc46ab4905da72f
+  database:
+    :host: localhost
+    :name: database
+    :username: username
+    :password: password
+
+production:
+  email: example@gmail.com
+  password:
+  domain: localhost
+  secret_key_base: 84ef9e3a3032d77467dc6d95e988f2f128e6acc7513661e3e6b67a875d99bebabf19571d02d2ddb9face07dc45cb9aba821b4e93c2619deb2fee55a23818292c
+  database:
+    :host: localhost
+    :name: database
+    :username: username
+    :password: password
+  ga_auth:
+    :service_account_email_address: 911375046727-9n50de61u7flmue7s76qelsthlhqhnnl@developer.gserviceaccount.com
+    :file_key_name: gauth_key.p12
+    :account_id: 60688852

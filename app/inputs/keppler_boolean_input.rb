@@ -43,9 +43,10 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
 
   def initializers
     models = lookup_model_names
-    other_models = "[#{lookup_model_names[1..-1].join('][')}]"
+    other_models = lookup_model_names[1..-1]
+    other_models_ar = "[#{other_models.join('][')}]" unless other_models.empty?
     attribute = reflection_or_attribute_name
     @input_id = "#{models.join('_')}_#{attribute}"
-    @input_name = "#{models.first}#{other_models}[#{attribute}]"
+    @input_name = "#{models.first}#{other_models_ar}[#{attribute}]"
   end
 end

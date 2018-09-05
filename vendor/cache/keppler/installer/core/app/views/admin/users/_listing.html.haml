@@ -1,0 +1,49 @@
+- objects.each do |user|
+  %tr{ id: "row-#{user.id}" }
+    - if can?(User).destroy_multiple?
+      %td.item-check
+        - if user.id.eql?(current_user.id)
+        - else
+          .checkbox
+            %label{ for: "checkbox-#{user.id}" }
+              %input{ type: 'checkbox', id: "checkbox-#{user.id}", 'checklist-model' => 'check', 'checklist-value' => 'user.id.to_s', 'ng-click' => 'selectByCheck(size.to_s)', '@click' => 'listDelete(user.id.to_s)' }
+              %span.cr
+                %i.cr-icon.glyphicon.glyphicon-ok
+
+    %td.avatar
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
+        = image_tag user.avatar.url if user.avatar.url
+    %td.visible-lg.visible-md
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
+        %span= user.name
+    %td
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
+        %span= user.email
+    %td.visible-lg.visible-md
+      = link_to admin_user_path(user, search: @query), remote: true, class: 'show-row' do
+        %span= user.rol.humanize
+    %td
+      %a.action-btn.pull-right{ id: "menu-#{user.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{ 'aria-labelledby' => "menu-#{user.id}" }
+        - if can?(User).show?
+          %li
+            = link_to admin_user_path(user), title: t('keppler.actions.show') do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can?(User).update?
+          %li
+            = link_to edit_admin_user_path(user), title: t('keppler.actions.edit') do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can?(User).clone?
+          %li
+            = link_to admin_user_path(user), title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can?(User).destroy?
+          - unless user.id.eql?(current_user.id)
+            %li
+              = link_to admin_user_path(user), title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+                %i.icon-trash
+                = t('keppler.actions.delete')

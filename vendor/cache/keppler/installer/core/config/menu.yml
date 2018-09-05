@@ -1,0 +1,47 @@
+menu:
+  dashboard:
+    name: dashboard
+    url_path: /admin
+    icon: pie-chart
+    current: ['admin/dashboard']
+    model: Dashboard
+  script:
+    name: scripts
+    url_path: /admin/scripts
+    icon: chart
+    current: ['admin/scripts']
+    model: Script
+  meta_tags:
+    name: meta_tags
+    current: ['admin/meta_tags']
+    icon: graph
+    model: MetaTag
+    url_path: /admin/meta_tags
+  user:
+    name: users
+    icon: user
+    current: ['admin/users', 'admin/roles']
+    model: User
+    submenu:
+      - users:
+          name: users
+          url_path: /admin/users
+          current: ['admin/users']
+      - roles:
+          name: roles
+          url_path: /admin/roles
+          current: ['admin/roles']
+  customize:
+    name: keppler design
+    icon: pencil
+    current: ['admin/customizes', 'settings/appearance']
+    model: Customize
+    submenu:
+      - customize:
+          name: frontend templates
+          url_path: /admin/customizes
+          current: ['admin/customizes']
+      - appearance:
+          name: admin appearance
+          url_path: /admin/settings/appearance
+          current: ['appearance']

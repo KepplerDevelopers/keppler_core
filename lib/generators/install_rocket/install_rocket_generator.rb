@@ -4,9 +4,8 @@
     def install_rocket
       rocket_directory = "#{Rails.root}/rockets/#{file_name}"
       if File.directory?(rocket_directory)
-        add_gem_line(rocket_directory)
         add_route_line
-        bundle_install
+        bundle_install if add_gem_line(rocket_directory)
         migrate_database if copy_migrations_files
         run_rocket_generator
         clear_temps_and_logs

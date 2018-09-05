@@ -1,0 +1,15 @@
+.timeline-item
+	%h6.timeline-header.no-border
+		%small
+			%b
+				= activity.owner.name if activity.owner
+		%small
+			= t('keppler.messages.has')
+			= t('keppler.actions.deleted').downcase
+			= activity.trackable_type.underscore.humanize
+	%span.time
+		%i.icon-clock
+		= t('keppler.messages.at')
+		= activity.created_at.to_formatted_s(:time)
+		= t('keppler.messages.to')
+		= activity.created_at.to_formatted_s(:day)

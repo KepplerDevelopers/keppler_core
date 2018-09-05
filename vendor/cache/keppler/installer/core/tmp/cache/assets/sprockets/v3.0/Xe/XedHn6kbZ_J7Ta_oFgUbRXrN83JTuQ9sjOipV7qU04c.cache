@@ -1,0 +1,43 @@
+I"(function() {
+  var ready_post;
+
+  $(document).ready(function() {
+    $('#upload').click(function() {
+      $('#upload-file').click();
+      $('#upload-file').change(function() {
+        $('.waiting').css('display', 'block');
+        $('#upload-form').submit();
+      });
+    });
+    renderImg();
+  });
+
+  ready_post = function() {
+    var readURL;
+    $('.photo-upload').on('change', function(e) {
+      return readURL(this);
+    });
+    return readURL = function(input) {
+      var reader;
+      if (input.files && input.files[0]) {
+        reader = new FileReader();
+      }
+      reader.onload = function(e) {
+        var $swap;
+        $('.image-to-upload').attr('src', e.target.result).removeClass('hidden');
+        $swap = $('.swap');
+        if ($swap) {
+          $swap.removeClass('hidden');
+          return $('.files').addClass('files-absolute');
+        }
+      };
+      return reader.readAsDataURL(input.files[0]);
+    };
+  };
+
+  $(document).ready(ready_post);
+
+  $(document).on('turbolinks:load', ready_post);
+
+}).call(this);
+:ET

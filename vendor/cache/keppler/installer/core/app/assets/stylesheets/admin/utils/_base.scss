@@ -1,0 +1,64 @@
+html,
+body {
+  color: $medium-grey;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: 1.5rem;
+}
+
+a {
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.center {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+.text-overflow {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.box-tools {
+  i {
+    color: $gray-hover;
+    cursor: pointer;
+    font-size: 1.7rem;
+    padding: 0 5px;
+    transition: all ease .3s;
+
+    &:hover {
+      color: $medium-grey;
+      transition: all ease .3s;
+    }
+  }
+}
+
+.breadcrumb {
+  @media screen and (min-width: 0) and (max-width: 991px) {
+    display: none;
+  }
+}

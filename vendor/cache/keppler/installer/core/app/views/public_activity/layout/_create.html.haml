@@ -1,0 +1,45 @@
+-# .collection-item.avatar
+-# 	-# -# = material_icon.md_24.add.css_class("circle")
+-# 	%b
+-# 		= activity.owner.name if activity.owner
+-# 	= t('keppler.messages.has')
+-# 	= t('keppler.actions.created').downcase
+-# 	= t("keppler.models.singularize.#{activity.trackable_type.underscore}").humanize
+
+  -# - if activity.trackable
+  -# 	= t('keppler.messages.to')
+  -# 	%b
+  -# 		= activity.trackable.send(method)
+  -# 	= t('keppler.messages.at')
+  -# 	= activity.created_at
+  -# - else
+  -# 	= t('keppler.messages.at')
+  -# 	= activity.created_at
+  -# 	= t('keppler.messages.since_been_removed')
+.timeline-item
+
+  %h6.timeline-header.no-border
+    %small
+      %b
+        = activity.owner.name if activity.owner
+    %small
+      = t('keppler.messages.has')
+      = t('keppler.actions.created').downcase
+      = t("keppler.models.singularize.#{activity.trackable_type.underscore}").humanize
+      %b
+        = activity.trackable.send(method) if activity.trackable
+  - if activity.trackable
+    %span.time
+      %i.icon-clock
+      = t('keppler.messages.at')
+      = activity.created_at.to_formatted_s(:time)
+      = t('keppler.messages.to')
+      = activity.created_at.to_formatted_s(:day)
+  - else
+    %span.time
+      %i.icon-clock
+      = t('keppler.messages.at')
+      = activity.created_at.to_formatted_s(:time)
+      = t('keppler.messages.to')
+      = activity.created_at.to_formatted_s(:day)
+      = t('keppler.messages.since_been_removed')

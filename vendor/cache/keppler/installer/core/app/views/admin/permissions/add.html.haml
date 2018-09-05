@@ -1,0 +1,65 @@
+.container
+  .row
+    .col-lg-2
+      = link_to admin_roles_path, class: '', 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
+        .arrow-back.btn.btn-default
+          %i.icon-arrow-left
+          = t('keppler.actions.back')
+  .row
+    .col-lg-12
+      %section.content-header.index-header
+        %h1{ style: 'display: inline-block; margin-left: 15px' }
+          Role:
+          = @role.name
+    .col-lg-6
+      - @modules.each do |module_name|
+        - module_name.each do |key|
+          - unless module_name[key.first]['name'].eql?('dashboard')
+            .col-lg-12
+              .box.slice-box.collapsed-box
+                .box-header.with-border
+                  %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].parameterize.pluralize}")
+                  .box-tools.pull-right
+                    %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
+                      %i.icon-plus
+                .box-body
+                  %table.table.table-bordered
+                    %tbody
+                      - module_name[key.first]['actions'].each do |action|
+                        %tr
+                          %td.row-selectable.table-data
+                            = link_to admin_role_show_description_path(@role, module_name[key.first]['name'].split('::').join(''), action), method: :post, remote: true do
+                              .pull-left
+                                %h4= t("keppler.permissions.#{action}")
+                              .pull-right.switch-div
+                                = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['name'], action: action, children: false
+
+    .col-lg-6.hidden-xs
+      %div{ style: 'width: 43%; height: 100%; position: fixed; right: 0px' }
+        .col-lg-12
+          .box.slice-box
+            .box-header.with-border
+              %h4.box-title= t('activerecord.attributes.description')
+
+            .box-body{ style: 'min-height: 100px' }
+              %table.table.table-bordered
+                %tbody
+                  #description-list
+                    - @modules.each do |module_name|
+                      - module_name.each do |key|
+                        - unless module_name[key.first]['name'].eql?('dashboard')
+                          - module_name[key.first]['actions'].each do |action|
+                            .no-visible{ id: "description-#{module_name[key.first]['name'].split('::').join('')}-#{action}" }
+                              %h5
+                                %strong Modulo:
+                                = module_name[key.first]['name'].pluralize
+                              %h5
+                                %strong Acción:
+                                = t("keppler.permissions.#{action}").camelize
+                              %hr
+                              %h5= t("keppler.permissions.descriptions.#{action}")
+
+:scss
+  .no-visible {
+    display: none !important;
+  }

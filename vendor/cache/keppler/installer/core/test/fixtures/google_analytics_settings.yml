@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ga_account_id: MyString
+  ga_tracking_id: MyString
+  ga_status: false
+  setting_id: 1
+
+two:
+  ga_account_id: MyString
+  ga_tracking_id: MyString
+  ga_status: false
+  setting_id: 1

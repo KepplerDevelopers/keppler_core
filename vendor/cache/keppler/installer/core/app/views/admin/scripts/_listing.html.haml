@@ -1,0 +1,42 @@
+- objects.each do |script|
+  %tr{ id: "row-#{script.id}" }
+    %td.item-check
+      - if can?(Script).destroy_multiple?
+        .checkbox
+          %label{ for: "checkbox-#{script.id}" }
+            %input{ type: 'checkbox', id: "checkbox-#{script.id}", 'checklist-model' => 'check', 'checklist-value' => script.id.to_s, '@click' => "listDelete(#{script.id})" }
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+    %td.hide-on-small-and-down
+      = link_to admin_script_path(script, search: query), remote: true, class: 'show-row' do
+        %span= script.name
+    %td{ style: 'max-width: 200px' }
+      = link_to admin_script_path(script, search: query), remote: true, class: 'show-row text-overflow' do
+        %span= script.script
+    %td.hide-on-small-and-down
+      = link_to admin_script_path(script, search: query), remote: true, class: 'show-row' do
+        %span= script.url
+    %td.dropdown{ style: 'padding-right: 30px' }
+      %a.dropdown-toggle.pull-right{ id: "menu-#{script.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{ 'aria-labelledby' => "menu-#{script.id}" }
+        - if can?(Script).show?
+          %li
+            = link_to admin_script_path(script), title: t('keppler.actions.show') do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can?(Script).update?
+          %li
+            = link_to edit_admin_script_path(script), title: t('keppler.actions.edit') do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can?(Script).clone?
+          %li
+            = link_to admin_script_clone_path(script), title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can?(Script).destroy?
+          %li
+            = link_to admin_script_path(script), title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+              %i.icon-trash
+              = t('keppler.actions.delete')

@@ -1,0 +1,96 @@
+es:
+  simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    required:
+      text: 'requerido'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Por favor revisa los siguientes problemas:"
+    # Labels and hints examples
+    labels:
+      defaults:
+        all: Todos
+        id: Identificador
+        title: Título
+        subtitle: Subtítulo
+        tags: Etiquetas
+        name: 'Nombre'
+        first_name: 'Primer Nombre'
+        last_name: 'Último Nombre'
+        full_name: 'Nombre Completo'
+        email: Correo
+        phone: Teléfono
+        phone_number: 'Número de Teléfono'
+        phone_number: 'Código de Area'
+        area_number: 'Código de Area'
+        phone_one: 'Teléfono #1'
+        phone_two: 'Teléfono #2'
+        age: Edad
+        image: Imagen
+        photo: Foto
+        attachment: Adjunto
+        file: Archivo
+        pdf: PDF
+        avatar: Avatar
+        brand: Logo
+        logo: Logo
+        favicon: Favicon
+        icon: Icono
+        country: País
+        state: Estado
+        city: Ciudad
+        company: Empresa
+        product: Producto
+        client: Cliente
+        partner: Socio
+        code: Código
+        alliance: Alianza
+        ally: Aliado
+        category: Categoría
+        service: Servicio
+        project: Proyecto
+        type: Tipo
+        address: Dirección
+        size: Tamaño
+        distance: Distancia
+        description: Descripción
+        short_description: 'Descripción Corta'
+        long_description: 'Descripción Larga'
+        details: Detalles
+        message: Mensaje
+        content: Contenido
+        date: Fecha
+        date_begin: 'Fecha Inicial'
+        date_end: 'Fecha Final'
+        begin: Inicio
+        end: Fin
+        check_in: Entrada
+        check_out: Salida
+        permalink: Permalink
+        sign_in_count: Veces logeado
+        created_at: Fecha de creación
+        updated_at: Ultima actualización
+        password: Contraseña
+        password_confirmation: Confirmar contraseña
+        select_role: Selecciona rol de usuario
+        address: Dirección del servidor
+        port: Puerto
+        domain_name: Dominio
+        url: Url
+        meta_tags: 'Meta Tags'
+        script: 'Script'
+        campaign_name: Campaña
+        script: Script
+      user:
+        new:
+          email: 'Correo para acceder.'
+        edit:
+          email: 'Correo.'
+    hints:
+      defaults:
+        username: 'Usuario para acceder.'
+        password: 'Al menos 8 catacteres.'

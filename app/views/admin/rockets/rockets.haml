@@ -4,7 +4,7 @@
       .box-header.with-border
         %h3.box-title Upload rocket
       .box-body.box-body-no-padding
-        = simple_form_for '', url: admin_install_rocket_path, html: { multipart: true } do
+        = simple_form_for 'upload_rocket_form', url: admin_rockets_install_path, html: { multipart: true } do
           .file-uploader
             .file-container
               = file_field_tag :rocket # , multiple: true
@@ -18,6 +18,11 @@
     .box.slice-box
       .box-header.with-border
         %h3.box-title Rockets
+        .pull-right
+          = simple_form_for 'create_rocket_form', url: admin_rockets_create_path('asd') do
+            %a.text-red#create-rocket
+              %i.icon-plus
+              Create rocket
       .box-body.no-padding
         %table.table
           %tbody
@@ -28,17 +33,20 @@
                   %span.rocket-name= rocket
                   .pull-right
                     - if rocket_is_built?(rocket)
-                      = link_to admin_build_rocket_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Update' do
+                      = link_to admin_rockets_build_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Update' do
                         %i.icon-refresh
                       = link_to "/rockets/#{rocket}.rocket", dowload: "#{rocket}.rocket", 'data-toggle': 'tooltip', 'data-original-title': 'Download' do
                         %i.icon-cloud-download
                     - else
-                      = link_to admin_build_rocket_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Build' do
+                      = link_to admin_rockets_build_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': 'Build' do
                         %i.icon-wrench
-                    = link_to admin_uninstall_rocket_path(rocket), class: 'uninstallRocket', 'data-toggle': 'tooltip', 'data-original-title': 'Uninstall', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
-                      %i.icon-trash.text-red
+                    - unless rocket.eql? 'keppler_ga_dashboard'
+                      = link_to admin_rockets_uninstall_path(rocket), class: 'uninstallRocket', 'data-toggle': 'tooltip', 'data-original-title': 'Uninstall', method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+                        %i.icon-trash.text-red
             - if @rockets.blank?
               %tr
                 %td{ colspan: 4 }
                   %center
                     There is not rockets here :(
+= render 'install_rocket'
+= render 'create_rocket'

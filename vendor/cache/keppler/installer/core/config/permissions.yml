@@ -1,0 +1,21 @@
+modules:
+  scripts:
+    name: Script
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'upload', 'download',
+      'clone'
+    ]
+  meta_tags:
+    name: MetaTag
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'upload', 'download',
+      'clone'
+    ]
+  users:
+    name: User
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download'
+    ]

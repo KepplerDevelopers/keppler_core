@@ -1,0 +1,403 @@
+en:
+  keppler:
+    login_message: Sign in to start your session
+    sidebar-menu:
+      roles: Roles
+      customizes: Customizes
+      dashboard: Dashboard
+      users: Users
+      users-submenu:
+        users: Users
+        roles: Roles
+        clients: Clients
+        admins: Admins
+      setting: Settings
+      keppler-design: 'Keppler Design'
+      development: 'Development'
+      setting-submenu:
+        basic-information: Basic Information
+        email-setting-smtp: 'Email setup (SMTP)'
+        social-accounts: 'Social accounts'
+        google-analytics: 'Google Analytics'
+        appearance: Appearance
+      meta_tags: Meta tags
+      google-analytics-tracks: 'Scripts'
+      keppler-messages: Messages
+      keppler-blog: Blog
+      keppler-blog-submenu:
+        posts: Posts
+        categories: Categories
+    permissions:
+      index: Index
+      create: Create
+      update: Edit
+      destroy: Destroy
+      upload: Upload
+      download: Download
+      clone: Clone
+      descriptions:
+        index: Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos
+        create: Permite al usuario la creación de nuevos registros dentro del módulo
+        update: Permite al usuario actualizar registros existentes dentro del módulo
+        destroy: Permite al usuario eliminar registros existentes dentro del módulo
+        upload: Permite al usuario cargar un archivo con extensión .csv (pre-fabricado) y crear registros en la base de datos con el contenido del mismo
+        download: Permite al usuario descargar en un archivo con extensión .csv los registros existentes dentro del módulo
+        clone: Permite al usuario clonar un registro existente dentro del módulo
+    models:
+      singularize:
+        role: role
+        customize: customize
+        meta_tag: meta tag
+        script: script
+        setting: setting
+        configuration: configuration
+        user: user
+      pluralize:
+        roles: roles
+        customizes: customizes
+        meta_tags: meta tags
+        scripts: scripts
+        settings: settings
+        configurations: configurations
+        user: users
+    modules:
+      admin/roles: Roles
+      admin/customizes: Customizes
+      admin/meta_tags: 'Meta tags'
+      admin/scripts: 'Scripts'
+      admin/scaffolds: 'Scaffolds'
+      admin/settings: 'Settings'
+      keppler_ga_dashboard/dashboard: 'Dashboard'
+      admin/users: 'Users'
+    messages:
+      not_authorized_page: You have no authorization to access this page
+      not_authorized_action: You have no authorization to perform this action
+      not_found_records: "No %{model} found"
+      no_events: No activities
+      data_confirm: Are you sure?
+      records: records
+      record_msg: "%{from} to %{to} of %{total}"
+      to: "to"
+      at: "at"
+      since_been_removed: whitch has since been removed
+      login_in_activity: login to system at
+      logout_in_activity: logout to system at
+      successfully:
+        created: "%{model} has been created successfully"
+        updated: "%{model} has been updated successfully"
+        deleted: "%{model} has been deleted successfully"
+        removed: "%{model} have been deleted successfully"
+    header_information:
+      setting:
+        basic_information: Basic Information
+        email_setting: Email setting (SMTP)
+        google_analytics_setting: Google analytics
+        social_accounts: Social accounts
+        appearance: Appearance
+    titles:
+      index: "%{model} - Listing"
+      show: "%{model} - Show"
+      edit: "%{model} - Edit"
+      new: "%{model} - New"
+      history: Activities
+    actions:
+      created: Created
+      updated: Updated
+      create: Create
+      update: Update
+      deleted: Deleted
+      new: New
+      show: Show
+      edit: Edit
+      clone: Clone
+      delete: Delete
+      index: List
+      change_rol: Change role
+      select_all: Select all
+      refresh: Refresh
+      search: Search
+      go_to_web: Go to web
+      edit_profile: Edit profile
+      sign_out: Sign out
+      back: Back
+      cancel: Cancel
+      assing_rol: Assign rol
+      select_rol: Select rol
+      save: Save
+      save_and_add_another: Save and add another
+      back_history: "Back to history"
+      appearance_defaut: Set default
+      apply: Apply
+  activerecord:
+    attributes:
+      public: Public
+      id: Id
+      title: Title
+      subtitle: Subtitle
+      tags: Etiquetas
+      name: Name
+      first_name: 'First Name'
+      last_name: 'Last Name'
+      full_name: 'Full Name'
+      email: Email
+      role: Role
+      phone: Phone
+      phone_number: 'Phone Number'
+      phone_code: 'Phone Code'
+      area_code: 'Phone Code'
+      phone_one: 'Phone One'
+      phone_two: 'Phone Two'
+      age: Age
+      image: Image
+      photo: Photo
+      attachment: Attachment
+      pdf: PDF
+      avatar: Avatar
+      icon: Icon
+      image_background: 'Background Image'
+      brand: Brand
+      country: Country
+      state: State
+      city: City
+      company: Company
+      product: Product
+      client: Client
+      partner: Partner
+      code: Code
+      alliance: Alliance
+      ally: Ally
+      category: Category
+      service: Service
+      project: Project
+      type: Type
+      address: Address
+      size: Size
+      distance: Distance
+      description: Description
+      short_description: 'Short Description'
+      long_description: 'Long Description'
+      details: Details
+      message: Message
+      content: Content
+      date: Date
+      date_begin: 'Date Begin'
+      date_end: 'Date End'
+      begin: Inicio
+      end: Fin
+      check_in: 'Check In'
+      check_out: 'Check Out'
+      google_analytics_setting:
+        ga_account_id: Account id
+        ga_tracking_id: Tracking id
+        ga_status: Enabled?
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        restrict_destroy: "Cannot delete record"
+        restrict_dependent_destroy:
+          has_one: "Cannot delete record because a dependent %{record} exists"
+          has_many: "Cannot delete record because dependent %{record} exist"
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_years:
+        one: 1 year
+        other: "%{count} years"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      present: must be blank
+      confirmation: doesn't match %{attribute}
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      model_invalid: "Validation failed: %{errors}"
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      required: must exist
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: must be other than %{count}
+    template:
+      body: 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: "%{count} errors prohibited this %{model} from being saved"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", and "
+      two_words_connector: " and "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm

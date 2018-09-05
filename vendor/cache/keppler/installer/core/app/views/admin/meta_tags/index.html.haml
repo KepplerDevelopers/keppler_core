@@ -1,0 +1,69 @@
+#index-container{ controller: 'meta_tags' }
+  .container
+    .row
+      .listing.col-lg-12.col-xs-12
+        %section.content-header.index-header
+          %h1
+            = t("keppler.modules.#{controller_path.underscore}")
+          = entries(@total, @objects)
+          .toolbar
+            - if can?(MetaTag).download?
+              %li.toolbar-item.dropdown
+                %a.dropdown-toggle{ 'data-toggle' => 'dropdown', href: '#', title: t('keppler.actions.download_records') }
+                  %i.icon-cloud-download
+                %ul.dropdown-menu
+                  %li= link_to 'Descargar CSV', admin_meta_tags_path(format: :csv), class: 'tool-btn'
+                  %li= link_to 'Descargar XLS', admin_meta_tags_path(format: :xls), class: 'tool-btn'
+            - if can?(MetaTag).upload?
+              .toolbar-item
+                = link_to '#', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
+                  %i.icon-cloud-upload
+            .toolbar-item
+              = link_to reload_admin_meta_tags_path, class: 'tool-btn', remote: true do
+                %i.icon-reload
+            - if can?(MetaTag).destroy_multiple?
+              .toolbar-item
+                .checkbox
+                  %label{ for: 'checkbox-all' }
+                    %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+            .toolbar-item
+              %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
+                %i.icon-trash
+          .hide
+            = form_tag admin_meta_tag_upload_path(@objects), id: 'upload-form', multipart: true, method: :post do
+              = file_field_tag :file, id: 'upload-file'
+          %ol.breadcrumb
+            %li
+              %a{ href: '#' }
+                %i.icon-directions
+                = t("keppler.modules.#{action_name.underscore}")
+
+        .box.slice-box
+          .box-body.no-padding
+
+            %table.table.table-striped
+              %thead
+                - if @objects.size.zero?
+                  %tr
+                    %th{ style: 'text-align: center;' }
+                      %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.meta_tags'))
+                - else
+                  %tr
+                    %td
+                    %th= t('activerecord.attributes.title')
+                    %th= t('activerecord.attributes.url')
+                    %th
+              %tbody.objects-container{ 'data-update-url' => sort_admin_meta_tags_path.to_s }
+                = render 'admin/layouts/listing_preloader'
+                = render 'listing', objects: @objects, query: @query
+        %center.paginator-module
+          = paginate @objects, window: 1
+  .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+    = render 'description', activities: @activities
+  %aside.control-sidebar.index-show
+  - if can?(MetaTag).create?
+    .mixed-btn
+      = link_to new_admin_meta_tag_path, class: 'btn-float' do
+        +

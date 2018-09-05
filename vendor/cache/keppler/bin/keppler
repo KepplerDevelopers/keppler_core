@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'keppler'
+
+Keppler::Generate.start( ARGV )
+
+
+
+

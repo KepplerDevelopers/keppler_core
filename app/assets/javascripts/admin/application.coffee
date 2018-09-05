@@ -3,7 +3,6 @@
 #= require jquery-ui/widgets/datepicker
 #= require jquery-ui/widgets/sortable
 #= require jquery_ujs
-#= require sweetalert2
 #= require turbolinks
 #= require nprogress
 #= require nprogress-turbolinks

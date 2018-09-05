@@ -7,6 +7,11 @@ class Rocket < ApplicationRecord
     Dir["#{Rails.root}/rockets/*"].map { |x| x.split('/').last }
   end
 
+  # Create rocket
+  def self.new_rocket(rocket)
+    system "rails g new_rocket #{rocket}"
+  end
+
   # Catching rocket file and saving in public/rockets
   def self.save_and_rename(rocket_file)
     dir = Rails.root.join('public', 'rockets')
@@ -46,10 +51,32 @@ class Rocket < ApplicationRecord
 
   # Build rocket
   def self.build(rocket)
-    system "cd rockets/#{rocket} && keppler rocket_build"
-    system "cd #{Rails.root}"
-    dir = Rails.root.join('public', 'rockets')
-    Dir.mkdir(dir) unless Dir.exist?(dir)
-    system "cp #{Rails.root}/rockets/#{rocket}/pkg/#{rocket}.rocket #{dir}"
+    rocket_dir = "#{Rails.root}/rockets/#{rocket}"
+    Dir.mkdir("#{rocket_dir}/pkg") unless Dir.exist?("#{rocket_dir}/pkg")
+    compress_pkg(rocket_dir)
+    public_rockets = "#{Rails.root}/public/rockets"
+    Dir.mkdir(public_rockets) unless Dir.exist?(public_rockets)
+    system "cp #{rocket_dir}/pkg/#{rocket}.rocket #{public_rockets}"
+  end
+
+  def self.compress_pkg(rocket_dir)
+    archive = "#{rocket_dir}/pkg/#{File.basename(rocket_dir)}.rocket"
+    require 'zip'
+    return if File.exist? archive
+    Zip::File.open(archive, 'w') do |zipfile|
+      Dir["#{rocket_dir}/**/**"].reject { |f| f.eql? archive }.each do |file|
+        zipfile.add(file.sub(rocket_dir + '/', ''), file)
+      end
+    end
+  end
+
+  private
+
+  def replace_line(relative_destination, regexp, *args, &block)
+    path = File.join(destination_root, relative_destination)
+    content = File.read(path).gsub(regexp, *args, &block)
+    File.open(path, 'wb') do |file|
+      file.write(content)
+    end
   end
 end

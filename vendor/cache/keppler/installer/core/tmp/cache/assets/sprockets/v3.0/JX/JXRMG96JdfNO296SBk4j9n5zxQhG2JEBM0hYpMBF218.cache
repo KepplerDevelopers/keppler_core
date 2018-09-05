@@ -1,0 +1,16 @@
+I"s(function() {
+  $(document).on('turbolinks:load', function() {
+    return jQuery(function() {
+      return $('.objects-container').sortable({
+        axis: 'y',
+        handle: '.drop',
+        distance: 20,
+        update: function() {
+          return $.post($(this).data('update-url'), $(this).sortable('serialize'));
+        }
+      });
+    });
+  });
+
+}).call(this);
+:ET

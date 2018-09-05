@@ -1,0 +1,45 @@
+$themes: (
+  // [label, primary-color, darken-color, accent-color]
+  ("keppler", $keppler-color, $keppler-darken, $keppler-accent),
+  ("pink", $pink-color, $pink-darken, $pink-accent),
+  ("cyan", $cyan-color, $cyan-darken, $cyan-accent),
+  ("grey", $grey-color, $grey-darken, $grey-accent),
+  ("amber", $amber-color, $amber-darken, $amber-accent),
+  ("brown", $brown-color, $brown-darken, $brown-accent)
+);
+
+@each $label, $primary-color, $darken-color, $accent-color in $themes {
+  .#{$label}-theme {
+    .devise-box-header {
+      background: $primary-color;
+    }
+
+    .modal-header {
+      background: $primary-color;
+    }
+
+    nav,
+    .header-information {
+      background: $primary-color;
+    }
+
+    .listing-show-header {
+      background: $darken-color;
+    }
+
+    .control-label.active {
+      color: $accent-color;
+    }
+
+    .btn-add,
+    .btn {
+      background: $accent-color;
+    }
+
+    .btn-white {
+      background: $gray-hover;
+      color: $accent-color;
+      margin-right: 1rem;
+    }
+  }
+}

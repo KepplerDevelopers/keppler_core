@@ -43,76 +43,73 @@ file_uploader = ->
         multiFile(reader, files)
       else
         justOneFile(reader, files)
-    reader.readAsDataURL(files[0])
   
   multiFile = (reader, files) ->
-    reader.onload = (e) ->
-      for k, f of files
-        console.log f
-        continue if typeof f isnt 'object' and f.toString() isnt '[object File]'
-        continue if -1 isnt $fileNames.indexOf f.name
-        $files.push f
-        $fileNames.push f.name
-        # $fileList.append "<li>#{f.name} (#{calcSize f.size}) - #{f.type || 'unknown'}</li>"
-        items = $('.file-item').length
-        $fileContainer.before "
-          <li id='file-item-#{items}' class='file-item'
-            data-toggle='tooltip'
-            data-original-title='#{f.name} (#{calcSize f.size}) - #{f.type || 'unknown'}'>
-          </li>
-        "
-        fileItem = $ "#file-item-#{items}"
-        fileItem.append "
-          <div id='file-item-background-#{items}' class='file-item-background'></div>
-        "
-        fileItem.append "
-          <i id='file-icon-delete-#{items}'
-          class='file-icon-delete icon-close item-opacity'></i>
-        "
-        fileBackground = $ "#file-item-background-#{items}"
-        console.log items
-        if f.type.includes? 'image'
-          fileBackground.css {
-            'background-image': "url(#{e.target.result})"
-          }
-        # else if f.name.includes('.rocket') # Only for rockets
-        #   fileBackground.addClass 'icon-rocket'
-        else if f.type.includes? 'audio'
-          fileBackground.append "<i class='icon-music-tone-alt'></i>"
-        else if f.type.includes? 'video'
-          fileBackground.append "<i class='icon-film'></i>"
-        else if f.type.includes? 'application'
-          fileBackground.append "<i class='icon-notebook'></i>"
-        else if f.type.includes? 'text'
-          fileBackground.append "<i class='icon-doc'></i>"
-        else if f.type.includes? 'font'
-          fileBackground.append "<i class='icon-emotsmile'></i>"
-        else
-          fileBackground.append "<i class='icon-question'></i>"
+    [].forEach.call(files, (file) ->
+      reader = new FileReader()
+      reader.onload = (e) ->
+        if typeof file == 'object' and file.toString() == '[object File]'
+          if -1 == $fileNames.indexOf file.name
+            $files.push file
+            $fileNames.push file.name
+            items = $('.file-item').length
+            $fileContainer.before "
+              <li id='file-item-#{items}' class='file-item'
+                data-toggle='tooltip'
+                data-original-title='
+                  #{file.name} (#{calcSize file.size}) - #{file.type || 'unknown'}
+                '>
+              </li>
+            "
+            fileItem = $ "#file-item-#{items}"
+            fileItem.append "
+              <div id='file-item-background-#{items}' class='file-item-background'></div>
+            "
+            fileItem.append "
+              <i id='file-icon-delete-#{items}'
+              class='file-icon-delete icon-close item-opacity'></i>
+            "
+            fileBackground = $ "#file-item-background-#{items}"
+            if file.type.includes? 'image'
+              fileBackground.css {
+                'background-image': "url(#{e.target.result})"
+              }
+            # else if f.name.includes('.rocket') # Only for rockets
+            #   fileBackground.addClass 'icon-rocket'
+            else if file.type.includes? 'audio'
+              fileBackground.append "<i class='icon-music-tone-alt'></i>"
+            else if file.type.includes? 'video'
+              fileBackground.append "<i class='icon-film'></i>"
+            else if file.type.includes? 'application'
+              fileBackground.append "<i class='icon-notebook'></i>"
+            else if file.type.includes? 'text'
+              fileBackground.append "<i class='icon-doc'></i>"
+            else if file.type.includes? 'font'
+              fileBackground.append "<i class='icon-emotsmile'></i>"
+            else
+              fileBackground.append "<i class='icon-question'></i>"
 
-      deleteItem = (icon) ->
-        id = icon.id.split('-')[3]
-        # Remove file icon tooltip
-        $ "##{$('#file-icon-delete-' + id).attr('aria-describedby')}"
-          .remove()
-        # Remove file tooltip
-        $ "##{$('#file-item-' + id).attr('aria-describedby')}"
-          .remove()
-        # Remove object from DOM
-        $ "#file-item-#{id}"
-          .remove()
-        # Remove file from $files
-        filePos = $files.indexOf $files[id]
-        $files.splice(filePos, 1)
-        # Remove fileName from $fileNames
-        namePos = $fileNames.indexOf $fileNames[id]
-        $fileNames.splice(namePos, 1)
-        # console.table $files
-        # console.table $fileNames
+        $('.file-icon-delete').click ->
+          # console.log this
+          id = this.id.split('-')[3]
+          # # Remove file icon tooltip
+          # $ "##{$('#file-icon-delete-' + id).attr('aria-describedby')}"
+          #   .remove()
+          # Remove file tooltip
+          $ "##{$('#file-item-' + id).attr('aria-describedby')}"
+            .remove()
+          # Remove object from DOM
+          $ "#file-item-#{id}"
+            .remove()
+          # Remove file from $files
+          filePos = $files.indexOf $files[id]
+          $files.splice(filePos, 1)
+          # Remove fileName from $fileNames
+          namePos = $fileNames.indexOf $fileNames[id]
+          $fileNames.splice(namePos, 1)
 
-      $ '.file-icon-delete'
-        .click ->
-          deleteItem(this)
+      reader.readAsDataURL(file)
+    )
 
   justOneFile = (reader, files) ->
     f = files[0]
@@ -150,31 +147,7 @@ file_uploader = ->
         $('.file-container').children()
           .not($fileInput).addClass 'opacity'
 
-  showSpinner = ->
-    $ '.spinner'
-      .css 'display', 'block'
-
-  #Only for rockets
-  installRocket = (evt) ->
-    evt.preventDefault()
-    rocket_file = $fileInput.val()
-    can_install = true
-    if rocket_file isnt ''
-      if rocket_file.includes('.rocket')
-        $('.rocket-name').each ->
-          if rocket_file.includes $(this).text()
-            swal 'That rocket is already installed :('
-            can_install = false
-        if can_install
-          showSpinner()
-          $ 'form'
-            .submit()
-      else
-        swal 'Houston! That file isn\'t a rocket :('
-    else
-      swal 'First upload a rocket please!'
-
-  $('#installRocket').on 'click', installRocket
+    reader.readAsDataURL(files[0])
 
 $(document).on('turbolinks:load', file_uploader)
 

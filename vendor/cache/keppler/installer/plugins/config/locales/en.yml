@@ -1,0 +1,104 @@
+en:
+  keppler:
+    sidebar-menu:
+      keppler-checkin: Reservaciones
+      keppler-checkin-submenu:
+    models:
+      singularize:
+      pluralize:
+    modules:
+    actions:
+      created: Created
+      updated: Updated
+      create: Create
+      update: Update
+      deleted: Deleted
+      new: New
+      show: Show
+      edit: Edit
+      clone: Clone
+      delete: Delete
+      index: List
+      change_rol: Change role
+      select_all: Select all
+      refresh: Refresh
+      search: Search
+      go_to_web: Go to web
+      edit_profile: Edit profile
+      sign_out: Sign out
+      back: Back
+      cancel: Cancel
+      assing_rol: Assign rol
+      select_rol: Select rol
+      save: Save
+      save_and_add_another: Save and add another
+      back_history: "Back to history"
+      appearance_defaut: Set default
+      apply: Apply
+  activerecord:
+    attributes:
+      id: Id
+      title: Title
+      subtitle: Subtitle
+      tags: Etiquetas
+      name: Name
+      first_name: 'First Name'
+      last_name: 'Last Name'
+      full_name: 'Full Name'
+      email: Email
+      role: Role
+      phone: Phone
+      phone_number: 'Phone Number'
+      phone_code: 'Phone Code'
+      area_code: 'Phone Code'
+      phone_one: 'Phone One'
+      phone_two: 'Phone Two'
+      age: Age
+      image: Image
+      photo: Photo
+      attachment: Attachment
+      pdf: PDF
+      avatar: Avatar
+      icon: Icon
+      image_background: 'Background Image'
+      brand: Brand
+      country: Country
+      state: State
+      city: City
+      company: Company
+      product: Product
+      client: Client
+      partner: Partner
+      code: Code
+      alliance: Alliance
+      ally: Ally
+      category: Category
+      service: Service
+      project: Project
+      type: Type
+      address: Address
+      size: Size
+      distance: Distance
+      description: Description
+      short_description: 'Short Description'
+      long_description: 'Long Description'
+      details: Details
+      message: Message
+      content: Content
+      date: Date
+      date_begin: 'Date Begin'
+      date_end: 'Date End'
+      begin: Begin
+      end: End
+      check_in: 'Check In'
+      check_out: 'Check Out'
+      price_local: Local Price
+      price_dollar: Dollar Price
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        restrict_destroy: "Cannot delete record"
+        restrict_dependent_destroy:
+          has_one: "Cannot delete record because a dependent %{record} exists"
+          has_many: "Cannot delete record because dependent %{record} exist"
+  
