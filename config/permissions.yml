@@ -1,4 +1,11 @@
 modules:
+  seos:
+    name: Seo
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
   scripts:
     name: Script
     actions: [
