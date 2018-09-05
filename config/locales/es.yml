@@ -77,6 +77,17 @@ es:
       admin/users: 'Usuarios'
       keppler_ga_dashboard/dashboard: 'Dashboard'
       keppler_contact_us/message_settings: 'Configuración de mensajes'
+    rockets:
+      upload: Cargar rockets
+      drop: Arrastra un rocket o presiona aquí
+      install: Instalar
+      list: Lista de rockets
+      create: Crear un rocket
+      build: Construir
+      update: Actualizar
+      download: Descargar
+      uninstall: Desinstalar
+      empty: No hay rockets aquí :(
     messages:
       not_authorized_page: Usted no tiene autorización para acceder a esta página
       not_authorized_action: Usted no tiene autorización para realizar esta acción

@@ -59,7 +59,7 @@ class NewRocketGenerator < Rails::Generators::NamedBase
       say "!!! Layouts could not be copied. Please check if /lib/plugins exists !!!/n", :red
     end
 
-    system("ruby #{Rails.root}/lib/plugins/install.rb keppler_#{rocket_name}")
+    system("ruby #{Rails.root}/lib/plugins/install.rb keppler_#{rocket_name} #{Rails.root}")
   end
 
   def create_policies_folder(rocket_name)
