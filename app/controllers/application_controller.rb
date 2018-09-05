@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
   end
 
   def appearance
-    @appearance = Setting.first.appearance
+    @setting = Setting.includes(:appearance, :social_account).first
+    @appearance = @setting.appearance
   end
 
   def set_apparience_colors
@@ -96,7 +97,6 @@ class ApplicationController < ActionController::Base
     if controller_path.include?('admin')
       I18n.locale = 'es'
     end
-
   end
 
   def set_languages

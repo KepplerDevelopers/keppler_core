@@ -4,6 +4,7 @@ var editor_js = '';
 var editor_js_erb = '';
 var editor_action = '';
 var editor_callback = '';
+var editor_function = '';
 
 var controls = {
   codes: {},
@@ -25,9 +26,18 @@ var controls = {
       $('.action_signal').css('display', 'none');
     })
   },
+  saveLayout: function(id){
+    this.codes = {
+      html: editor.getValue()
+    }
+    $.post("/admin/frontend/themes/"+id+"/editor/save", this.codes, function(data){
+      $("#code-html").val(editor.getValue())
+      $('.html_signal').css('display', 'none');
+    })
+  },
   saveOnlyAction: function(){
     this.codes = {
-      ruby: editor_action.getValue()
+      ruby: editor.getValue()
     }
     $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
       $("#code-action").val(editor_action.getValue())
@@ -95,7 +105,19 @@ var codeHTML = {
         $('.html_signal').css('display', 'none');
       })
     }
-  }
+  },
+
+  saveLayout: function(id){
+    if(editor.getValue() !== $("#code-html").val()) {
+      this.codes = {
+        html: editor.getValue()
+      }
+      $.post("/admin/frontend/themes/"+id+"/editor/save", this.codes, function(data){
+        $("#code-html").val(editor.getValue())
+        $('.html_signal').css('display', 'none');
+      })
+    }
+  },
 }
 
 var codeCSS = {
@@ -323,6 +345,52 @@ var codeCallback = {
       $.post("/admin/frontend/callback_functions/"+id+"/editor/save", this.codes, function(data){
         $("#code-callback").val(editor_callback.getValue())
         $('.callback_signal').css('display', 'none');
+      })
+    }
+  }
+}
+
+var codeFunction = {
+  codeMirrorFunction: function() {
+    $("#code-function").each(function() {
+      CodeMirror.commands.autocomplete = function(cm) {
+        cm.showHint({hint: CodeMirror.hint.anyword});
+      }
+      editor_function =  CodeMirror.fromTextArea($(this).get(0), {
+        lineNumbers: true,
+        mode: "text/x-ruby",
+        keyMap: "sublime",
+        theme: 'monokai',
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        indentUnit: 2,
+        tabSize: 2,
+        showTrailingSpace: true,
+        highlightSelectionMatches: {
+          showToken: /\w/,
+          annotateScrollbar: true
+        },
+        extraKeys: {"Ctrl-Space": "autocomplete"}
+      });
+
+      editor_function.on('change', function () {
+        if(editor_function.getValue() === $("#code-function").val()) {
+          $('.function_signal').css('display', 'none');
+        } else {
+          $('.function_signal').css('display', 'block');
+        }
+      });
+    });
+    return editor_function;
+  },
+  save: function(id) {
+    if(editor_function.getValue() !== $("#code-function").val()) {
+      this.codes = {
+        ruby: editor_function.getValue()
+      }
+      $.post("/admin/frontend/functions/"+id+"/editor/save", this.codes, function(data){
+        $("#code-function").val(editor_callback.getValue())
+        $('.function_signal').css('display', 'none');
       })
     }
   }

@@ -140,3 +140,26 @@ if defined?(KepplerLanguages) && KepplerLanguages.is_a?(Module)
   end
   puts 'Languages has been created'
 end
+
+if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
+  functions =  File.join("#{Rails.root}/rockets/keppler_frontend/config/functions.yml")
+  funcs = YAML.load_file(functions)
+
+  funcs.each do |func|
+    KepplerFrontend::Function.create(
+      name: func['name'],
+      description: func['description']
+    )
+  end
+
+  parameters_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/parameters.yml")
+  params = YAML.load_file(parameters_file)
+
+  params.each do |param|
+    KepplerFrontend::Parameter.create(
+      name: param['name'],
+      function_id: param['function_id']
+    )
+  end
+  puts 'Languages has been created'
+end
