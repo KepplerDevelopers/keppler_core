@@ -102,9 +102,16 @@ $gradient3: rgba(30, 43, 64, 1);
     }
   }
 
+  .login-bottom {
+    align-items: center;
+    display: flex;
+    height: 45px;
+    justify-content: space-between;
+  }
+
   .recoverable {
+    font-size: 13px;
     position: relative;
-    top: 7px;
   }
 
   .devise-errors {
