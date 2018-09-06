@@ -33,6 +33,27 @@
                                 %h4= t("keppler.permissions.#{action}")
                               .pull-right.switch-div
                                 = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['name'], action: action, children: false
+                  .col-lg-12
+                    - unless module_name[key.first]['childrens'].nil?
+                      - module_name[key.first]['childrens'].each do |children|
+                        - children.each do |key|
+                          .box.slice-box.collapsed-box
+                            .box-header.with-border
+                              %h4.box-title= t("keppler.sidebar-menu.#{children[key.first]['name'].parameterize.pluralize}")
+                              .box-tools.pull-right
+                                %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
+                                  %i.icon-plus
+                            .box-body
+                              %table.table.table-bordered
+                                %tbody
+                                  - children[key.first]['actions'].each do |action|
+                                    %tr
+                                      %td.row-selectable.table-data
+                                        = link_to admin_role_show_description_path(@role, children[key.first]['name'].split('::').join(''), action), method: :post, remote: true do
+                                          .pull-left
+                                            %h4= t("keppler.permissions.#{action}")
+                                          .pull-right.switch-div
+                                            = render 'admin/roles/switch', role: @role, module_name: children[key.first]['model'], action: action, children: false
 
     .col-lg-6.hidden-xs
       %div{ style: 'width: 43%; height: 100%; position: fixed; right: 0px' }

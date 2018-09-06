@@ -1,40 +1,33 @@
 modules:
- parameters:
-    name: KepplerFrontendParameter
+  view:
+    name: Views
+    model: KepplerFrontendView
     actions: [
       'index', 'create', 'update',
       'destroy', 'download', 'upload',
-      'clone'
+      'clone', 'editor'
     ]
-
- functions:
-    name: KepplerFrontendFunction
-    actions: [
-      'index', 'create', 'update',
-      'destroy', 'download', 'upload',
-      'clone'
-    ]
-
- callback_functions:
-    name: KepplerFrontendCallbackFunction
-    actions: [
-      'index', 'create', 'update',
-      'destroy', 'download', 'upload',
-      'clone'
-    ]
-#  themes:
-#     name: Theme
-#     actions: [
-#       'index', 'create', 'update',
-#       'destroy', 'download', 'upload',
-#       'clone'
-#     ]
-#
-#  views:
-#     name: View
-#     actions: [
-#       'index', 'create', 'update',
-#       'destroy', 'download', 'upload',
-#       'clone'
-#     ]
-#
+    childrens:
+      # - parameters:
+      #     name: KepplerFrontendParameter
+      #     actions: [
+      #       'index', 'create', 'update',
+      #       'destroy', 'download', 'upload',
+      #       'clone'
+      #     ]
+      - functions:
+          name: Functions
+          model: KepplerFrontendFunction
+          actions: [
+            'index', 'create', 'update',
+            'destroy', 'download', 'upload',
+            'clone'
+          ]
+      - callback_functions:
+          name: Callback Functions
+          model: KepplerFrontendCallbackFunction
+          actions: [
+            'index', 'create', 'update',
+            'destroy', 'download', 'upload',
+            'clone'
+          ]

@@ -1,34 +1,40 @@
 modules:
   seos:
     name: Seo
+    model: Seo
     actions: [
       'index', 'create', 'update',
       'destroy', 'download', 'upload',
       'clone'
     ]
   scripts:
-    name: Script
+    name: Scripts
+    model: Script
     actions: [
       'index', 'create', 'update',
       'destroy', 'upload', 'download',
       'clone'
     ]
   meta_tags:
-    name: MetaTag
+    name: MetaTags
+    model: MetaTag
     actions: [
       'index', 'create', 'update',
       'destroy', 'upload', 'download',
       'clone'
     ]
   users:
-    name: User
+    name: Users
+    model: User
     actions: [
       'index', 'create', 'update',
       'destroy', 'download'
     ]
-  roles:
-    name: Role
-    actions: [
-      'index', 'create', 'update',
-      'destroy', 'download'
-    ]
+    childrens:
+      - roles:
+          name: Roles
+          model: Role
+          actions: [
+            'index', 'create', 'update',
+            'destroy', 'download'
+          ]
