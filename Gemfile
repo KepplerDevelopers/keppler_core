@@ -134,9 +134,16 @@ group :development, :test do
 end
 
 gem 'google-api-client', '~> 0.7.1'
+gem 'acts-as-taggable-on', '6.0'
+gem 'bootstrap-tagsinput-rails'
+gem 'social-share-button'
 
 # ----- Rockets ----- #
 gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'
 gem 'keppler_capsules', path: 'rockets/keppler_capsules'
+
+
+
+

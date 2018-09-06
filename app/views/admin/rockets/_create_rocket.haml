@@ -2,23 +2,24 @@
   $('.create-rocket').click(function () {
     swal({
       input: 'text',
-      title: 'Choose a name',
-      text: 'This will be your rocket\'s name',
-      confirmButtonText: 'Create &rarr;',
+      title: "#{t('keppler.rockets.choose_a_name')}",
+      text: "#{t('keppler.rockets.rocket_name')}",
+      confirmButtonText: "#{t('keppler.rockets.create_rocket')}",
+      cancelButtonText: "#{t('keppler.rockets.cancel')}",
       showCancelButton: true,
     }).then((result) => {
       if (result.value) {
         var rocket_name = result.value;
         swal({
-          title: 'Are you sure?',
-          html: `Your rocket will be named:<pre><code>keppler_${result.value.toLowerCase().split(' ').join('_')}</code></pre>`,
-          confirmButtonText: 'Lovely!',
+          title: "#{t('keppler.rockets.you_sure')}",
+          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${result.value.toLowerCase().split(' ').join('_')}</code></pre>`,
+          confirmButtonText: "#{t('keppler.rockets.great')}",
           showCancelButton: true,
         }).then((result) => {
           if (result.value) {
             swal({
-              title: 'Great!',
-              html: 'Please wait until your rocket is ready.',
+              title: "#{t('keppler.rockets.great')}",
+              html: "#{t('keppler.rockets.wait_generator')}",
               timer: 3000,
               onOpen: () => {
                 swal.showLoading()

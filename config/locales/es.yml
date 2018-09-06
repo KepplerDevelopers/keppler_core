@@ -82,12 +82,29 @@ es:
       drop: Arrastra un rocket o presiona aquí
       install: Instalar
       list: Lista de rockets
-      create: Crear un rocket
+      create_a_rocket: Crear un rocket
       build: Construir
       update: Actualizar
       download: Descargar
       uninstall: Desinstalar
       empty: No hay rockets aquí :(
+      already_installed: Ese rocket ya está instalado :(
+      isnt_a_rocket: ¡Houston! Ese archivo no es un rocket :(
+      first_upload: ¡Primero carga un rocket, por favor!
+      choose_a_name: Elige un nombre
+      rocket_name: Este será el nombre de tu rocket
+      create_rocket: Crear
+      you_sure: ¿Estás seguro?
+      will_be_named: Tu rocket será llamado
+      great: ¡Genial!
+      wait_generator: Por favor espera mientras armamos tu rocket...
+      cancel: Cancelar
+      installed: instalado
+      uninstalled: desinstalado
+      created: creado
+      built: construido
+      success: "%{rocket} ha sido %{action} satisfactoriamente"
+      error: "Error: %{rocket} no pudo ser %{action}"
     messages:
       not_authorized_page: Usted no tiene autorización para acceder a esta página
       not_authorized_action: Usted no tiene autorización para realizar esta acción

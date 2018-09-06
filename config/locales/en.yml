@@ -71,9 +71,31 @@ en:
       admin/meta_tags: 'Meta tags'
       admin/scripts: 'Scripts'
       admin/scaffolds: 'Scaffolds'
-      admin/settings: 'Settings'
+      admin/settings..: 'Settings'
       keppler_ga_dashboard/dashboard: 'Dashboard'
       admin/users: 'Users'
+    rockets:
+      upload: Upload rockets
+      drop: Drop a rocket or press here
+      install: Install
+      list: Rockets list
+      create_a_rocket: Create a rocket
+      build: Build
+      update: Update
+      download: Download
+      uninstall: Uninstall
+      empty: There is not rockets here :(
+      already_installed: That rocket is already installed :(
+      isnt_a_rocket: Houston! That file isn't a rocket :(
+      first_upload: First upload a rocket please!
+      choose_a_name: Choose a name
+      rocket_name: This will be your rocket's name
+      create: Create
+      you_sure: Are you sure?
+      will_be_named: Your rocket will be named
+      great: Great!
+      wait_generator: Please wait until your rocket is ready...
+      cancel: Cancel
     messages:
       not_authorized_page: You have no authorization to access this page
       not_authorized_action: You have no authorization to perform this action
@@ -91,7 +113,7 @@ en:
         created: "%{model} has been created successfully"
         updated: "%{model} has been updated successfully"
         deleted: "%{model} has been deleted successfully"
-        removed: "%{model} have been deleted successfully"
+        removed: "%{model} have been removed successfully"
     header_information:
       setting:
         basic_information: Basic Information
