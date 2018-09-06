@@ -1,28 +1,27 @@
 modules:
  parameters:
-    name: Parameter
+    name: KepplerFrontendParameter
     actions: [
       'index', 'create', 'update',
       'destroy', 'download', 'upload',
       'clone'
     ]
-  
+
  functions:
-    name: Function
+    name: KepplerFrontendFunction
     actions: [
       'index', 'create', 'update',
       'destroy', 'download', 'upload',
       'clone'
     ]
-  
+
  callback_functions:
-    name: CallbackFunction
+    name: KepplerFrontendCallbackFunction
     actions: [
       'index', 'create', 'update',
       'destroy', 'download', 'upload',
       'clone'
     ]
-  
 #  themes:
 #     name: Theme
 #     actions: [
@@ -39,4 +38,3 @@ modules:
 #       'clone'
 #     ]
 #
-

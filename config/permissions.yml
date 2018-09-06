@@ -26,3 +26,9 @@ modules:
       'index', 'create', 'update',
       'destroy', 'download'
     ]
+  roles:
+    name: Role
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download'
+    ]
