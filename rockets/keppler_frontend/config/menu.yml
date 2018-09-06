@@ -10,23 +10,29 @@ menu:
           name: views
           url_path: /admin/frontend/views
           current: ['current']
+          model: KepplerFrontend::View
       - option:
           name: callback_functions
           url_path: /admin/frontend/callback_functions
           current: ['current']
+          model: KepplerFrontend::CallbackFunction
       - option:
           name: functions
           url_path: /admin/frontend/functions
           current: ['current']
+          model: KepplerFrontend::Function
       - option:
           name: partials
           url_path: /admin/frontend/partials
           current: ['current']
+          model: KepplerFrontend::Partial
       - option:
           name: Assets
           url_path: /admin/frontend/assets
           current: ['current']
+          model: KepplerFrontend::View
       - option:
           name: Themes
           url_path: /admin/frontend/themes
           current: ['current']
+          model: KepplerFrontend::Theme

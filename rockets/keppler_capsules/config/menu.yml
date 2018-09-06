@@ -10,5 +10,6 @@ menu:
           name: add_capsule
           url_path: /admin/space/capsules
           current: ['current']
+          model: KepplerCapsules::Capsule
       # begin capusules generated (don't delete)
       # end capusules generated
