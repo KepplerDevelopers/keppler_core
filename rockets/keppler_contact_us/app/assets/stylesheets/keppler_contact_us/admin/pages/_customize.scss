@@ -1,0 +1,22 @@
+.customize-index {
+  padding: 2rem;
+  padding-top: 20px;
+
+  .status {
+    padding-right: 50px;
+  }
+}
+
+.iframe-body {
+  height: 325px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  iframe {
+    height: 250%;
+    transform: scale(.4);
+    transform-origin: 0 0;
+    width: 250%;
+    zoom: 1.8;
+  }
+}

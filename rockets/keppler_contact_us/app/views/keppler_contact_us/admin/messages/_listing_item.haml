@@ -1,0 +1,30 @@
+%td.item-check
+  - if can?(module_name).destroy_multiple?
+    .checkbox
+      %label{ for: "checkbox-#{object.id}" }
+        %input{ type: "checkbox", id: "checkbox-#{object.id}", 'checklist-model': 'check', 'checklist-value': "#{object.id}", '@click': "listDelete(#{object.id})" }
+        %span.cr
+          %i.cr-icon.glyphicon.glyphicon-ok
+%td.mailbox-star
+  - if can?(module_name).favorite?
+    = link_to admin_contact_us_message_favorite_path(object), remote: true, class: 'mailbox-link' do
+      %i.icon-star{ class: ('favorite' if object.favorite), title: t("keppler-contact-us.actions.#{'dis' if object.favorite}check_favorite") }
+%td.mailbox-content.mailbox-read
+  = link_to admin_contact_us_message_path(object, search: query), class: 'mailbox-link' do
+    - if object.from_email.eql?(current_user.email)
+      %i.icon-check{ title: t('keppler-contact-us.attributes.sent') }
+    - else
+      %span{ id: "read-status-#{object.id}" }
+        %i{ class: "icon-#{object.read ? 'envelope-open' : 'envelope keppler-color' }", title: t("keppler-contact-us.attributes.#{'un' unless object.read}read") }
+%td.mailbox-content.mailbox-name
+  = link_to admin_contact_us_message_path(object, search: query), class: 'mailbox-link' do
+    .text-overflow= object.name
+%td.mailbox-content.mailbox-subject
+  = link_to admin_contact_us_message_path(object, search: query), class: 'mailbox-link' do
+    .text-overflow= object.subject
+%td.mailbox-content.mailbox-message
+  = link_to admin_contact_us_message_path(object, search: query), class: 'mailbox-link' do
+    .text-overflow= sanitize(object.content, tags: []).truncate(300)
+%td.mailbox-date
+  %i.icon-clock
+  %span Hace #{time_ago_in_words(object.created_at)}

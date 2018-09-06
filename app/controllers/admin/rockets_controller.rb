@@ -1,35 +1,34 @@
 # frozen_string_literal: true
 
 module Admin
-  # MetaTagController
+  # RocketsController
   class RocketsController < AdminController
-    before_action :rocket_params, except: %i[rockets]
+    before_action :rocket_params, except: %i[rockets install]
     before_action :rocket_file_params, only: %i[install]
 
-    # GET /meta_tags
     def rockets
       @rockets = Rocket.names_list
     end
 
     def create
       Rocket.new_rocket(@rocket_undescore_name)
-      redirect_to_rockets_list(@rocket_file_name, @rocket)
+      redirect_to_rockets_list(@rocket)
     end
 
     def install
       return unless @rocket && @rocket_file_ext.eql?('rocket')
       install_process(@rocket, @rocket_file_name)
-      redirect_to_rockets_list(@rocket_file_name, @rocket)
+      redirect_to_rockets_list(@rocket)
     end
 
     def uninstall
       Rocket.uninstall(@rocket) if @rocket
-      redirect_to_rockets_list(@rocket_file_name, @rocket)
+      redirect_to_rockets_list(@rocket)
     end
 
     def build
       Rocket.build(@rocket)
-      redirect_to_rockets_list(@rocket_file_name, @rocket)
+      redirect_to_rockets_list(@rocket)
     end
 
     private
@@ -41,6 +40,7 @@ module Admin
     end
 
     def rocket_file_params
+      @rocket = params[:rocket]
       @rocket_file_name = @rocket.original_filename.split('.').first
       @rocket_file_ext = @rocket.original_filename.split('.').last
     end
@@ -51,24 +51,24 @@ module Admin
       Rocket.install(rocket_file_name)
     end
 
-    # def rocket_msg(rocket_file_name, state)
-    #   t(
-    #     "keppler.rockets.#{state}",
-    #     rocket: rocket_file_name,
-    #     action: t("keppler.rockets.#{action_name}")
-    #   )
-    # end
-
     def redirect_to_rockets_list(rocket)
       message_action
       redirect_to(
         admin_rockets_path,
         notice: t(
           "keppler.rockets.#{rocket ? 'success' : 'error'}",
-          rocket: rocket.camelize,
+          rocket: rocket_name(rocket),
           action: t("keppler.rockets.#{@action}")
         )
       )
+    end
+
+    def rocket_name(rocket)
+      if rocket.try(:original_filename).nil?
+        rocket.camelize
+      else
+        rocket.original_filename.split('.').first.camelize
+      end
     end
 
     def message_action

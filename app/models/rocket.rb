@@ -32,10 +32,7 @@ class Rocket < ApplicationRecord
     Zip::File.open(rocket_zip) do |zip_file|
       dir = Rails.root.join('rockets', rocket_name)
       Dir.mkdir(dir) unless Dir.exist?(dir)
-      zip_file.each do |entry|
-        puts "*** Extracting #{entry.name} ***"
-        entry.extract("#{Rails.root}/rockets/#{rocket_name}/#{entry.name}")
-      end
+      uncompress_pkg(zip_file, rocket_name)
     end
   end
 
@@ -66,6 +63,15 @@ class Rocket < ApplicationRecord
     Zip::File.open(archive, 'w') do |zipfile|
       Dir["#{rocket_dir}/**/**"].reject { |f| f.eql? archive }.each do |file|
         zipfile.add(file.sub(rocket_dir + '/', ''), file)
+      end
+    end
+  end
+
+  def self.uncompress_pkg(zip_file, rocket_name)
+    zip_file.each do |entry|
+      unless File.exist?("#{Rails.root}/rockets/#{rocket_name}/#{entry.name}")
+        puts "*** Extracting #{entry.name} ***"
+        entry.extract("#{Rails.root}/rockets/#{rocket_name}/#{entry.name}")
       end
     end
   end

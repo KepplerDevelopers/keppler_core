@@ -1,0 +1,3 @@
+$('.objects-container').html("#{j render 'listing', objects: @objects, query: @query}");
+var request = $.ajax({url: "", method: 'get', dataType: 'html' });
+request.done(function(msg){$('.listing-preloader').addClass('hidden'); $('.objects-container').removeClass('hidden');});

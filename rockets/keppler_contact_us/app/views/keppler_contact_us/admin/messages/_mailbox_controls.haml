@@ -1,0 +1,35 @@
+.mailbox-controls
+  .toolbar-inline
+    - if can?(module_name).destroy_multiple?
+      .toolbar-item
+        .checkbox
+          %label{ for: 'checkbox-all' }
+            %input{ type: 'checkbox', id: 'checkbox-all', '@click': 'selectAll()' }
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+      .toolbar-item
+        %a.tool-btn{ 'data-confirm': '¿Estás seguro?', 'data-method': 'delete', 'v-bind:href': 'link', rel: 'nofollow', ':class': '{disabled: !checks}' }
+          %i.icon-trash
+    - if can?(module_name).download?
+      %li.toolbar-item.dropdown
+        %a.dropdown-toggle{ 'data-toggle': 'dropdown', href: '#', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.actions.download_records') }
+          %i.icon-cloud-download
+        %ul.dropdown-menu
+          %li= link_to 'Descargar CSV', admin_contact_us_messages_path(format: :csv), class: 'tool-btn'
+          %li= link_to 'Descargar XLS', admin_contact_us_messages_path(format: :xls), class: 'tool-btn'
+    - if can?(module_name).upload?
+      .toolbar-item
+        = link_to '#', class: 'tool-btn', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.actions.upload_records'), id: 'upload' do
+          %i.icon-cloud-upload
+    .toolbar-item
+      = link_to reload_admin_contact_us_messages_path, class: 'tool-btn', remote: true, 'data-toggle': 'tooltip', 'data-original-title': 'Recargar página' do
+        %i.icon-reload
+  .pull-right{ style: 'padding: 5px 10px;' }
+    = entries(@total, @objects)
+    &nbsp; | &nbsp;
+    = paginate @objects, window: 1
+    -# .btn-group
+      %button.btn.btn-default.btn-sm{ type: 'button' }
+        %i.icon-arrow-left
+      %button.btn.btn-default.btn-sm{ type: 'button' }
+        %i.icon-arrow-right

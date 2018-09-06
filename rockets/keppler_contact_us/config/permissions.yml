@@ -1,0 +1,9 @@
+modules:
+ messages:
+    name: Message
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  

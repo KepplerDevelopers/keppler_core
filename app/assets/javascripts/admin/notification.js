@@ -3,7 +3,7 @@ function notify(notice) {
     toast: true,
     position: 'top',
     showConfirmButton: false,
-    timer: 30000,
+    timer: 5000,
     customClass: 'animated tada'
   });
 

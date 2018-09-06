@@ -1,0 +1,142 @@
+.keppler-switch {
+  display: block;
+  height: 24px;
+  margin-bottom: 0;
+  position: relative;
+  width: 40px;
+
+  input {
+    display: none;
+
+    &.active + .slider {
+      background-color: $keppler-color;
+      box-shadow: 0 0 1px $keppler-color;
+
+      // &::before {
+      //   transform: translateX(16px);
+      // }
+    }
+  }
+
+  .slider {
+    background-color: $ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+
+    &::before {
+      background-color: $white;
+      bottom: 4px;
+      content: '';
+      height: 16px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 16px;
+    }
+
+    &.round {
+      border-radius: 34px;
+    }
+
+    &.round::before {
+      border-radius: 50%;
+    }
+  }
+
+  .inline-label {
+    margin-left: 50px;
+    opacity: .5;
+    transition: opacity .3s;
+
+    &.active {
+      opacity: 1;
+      transition: opacity .3s;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .active + .slider {
+    background-color: $keppler-color;
+    box-shadow: 0 0 1px $keppler-color;
+
+    &::before {
+      transform: translateX(16px);
+    }
+  }
+}
+
+.switch {
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  width: 40px;
+
+  input {
+    display: none;
+  }
+
+  .slider {
+    background-color: $ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+
+    &::before {
+      background-color: $white;
+      bottom: 4px;
+      content: '';
+      height: 16px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 16px;
+    }
+
+    &.round {
+      border-radius: 34px;
+    }
+
+    &.round::before {
+      border-radius: 50%;
+    }
+  }
+
+  .active + .slider {
+    background-color: $keppler-color;
+    box-shadow: 0 0 1px $keppler-color;
+
+    &::before {
+      transform: translateX(16px);
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .no-visible {
+    display: none;
+  }
+
+  .row-selectable:hover {
+    background-color: $white;
+    cursor: pointer;
+    transition: all ease .3s;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+}

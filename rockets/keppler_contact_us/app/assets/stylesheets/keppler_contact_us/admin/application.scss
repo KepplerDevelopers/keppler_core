@@ -1,0 +1,41 @@
+// = require animate-css
+// = require jquery.minicolors
+//  require bootstrap-wysihtml5
+// = require_self
+
+// Utils
+@import 'utils/variables';
+@import 'vendor/admin-lte/skin-blue';
+@import 'utils/mixins';
+@import 'utils/theme';
+@import 'utils/base';
+
+// Wysihtml5 editor
+// @import 'bootstrap-wysihtml5/bootstrap3-wysihtml5';
+@import 'wysihtml5/*';
+
+// Bootstrap tagsinput
+@import 'bootstrap-tagsinput/*';
+
+// Libraries and plugins as gems
+@import 'bourbon';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'adminlte';
+
+// Components folder
+@import 'components/navigation/navbar';
+@import 'components/navigation/sidebar';
+@import 'components/layouts/footer';
+@import 'components/layouts/settings';
+@import 'components/paginator/paginator';
+
+// Page folder
+@import 'pages/*';
+
+
+// Keppler Contact Us
+@import 'messages/components/*';
+@import 'messages/pages/*';

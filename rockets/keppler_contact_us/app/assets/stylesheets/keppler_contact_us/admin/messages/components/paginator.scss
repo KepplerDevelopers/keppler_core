@@ -1,0 +1,45 @@
+.mailbox-controls {
+  .btn-pag {
+    background-color: $bfc5c5;
+    border-radius: 3px;
+    color: $white;
+    cursor: pointer;
+    display: inline-table;
+    text-align: center;
+    height: 15px;
+    position: relative;
+    transition: .3s;
+    width: 20px;
+    z-index: 1;
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+
+  .icon-size {
+    line-height: unset;
+  }
+
+  .bg-current {
+    background-color: $keppler-color;
+  }
+
+  .bg-not {
+    color: $white;
+  }
+
+  .btn-not {
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    // height: 40px;
+    // line-height: 40px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    transition: .3s;
+    vertical-align: middle;
+    // width: 40px;
+    z-index: 1;
+  }
+}

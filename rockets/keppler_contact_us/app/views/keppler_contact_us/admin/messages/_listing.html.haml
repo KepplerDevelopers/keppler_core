@@ -1,0 +1,10 @@
+%div.table-responsive.mailbox-messages
+  %table.table.table-hover.table-striped
+    %tbody
+      - if objects.size.zero?
+        %tr
+          %td.center
+            %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.messages'))
+      - objects.each do |message|
+        %tr.message-row{ class: ('read' if message.read), id: "row-#{message.id}" }
+          = render 'listing_item', object: message, query: query

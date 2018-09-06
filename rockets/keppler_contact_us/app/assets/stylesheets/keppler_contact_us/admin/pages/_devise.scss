@@ -1,0 +1,170 @@
+.devise {
+  background-image: url('profile-menu.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+
+  .container {
+    animation: animationContainer 1.5s forwards;
+    background: $black;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+  }
+
+  @keyframes animationContainer {
+    0% {
+      background: $black;
+    }
+
+    100% {
+      background: $dark-transparent;
+    }
+  }
+
+  .login-footer {
+    bottom: 3rem;
+    color: $dark-white;
+    position: relative;
+    text-align: center;
+
+    span {
+      color: $keppler-color;
+    }
+  }
+
+  .login-container {
+    width: 100%;
+  }
+
+  .login-box {
+    height: 70%;
+  }
+
+  .login-box-body {
+    animation: animationBody 2.5s forwards;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+    position: relative;
+    top: 2rem;
+  }
+
+  @keyframes animationBody {
+    0% {
+      top: 2rem;
+    }
+
+    100% {
+      top: 0;
+    }
+  }
+
+
+  .login-logo {
+    animation: animationLogo 1.5s forwards;
+    opacity: 0;
+    position: relative;
+    top: 2rem;
+
+    a {
+      color: $dark-white;
+    }
+
+    span {
+      color: $keppler-color;
+    }
+  }
+
+  @keyframes animationLogo {
+    0% {
+      opacity: 0;
+      top: 2rem;
+    }
+
+    100% {
+      opacity: 1;
+      top: 0;
+    }
+  }
+
+  .recoverable {
+    position: relative;
+    top: 7px;
+  }
+
+  .devise-errors {
+    color: $error-color;
+  }
+
+  img {
+    margin-top: 15px;
+    max-width: 150px;
+    width: 70px;
+  }
+
+  &-horizontal {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  }
+
+  &-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &-box {
+    width: 100%;
+
+    h5 {
+      margin: 0;
+    }
+
+    p {
+      font-weight: 300;
+    }
+    //
+    // @media #{$small-and-down} {
+    //   width: 100%;
+    // }
+
+    &-header {
+      color: $white;
+      padding-left: 15px;
+      padding-top: 80px;
+    }
+
+    &-title {
+      font-family: 'Patua One', cursive;
+      font-size: 30px;
+      padding-bottom: 10px;
+    }
+
+    &-body {
+      margin-bottom: 0;
+      padding: 15px;
+    }
+
+    &-footer {
+      margin-bottom: 0;
+      padding: 0 15px 15px;
+    }
+  }
+}
+
+.input-icon {
+  display: block;
+  height: 34px;
+  line-height: 34px;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 34px;
+  z-index: 2;
+}
