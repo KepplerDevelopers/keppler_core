@@ -10,11 +10,10 @@
           .hide
             = form_tag admin_frontend_theme_upload_path(@objects), id: "upload_form_themes", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_theme"
-          .add
-            = link_to new_admin_frontend_theme_path, class: "btn-add" do
-              + Agregar
-
-
+          - if can?(KepplerLanguages::Theme).create?
+            .add
+              = link_to new_admin_frontend_theme_path, class: "btn-add" do
+                + Agregar
         .row
           .col-lg-5.col-xs-12
             .box.slice-box

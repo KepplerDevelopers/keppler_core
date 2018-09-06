@@ -25,9 +25,10 @@
           .hide
             = form_tag admin_frontend_partial_upload_path(@objects), id: "upload_form_partials", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_partial"
-          .add
-            = link_to new_admin_frontend_partial_path, class: "btn-add" do
-              + Agregar
+          - if can?(KepplerFrontend::Partial).create?
+            .add
+              = link_to new_admin_frontend_partial_path, class: "btn-add" do
+                + Agregar
 
         .box.slice-box
           .box-body.no-padding

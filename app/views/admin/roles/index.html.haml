@@ -25,9 +25,10 @@
           .hide
             = form_tag admin_role_upload_path(@objects), id: 'upload-form', multipart: true, method: :post do
               = file_field_tag :file, id: 'upload-file'
-          .add
-            = link_to new_admin_role_path, class: 'btn-add' do
-              + Agregar
+          - if can?(Role).create?
+            .add
+              = link_to new_admin_role_path, class: 'btn-add' do
+                + Agregar
         .box.slice-box
           .box-body.no-padding
 

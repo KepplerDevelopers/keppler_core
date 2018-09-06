@@ -25,9 +25,10 @@
             .toolbar-item
               %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{ disabled: !checks }' }
                 %i.icon-trash
-          .add
-            = link_to new_admin_user_path, class: 'btn-add' do
-              + Agregar
+          - if can?(User).create?
+            .add
+              = link_to new_admin_user_path, class: 'btn-add' do
+                + Agregar
         .box.slice-box
           .box-body.no-padding
             %table.table

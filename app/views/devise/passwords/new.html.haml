@@ -19,7 +19,7 @@
                 .devise-errors.center-align
                   - flash.each do |name, msg|
                     = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
-              .form-group.has-feedback
+              .has-feedback
                 %center
                   = f.submit 'Enviar', class: 'btn-primary'
               .clearfix
