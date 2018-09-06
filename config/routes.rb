@@ -190,7 +190,4 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
-
-	# KepplerContactUs routes engine
-	mount KepplerContactUs::Engine, at: '/', as: 'keppler_contact_us'
 end

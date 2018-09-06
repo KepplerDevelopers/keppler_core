@@ -153,4 +153,3 @@ gem 'keppler_capsules', path: 'rockets/keppler_capsules'
 
 
 
-gem 'keppler_contact_us', path: 'rockets/keppler_contact_us'
