@@ -4,7 +4,14 @@
 class Rocket < ApplicationRecord
   # Rockets list
   def self.names_list
-    Dir["#{Rails.root}/rockets/*"].map { |x| x.split('/').last }
+    Dir["#{Rails.root}/rockets/*"].map do |dir|
+      rocket_name = dir.split('/').last
+      dir_size = 0
+      Dir.glob("#{dir}/**/**").map do |file|
+        dir_size += File.size(file)
+      end
+      "#{rocket_name} (#{filesize(dir_size)})"
+    end
   end
 
   # Create rocket
@@ -56,6 +63,8 @@ class Rocket < ApplicationRecord
     system "cp #{rocket_dir}/pkg/#{rocket}.rocket #{public_rockets}"
   end
 
+  # private
+
   def self.compress_pkg(rocket_dir)
     archive = "#{rocket_dir}/pkg/#{File.basename(rocket_dir)}.rocket"
     require 'zip'
@@ -76,13 +85,11 @@ class Rocket < ApplicationRecord
     end
   end
 
-  private
-
-  def replace_line(relative_destination, regexp, *args, &block)
-    path = File.join(destination_root, relative_destination)
-    content = File.read(path).gsub(regexp, *args, &block)
-    File.open(path, 'wb') do |file|
-      file.write(content)
-    end
+  def self.filesize(size)
+    units = %w[B KB MB GB TB Pb EB]
+    return '0.0 B' if size.zero?
+    exp = (Math.log(size) / Math.log(1024)).to_i
+    exp = 6 if exp > 6
+    [(size.to_f / 1024**exp).round(2), units[exp]].join(' ')
   end
 end

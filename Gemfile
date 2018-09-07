@@ -143,13 +143,4 @@ gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'
 gem 'keppler_capsules', path: 'rockets/keppler_capsules'
-
-
-
-
-
-
-
-
-
-
+gem 'keppler_nuevorocket', path: 'rockets/keppler_nuevorocket'

@@ -7,9 +7,9 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
     remove_migrations
     remove_route_line
     remove_gem_line
-    bundle_install
-    clear_temps_and_logs
-    restart_server
+    # bundle_install
+    # clear_temps_and_logs
+    # restart_server
   end
 
   private
@@ -75,7 +75,7 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
 
   def remove_route_line
     say "\n*** Removing #{class_name} routes from config/routes ***"
-    gsub_file 'config/routes.rb', "\n\t# #{class_name} routes engine\n\tmount #{class_name}::Engine, at: '/', as: '#{file_name}'\n", ""
+    gsub_file 'config/routes.rb', "\n  # #{class_name} routes engine\n  mount #{class_name}::Engine, at: '/', as: '#{file_name}'\n", ""
     say "=== #{class_name} route removed from config/routes.rb ===\n", :green
   end
 

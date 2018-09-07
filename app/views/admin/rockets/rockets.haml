@@ -26,28 +26,29 @@
       .box-body.no-padding
         %table.table
           %tbody
-            - @rockets.each do |rocket|
-              %tr
-                %td
-                  %i.icon-rocket
-                  %span.rocket-name= rocket
-                  .pull-right
-                    - if rocket_is_built?(rocket)
-                      = link_to admin_rockets_build_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.update') do
-                        %i.icon-refresh
-                      = link_to "/rockets/#{rocket}.rocket", dowload: "#{rocket}.rocket", 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.download') do
-                        %i.icon-cloud-download
-                    - else
-                      = link_to admin_rockets_build_path(rocket), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.build') do
-                        %i.icon-wrench
-                    - unless rocket.eql? 'keppler_ga_dashboard'
-                      = link_to admin_rockets_uninstall_path(rocket), class: 'uninstallRocket', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.uninstall'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
-                        %i.icon-trash.text-red
             - if @rockets.blank?
               %tr
                 %td{ colspan: 4 }
                   %center
                     = t 'keppler.rockets.empty'
+            - else
+              - @rockets.each do |rocket|
+                %tr
+                  %td
+                    %i.icon-rocket
+                    %span.rocket-name= rocket
+                    .pull-right
+                      - if rocket_is_built?(rocket.split(' ').first)
+                        = link_to admin_rockets_build_path(rocket.split(' ').first), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.update') do
+                          %i.icon-refresh
+                        = link_to "/rockets/#{rocket}.rocket", dowload: "#{rocket}.rocket", 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.download') do
+                          %i.icon-cloud-download
+                      - else
+                        = link_to admin_rockets_build_path(rocket.split(' ').first), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.build') do
+                          %i.icon-wrench
+                      - unless rocket.eql? 'keppler_ga_dashboard'
+                        = link_to admin_rockets_uninstall_path(rocket.split(' ').first), class: 'uninstallRocket', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.uninstall'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+                          %i.icon-trash.text-red
 :scss
   .create_rocket_form {
     a,

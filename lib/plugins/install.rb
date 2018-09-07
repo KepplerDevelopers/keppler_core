@@ -132,7 +132,8 @@ File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/kepple
 
 layouts = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/app/views/#{ARGV[0]}/admin/layouts/application.html.haml")
 
-layouts[7] ="  = render 'admin/layouts/navigation', q: @q, appearance: @appearance, model_obj: [:admin, :#{ARGV[0].split('_').drop(1).join('')}, @q]\n"
+layouts[3] = "  = render '#{ARGV[0]}/admin/layouts/head'"
+layouts[7] = "        = render 'admin/layouts/navigation', q: @q, appearance: @appearance, model_obj: [:admin, :#{ARGV[0].split('_').drop(1).join('')}, @q]\n"
 
 layouts = layouts.join("")
 

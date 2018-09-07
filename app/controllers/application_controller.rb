@@ -13,10 +13,9 @@ class ApplicationController < ActionController::Base
 
   skip_around_action :set_locale_from_url
   include Pundit
+  include AdminHelper
   include PublicActivity::StoreController
   helper KepplerLanguages::LanguagesHelper
-  include AdminHelper
-
   helper KepplerCapsules::CapsulesHelper
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

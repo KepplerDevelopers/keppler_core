@@ -9,6 +9,7 @@ class NewRocketGenerator < Rails::Generators::NamedBase
       generate_rocket(rocket_name)
       copy_generator(rocket_name)
       copy_layouts(rocket_name)
+      add_helper_in_application_core
       create_policies_folder(rocket_name)
       say "\n=== All Done. #{class_name} Rocket has been created and installed ===\n", :green
     end
@@ -35,7 +36,7 @@ class NewRocketGenerator < Rails::Generators::NamedBase
   end
 
   def copy_generator(rocket_name)
-    say "\n*** Copying Generatos from Core to Rocket ***\n"
+    say "\n*** Copying generators from Core to Rocket ***\n"
 
     if directory "#{Rails.root}/lib/plugins/generators", "#{Rails.root}/rockets/keppler_#{rocket_name}/lib/generators"
       say "=== Generators has been copied from Core to #{class_name} Rocket ===/n", :green
@@ -60,6 +61,14 @@ class NewRocketGenerator < Rails::Generators::NamedBase
     end
 
     system("ruby #{Rails.root}/lib/plugins/install.rb keppler_#{rocket_name} #{Rails.root}")
+  end
+
+  def add_helper_in_application_core
+    say "*** Copying #{class_name}'s helpers ***"
+    inject_into_file 'app/controllers/application_controller.rb', after: "include PublicActivity::StoreController" do
+      "  helper Keppler#{file_name.classify}::ApplicationHelper"
+    end
+    say "=== #{class_name}'s helpers has been copied ===", :green
   end
 
   def create_policies_folder(rocket_name)

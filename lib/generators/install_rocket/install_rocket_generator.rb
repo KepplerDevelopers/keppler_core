@@ -5,10 +5,12 @@
       rocket_directory = "#{Rails.root}/rockets/#{file_name}"
       if File.directory?(rocket_directory)
         add_route_line
-        bundle_install if add_gem_line(rocket_directory)
+        add_gem_line(rocket_directory)
+        add_helper_in_application_core
+        # bundle_install
         migrate_database if copy_migrations_files
         run_rocket_generator
-        clear_temps_and_logs
+        # clear_temps_and_logs
         restart_server
       else
         say "!!! ERROR: #{class_name} Rocket doesn't exist !!!\n", :red
@@ -20,7 +22,7 @@
     def add_gem_line(rocket_directory)
       if File.directory?(rocket_directory)
         puts "\n*** Adding #{file_name} gem to Gemfile ***"
-        if append_to_file 'Gemfile', "\ngem '#{file_name}', path: 'rockets/#{file_name}'\n"
+        if append_to_file 'Gemfile', "\ngem '#{file_name}', path: 'rockets/#{file_name}'"
           say "=== #{class_name}'s gem added to Gemfile ===\n", :green
         else
           say "!!! Failed adding #{class_name} gem into Gemfile !!!"
@@ -34,13 +36,21 @@
       if File.file?("#{Rails.root}/rockets/#{file_name}/config/routes.rb")
         puts "\n*** Adding #{class_name} route to config/routes ***"
         inject_into_file 'config/routes.rb', after: "mount Ckeditor::Engine => '/ckeditor'\n" do
-          "\n\t# #{class_name} routes engine\n\tmount #{class_name}::Engine, at: '/', as: '#{file_name}'\n"
+          "\n  # #{class_name} routes engine\n  mount #{class_name}::Engine, at: '/', as: '#{file_name}'\n"
         end
         say "=== #{class_name}'s route added to config/routes ===\n", :green
       else
         say "\n... #{class_name} doesn't have routes. Skipping ...\n"
       end
     end
+
+  def add_helper_in_application_core
+    say "*** Copying #{class_name}'s helpers ***"
+    inject_into_file 'app/controllers/application_controller.rb', after: "include PublicActivity::StoreController" do
+      "  helper Keppler#{file_name.classify}::ApplicationHelper"
+    end
+    say "=== #{class_name}'s helpers has been copied ===", :green
+  end
 
     def copy_migrations_files
       rocket_migrations = "#{Rails.root}/rockets/#{file_name}/db/migrate"

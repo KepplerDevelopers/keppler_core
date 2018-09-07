@@ -34,7 +34,7 @@ module Admin
     private
 
     def rocket_params
-      @rocket = params[:rocket]
+      @rocket = params[:rocket].split(' ').first
       @rocket_undescore_name = @rocket.parameterize.underscore
       @rocket_class_name = @rocket_undescore_name.classify
     end
