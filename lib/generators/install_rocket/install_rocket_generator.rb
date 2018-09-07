@@ -6,7 +6,7 @@
       if File.directory?(rocket_directory)
         add_route_line
         add_gem_line(rocket_directory)
-        add_helper_in_application_core
+        # add_helper_in_application_core
         # bundle_install
         migrate_database if copy_migrations_files
         run_rocket_generator
@@ -44,13 +44,13 @@
       end
     end
 
-  def add_helper_in_application_core
-    say "*** Copying #{class_name}'s helpers ***"
-    inject_into_file 'app/controllers/application_controller.rb', after: "include PublicActivity::StoreController" do
-      "  helper Keppler#{file_name.classify}::ApplicationHelper"
+    def add_helper_in_application_core
+      say "\n*** Copying #{class_name}'s helpers ***"
+      inject_into_file 'app/controllers/application_controller.rb', after: "include PublicActivity::StoreController" do
+        "  helper Keppler#{file_name.classify}::ApplicationHelper"
+      end
+      say "=== #{class_name}'s helpers has been copied ===", :green
     end
-    say "=== #{class_name}'s helpers has been copied ===", :green
-  end
 
     def copy_migrations_files
       rocket_migrations = "#{Rails.root}/rockets/#{file_name}/db/migrate"
