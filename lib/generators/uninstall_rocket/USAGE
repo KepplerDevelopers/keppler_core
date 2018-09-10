@@ -1,0 +1,32 @@
+Description:
+    UninstallRocket is a generator to delete rocket's migrations from db/migrate folder, 
+    remove that gem in Gemfile and EngineRoutes to config/routes.rb.
+
+Example:
+    rails generate uninstall_rocket RocketName
+
+    This will run:
+        *** Removing MyCustomTable migrations ***
+        -- drop_table(:my_custom_table)
+        -> 0.1186s
+        --- my_custom_table table dropped ---
+        --- CreateMyCustomTableMessages migration file has been removed ---
+        === MyCustomTable migrations has been removed ===
+
+        *** Removing RocketName gem from Gemfile ***
+                gsub  Gemfile
+        === RocketName gem removed from Gemfile ===
+
+        *** Removing RocketName gem from Gemfile ***
+                gsub  config/routes.rb
+        === RocketName route removed from config/routes.rb ===
+
+        *** Uninstalling RocketName ***
+        The Gemfile's dependencies are satisfied
+        === Bundle list is updated ===
+
+        *** Removing old logs and tempfiles ***
+        === Old logs and tempfiles has been removed ===
+
+        *** Restarting application server ***
+        === Application server has been restarted ===
