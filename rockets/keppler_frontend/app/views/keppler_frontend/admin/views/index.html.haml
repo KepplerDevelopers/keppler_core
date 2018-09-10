@@ -25,7 +25,7 @@
           .hide
             = form_tag admin_frontend_view_upload_path(@objects), id: "upload_form_views", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_view"
-          - if can?(KepplerLanguages::View).create?
+          - if can?(KepplerFrontend::View).create?
             .add
               = link_to new_admin_frontend_view_path, class: 'btn-add' do
                 + Agregar
