@@ -1,17 +1,9 @@
 modules:
- fields:
-    name: Field
-    actions: [
-      'index', 'create', 'update',
-      'destroy', 'download', 'upload',
-      'clone'
-    ]
-  
- languages:
-    name: Language
-    actions: [
-      'index', 'create', 'update',
-      'destroy', 'download', 'upload',
-      'clone'
-    ]
-  
+  keppler_languages:
+     name: Languages
+     model: KepplerLanguagesLanguage
+     actions: [
+       'index', 'create', 'update',
+       'destroy', 'download', 'upload',
+       'clone'
+     ]
