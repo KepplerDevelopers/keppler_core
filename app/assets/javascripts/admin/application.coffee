@@ -3,7 +3,6 @@
 #= require jquery-ui/widgets/datepicker
 #= require jquery-ui/widgets/sortable
 #= require jquery_ujs
-#= require sweetalert2
 #= require turbolinks
 #= require nprogress
 #= require nprogress-turbolinks
@@ -22,7 +21,4 @@
 #= require keppler_languages/application
 #= require keppler_frontend/admin/application
 #= require keppler_capsules/admin/application
-#= require admin/img_preview
-#= require admin/file_upload
-#= require admin/sort
 #= require_tree .

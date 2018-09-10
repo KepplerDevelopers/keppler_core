@@ -21,6 +21,7 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
     template.tag(
       :input,
       class: ('active' if try_boolean),
+      id: @input_id,
       name: @input_name,
       type: 'checkbox',
       checked: true,
@@ -41,9 +42,11 @@ class KepplerBooleanInput < SimpleForm::Inputs::Base
   protected
 
   def initializers
-    @model = lookup_model_names.join('_')
-    @attribute = reflection_or_attribute_name
-    @input_id = "#{@model}_#{@attribute}"
-    @input_name = "#{@model}[#{@attribute}]"
+    models = lookup_model_names
+    other_models = lookup_model_names[1..-1]
+    other_models_ar = "[#{other_models.join('][')}]" unless other_models.empty?
+    attribute = reflection_or_attribute_name
+    @input_id = "#{models.join('_')}_#{attribute}"
+    @input_name = "#{models.first}#{other_models_ar}[#{attribute}]"
   end
 end

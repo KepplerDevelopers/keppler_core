@@ -1,0 +1,13 @@
+.create-rocket {
+  background: $keppler-color;
+  border-radius: 15px;
+  color: $white;
+  padding: 5px 10px;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    color: $white;
+    filter: brightness(110%);
+    transition: .3s ease-in-out;
+  }
+}
