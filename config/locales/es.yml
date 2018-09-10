@@ -42,6 +42,8 @@ es:
       upload: Cargar
       download: Descargar
       clone: Clonar
+      sitemap: Sitemap
+      robots: Robots
       descriptions:
         index: Permite al usuario ver el listado de todos los registros del módulo, y observar el detalle de cada uno de ellos
         create: Permite al usuario la creación de nuevos registros dentro del módulo

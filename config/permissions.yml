@@ -3,7 +3,7 @@ modules:
     name: Seo
     model: Seo
     actions: [
-      'index', 'sitemap', 'robots'
+      'sitemap', 'robots'
     ]
     childrens:
       - meta_tag:
