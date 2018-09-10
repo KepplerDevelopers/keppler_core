@@ -65,8 +65,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_sidebar
-    @array = []
-
     @sidebar = YAML.load_file(
       "#{Rails.root}/config/menu.yml"
     ).values.each(&:symbolize_keys!)
@@ -85,12 +83,11 @@ class ApplicationController < ActionController::Base
     ).values.each(&:symbolize_keys!)
     modules = Dir[File.join("#{Rails.root}/rockets", '*')]
     modules.each do |m|
-      module_name = YAML.load_file(
+      module_menu = YAML.load_file(
         "#{m}/config/permissions.yml"
       ).values
-      return if module_name.first.nil?
-      module_name.each(&:symbolize_keys!)
-      @modules[0] = @modules[0].merge(module_name[0])
+      return if module_menu.first.nil?
+      @modules[0] = @modules[0].merge(module_menu[0])
     end
   end
 
