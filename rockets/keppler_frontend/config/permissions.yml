@@ -1,5 +1,5 @@
 modules:
-  view:
+  keppler_view:
     name: Views
     model: KepplerFrontendView
     actions: [
@@ -15,7 +15,7 @@ modules:
       #       'destroy', 'download', 'upload',
       #       'clone'
       #     ]
-      - functions:
+      - keppler_frontend_function:
           name: Functions
           model: KepplerFrontendFunction
           actions: [
@@ -23,7 +23,7 @@ modules:
             'destroy', 'download', 'upload',
             'clone'
           ]
-      - callback_functions:
+      - keppler_frontend_callback_function:
           name: Callback Functions
           model: KepplerFrontendCallbackFunction
           actions: [

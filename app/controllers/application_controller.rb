@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :set_apparience_colors
   before_action :set_sidebar
   before_action :set_modules
+  before_action :set_module_array
   before_action :set_languages
   before_action :set_admin_locale
 
@@ -65,6 +66,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_sidebar
+    @array = []
+
     @sidebar = YAML.load_file(
       "#{Rails.root}/config/menu.yml"
     ).values.each(&:symbolize_keys!)
@@ -75,6 +78,16 @@ class ApplicationController < ActionController::Base
       ).values.each(&:symbolize_keys!)
       @sidebar[0] = @sidebar[0].merge(module_menu[0])
     end
+
+    @sidebar.each do |sidebar|
+      @array.push(sidebar.keys)
+      sidebar&.dig(:submenu)&.each do |submenu|
+        @array.push(submenu.keys)
+      end
+    end
+
+    @array = @array.flatten.uniq
+    puts "************************************** #{@array.flatten.uniq}"
   end
 
   def set_modules
@@ -92,6 +105,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_module_array
+    @array = []
+    @modules[0].each do |mdl|
+      @array.push(@modules[0][mdl[0]]['model'].downcase)
+    end
+  end
 
   def set_admin_locale
     if controller_path.include?('admin')
@@ -105,8 +124,6 @@ class ApplicationController < ActionController::Base
 
     I18n.available_locales = @languages
   end
-
-
 
   protected
 

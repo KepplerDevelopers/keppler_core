@@ -6,7 +6,7 @@ menu:
     model: KepplerCapsules::Capsule
     enviroment: development
     submenu:
-      - option:
+      - keppler_capsules_capsule:
           name: add_capsule
           url_path: /admin/space/capsules
           current: ['current']

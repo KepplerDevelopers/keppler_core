@@ -32,7 +32,7 @@
                               .pull-left
                                 %h4= t("keppler.permissions.#{action}")
                               .pull-right.switch-div
-                                = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['name'], action: action, children: false
+                                = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['model'], action: action, children: false
 
                   .col-lg-12
                     - module_name&.dig(key.first, 'childrens')&.each do |children|

@@ -1,5 +1,5 @@
 modules:
-  languages:
+  keppler_languages:
      name: Languages
      model: KepplerLanguagesLanguage
      actions: [

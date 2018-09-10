@@ -1,5 +1,5 @@
 modules:
-  seos:
+  seo:
     name: Seo
     model: Seo
     actions: [
@@ -7,7 +7,7 @@ modules:
       'destroy', 'download', 'upload',
       'clone'
     ]
-  scripts:
+  script:
     name: Scripts
     model: Script
     actions: [
@@ -15,7 +15,7 @@ modules:
       'destroy', 'upload', 'download',
       'clone'
     ]
-  meta_tags:
+  meta_tag:
     name: MetaTags
     model: MetaTag
     actions: [
@@ -23,7 +23,7 @@ modules:
       'destroy', 'upload', 'download',
       'clone'
     ]
-  users:
+  user:
     name: Users
     model: User
     actions: [
@@ -31,7 +31,7 @@ modules:
       'destroy', 'download'
     ]
     childrens:
-      - roles:
+      - role:
           name: Roles
           model: Role
           actions: [

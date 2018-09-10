@@ -23,6 +23,14 @@ class User < ApplicationRecord
     roles.first.permissions?
   end
 
+  def allowed_modules
+    array = permissions&.map do |k, v|
+      k.split('_').join('').downcase unless v['actions'].blank?
+    end
+
+    array.compact
+  end
+
   def self.filter_by_role(obj, role_id)
     obj.select { |u| u.rol.eql?(role_id) }
   end

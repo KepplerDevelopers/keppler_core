@@ -15,10 +15,10 @@ menu:
     name: Seo
     current: ['admin/meta_tags']
     icon: graph
-    model: MetaTag
+    model: Seo
     url_path: /admin/meta_tags
     submenu:
-      - metatags:
+      - metatag:
           name: metatags
           url_path: /admin/meta_tags
           current: ['admin/meta_tags']
@@ -41,12 +41,12 @@ menu:
     current: ['admin/users', 'admin/roles']
     model: User
     submenu:
-      - users:
+      - user:
           name: users
           url_path: /admin/users
           current: ['admin/users']
           model: User
-      - roles:
+      - role:
           name: roles
           url_path: /admin/roles
           current: ['admin/roles']

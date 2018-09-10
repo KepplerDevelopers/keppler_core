@@ -61,6 +61,10 @@ module AdminHelper
     klass.classify.constantize.search_field
   end
 
+  def included_in?(array1, array2)
+    !(array1 & array2).blank?
+  end
+
   private
 
   # ------------ preload
