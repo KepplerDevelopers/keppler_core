@@ -1,0 +1,28 @@
+
+:coffee
+
+  showSpinner = ->
+    $ '.spinner'
+      .css 'display', 'block'
+
+  #Only for rockets
+  installRocket = (evt) ->
+    evt.preventDefault()
+    rocket_file = $('.file-uploader input:file').val()
+    can_install = true
+    if rocket_file isnt ''
+      if rocket_file.includes('.rocket')
+        $('.rocket-name').each ->
+          if rocket_file.includes $(this).text()
+            swal "#{I18n.t('keppler.rockets.already_installed')}"
+            can_install = false
+        if can_install
+          showSpinner()
+          $ '.upload_rocket_form'
+            .submit()
+      else
+        swal "#{I18n.t('keppler.rockets.isnt_a_rocket')}"
+    else
+      swal "#{I18n.t('keppler.rockets.first_upload')}"
+
+  $('#installRocket').on 'click', installRocket

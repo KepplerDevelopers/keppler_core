@@ -62,3 +62,10 @@ menu:
           url_path: /admin/settings/appearance
           current: ['appearance']
           model: Customize
+  rockets:
+    name: rockets
+    icon: rocket
+    current: ['/admin/rockets']
+    model: Rocket
+    enviroment: development
+    url_path: /admin/rockets
