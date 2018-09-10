@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 gem 'rails', '5.2.0'
+# gem 'keppler'
 
 # Javascript
 gem 'ckeditor', '4.2.4'
@@ -12,7 +13,7 @@ gem 'remotipart', '1.3.0'
 gem 'vuejs-rails', '2.5.13' # VueJS library
 # gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
 # gem 'sweet-alert2-rails'
-gem 'sweetalert2'
+# gem 'sweetalert2'
 
 # Server
 gem 'puma', '~> 3.11', '>= 3.11.3'
@@ -69,6 +70,7 @@ gem 'carrierwave', '1.2.2'
 gem 'carrierwave-imageoptimizer', '~> 1.4'
 gem 'mini_magick', '4.8.0'
 gem 'rmagick', '2.16.0' # fix issue: 'sudo apt install libmagick++-dev'
+gem 'rubyzip'
 
 # Design
 gem 'bootstrap-sass', '3.3.7'
@@ -111,9 +113,8 @@ group :development do
   # gem 'quiet_assets'
   # gem 'rails_layout'
   gem 'spring', '2.0.2'
-  # gem 'table_print'
+  gem 'table_print'
   gem 'web-console', '>= 3.3.0'
-  gem 'lol_dba'
 end
 
 group :development, :test do
@@ -131,8 +132,12 @@ group :development, :test do
   gem 'rails-controller-testing'
 end
 
-#---- keppler_ga_dashboard ----
 gem 'google-api-client', '~> 0.7.1'
+gem 'acts-as-taggable-on', '6.0'
+gem 'bootstrap-tagsinput-rails'
+gem 'social-share-button'
+
+# ----- Rockets ----- #
 gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'
