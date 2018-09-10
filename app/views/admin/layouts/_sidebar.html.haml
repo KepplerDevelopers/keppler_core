@@ -16,7 +16,7 @@
             - if menu[key]['submenu']
               - if !menu[key]['enviroment'] || menu[key]['enviroment'].eql?(Rails.env)
                 - if menu[key]['model']
-                  - if can?(menu[key]['model'].constantize).index? || included_in?(current_user.allowed_modules, menu[key]['submenu'].map { |s| s.keys }.flatten )
+                  - if can?(menu[key]['model'].constantize).index? || included_in?(current_user.allowed_modules, menu[key]['submenu'].map(&:keys).flatten)
                     %li.sidebar-item{ class: ('active' if menu[key]['current'].include?(controller_path)) }
                       %a.sidebar-link{ href: '#', class: ('active current' if menu[key]['current'].include?(controller_path)) }
                         %i{ class: "icon-#{menu[key]['icon']}" }
