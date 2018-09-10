@@ -12,13 +12,13 @@
           Role:
           = @role.name
     .col-lg-6
-      - @modules.each do |module_name|
-        - module_name.each do |key|
+      - @modules&.each do |module_name|
+        - module_name&.each do |key|
           - unless module_name[key.first]['name'].eql?('dashboard')
             .col-lg-12
               .box.slice-box.collapsed-box.p-15
                 .box-header.with-border
-                  %span.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].parameterize.pluralize}")
+                  %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].downcase}")
                   .box-tools.pull-right
                     %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
                       %i.icon-plus
@@ -32,7 +32,28 @@
                               .pull-left
                                 %span= t("keppler.permissions.#{action}")
                               .pull-right.switch-div
-                                = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['name'], action: action, children: false
+                                = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['model'], action: action, children: false
+
+                  .col-lg-12
+                    - module_name&.dig(key.first, 'childrens')&.each do |children|
+                      - children.each do |ky|
+                        .box.slice-box.collapsed-box
+                          .box-header.with-border
+                            %h4.box-title= t("keppler.sidebar-menu.#{children[ky.first]['name'].parameterize.pluralize}")
+                            .box-tools.pull-right
+                              %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
+                                %i.icon-plus
+                          .box-body
+                            %table.table.table-bordered
+                              %tbody
+                                - children[ky.first]['actions'].each do |action|
+                                  %tr
+                                    %td.row-selectable.table-data
+                                      = link_to admin_role_show_description_path(@role, children[ky.first]['model'].split('::').join(''), action), method: :post, remote: true do
+                                        .pull-left
+                                          %h4= t("keppler.permissions.#{action}")
+                                        .pull-right.switch-div
+                                          = render 'admin/roles/switch', role: @role, module_name: children[ky.first]['model'], action: action, children: false
 
     .col-lg-6.hidden-xs
       %div{ style: 'width: 43%; height: 100%; position: fixed; right: 0px' }
