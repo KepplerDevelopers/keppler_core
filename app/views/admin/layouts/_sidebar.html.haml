@@ -37,7 +37,6 @@
                     %i{ class: "icon-#{menu[key]['icon']}" }
                     %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
 
-
       %li.sidebar-item{ class: ('active' if 'admin/settings/basic_information'.eql?(controller_path)) }
         %a.sidebar-link{ href: '#', class: ('active current' if 'admin/settings/basic_information'.eql?(controller_path)) }
           %i.icon-settings
