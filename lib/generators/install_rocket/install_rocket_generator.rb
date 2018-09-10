@@ -48,7 +48,7 @@
     def add_helper_in_application_core
       say "\n*** Copying #{class_name}'s helpers ***"
       inject_into_file 'app/controllers/application_controller.rb', after: "include PublicActivity::StoreController" do
-        "  helper Keppler#{file_name.classify}::ApplicationHelper"
+        "\n  helper #{class_name}::ApplicationHelper"
       end
       say "=== #{class_name}'s helpers has been copied ===", :green
     end

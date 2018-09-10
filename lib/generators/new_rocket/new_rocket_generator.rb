@@ -66,21 +66,24 @@ class NewRocketGenerator < Rails::Generators::NamedBase
   end
 
   def add_helper_in_application_core
-    say "*** Copying #{class_name}'s helpers ***"
+    say "\n*** Copying #{class_name}'s helpers ***"
     inject_into_file 'app/controllers/application_controller.rb', after: "include PublicActivity::StoreController" do
-      "\n  helper Keppler#{file_name.classify}::ApplicationHelper"
+      "\n  helper Keppler#{class_name}::ApplicationHelper"
     end
     say "=== #{class_name}'s helpers has been copied ===", :green
   end
 
   def add_head_in_application_rocket(rocket_directory)
-    say "*** Adding #{class_name}'s head in its application.haml ***"
-    head = "#{rocket_directory}/app/views/#{file_name}/admin/layouts/_head.haml"
+    head = "#{rocket_directory}/app/views/keppler_#{file_name}/admin/layouts/_head.haml"
+    say "\n*** Creating #{class_name}'s head ***"
+    FileUtils.touch head
     File.open(head, "w+") do |f|
       f.write("// #{class_name} Stylesheets\n= stylesheet_link_tag '#{file_name}/admin/application', media: 'all', 'data-turbolinks-track': true\n")
     end
-    inject_into_file "#{rocket_directory}/app/views/#{file_name}/admin/layouts/application_controller.rb", after: "= render 'admin/layouts/head'" do
-      "\n    = render '#{file_name}/admin/layouts/head'"
+    say "=== #{class_name}'s head has been created ===", :green
+    say "\n*** Adding #{class_name}'s head in its application.haml ***"
+    inject_into_file "#{rocket_directory}/app/views/keppler_#{file_name}/admin/layouts/application.html.haml", after: "= render 'admin/layouts/head'" do
+      "\n  = render '#{file_name}/admin/layouts/head'"
     end
     say "=== #{class_name}'s head has been added ===", :green
   end
