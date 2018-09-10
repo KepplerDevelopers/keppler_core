@@ -13,7 +13,11 @@ menu:
       - option:
           name: callback_functions
           url_path: /admin/frontend/callback_functions
-          current: ['current']      
+          current: ['current']
+      - option:
+          name: functions
+          url_path: /admin/frontend/functions
+          current: ['current']
       - option:
           name: partials
           url_path: /admin/frontend/partials

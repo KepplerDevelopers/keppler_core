@@ -41,7 +41,6 @@ module KepplerFrontend
         end
 
         def update_helper(helper)
-          obj = Partial.find(id)
           file = "#{url_front}/app/helpers/keppler_frontend/app/frontend_helper.rb"
           index_html = File.readlines(file)
           begin_idx = 0
