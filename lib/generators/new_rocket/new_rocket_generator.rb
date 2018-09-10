@@ -78,7 +78,7 @@ class NewRocketGenerator < Rails::Generators::NamedBase
     say "\n*** Creating #{class_name}'s head ***"
     FileUtils.touch head
     File.open(head, "w+") do |f|
-      f.write("// #{class_name} Stylesheets\n= stylesheet_link_tag '#{file_name}/admin/application', media: 'all', 'data-turbolinks-track': true\n")
+      f.write("// #{class_name} Stylesheets\n= stylesheet_link_tag '#{file_name}/admin/application', media: 'all', 'data-turbolinks-track': true\n// #{class_name} Javascripts\n= javascript_include_tag '#{file_name}/admin/application', 'data-turbolinks-track': true")
     end
     say "=== #{class_name}'s head has been created ===", :green
     say "\n*** Adding #{class_name}'s head in its application.haml ***"
