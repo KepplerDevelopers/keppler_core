@@ -27,7 +27,6 @@ class User < ApplicationRecord
     array = permissions&.map do |k, v|
       k.split('_').join('').downcase unless v['actions'].blank?
     end
-
     array.compact
   end
 
