@@ -113,9 +113,8 @@ group :development do
   # gem 'quiet_assets'
   # gem 'rails_layout'
   gem 'spring', '2.0.2'
-  # gem 'table_print'
+  gem 'table_print'
   gem 'web-console', '>= 3.3.0'
-  gem 'lol_dba'
 end
 
 group :development, :test do
@@ -143,3 +142,4 @@ gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'
 gem 'keppler_capsules', path: 'rockets/keppler_capsules'
+gem 'keppler_anyelo', path: 'rockets/keppler_anyelo'

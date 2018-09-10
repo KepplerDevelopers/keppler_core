@@ -42,7 +42,7 @@
                       - if rocket_is_built?(rocket_name)
                         = link_to admin_rockets_build_path(rocket_name), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.update') do
                           %i.icon-wrench
-                        = link_to "/rockets/#{rocket}.rocket", dowload: "#{rocket_name}.rocket", 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.download') do
+                        = link_to "/rockets/#{rocket_name}.rocket", dowload: "#{rocket_name}.rocket", 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.download') do
                           %i.icon-cloud-download
                       - else
                         = link_to admin_rockets_build_path(rocket_name), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.build') do
