@@ -30,6 +30,10 @@ class User < ApplicationRecord
     array.compact
   end
 
+  def allowed_action?(arr, arr2)
+    !(arr && arr2).nil?
+  end
+
   def self.filter_by_role(obj, role_id)
     obj.select { |u| u.rol.eql?(role_id) }
   end
