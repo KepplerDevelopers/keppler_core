@@ -5,13 +5,14 @@ class Role < ApplicationRecord
   has_and_belongs_to_many :users, join_table: :users_roles
   belongs_to :resource,
              polymorphic: true,
-             optional: true
+             optional: true,
+             dependent: :destroy
   validates :resource_type,
             inclusion: { in: Rolify.resource_types },
             allow_nil: true
   scopify
   validates_uniqueness_of :name
-  has_many :permissions
+  has_many :permissions, dependent: :destroy
   def self.search_field
     :name_cont
   end
