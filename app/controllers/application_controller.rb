@@ -86,8 +86,9 @@ class ApplicationController < ActionController::Base
       module_menu = YAML.load_file(
         "#{m}/config/permissions.yml"
       ).values
-      return if module_menu.first.nil?
-      @modules[0] = @modules[0].merge(module_menu[0])
+      if !module_menu.first.nil?
+        @modules[0] = @modules[0].merge(module_menu[0])
+      end
     end
   end
 
