@@ -1,0 +1,44 @@
+Description:
+    InstallRocket is a generator to copy migrations from rocket's db/migrate folder, 
+    add a gem in Gemfile and EngineRoutes to config/routes.rb.
+    Also, run rake bundle install, rake db:migrate and restart server
+
+Example:
+    rails generate install_rocket RocketName
+
+    This will create:
+        *** Copying migrations ***
+        Copied migration 20180829191032_create_keppler_contact_us_messages.keppler_contact_us.rb from keppler_contact_us
+        === KepplerContactUs migrations has been copied ===
+
+        *** Adding gems to Gemfile ***
+            append  Gemfile
+        === KepplerContactUs's gem added to Gemfile ===
+
+        *** Adding KepplerContactUs route to config/routes ***
+            insert  config/routes.rb
+        === KepplerContactUs's route added to config/routes ===
+
+        *** Installing KepplerContactUs ***
+        The Gemfile's dependencies are satisfied
+
+        *** Updating database ***
+        == 20180829191032 CreateKepplerContactUsMessages: migrating ===================
+        -- create_table(:keppler_contact_us_messages)
+        -> 0.1679s
+        -- add_index(:keppler_contact_us_messages, :deleted_at)
+        -> 0.0583s
+        == 20180829191032 CreateKepplerContactUsMessages: migrated (0.2264s) ==========
+
+        === Database has been updated ===
+
+        *** Removing old logs and tempfiles ***
+        === Old logs and tempfiles has been removed ===
+
+        *** Restarting application server ***
+        === Application server has been restarted ===
+
+        *** Running KepplerContactUs additional generator ***
+        [Simple Form] Simple Form is not configured in the application and will use the default values. Use `rails generate simple_form:install` to generate the Simple Form configuration.
+        ====== Running some code ======
+        === Additional KepplerContactUs generator has been executed ===

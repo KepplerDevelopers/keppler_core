@@ -58,16 +58,3 @@
     - if can?(KepplerFrontend::CallbackFunction).create?
       = link_to new_admin_frontend_callback_function_path, class: "btn-float" do
         +
-
-:javascript
-  $(document).ready(function(){
-    $('#callback_function').click(function() {
-      $('#upload_file_callback_function').click()
-      $('#upload_file_callback_function').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_callback_function').submit()
-      })
-    });
-
-    renderImg();
-  });

@@ -1,106 +1,200 @@
-.outline {
-  outline: 2px dashed $grey-blue;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-}
-
-.upload-image {
+.file-uploader {
+  background: $white;
   margin: 0 auto;
-  max-width: 325px;
+  max-width: 500px;
   min-height: 300px;
 
-  .files {
-    background-image: url('/assets/admin/image_default.png');
-    background-position: center 80px;
-    background-repeat: no-repeat;
-    background-size: 50px;
-    position: relative;
-
-    .icon-file {
-      font-size: 4rem;
-      left: 50%;
-      opacity: .7;
-      position: absolute;
-      top: 35%;
-      transform: translateX(-50%);
-    }
-  }
-
-  input {
-    cursor: pointer;
-    margin: 0;
-    outline: 2px dashed $grey-blue;
-    outline-offset: -10px;
-    padding: 160px 25px 70px;
-    text-align: center;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    width: 100%;
-
-    &::before {
-      bottom: 5px;
-      // color: #2ea591;
-      display: block;
-      font-weight: 600;
-      height: 57px;
-      left: 0;
-      margin: 0 auto;
-      // content: "O arrastralos hasta aquí.";
-      pointer-events: none;
-      position: absolute;
-      right: 0;
-      text-align: center;
-      text-transform: capitalize;
-      width: 100%;
-    }
-
-    &::after {
-      content: 'o arrastrar una imagen hasta aquí';
-      font-size: 12px;
-      left: 50%;
-      position: absolute;
-      text-align: center;
-      top: 200px;
-      transform: translateX(-50%);
-      width: 100%;
-    }
-  }
-
-  &-icon {
-    background-repeat: no-repeat;
-    background-size: 100%;
-    content: '';
-    display: block;
-    font-size: 50px;
-    height: 56px;
-    left: 0;
+  .file-container {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    height: 240px;
+    justify-content: center;
     margin: 0 auto;
-    // background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 100px;
-    width: 50px;
+    outline: 2px dashed tint($gray, 50%);
+    outline-offset: 0;
+    position: relative;
+    transition: outline-offset .15s ease;
+
+    .opacity {
+      color: $white;
+      opacity: 0;
+      text-shadow: 0 0 5px $light-black;
+      transition: .3s;
+    }
+
+    input {
+      cursor: pointer;
+      height: 0;
+      opacity: 0;
+      padding: 120px 50px;
+      position: absolute;
+      width: 100%;
+    }
+
+    .file-icon {
+      font-size: 5rem;
+    }
+
+    .file-text {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .file-image {
+      max-width: 100%;
+    }
+
+    .file-name {
+      font-size: 1.5rem;
+      left: 50%;
+      max-width: 80%;
+      position: absolute;
+      text-align: center;
+      top: 80%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
   }
 
-  .image-to-upload {
-    max-height: 300px;
-    max-width: 325px;
-    width: 100%;
+  .file-container:hover {
+    outline: 2px dashed $gray;
+    outline-offset: -5px;
+    transition: outline-offset .15s ease;
+
+    .opacity {
+      opacity: 1;
+      transition: .3s;
+    }
   }
 
-  .files-absolute {
-    left: 50%;
-    max-width: 325px;
-    opacity: 0;
-    position: absolute;
-    transform: translateX(-50%);
-    transition: opacity .3s;
-    width: 100%;
+  button,
+  a,
+  [type=submit] {
+    background: $keppler-color;
+    border: 0;
+    border-radius: 20px;
+    color: $white;
+    display: table;
+    margin: 20px auto;
+    outline: none;
+    padding: 10px 20px;
+    transition: .3s;
 
     &:hover {
-      opacity: .5;
-      transition: opacity .3s;
+      filter: brightness(110%);
+      transition: .3s;
+    }
+  }
+}
+
+///////////////////// File Multiple /////////////////////
+
+.file-multiple {
+  align-items: center;
+  display: flex;
+  flex-flow: wrap;
+  max-width: 100%;
+  min-height: 100px;
+
+  .file-container {
+    height: 100px;
+    margin: 5px;
+    padding: 10px;
+    width: 100px;
+
+    input {
+      padding: 50px;
+    }
+
+    .file-icon {
+      font-size: 2rem;
+    }
+
+    .file-text {
+      font-size: 1rem;
+    }
+  }
+
+  .file-list {
+    align-items: center;
+    display: inline-flex;
+    flex-flow: wrap;
+    justify-content: center;
+    margin: 5px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .file-item {
+    align-items: center;
+    background: $white;
+    box-shadow: $btn-float-shadow;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    list-style: none;
+    margin: 5px;
+    max-width: 100px;
+    padding: 5px;
+    position: relative;
+    transition: .12s ease-in-out;
+    width: 100px;
+  }
+
+  .file-item-background {
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    transition: .2s ease-in-out;
+    width: 100%;
+
+    i {
+      font-size: 3rem;
+    }
+  }
+
+  .file-icon-delete {
+    font-size: 3rem;
+
+    &.item-opacity {
+      cursor: pointer;
+      font-size: 2rem;
+      opacity: 0;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      transition: .02s ease-in-out;
+    }
+  }
+
+  .file-item:hover {
+    box-shadow: $btn-float-shadow-hover;
+    transition: .12s ease-in-out;
+
+    .file-item-background {
+      filter: opacity(20%);
+      transition: .2s ease-in-out;
+    }
+
+    .file-icon-delete::before {
+      content: '\e082'; // icon-close
+      // content: '\e054'; // icon-trash
+    }
+
+    .file-icon-delete:hover {
+      color: $error-color;
+      transition: .02s ease-in-out;
+    }
+
+    .file-icon-delete.item-opacity {
+      opacity: 1;
+      transition: .02s ease-in-out;
     }
   }
 }

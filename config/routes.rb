@@ -11,6 +11,14 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#root'
 
+    namespace :rockets do
+      get '/', action: :rockets
+      post 'create/:rocket', action: :create, as: :create
+      post 'install', action: :install
+      post 'build/:rocket', action: :build, as: :build
+      delete 'uninstall/:rocket', action: :uninstall, as: :uninstall
+    end
+
     get '/seo/sitemap', to: 'seos#sitemap'
     get '/seo/robots', to: 'seos#robots'
     post '/seo/editor/save', to: 'seos#editor_save'
@@ -182,5 +190,4 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
-
 end
