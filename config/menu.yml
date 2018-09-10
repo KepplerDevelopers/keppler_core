@@ -15,49 +15,57 @@ menu:
     name: Seo
     current: ['admin/meta_tags']
     icon: graph
-    model: MetaTag
+    model: Seo
     url_path: /admin/meta_tags
     submenu:
-      - metatags:
+      - metatag:
           name: metatags
           url_path: /admin/meta_tags
           current: ['admin/meta_tags']
+          model: MetaTag
       - sitemap:
           name: sitemap
           url_path: /admin/seo/sitemap
           current: ['admin/seo/sitemap']
           enviroment: development
+          model: Seo
       - robots:
           name: robots
           url_path: /admin/seo/robots
           current: ['/admin/seo/robots']
           enviroment: development
+          model: Seo
   user:
     name: users
     icon: user
     current: ['admin/users', 'admin/roles']
     model: User
     submenu:
-      - users:
+      - user:
           name: users
           url_path: /admin/users
           current: ['admin/users']
-      - roles:
+          model: User
+      - role:
           name: roles
           url_path: /admin/roles
           current: ['admin/roles']
+          model: Role
   customize:
     name: keppler design
     icon: pencil
     current: ['admin/customizes', 'settings/appearance']
     model: Customize
     submenu:
-      # - customize:
-      #     name: frontend templates
-      #     url_path: /admin/customizes
-      #     current: ['admin/customizes']
-      #     enviroment: development
       - appearance:
           name: admin appearance
           url_path: /admin/settings/appearance
           current: ['appearance']
+          model: Customize
+  rockets:
+    name: rockets
+    icon: rocket
+    current: ['/admin/rockets']
+    model: Rocket
+    enviroment: development
+    url_path: /admin/rockets

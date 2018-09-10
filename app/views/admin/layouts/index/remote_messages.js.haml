@@ -1,4 +1,4 @@
-var notification = function(msg) {noty({text: msg,layout: 'bottomRight',type: 'alert',dismissQueue: true,animation: {open: 'animated tada',close: 'bounceOutRight',easing: 'swing',speed: 500},timeout: 5000,callback: {afterShow: function() {$.noty.closeAll()}}})};
+var notification = function(msg) {swal.mixin({html: `<h5>${msg}</h5>`};
 
 - case action_name
   - when 'create'

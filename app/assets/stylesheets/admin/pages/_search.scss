@@ -16,7 +16,9 @@
 
   .search-bar {
     // animation: .5s cubic-bezier(0.4, 0, 0.2, 1) 1s change_input forwards;
-    border: solid .5px $gray-hover;
+    border: 0;
+    border-radius: 0;
+    // border-radius: 15px 0 0 15px;
     padding: 0;
     transition: .3s ease-in-out;
 
@@ -37,7 +39,6 @@
   .search-button {
     // animation: .3s ease-in-out .5s change_button forwards;
     background-color: transparent;
-    border: 50%;
     transition: .3s ease-in-out;
 
     @include respond-to(xs) {
@@ -75,6 +76,7 @@
 
     .search-bar {
       animation: .5s cubic-bezier(.4, 0, .2, 1) .5s change_input forwards;
+      // border-radius: 15px 0 0 15px;
     }
 
     .search-button {
@@ -88,7 +90,7 @@
 
   &.hidding-search {
     animation: .3s ease-out .5s width_down forwards;
-    max-width: 500px;
+    max-width: 300px;
 
     .search-bar {
       animation: .5s cubic-bezier(.4, 0, .2, 1) .5s hide_input forwards;
@@ -106,20 +108,20 @@
 }
 
 .hide-search {
-  border-radius: 50%;
+  // border-radius: 50%;
   color: $grey;
   cursor: pointer;
   display: inline-table;
   height: 34px;
-  margin: 8px;
+  margin: 8px 0;
   opacity: 0;
-  padding: 5px;
+  padding: 5px 0;
   transition: .3s ease-in-out;
   width: 34px;
 
   &:hover {
     background: $dark-white;
-    border-radius: 1px;
+    border-radius: 50%;
     transition: .3s ease-in-out;
   }
 
@@ -147,10 +149,12 @@
 
 @keyframes change_input {
   from {
+    border: 0;
     padding: 6px 0;
   }
 
   to {
+    border-bottom: solid .5px $gray-hover;
     padding: 6px 12px;
   }
 }
@@ -163,21 +167,21 @@
 
   to {
     margin: 8px 10px;
-    max-width: 500px;
+    max-width: 300px;
   }
 }
 
 @keyframes change_button {
   from {
-    background-color: transparent;
-    border-radius: 50%;
+    // background-color: transparent;
+    // border-radius: 0 15px 15px 0;
     padding: 6px 9px;
   }
 
   to {
-    background-color: $keppler-color;
-    border-radius: 1px;
-    padding: 6px 12px;
+    // background-color: $keppler-color;
+    // border-radius: 0 15px 15px 0;
+    // padding: 6px 12px;
   }
 }
 
@@ -187,16 +191,18 @@
   }
 
   to {
-    color: $white;
+    color: $keppler-color;
   }
 }
 
 @keyframes hide_input {
   from {
-    padding: 6px 12px;
+    border-bottom: solid .5px $gray-hover;
+    padding: 6px 9px;
   }
 
   to {
+    border: 0;
     padding: 6px 0;
   }
 }
@@ -204,7 +210,7 @@
 @keyframes width_down {
   from {
     margin: 8px 10px;
-    max-width: 50%;
+    max-width: 300px;
   }
 
   to {
@@ -213,19 +219,19 @@
   }
 }
 
-@keyframes hide_button {
-  from {
-    background-color: $keppler-color;
-    border-radius: 1px;
-    padding: 6px 12px;
-  }
+// @keyframes hide_button {
+//   from {
+//     background-color: $keppler-color;
+//     border-radius: 1px;
+//     padding: 6px 12px;
+//   }
 
-  to {
-    background-color: transparent;
-    border-radius: 50%;
-    padding: 6px 9px;
-  }
-}
+//   to {
+//     background-color: transparent;
+//     border-radius: 50%;
+//     padding: 6px 9px;
+//   }
+// }
 
 @keyframes hide_color {
   from {

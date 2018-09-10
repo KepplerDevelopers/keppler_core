@@ -3,13 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .front {
-  // @include align-items(center);
-  // @include display(flex);
-  // @include flex-direction(column);
-  // @include justify-content(center);
-  background: url("Cohete_nubes_new.png"), linear-gradient(to bottom, rgba(51,51,102,1) 0%, rgba(36,45,75,1) 51%, rgba(30,43,64,1) 100%);
+  background: url("../admin/profile-menu.jpg"), linear-gradient(to bottom, #333366 0%, #242d4b 51%, #1e2b40 100%);
   background-size: cover;
-  background-position: 100% 70%;
+  background-position: center;
   height: 100%;
 
   &-logo {
@@ -51,4 +47,115 @@
       text-decoration: none;
     }
   }
+}
+
+.documentation {
+  font-family: $raleway;
+  padding: 20px 60px;
+  
+}
+
+.documentation-header {
+  color: #1e2b40;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  width: 50%;
+
+  p {
+    text-align: center;
+
+    span {
+      font-family: 'Patua One', cursive;
+      font-size: 25px;
+    }
+  }
+}
+    
+.nav-tabs {
+  display: flex;
+  justify-content: space-evenly;
+}
+  
+.board {
+  background-color: $white;
+  width: 100%;
+    
+  .tab-pane { 
+    position: relative;
+  }
+
+  .tab-content {
+    font-family: 'Open Sans', sans-serif;
+    max-height: 450px;
+    padding: 30px 50px;
+    overflow-y: scroll;
+  }
+  
+  .nav-tabs > li > a {
+    font-family: 'Patua One';
+  }
+
+  .nav-tabs > li.active > a {
+    color: #1e2b40;
+  }
+
+  .pane-box {
+    padding: 15px 10px;
+  }
+  
+  .content-title {
+    font-family: 'Patua One', cursive;
+  }
+  
+  .content-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+  }
+}
+
+.features-content {
+  display: flex;
+  margin: 30px 0;
+  
+  .feature-box {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 15px 0;
+  }
+}
+
+.feature-box a {
+  font-weight: 600;
+}
+
+.feature-box p {
+  font-size: 15px;
+  text-align: center;
+}
+
+.feature-box i {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.doc-footer {
+  color: #1e2b40;
+  margin: 30px 0;
+  text-align: center;
+  position: relative;
+
+  span {
+    font-weight: 900;
+  }
+}
+
+::-webkit-scrollbar {
+  background-color: #fff;
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 5px;
 }
