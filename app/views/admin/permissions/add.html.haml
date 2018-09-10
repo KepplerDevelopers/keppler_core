@@ -18,7 +18,7 @@
             .col-lg-12
               .box.slice-box.collapsed-box
                 .box-header.with-border
-                  %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name']}")
+                  %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].downcase}")
                   .box-tools.pull-right
                     %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
                       %i.icon-plus

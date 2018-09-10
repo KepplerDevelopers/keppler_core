@@ -5,7 +5,11 @@ es:
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
-      seos: Seos
+      seo: Seo
+      seo-submenu:
+        metatags: Meta Tags
+        sitemap: Sitemap
+        robots: Robots
       roles: Roles
       customizes: Personalización
       dashboard: Tablero
