@@ -35,6 +35,12 @@ class Role < ApplicationRecord
     permit[module_name]['actions'].include?(action)
   end
 
+  def include_actions?(module_name, actions)
+    permit = all_permissions
+    return unless permit && !permit[module_name].nil?
+    permit[module_name]['actions'] & actions
+  end
+
   def toggle_actions(module_name, action)
     if permission_to(module_name)
       update_action(module_name, action)
