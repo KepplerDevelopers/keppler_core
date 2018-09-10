@@ -64,6 +64,10 @@ module AdminHelper
     !(array1 & array2).blank?
   end
 
+  def allowed_action?(module_name, actions)
+    !(current_user.roles.first.include_actions?(module_name, actions)).blank?
+  end
+
   private
 
   # ------------ preload
