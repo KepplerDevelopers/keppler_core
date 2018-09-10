@@ -6,6 +6,7 @@
       if File.directory?(rocket_directory)
         add_route_line
         add_gem_line(rocket_directory)
+        add_helper_in_application_core
         # add_helper_in_application_core
         # bundle_install
         migrate_database if copy_migrations_files

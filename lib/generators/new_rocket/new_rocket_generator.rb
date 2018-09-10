@@ -3,13 +3,15 @@ class NewRocketGenerator < Rails::Generators::NamedBase
 
   def create_rocket
     rocket_name = file_name.split('keppler_').last
-    if Dir.exists? "#{Rails.root}/rockets/keppler_#{rocket_name}"
+    rocket_directory = "#{Rails.root}/rockets/keppler_#{rocket_name}"
+    if Dir.exists? rocket_directory
       say "\n... Aborting. This Rocket already exists ...\n", :red
     else
       generate_rocket(rocket_name)
       copy_generator(rocket_name)
       copy_layouts(rocket_name)
       add_helper_in_application_core
+      add_head_in_application_rocket(rocket_directory)
       create_policies_folder(rocket_name)
       say "\n=== All Done. #{class_name} Rocket has been created and installed ===\n", :green
     end
