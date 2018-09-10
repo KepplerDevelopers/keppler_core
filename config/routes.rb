@@ -190,7 +190,4 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
-
-  # KepplerAnyelo routes engine
-  mount KepplerAnyelo::Engine, at: '/', as: 'keppler_anyelo'
 end
