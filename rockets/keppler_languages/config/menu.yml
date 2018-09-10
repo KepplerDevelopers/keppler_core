@@ -3,5 +3,5 @@ menu:
     name: Keppler Languages
     current: ['/admin/locales/languages']
     url_path: /admin/locales/languages
-    icon: layers
+    icon: globe
     model: KepplerLanguages::Language

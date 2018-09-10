@@ -1,6 +1,6 @@
 .col-lg-12
   = f.simple_fields_for :smtp_setting do |f|
-    .box.slice-box
+    .box.slice-box.p-15
       .box-header.with-border
         %h3.box-title
           = t('keppler.sidebar-menu.setting-submenu.email-setting-smtp')
@@ -8,10 +8,11 @@
           %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
             %i.icon-minus
       .box-body.pure-input
-        = f.input :address
-        = f.input :port
-        = f.input :domain_name
-        = f.input :email
-        = f.input :password
+        .form-padding
+          = f.input :address
+          = f.input :port
+          = f.input :domain_name
+          = f.input :email
+          = f.input :password
         .pull-right
           = f.button :submit, t('keppler.actions.apply'), class: 'btn-primary'

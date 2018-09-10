@@ -9,7 +9,7 @@
             = t('keppler.actions.back')
     .row
       .col-md-6
-        .box.slice-box
+        .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title Avatar
             - unless user.avatar.blank?
@@ -20,12 +20,12 @@
             = f.input :avatar, as: :keppler_file, label: false
 
       .col-md-6
-        .box.slice-box
+        .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title= user.name || 'User'
 
           .box-body
-            %table.table.table-bordered
+            %table.table
               %tbody
                 .form-padding
                   .row

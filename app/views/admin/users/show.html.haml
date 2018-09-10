@@ -8,13 +8,13 @@
   .show-section
     .row
       .col-lg-3
-        .box.slice-box
+        .box.slice-box.p-15
           .box-body.box-profile
             = image_tag (@user.avatar.url || 'admin/avatar_keppler.svg'), class: 'profile-user-img img-circle img-responsive', alt: @user.name
             %h3.profile-username.text-center= @user.name
             %p.text-muted.text-center= @user.rol.humanize
       .col-lg-9
-        .box.slice-box
+        .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title= @user.name || 'User'
             .box-tools.pull-right
@@ -26,7 +26,7 @@
                   = link_to admin_user_path(@user), class: 'btn btn-box-tool', title: t('keppler.actions.delete').to_s, method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                     %i.icon-trash
           .box-body.box-body-no-padding
-            %table.table.table-striped
+            %table.table
               %tbody
                 - @user.as_json(except: %i[username deleted_at], methods: [:rol]).each do |attribute, value|
                   %tr.list-row

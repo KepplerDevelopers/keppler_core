@@ -9,40 +9,42 @@
 
     .row
       .col-lg-12
-        .box.slice-box
+        .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title= t("keppler_capsules.form.capsule")
           .box-body
             %table.table.table-bordered
               %tbody
                 .form-padding
-                  .col-xs-12
-                    - if action_name.eql?('edit') || action_name.eql?('update')
-                      = f.input :name, disabled: true
-                    - else
-                      = f.input :name
-                  .col-xs-12
-                    = f.input :position, as: :hidden
-                  .col-xs-12
-                    = f.input :deleted_at, as: :hidden
+                  .row
+                    .col-xs-12
+                      - if action_name.eql?('edit') || action_name.eql?('update')
+                        = f.input :name, disabled: true
+                      - else
+                        = f.input :name
+                    .col-xs-12
+                      = f.input :position, as: :hidden
+                    .col-xs-12
+                      = f.input :deleted_at, as: :hidden
       .col-lg-12
-        .box.slice-box
+        .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title= t("keppler_capsules.form.fields")
           .box-body
             %table.table.table-bordered
               %tbody
                 .form-padding
-                  .col-xs-12
-                    = f.simple_fields_for :capsule_fields do |capsule_field|
-                      - if capsule_field.object.name_field
-                        = render 'capsule_field_fields_edit', f: capsule_field
-                      - else
-                        = render 'capsule_field_fields', f: capsule_field
-                    .links
-                      = link_to_add_association "<button class='btn btn-default'> + #{t('keppler_capsules.actions.add_capsule_field')}</button>".html_safe, f, :capsule_fields
-                    %br
-                    %br
+                  .row
+                    .col-xs-12
+                      = f.simple_fields_for :capsule_fields do |capsule_field|
+                        - if capsule_field.object.name_field
+                          = render 'capsule_field_fields_edit', f: capsule_field
+                        - else
+                          = render 'capsule_field_fields', f: capsule_field
+                      .links
+                        = link_to_add_association "<button class='btn btn-default'> + #{t('keppler_capsules.actions.add_capsule_field')}</button>".html_safe, f, :capsule_fields
+                      %br
+                      %br
           - if action_name.eql?('new') || action_name.eql?('create')
             .box-footer
               .pull-right
@@ -50,40 +52,42 @@
                 = f.button :submit, t('keppler.actions.save_and_add_another'), name: '_add_other'
       - if action_name.eql?('edit') || action_name.eql?('update')
         .col-lg-12
-          .box.slice-box
+          .box.slice-box.p-15
             .box-header.with-border
               %h3.box-title= t("keppler_capsules.form.validations")
             .box-body
               %table.table.table-bordered
                 %tbody
                   .form-padding
-                    .col-xs-12
-                      = f.simple_fields_for :capsule_validations do |capsule_validation|
-                        - if (action_name.eql?('edit') || action_name.eql?('update')) && !capsule_validation.object.id.blank?
-                          = render 'capsule_validation_fields_edit', f: capsule_validation
-                        - else
-                          = render 'capsule_validation_fields', f: capsule_validation
-                      .links
-                        = link_to_add_association "<button class='btn btn-default'> + #{t('keppler_capsules.actions.add_validation')}</button>".html_safe, f, :capsule_validations
+                    .row
+                      .col-xs-12
+                        = f.simple_fields_for :capsule_validations do |capsule_validation|
+                          - if (action_name.eql?('edit') || action_name.eql?('update')) && !capsule_validation.object.id.blank?
+                            = render 'capsule_validation_fields_edit', f: capsule_validation
+                          - else
+                            = render 'capsule_validation_fields', f: capsule_validation
+                        .links
+                          = link_to_add_association "<button class='btn btn-default'> + #{t('keppler_capsules.actions.add_validation')}</button>".html_safe, f, :capsule_validations
               %br
               %br
         .col-lg-12
-          .box.slice-box
+          .box.slice-box.p-15
             .box-header.with-border
               %h3.box-title= t("keppler_capsules.form.associations")
             .box-body
               %table.table.table-bordered
                 %tbody
                   .form-padding
-                    .col-xs-12
-                      = f.simple_fields_for :capsule_associations do |capsule_association|
-                        - if capsule_association.object.capsules_valids.count > 0
-                          - if (action_name.eql?('edit') || action_name.eql?('update')) && !capsule_association.object.id.blank?
-                            = render 'capsule_association_fields_edit', f: capsule_association
-                          - else
-                            = render 'capsule_association_fields', f: capsule_association
-                      .links
-                        = link_to_add_association "<button class='btn btn-default'> + #{t('keppler_capsules.actions.add_association')}</button>".html_safe, f, :capsule_associations
+                    .row
+                      .col-xs-12
+                        = f.simple_fields_for :capsule_associations do |capsule_association|
+                          - if capsule_association.object.capsules_valids.count > 0
+                            - if (action_name.eql?('edit') || action_name.eql?('update')) && !capsule_association.object.id.blank?
+                              = render 'capsule_association_fields_edit', f: capsule_association
+                            - else
+                              = render 'capsule_association_fields', f: capsule_association
+                        .links
+                          = link_to_add_association "<button class='btn btn-default'> + #{t('keppler_capsules.actions.add_association')}</button>".html_safe, f, :capsule_associations
               %br
               %br
             .box-footer
