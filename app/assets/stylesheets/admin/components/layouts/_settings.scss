@@ -1,3 +1,4 @@
+
 .slice-box {
   border-top: 0;
   padding: 0;
@@ -18,9 +19,8 @@
 }
 
 .info-box {
-  border-bottom-left-radius: 75px;
-  border-top-left-radius: 75px;
-  min-height: 160px;
+  border-radius: 15px;
+  min-height: 140px;
 
   &:first-child {
     margin-bottom: 35px;
@@ -30,13 +30,17 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 50%;
-    height: 150px;
+    border-radius: 15px;
+    height: 130px;
     margin: 5px;
-    width: 150px;
+    width: 130px;
   }
 
   .file {
     padding: 12px;
   }
+}
+
+.p-15 {
+  padding: 15px;
 }

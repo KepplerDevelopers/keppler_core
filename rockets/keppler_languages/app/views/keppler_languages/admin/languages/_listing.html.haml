@@ -1,6 +1,6 @@
 - objects.each do |language|
   %tr{ id: "row-#{language.id}" }
-    %td.item-check{ style: 'width: 10%' }
+    %td.item-check{ style: "width:10%;" }
       - if can?(KepplerLanguages::Language).destroy_multiple?
         .checkbox
           %label{ for: "checkbox-#{language.id}" }

@@ -11,7 +11,7 @@
     - if listing? && q
       .search#search
         .input-group
-          = search_form_for model_obj, html: { method: :get } do |f|
+          = search_form_for [:admin, :languages, q], html: { method: :get } do |f|
             = f.search_field search_model, placeholder: t('keppler.actions.search'), class: 'form-control search-bar'
           %span.input-group-btn
             %button.btn.search-button.toggle-search{ type: 'submit' }
@@ -26,7 +26,7 @@
             = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
-            %li.user-header
+            %li.user-header{ style: appearance.image_background? ? "background-image: url( #{appearance.image_background}) " : nil }
               = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle nav-profile-img', alt: current_user.name
             %li.user-footer
               .current-user
@@ -40,5 +40,5 @@
                 = link_to t('devise.sign_out'), destroy_session_path(current_user), class: 'btn btn-default btn-flat'
         - if listing?
           %li.hidden-xs
-            %a#open-historial
+            %a{ 'data-toggle' => 'control-sidebar' }
               %i.icon-clock

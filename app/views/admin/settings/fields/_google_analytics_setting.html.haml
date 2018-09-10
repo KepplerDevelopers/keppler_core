@@ -1,11 +1,8 @@
 .col-lg-12
-  .box.slice-box
+  .box.slice-box.p-15
     .box-header.with-border
       %h3.box-title
         = t 'keppler.sidebar-menu.setting-submenu.google-analytics'
-      .box-tools.pull-right
-        %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-          %i.fa.fa-minus
     .box-body.pure-input
       .container
         = f.simple_fields_for :google_analytics_setting do |f|

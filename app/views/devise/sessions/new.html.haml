@@ -21,13 +21,14 @@
                 .devise-errors.center-align
                   - flash.each do |name, msg|
                     = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
-              .form-group.has-feedback
-                .pull-left
-                  - if devise_mapping.recoverable?
-                    = link_to new_password_path(resource_name), class: "recoverable" do
-                      = t("devise.sessions.forgot_password")
-                .pull-right
-                  = f.submit t("devise.sessions.log_in"), class: 'btn-primary'
+              .has-feedback
+                .login-bottom
+                  .pull-left
+                    - if devise_mapping.recoverable?
+                      = link_to new_password_path(resource_name), class: "recoverable" do
+                        = t("devise.sessions.forgot_password")
+                  .pull-right
+                    = f.submit t("devise.sessions.log_in"), class: 'btn-primary'
               .clearfix
 
   .login-footer

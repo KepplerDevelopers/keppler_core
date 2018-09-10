@@ -1,26 +1,63 @@
 main
   .front
-    height: 616px
-    z-index: 1
+    height: 120vh
+    position: relative
     width: 100%
+    z-index: 1
+    .languages
+      display: flex
+      margin: 50px
+      position: absolute
+      z-index: 9
+      a
+        color: #fff
+        display: block
+        font-family: "Open Sans", sans-serif
+        font-size: 17px
+        padding: 0 1rem
+        line-height: 20px
+        position: relative
+        transition: all ease-in-out .3s
+        &:first-child
+          border-right: 2px solid $white
+        &.active-lang
+          font-weight: bold
+    .btn-main
+      background-color:  #f44336
+      border-radius: 30px
+      color:  white
+      cursor: pointer
+      font-weight:  600
+      margin: 40px 50px
+      padding: 11px 20px 8px 20px
+      position: absolute
+      right: 0
+      z-index: 9
+    .front-content
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      height: 80%
+      left: 0px
+      top: 0px
+      position: absolute
+      width: 100%
     .front-logo
-      position: fixed
-      top: 150px
-      transform: translateX(-50%)
-      width: 100%
       z-index: 2
-      @include respond-to(xs)
-        top: 180px
+      span
+        color: $white
+        font-family: $putua
+        font-size: 140px
     .front-social
-      position: fixed
-      top: 300px
-      width: 100%
       ul
+        margin: 0
         display: table
-        margin: 0 auto
         li
           display: inline-flex
           list-style: none
+          &:first-child
+            margin-left:  0
     .front-footer
       position: fixed
       top: 400px
@@ -44,31 +81,3 @@ main
           animation-name: scroll-down
           animation-duration: 1s
           animation-iteration-count: infinite
-  #documentation
-    padding: 50px
-    font-family: $raleway
-    color: rgba(36,45,75,1)
-    // background: linear-gradient(to right, #2a3d5b, #445b7a, #516b8a, #425978, #2a3d5b)
-    background-color: $white
-    // @include respond-to(sm)
-    //   background-image: -webkit-linear-gradient(left, #354a69, #516b8a, #354a67)
-    //   background-image: -o-linear-gradient(left, #354a69, #516b8a, #354a67)
-    //   background-image: linear-gradient(to right, #354a69, #516b8a, #354a67)
-    // @include respond-to(xs)
-    //   background-image: -webkit-linear-gradient(left, #445b7a, #516b8a, #425978)
-    //   background-image: -o-linear-gradient(left, #445b7a, #516b8a, #425978)
-    //   background-image: linear-gradient(to right, #445b7a, #516b8a, #425978)
-    h3
-      font-family: $putua
-    a, a:focus, a:hover
-      color: #f33e3c
-
-  @keyframes scroll-down
-    0%
-      margin-top: 0
-    30%
-      margin-top: 5px
-    50%
-      margin-top: 3px
-    100%
-      margin-top: 0
