@@ -13,6 +13,6 @@ class ApplicationPolicy
   end
 
   def user_can?(objects, method)
-    user.can?(objects.model_name.name, method)
+    user.can?(objects.model_name.name.split('::').join(''), method)
   end
 end

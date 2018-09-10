@@ -84,17 +84,14 @@ class ApplicationController < ActionController::Base
     ).values.each(&:symbolize_keys!)
     modules = Dir[File.join("#{Rails.root}/rockets", '*')]
     modules.each do |m|
-      if File.file?("#{m}/config/permissions.yml")
-        module_name = YAML.load_file(
-          "#{m}/config/permissions.yml"
-        ).values
-        return if module_name.first.nil?
-        module_name.each(&:symbolize_keys!)
-        @modules[0] = @modules[0].merge(module_name[0])
+      module_menu = YAML.load_file(
+        "#{m}/config/permissions.yml"
+      ).values
+      unless module_menu.first.nil?
+        @modules[0] = @modules[0].merge(module_menu[0])
       end
     end
   end
-
 
   def set_admin_locale
     if controller_path.include?('admin')
@@ -108,8 +105,6 @@ class ApplicationController < ActionController::Base
 
     I18n.available_locales = @languages
   end
-
-
 
   protected
 
