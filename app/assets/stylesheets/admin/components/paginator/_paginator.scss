@@ -45,7 +45,9 @@
 }
 
 .badge.objects-counter {
-  background: $bfc5c5;
+  background: transparent;
   border-radius: 1px;
+  color: $grey;
+  font-weight: 400;
   margin-bottom: 5px;
 }

@@ -82,7 +82,7 @@
 }
 
 .form-padding {
-  padding: 2rem;
+  padding: 2rem 0;
 
   @include respond-to(xs) {
     padding: 2rem 0;
@@ -92,6 +92,7 @@
 .btn-primary {
   background-color: $keppler-color;
   border: 0;
+  border-radius: 15px;
   color: $dark-white;
   font-weight: 400;
   padding: 7px 21px;

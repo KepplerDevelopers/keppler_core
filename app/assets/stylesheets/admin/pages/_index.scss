@@ -1,3 +1,6 @@
+.btn {
+  border-radius: 15px;
+}
 
 .content-header.index-header {
   margin: 0;
@@ -16,6 +19,11 @@
       font-size: 2rem;
     }
   }
+}
+
+.content-actions {
+  display: flex;
+  margin-bottom: 15px;
 }
 
 .callout.callout-warning {
@@ -106,8 +114,8 @@
   box-shadow: $box-shadow-collapse;
   left: auto;
   min-width: 130px;
-  right: 70px;
-  top: 10px;
+  right: 45px;
+  top: 15px;
   width: 100px;
 
   li {
@@ -249,18 +257,11 @@
 }
 
 .toolbar {
-  background-color: $almost-white;
+  align-items: center;
   border-radius: 2px;
-  display: inline-block;
+  display: inline-flex;
   font-size: 1.4rem;
   padding: 0 5px;
-  position: absolute;
-  right: 70px;
-  top: 15px;
-
-  @media screen and (min-width: 0) and (max-width: 991px) {
-    right: 15px;
-  }
 
   &-item {
     display: table-cell;
@@ -322,6 +323,7 @@
 }
 
 .objects-container {
+
   td {
     padding: 0;
     padding-bottom: 0;
@@ -352,4 +354,33 @@
 
 .tools {
   padding-top: 5px;
+}
+
+.select-filter {
+  select {
+    border: 0;
+    border-radius: 15px;
+    color: $grey;
+    padding: 6px 10px;
+  }
+}
+
+.add {
+  align-items: center;
+  display: flex;
+  margin-left: auto;
+
+  .btn-add {
+    background-color: $keppler-color;
+    border-radius: 15px;
+    color: $white;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 5px 20px;
+  }
+}
+
+.not-records {
+  background-color: $white;
+  border: 0;
 }

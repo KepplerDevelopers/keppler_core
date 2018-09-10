@@ -35,6 +35,7 @@ $font-7: monospace !default;
 //standard measures
 $radius: 4px !default;
 $pad: 5px !default;
+$mar-b: 18px;
 $border: 1px !default;
 
 //operations
@@ -269,7 +270,7 @@ $border: 1px !default;
   @extend %set-relative;
   border: $border solid $alto;
   border-radius: multiply($radius, 1.25);
-  margin-bottom: $pad;
+  margin-bottom: $mar-b;
   padding: multiply($pad, 1.6);
   width: 100%;
 

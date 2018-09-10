@@ -6,28 +6,29 @@
           %h1{ style: 'display: inline-block' }
             = t("keppler_frontend.modules.#{controller_path.underscore}")
           = entries(@total, @objects)
+        %section.content-actions
           .toolbar
             .toolbar-item
               = link_to reload_admin_frontend_callback_functions_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if can?(KepplerFrontend::CallbackFunction).destroy_multiple?
+            - if can?(KepplerFrontend::CallbackFunction).download?
               .toolbar-item
-                .checkbox
-                  %label{ for: 'checkbox-all' }
-                    %input{ type: 'checkbox', id: 'checkbox-all', ':disabled' => 'checkItems ? disabled : ""', '@click' => 'selectAll()' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
+                = link_to admin_frontend_callback_function_download_path(KepplerFrontend::CallbackFunction, :format => :xls), class: "tool-btn", title: t('keppler_frontend.actions.download_records') do
+                  %i.icon-cloud-download
+            - if can?(KepplerFrontend::CallbackFunction).upload?
+              .toolbar-item
+                = link_to "", class: "tool-btn", title: t('keppler_frontend.actions.upload_records'), id: "callback_function" do
+                  %i.icon-cloud-upload
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
           .hide
             = form_tag admin_frontend_callback_function_upload_path(@objects), id: "upload_form_callback_functions", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_callback_function"
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler_frontend.modules.#{action_name.underscore}")
+          - if can?(KepplerFrontend::CallbackFunction).create?
+            .add
+              = link_to new_admin_frontend_callback_function_path, class: "btn-add" do
+                + Agregar            
 
         .box.slice-box
           .box-body.no-padding
@@ -36,16 +37,23 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{style: 'text-align: center;'}
+                    %th.not-records.center
                       %h6= t('keppler_frontend.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.callback_functions"))
                 - else
                   %tr
                     %th
+                      - if can?(KepplerFrontend::CallbackFunction).destroy_multiple?
+                        .item-check
+                          .checkbox
+                            %label{ for: 'checkbox-all' }
+                              %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
+                              %span.cr
+                                %i.cr-icon.glyphicon.glyphicon-ok
                     %th.hidden-xs= t('activerecord.attributes.name')
                     %th.hidden-xs= t('activerecord.attributes.description')
                     %th.center Menu
                     %th
-              %tbody#objects-container
+              %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects
         %center#paginator-module
@@ -53,11 +61,6 @@
   %aside.control-sidebar
     = render "description"
   %aside#index-show.control-sidebar
-
-  .mixed-btn
-    - if can?(KepplerFrontend::CallbackFunction).create?
-      = link_to new_admin_frontend_callback_function_path, class: "btn-float" do
-        +
 
 :javascript
   $(document).ready(function(){
