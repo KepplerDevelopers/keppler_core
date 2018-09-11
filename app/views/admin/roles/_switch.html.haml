@@ -1,5 +1,5 @@
 = simple_form_for @role, url: admin_role_create_permissions_path(role), method: :post, remote: true do
-  %label
+  %label.switch-box
     - if !role.action?(module_name, action)
       %label.switch
         %input{ name: 'role[module]', type: 'hidden', value: module_name }

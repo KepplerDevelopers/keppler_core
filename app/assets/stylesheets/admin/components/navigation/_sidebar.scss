@@ -5,6 +5,7 @@
   .sidebar {
     margin: 0;
     min-height: 84vh;
+    padding-top: 20px;
 
     .user-panel {
       background-position: center;
@@ -23,7 +24,7 @@
   color: $dark-grey;
   transition: .3s ease-out;
 
-  i {
+  > i {
     color: $keppler-color;
   }
 }
@@ -43,7 +44,6 @@
   &.active {
     background: $white;
     border-left-color: $keppler-color;
-    // box-shadow: 0 1px 3px $light-transparent;
     color: $dark-grey;
     transition: .3s ease-out;
 
@@ -59,7 +59,6 @@
     &.active {
       background: $white;
       border-left-color: $keppler-color;
-      // box-shadow: 0 1px 3px $light-transparent;
     }
 
     > a {
@@ -68,6 +67,10 @@
   }
 
   .treeview-menu {
+    li {
+      margin-left: 27px;
+    }
+
     a {
       padding: 5px 5px 5px 40px;
     }
@@ -77,7 +80,6 @@
 .treeview-menu {
   background: $white;
   border-radius: none;
-  // box-shadow: 0 1px 3px $light-transparent;
   color: $dark-grey;
   margin: 0 1px;
   padding: 7px 0;
@@ -125,11 +127,11 @@
     box-shadow: 0 1px 3px $light-transparent;
 
     a {
-      padding: 5px 5px 5px 15px;
+      padding: 5px 5px 5px 0;
     }
   }
 
-  li:hover span {
+  li:hover .sidebar-link {
     background: $white !important; // scss-lint:disable ImportantRule
     box-shadow: 0 1px 3px $light-transparent;
     margin-left: -3px;

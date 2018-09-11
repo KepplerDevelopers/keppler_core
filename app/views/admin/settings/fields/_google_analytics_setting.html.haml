@@ -1,11 +1,8 @@
 .col-lg-12
-  .box.slice-box
+  .box.slice-box.p-15
     .box-header.with-border
       %h3.box-title
         = t 'keppler.sidebar-menu.setting-submenu.google-analytics'
-      .box-tools.pull-right
-        %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-          %i.icon-minus
     .box-body.pure-input
       .container
         = f.simple_fields_for :google_analytics_setting do |f|
@@ -14,15 +11,8 @@
               = f.input :ga_account_id
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
               = f.input :ga_tracking_id
-          .row
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
-              .form-group.string.optional
-                .checkbox
-                  %label{ for: 'setting_google_analytics_setting_attributes_ga_status' }
-                    %span.label-text Ga Status
-                    %input{ type: 'checkbox', name: 'setting[google_analytics_setting_attributes][ga_status]', value: 0, id: 'setting_google_analytics_setting_attributes_ga_status', 'checklist-model' => 'check', 'checklist-value' => 'ga_status', '@click' => 'listDelete(ga_status)' }
-                    %span.cr
-                      %i.cr-icon.glyphicon.glyphicon-ok
+              = f.input :ga_status, as: :keppler_boolean
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
               .pull-right
                 = f.button :submit, t('keppler.actions.apply'), class: 'btn-primary'

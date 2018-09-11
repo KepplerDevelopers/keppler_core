@@ -1,0 +1,39 @@
+:javascript
+  $('.create-rocket').click(function () {
+    swal({
+      input: 'text',
+      title: "#{t('keppler.rockets.choose_a_name')}",
+      text: "#{t('keppler.rockets.rocket_name')}",
+      confirmButtonText: "#{t('keppler.rockets.create_rocket')}",
+      cancelButtonText: "#{t('keppler.rockets.cancel')}",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.value) {
+        var rocket_name = result.value;
+        swal({
+          title: "#{t('keppler.rockets.you_sure')}",
+          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${result.value.toLowerCase().split(' ').join('_')}</code></pre>`,
+          confirmButtonText: "#{t('keppler.rockets.great')}",
+          showCancelButton: true,
+        }).then((result) => {
+          if (result.value) {
+            swal({
+              title: "#{t('keppler.rockets.great')}",
+              html: "#{t('keppler.rockets.wait_generator')}",
+              timer: 3000,
+              onOpen: () => {
+                swal.showLoading()
+              },
+            }).then((result) => {
+              $('.spinner').fadeIn()
+              $('.create_rocket_form')
+                .attr('action', `/admin/rockets/create/${rocket_name}`)
+                .submit()
+              // if (result.dismiss === swal.DismissReason.timer) {
+              // }
+            })
+          }
+        })
+      }
+    })
+  })

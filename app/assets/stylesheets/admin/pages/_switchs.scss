@@ -73,11 +73,16 @@
   }
 }
 
+.switch-box {
+  margin-bottom: 0;
+}
+
 .switch {
   display: inline-block;
-  height: 24px;
+  height: 20px;
+  margin-bottom: 0;
   position: relative;
-  width: 40px;
+  width: 35px;
 
   input {
     display: none;
@@ -97,11 +102,11 @@
       background-color: $white;
       bottom: 4px;
       content: '';
-      height: 16px;
+      height: 12px;
       left: 4px;
       position: absolute;
       transition: .4s;
-      width: 16px;
+      width: 12px;
     }
 
     &.round {
@@ -134,9 +139,5 @@
     background-color: $white;
     cursor: pointer;
     transition: all ease .3s;
-  }
-
-  label {
-    margin-bottom: 0;
   }
 }

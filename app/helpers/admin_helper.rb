@@ -27,9 +27,8 @@ module AdminHelper
 
   # Classify a model from a controller
   def model
-    ctrlpath = controller_path
-    klass = ctrlpath.include?('admin') ? controller_name : controller_path
-    klass.classify.constantize
+    ctrl_path = controller_path
+    ctrl_path.split('/').split('admin').flatten.join('/').classify.constantize
   end
 
   # Underscore class_name from a object
@@ -59,6 +58,14 @@ module AdminHelper
     klass.delete('admin')
     klass = klass.join('/')
     klass.classify.constantize.search_field
+  end
+
+  def included_in?(array1, array2)
+    !(array1 & array2).blank?
+  end
+
+  def allowed_action?(module_name, actions)
+    !current_user.roles.first.include_actions?(module_name, actions).blank?
   end
 
   private

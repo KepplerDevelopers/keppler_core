@@ -1,11 +1,5 @@
 %aside.main-sidebar
   %section.sidebar.sidebar-collapse
-    .user-panel
-      .pull-left.image
-        = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'img-circle side-img-profile keppler-background', alt: current_user.name
-      .info
-        %p= current_user.name
-        %small= current_user.rol.humanize
     %ul.sidebar-menu.tree{ 'data-widget': 'tree' }
       %li.sidebar-item
         = link_to '/admin/dashboard', class: "sidebar-link #{'active' if request.env['REQUEST_PATH'].eql?('/admin/dashboard')}", 'data-turbolinks': false do
@@ -15,23 +9,32 @@
           - menu.each do |key, _value|
             - if menu[key]['submenu']
               - if !menu[key]['enviroment'] || menu[key]['enviroment'].eql?(Rails.env)
-                - if menu[key]['model'] && can?(menu[key]['model'].constantize).index?
-                  %li.sidebar-item{ class: ('active' if menu[key]['current'].include?(controller_path)) }
-                    %a.sidebar-link{ href: '#', class: ('active current' if menu[key]['current'].include?(controller_path)) }
-                      %i{ class: "icon-#{menu[key]['icon']}" }
-                      %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
-                    %ul.treeview-menu
-                      - menu[key]['submenu'].each do |submenu, _val|
-                        - submenu.each do |name, _val|
-                          - if !submenu[name]['enviroment'] || submenu[name]['enviroment'].eql?(Rails.env)
-                            %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
-            - elsif menu[key]['model'] && can?(menu[key]['model'].constantize).index? # tree sidebar links
+                - if menu[key]['model']
+                  - if included_in?(current_user.allowed_modules, menu[key]['submenu'].map(&:keys).flatten) || can?(menu[key]['model'].constantize).index? || allowed_action?(menu[key]['model'], menu[key]['submenu'].map(&:keys).flatten)
+                    %li.sidebar-item{ class: ('active' if menu[key]['current'].include?(controller_path)) }
+                      %a.sidebar-link{ href: '#', class: ('active current' if menu[key]['current'].include?(controller_path)) }
+                        %i{ class: "icon-#{menu[key]['icon']}" }
+                        %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+                      %ul.treeview-menu
+                        - menu[key]['submenu'].each do |submenu, _val|
+                          - submenu.each do |name, _val|
+                            - if !submenu[name]['enviroment'] || submenu[name]['enviroment'].eql?(Rails.env)
+                              - if current_user.rol.eql?('keppler_admin') && can?(submenu[name]['model'].constantize).index?
+                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
+                              - elsif !submenu[name]['model'].nil? && can?(submenu[name]['model'].constantize).index? && !menu[key]['model'].casecmp('seo')
+                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
+                              - elsif name.eql?('metatag') && can?(submenu[name]['model'].constantize).index?
+                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
+                              - elsif menu[key]['model'].casecmp('seo') && current_user.roles.first.action?(menu[key]['model'], name)
+                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
+                              - elsif can?(submenu[name]['model'].constantize).index?
+                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
+            - elsif menu[key]['model'] && can?(menu[key]['model'].constantize).index?
               - if !menu[key]['enviroment'] || menu[key]['enviroment'].eql?(Rails.env)
                 %li.sidebar-item.treeview{ class: ('active' if controller_name.eql?(menu[key]['name'])) }
                   = link_to menu[key]['url_path'], class: "sidebar-link collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
                     %i{ class: "icon-#{menu[key]['icon']}" }
                     %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
-
 
       %li.sidebar-item{ class: ('active' if 'admin/settings/basic_information'.eql?(controller_path)) }
         %a.sidebar-link{ href: '#', class: ('active current' if 'admin/settings/basic_information'.eql?(controller_path)) }
