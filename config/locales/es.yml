@@ -111,6 +111,10 @@ es:
       built: construido
       success: "%{rocket} ha sido %{action} satisfactoriamente"
       error: "Error: %{rocket} no pudo ser %{action}"
+    appearance:
+      main_color: Color principal
+      admin_theme: Tema de KepplerAdmin
+      preview: Vista previa
     messages:
       not_authorized_page: Usted no tiene autorización para acceder a esta página
       not_authorized_action: Usted no tiene autorización para realizar esta acción
@@ -174,6 +178,7 @@ es:
       apply: Aplicar
       download_records: Descargar registros
       upload_records: Cargar registros
+      drop_files: Arrastra un archivo o presiona aquí
   activerecord:
     attributes:
       public: Publico

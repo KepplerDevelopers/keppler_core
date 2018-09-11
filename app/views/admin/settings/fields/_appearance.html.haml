@@ -1,10 +1,9 @@
 #colors
-  {{ changeColors }}
   = f.simple_fields_for :appearance, html: { multipart: true } do |f|
     .col-md-7.col-lg-6
       .box.slice-box.hidden-xs
         .box-header.with-border
-          %h3.box-title Preview
+          %h3.box-title= t 'appearance.preview'
         / /.box-header
         .box-body.box-body-no-padding
           - if f.object.image_background?
@@ -16,12 +15,17 @@
     .col-md-5.col-lg-6
       .box.slice-box.p-15
         .box-header.with-border
-          %h3.box-title Admin Theme
+          %h3.box-title= t 'appearance.admin_theme'
 
         .box-body
-          = f.input :image_background, as: :file, label: false
-          %p Principal
-          %input{ type: 'color', name: 'color', placeholder: 'Color', value: color, 'v-model' => 'main' }
+          .form-group
+            .file-uploader
+              .file-container{ style: "background-image: url(#{f.object.image_background_url})", class: ('already-uploaded' if f.object.image_background_url) }
+                = f.input :image_background # , multiple: true
+                %i.file-icon.icon-picture
+                %h5.file-text= t 'keppler.actions.drop_files'
+            %p= t 'appearance.main_color'
+            %input.form-control#colorpicker{ type: 'text', name: 'color', placeholder: 'Color', value: color }
           .pull-right
             = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
             - if @render.eql?('appearance')
@@ -29,32 +33,38 @@
                 = t('keppler.actions.appearance_defaut')
 
 :javascript
-  var vm = new Vue({
-    el: '#colors',
-    data: {
-      main: "#{@color}"
-    },
-    computed: {
-      changeColors() {
-        if (this.main) {
-          $('.logo span').css('color', this.main)
-          $('.keppler-background').css('background', this.main)
-          $('.keppler-border-top-color').css('border-top-color', this.main)
-          $('.keppler-border-left-color').css('border-left-color', this.main)
-          $('.sidebar-toggle').css('background', this.main)
-          $('.btn-primary').css('background', this.main)
-          $('.slice-box').css('border-top-color', this.main)
-          $('#span').css('color', this.main)
-          $('.side-img-profile').css('background', this.main)
-          $('.small-profile-img').css('background', this.main)
-          $('.login-logo span').css('color', this.main)
-          $('.login-footer span').css('color', this.main)
-          $('.sidebar-menu > li:hover > a, .sidebar-menu > li.active > a')
-            .css({
-              'color': this.main,
-              'border-left-color': this.main
-            })
+  $(function() {
+      $('#colorpicker').colorpicker({
+        customClass: 'colorpicker-2x',
+        sliders: {
+          saturation: {
+            maxLeft: 200,
+            maxTop: 200
+          },
+          hue: {
+            maxTop: 200
+          },
+          alpha: {
+            maxTop: 200
+          }
         }
-      }
-    }
-  })
+      }).on('changeColor', function(e) {
+        $('.logo span').css('color', e.color)
+        $('.keppler-background').css('background', e.color)
+        $('.keppler-border-top-color').css('border-top-color', e.color)
+        $('.keppler-border-left-color').css('border-left-color', e.color)
+        $('.sidebar-toggle').css('background', e.color)
+        $('.btn-primary').css('background', e.color)
+        $('.slice-box').css('border-top-color', e.color)
+        $('#span').css('color', e.color)
+        $('.side-img-profile').css('background', e.color)
+        $('.small-profile-img').css('background', e.color)
+        $('.login-logo span').css('color', e.color)
+        $('.login-footer span').css('color', e.color)
+        $('.sidebar-menu > li:hover > a, .sidebar-menu > li.active > a')
+          .css({
+            'color': e.color,
+            'border-left-color': e.color
+          })
+      });
+    });

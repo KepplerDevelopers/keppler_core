@@ -1,0 +1,30 @@
+---
+  name: Keppler Admin
+  description: Welcome to Keppler Admin
+  email: 
+  phone: 
+  mobile: 
+  address: test
+  port: '25'
+  domain_name: keppler.com
+  smtp_email: info@keppler.com
+  ga_account_id: '60688852'
+  ga_tracking_id: UA-60688852-1
+  ga_status: true
+  facebook: 
+  twitter: 
+  instagram: 
+  google_plus: 
+  tripadvisor: 
+  pinterest: 
+  flickr: 
+  behance: 
+  dribbble: 
+  tumblr: 
+  github: 
+  linkedin: 
+  soundcloud: 
+  youtube: 
+  skype: 
+  vimeo: 
+  theme_name: keppler

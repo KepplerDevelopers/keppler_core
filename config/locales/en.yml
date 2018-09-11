@@ -96,6 +96,10 @@ en:
       great: Great!
       wait_generator: Please wait until your rocket is ready...
       cancel: Cancel
+    appearance:
+      main_color: Main color
+      admin_theme: KepplerAdmin Theme
+      preview: Preview
     messages:
       not_authorized_page: You have no authorization to access this page
       not_authorized_action: You have no authorization to perform this action
@@ -156,6 +160,7 @@ en:
       back_history: "Back to history"
       appearance_defaut: Set default
       apply: Apply
+      drop_file: Drop a file or press here
   activerecord:
     attributes:
       public: Public
