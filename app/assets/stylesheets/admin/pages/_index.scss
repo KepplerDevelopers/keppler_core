@@ -384,3 +384,12 @@
   background-color: $white;
   border: 0;
 }
+
+
+.sort_link {
+  text-decoration: none;
+  
+  i {
+    font-size: 10px;
+  }
+}
