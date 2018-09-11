@@ -48,9 +48,11 @@
                             %label{ for: 'checkbox-all' }
                               %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
                               %span.cr
-                                %i.cr-icon.glyphicon.glyphicon-ok                      
-                    %th.hidden-xs= t('activerecord.attributes.name')
-                    %th.center Menu
+                                %i.cr-icon.glyphicon.glyphicon-ok
+                    %th.hidden-xs
+                      = sort_link(@q, :name) do
+                        = t('activerecord.attributes.name')
+                    %th
                     %th
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
