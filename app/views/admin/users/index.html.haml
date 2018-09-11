@@ -48,9 +48,15 @@
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
                     %th
-                    %th.visible-lg.visible-md= t('activerecord.attributes.name')
-                    %th= t('activerecord.attributes.email')
-                    %th.visible-lg.visible-md= t('activerecord.attributes.role')
+                    %th.visible-lg.visible-md
+                      = sort_link(@q, :name) do
+                        = t('activerecord.attributes.name')
+                    %th
+                      = sort_link(@q, :email) do
+                        = t('activerecord.attributes.email')
+                    %th.visible-lg.visible-md
+                      = sort_link(@q, :role_id) do
+                        = t('activerecord.attributes.role')
                     %th
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
