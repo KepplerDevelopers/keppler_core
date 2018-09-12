@@ -1,0 +1,5 @@
+$("#all-<%= @module.split('::').join('')%>").toggleClass('active');
+
+<%- @actions.each do |action| %>
+  $("#switch-<%= @module.split('::').join('') %>-<%= action %>").toggleClass('active');
+<%- end %>

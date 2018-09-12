@@ -22,6 +22,17 @@ module Admin
       @action = params[:action_name]
     end
 
+    def toggle_permissions
+      @module = params[:role][:module]
+      @actions = params[:role][:actions]
+
+      if @role.permissions?
+        @role.toggle_all_actions(@module, @actions)
+      else
+        @role.first_permission(@module, @actions)
+      end
+    end
+
     private
 
     def set_role

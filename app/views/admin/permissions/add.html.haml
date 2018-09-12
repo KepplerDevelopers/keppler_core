@@ -18,8 +18,11 @@
             .col-lg-12
               .box.slice-box.collapsed-box.p-15
                 .box-header.with-border
-                  %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].downcase}")
+                  .pull-left
+                    %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].downcase}")
                   .box-tools.pull-right
+                    = render 'admin/permissions/switch', role: @role, module_name: module_name[key.first]['model'], actions: module_name[key.first]['actions']
+                    -# = module_name[key.first]['actions']
                     %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
                       %i.icon-plus
                 .box-body
@@ -41,6 +44,7 @@
                           .box-header.with-border
                             %h4.box-title= t("keppler.sidebar-menu.#{children[ky.first]['name'].parameterize.pluralize}")
                             .box-tools.pull-right
+                              = render 'admin/permissions/switch', role: @role, module_name: module_name[key.first]['model'], actions: module_name[key.first]['actions']
                               %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
                                 %i.icon-plus
                           .box-body
