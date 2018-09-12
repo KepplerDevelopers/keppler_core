@@ -4,6 +4,16 @@
     <%= set_head %>
   </head>
   <body>
-    <%= yield %>
+    <keppler-header>
+      <h1>Keppler</h1>
+    </keppler-header>
+
+    <keppler-body>
+      <%= yield %>
+    </keppler-body>
+
+    <keppler-footer>
+      <small>Copyright 2018</small>
+    <keppler-footer>
   </body>
 </html>
