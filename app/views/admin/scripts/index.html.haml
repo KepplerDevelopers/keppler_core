@@ -53,9 +53,12 @@
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
                     %th
-                    %th= t('activerecord.attributes.name')
-                    %th= t('activerecord.attributes.script')
-                    %th= t('activerecord.attributes.url')
+                    %th
+                      = sort_link(@q, :name) do
+                        = t('activerecord.attributes.name')
+                    %th
+                      = sort_link(@q, :url) do
+                        = t('activerecord.attributes.url')
                     %th
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'

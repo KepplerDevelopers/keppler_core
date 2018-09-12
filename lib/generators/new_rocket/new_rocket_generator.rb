@@ -13,6 +13,7 @@ class NewRocketGenerator < Rails::Generators::NamedBase
       add_helper_in_application_core
       add_head_in_application_rocket(rocket_name, rocket_directory)
       create_policies_folder(rocket_name)
+      restart_server
       say "\n=== All Done. #{class_name} Rocket has been created and installed ===\n", :green
     end
   end
@@ -96,5 +97,12 @@ class NewRocketGenerator < Rails::Generators::NamedBase
     else
       say  "!!! #{class_name} Policies folder could not be created. Please check if /rockets/#{rocket_name} exists !!!\n", :red
     end
+  end
+
+  def restart_server
+    say "\n*** Restarting application server ***"
+    system 'bin/rails restart'
+    system 'bin/rails restart'
+    say "=== Application server has been restarted ===\n", :green
   end
 end

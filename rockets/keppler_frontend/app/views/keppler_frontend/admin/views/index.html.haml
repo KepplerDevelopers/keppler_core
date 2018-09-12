@@ -49,13 +49,25 @@
                               %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
-                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.method')
-                    %th.hidden-xs= t('activerecord.attributes.name')
-                    %th.hidden-xs= t('activerecord.attributes.url')
-                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.active')
-                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.format_result')
-                    %th.hidden-xs.hidden-sm= t('activerecord.attributes.path')
-                    %th.center= t('activerecord.attributes.menú')
+                    %th.hidden-xs.hidden-sm
+                      = sort_link(@q, :method) do
+                        = t('activerecord.attributes.method')
+                    %th.hidden-xs
+                      = sort_link(@q, :name) do
+                        = t('activerecord.attributes.name')
+                    %th.hidden-xs
+                      = sort_link(@q, :url) do
+                        = t('activerecord.attributes.url')
+                    %th.hidden-xs.hidden-sm
+                      = sort_link(@q, :active) do
+                        = t('activerecord.attributes.active')
+                    %th.hidden-xs.hidden-sm
+                      = sort_link(@q, :format_result) do
+                        = t('activerecord.attributes.format_result')
+                    %th.hidden-xs.hidden-sm
+                      = sort_link(@q, :path) do
+                        = t('activerecord.attributes.path')
+                    %th
                     %th
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
