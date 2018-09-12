@@ -1,0 +1,12 @@
+menu:
+  keppler_rocketdeprueba:
+    name: Keppler Rocketdeprueba
+    current: ['']
+    url_path: /
+    icon: layers
+    model: User
+    # submenu:
+    #   - new:
+    #       name: + Add new module
+    #       url_path: url_path
+    #       current: ['current']
