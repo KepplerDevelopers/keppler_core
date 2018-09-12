@@ -84,11 +84,13 @@ class ApplicationController < ActionController::Base
     ).values.each(&:symbolize_keys!)
     modules = Dir[File.join("#{Rails.root}/rockets", '*')]
     modules.each do |m|
-      module_menu = YAML.load_file(
-        "#{m}/config/permissions.yml"
-      ).values
-      unless module_menu.first.nil?
-        @modules[0] = @modules[0].merge(module_menu[0])
+      if File.file?("#{m}/config/permissions.yml")
+        module_menu = YAML.load_file(
+          "#{m}/config/permissions.yml"
+        ).values
+        unless module_menu.first.nil?
+          @modules[0] = @modules[0].merge(module_menu[0])
+        end
       end
     end
   end
