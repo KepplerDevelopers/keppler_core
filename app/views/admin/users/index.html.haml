@@ -61,8 +61,8 @@
                 = render 'listing', objects: @users.reverse, size: @objects.size
         %center.paginator-module
           = paginate @objects, window: 1
-
   .listing-show.hidden-xs
-    = render 'description', activities: @activities    
+    = render 'description', activities: @activities
+
 :javascript
   $('#role-1').fadeOut()
