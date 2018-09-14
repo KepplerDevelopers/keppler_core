@@ -30,7 +30,6 @@ module Admin
       redirect_to not_authorized_path unless current_user.permissions?
     end
 
-
     private
 
     def get_history(model)
