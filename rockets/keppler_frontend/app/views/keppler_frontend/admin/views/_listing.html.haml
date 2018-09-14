@@ -9,25 +9,25 @@
               %i.cr-icon.glyphicon.glyphicon-ok
 
     %td
-      = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_view_editor_path(view, search: @query), class: 'show-row' do
         %span
           .label{class: "bg-#{view.color}"}
             = view.method
     %td
-      = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_view_editor_path(view, search: @query), class: 'show-row' do
         %span
           = view.name
     %td
-      = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_view_editor_path(view, search: @query), class: 'show-row' do
         %span
           = view.url
     %td.hidden-xs.hidden-sm
-      = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_view_editor_path(view, search: @query), class: 'show-row' do
         %span
           .label{class: "bg-#{view.active ? 'green' : 'gray'}"}
             = view.active.to_s.capitalize
     %td.hidden-xs.hidden-sm
-      = link_to admin_frontend_view_path(view, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_view_editor_path(view, search: @query), class: 'show-row' do
         %span
           = view.format_result
     %td.hidden-xs.hidden-sm
