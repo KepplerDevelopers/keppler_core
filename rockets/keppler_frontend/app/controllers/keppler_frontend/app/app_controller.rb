@@ -25,6 +25,12 @@ module KepplerFrontend
     end
 
     private
+    
+    def rocket(name, model)
+      name = name.singularize.downcase.capitalize
+      model = model.singularize.downcase.capitalize
+      "Keppler#{name}::#{model}".constantize
+    end
 
     def set_locale
       if params[:locale]
