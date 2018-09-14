@@ -26,7 +26,6 @@ class Role < ApplicationRecord
   end
 
   def permission_to(module_name)
-    # module_name&.dig(key.first, 'childrens')&.each do |children|
     !all_permissions&.dig(module_name).nil? || false
   end
 
@@ -52,6 +51,7 @@ class Role < ApplicationRecord
 
   def toggle_all_actions(module_name, actions)
     if permission_to(module_name)
+      actions = actions - all_permissions[module_name]['actions']
       update_actions(module_name, actions)
     else
       add_module(module_name, actions)
@@ -61,7 +61,8 @@ class Role < ApplicationRecord
   def have_all_actions?(module_name, actions)
     if permission_to(module_name)
       permit = all_permissions[module_name]['actions'].reject(&:empty?)
-      (permit - actions.reject(&:empty?)).empty?
+      permit.blank? ? false : permit.uniq.length.eql?(actions&.uniq.length)
+      #(permit - actions.reject(&:empty?)).empty?
     end
   end
 
@@ -96,7 +97,7 @@ class Role < ApplicationRecord
     if have_all_actions?(module_name, actions)
       clear_actions(module_name)
     else
-      actions&.each{ |act|  add_action(module_name, act) }
+      actions&.each{ |act| add_action(module_name, act) }
     end
   end
 
