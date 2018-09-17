@@ -9,7 +9,7 @@ module KepplerFrontend
       before_action :only_development
 
       def index
-        set_data(@filesystem )
+        set_data(@filesystem)
         flash[:notice] = [nil, 'images', 'success']
       end
 
