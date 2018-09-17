@@ -94,6 +94,8 @@ class Role < ApplicationRecord
   end
 
   def update_actions(module_name, actions)
+    byebug
+
     if have_all_actions?(module_name, actions)
       clear_actions(module_name)
     else

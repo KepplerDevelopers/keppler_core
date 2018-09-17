@@ -27,6 +27,7 @@ module Admin
       @actions = params[:role][:actions]
 
       if @role.permissions?
+        byebug
         @role.toggle_all_actions(@module, @actions)
       else
         @role.first_permission(@module, @actions)
