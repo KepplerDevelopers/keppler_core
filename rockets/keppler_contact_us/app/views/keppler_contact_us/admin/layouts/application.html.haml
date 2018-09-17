@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    -# = render 'admin/layouts/head'
+    = render 'admin/layouts/head'
+    = render 'keppler_contact_us/admin/layouts/head'
+  %body.sidebar-mini.skin-blue{ style: 'height: auto; min-height: 100%;' }
+    - if loggedin?
+      .wrapper{ style: 'height: auto; min-height: 100vh;' }
+        = render 'admin/layouts/navigation', q: @q, appearance: @appearance, model_obj: [:admin, :contact_us, @q]
+        = render 'admin/layouts/sidebar'
+        = render 'admin/layouts/messages'
+        .content-wrapper{ style: 'min-height: 901px;' }
+          = yield
+
+      .spinner
+        = preloader
+    - else
+      %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil }
+        = yield
+    - if action_name.eql?('index')
+      %script{ src: '/assets/keppler_contact_us/vue_admin/index.js' }
+    = render 'keppler_contact_us/admin/layouts/scripts'
+    = keppler_boolean_script

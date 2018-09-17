@@ -1,0 +1,34 @@
+.container-fluid
+  .row
+    .listing.col-lg-12.col-xs-12
+      %section.content
+        .row
+          .col-md-3
+            = render 'compose'
+            = render 'folders'
+            = render 'labels'
+          .col-md-9
+            -# = render 'admin/settings/form', setting: @setting.smtp_setting, render: @render#, color: @color
+            #settings
+              .container
+                #action-section
+                  = simple_form_for Setting.first, url: '/admin/settings/email_setting', method: :put do |f|
+                    .row
+                      -# = render partial: "admin/settings/fields/#{render}", locals: { f: f, color: color }
+                      .col-lg-12
+                        = f.simple_fields_for :smtp_setting do |f|
+                          .box.slice-box
+                            .box-header.with-border
+                              %h3.box-title
+                                = t('keppler.sidebar-menu.setting-submenu.email-setting-smtp')
+                              .box-tools.pull-right
+                                %a.btn.btn-box-tool{ 'data-widget': 'collapse', type: 'button' }
+                                  %i.icon-minus
+                            .box-body.pure-input
+                              = f.input :address
+                              = f.input :port
+                              = f.input :domain_name
+                              = f.input :email
+                              = f.input :password
+                              .pull-right
+                                = f.button :submit, t('keppler.actions.apply'), class: 'btn-primary'

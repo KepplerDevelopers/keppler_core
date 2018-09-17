@@ -1,0 +1,15 @@
+sent:
+  name: sent
+  icon: paper-plane
+unread:
+  name: unread
+  icon: envelope
+read:
+  name: read
+  icon: envelope-open
+favorites:
+  name: favorites
+  icon: star
+settings:
+  name: settings
+  icon: settings

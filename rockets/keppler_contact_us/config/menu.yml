@@ -1,0 +1,45 @@
+# KepplerContactUs
+menu:
+  messages:
+    name: Messages
+    current: ['/admin/contact_us/messages']
+    url_path: /admin/contact_us/messages
+    icon: envelope
+    model: KepplerContactUs::Message
+    submenu:
+      - messages:
+          name: messages
+        #   icon: envelope-open
+          url_path: /admin/contact_us/messages
+          current: ['/admin/contact_us/messages']
+          model: KepplerContactUs::Message
+      - sent:
+          name: sent
+        #   icon: paper-plane
+          url_path: /admin/contact_us/messages/sent
+          current: ['/admin/contact_us/messages/sent']
+          model: KepplerContactUs::Message
+    #   - unread:
+    #       name: unread
+    #       icon: envelope
+    #       url_path: /admin/contact_us/messages/unread
+    #       current: ['/admin/contact_us/messages/unread']
+    #       model: KepplerContactUs::Message
+    #   - read:
+    #       name: read
+    #       icon: envelope-open
+    #       url_path: /admin/contact_us/messages/read
+    #       current: ['/admin/contact_us/messages/read']
+    #       model: KepplerContactUs::Message
+      - favorites:
+          name: favorites
+        #   icon: star
+          url_path: /admin/contact_us/messages/favorites
+          current: ['/admin/contact_us/messages/favorites']
+          model: KepplerContactUs::Message
+      - settings:
+          name: settings
+        #   icon: settings
+          url_path: /admin/contact_us/messages/settings
+          current: ['/admin/contact_us/messages/settings']
+          model: KepplerContactUs::Message

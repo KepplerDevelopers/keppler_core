@@ -1,0 +1,109 @@
+// Colors
+$almost-black: #252525;
+$almost-white: #fdfdfd;
+$black: #000;
+$error-color: #f44336;
+$gray-darken: #4c4c4c;
+$gray-lighten: #f9f9f9;
+$gray-hover: #dadada;
+$primary-color: #f44336;
+$secondary-color: #d32f2f;
+$white: #fff;
+$link-color: #039be5;
+$light-white: #c5c5c5;
+$light-black: #333;
+$blue: #003eff;
+$grey: #999;
+$medium-grey: #555;
+$ccc: #ccc;
+$gray: #808080;
+$grey-blue: #92b0b3;
+$bfc5c5: #bfc5c5;
+$transparent-black-14: rgba(0, 0, 0, .14);
+$transparent-black-12: rgba(0, 0, 0, .12);
+$transparent-black-2: rgba(0, 0, 0, .2);
+$btn-float-shadow: 0 2px 2px 0 $transparent-black-14, 0 1px 5px 0 $transparent-black-12, 0 3px 1px -2px $transparent-black-2;
+$btn-float-shadow-hover: 0 4px 5px 0 $transparent-black-14, 0 1px 10px 0 $transparent-black-12, 0 2px 4px -1px $transparent-black-2;
+$preview-box-shadow: 4px 4px 3px rgba(103, 115, 130, 1);
+$box-shadow-collapse: 0 2px 12px rgba(0, 0, 0, .175);
+$coco-grey: #c0c0c0;
+
+// Navbar
+$navbar-static-top-link: #949494;
+$sidebar-toggle-hover: #e8e8e8;
+$logo-span-text-shadow: rgba(0, 0, 0, .3);
+
+// Sidebar
+$sidebar-background: linear-gradient(to right, $white, $gray-lighten);
+$dark-grey: #5a5a5a;
+$light-grey: #8c8c8c;
+$dark-transparent: rgba(0, 0, 0, .5);
+$light-transparent: rgba(0, 0, 0, .12);
+$text-success: #2ade2e;
+$dark-white: #eee;
+
+
+
+// Pageslide
+$pageslide-icon-color: #575757;
+$pageslide-link-color: #7f7f7f;
+
+// nprogress
+$nprogress-color: #009688;
+$nprogress-height: 4px;
+$nprogress-zindex: 10100;
+
+// Keppler theme color
+// NO TOCAR /////////////
+$keppler-color:#f44336;
+$keppler-darken:#d32f2f;
+$keppler-accent:#d11421;
+// NO TOCAR /////////////
+// Pink theme color
+$pink-color: #e91e63;
+$pink-darken: #c2185b;
+$pink-accent: #448aff;
+
+// Cyan theme color
+$cyan-color: #00bcd4;
+$cyan-darken: #0097a7;
+$cyan-accent: #ff9800;
+
+// Grey theme color
+$grey-color: #607d8b;
+$grey-darken: #455a64;
+$grey-accent: #ff5722;
+
+// Amber theme color
+$amber-color: #ffc107;
+$amber-darken: #ffa000;
+$amber-accent: #7c4dff;
+
+// brown theme color
+$brown-color: #795548;
+$brown-darken: #5d4037;
+$brown-accent: #4caf50;
+
+// Medias querys
+$breakpoints: (
+  'xs': "(max-width: 767px)",
+  'sm': "(max-width: 991px)",
+  'md': "(max-width: 1199px)",
+  'lg': "(max-width: 1600px)",
+  'xl': "(max-width: 2048px)",
+) !default;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+
+$font-primary: 'Source Sans Pro', sans-serif;
+
+$font-size: 10px;
+$color-primary: #ff5300; // Orange primary
+$color-secundary: #ff005e;
+
+%circle-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}

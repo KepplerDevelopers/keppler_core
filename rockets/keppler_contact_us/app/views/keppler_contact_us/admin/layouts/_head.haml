@@ -1,0 +1,7 @@
+%meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+%link{ href: 'https://fonts.googleapis.com/css?family=Patua+One', rel: 'stylesheet', type: 'text/css' }
+%title= content_for?(:title) ? yield(:title) : 'Keppler Admin'
+= csrf_meta_tags
+
+// Keppler Contact Us Stylesheets
+= stylesheet_link_tag 'keppler_contact_us/admin/application', media: 'all', 'data-turbolinks-track': true

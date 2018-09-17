@@ -1,0 +1,108 @@
+.keppler-color { color: $keppler-color; }
+.keppler-background { background: $keppler-color; }
+.keppler-border-top-color { border-top-color: $keppler-color; }
+
+.skin-blue .content-header {
+  background: transparent;
+  margin-top: 50px;
+}
+
+.wrapper {
+  .content-wrapper {
+    background: $gray-lighten;
+    min-height: 100vh;
+    padding-top: 60px;
+  }
+}
+
+.btn-ks {
+  background: $keppler-color;
+  border: 1px solid $keppler-color;
+  color: $white;
+  transition: .5s all;
+
+  &:hover {
+    background: $keppler-accent;
+    border: 1px solid $keppler-accent;
+    color: $white;
+    transition: .5s all;
+  }
+}
+
+.btn-ks-inverse {
+  border: 1px solid $keppler-color;
+  color: $keppler-color;
+  transition: .5s all;
+
+  &:hover {
+    background: $keppler-color;
+    border: 1px solid $keppler-color;
+    color: $white;
+    transition: .5s all;
+  }
+}
+
+.btn-gr {
+  background: $medium-grey;
+  border: 1px solid $medium-grey;
+  color: $white;
+  transition: .5s all;
+
+  &:hover {
+    background: $almost-black;
+    border: 1px solid $medium-grey;
+    color: $white;
+    transition: .5s all;
+  }
+}
+
+.btn-gr-inverse {
+  border: 1px solid $medium-grey;
+  color: $medium-grey;
+  transition: .5s all;
+
+  &:hover {
+    background: $medium-grey;
+    border: 1px solid $medium-grey;
+    color: $white;
+    transition: .5s all;
+  }
+}
+
+.appearance-img {
+  background-position: center;
+  background-size: cover;
+  height: 350px;
+  width: 100%;
+}
+
+.minicolors-theme-default .minicolors-input {
+  display: inline-block;
+  height: 30px;
+  padding-left: 26px;
+  width: auto;
+}
+
+.label-primary {
+  background: $keppler-color;
+}
+
+//Noty
+.noty-bar {
+  background-color: $almost-black;
+  color: $white;
+  text-align: center;
+}
+
+.content-wrapper,
+.right-side {
+  background-color: $almost-white;
+  min-height: 100%;
+  z-index: 800;
+}
+
+.box-body {
+  @include respond-to(xs) {
+    padding: 0 0 20px;
+  }
+}

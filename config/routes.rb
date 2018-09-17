@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :holaquitoys
   localized do
     get '/index', to: 'app/front#index', as: :app_index
   end
@@ -190,4 +191,7 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
+
+  # KepplerContactUs routes engine
+  mount KepplerContactUs::Engine, at: '/', as: 'keppler_contact_us'
 end

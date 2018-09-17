@@ -1,0 +1,31 @@
+.message-form {
+  ul.wysihtml5-toolbar>li {
+    float: left;
+    display: list-item;
+    list-style: none;
+    margin: 0 5px 10px 0;
+  }
+  .form-control {
+    color: $light-black;
+  }
+  .dropzone {
+    border: 2px dashed $grey;
+    border-radius: 5px;
+    background: white;
+    transition: .3s;
+    &:hover {
+      border: 2px dashed $keppler-color;
+      transition: .3s;
+    }
+    &::before {
+      // content: '<i class="fa fa-paperclip"></i><span>Attachment</span>',
+      content: 'Adjuntar archivo'
+    }
+  }
+  [type=submit] {
+    background: $keppler-color;
+    border: none; 
+    color: $white;
+    padding: 5px 30px;
+  }
+}

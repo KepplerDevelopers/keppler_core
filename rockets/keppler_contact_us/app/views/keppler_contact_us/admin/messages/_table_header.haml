@@ -1,0 +1,9 @@
+.box-header.with-border
+  %h3.box-title 
+    = t("keppler-contact-us.modules.#{controller_path}")
+    %small (#{current_user.email})
+  .box-tools.pull-right.contact-us-search
+    .has-feedback
+      = search_form_for [:admin, :contact_us, q], html: { method: :get } do |f|
+        = f.search_field search_model, placeholder: t('keppler.actions.search'), class: 'form-control input-sm search-bar'
+      %i.icon-magnifier.form-control-feedback

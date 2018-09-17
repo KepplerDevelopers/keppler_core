@@ -1,0 +1,70 @@
+es:
+  keppler:
+    sidebar-menu:
+      keppler-contact-us: Keppler Contact Us
+      keppler-contact-us-submenu:
+        messages: Mensajes
+      messages: Mensajes
+      messages-submenu:
+        messages: Bandeja de entrada
+        sent: Enviados
+        read: Leídos
+        unread: No leídos
+        favorites: Favoritos
+    models:
+      singularize:
+        message: mensaje
+      pluralize:
+        messages: mensajes
+    modules:
+      keppler_contact_us/admin/messages: 'Mensajes'
+      keppler_contact_us/admin/cotizations: 'Cotizaciones'
+      keppler_contact_us/admin/subscriptions: 'Suscripciones'
+    settings: 
+    actions:
+      compose: Redactar
+      reply: Responder
+      share: Reenviar
+      print: Imprimir
+  activerecord:
+    attributes:
+      name: Nombre
+      email: Correo
+      phone: Teléfono
+      subject: Asunto
+      content: Contenido del mensaje
+      from_email: Desde
+      to_emails: Hacia
+    errors:
+      messages:
+        record_invalid: "Validación fallida: %{errors}"
+        restrict_destroy: "No se puede borrar el registro"
+        restrict_dependent_destroy:
+          has_one: "No se puede borrar el registro porque un registro dependiente %{record} existe"
+          has_many: "No se puede borrar el registro porque registros dependientes %{record} existen"
+  keppler-contact-us:
+    modules:
+      keppler_contact_us/admin/messages: 'Mensajes'
+    index:
+      folders: Carpetas
+      sent: Enviados
+      trash: Eliminados
+      labels: Etiquetas
+    labels:
+      sent: Enviados
+      read: Leídos
+      unread: No leídos
+      favorites: Favoritos
+      settings: Configuración
+    actions:
+      send: Enviar
+      insert_email: Ingresa un email...
+      insert_subject: Añade un asunto a tu mensaje...
+      check_favorite: Marcar como favorito
+      discheck_favorite: Desmarcar de favoritos
+    attributes:
+      to_emails: 'Enviar a'
+      subject: Asunto
+      sent: Enviado
+      read: Leído
+      unread: No leído

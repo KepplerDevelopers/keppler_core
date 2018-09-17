@@ -1,0 +1,2 @@
+class HolaquitoysController < ApplicationController
+end

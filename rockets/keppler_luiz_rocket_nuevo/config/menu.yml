@@ -1,0 +1,19 @@
+menu:
+  keppler_luiz_rocket_nuevo:
+    name: Keppler Luiz Rocket Nuevo
+    current: ['']
+    url_path: /
+    icon: layers
+    model: User
+    # submenu:
+      - nuevo_modulo:
+          name: nuevo modulo
+          url_path: admin/luiz_rocket_nuevo/nuevo_modulo
+          icon: layers
+          current: ['admin/luiz_rocket_nuevo/nuevo_modulo']
+          model: KepplerLuizRocketNuevo::NuevoModulo
+
+    #   - new:
+    #       name: + Add new module
+    #       url_path: url_path
+    #       current: ['current']

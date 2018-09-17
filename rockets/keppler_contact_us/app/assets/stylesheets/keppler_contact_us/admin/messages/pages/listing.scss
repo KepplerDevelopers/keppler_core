@@ -1,0 +1,147 @@
+.message-row {
+  color: $medium-grey;
+  transition: .2s ease-out;
+  &:hover {
+    color: $medium-grey;
+    transition: .2s ease-out;
+  }
+  &.read {
+    color: $grey;
+    transition: .2s ease-out;
+    &:hover {
+      color: $medium-grey;
+      transition: .2s ease-out;
+    }
+  }
+}
+
+.mailbox-messages {
+  td {
+    align-items: center; // height: 50px;
+    padding: 0;
+    &:nth-child(1) {
+      padding: 10px 15px;
+    }
+  }
+
+  .item-check,
+  .mailbox-star {
+    min-width: 30px;
+    max-width: 30px;
+  }
+
+  .mailbox-star {
+    padding: 0 5px;
+
+    a {
+      height: 34px;
+      display: grid;
+      align-items: center;
+      text-align: center;
+      
+      i {
+        animation: no-favorite ease-out .3s;
+        &.favorite {
+          animation: favorite ease-in .1s;
+          color: #f39c12;
+        }
+      }
+    }
+    .titanic {
+      path {
+        fill: transparent;
+        stroke: $medium-grey;
+      }
+      &.animated {
+        path {
+          // stroke: #f39c12;
+          stroke: $amber-darken;
+        }
+      }
+    }
+  }
+
+  .mailbox-content {
+    padding: 0;
+  }
+
+  .mailbox-link {
+    width: 100%;
+    padding: 5px;
+    display: grid;
+    position: relative;
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  .text-overflow {
+    max-width: 100%;
+  }
+
+  .mailbox-read {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .mailbox-name {
+    max-width: 100px;
+    min-width: 100px;
+  }
+
+  .mailbox-subject {
+    font-weight: 600;
+    max-width: 100px;
+    min-width: 100px;
+  }
+
+  .mailbox-message {
+    max-width: 200px;
+    min-width: 200px;
+  }
+
+  .mailbox-date {
+    // max-width: 205px;
+    // min-width: 201px;
+    i {
+      padding: 5px;
+    }
+  }
+}
+
+@keyframes favorite {
+  0% {
+    transform: scale(1)
+  }
+
+  50% {
+    transform: scale(1.5)
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}
+
+@keyframes no-favorite {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  25% {
+    transform: rotate(-10deg)
+  }
+
+  50% {
+    transform: rotate(5deg)
+  }
+
+  75% {
+    transform: rotate(-5deg)
+  }
+  
+  100% {
+    transform: rotate(0deg)
+  }
+}

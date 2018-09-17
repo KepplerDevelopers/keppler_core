@@ -62,23 +62,24 @@ system("scp -r #{ARGV[1]}/lib/plugins/config/locales #{ARGV[1]}/rockets/#{ARGV[0
 
 project = ARGV[0].to_s
 
-locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml")
+# locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml")
 
-locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
-locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
+# locales[2] = "    #{project.remove('keppler').gsub('_', '-')}:\n"
+# locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
+# locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
 
-locales = locales.join("")
+# locales = locales.join("")
 
-File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml", locales)
+# File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml", locales)
 
-locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml")
+# locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml")
 
-locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
-locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
+# locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
+# locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
 
-locales = locales.join("")
+# locales = locales.join("")
 
-File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml", locales)
+# File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml", locales)
 
 
 system("scp -r #{ARGV[1]}/lib/plugins/concerns #{ARGV[1]}/rockets/#{ARGV[0]}/app/controllers/#{ARGV[0]}")
