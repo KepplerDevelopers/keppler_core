@@ -16,6 +16,10 @@ module KepplerFrontend
       keppler_admin? || user_can?(@objects, 'editor_save')
     end
 
+    def select_theme_view?
+      keppler_admin? || user_can?(@objects, 'select_theme_view')
+    end
+
     def multimedia?
       keppler_admin? || user_can?(@objects, 'multimedia')
     end
