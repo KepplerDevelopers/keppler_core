@@ -43,11 +43,12 @@ module KepplerFrontend
       system("unzip #{new_name}")
       theme_folder = new_file.original_filename.split('.').first
       assets_folder = File.directory?("#{Rails.root}/#{theme_folder}/assets/themes/")
-      html_folder = File.directory?("#{Rails.root}/#{theme_folder}/html")
+      html_folder = File.directory?("#{Rails.root}/#{theme_folder}/views")
       covers_folder = File.directory?("#{Rails.root}/#{theme_folder}/covers")
+      components_folder = File.directory?("#{Rails.root}/#{theme_folder}/components")
       layout_field = File.file?("#{Rails.root}/#{theme_folder}/layouts/application.html.erb")
 
-      if assets_folder && html_folder && covers_folder && layout_field
+      if assets_folder && html_folder && covers_folder && layout_field && components_folder
         true
       else
         post_install(new_file.original_filename)
@@ -58,7 +59,8 @@ module KepplerFrontend
     def install(new_file)
       theme_folder = new_file.original_filename.split('.').first
       install_layout(theme_folder)
-      install_html(theme_folder)
+      install_views(theme_folder)
+      install_components(theme_folder)
       install_assets(theme_folder)
       post_install(new_file.original_filename)
     end
@@ -71,16 +73,28 @@ module KepplerFrontend
       FileUtils.mv(layout_file, new_folder)
     end
 
-    def install_html(folder)
-      old_theme_folder = "#{Rails.root}/#{folder}/html"
+    def install_views(folder)
+      old_theme_folder = "#{Rails.root}/#{folder}/views"
       scripts = Dir.entries(old_theme_folder)
       theme_folder = "#{url_front}/app/assets/html/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
       covers_folder = "#{Rails.root}/#{folder}/covers"
-      FileUtils::mkdir_p theme_folder
+      FileUtils::mkdir_p "#{theme_folder}/views"
       FileUtils.mv(covers_folder, theme_folder)
       scripts.each do |script|
         unless script.eql?('.') || script.eql?('..')
-          FileUtils.mv("#{old_theme_folder}/#{script}", "#{theme_folder}")
+          FileUtils.mv("#{old_theme_folder}/#{script}", "#{theme_folder}/views")
+        end
+      end
+    end
+
+    def install_components(folder)
+      old_theme_folder = "#{Rails.root}/#{folder}/components"
+      scripts = Dir.entries(old_theme_folder)
+      theme_folder = "#{url_front}/app/assets/html/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
+      FileUtils::mkdir_p "#{theme_folder}/components"
+      scripts.each do |script|
+        unless script.eql?('.') || script.eql?('..')
+          FileUtils.mv("#{old_theme_folder}/#{script}", "#{theme_folder}/components")
         end
       end
     end
@@ -127,14 +141,9 @@ module KepplerFrontend
       File.delete(old_layout) if File.exist?(old_layout)
 
       ['html'].each do |folder|
-        theme_folder = "#{url_front}/app/assets/#{folder}/themes/#{old_theme}"
-        app_folder = "#{url_front}/app/assets/#{folder}/keppler_frontend/app"
-        if File.directory?(theme_folder)
-          Dir.entries(theme_folder).each do |asset|
-            unless asset.eql?('.') || asset.eql?('..') || asset.eql?('covers')
-              File.delete("#{app_folder}/#{asset}") if File.exist?("#{app_folder}/#{asset}")
-            end
-          end
+        if folder.eql?('html')
+          delete_html_theme(old_theme, 'views')
+          delete_html_theme(old_theme, 'components')
         end
       end
     end
@@ -146,14 +155,9 @@ module KepplerFrontend
       FileUtils.cp(new_layout, app_folder) if File.exist?(new_layout)
 
       ['html'].each do |folder|
-        theme_folder = "#{url_front}/app/assets/#{folder}/themes/#{new_theme}"
-        app_folder = "#{url_front}/app/assets/#{folder}/keppler_frontend/app"
-        if File.directory?(theme_folder)
-          Dir.entries(theme_folder).each do |asset|
-            unless asset.eql?('.') || asset.eql?('..') || asset.eql?('covers')
-              FileUtils.cp("#{theme_folder}/#{asset}", app_folder)
-            end
-          end
+        if folder.eql?('html')
+          copy_html_theme(new_theme, 'views')
+          copy_html_theme(new_theme, 'components')
         end
       end
     end
@@ -173,6 +177,32 @@ module KepplerFrontend
 
     def url_front
       "#{Rails.root}/rockets/keppler_frontend"
+    end
+
+    def copy_html_theme(new_theme, html_type)
+      theme_folder = "#{url_front}/app/assets/html/themes/#{new_theme}/#{html_type}"
+      html_type = html_type.eql?('views') ? html_type : 'app'
+      app_folder = "#{url_front}/app/assets/html/keppler_frontend/#{html_type}"
+      if File.directory?(theme_folder)
+        Dir.entries(theme_folder).each do |asset|
+          unless asset.eql?('.') || asset.eql?('..') || asset.eql?('covers')
+            FileUtils.cp("#{theme_folder}/#{asset}", app_folder)
+          end
+        end
+      end
+    end
+
+    def delete_html_theme(old_theme, html_type)
+      theme_folder = "#{url_front}/app/assets/html/themes/#{old_theme}/#{html_type}"
+      html_type = html_type.eql?('views') ? html_type : 'app'
+      app_folder = "#{url_front}/app/assets/html/keppler_frontend/#{html_type}"
+      if File.directory?(theme_folder)
+        Dir.entries(theme_folder).each do |asset|
+          unless asset.eql?('.') || asset.eql?('..') || asset.eql?('covers')
+            File.delete("#{app_folder}/#{asset}") if File.exist?("#{app_folder}/#{asset}")
+          end
+        end
+      end
     end
 
     def post_install(theme)

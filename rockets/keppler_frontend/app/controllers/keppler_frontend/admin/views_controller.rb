@@ -114,21 +114,6 @@ module KepplerFrontend
         )
       end
 
-      def download
-        @views = View.all
-        respond_to do |format|
-          format.html
-          format.xls { send_data(@views.to_xls) }
-          format.json { render json: @views }
-        end
-      end
-
-      def reload
-        @q = View.ransack(params[:q])
-        views = @q.result(distinct: true)
-        @objects = views.page(@current_page).order(position: :desc)
-      end
-
       def sort
         View.sorter(params[:row])
         @q = View.ransack(params[:q])
@@ -140,8 +125,8 @@ module KepplerFrontend
       def editor
         @view = View.find(params[:view_id])
         filesystem = FileUploadSystem.new
-        @files_list = filesystem.files_list
-        @files_bootstrap = filesystem.files_list_bootstrap
+        @files_list = filesystem.files_list + filesystem.files_list_custom("bootstrap")
+        @files_views = filesystem.files_list_custom('views')
         @partials = Partial.all
         @views = View.where.not(name: 'keppler').order(position: :asc)
         @functions = KepplerFrontend::Function.all
@@ -157,10 +142,24 @@ module KepplerFrontend
         render json: {result: true}
       end
 
+      def select_theme_view
+        @view = View.where(id: params[:view_id]).first
+        theme_view=File.readlines("#{url_front}/app/assets/html/keppler_frontend/views/#{params[:theme_view]}.html")
+        theme_view = theme_view.join
+        out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{@view.name}.html.erb", "w")
+        out_file.puts("<keppler-#{@view.name}>\n  #{theme_view}\n</keppler-#{@view.name}>");
+        out_file.close
+        redirect_to admin_frontend_view_editor_path(params[:view_id])
+      end
+
       private
 
       def authorization
         authorize View
+      end
+
+      def url_front
+        "#{Rails.root}/rockets/keppler_frontend"
       end
 
       def reload_views
