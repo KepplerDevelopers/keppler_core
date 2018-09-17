@@ -59,7 +59,6 @@
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render "description"
-  %aside#index-show.control-sidebar
 
   .mixed-btn
     - if can?(KepplerFrontend::Parameter).create?
