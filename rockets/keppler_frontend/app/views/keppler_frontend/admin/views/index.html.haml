@@ -11,20 +11,9 @@
             .toolbar-item
               = link_to reload_admin_frontend_views_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if can?(KepplerFrontend::View).download?
-              .toolbar-item
-                = link_to admin_frontend_view_download_path(KepplerFrontend::View, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                  %i.icon-cloud-download
-            - if can?(KepplerFrontend::View).upload?
-              .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "view" do
-                  %i.icon-cloud-upload
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
-          .hide
-            = form_tag admin_frontend_view_upload_path(@objects), id: "upload_form_views", multipart: true, method: :post do
-              = file_field_tag :file, id: "upload_file_view"
           - if can?(KepplerFrontend::View).create?
             .add
               = link_to new_admin_frontend_view_path, class: 'btn-add' do
@@ -76,7 +65,6 @@
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render "description"
-  %aside#index-show.control-sidebar
 
 :javascript
   $(document).ready(function(){

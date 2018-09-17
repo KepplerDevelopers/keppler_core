@@ -10,6 +10,7 @@ en:
     success: Your file has been successfully uploaded
     fail: The file format is not valid
     destroy: The file has been successfully deleted
+    select_view_confirm: This action will overwrite the view. Do you want to continue?
     multimedia:
       copy: Copy Url
       copy_html: Copy Html
@@ -57,6 +58,7 @@ en:
         keppler_frontend/view: view
         view: view
         theme: theme
+        partial: partial
       pluralize:
         keppler_frontend/views: views
         views: views

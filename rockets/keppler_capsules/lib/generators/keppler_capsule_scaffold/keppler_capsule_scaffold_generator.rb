@@ -109,7 +109,6 @@ module Rails
       def create_views_files
         attachments
         template_keppler_views('_description.html.haml')
-        template_keppler_views('_index_show.html.haml')
         template_keppler_views('_listing.html.haml')
         template_keppler_views('_form.html.haml')
         template_keppler_views('show.js.haml')
@@ -150,7 +149,7 @@ module Rails
       end
 
       def str_menu
-        "      - option:\n          name: #{controller_file_name.humanize.downcase}\n          url_path: /admin/space/#{controller_file_name}\n          current: ['admin/#{controller_file_name}']\n"
+        "      - #{controller_file_name.humanize.singularize.downcase}:\n          name: #{controller_file_name.humanize.downcase}\n          url_path: /admin/space/#{controller_file_name}\n          current: ['admin/#{controller_file_name}']\n          model: KepplerCapsules::#{controller_file_name.singularize.camelize}\n"
       end
 
       def str_ability
@@ -158,7 +157,7 @@ module Rails
       end
 
       def str_permissions
-       "\n #{controller_file_name.pluralize}:\n    name: #{controller_file_name.singularize.camelize}\n    actions: [\n      'index', 'create', 'update',\n      'destroy', 'download', 'upload',\n      'clone'\n    ]\n  "
+       "\n #{controller_file_name.singularize}:\n    name: #{controller_file_name.singularize.camelize}\n    model: KepplerCapsules#{controller_file_name.singularize.camelize}\n    actions: [\n      'index', 'create', 'update',\n      'destroy', 'download', 'upload',\n      'clone'\n    ]\n  "
       end
 
       def str_locales(switch)

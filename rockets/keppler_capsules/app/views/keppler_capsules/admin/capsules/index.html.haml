@@ -11,14 +11,6 @@
             .toolbar-item
               = link_to reload_admin_capsules_capsules_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if can?(KepplerCapsules::Capsule).download?
-              .toolbar-item
-                = link_to admin_capsules_capsule_download_path(KepplerCapsules::Capsule, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                  %i.icon-cloud-download
-            - if can?(KepplerCapsules::Capsule).upload?
-              .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "capsule" do
-                  %i.icon-cloud-upload
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
@@ -61,4 +53,3 @@
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render "description"
-  %aside#index-show.control-sidebar

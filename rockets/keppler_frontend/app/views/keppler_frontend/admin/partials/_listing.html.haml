@@ -8,7 +8,7 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td.hidden-xs
-      = link_to admin_frontend_partial_path(partial, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_partial_path(partial), class: 'new-menu', title: t('keppler.actions.show') do
         %span
           = partial.name
     %td{ style: 'width: 15px;padding-right:15px;' }

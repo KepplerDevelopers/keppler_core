@@ -49,7 +49,7 @@ module KepplerFrontend
         folder: folder,
         size: filesize(size),
         format: file_format.split('.').last,
-        html: folder.eql?('html') ? code_html(file) : '',
+        html: folder.eql?('html') ? code_custom('/app', file) : '',
         cover: File.file?(cover_url) ? cover : nil,
         cover_url: File.file?(cover_url) ? cover_url : ''
       }
@@ -59,23 +59,24 @@ module KepplerFrontend
       files_list.select { |f| f if f[:search].eql?(search) && f[:format].eql?(file_format) }
     end
 
-    def files_list_bootstrap
-      files = Dir.entries("#{url_front}/app/assets/html/keppler_frontend/bootstrap")
+    def files_list_custom(custom)
+      custom = 'app/bootstrap' if custom.eql?('bootstrap')
+      files = Dir.entries("#{url_front}/app/assets/html/keppler_frontend/#{custom}")
       files = files.select { |f| f if validate_format(f) && select_folder(f).eql?('html') }
       files = files.map do |file|
-        size = File.size("#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{file}")
-        cover = "/assets/keppler_frontend/bootstrap/#{file.split('.').first}.png"
-        cover_url = "#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{file.split('.').first}.png"
+        size = File.size("#{url_front}/app/assets/html/keppler_frontend/#{custom}/#{file}")
+        cover = "/assets/keppler_frontend/#{custom}/#{file.split('.').first}.png"
+        cover_url = "#{url_front}/app/assets/html/keppler_frontend/#{custom}/#{file.split('.').first}.png"
         {
           id: SecureRandom.uuid,
           name: file,
-          url: "#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{file}",
+          url: "#{url_front}/app/assets/html/keppler_frontend/#{custom}/#{file}",
           search: file.split('.').first,
-          path: "/assets/keppler_frontend/bootstrap/#{file}",
-          folder: "bootstrap",
+          path: "/assets/keppler_frontend/#{custom}/#{file}",
+          folder: "#{custom}",
           size: filesize(size),
           format: 'html',
-          html: code_bootstrap(file),
+          html: code_custom("/#{custom}", file),
           cover: File.file?(cover_url) ? cover : nil
         }
       end
@@ -101,13 +102,8 @@ module KepplerFrontend
 
     private
 
-    def code_bootstrap(name)
-      html = File.readlines("#{url_front}/app/assets/html/keppler_frontend/bootstrap/#{name}")
-      html.join
-    end
-
-    def code_html(name)
-      html = File.readlines("#{url_front}/app/assets/html/keppler_frontend/app/#{name}")
+    def code_custom(url, name)
+      html = File.readlines("#{url_front}/app/assets/html/keppler_frontend#{url}/#{name}")
       html.join
     end
 

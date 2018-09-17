@@ -13,7 +13,7 @@ module KepplerFrontend
 
       def install_html
         out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", "w")
-        out_file.puts("<h1> #{name} template </h1>");
+        out_file.puts("<keppler-#{name}>\n  <h1> #{name} template </h1>\n</keppler-#{name}>");
         out_file.close
         true
       end

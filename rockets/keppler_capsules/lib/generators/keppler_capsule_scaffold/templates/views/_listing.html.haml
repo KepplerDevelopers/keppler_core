@@ -9,7 +9,7 @@
               %i.cr-icon.glyphicon.glyphicon-ok
     - @capsule.capsule_fields.take(3).each do |field|
       %td
-        = link_to admin_capsules_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
+        = link_to admin_capsules_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'show-row' do
           %span
             - if <%= singular_table_name %>[field.name_field]
               = truncate(<%= singular_table_name %>[field.name_field].to_s, length: 20, omission: '...')
@@ -39,7 +39,3 @@
             = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
               %i.icon-trash
               = t('keppler.actions.delete')
-
-    %td{:style => 'width: 5%;'}
-      %a.drop{:href=>"#"}
-        %i.icon-cursor-move
