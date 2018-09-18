@@ -34,8 +34,7 @@ module KepplerFrontend
       # GET /partials/1
       def show
         filesystem = FileUploadSystem.new
-        @files_list = filesystem.files_list
-        @files_bootstrap = filesystem.files_list_bootstrap
+        @files_list = filesystem.files_list + filesystem.files_list_custom("bootstrap")
       end
 
       # GET /partials/new
