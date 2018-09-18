@@ -2,9 +2,11 @@ es:
   keppler:
     login_message: Ingresa tus datos para entrar
     powered: Desarrollado por
+    release_date: Fecha de Lanzamiento
     navigation:
       last_session: Ultima sesión
     sidebar-menu:
+      about: Información
       seo: Seo
       seo-submenu:
         metatags: Meta Tags
