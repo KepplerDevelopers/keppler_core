@@ -28,8 +28,10 @@ module KepplerFrontend
     private
 
     def grapes_info
-      gon.css_style = set_css_style
-      gon.images_assets = []
+      if controller_name.eql?('frontend') && !action_name.eql?('keppler')
+        gon.css_style = set_css_style
+        gon.images_assets = []
+      end
     end
 
     def set_css_style
