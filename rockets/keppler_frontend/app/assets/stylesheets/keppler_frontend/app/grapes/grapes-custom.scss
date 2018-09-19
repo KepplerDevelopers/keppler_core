@@ -1,0 +1,178 @@
+
+
+.icon-just-start {
+  background: url(/assets/keppler_frontend/grapes/flex-just-start.png) no-repeat center;
+}
+
+.icon-dir-row {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-row.png) no-repeat center;
+}
+
+.icon-dir-row-rev {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-row-rev.png) no-repeat center !important;
+}
+
+.icon-dir-col {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-col.png) no-repeat center;
+}
+
+.icon-dir-col-rev {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-col-rev.png) no-repeat center;
+}
+
+.icon-just-end {
+  background: url(/assets/keppler_frontend/grapes/flex-just-end.png) no-repeat center;
+}
+
+.icon-just-sp-bet {
+  background: url(/assets/keppler_frontend/grapes/flex-just-sp-bet.png) no-repeat center;
+}
+
+.icon-just-sp-ar {
+  background: url(/assets/keppler_frontend/grapes/flex-just-sp-ar.png) no-repeat center;
+}
+
+.icon-just-sp-cent {
+  background: url(/assets/keppler_frontend/grapes/flex-just-sp-cent.png) no-repeat center;
+}
+
+.icon-al-start {
+  background: url(/assets/keppler_frontend/grapes/flex-al-start.png) no-repeat center;
+}
+
+.icon-al-end {
+  background: url(/assets/keppler_frontend/grapes/flex-al-end.png) no-repeat center;
+}
+
+.icon-al-str {
+  background: url(/assets/keppler_frontend/grapes/flex-al-str.png) no-repeat center;
+}
+
+.icon-al-center {
+  background: url(/assets/keppler_frontend/grapes/flex-al-center.png) no-repeat center;
+}
+
+#gjs {
+  border: none;
+}
+
+.gjs-editor {
+  font-family: Helvetica,sans-serif;  
+  font-size: 1.2rem !important;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.gjs-sm-properties {
+  font-size: 1rem !important;
+  padding: 10px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.gjs-clm-tags {
+  font-size: 1rem !important;
+  padding: 10px 5px;
+}
+
+.gjs-block-label {
+  line-height: normal;
+  font-size: 1rem !important;
+  font-weight: normal;
+  font-family: Helvetica, sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gjs-pn-btn {
+  box-sizing: border-box;
+  min-height: 30px;
+  min-width: 30px;
+  line-height: 21px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.7rem !important;
+  margin-right: 5px;
+  border-radius: 2px;
+  padding: 4px;
+  padding-top: .6rem !important;
+  position: relative;
+  cursor: pointer;
+}
+
+.gjs-layer {
+  font-weight: lighter;
+  text-align: left;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 1rem !important;
+}
+
+/* Secondary color for the text color */
+.gjs-two-color {
+  color: #fff !important;
+}
+
+/* Tertiary color for the background */
+.gjs-three-bg {
+  background-color: #f44336 !important;
+  color: white;
+}
+
+/* Quaternary color for the text color */
+.gjs-four-color,
+.gjs-four-color-h:hover {
+  color: #f44336 !important;
+}
+.gjs-radio-item-label {
+  cursor: pointer;
+  display: block;
+  padding: 5px;
+  margin: 0 !important;
+}
+
+.icons-flex {
+  background-size: 26% 60% !important;
+  height: 23px !important;
+  width: 100% !important;
+  opacity: 0.9;
+}
+
+.gjs-radio-item input:checked+.gjs-radio-item-label {
+  background-color: none !important;
+}
+
+.grp-handler-close {
+  color: rgba(255, 255, 255, 0.77);
+  border-radius: 100%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  background-color: #73737300;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  margin-left: -5px;
+  line-height: 10px;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+#gjs-sm-background-image {
+  width: 100% !important;
+}
+
+.gjs-pn-panel {
+  display: inline-block;
+  position: absolute;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0px !important;
+  z-index: 3;
+}
+
+.gjs-trt-traits {
+  font-size: 1.2rem !important;
+}

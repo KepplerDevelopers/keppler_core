@@ -1,0 +1,6 @@
+- if !params[:editor] && Rails.env.eql?("development")
+  %a{ href: "#{request.path}?editor=true"} Editor
+
+- if params[:editor] && Rails.env.eql?("development")
+  = javascript_include_tag 'keppler_frontend/app/grapes/grapes-editor.js', 'data-turbolinks-track': 'reload'
+  = Gon::Base.render_data

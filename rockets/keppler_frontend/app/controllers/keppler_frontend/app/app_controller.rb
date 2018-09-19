@@ -6,6 +6,7 @@ module KepplerFrontend
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
+    before_action :grapes_info
 
     include KepplerCapsules::Concerns::Lib
     def set_metas
@@ -25,6 +26,17 @@ module KepplerFrontend
     end
 
     private
+
+    def grapes_info
+      gon.css_style = set_css_style
+      gon.images_assets = []
+    end
+
+    def set_css_style
+      lines = File.readlines("#{url_front}/app/assets/stylesheets/keppler_frontend/app/views/index.scss")
+      lines = lines.select { |l| !l.include?("//") }
+      lines.join
+    end
     
     def rocket(name, model)
       name = name.singularize.downcase.capitalize
@@ -48,6 +60,10 @@ module KepplerFrontend
 
     def set_analytics
       @scripts = Script.select { |x| x.url == request.env['PATH_INFO'] }
+    end
+
+    def url_front
+      "#{Rails.root}/rockets/keppler_frontend"
     end
   end
 end
