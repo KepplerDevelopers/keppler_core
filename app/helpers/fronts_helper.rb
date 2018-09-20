@@ -7,7 +7,7 @@ module FrontsHelper
   end
 
   def keppler_editor
-    render "layouts/keppler_frontend/app/layouts/keppler_editor"
+    render 'layouts/keppler_frontend/app/layouts/keppler_editor'
   end
 
   def basic_info
