@@ -53,11 +53,27 @@
           %li
             = link_to '/admin/settings/social_accounts' do
               = t('keppler.sidebar-menu.setting-submenu.social-accounts')
-
-  .sidebar-footer
-    %a{ href: 'http://slicegroup.xyz', target: '_blank' }
-      .brand.pull-left#slice
-        = image_tag 'admin/slice_white.png'
-      .brand.pull-left.hidden#icon
-        = image_tag 'admin/slice-icon.png'
-    %span.pull-right v 2.0
+      %li.sidebar-item.info-keppler
+        %a.sidebar-link{ href: '#' }
+          %i.icon-exclamation
+          %span= t('keppler.sidebar-menu.about')
+:javascript
+  $('.info-keppler').click(function (ev) {
+    ev.preventDefault();
+    swal({
+      html: '<h1 class="modal-h1">Keppler <span>Admin</span></h1><div class="modal-info">' +
+        '<span> v 2.1 </span>' +
+        "<span>#{t('keppler.release_date')}: 08/08/08</span>" +
+        '<span>Ruby on Rails v 5.2.1</span>' +
+        '<ul class= "modal-social">' +
+        '<li><a href= "https://www.facebook.com/slicegroupxyz/" target= "_blank"><i class= "icon-social-facebook"></i></a></li>' +
+        '<li><a href= "https://twitter.com/slicegroupxyz" target= "_blank"><i class= "icon-social-twitter"></i></a></li>' +
+        '<li><a href= "https://www.instagram.com/slicegroupxyz/" target= "_blank"><i class= "icon-social-instagram"></i></a></li>' +
+        '<li><a href= "https://github.com/SliceDevelopers" target= "_blank"><i class= "icon-social-github"></i></a></li>' +
+        '</ul>' +
+        "<span class= 'modal-powered'>#{t('keppler.powered')} <a href= 'http://slicegroup.xyz/' target= '_blank'>Slice Group</a></span>" +
+        '</div>',
+      showCloseButton: true,
+      showConfirmButton: false
+    })
+  })
