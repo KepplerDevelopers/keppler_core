@@ -51,19 +51,16 @@ class Role < ApplicationRecord
 
   def toggle_all_actions(module_name, actions)
     if permission_to(module_name)
-      actions = actions - all_permissions[module_name]['actions']
       update_actions(module_name, actions)
     else
       add_module(module_name, actions)
     end
   end
 
-  def have_all_actions?(module_name, actions)
-    if permission_to(module_name)
-      permit = all_permissions[module_name]['actions'].reject(&:empty?)
-      permit.blank? ? false : permit.uniq.length.eql?(actions&.uniq.length)
-      #(permit - actions.reject(&:empty?)).empty?
-    end
+  def all_actions?(module_name, actions)
+    return unless permission_to(module_name)
+    permit = all_permissions[module_name]['actions'].reject(&:empty?)
+    permit.blank? ? false : permit.uniq.length.eql?(actions&.uniq&.length)
   end
 
   def first_permission(module_name, action)
@@ -71,6 +68,12 @@ class Role < ApplicationRecord
       role_id: id,
       modules: Hash[module_name, Hash['actions', Array(action)]]
     )
+  end
+
+  def add_module(module_name, action)
+    old_hash = all_permissions
+    new_hash = Hash[module_name, Hash['actions', Array(action)]]
+    permissions.first.update(modules: old_hash.merge(new_hash))
   end
 
   private
@@ -94,24 +97,16 @@ class Role < ApplicationRecord
   end
 
   def update_actions(module_name, actions)
-    byebug
-
-    if have_all_actions?(module_name, actions)
+    if all_actions?(module_name, actions) || actions.blank?
       clear_actions(module_name)
     else
-      actions&.each{ |act| add_action(module_name, act) }
+      actions&.each { |act| add_action(module_name, act) }
     end
-  end
-
-  def add_module(module_name, action)
-    old_hash = all_permissions
-    new_hash = Hash[module_name, Hash['actions', Array(action)]]
-    permissions.first.update(modules: old_hash.merge(new_hash))
   end
 
   def clear_actions(module_name)
     old_hash = all_permissions
-    new_hash = Hash[module_name, Hash['actions', Array.new]]
+    new_hash = Hash[module_name, Hash['actions', []]]
     permissions.first.update(modules: old_hash.merge(new_hash))
   end
 

@@ -20,11 +20,13 @@
                 .box-header.with-border
                   .pull-left
                     %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].downcase}")
-                  .box-tools.pull-right
-                    = render 'admin/permissions/switch', role: @role, module_name: module_name[key.first]['model'], actions: module_name[key.first]['actions']
-                    -# = module_name[key.first]['actions']
-                    %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                      %i.icon-plus
+                  .box-tools
+                    .pull-left
+                      .switch-div{ id: "switch-container-#{module_name[key.first]['model']}" }
+                        = render 'admin/permissions/switch', role: @role, module_name: module_name[key.first]['model'], actions: module_name[key.first]['actions']
+                    .pull-right
+                      %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
+                        %i.icon-plus
                 .box-body
                   %table.table
                     %tbody
@@ -35,7 +37,7 @@
                               .pull-left
                                 %span= t("keppler.permissions.#{action}")
                               .pull-right.switch-div
-                                = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['model'], action: action, children: false
+                                = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['model'], action: action, actions: module_name[key.first]['actions']
 
                   .col-lg-12
                     - module_name&.dig(key.first, 'childrens')&.each do |children|
@@ -43,10 +45,12 @@
                         .box.slice-box.collapsed-box
                           .box-header.with-border
                             %h4.box-title= t("keppler.sidebar-menu.#{children[ky.first]['name'].parameterize.pluralize}")
-                            .box-tools.pull-right
-                              = render 'admin/permissions/switch', role: @role, module_name: module_name[key.first]['model'], actions: module_name[key.first]['actions']
-                              %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                                %i.icon-plus
+                            .box-tools
+                              .pull-left.switch-div
+                                = render 'admin/permissions/switch', role: @role, module_name: children[ky.first]['model'], actions: children[ky.first]['actions']
+                              .pull-right
+                                %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
+                                  %i.icon-plus
                           .box-body
                             %table.table.table-bordered
                               %tbody
@@ -57,7 +61,7 @@
                                         .pull-left
                                           %h4= t("keppler.permissions.#{action}")
                                         .pull-right.switch-div
-                                          = render 'admin/roles/switch', role: @role, module_name: children[ky.first]['model'], action: action, children: false
+                                          = render 'admin/roles/switch', role: @role, module_name: children[ky.first]['model'], action: action, actions: module_name[key.first]['actions']
 
     .col-lg-6.hidden-xs
       %div{ style: 'width: 43%; height: 100%; position: fixed; right: 0px' }
