@@ -10,7 +10,7 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
     remove_helper_from_core_application
     # bundle_install
     # clear_temps_and_logs
-    # restart_server
+    restart_server
   end
 
   private

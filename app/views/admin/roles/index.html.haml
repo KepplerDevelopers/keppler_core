@@ -48,9 +48,11 @@
                               %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
-                    %th.hidden-xs= t('activerecord.attributes.name')
+
+                    %th.hidden-xs
+                      = sort_link(@q, :name) do
+                        = t('activerecord.attributes.name')
                     %th
-                    %th.center Menu
                     %th
               %tbody.objects-container{ 'data-update-url' => sort_admin_roles_path.to_s }
                 = render 'admin/layouts/listing_preloader'
@@ -59,4 +61,3 @@
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render 'description', activities: @activities
-  %aside.control-sidebar.index-show

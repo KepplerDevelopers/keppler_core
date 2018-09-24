@@ -35,8 +35,7 @@
 
         .box.slice-box
           .box-body.no-padding
-
-            %table.table.table-striped
+            %table.table
               %thead
                 - if @objects.size.zero?
                   %tr
@@ -53,8 +52,12 @@
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
                     %th
-                    %th= t('activerecord.attributes.title')
-                    %th= t('activerecord.attributes.url')
+                    %th
+                      = sort_link(@q, :title) do
+                        = t('activerecord.attributes.title')
+                    %th
+                      = sort_link(@q, :url) do
+                        = t('activerecord.attributes.url')
                     %th
               %tbody.objects-container{ 'data-update-url' => sort_admin_meta_tags_path.to_s }
                 = render 'admin/layouts/listing_preloader'
@@ -63,4 +66,3 @@
           = paginate @objects, window: 1
   .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
     = render 'description', activities: @activities
-  %aside.control-sidebar.index-show

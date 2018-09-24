@@ -28,7 +28,7 @@
           - if can?(KepplerFrontend::CallbackFunction).create?
             .add
               = link_to new_admin_frontend_callback_function_path, class: "btn-add" do
-                + Agregar            
+                + Agregar
 
         .box.slice-box
           .box-body.no-padding
@@ -49,9 +49,13 @@
                               %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
-                    %th.hidden-xs= t('activerecord.attributes.name')
-                    %th.hidden-xs= t('activerecord.attributes.description')
-                    %th.center Menu
+                    %th.hidden-xs
+                      = sort_link(@q, :name) do
+                        = t('activerecord.attributes.name')
+                    %th.hidden-xs
+                      = sort_link(@q, :description) do
+                        = t('activerecord.attributes.description')
+                    %th
                     %th
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
@@ -60,7 +64,6 @@
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render "description"
-  %aside#index-show.control-sidebar
 
 :javascript
   $(document).ready(function(){

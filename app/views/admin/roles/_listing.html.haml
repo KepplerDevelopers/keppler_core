@@ -1,15 +1,15 @@
 - objects.each do |role|
-  - unless role.name.eql?('keppler_admin')
-    %tr{ id: "row-#{role.id}" }
-      %td.item-check
-        - if can?(Role).destroy_multiple?
-          .checkbox
-            %label{ for: "checkbox-#{role.id}" }
-              %input{ type: 'checkbox', id: "checkbox-#{role.id}", 'checklist-model' => 'check', 'checklist-value' => role.id, '@click' => "listDelete(#{role.id})" }
-              %span.cr
-                %i.cr-icon.glyphicon.glyphicon-ok
+  -# - unless role.name.eql?('keppler_admin')
+  %tr{ id: "row-#{role.id}" }
+    %td.item-check
+      - if can?(Role).destroy_multiple?
+        .checkbox
+          %label{ for: "checkbox-#{role.id}" }
+            %input{ type: 'checkbox', id: "checkbox-#{role.id}", 'checklist-model' => 'check', 'checklist-value' => role.id, '@click' => "listDelete(#{role.id})" }
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
       %td
-        = link_to admin_role_path(role, search: @query), remote: true, class: 'show-row' do
+        = link_to admin_role_path(role), title: t('keppler.actions.show') do
           %span
             = role.name
       %td{ style: 'width: 15px; padding-right: 15px;' }
@@ -40,7 +40,3 @@
               = link_to admin_role_path(role), title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                 %i.icon-trash
                 = t('keppler.actions.delete')
-
-      %td{ style: 'width: 5%;' }
-        %a.drop{ href: '#' }
-          %i.icon-cursor-move

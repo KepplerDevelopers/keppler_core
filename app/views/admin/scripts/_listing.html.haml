@@ -8,13 +8,11 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td.hide-on-small-and-down
-      = link_to admin_script_path(script, search: query), remote: true, class: 'show-row' do
-        %span= script.name
-    %td{ style: 'max-width: 200px' }
-      = link_to admin_script_path(script, search: query), remote: true, class: 'show-row text-overflow' do
-        %span= script.script
     %td.hide-on-small-and-down
-      = link_to admin_script_path(script, search: query), remote: true, class: 'show-row' do
+      = link_to admin_script_path(script), title: t('keppler.actions.show') do
+        %span= script.name
+    %td.hide-on-small-and-down
+      = link_to admin_script_path(script), title: t('keppler.actions.show') do
         %span= script.url
     %td.dropdown{ style: 'padding-right: 30px' }
       %a.dropdown-toggle.pull-right{ id: "menu-#{script.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }

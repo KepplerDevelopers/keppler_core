@@ -49,8 +49,9 @@
                               %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
-                    %th.hidden-xs= t('activerecord.attributes.name')
-                    %th.center Menu
+                    %th.hidden-xs
+                      = sort_link(@q, :name) do
+                        = t('activerecord.attributes.name')
                     %th
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
@@ -59,7 +60,6 @@
           = paginate @objects, window: 1
   %aside.control-sidebar
     = render "description"
-  %aside#index-show.control-sidebar
 
 :javascript
   $(document).ready(function(){
