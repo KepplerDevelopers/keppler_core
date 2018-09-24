@@ -1,7 +1,10 @@
 en:
   keppler:
     login_message: Sign in to start your session
+    powered: Powered by
+    release_date: Release Date
     sidebar-menu:
+      about: About Keppler
       seos: Seos
       roles: Roles
       customizes: Customizes

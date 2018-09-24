@@ -3,10 +3,14 @@
     .row
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
-          %h1{ style: 'display: inline-block' }
+          %h1
             = "<%= plural_table_name %>".capitalize
           = entries(@total, @objects)
+        %section.content-actions
           .toolbar
+            .toolbar-item
+              = link_to reload_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
+                %i.icon-reload
             - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).download?
               .toolbar-item
                 = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_download_path(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
@@ -15,9 +19,6 @@
               .toolbar-item
                 = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
                   %i.icon-cloud-upload
-            .toolbar-item
-              = link_to reload_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
-                %i.icon-reload
             - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).destroy_multiple?
               .toolbar-item
                 .checkbox
@@ -28,14 +29,13 @@
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash
+          - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).create?
+            .add
+              = link_to new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path, class: 'btn-add' do
+                + Agregar
           .hide
             = form_tag admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_upload_path(@objects), id: "upload_form_<%= plural_table_name %>", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_<%= singular_table_name %>"
-          %ol.breadcrumb
-            %li
-              %a{ href: '#' }
-                %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
 
         .box.slice-box
           .box-body.no-padding
@@ -44,7 +44,7 @@
               %thead
                 - if @objects.size.zero?
                   %tr
-                    %th{style: 'text-align: center;'}
+                    %th.not-records.center
                       %h6= t('keppler.messages.not_found_records', model: "<%= plural_table_name %>" )
                 - else
                   %tr
@@ -61,11 +61,6 @@
   %aside.control-sidebar
     = render "description"
   %aside#index-show.control-sidebar
-
-  .mixed-btn
-    - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).create?
-      = link_to new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path, class: "btn-float" do
-        +
 
 :javascript
   $(document).ready(function(){

@@ -109,7 +109,6 @@ module Rails
       def create_views_files
         attachments
         template_keppler_views('_description.html.haml')
-        template_keppler_views('_index_show.html.haml')
         template_keppler_views('_listing.html.haml')
         template_keppler_views('_form.html.haml')
         template_keppler_views('show.js.haml')

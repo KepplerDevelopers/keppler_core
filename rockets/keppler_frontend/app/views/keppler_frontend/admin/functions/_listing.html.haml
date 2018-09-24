@@ -8,11 +8,11 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td.hidden-xs
-      = link_to admin_frontend_function_path(function, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_function_path(function), class: 'new-menu', title: t('keppler.actions.show') do
         %span
           = function.name
     %td.hidden-xs.hidden-sm
-      = link_to admin_frontend_function_path(function, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_frontend_function_path(function), class: 'new-menu', title: t('keppler.actions.show') do
         %span
           = function.description
     %td{ style: 'width: 15px;padding-right:15px;' }

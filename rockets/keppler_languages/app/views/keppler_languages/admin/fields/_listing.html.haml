@@ -8,11 +8,11 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td.hidden-xs
-      = link_to admin_languages_field_path(field, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_languages_field_path(field), class: 'new-menu', title: t('keppler.actions.show') do
         %span
           = field.key
     %td.hidden-xs
-      = link_to admin_languages_field_path(field, search: @query), remote: true, class: 'show-row' do
+      = link_to admin_languages_field_path(field), class: 'new-menu', title: t('keppler.actions.show') do
         %span
           = field.value
     %td{ style: 'width: 15px;padding-right:15px;' }
