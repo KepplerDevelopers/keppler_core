@@ -8,6 +8,7 @@ module KepplerFrontend
     # begin index
     def index
       # Insert ruby code...
+      @saludos = ['Hola', 'Bienvenido', 'Chao']
     end
     # end index
 

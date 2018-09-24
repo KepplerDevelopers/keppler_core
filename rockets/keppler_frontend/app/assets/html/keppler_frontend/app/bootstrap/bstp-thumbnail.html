@@ -1,20 +1,23 @@
+<keppler-component>
+  <div class="thumbnail">
+    <img src="https://dummyimage.com/400x300/9e9e9e/fff.jpg" alt="...">
+    <div class="caption">
+      <h3>Thumbnail label</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipiscing elit rutrum enim suspendisse ridiculus non dui velit, scelerisque pharetra mattis ultrices felis porttitor integer ullamcorper mauris tortor arcu nisi urna. Facilisi duis ultrices ullamcorper rutrum bibendum volutpat curabitur quis lectus ut, proin nullam fringilla justo consequat dis natoque aptent eu torquent, erat gravida egestas metus purus facilisis cubilia felis odio. Non class magna consequat accumsan malesuada congue natoque conubia interdum, semper hac mauris ornare et euismod duis iaculis, faucibus fringilla aliquet facilisis phasellus elementum fermentum turpis.</p>
+      <p>
+        <a href="#" class="btn btn-primary" role="button">Button</a>
+        <a href="#" class="btn btn-default" role="button">Button</a>
+      </p>
+    </div>
+  </div>
+</keppler-component>
 <script>
   'bootstrap-thumbnail', {
     label: 'Thumbnail',
     category: 'Bootstrap',
     attributes: { class:'fa fa-list-alt' },
-    content: `
-    <div class="thumbnail">
-      <img src="..." alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit rutrum enim suspendisse ridiculus non dui velit, scelerisque pharetra mattis ultrices felis porttitor integer ullamcorper mauris tortor arcu nisi urna. Facilisi duis ultrices ullamcorper rutrum bibendum volutpat curabitur quis lectus ut, proin nullam fringilla justo consequat dis natoque aptent eu torquent, erat gravida egestas metus purus facilisis cubilia felis odio. Non class magna consequat accumsan malesuada congue natoque conubia interdum, semper hac mauris ornare et euismod duis iaculis, faucibus fringilla aliquet facilisis phasellus elementum fermentum turpis.</p>
-        <p>
-          <a href="#" class="btn btn-primary" role="button">Button</a>
-          <a href="#" class="btn btn-default" role="button">Button</a>
-        </p>
-      </div>
-    </div>
-    `    
+    content: {
+      script: function() {}
+    } 
   }
 </script>

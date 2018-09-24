@@ -109,6 +109,7 @@ group :development do
   gem 'byebug', '10.0.2'
   gem 'commands', '0.2.1'
   gem 'brakeman', '4.3.0'
+  gem 'htmlbeautifier', '1.3.1'
   # gem 'guard'
   # gem 'guard-coffeescript'
   gem 'guard-livereload', '2.5.2', require: false

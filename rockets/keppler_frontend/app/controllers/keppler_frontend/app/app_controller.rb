@@ -9,6 +9,7 @@ module KepplerFrontend
     before_action :grapes_info
 
     include KepplerCapsules::Concerns::Lib
+    include KepplerFrontend::Concerns::Grapesjs
     def set_metas
       @theme_color = nil
       # Descomentar el modelo que exista depende del proyecto
@@ -26,50 +27,6 @@ module KepplerFrontend
     end
 
     private
-
-    ###################################  Grapes Js Functions (Begin) ###################################
-
-    def grapes_info      
-      if params[:editor] && controller_name.eql?('frontend') && !action_name.eql?('keppler')
-        gon.css_style = set_css_style
-        gon.images_assets = set_assets
-        gon.components = set_components
-      end
-    end
-
-    def set_css_style
-      lines = File.readlines("#{url_front}/app/assets/stylesheets/keppler_frontend/app/views/#{action_name}.scss")
-      lines = lines.select { |l| !l.include?("//") }
-      lines.join
-    end
-
-    def set_assets
-      images = Dir["#{url_front}/app/assets/images/keppler_frontend/app/*"]
-      images_containers = []
-      images.each do |image|
-        images_containers << { type: 'image', src: "/assets/keppler_frontend/app/#{image.split('/').last}" }
-      end
-      return images_containers
-    end
-
-    def set_components
-      list_components = []
-      components = Dir["#{url_front}/app/assets/html/keppler_frontend/app/**/*.html"]
-      components.each do |component|
-        lines = File.readlines(component)
-        begin_idx = 0
-        end_idx = 0
-        lines.each do |idx|
-          begin_idx = lines.find_index(idx) if idx.include?("<script>")
-          end_idx = lines.find_index(idx) if idx.include?("</script>")
-        end
-        lines = lines[begin_idx+1..end_idx-1]
-        list_components << "[#{lines.join('')}]".gsub!("\n", "")
-      end
-      list_components
-    end
-
-    ###################################  Grapes Js Functions (End) ###################################
     
     def rocket(name, model)
       name = name.singularize.downcase.capitalize

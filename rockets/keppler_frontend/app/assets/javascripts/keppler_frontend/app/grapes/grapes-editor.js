@@ -251,14 +251,14 @@ var sectors = [{
       {value: 'line-through', className: 'fa fa-strikethrough'}
     ],
   },
-  // {
-  //   property: 'font-family',
-  //   type: 'select',
-  //   list    : [
-  //     { name: 'Arial', value: 'Arial, Helvetica, sans-serif' },
+  {
+    property: 'font-family',
+    type: 'text',
+    // list    : [
+    //   { name: 'Arial', value: 'Arial, Helvetica, sans-serif' },
 
-  //   ],
-  // }
+    // ],
+  }
 ]
 },
 {
@@ -496,9 +496,7 @@ var editor2  = grapesjs.init({
   }
 });
 */
-var code = document.getElementById('keppler-html')
-var container = document.getElementById('keppler-editor')
-//  container.innerHTML = code.outerHTML;
+
 
 var links = document.getElementsByTagName('link')
 var styles = [];
@@ -512,11 +510,22 @@ for(var i=0; i < links.length; i++) {
   scripts.push(links[i].src)
 }
 
+try {
+  var css_style = gon.css_style;
+  var images_assets = gon.images_assets;
+  var view_id = gon.view_id;
+} catch (e) {
+  if (e instanceof SyntaxError) {
+      console.log(e.message);
+  }
+}  
+
+
 var editor  = grapesjs.init(
 {
   container: '#keppler-editor',
   protectedCss: '',
-  style: gon.css_style,
+  style: css_style,
   canvas: {
     styles: styles, 
     scripts: scripts
@@ -547,8 +556,9 @@ var editor  = grapesjs.init(
     showWrapper: 0,
   },
   assetManager: {
-    upload: false,
-    assets: gon.images_assets
+    upload: '/admin/frontend/assets/upload',
+    autoAdd: true,
+    assets: images_assets
   },
 
   /*
@@ -577,6 +587,20 @@ var editor  = grapesjs.init(
 
 window.editor = editor;
 
+function saveCode(editor, view_id) {
+  var html = processHtml(editor.getHtml());
+  var css = editor.getCss();
+
+  var css = cssbeautify(css, {
+    indent: ' ',
+    openbrace: 'separate-line',
+    autosemicolon: true
+  });    
+  $.post("/admin/frontend/views/"+view_id+"/live_editor/save", {html: html, css: css}, function(data){
+    alert(data.result)
+  }) 
+}
+
 var pnm = editor.Panels;
 pnm.addButton('options', [{
   id: 'undo',
@@ -603,26 +627,36 @@ pnm.addButton('options', [{
   id: 'save-code',
   className: 'fa fa-save',
   command(editor, sender) {
-    var html = processHtml(editor.getHtml());
-    var css = editor.getCss();
-
-    var css = cssbeautify(css, {
-      indent: ' ',
-      openbrace: 'separate-line',
-      autosemicolon: true
-    });
-
-    $.post("/save/code", {html: html, css: css}, function(data){
-      alert(data.result)
-    })
+    saveCode(editor, view_id); 
   },
 }, {
   id: 'exit',
   className: 'fa fa-sign-out',
   command(editor, sender) {
-    window.location.href = document.URL.split("?")[0]
+    var confirmation = confirm("Are you sure?");
+    if (confirmation===true) {
+      var route = "/admin/frontend/views/"+view_id+"/editor";
+      window.location.href = route
+    }     
   },
 }]);
+
+// $(document).bind('keydown',function(e) {
+//   try {
+//     window.editor = editor;
+//     var view_id = gon.view_id;
+//   } catch (e) {
+//     if (e instanceof SyntaxError) {
+//         console.log(e.message);
+//     }
+//   } 
+//   if(e.ctrlKey && (e.which == 83)) {
+//     e.preventDefault();
+//     saveCode(editor, view_id);
+//   }
+// });
+
+
 
 editor.StyleManager.addProperty('Decorations', {
   id: 'gradient',
@@ -727,18 +761,19 @@ bm.add('b1-2', {
     `
 });
 
-for(var i=0; i < gon.components.length; i++) {
-  try {
-    var component = eval(gon.components[i]); 
+try {
+  for(var i=0; i < gon.components.length; i++) {    
+    var component = eval(gon.components[i][0]);     
     if (component.length === 2) {
+      component[1].content.components = gon.components[i][1]
       bm.add(component[0], component[1]);
-    }
-  } catch (e) {
-    if (e instanceof SyntaxError) {
-        console.log(e.message);
-    }
-  }   
-}
+    }      
+  }
+} catch (e) {
+  if (e instanceof SyntaxError) {
+      console.log(e.message);
+  }
+} 
 
 bm.add('hero', {
   label: 'Hero section',
@@ -963,3 +998,10 @@ editor.Commands.add('set-device-mobile', {
 
 
 })
+
+// var keymaps = editor.Keymaps;
+
+// keymaps.add('ns:code-save', '⌘+s, ctrl+s', editor => {
+//   console.log('do stuff');
+//  });
+

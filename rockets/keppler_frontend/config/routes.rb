@@ -109,7 +109,9 @@ KepplerFrontend::Engine.routes.draw do
 
       get '/assets', to: 'multimedia#index', as: 'multimedia'
       post '/assets/upload', to: 'multimedia#upload', as: 'upload_multimedia'
+      get '/assets/upload', to: 'multimedia#upload', as: 'show_upload_multimedia'
       delete '/assets/:search/:fileformat', to: 'multimedia#destroy', as: 'destroy_multimedia'
+      get '/assets/:search/:fileformat', to: 'multimedia#destroy', as: 'show_destroy_multimedia'
 
       resources :views do
         delete '/destroy_callback/:view_callback_id', action: :destroy_callback, as: :destroy_callback
@@ -117,6 +119,7 @@ KepplerFrontend::Engine.routes.draw do
         get '/clone', action: 'clone'
         get '/editor', action: 'editor'
         post '/editor/save', action: 'editor_save'
+        post '/live_editor/save', action: 'live_editor_save'
         post '/sort', action: :sort, on: :collection
         post '/select_theme_view/:theme_view', action: 'select_theme_view', as: :select_theme
 
