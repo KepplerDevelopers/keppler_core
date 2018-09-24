@@ -140,7 +140,7 @@ module Rails
       end
 
       def attachments
-        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
+        SINGULAR_ATTACHMENTS = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
       end
 
       def str_route

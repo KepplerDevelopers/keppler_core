@@ -21,7 +21,7 @@
                 .form-padding
                   <%- attributes.each_with_index do |attribute, index| -%>
                   .col-xs-12
-                    <%- if @attachments.include?(attribute.name) -%>
+                    <%- if SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
                     = f.input :<%= attribute.name %>, as: :keppler_file
                     <%- elsif attribute.reference? -%>
                     = f.association :<%= attribute.name %>, include_blank: false

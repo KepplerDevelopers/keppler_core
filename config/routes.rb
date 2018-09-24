@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :holaquitoys
   localized do
     get '/index', to: 'app/front#index', as: :app_index
   end
-
+  
+  get '/mensajes', to: 'app/front#message', as: :app_message
   # root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
@@ -191,7 +191,4 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
-
-  # KepplerContactUs routes engine
-  mount KepplerContactUs::Engine, at: '/', as: 'keppler_contact_us'
 end

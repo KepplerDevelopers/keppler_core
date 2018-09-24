@@ -8,7 +8,7 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     <%- attributes.each do |attribute| -%>
-      <%- if @attachments.include?(attribute.name) -%>
+      <%- if SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
     %td
       = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
         %span
@@ -18,7 +18,7 @@
     <%- attributes.each_with_index do |attribute, index| -%>
       <%- if index < 6 -%>
         <%- unless attribute.type.to_s.eql?('text') || attribute.name.eql?('position') || attribute.name.eql?('deleted_at') -%>
-          <%- unless @attachments.include?(attribute.name) -%>
+          <%- unless SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
             <%- if index < 2 -%>
     %td.hidden-xs
       = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do

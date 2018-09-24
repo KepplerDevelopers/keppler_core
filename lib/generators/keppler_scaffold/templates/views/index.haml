@@ -51,14 +51,14 @@
                   %tr
                     %th
                     <%- attributes.each do |attribute| -%>
-                      <%- if @attachments.include?(attribute.name) -%>
+                      <%- if SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
                     %th= t('activerecord.attributes.<%= attribute.name %>')
                       <%- end -%>
                     <%- end -%>
                     <%- attributes.each_with_index do |attribute, index| -%>
                       <%- if index < 6 -%>
                         <%- unless attribute.type.to_s == 'text' || attribute.name.eql?('position') || attribute.name.eql?('deleted_at') -%>
-                          <%- unless @attachments.include?(attribute.name) -%>
+                          <%- unless SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
                             <%- if index < 2 -%>
                     %th.hidden-xs= t('activerecord.attributes.<%= attribute.name %>')
                             <%- else -%>

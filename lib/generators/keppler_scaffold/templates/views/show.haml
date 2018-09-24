@@ -8,7 +8,7 @@
 
   .show-section
     .row
-      <%- if attributes.select{|attribute| @attachments.include?(attribute.name)}.size <= 0 -%>
+      <%- if attributes.select{|attribute| SINGULAR_ATTACHMENTS.include?(attribute.name)}.size <= 0 -%>
       .col-md-12
         .box.slice-box
           .box-header.with-border
@@ -27,12 +27,12 @@
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2
-                      - if @attachments.include?(attribute)
+                      - if SINGULAR_ATTACHMENTS.include?(attribute)
                         = image_tag value.url unless value.url.blank?
                       - else
                         = value.blank? ? '-----------' : value
       <%- else -%>
-      <%- @attr = attributes.select{|attr| @attachments.include?(attr.name)} %>
+      <%- @attr = attributes.select{|attr| SINGULAR_ATTACHMENTS.include?(attr.name)} %>
       .col-sm-5
         - @<%= singular_table_name %>.as_json(only: %w[<%= @attr.map(&:name).join(' ') %>]).each do |attribute, value|
           .box.slice-box

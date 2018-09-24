@@ -7,20 +7,17 @@ module Admin
   class <%= controller_class_name %>Controller < AdminController
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
-    before_action :set_attachments
     before_action :authorization, except: %i[reload]
+    include ObjectQuery
 
     # GET <%= route_url %>
     def index
       @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
-      @total = <%= plural_table_name %>.size
-      @<%= plural_table_name %> = <%= class_name %>.all
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
-      end
-      format
+      @<%= plural_table_name %> = @q.result(distinct: true)
+      @objects = @<%= plural_table_name %>.page(@current_page).order(position: :desc)
+      @total = @<%= plural_table_name %>.size
+      redirect_to_index(@objects)
+      respond_to_formats(@<%= plural_table_name %>)
     end
 
     # GET <%= route_url %>/1
@@ -58,7 +55,7 @@ module Admin
       @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
 
       if @<%= singular_table_name %>.save
-        redirect_to admin_<%= index_helper %>_path
+        redirect_to_index(@objects)
       else
         render :new
       end
@@ -67,7 +64,7 @@ module Admin
     # DELETE <%= route_url %>/1
     def destroy
       @<%= orm_instance.destroy %>
-      redirect_to admin_<%= index_helper %>_path, notice: actions_messages(@<%= singular_table_name %>)
+      redirect_to_index(@<%= singular_table_name %>)
     end
 
     def destroy_multiple
@@ -101,23 +98,8 @@ module Admin
 
     private
 
-    def format
-      respond_to do |format|
-        format.html
-        format.csv { send_data @<%= plural_table_name %>.to_csv }
-        format.xls # { send_data @<%= plural_table_name %>.to_xls }
-        format.json { render json: @<%= plural_table_name %> }
-      end
-    end
-
     def authorization
       authorize <%= class_name %>
-    end
-
-    def set_attachments
-      @attachments = %w[
-        logo brand photo avatar cover image picture banner attachment pic file
-      ]
     end
 
     # Use callbacks to share common setup or constraints between actions.

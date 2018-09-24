@@ -137,8 +137,8 @@ module Rails
       end
 
       def attachments
-        @attachments = %w[logo brand photo avatar cover image picture banner attachment pic file]
-        @attachments.map { |a| [a, a.pluralize].join(' ') }.join(' ').split
+        SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
+        SINGULAR_ATTACHMENTS.map { |a| [a, a.pluralize].join(' ') }.join(' ').split
       end
 
       def add_str_locales(locale, switch)

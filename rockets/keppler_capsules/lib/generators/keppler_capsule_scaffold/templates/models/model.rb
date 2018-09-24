@@ -5,7 +5,7 @@ class <%= class_name %> < ActiveRecord::Base
   include CloneRecord
   require 'csv'
   <%- attributes_names.each do |attribute| -%>
-    <%- if @attachments.include?(attribute) -%>
+    <%- if SINGULAR_ATTACHMENTS.include?(attribute) -%>
   mount_uploader :<%=attribute%>, AttachmentUploader
     <%- end -%>
   <%- end -%>

@@ -127,7 +127,7 @@ module Admin
     end
 
     def set_attachments
-      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
+      SINGULAR_ATTACHMENTS = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
                       'picture', 'banner', 'attachment', 'pic', 'file']
     end
 

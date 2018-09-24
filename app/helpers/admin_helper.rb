@@ -27,8 +27,9 @@ module AdminHelper
 
   # Classify a model from a controller
   def model
-    ctrl_path = controller_path
-    ctrl_path.split('/').split('admin').flatten.join('/').classify.constantize
+    controller_path
+      .remove('app/').remove('admin/')
+      .classify.constantize
   end
 
   # Underscore class_name from a object

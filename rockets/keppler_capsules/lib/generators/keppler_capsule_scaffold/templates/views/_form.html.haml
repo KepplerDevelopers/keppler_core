@@ -21,7 +21,7 @@
                 .form-padding
                   - @capsule.capsule_fields.each do |field|
                     .col-xs-12
-                      - if @attachments.include?(field.name_field)
+                      - if SINGULAR_ATTACHMENTS.include?(field.name_field)
                         = f.input field.name_field.to_sym, as: :keppler_file, label: false
                       - elsif field.name_field.eql?('country') || field.name_field.eql?('pais')
                         = f.input field.name_field.to_sym, label: t("capsule.attributes.#{field.name_field}"), as: :country

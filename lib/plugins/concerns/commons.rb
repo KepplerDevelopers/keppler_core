@@ -13,7 +13,7 @@ module KepplerPoll
       private
 
       def set_attachments
-        @attachments = %w[logo brand photo avatar cover image
+        SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image
                           picture banner attachment pic file]
       end
 

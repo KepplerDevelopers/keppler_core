@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 gem 'rails', '5.2.0'
 # gem 'keppler'
+gem 'httparty'
 
 # Javascript
 gem 'ckeditor', '4.2.4'
@@ -142,5 +143,3 @@ gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'
 gem 'keppler_capsules', path: 'rockets/keppler_capsules'
-gem 'keppler_luiz_rocket_nuevo', path: 'rockets/keppler_luiz_rocket_nuevo'
-gem 'keppler_contact_us', path: 'rockets/keppler_contact_us'

@@ -3,7 +3,7 @@
 module Admin
   # ScriptsController
   class ScriptsController < AdminController
-    before_action :set_ga_track, only: %i[show edit update destroy]
+    before_action :set_script, only: %i[show edit update destroy]
     before_action :show_history, only: %i[index]
     before_action :authorization, except: %i[reload]
     include ObjectQuery
@@ -14,7 +14,7 @@ module Admin
       @scripts = @q.result(distinct: true)
       @objects = @scripts.page(@current_page).order(position: :desc)
       @total = @scripts.size
-      redirect_to_index(scripts_path) if nothing_in_first_page?(@objects)
+      redirect_to_index(@objects)
       respond_to_formats(@scripts)
     end
 
@@ -75,7 +75,6 @@ module Admin
         admin_scripts_path(page: @current_page, search: @query),
         notice: actions_messages(Script.new)
       )
-      authorize Script
     end
 
     def upload
@@ -95,7 +94,7 @@ module Admin
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_ga_track
+    def set_script
       @script = Script.find(params[:id])
     end
 

@@ -16,7 +16,7 @@
             %h6.timeline-header.no-border
               %small
                 %strong.display-value= t("activerecord.attributes.#{attribute}")
-                - if @attachments.include?(attribute)
+                - if SINGULAR_ATTACHMENTS.include?(attribute)
                   .display-label= image_tag value.url if value.url
                 - else
                   %p.display-label= value.blank? ? '-----------' : value
