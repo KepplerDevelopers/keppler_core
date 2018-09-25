@@ -232,3 +232,107 @@
 .gjs-layer-vis {
   display: none !important;
 }
+
+.gjs-editor-cont {
+  overflow: hidden !important;
+}
+
+.gjs-cv-canvas {
+  background-color: rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  width: 100% !important;
+  height: calc(100% - 40px);
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 32px !important;
+}
+
+.gjs-devices-c {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  height: 30px !important;
+}
+
+.gjs-pn-views {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  right: 0;
+  top: 31px !important;
+  width: 15%;
+  z-index: 4;
+  position: fixed !important;
+  right: -15% !important;
+}
+
+.gjs-pn-views-container {
+  height: 93% !important;
+  padding: 42px 0 0;
+  right: 0;
+  top: 62px !important;
+  width: 15%;
+  overflow: auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  position: fixed !important;
+  right: -15% !important;
+}
+
+.gjs-pn-options {
+  right: 0% !important;
+  top: 0;
+}
+
+.gjs-pn-commands {
+  width: 100% !important;
+  height: 25px !important;
+  left: 0;
+  top: 5px !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.gjs-pn-views > .gjs-pn-buttons {
+  background: #2f2f2f !important;
+}
+
+.gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-bars {
+  background: #f44336 !important;
+  margin: 0;
+  border-radius: 0;
+}
+
+.gsj-show-tools {
+  -webkit-animation: showtools .5s forwards; /* Safari 4.0 - 8.0 */
+  animation: showtools .3s forwards;
+}
+
+.gsj-hide-tools {
+  -webkit-animation: hidetools .5s forwards; /* Safari 4.0 - 8.0 */
+  animation: hidetools .3s forwards;
+}
+
+@keyframes showtools {
+  from {right: -15%;}
+  to {right: 0%;}
+}
+
+@keyframes hidetools {
+  from {right: 0%;}
+  to {right: -15%;}
+}
+
+.gjs-pn-commands > .gjs-pn-buttons {
+  align-items: center;
+  display: initial !important;
+  justify-content: space-between;
+  top: 5px;
+}
+
+.gjs-keppler-logo:after {
+  content: 'Keppler';
+  font-family: 'Patua One';
+  font-size: 22px !important;
+  margin-top: 6px !important;
+  color: #f44336;
+}

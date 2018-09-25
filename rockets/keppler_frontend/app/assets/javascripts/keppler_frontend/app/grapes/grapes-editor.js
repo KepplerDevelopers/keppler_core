@@ -610,8 +610,17 @@ function saveCode(editor, view_id) {
 //   }
 // });
 
-
+var toogleTools = false;
 var pnm = editor.Panels;
+
+pnm.addButton('commands', [
+  {
+    id: 'keppler-logo',
+    className: 'gjs-keppler-logo',
+    command: function(e) {},
+  }
+]);
+
 pnm.addButton('options', [{
   id: 'undo',
   className: 'fa fa-undo icon-undo',
@@ -648,6 +657,21 @@ pnm.addButton('options', [{
       var route = "/admin/frontend/views/"+view_id+"/editor";
       window.location.href = route
     }     
+  },
+},
+{
+  id: 'show-tools',
+  className: 'fa fa-bars',
+  command(editor, sender) {  
+    if(toogleTools===false)  {
+      $(".gjs-pn-views").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
+      $(".gjs-pn-views-container").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
+      toogleTools=true
+    } else {
+      $(".gjs-pn-views").removeClass('gsj-show-tools').addClass('gsj-hide-tools')
+      $(".gjs-pn-views-container").removeClass('gsj-show-tools').addClass('gsj-hide-tools')
+      toogleTools=false
+    }
   },
 }]);
 

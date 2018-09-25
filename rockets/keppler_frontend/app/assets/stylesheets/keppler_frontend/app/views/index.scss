@@ -31,7 +31,10 @@
  min-height: 75px;
  flex-grow: 1;
  flex-basis: 100%;
- margin: 0 2% 0 2% !important;
+ margin-top: 0px !important;
+ margin-right: 2% !important;
+ margin-bottom: 0px !important;
+ margin-left: 2% !important;
 }
 
 #ib31sx
@@ -78,7 +81,9 @@
   flex-wrap: nowrap !important;
   align-self: auto !important;
   justify-content: flex-start !important;
-  flex: 0 !important;
+  flex-grow: 0 !important;
+  flex-shrink: 1 !important;
+  flex-basis: 0% !important;
  }
 
  .cell-flex
