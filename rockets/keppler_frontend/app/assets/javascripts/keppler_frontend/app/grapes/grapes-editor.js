@@ -561,6 +561,7 @@ var editor  = grapesjs.init(
     assets: images_assets
   },
 
+
   /*
   ztyleManager : {
     clearProperties: 1,
@@ -600,6 +601,15 @@ function saveCode(editor, view_id) {
     alert(data.result)
   }) 
 }
+
+
+// $(document).bind('keydown',function(e) {
+//   if(e.ctrlKey && (e.which == 83)) {
+//     e.preventDefault();
+//     saveCode(editor, view_id);
+//   }
+// });
+
 
 var pnm = editor.Panels;
 pnm.addButton('options', [{
@@ -994,7 +1004,6 @@ editor.Commands.add('set-device-desktop', {
 editor.Commands.add('set-device-mobile', {
   run: editor => editor.setDevice('Mobile')
 });
-  
 
 
 })
@@ -1004,4 +1013,3 @@ editor.Commands.add('set-device-mobile', {
 // keymaps.add('ns:code-save', '⌘+s, ctrl+s', editor => {
 //   console.log('do stuff');
 //  });
-

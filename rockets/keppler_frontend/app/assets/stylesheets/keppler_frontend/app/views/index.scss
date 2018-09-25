@@ -1,20 +1,7 @@
 #iru4n
 {
  font-family: "Patua One" !important;
- float: none !important;
  text-align: center !important;
-}
-
-.navbar.navbar-default
-{
- border-top-left-radius: 0px !important;
- border-top-right-radius: 0px !important;
- border-bottom-right-radius: 0px !important;
- border-bottom-left-radius: 0px !important;
- margin-top: 0px !important;
- margin-right: 0px !important;
- margin-bottom: 0px !important;
- margin-left: 0px !important;
 }
 
 #irscd
@@ -27,20 +14,76 @@
  text-align: center !important;
 }
 
-.container-fluid
+.row-flex
 {
- text-align: right !important;
+ display: flex;
+ justify-content: flex-start;
+ align-items: stretch;
+ flex-wrap: nowrap;
+ padding-top: 10px;
+ padding-right: 10px;
+ padding-bottom: 10px;
+ padding-left: 10px;
+}
+
+.cell-flex
+{
+ min-height: 75px;
+ flex-grow: 1;
+ flex-basis: 100%;
+ margin: 0 2% 0 2% !important;
+}
+
+#ib31sx
+{
+ text-align: center !important;
+}
+
+#iy93lk
+{
+ letter-spacing: normal !important;
+ flex-basis: 100% !important;
+}
+
+#iej76j
+{
+ letter-spacing: normal !important;
+ flex-basis: 100% !important;
+}
+
+#ikwbjh
+{
+ letter-spacing: normal !important;
+ flex-basis: 100% !important;
 }
 
 @media (max-width: 480px)
 {
- #irscd
+ .cell-flex
  {
-  font-size: 16px !important;
+  max-height: 55% !important;
  }
 
- #iru4n
+ .row-flex
  {
-  font-size: 28px !important;
+  flex-direction: column !important;
+ }
+}
+
+@media (max-width: 768px)
+{
+ .row-flex
+ {
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-self: auto !important;
+  justify-content: flex-start !important;
+  flex: 0 !important;
+ }
+
+ .cell-flex
+ {
+  flex-direction: row !important;
+  max-height: 60% !important;
  }
 }
