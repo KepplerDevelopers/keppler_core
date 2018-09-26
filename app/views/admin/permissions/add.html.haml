@@ -26,7 +26,7 @@
                         = render 'admin/permissions/switch', role: @role, module_name: module_name[key.first]['model'], actions: module_name[key.first]['actions']
                     .pull-right
                       %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                        %i.icon-plus
+                        %i.fa.fa-plus
                 .box-body
                   %table.table
                     %tbody
@@ -51,7 +51,7 @@
                                   = render 'admin/permissions/switch', role: @role, module_name: children[ky.first]['model'], actions: children[ky.first]['actions']
                               .pull-right
                                 %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                                  %i.icon-plus
+                                  %i.fa.fa-plus
                           .box-body
                             %table.table.table-bordered
                               %tbody
