@@ -1,1 +1,2 @@
+$("#switch-container-<%= @module.split('::').join('') %>").html("<%= j render 'admin/permissions/switch', role: @role, module_name: @module.split('::').join(''), actions: @actions %>");
 $("#switch-<%= @module.split('::').join('') %>-<%= @action %>").toggleClass('active');
