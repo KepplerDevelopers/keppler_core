@@ -5,12 +5,6 @@ module KepplerFrontend
     # End callbacks area (don't delete)
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
-    # begin index
-    def index
-      # Insert ruby code...
-      @titles = ["Titulo 1", "Titulo 2", "Titulo 3", "Titulo 4", "Titulo 5", "Titulo 6"]
-    end
-    # end index
 
     # begin keppler
     def keppler

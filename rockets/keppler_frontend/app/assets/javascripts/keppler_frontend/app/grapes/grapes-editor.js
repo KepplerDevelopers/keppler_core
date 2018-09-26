@@ -67,6 +67,45 @@ var sectors = [{
       {value: 'text', name: 'Text'},
       {value: 'wait', name: 'Wait'},
     ],
+  }, {
+    property: 'overflow',
+    type: 'select',
+    defaults: 'auto',
+    list    : [
+      {value: 'auto', name: 'Auto'},
+      {value: 'hidden', name: 'Hidden'},
+      {value: 'visible', name: 'Visible'},
+      {value: 'scroll', name: 'Scroll'},
+      {value: 'initial', name: 'Initial'},
+      {value: 'inherit', name: 'Inherit'},
+      
+    ],
+  }, {
+    property: 'overflow-x',
+    type: 'select',
+    defaults: 'auto',
+    list    : [
+      {value: 'auto', name: 'Auto'},
+      {value: 'hidden', name: 'Hidden'},
+      {value: 'visible', name: 'Visible'},
+      {value: 'scroll', name: 'Scroll'},
+      {value: 'initial', name: 'Initial'},
+      {value: 'inherit', name: 'Inherit'},
+      
+    ],
+  }, {
+    property: 'overflow-y',
+    type: 'select',
+    defaults: 'auto',
+    list    : [
+      {value: 'auto', name: 'Auto'},
+      {value: 'hidden', name: 'Hidden'},
+      {value: 'visible', name: 'Visible'},
+      {value: 'scroll', name: 'Scroll'},
+      {value: 'initial', name: 'Initial'},
+      {value: 'inherit', name: 'Inherit'},
+      
+    ],
   }]
 },{
   name: 'Dimension',
@@ -268,7 +307,7 @@ var sectors = [{
 },{
   name: 'Extra',
   open: false,
-  buildProps: ['opacity', 'transition', 'perspective', 'transform'],
+  buildProps: ['opacity', 'filter', 'transition', 'perspective', 'transform'],
   properties: [{
     type: 'slider',
     property: 'opacity',
@@ -1025,6 +1064,45 @@ editor.on('canvas:dragdata', (dt, result) => {
   console.groupEnd();
 });
 */
+
+var domComps = editor.DomComponents;
+var dType = domComps.getType('default');
+var dModel = dType.model;
+var dView = dType.view;
+
+domComps.addType('input', {
+    model: dModel.extend({
+      defaults: Object.assign({}, dModel.prototype.defaults, {
+        traits: [
+          // strings are automatically converted to text types
+          'name',
+          'placeholder',
+          {
+            type: 'select',
+            label: 'Type',
+            name: 'type',
+            options: [
+              {value: 'text', name: 'Text'},
+              {value: 'email', name: 'Email'},
+              {value: 'password', name: 'Password'},
+              {value: 'number', name: 'Number'},
+            ]
+          }, {
+            type: 'checkbox',
+            label: 'Required',
+            name: 'required',
+        }],
+      }),
+    }, {
+      isComponent: function(el) {
+        if(el.tagName == 'INPUT'){
+          return {type: 'input'};
+        }
+      },
+    }),
+
+    view: dView,
+});
 
 //editor.on('component:remove', m => console.log('Removed', m, m.getEl()));
 //editor.on('component:add', m => console.log('Added', m, m.getEl()));
