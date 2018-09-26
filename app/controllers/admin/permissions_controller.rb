@@ -45,7 +45,7 @@ module Admin
         @role.add_module(module_name, actions)
       end
 
-      @actions = all_actions if @actions.blank?
+      @actions = actions if @actions.blank?
     end
 
     def set_role
