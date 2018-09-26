@@ -526,6 +526,7 @@ var editor  = grapesjs.init(
   container: '#keppler-editor',
   protectedCss: '',
   style: css_style,
+  scripts: "function abr(){}",
   canvas: {
     styles: styles, 
     scripts: scripts
@@ -624,14 +625,17 @@ pnm.addButton('commands', [
 pnm.addButton('options', [{
   id: 'undo',
   className: 'fa fa-undo icon-undo',
+  title: 'Undo',
   command: function(e) { return e.runCommand('core:undo') },
 },{
   id: 'redo',
+  title: 'Redo',
   className: 'fa fa-repeat icon-redo',
   command: function(e) { return e.runCommand('core:redo') },
 }, 
 {
   id: 'refresh',
+  title: 'Refresh',
   className: 'fa fa-refresh',
   command(editor, sender) {
     window.location.reload();
@@ -644,12 +648,14 @@ pnm.addButton('options', [{
 // }, 
 {
   id: 'save-code',
+  title: 'Save',
   className: 'fa fa-save',
   command(editor, sender) {
     saveCode(editor, view_id); 
   },
 }, {
   id: 'exit',
+  title: 'Exit',
   className: 'fa fa-sign-out',
   command(editor, sender) {
     var confirmation = confirm("Are you sure?");
@@ -661,15 +667,18 @@ pnm.addButton('options', [{
 },
 {
   id: 'show-tools',
+  title: 'Open tools',
   className: 'fa fa-bars',
   command(editor, sender) {  
     if(toogleTools===false)  {
       $(".gjs-pn-views").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
       $(".gjs-pn-views-container").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
+      $(".gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-bars ").removeClass('fa-bars').addClass('fa-times')
       toogleTools=true
     } else {
       $(".gjs-pn-views").removeClass('gsj-show-tools').addClass('gsj-hide-tools')
       $(".gjs-pn-views-container").removeClass('gsj-show-tools').addClass('gsj-hide-tools')
+      $(".gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-times ").removeClass('fa-times').addClass('fa-bars')
       toogleTools=false
     }
   },
@@ -708,6 +717,19 @@ codeButton.collection.remove(codeButton);
 var bm = editor.BlockManager;
 
 
+editor.on('canvas:dragenter', (some, argument) => {
+  // do something
+  $(".gjs-pn-views").removeClass('gsj-show-tools').addClass('gsj-hide-tools')
+  $(".gjs-pn-views-container").removeClass('gsj-show-tools').addClass('gsj-hide-tools')
+  $(".gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-bars ").removeClass('fa-times').addClass('fa-bars')
+})
+
+editor.on('canvas:dragend', (some, argument) => {
+  // do something
+  $(".gjs-pn-views").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
+  $(".gjs-pn-views-container").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
+  $(".gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-times ").removeClass('fa-bars').addClass('fa-times')
+})
 
 editor.on('selector:add', function(selector) {
   if (['.row-flex', '.cell-flex', '.cell-gut'].indexOf(selector.getFullName()) >= 0 ) {
@@ -1029,6 +1051,73 @@ editor.Commands.add('set-device-mobile', {
   run: editor => editor.setDevice('Mobile')
 });
 
+var devices = editor.DeviceManager;
+
+devices.add('Desktop Extra Large (1900px)', '1900px');
+
+devices.add('Desktop Large (1600px)', '1600px');
+
+devices.add('Desktop Medium (1440px)', '1440px');
+
+devices.add('iPad Portrait (768px)', '768px');
+
+devices.add('iPad Landscape (1024px x 768px)', '1024px', {
+  height: '768px'
+});
+
+devices.add('Galaxy S5 Portrait (360px x 640px)', '360px', {
+  height: '640px'
+});
+
+devices.add('Galaxy S5 Landscape (640px x 360px)', '640px', {
+  height: '360px'
+});
+
+devices.add('Pixel 2 Portrait (411px x 731px)', '411px', {
+  height: '731px'
+});
+
+devices.add('Pixel 2 Landscape (731px x 411px)', '731px', {
+  height: '411px'
+});
+
+devices.add('Pixel 2 XL Portrait (411px x 823px)', '411px', {
+  height: '823px'
+});
+
+devices.add('Pixel 2 XL Landscape (823px x 411px)', '823px', {
+  height: '411px'
+});
+
+devices.add('iPhone 5/SE Portrait (320px x 568px)', '320px', {
+  height: '568px'
+});
+
+devices.add('iPhone 5/SE Landscape (568px x 320px)', '568px', {
+  height: '320px'
+});
+
+devices.add('iPhone 6/7/8 Portrait (375px x 667px)', '375px', {
+  height: '667px'
+});
+
+devices.add('iPhone 6/7/8 Landscape (667px x 375px)', '667px', {
+  height: '375px'
+});
+
+devices.add('iPhone 6/7/8 Plus Portrait (414px x 736px)', '414px', {
+  height: '736px'
+});
+
+devices.add('iPhone 6/7/8 Plus Landscape (736px x 414px)', '736px', {
+  height: '414px'
+});
+
+devices.add('iPhone X Portrait (375px x 812px)', '375px');
+
+devices.add('iPhone X Landscape (812px x 375px)', '812px', {
+  height: '375px'
+});
 
 })
 

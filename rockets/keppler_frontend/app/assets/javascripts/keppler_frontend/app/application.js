@@ -18,4 +18,5 @@
 //= require ./grapes/grapick
 //= require ./grapes/grapes-gradient
 //= require ./grapes/grapes-custom-code
+//= require jquery.slick
 //= require_tree .

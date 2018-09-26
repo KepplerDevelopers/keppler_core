@@ -8,7 +8,7 @@ module KepplerFrontend
     # begin index
     def index
       # Insert ruby code...
-      @saludos = ['Hola', 'Bienvenido', 'Chao']
+      @titles = ["Titulo 1", "Titulo 2", "Titulo 3", "Titulo 4", "Titulo 5", "Titulo 6"]
     end
     # end index
 
