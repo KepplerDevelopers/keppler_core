@@ -108,7 +108,7 @@ module KepplerFrontend
         save_section('keppler-header', editor, origin_layout)
         save_section('keppler-view', view_name, editor, origin_view)
         save_section('keppler-footer', editor, origin_layout)
-        # lines = File.readlines("#{url_front}/app/views/keppler_frontend/app/frontend/#{view_name}.html.erb")
+        lines = File.readlines("#{url_front}/app/views/keppler_frontend/app/frontend/#{view_name}.html.erb")
       end
 
       def save_section(section, view_name='', editor, origin)
@@ -142,18 +142,18 @@ module KepplerFrontend
       
       def code_no_edit(ids, origin)       
         ids.each_with_index do |id, idx|
-          idx_section = index_section(origin, "<keppler-no-edit id='#{id.first}'", "</keppler-no-edit>")   
+          idx_section = index_section(origin, "id='#{id.first}'", "</keppler-no-edit>")   
           ids[idx] << origin[ idx_section[0]..idx_section[1] ] 
         end        
       end
 
       def merge_to_editor(editor_lines, codes_no_edit)
         codes_no_edit.each do |code|
-          idx_empty = index_empty_section(editor_lines, "<keppler-no-edit id=\"#{code.first}\"></keppler-no-edit>") 
+          idx_empty = index_empty_section(editor_lines, "id=\"#{code.first}\"></keppler-no-edit>") 
           if !idx_empty.zero?
             editor_lines.slice!(idx_empty)
           else
-            idx_section = index_section(editor_lines, "<keppler-no-edit id=\"#{code.first}\"", "</keppler-no-edit>") 
+            idx_section = index_section(editor_lines, "id=\"#{code.first}\"", "</keppler-no-edit>") 
             editor_lines.slice!(idx_section[0]+1..idx_section[1]-1)
             code.last[1..code.last.length-2].reverse.each_with_index do |line, i|
               editor_lines.insert(idx_section[0]+1, "#{line}\n")

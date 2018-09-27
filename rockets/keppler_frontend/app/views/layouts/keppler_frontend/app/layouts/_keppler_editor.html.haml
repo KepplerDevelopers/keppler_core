@@ -4,3 +4,7 @@
 - if params[:editor] && current_user.rol.eql?('keppler_admin') && Rails.env.eql?("development")
   = javascript_include_tag 'keppler_frontend/app/grapes/grapes-editor.js', 'data-turbolinks-track': 'reload'
   = Gon::Base.render_data
+
+- else  
+  :javascript
+    $('keppler-no-edit').removeClass('no-edit-area');

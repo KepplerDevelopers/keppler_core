@@ -1,3 +1,63 @@
+var extrasEditor = {
+  buildHtml: function(html) {
+    var html = $(html)
+    var sections = ""
+    var sectionsPermit = ['keppler-header', 'keppler-view', 'keppler-footer']
+    for(var i=0; i < html.length; i++) {
+      if(sectionsPermit.includes(html[i].localName)) {
+        var noEditIds = this.getNoEditIdsEditor(html[i]);
+        for(var j=0; j < noEditIds.length; j++) {
+          $(html[i]).find('#'+noEditIds[j]).replaceWith(function () {
+            return $('<keppler-no-edit/>', {
+                id: noEditIds[j],
+                html: this.innerHTML
+            });
+          });
+        }
+        sections = sections+processHtml(html[i].outerHTML)
+      }
+    }
+    return sections
+  },
+
+  getNoEditIdsEditor : function(section) {
+    var nodes = section.querySelectorAll(".no-edit-area");
+    var noEditIds = [];
+    for(var i=0; i < nodes.length; i++) {
+      noEditIds.push(nodes[i].id)
+    }
+    return noEditIds
+  },
+
+  getNoEditIds: function(){
+    var nodes = document.querySelectorAll(".no-edit-area");
+    var noEditIds = [];
+    for(var i=0; i < nodes.length; i++) {
+      noEditIds.push(nodes[i].id)
+    }
+    return noEditIds
+  },
+
+  createNoEditAreaEditor: function(){
+    $('keppler-no-edit').addClass('no-edit-area');
+    noEditIds = this.getNoEditIds();
+    var $kepplerNoEdit = $("keppler-no-edit");
+    $kepplerNoEdit.replaceWith(function () {
+        return $('<div/>', {
+            class: 'no-edit-area',
+            html: this.innerHTML
+        });
+    });
+    var nodes = document.querySelectorAll(".no-edit-area");
+    for(var i=0; i < nodes.length; i++) {
+      nodes[i].id = noEditIds[i];
+    }
+  },
+
+
+}
+
+
 $(document).ready(function(){
 //grapesjs.plugins.add('testplug', (editor, config) => {});
 var blkStyle = '.blk-row::after{ content: ""; clear: both; display: block;} .blk-row{padding: 10px;}';
@@ -486,55 +546,6 @@ var sectors = [{
   }
 
 ];
-/*
-var editor2  = grapesjs.init({
-  container  : '#gjs2',
-  height: '450px',
-  fromElement: true,
-  storageManager: { type: 0 },
-  plugins: ['testplug', 'gjs-blocks-basic', 'gjs-plugin-forms', 'grapesjs-lory-slider'],
-
-  width: '500px',
-  layerManager: {
-    appendTo: '#layers-container'
-  },
-  blockManager: {
-    appendTo: '#blocks'//blocks
-  },
-  styleManager: {
-    appendTo: '#style-manager-container',
-    sectors: sectors,
-  },
-  selectorManager: {
-    appendTo: '#selectors-container',
-  },
-  traitManager: {
-    appendTo: '#traits-container',
-  },
-  panels: {
-    defaults: [{
-      id: 'layers',
-      el: '#layers',
-      resizable: {
-        tc: 0,
-        cr: 1,
-        bc: 0,
-        keyWidth: 'flex-basis',
-      },
-    },{
-      id: 'styles',
-      el: '#style-manager',
-      resizable: {
-        tc: 0,
-        cr: 0,
-        cl: 1,
-        bc: 0,
-        keyWidth: 'flex-basis',
-      },
-    }]
-  }
-});
-*/
 
 
 var links = document.getElementsByTagName('link')
@@ -558,7 +569,6 @@ try {
       console.log(e.message);
   }
 }  
-
 
 var editor  = grapesjs.init(
 {
@@ -601,54 +611,31 @@ var editor  = grapesjs.init(
     assets: images_assets
   },
 
-
-  /*
-  ztyleManager : {
-    clearProperties: 1,
-    sectors: [{
-      name: 'General',
-      open: false,
-      buildProps: ['gigi', 'width'],
-      properties: [{
-        id: 'gigi',
-        name: 'My prop',
-        property: 'custom-prop',
-      }]
-    }]
-  },*/
-
   styleManager : {
     clearProperties: 1,
     sectors: sectors,
   },
-
 
 });
 
 
 window.editor = editor;
 
-function saveCode(editor, view_id) {
-  var html = processHtml(editor.getHtml());
+function saveCode() { 
+  // var html = processHtml(editor.getHtml());
+  var html = extrasEditor.buildHtml(editor.getHtml());
   var css = editor.getCss();
-
-  var css = cssbeautify(css, {
-    indent: ' ',
-    openbrace: 'separate-line',
-    autosemicolon: true
-  });    
-  $.post("/admin/frontend/views/"+view_id+"/live_editor/save", {html: html, css: css}, function(data){
-    alert(data.result)
-  }) 
+   var css = cssbeautify(css, {
+     indent: ' ',
+     openbrace: 'separate-line',
+     autosemicolon: true
+    });    
+  
+   $.post("/admin/frontend/views/"+view_id+"/live_editor/save", {html: html, css: css}, function(data){
+     alert(data.result)
+   }) 
 }
 
-
-// $(document).bind('keydown',function(e) {
-//   if(e.ctrlKey && (e.which == 83)) {
-//     e.preventDefault();
-//     saveCode(editor, view_id);
-//   }
-// });
 
 var toogleTools = false;
 var pnm = editor.Panels;
@@ -722,22 +709,6 @@ pnm.addButton('options', [{
     }
   },
 }]);
-
-// $(document).bind('keydown',function(e) {
-//   try {
-//     window.editor = editor;
-//     var view_id = gon.view_id;
-//   } catch (e) {
-//     if (e instanceof SyntaxError) {
-//         console.log(e.message);
-//     }
-//   } 
-//   if(e.ctrlKey && (e.which == 83)) {
-//     e.preventDefault();
-//     saveCode(editor, view_id);
-//   }
-// });
-
 
 
 editor.StyleManager.addProperty('Decorations', {
@@ -966,82 +937,6 @@ bm.add('map', {
   },
 });
 
-
-
-
-
-var domc = editor.DomComponents;
-var defaultType = domc.getType('default');
-var defaultModel = defaultType.model;
-var defaultView = defaultType.view;
-var textType = domc.getType('text');
-
-/*
-domc.addType('void-component', {
-  model: defaultModel.extend({
-    defaults: { ...defaultModel.prototype.defaults,
-      style: { 'pointer-events': 'none' }
-    },
-    toHTML() {
-      return '';
-    }
-  }, {
-    isComponent: function(el) {},
-  }),
-  view: defaultView,
-});
-*/
-/*
-domc.addType('raw-text', {
-  model: textType.model.extend({
-    },{
-      isComponent: function(el) {
-        if (el.hasAttribute && el.hasAttribute('data-raw-text')) {
-          return {
-            type: 'raw-text',
-            content: el.innerHTML,
-            components: []
-          };
-        }
-      }
-    }
-  ),
-  view: textType.view.extend({
-    disableEditing() {
-      const model = this.model;
-      const rte = this.rte;
-
-      if (rte && model.get('editable')) {
-        rte.disable(this, this.activeRte);
-        model.set('content', this.getChildrenContainer().innerHTML)
-        .trigger('change:content', model);
-      }
-
-      this.rteEnabled = 0;
-      this.toggleEvents();
-    },
-  })
-});
-*/
-
-/*
-domc.addType('default', {
-  model: defaultModel.extend({
-    defaults: Object.assign({}, defaultModel.prototype.defaults, {
-      'custom-name': 'testiiing',
-      traits: [{
-        name: 'title',
-        label: 'Título',
-        placeholder: 'Insira um texto aqui'
-      }]
-    }),
-  }),
-});
-*/
-
-
-
-
 // Store and load events
 editor.on('storage:load', function(e) {
   // console.log('LOAD ', e);
@@ -1049,21 +944,6 @@ editor.on('storage:load', function(e) {
 editor.on('storage:store', function(e) {
   // console.log('STORE ', e);
 });
-
-// Canvas DND
-/*
-editor.on('canvas:dragenter', (dt, content) => console.log('DRAG-ENTER', content));
-editor.on('canvas:dragover', dt => console.log('DRAG-OVER')); // As orignal dragover
-editor.on('canvas:drop', (dt, model) => console.log('DRAG-DROP', model)); // When something is dropped on canvas
-editor.on('canvas:dragend', dt => console.log('DRAG-END')); // Fired when a drag operation is being ended
-editor.on('canvas:dragdata', (dt, result) => {
-  console.group('DRAG-DATA');
-  console.log('Files', dt.files);
-  console.log('Types', dt.types);
-  console.log('Content', result.content);
-  console.groupEnd();
-});
-*/
 
 var domComps = editor.DomComponents;
 var dType = domComps.getType('default');
@@ -1103,9 +983,6 @@ domComps.addType('input', {
 
     view: dView,
 });
-
-//editor.on('component:remove', m => console.log('Removed', m, m.getEl()));
-//editor.on('component:add', m => console.log('Added', m, m.getEl()));
 
 editor.on('traverse:html', function (node, resultNode) {
 
@@ -1199,8 +1076,4 @@ devices.add('iPhone X Landscape (812px x 375px)', '812px', {
 
 })
 
-// var keymaps = editor.Keymaps;
-
-// keymaps.add('ns:code-save', '⌘+s, ctrl+s', editor => {
-//   console.log('do stuff');
-//  });
+extrasEditor.createNoEditAreaEditor();

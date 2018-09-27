@@ -5,6 +5,12 @@ module KepplerFrontend
     # End callbacks area (don't delete)
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
+    # begin index
+    def index
+      # Insert ruby code...
+      @text_no_edit = "La estructura de este texto no puede ser editado"
+    end
+    # end index
 
     # begin keppler
     def keppler
