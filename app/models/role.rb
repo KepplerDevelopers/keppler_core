@@ -26,7 +26,7 @@ class Role < ApplicationRecord
   end
 
   def permission_to(module_name)
-    !all_permissions[module_name].nil?
+    !all_permissions&.dig(module_name).nil? || false
   end
 
   def action?(module_name, action)
@@ -49,11 +49,31 @@ class Role < ApplicationRecord
     end
   end
 
+  def toggle_all_actions(module_name, actions)
+    if permission_to(module_name)
+      update_actions(module_name, actions)
+    else
+      add_module(module_name, actions)
+    end
+  end
+
+  def all_actions?(module_name, actions)
+    return unless permission_to(module_name)
+    permit = all_permissions[module_name]['actions'].reject(&:empty?)
+    permit.blank? ? false : permit.uniq.length.eql?(actions&.uniq&.length)
+  end
+
   def first_permission(module_name, action)
     Permission.create(
       role_id: id,
       modules: Hash[module_name, Hash['actions', Array(action)]]
     )
+  end
+
+  def add_module(module_name, action)
+    old_hash = all_permissions
+    new_hash = Hash[module_name, Hash['actions', Array(action)]]
+    permissions.first.update(modules: old_hash.merge(new_hash))
   end
 
   private
@@ -76,9 +96,17 @@ class Role < ApplicationRecord
     end
   end
 
-  def add_module(module_name, action)
+  def update_actions(module_name, actions)
+    if all_actions?(module_name, actions) || actions.blank?
+      clear_actions(module_name)
+    else
+      actions&.each { |act| add_action(module_name, act) }
+    end
+  end
+
+  def clear_actions(module_name)
     old_hash = all_permissions
-    new_hash = Hash[module_name, Hash['actions', Array(action)]]
+    new_hash = Hash[module_name, Hash['actions', []]]
     permissions.first.update(modules: old_hash.merge(new_hash))
   end
 
