@@ -163,14 +163,13 @@ module KepplerFrontend
     end
 
     def code_save(code)
-      save_code("#{url_front}/app/views/layouts/keppler_frontend/app/layouts/application.html.erb", code)
+      save_head(code)
+      # save_code
+      # ("#{url_front}/app/views/layouts/keppler_frontend/app/layouts/application.html.erb", code)
     end
 
-    def save_code(file, code)
-      File.delete(file) if File.exist?(file)
-      out_file = File.open(file, "w")
-      out_file.puts(code)
-      out_file.close
+    def save_code()
+      save_head
     end
 
     private
