@@ -119,42 +119,25 @@ module KepplerFrontend
         areas = ['header', 'view', 'footer', 'aside', 'nav']
         area_codes = {}
         areas.each do |area| 
-          area_label = !area.eql?('view') ? "<keppler-#{area}" : "<keppler-#{area} id='#{view_name}'"
-          idx_section = index_section(edit_code_processed, area_label, "</keppler-#{area}>")
-          if !idx_section[0].zero?
-            area_edit = edit_code_processed[idx_section[0]..idx_section[1]]
-            origin_url =  area.eql?('view') ? origin_view_url : origin_layout_url
-            origin_code = File.readlines(origin_url)
-            origin_area = index_section(origin_code, area_label, "</keppler-#{area}>")
-            origin_code.slice!(origin_area[0]+1..origin_area[1]-1)
-            area_edit[1..area_edit.length-2].reverse.each_with_index do |line, i|
-              origin_code.insert(origin_area[0]+1, "#{line}\n")
-            end
-            origin_code.insert(origin_area[0]+1, "<!-- Keppler Section -->\n")
-            File.write(origin_url, HtmlBeautifier.beautify(origin_code.join('')))
-          end
+          save_html_area(area, view_name, edit_code_processed, origin_view_url, origin_layout_url)
         end
-        # save_section('keppler-header', codes_no_edit, view_name, editor, origin_layout)
-        # save_section('keppler-view', codes_no_edit, view_name, editor, origin_view)
-        # save_section('keppler-footer', codes_no_edit, view_name, editor, origin_layout)
       end
 
-      def save_section(section, codes_no_edit, view_name='', editor, origin)
-        origin_lines = File.readlines(origin)
-        editor_lines = editor.split("\n")       
-        section_label = !section.eql?('keppler-view') ? "<#{section}" : "<#{section} id='#{view_name}'"
-        idx_section = index_section(editor_lines, section_label, "</#{section}>")
-        ##### Fusion entre el codigo de origin y el codigo del editor
-        editor_lines = editor_lines[idx_section[0]..idx_section[1]]      
-        code = merge_to_editor(editor_lines, codes_no_edit)
-        ##### Sustituir codigo de origen con el codigo fusionado
-        origin_section = index_section(origin_lines, "<#{section}>", "</#{section}>")
-        origin_lines.slice!(origin_section[0]+1..origin_section[1]-1)
-        code[1..code.length-2].reverse.each_with_index do |line, i|
-          origin_lines.insert(origin_section[0]+1, "#{line}\n")
+      def save_html_area(area, view_name, edit_code_processed, origin_view_url, origin_layout_url)
+        area_label = !area.eql?('view') ? "<keppler-#{area}" : "<keppler-#{area} id='#{view_name}'"
+        idx_area = index_section(edit_code_processed, area_label, "</keppler-#{area}>")
+        if !idx_area[0].zero?
+          area_edit = edit_code_processed[idx_area[0]..idx_area[1]]
+          origin_url =  area.eql?('view') ? origin_view_url : origin_layout_url
+          origin_code = File.readlines(origin_url)
+          origin_area = index_section(origin_code, area_label, "</keppler-#{area}>")
+          origin_code.slice!(origin_area[0]+1..origin_area[1]-1)
+          area_edit[1..area_edit.length-2].reverse.each_with_index do |line, i|
+            origin_code.insert(origin_area[0]+1, "#{line}\n")
+          end
+          origin_code.insert(origin_area[0]+1, "<!-- Keppler Section -->\n")
+          File.write(origin_url, HtmlBeautifier.beautify(origin_code.join('')))
         end
-        origin_lines.insert(origin_section[0]+1, "<!-- Keppler Section -->\n")
-        File.write(origin, HtmlBeautifier.beautify(origin_lines.join('')))
       end
 
       def ids_no_edit(section)
@@ -171,21 +154,7 @@ module KepplerFrontend
           idx_section = index_section(origin_layout, "id='#{id.first}'", "</keppler-no-edit>")             
           ids[idx] << origin_layout[ idx_section[0]..idx_section[1] ] 
         end  
-      end
-      
-      # def code_no_edit(ids, origin_view, origin_layout)     
-      #   origin_view = File.readlines(origin_view)
-      #   origin_layout = File.readlines(origin_layout)
-      #   ids.each_with_index do |id, idx|
-      #     idx_section = index_section(origin_layout, "id='#{id.first}'", "</keppler-no-edit>") 
-      #     if idx_section[0].zero?
-      #       idx_section = index_section(origin_view, "id='#{id.first}'", "</keppler-no-edit>")
-      #       ids[idx] << origin_view[ idx_section[0]..idx_section[1] ] #if !idx_section[0].zero?
-      #     else               
-      #       ids[idx] << origin_layout[ idx_section[0]..idx_section[1] ] 
-      #     end
-      #   end  
-      # end
+      end      
 
       def merge_to_editor(editor_lines, codes_no_edit)
         codes_no_edit.each do |code|
@@ -206,26 +175,6 @@ module KepplerFrontend
         end
         editor_lines
       end
-
-      # def merge_to_editor(editor_lines, codes_no_edit)
-      #   codes_no_edit.each do |code|
-      #     idx_empty = index_empty_section(editor_lines, "id=\"#{code.first}\"></keppler-no-edit>") 
-      #     if !idx_empty.zero?
-      #       editor_lines.slice!(idx_empty)
-      #     else
-      #       idx_section = index_section(editor_lines, "id=\"#{code.first}\"", "</keppler-no-edit>") 
-      #       if !idx_section[0].zero?
-      #         editor_lines.slice!(idx_section[0]+1..idx_section[1]-1)
-      #         code.last[1..code.last.length-2].reverse.each_with_index do |line, i|
-      #           editor_lines.insert(idx_section[0]+1, "#{line}\n")
-      #         end
-      #       else
-      #         editor_lines.slice!(idx_section[0]+1..idx_section[1]-1)
-      #       end
-      #     end
-      #   end
-      #   editor_lines
-      # end
     end
   end
 end
