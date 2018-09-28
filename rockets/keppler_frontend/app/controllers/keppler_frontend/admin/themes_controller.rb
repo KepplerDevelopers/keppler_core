@@ -156,7 +156,9 @@ module KepplerFrontend
 
       def editor_save
         @theme = Theme.find(params[:theme_id])
-        @theme.code_save(params[:html]) if params[:html]
+        @theme.save_head(params[:head]) if params[:head]
+        @theme.save_header(params[:header]) if params[:header]
+        @theme.save_footer(params[:footer]) if params[:footer]
         render json: {result: true}
       end
 
