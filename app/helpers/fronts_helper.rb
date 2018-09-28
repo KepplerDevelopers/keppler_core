@@ -6,6 +6,10 @@ module FrontsHelper
     render 'layouts/keppler_frontend/app/layouts/head'
   end
 
+  def keppler_editor
+    render 'layouts/keppler_frontend/app/layouts/keppler_editor'
+  end
+
   def basic_info
     Setting.first
   end
