@@ -24,4 +24,8 @@ class RolePolicy < ControllerPolicy
   def show_description?
     keppler_admin? || user_can?(@objects, 'create_permissions')
   end
+
+  def toggle_permissions?
+    keppler_admin? || user_can?(@objects, 'toggle_permissions')
+  end
 end

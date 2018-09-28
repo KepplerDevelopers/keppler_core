@@ -117,8 +117,8 @@ KepplerFrontend::Engine.routes.draw do
         get '/editor', action: 'editor'
         post '/editor/save', action: 'editor_save'
         post '/sort', action: :sort, on: :collection
-        post '/upload', action: 'upload', as: 'upload'
-        get '/download', action: 'download', as: 'download'
+        post '/select_theme_view/:theme_view', action: 'select_theme_view', as: :select_theme
+
         get(
           '/reload',
           action: :reload,
