@@ -91,6 +91,11 @@ Rails.application.routes.draw do
         to: 'permissions#create',
         as: :role_create_permissions
       )
+      post(
+        ':role_id/toggle_permissions',
+        to: 'permissions#toggle_permissions',
+        as: :role_toggle_permissions
+      )
     end
 
     # resources :customizes do

@@ -9,7 +9,7 @@
               %i.cr-icon.glyphicon.glyphicon-ok
     - @capsule.capsule_fields.take(3).each do |field|
       %td
-        = link_to admin_capsules_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
+        = link_to admin_capsules_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'show-row' do
           %span
             - if <%= singular_table_name %>[field.name_field]
               = truncate(<%= singular_table_name %>[field.name_field].to_s, length: 20, omission: '...')
