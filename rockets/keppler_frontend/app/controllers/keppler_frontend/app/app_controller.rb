@@ -6,8 +6,10 @@ module KepplerFrontend
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
+    before_action :grapes_info
 
     include KepplerCapsules::Concerns::Lib
+    include KepplerFrontend::Concerns::Grapesjs
     def set_metas
       @theme_color = nil
       # Descomentar el modelo que exista depende del proyecto
@@ -48,6 +50,10 @@ module KepplerFrontend
 
     def set_analytics
       @scripts = Script.select { |x| x.url == request.env['PATH_INFO'] }
+    end
+
+    def url_front
+      "#{Rails.root}/rockets/keppler_frontend"
     end
   end
 end

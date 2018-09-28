@@ -7,6 +7,7 @@ module KepplerFrontend
       before_action :authorization
       before_action :set_filesystem      
       before_action :only_development
+      skip_before_action :verify_authenticity_token, only: :upload
 
       def index
         set_data(@filesystem)
@@ -15,6 +16,7 @@ module KepplerFrontend
 
       def upload
         uploader = ImgFileUploader.new
+        tab = "images"
         message = "fail"
         unless params[:view].nil?
           fotmat_valid = @filesystem .validate_format(params[:view][:file].original_filename)

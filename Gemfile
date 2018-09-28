@@ -98,6 +98,9 @@ gem 'kaminari-i18n', '0.5.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+#javascript
+gem 'gon', '6.2.1'
+
 
 # Development
 group :development do
@@ -106,6 +109,7 @@ group :development do
   gem 'byebug', '10.0.2'
   gem 'commands', '0.2.1'
   gem 'brakeman', '4.3.0'
+  gem 'htmlbeautifier', '1.3.1'
   # gem 'guard'
   # gem 'guard-coffeescript'
   gem 'guard-livereload', '2.5.2', require: false
