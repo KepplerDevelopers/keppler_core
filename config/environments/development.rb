@@ -54,4 +54,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.assets.precompile += %w( keppler_frontend/app/grapes/grapes-editor.js keppler_frontend/app/grapes/font-awesome.css )
 end
