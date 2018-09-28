@@ -622,18 +622,21 @@ var editor  = grapesjs.init(
 window.editor = editor;
 
 function saveCode() { 
-  // var html = processHtml(editor.getHtml());
-  var html = extrasEditor.buildHtml(editor.getHtml());
-  var css = editor.getCss();
-   var css = cssbeautify(css, {
-     indent: ' ',
-     openbrace: 'separate-line',
-     autosemicolon: true
-    });    
-  
-   $.post("/admin/frontend/views/"+view_id+"/live_editor/save", {html: html, css: css}, function(data){
-     alert(data.result)
-   }) 
+  try {
+    var html = extrasEditor.buildHtml(editor.getHtml());
+    var css = editor.getCss();
+    var css = cssbeautify(css, {
+      indent: ' ',
+      openbrace: 'separate-line',
+      autosemicolon: true
+      });    
+    
+    $.post("/admin/frontend/views/"+view_id+"/live_editor/save", {html: html, css: css}, function(data){
+      alert(data.result)
+    }) 
+  } catch (e) {
+    alert("Error when saving: Check that all is well")
+  }   
 }
 
 
@@ -741,11 +744,7 @@ editor.on('canvas:dragend', (some, argument) => {
   $(".gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-times ").removeClass('fa-bars').addClass('fa-times')
 })
 
-editor.on('selector:add', function(selector) {
-  if (['.row-flex', '.cell-flex', '.cell-gut'].indexOf(selector.getFullName()) >= 0 ) {
-    selector.set({private: 1});
-  }
-});
+
 
 bm.add('link', {
   label: 'Link',

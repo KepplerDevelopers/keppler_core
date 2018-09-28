@@ -32051,6 +32051,12 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
 
     if (!model.get('toolbar')) {
       var tb = [];
+      var className = "";
+      try {
+        className = model.attributes.classes.models[0].attributes.name 
+      } catch (e) {
+        var err = "no attributes";
+      }
       if (model.collection) {
         tb.push({
           attributes: { class: 'fa fa-arrow-up' },
@@ -32067,7 +32073,7 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
           command: 'tlb-move'
         });
       }
-      if (model.get('copyable')) {
+      if (model.get('copyable') && className!=='no-edit-area') {
         tb.push({
           attributes: { class: 'fa fa-clone' },
           command: 'tlb-clone'
