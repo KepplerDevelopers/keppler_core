@@ -6,7 +6,7 @@ es:
       en: Inglés
     preloader:
       title: Es dificil trabajar en el espacio
-      message: Esto puede tardar uno segundos...
+      message: Esto puede tardar unos segundos...
     devise:
       profile: Perfil
       sign_out: Salir
