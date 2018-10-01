@@ -1,4 +1,4 @@
 = title(t('keppler.models.singularize.setting').to_s.humanize)
 = header_information do
   = t('keppler.models.singularize.setting').to_s.humanize > t("keppler.header_information.setting.#{@render}").to_s
-= render 'form', setting: @setting, render: @render, color: @color
+= render 'form', setting: @setting, render: @render, color: @color, languages: @languages
