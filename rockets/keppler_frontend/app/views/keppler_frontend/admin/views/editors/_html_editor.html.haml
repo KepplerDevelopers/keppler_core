@@ -19,12 +19,13 @@
     -# %li.pull-right
     -#   %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.download') }
     -#     %i.fa.fa-download
-    %li.pull-right
-      = link_to "#{@view.url}?view=#{@view.id}&editor=true",title: t('keppler.actions.interface') do
-        %i.fa.fa-object-group
-    %li.pull-right
-      = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
-        %i.fa.fa-globe
+    - if @view.active?
+      %li.pull-right
+        = link_to "#{@view.url}?view=#{@view.id}&editor=true",title: t('keppler.actions.interface') do
+          %i.fa.fa-object-group
+      %li.pull-right
+        = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
+          %i.fa.fa-globe
     %li.pull-right
       %a#btn-theme-editor{title: t('keppler.actions.user_interfaces') }
         %i.fa.fa-paint-brush

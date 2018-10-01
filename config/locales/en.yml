@@ -1,15 +1,27 @@
 en:
   keppler:
+    language: 
+      select_lang: Select a language
+      es: Spanish
+      en: English    
+    preloader:
+      title: It is difficult to work in space
+      message: This may take seconds...
     login_message: Sign in to start your session
     powered: Powered by
     release_date: Release Date
+    devise:
+      profile: Profile
+      sign_out: Sign Out
+      sign_in: Sign In
     sidebar-menu:
       about: About Keppler
-      seos: Seos
+      seo: Seo
       roles: Roles
       customizes: Customizes
       dashboard: Dashboard
       users: Users
+      rockets: Rockets
       users-submenu:
         users: Users
         roles: Roles
@@ -19,6 +31,7 @@ en:
       keppler-design: 'Keppler Design'
       development: 'Development'
       setting-submenu:
+        keppler-configuration: Keppler Configuration
         basic-information: Basic Information
         email-setting-smtp: 'Email setup (SMTP)'
         social-accounts: 'Social accounts'
@@ -32,6 +45,12 @@ en:
       keppler-blog-submenu:
         posts: Posts
         categories: Categories
+    customize:
+      admin-theme: Keppler Theme
+      time-zone: Time Zone
+      location: Location
+      language: Lenguage
+      preview: Preview
     permissions:
       index: Index
       create: Create
@@ -131,6 +150,7 @@ en:
       new: "%{model} - New"
       history: Activities
     actions:
+      add: Add
       documentation: Documentation
       created: Created
       updated: Updated
