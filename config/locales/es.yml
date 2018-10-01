@@ -42,7 +42,7 @@ es:
       rockets: Rockets
       setting: Configuración
       setting-submenu:
-        keppler-configuration: Configuración de Keppler
+        keppler-configuration: Ajustes de Keppler
         basic-information: 'Información básica'
         email-setting-smtp: 'Configuración SMTP'
         social-accounts: 'Redes sociales'
