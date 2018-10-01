@@ -8,7 +8,6 @@ $gray-color: #949494;
     .language-option {
       height: 50px;
       width: 55px;
-      
     }
 
     .small-flat {
@@ -18,10 +17,8 @@ $gray-color: #949494;
   }
 
   .user-select {
-    li {
-      a.user-option {
-        height: 50px;
-      }
+    .user-option {
+      height: 50px;
     }
   }
 
