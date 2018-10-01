@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   localized do
     get '/index', to: 'app/front#index', as: :app_index
   end
-  
-  get '/mensajes', to: 'app/front#message', as: :app_message
+
   # root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise

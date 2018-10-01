@@ -1,4 +1,4 @@
-module KepplerPoll
+module KepplerRocket
   module Concerns
     # Concern con la configuracion de parametros de los formulario
     module History
@@ -11,7 +11,7 @@ module KepplerPoll
       private
 
       def show_history
-        get_history(Room)
+        get_history(model)
       end
 
       def get_history(model)

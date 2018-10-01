@@ -1,169 +1,116 @@
-<% if namespaced? -%>
-require_dependency "<%= namespaced_path %>/application_controller"
-<% end -%>
+require_dependency "<%= ROCKET_NAME %>/application_controller"
 <% module_namespacing do -%>
-module Admin
-  # <%= controller_class_name %>Controller
-  class <%= controller_class_name %>Controller < ApplicationController
-    layout '<%= namespaced_path %>/admin/layouts/application'
-    before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
-    before_action :set_attachments
-    before_action :authorization
-    include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::Commons
-    include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::History
-    include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::DestroyMultiple
+module <%= ROCKET_CLASS_NAME %>
+  module Admin
+    # <%= MODULE_CLASS_NAME.pluralize.classify %>Controller
+    class <%= MODULE_CLASS_NAME.pluralize.classify %>Controller < AdminController
+      before_action :set_<%= MODULE_NAME.singularize %>, only: %i[show edit update destroy]
+      before_action :show_history, only: %i[index]
+      before_action :authorization, except: %i[reload]
+      include ObjectQuery
 
-
-    # GET <%= route_url %>
-    def index
-      @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :asc)
-      @total = <%= plural_table_name %>.size
-      @<%= plural_table_name %> = @objects.all
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
+      # GET <%= MODULE_CLASS_NAME %>/<%= MODULE_NAME.pluralize %>
+      def index
+        @q = <%= MODULE_CLASS_NAME %>.ransack(params[:q])
+        @<%= MODULE_NAME.pluralize %> = @q.result(distinct: true)
+        @objects = @<%= MODULE_NAME.pluralize %>.page(@current_page).order(position: :desc)
+        @total = @<%= MODULE_NAME.pluralize %>.size
+        redirect_to_index(@objects)
+        respond_to_formats(@<%= MODULE_NAME.pluralize %>)
       end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
-        format.json { render :json => @objects }
+
+      # GET <%= ROCKET_NAME %>/<%= MODULE_NAME.pluralize %>/1
+      def show; end
+
+      # GET <%= ROCKET_NAME %>/<%= MODULE_NAME.pluralize %>/new
+      def new
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.new
       end
-    end
 
-    # GET <%= route_url %>/1
-    def show
-    end
+      # GET <%= ROCKET_NAME %>/<%= MODULE_NAME.pluralize %>/1/edit
+      def edit; end
 
-    # GET <%= route_url %>/new
-    def new
-      @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
-    end
+      # POST <%= ROCKET_NAME %>/<%= MODULE_NAME.pluralize %>
+      def create
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.new(<%= MODULE_NAME.singularize %>_params)
 
-    # GET <%= route_url %>/1/edit
-    def edit
-    end
-
-    # POST <%= route_url %>
-    def create
-      @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
-
-      if @<%= orm_instance.save %>
-        redirect(@<%= singular_table_name %>, params)
-      else
-        render :new
+        if @<%= MODULE_NAME.singularize %>.save
+          redirect(@<%= MODULE_NAME.singularize %>, params)
+        else
+          render :new
+        end
       end
-    end
 
-    # PATCH/PUT <%= route_url %>/1
-    def update
-      if @<%= orm_instance.update("#{singular_table_name}_params") %>
-        redirect(@<%= singular_table_name %>, params)
-      else
-        render :edit
+      # PATCH/PUT <%= ROCKET_NAME %>/<%= MODULE_NAME.pluralize %>/1
+      def update
+        if @<%= MODULE_NAME.singularize %>.update(<%= MODULE_NAME.singularize %>_params)
+          redirect(@<%= MODULE_NAME.singularize %>, params)
+        else
+          render :edit
+        end
       end
-    end
 
-    def clone
-      @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
+      def clone
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.clone_record params[:<%=MODULE_NAME.singularize%>_id]
 
-      if @<%= singular_table_name %>.save
-        redirect_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path
-      else
-        render :new
+        if @<%= MODULE_NAME.singularize %>.save
+          redirect_to_index(@objects)
+        else
+          render :new
+        end
       end
-    end
 
-    # DELETE <%= route_url %>/1
-    def destroy
-      @<%= orm_instance.destroy %>
-      redirect_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path, notice: actions_messages(@<%= singular_table_name %>)
-    end
-
-    def destroy_multiple
-      <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-      redirect_to(
-        admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
-      )
-    end
-
-    def upload
-      <%= class_name %>.upload(params[:file])
-      redirect_to(
-        admin_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
-      )
-    end
-
-    def download
-      @<%= plural_table_name %> = <%= class_name %>.all
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
-        format.json { render json: @<%= plural_table_name %> }
+      # DELETE <%= ROCKET_NAME %>/<%= MODULE_NAME.pluralize %>/1
+      def destroy
+        @<%= MODULE_NAME.singularize %>.destroy
+        redirect_to_index(@<%= MODULE_NAME.pluralize %>)
       end
-    end
 
-    def reload
-      @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
-    end
+      def destroy_multiple
+        <%= MODULE_CLASS_NAME %>.destroy redefine_ids(params[:multiple_ids])
+        redirect_to_index(@<%= MODULE_NAME.pluralize %>)
+      end
 
-    def sort
-      <%= class_name %>.sorter(params[:row])
-      @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page)
-      render :index
-    end
+      def upload
+        <%= MODULE_CLASS_NAME %>.upload(params[:file])
+        redirect_to_index(@<%= MODULE_NAME.pluralize %>)
+      end
 
-    private
+      def reload
+        @q = <%= MODULE_CLASS_NAME %>.ransack(params[:q])
+        <%= MODULE_NAME.pluralize %> = @q.result(distinct: true)
+        @objects = <%= MODULE_NAME.pluralize %>.page(@current_page).order(position: :desc)
+      end
 
-    def authorization
-      authorize <%= class_name %>
-    end
+      def sort
+        <%= MODULE_CLASS_NAME %>.sorter(params[:row])
+        @q = <%= MODULE_CLASS_NAME %>.ransack(params[:q])
+        <%= MODULE_NAME.pluralize %> = @q.result(distinct: true)
+        @objects = <%= MODULE_NAME.pluralize %>.page(@current_page).order(position: :desc)
+      end
 
-    def set_attachments
-      SINGULAR_ATTACHMENTS = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
-                      'picture', 'banner', 'attachment', 'pic', 'file']
-    end
+      private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_<%= singular_table_name %>
-      @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
-    end
+      def authorization
+        authorize <%= MODULE_CLASS_NAME %>
+      end
 
-    # Only allow a trusted parameter "white list" through.
-    def <%= "#{singular_table_name}_params" %>
-      <%- if attributes_names.empty? -%>
-      params[:<%= singular_table_name %>]
-      <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
-      <%- end -%>
-    end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_<%= MODULE_NAME.singularize %>
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.find(params[:id])
+      end
 
-    def show_history
-      get_history(<%= singular_table_name.camelcase %>)
-    end
+      # Only allow a trusted parameter "white list" through.
+      def <%= MODULE_NAME.singularize %>_params
+        <%- if ATTRIBUTES_NAMES.empty? -%>
+        params[:<%= MODULE_NAME.singularize %>]
+        <%- else -%>
+        params.require(:<%= MODULE_NAME.singularize %>).permit(<%= ATTRIBUTES_NAMES.map { |name| ":#{name}" }.join(', ') %>)
+        <%- end -%>
+      end
 
-    def get_history(model)
-      @activities = PublicActivity::Activity.where(
-        trackable_type: model.to_s
-      ).order('created_at desc').limit(50)
-    end
-
-    # Get submit key to redirect, only [:create, :update]
-    def redirect(object, commit)
-      if commit.key?('_save')
-        redirect_to([:admin, :<%= namespaced_path.split('_').drop(1).join('_') %>, object], notice: actions_messages(object))
-      elsif commit.key?('_add_other')
-        redirect_to(
-          send("new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_#{object.model_name.element}_path"),
-          notice: actions_messages(object)
-        )
+      def show_history
+        get_history(<%= MODULE_NAME.singularize.camelcase %>)
       end
     end
   end

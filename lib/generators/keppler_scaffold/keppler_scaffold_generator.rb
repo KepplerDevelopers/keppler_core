@@ -32,13 +32,30 @@ module Rails
         banner: 'field:type field:type'
       )
 
+      ROCKET_NAME = Dir.getwd.split('/').last
+      MODULE_NAME = ARGV[0].underscore
+      ATTRIBUTES = ARGV[1] ? ARGV[1..20].map { |x| x.include?(':') ? x.split(':') : [x, 'string'] }.to_h : nil
+      ATTRIBUTES_NAMES = ATTRIBUTES.keys
+      ROCKET_DIRECTORY = Dir.getwd
+
+      ROCKET_CLASS_NAME = "#{ROCKET_NAME}".camelize
+      MODULE_CLASS_NAME = MODULE_NAME.singularize.classify
+
+      NAMES = %w[name title first_name full_name]
+      SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
+      PLURAL_ATTACHMENTS = SINGULAR_ATTACHMENTS.map(&:pluralize)
+      SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| v.eql?('string') || v.eql?('text') }.map(&:first).join(' ')
+      # puts "********************* #{ROCKET_DIRECTORY} ***************************"
+
       def add_route
         return if options[:skip_routes]
+        say "\n*** Adding routes ***"
         inject_into_file(
-          'config/routes.rb',
-          "\n #{indent(str_route)}",
-          after: "root to: 'admin#root'"
+          "config/routes.rb",
+          "\n#{indent(str_route, 6)}",
+          after: "scope :#{ROCKET_NAME.split('_keppler').last}, as: :#{ROCKET_NAME.split('_keppler').last} do"
         )
+        say "=== Routes has been added ===\n", :green
       end
 
       def add_option_menu
@@ -80,7 +97,6 @@ module Rails
       def create_model_files
         model_path = File.join('app/models', controller_class_path, "#{controller_file_name.singularize}.rb")
         File.delete(model_path) if File.exist?(model_path)
-        attachments
         template(
           'models/model.rb',
           File.join(
@@ -103,18 +119,6 @@ module Rails
       end
 
       def create_views_files
-        names
-        attachments
-        # template_keppler_views('_description.html.haml')
-        # template_keppler_views('_index_show.html.haml')
-        # template_keppler_views('_listing.html.haml')
-        # template_keppler_views('_form.html.haml')
-        # template_keppler_views('show.js.haml')
-        # template_keppler_views('edit.html.haml')
-        # template_keppler_views('new.html.haml')
-        # template_keppler_views('show.html.haml')
-        # template_keppler_views('index.html.haml')
-        # template_keppler_views('reload.js.haml')
         %w[
           _description _index_show _listing _form show edit new index
           show.js reload.js
@@ -132,51 +136,59 @@ module Rails
 
       private
 
-      def names
-        @names = %w[name title first_name full_name]
-      end
-
-      def attachments
-        SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
-        SINGULAR_ATTACHMENTS.map { |a| [a, a.pluralize].join(' ') }.join(' ').split
-      end
-
       def add_str_locales(locale, switch)
         inject_into_file(
-          "config/locales/#{locale}.yml",
-          str_locales(switch),
+          "#{ROCKET_DIRECTORY}/config/locales/#{locale}.yml",
+          "\n#{str_locales(switch)}",
           after: "#{switch}:"
         )
       end
 
       def str_route
-        "\n  resources :#{controller_file_name} do\n    post '/sort', action: :sort, on: :collection\n    get '(page/:page)', action: :index, on: :collection, as: ''\n    get '/clone', action: 'clone'\n    post '/upload', action: 'upload', as: :upload\n    get(\n      '/reload',\n      action: :reload,\n      on: :collection,\n    )\n    delete(\n      '/destroy_multiple',\n      action: :destroy_multiple,\n      on: :collection,\n      as: :destroy_multiple\n    )\n  end"
+        <<~HEREDOC
+          resources :#{MODULE_NAME} do
+            post '/sort', action: :sort, on: :collection
+            get '(page/:page)', action: :index, on: :collection, as: ''
+            get '/clone', action: 'clone'
+            post '/upload', action: 'upload', as: :upload
+            get '/reload', action: :reload, on: :collection
+            delete '/destroy_multiple', action: :destroy_multiple, on: :collection
+          end
+        HEREDOC
       end
 
       def str_menu
-        "  #{controller_file_name.singularize}:\n    name: #{controller_file_name.humanize.downcase}\n    url_path: /admin/#{controller_file_name}\n    icon: layers\n    current: ['admin/#{controller_file_name}']\n    model: #{controller_file_name.singularize.camelize}\n"
+        <<~HEREDOC
+          - #{MODULE_NAME.singularize}:
+              name: #{MODULE_NAME.humanize.downcase}
+              url_path: /admin/#{ROCKET_NAME.split('keppler_').last}/#{MODULE_NAME.pluralize}
+              icon: layers
+              current: ['/admin/#{ROCKET_NAME.split('keppler_').last}/#{MODULE_NAME.pluralize}']
+              model: #{ROCKET_CLASS_NAME}::#{MODULE_CLASS_NAME}
+        HEREDOC
       end
 
       def str_permissions
-        "#{controller_file_name.pluralize}:\n    name: #{controller_file_name.singularize.camelize}\n    actions: [\n      'index', 'create', 'update',\n      'destroy', 'download', 'upload',\n      'clone'\n    ]\n  "
+        <<~HEREDOC
+        #{MODULE_NAME.pluralize}:
+          name: #{MODULE_CLASS_NAME}
+          model: #{ROCKET_CLASS_NAME}#{MODULE_CLASS_NAME}
+          actions: [
+            'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+          ]
+        HEREDOC
       end
 
       def str_locales(switch)
         case switch
+        when "#{ROCKET_NAME.dasherize}-submenu"
+          "        #{MODULE_NAME.dasherize}: #{MODULE_NAME.humanize}"
         when 'singularize'
-          "\n        #{controller_file_name.singularize}: #{controller_file_name.singularize.humanize.downcase}"
+          "        #{MODULE_NAME.singularize}: #{MODULE_NAME.singularize.humanize.downcase}"
         when 'pluralize'
-          "\n        #{controller_file_name}: #{controller_file_name.humanize.downcase}"
+          "        #{MODULE_NAME.pluralize}: #{MODULE_NAME.pluralize.humanize.downcase}"
         when 'modules'
-          "\n      admin/#{controller_file_name.dasherize}: #{controller_file_name.humanize}"
-        when 'sidebar-menu'
-          "\n      #{controller_file_name.dasherize}: #{controller_file_name.humanize}"
-        # when 'attributes'
-        #   array = ["\n      #{controller_file_name.singularize}:"]
-        #   attributes_names.each do |attribute|
-        #     array.push("\n        #{attribute}: #{attribute.humanize}")
-        #   end
-        #   array.join
+          "      admin/#{MODULE_NAME.dasherize}: #{MODULE_NAME.humanize}"
         end
       end
 

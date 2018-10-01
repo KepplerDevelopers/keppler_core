@@ -15,23 +15,29 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
   NAMES = %w[name title first_name full_name]
   SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
   PLURAL_ATTACHMENTS = SINGULAR_ATTACHMENTS.map(&:pluralize)
-  SEARCHABLE_ATTRIBUTES = ATTRIBUTES.reject { |k,v| SINGULAR_ATTACHMENTS.include?(k) || PLURAL_ATTACHMENTS.include?(k) || v.eql?('jsonb') || v.eql?('references') }.map(&:first).join(' ')
+  SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| v.eql?('string') || v.eql?('text') }.map(&:first).join(' ')
 
   def create_module
     if ROCKET_NAME
       if MODULE_NAME
         if Dir.exist? ROCKET_DIRECTORY
           say "\n*** Creating #{MODULE_CLASS_NAME} module ***"
-          add_route
-          add_option_menu
-          add_option_permissions
-          add_locales
           remove_migrations
-          create_model_file
-          create_policies_file
-          create_controller_file
-          create_views_files
-          migrate_database if create_migration_file
+          if validate_rocket_scaffold
+            say "***** RUNNING KEPPLER SCAFFOLD *****"
+            run_rocket_scaffold
+          else
+            add_route
+            add_option_menu
+            add_option_permissions
+            add_locales
+            create_model_file
+            create_policies_file
+            create_controller_file
+            create_views_files
+            create_migration_file
+          end
+          migrate_database
           restart_server
           say "=== All Done. #{MODULE_NAME.classify} module has been created and installed ===\n", :green
         else
@@ -44,7 +50,7 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
       say "\n!!! Error: Please insert rocket name !!!\n", :red
     end
   end
-  
+
   private
 
   def add_route
@@ -100,8 +106,7 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
             end
           end
         end
-        say migration
-        if FileUtils.rm(migration) && FileUtils.rm("#{ROCKET_DIRECTORY}/db/migrate/#{migration.split('/').last.split('.').first}.rb")
+        if FileUtils.rm(migration)
           say "--- #{migration_name(migration)} migration file has been removed ---"
         end
         removed_files = true
@@ -127,13 +132,22 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
   #     .split('_')
   #     .flatten[1..-1]
   #     .join('_')
-  # end 
+  # end
+
+  def run_rocket_scaffold
+    say "*** Entering to rockets/#{ROCKET_NAME} folder ***"
+    FileUtils.cd ROCKET_DIRECTORY
+    say "*** Running #{ROCKET_NAME} scaffold ***"
+    system "rails g keppler_scaffold #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
+    say "*** Coming back to Rails root folder ***"
+    FileUtils.cd Rails.root
+  end
 
   def create_migration_file
     say "*** Entering to Rocket Directory ***"
     FileUtils.cd ROCKET_DIRECTORY
-    say "*** Running 'rails g migration #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') }' ***"
-    system "rails g migration create_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') }"
+    say "*** Running 'rails g migration #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f' ***"
+    system "rails g migration create_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
     say "*** Exiting from Rocket Directory ***"
     FileUtils.cd Rails.root
     say "*** Importing migrations from #{ROCKET_NAME}/db ***"
@@ -163,6 +177,10 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
     File.delete(controller_path) if File.exist?(controller_path)
     template('controllers/controller.rb', controller_path)
     say "=== #{MODULE_NAME.pluralize.classify}Controller has been created ===\n", :green
+  end
+
+  def validate_rocket_scaffold
+    File.exist? "#{ROCKET_DIRECTORY}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb"
   end
 
   def create_views_files
@@ -222,18 +240,18 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
     <<~HEREDOC
       - #{MODULE_NAME.singularize}:
           name: #{MODULE_NAME.humanize.downcase}
-          url_path: /admin/#{ROCKET_NAME}/#{MODULE_NAME}
+          url_path: /admin/#{ROCKET_NAME.split('keppler_').last}/#{MODULE_NAME.pluralize}
           icon: layers
-          current: ['/admin/#{ROCKET_NAME}/#{MODULE_NAME}']
-          model: #{ROCKET_NAME.singularize.camelize}::#{MODULE_NAME.singularize.camelize}
+          current: ['/admin/#{ROCKET_NAME.split('keppler_').last}/#{MODULE_NAME.pluralize}']
+          model: #{ROCKET_CLASS_NAME}::#{MODULE_CLASS_NAME}
     HEREDOC
   end
 
   def str_permissions
     <<~HEREDOC
-    #{MODULE_NAME.singularize}:
-      name: #{MODULE_NAME.singularize.camelize}
-      model: #{ROCKET_NAME.singularize.camelize}#{MODULE_NAME.singularize.camelize}
+    #{MODULE_NAME.pluralize}:
+      name: #{MODULE_CLASS_NAME}
+      model: #{ROCKET_CLASS_NAME}#{MODULE_CLASS_NAME}
       actions: [
         'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
       ]

@@ -8,7 +8,7 @@
 
   .show-section
     .row
-      <%- if attributes.select{|attribute| SINGULAR_ATTACHMENTS.include?(attribute.name)}.size <= 0 -%>
+      <%- if attributes.select{|attribute| @attachments.include?(attribute.name)}.size <= 0 -%>
       .col-lg-12
         .box.slice-box
           .box-header.with-border
@@ -28,12 +28,12 @@
                     %tr.list-row
                       %th.display-label= t("activerecord.attributes.#{attribute}")
                       %td.display-value.fs-body-1.tc-black-2
-                        - if SINGULAR_ATTACHMENTS.include?(attribute)
+                        - if @attachments.include?(attribute)
                           = image_tag value.url unless value.url.blank?
                         - else
                           = value.blank? ? '-----------' : value
       <%- else -%>
-      <%- @attr = attributes.map{|attr| attr.name}.select{|attr| SINGULAR_ATTACHMENTS.include?(attr)} %>
+      <%- @attr = attributes.map{|attr| attr.name}.select{|attr| @attachments.include?(attr)} %>
       .col-lg-5
         - @<%= singular_table_name %>.as_json(only: <%= @attr %>).each do |attribute, value|
           .box.slice-box
@@ -59,7 +59,7 @@
           .box-body.box-body-no-padding
             %table.table.table-striped
               %tbody
-                - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name}.select{|attr| !SINGULAR_ATTACHMENTS.include?(attr)} %>).each do |attribute, value|
+                - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name}.select{|attr| !@attachments.include?(attr)} %>).each do |attribute, value|
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2.text-overflow= value.blank? ? '-----------' : value

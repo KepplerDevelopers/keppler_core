@@ -13,8 +13,6 @@ module Admin
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::Commons
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::History
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::DestroyMultiple
-
-
     # GET <%= route_url %>
     def index
       @q = <%= class_name %>.ransack(params[:q])
@@ -31,20 +29,16 @@ module Admin
         format.json { render :json => @objects }
       end
     end
-
     # GET <%= route_url %>/1
     def show
     end
-
     # GET <%= route_url %>/new
     def new
       @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
     end
-
     # GET <%= route_url %>/1/edit
     def edit
     end
-
     # POST <%= route_url %>
     def create
       @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
@@ -67,7 +61,6 @@ module Admin
 
     def clone
       @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
-
       if @<%= singular_table_name %>.save
         redirect_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path
       else
@@ -88,7 +81,6 @@ module Admin
         notice: actions_messages(<%= orm_class.build(class_name) %>)
       )
     end
-
     def upload
       <%= class_name %>.upload(params[:file])
       redirect_to(
@@ -111,7 +103,6 @@ module Admin
       <%= plural_table_name %> = @q.result(distinct: true)
       @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
     end
-
     def sort
       <%= class_name %>.sorter(params[:row])
       @q = <%= class_name %>.ransack(params[:q])
@@ -119,15 +110,13 @@ module Admin
       @objects = <%= plural_table_name %>.page(@current_page)
       render :index
     end
-
     private
-
     def authorization
       authorize <%= class_name %>
     end
 
     def set_attachments
-      SINGULAR_ATTACHMENTS = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
+      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
                       'picture', 'banner', 'attachment', 'pic', 'file']
     end
 
@@ -135,7 +124,6 @@ module Admin
     def set_<%= singular_table_name %>
       @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
     end
-
     # Only allow a trusted parameter "white list" through.
     def <%= "#{singular_table_name}_params" %>
       <%- if attributes_names.empty? -%>
@@ -148,13 +136,11 @@ module Admin
     def show_history
       get_history(<%= singular_table_name.camelcase %>)
     end
-
     def get_history(model)
       @activities = PublicActivity::Activity.where(
         trackable_type: model.to_s
       ).order('created_at desc').limit(50)
     end
-
     # Get submit key to redirect, only [:create, :update]
     def redirect(object, commit)
       if commit.key?('_save')

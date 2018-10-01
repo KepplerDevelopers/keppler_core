@@ -1,41 +1,39 @@
-# <%= class_name %> Model
-<% module_namespacing do -%>
-class <%= class_name %> < ActiveRecord::Base
-  include ActivityHistory
-  include CloneRecord
-  require 'csv'
-  <%- attributes_names.each do |attribute| -%>
-    <%- if SINGULAR_ATTACHMENTS.include?(attribute) -%>
-  mount_uploader :<%=attribute%>, AttachmentUploader
+# frozen_string_literal: true
+
+module <%= ROCKET_CLASS_NAME %>
+  # <%= MODULE_CLASS_NAME %> Model
+  <% module_namespacing do -%>
+  class <%= MODULE_CLASS_NAME %> < ApplicationRecord
+    include ActivityHistory
+    include CloneRecord
+    include Uploadable
+    include Downloadable
+    include Sortable
+    <%- ATTRIBUTES.each do |attribute| -%>
+      <%- if SINGULAR_ATTACHMENTS.include?(attribute.first) -%>
+    mount_uploader :<%=attribute.first%>, AttachmentUploader
+      <%- elsif PLURAL_ATTACHMENTS.include?(attribute.first) -%>
+    mount_uploaders :<%=attribute.first%>, AttachmentUploader
+      <%- end -%>
+      <%- if attribute.last.eql?('references') -%>
+    belongs_to :<%= attribute.first %>
+      <%- end -%>
     <%- end -%>
-  <%- end -%>
-  acts_as_list
-  # Fields for the search form in the navbar
-  def self.search_field
-    fields = <%= attributes_names.map { |name| name } %>
-    build_query(fields, :or, :cont)
-  end
+    acts_as_list
+    acts_as_paranoid
 
-  def self.upload(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      begin
-        self.create! row.to_hash
-      rescue => err
-      end
+    # Fields for the search form in the navbar
+    def self.search_field
+      fields = %i[<%= SEARCHABLE_ATTRIBUTES %>]
+      build_query(fields, :or, :cont)
+    end
+
+    # Funcion para armar el query de ransack
+    def self.build_query(fields, operator, conf)
+      query = fields.join("_#{operator}_")
+      query << "_#{conf}"
+      query.to_sym
     end
   end
-
-  def self.sorter(params)
-    params.each_with_index do |id, idx|
-      self.find(id).update(position: idx.to_i+1)
-    end
-  end
-
-  # Funcion para armar el query de ransack
-  def self.build_query(fields, operator, conf)
-    query = fields.join("_#{operator}_")
-    query << "_#{conf}"
-    query.to_sym
-  end
+  <% end -%>
 end
-<% end -%>

@@ -12,11 +12,6 @@ module KepplerPoll
 
       private
 
-      def set_attachments
-        SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image
-                          picture banner attachment pic file]
-      end
-
       def paginator_params
         @search_field = model.search_field if listing?
         @query = params[:search] unless params[:search].blank?
