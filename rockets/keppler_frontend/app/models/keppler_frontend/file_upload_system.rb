@@ -142,7 +142,7 @@ module KepplerFrontend
         fonts: ['.eot', '.otf', '.ttf', '.woff', '.woff2'],
         images: ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.tiff', '.bmp'],
         videos: ['.mp4', '.mpeg', '.webm'],
-        html: ['.html', '.html.erb'],
+        html: ['.html'],
         javascripts: ['.js', '.coffee', '.js.erb', '.json'],
         stylesheets: ['.css', '.scss', 'sass', '.scss.erb']
       }

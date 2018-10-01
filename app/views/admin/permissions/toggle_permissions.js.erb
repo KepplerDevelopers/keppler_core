@@ -1,0 +1,6 @@
+$("#all-<%= @module.split('::').join('') %>").toggleClass('active');
+// $("#switch-container-<%= @module.split('::').join('') %>").html("<%= j render 'admin/permissions/switch', role: @role, module_name: @module.split('::').join(''), actions: @actions %>");
+
+<%- @actions.each do |action| %>
+  $("#switch-<%= @module.split('::').join('') %>-<%= action %>").toggleClass('active');
+<%- end %>
