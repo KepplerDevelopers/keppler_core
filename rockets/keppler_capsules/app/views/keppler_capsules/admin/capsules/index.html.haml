@@ -20,7 +20,8 @@
           - if can?(KepplerCapsules::Capsule).create?
             .add
               = link_to new_admin_capsules_capsule_path, class: "btn-add" do
-                + Agregar
+                +
+                = t('keppler.actions.add')
 
 
         .box.slice-box

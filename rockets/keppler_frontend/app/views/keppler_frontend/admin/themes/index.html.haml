@@ -13,7 +13,8 @@
           - if can?(KepplerFrontend::Theme).create?
             .add
               = link_to new_admin_frontend_theme_path, class: "btn-add" do
-                + Agregar
+                +
+                = t('keppler.actions.add')
         .row
           .col-lg-5.col-xs-12
             .box.slice-box

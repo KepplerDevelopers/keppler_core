@@ -4,6 +4,27 @@ $gradient3: rgba(30, 43, 64, 1);
 $gray-color: #949494;
 
 .skin-blue {
+  .language-select {
+    .language-option {
+      height: 50px;
+      width: 55px;
+      
+    }
+
+    .small-flat {
+      position: relative;
+      top: 5px;
+    }
+  }
+
+  .user-select {
+    li {
+      a.user-option {
+        height: 50px;
+      }
+    }
+  }
+
   .dropdown a {
     border-radius: 0;
   }

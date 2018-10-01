@@ -12,6 +12,7 @@ module Admin
     def edit
       @social_medias = social_account_permit_attributes
       @colors = social_account_colors
+      @languages = ['en', 'es']
     end
 
     def update
@@ -23,6 +24,11 @@ module Admin
       else
         render :edit
       end
+    end
+
+    def change_locale
+      Appearance.first.update(language: params[:locale])
+      redirect_back fallback_location: admin_root_path
     end
 
     def appearance_default
@@ -88,7 +94,7 @@ module Admin
 
     def apparence_permit_attributes
       %i[
-        id theme_name image_background
+        id theme_name image_background language time_zone
         image_background_cache remove_image_background
       ]
     end
