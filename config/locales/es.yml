@@ -1,5 +1,13 @@
 es:
   keppler:
+    language: 
+      select_lang: Seleciona un idioma
+      es: Español
+      en: Inglés
+    devise:
+      profile: Perfil
+      sign_out: Salir
+      sign_in: Entrar
     login_message: Ingresa tus datos para entrar
     powered: Desarrollado por
     release_date: Fecha de Lanzamiento
@@ -31,11 +39,18 @@ es:
       rockets: Rockets
       setting: Configuración
       setting-submenu:
+        keppler-configuration: Configuración de Keppler
         basic-information: 'Información básica'
         email-setting-smtp: 'Configuración SMTP'
         social-accounts: 'Redes sociales'
         google-analytics: 'Google Analytics'
         appearance: Apariencia
+    customize:
+      admin-theme: Tema de Keppler
+      language: Idioma
+      location: Localización
+      time_zone: Zona Horaria
+      preview: Vista previa
     permissions:
       index: Listar
       create: Crear
@@ -151,6 +166,7 @@ es:
       documentation: Documentación
       created: Creado
       updated: Actualizado
+      add: Agregar
       new: Nuevo
       show: Ver
       edit: Editar

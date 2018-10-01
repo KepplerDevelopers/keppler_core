@@ -18,11 +18,26 @@
               %i.icon-magnifier.search-icon{ style: 'line-height: 1.4;' }
       .hide-search
         %i.icon-arrow-left-circle
-
     .navbar-custom-menu
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.language-select
+        %li.dropdown.messages-menu
+          %a.dropdown-toggle.language-option{ 'aria-expanded' => 'false', 'data-toggle' => 'dropdown', :href => '#' }
+            = image_tag (Appearance.first.language.eql?('en') ? 'admin/en.png' : 'admin/es.png'), class: 'small-profile-img keppler-background'
+          %ul.dropdown-menu
+            %li.header= t('keppler.language.select_lang')
+            %li
+              = link_to '/admin/settings/lang/en', method: :post do
+                .pull-left
+                  = image_tag 'admin/en.png', class: 'small-flat small-profile-img keppler-background'
+                %p.small-flat= t('keppler.language.en')
+            %li
+              = link_to '/admin/settings/lang/es', method: :post do
+                .pull-left
+                  = image_tag 'admin/es.png', class: 'small-flat small-profile-img keppler-background'
+                %p.small-flat= t('keppler.language.es')
+      %ul.nav.navbar-nav.user-select
         %li.dropdown.user.user-menu
-          %a.dropdown-toggle{ 'data-toggle' => 'dropdown' }
+          %a.dropdown-toggle.user-option{ 'data-toggle' => 'dropdown' }
             = image_tag (current_user.avatar.url || 'admin/avatar_keppler.svg'), class: 'small-profile-img keppler-background'
             %span.hidden-xs= current_user.name
           %ul.dropdown-menu
@@ -36,8 +51,8 @@
                   = t('keppler.navigation.last_session')
                   = current_user.updated_at.strftime('%d %b %Y')
               .btn-user
-                = link_to 'Profile', "/admin/users/#{current_user.id}", class: 'btn btn-default btn-flat'
-                = link_to t('devise.sign_out'), destroy_session_path(current_user), class: 'btn btn-default btn-flat'
+                = link_to t('keppler.devise.profile'), "/admin/users/#{current_user.id}", class: 'btn btn-default btn-flat'
+                = link_to t('keppler.devise.sign_out'), destroy_session_path(current_user), class: 'btn btn-default btn-flat'
         - if listing?
           %li.hidden-xs
             %a#open-historial
