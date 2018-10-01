@@ -35,7 +35,7 @@ module InyxmaterRails
       '*.{rb,yml}'
     ).to_s]
 
-    config.i18n.default_locale = :es
+    config.i18n.default_locale = :en
 
     # config.active_record.raise_in_transactional_callbacks = true
 

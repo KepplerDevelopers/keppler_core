@@ -28,7 +28,8 @@
           - if can?(KepplerFrontend::Partial).create?
             .add
               = link_to new_admin_frontend_partial_path, class: "btn-add" do
-                + Agregar
+                +
+                = t('keppler.actions.add')
 
         .box.slice-box
           .box-body.no-padding

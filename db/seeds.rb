@@ -38,7 +38,7 @@ if yml = YAML.load_file("#{Rails.root}/config/settings.yml")
       port: yml['port'],
       domain_name: yml['domain_name'],
       email: yml['smtp_email'],
-      password: yml['password']
+      password: yml['password'] ? yml['password'] : '12345678'
     },
     google_analytics_setting_attributes: {
       ga_account_id: yml['ga_account_id'],

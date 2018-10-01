@@ -51,17 +51,6 @@ menu:
           url_path: /admin/roles
           current: ['admin/roles']
           model: Role
-  customize:
-    name: keppler design
-    icon: pencil
-    current: ['admin/customizes', 'settings/appearance']
-    model: Customize
-    submenu:
-      - appearance:
-          name: admin appearance
-          url_path: /admin/settings/appearance
-          current: ['appearance']
-          model: Customize
   rockets:
     name: rockets
     icon: rocket
