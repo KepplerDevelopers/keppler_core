@@ -32,7 +32,8 @@
           - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).create?
             .add
               = link_to new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path, class: 'btn-add' do
-                + Agregar
+                +
+                = t('keppler.actions.add')
           .hide
             = form_tag admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_upload_path(@objects), id: "upload_form_<%= plural_table_name %>", multipart: true, method: :post do
               = file_field_tag :file, id: "upload_file_<%= singular_table_name %>"
