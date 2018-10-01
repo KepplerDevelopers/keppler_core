@@ -12,7 +12,7 @@ module Admin
     def edit
       @social_medias = social_account_permit_attributes
       @colors = social_account_colors
-      @languages = ['en', 'es']
+      @languages = %w[en es]
     end
 
     def update
