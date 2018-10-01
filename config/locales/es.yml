@@ -4,6 +4,9 @@ es:
       select_lang: Seleciona un idioma
       es: Español
       en: Inglés
+    preloader:
+      title: Es dificil trabajar en el espacio
+      message: Esto puede tardar uno segundos...
     devise:
       profile: Perfil
       sign_out: Salir

@@ -9,6 +9,14 @@
   z-index: 999999;
 }
 
+.loader-message {
+  text-align: center;
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
 .preloader {
   animation: moveback 20s infinite linear;
   background: $white;

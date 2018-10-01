@@ -3,7 +3,10 @@ en:
     language: 
       select_lang: Select a language
       es: Spanish
-      en: English
+      en: English    
+    preloader:
+      title: It is difficult to work in space
+      message: This may take seconds...
     login_message: Sign in to start your session
     powered: Powered by
     release_date: Release Date
