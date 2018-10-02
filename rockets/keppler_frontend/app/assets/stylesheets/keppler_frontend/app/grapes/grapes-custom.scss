@@ -56,6 +56,10 @@
   border: none;
 }
 
+.gjs-one-bg {
+  background-color: #ecebeb !important;
+}
+
 .gjs-editor {
   font-family: Helvetica,sans-serif;  
   font-size: 1.2rem !important;
@@ -114,7 +118,36 @@
 
 /* Secondary color for the text color */
 .gjs-two-color {
-  color: #fff !important;
+  color: #6f6b6b !important;
+}
+
+.gjs-blocks-c {
+  background: #ececec !important;
+
+  .gjs-four-color-h {
+    background: #f7f7f7 !important;
+    border-radius: 10px !important;
+  }
+}
+
+.gjs-sm-label {
+  margin: 5px 5px 3px 0;
+  color: #191919 !important;
+  font-weight: 500 !important;
+}
+
+label {
+  font-weight: 500 !important;
+}
+
+
+.gjs-radio-item input:checked + .gjs-radio-item-label {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+
+.gjs-radio-item-label {
+  color: #191919 !important;
 }
 
 /* Tertiary color for the background */
@@ -184,7 +217,8 @@
   width: 15%;
   overflow: auto;
   top: 33px !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: none !important;
+  border-left: 1px solid #c0c0c0 !important;
 }
 
 .gjs-am-file-uploader {
@@ -220,10 +254,6 @@
   height: 20px !important;
 }
 
-.gjs-field select {
-  background-color: #363636 !important;
-}
-
 .gjs-block svg {
     fill: currentColor;
     width: 46px !important;
@@ -241,7 +271,8 @@
 }
 
 .gjs-cv-canvas {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  border-top: 1px solid #c0c0c0 !important;
   box-sizing: border-box;
   width: 100% !important;
   height: calc(100% - 40px);
@@ -258,6 +289,10 @@
   align-items: center;
   padding: 3px;
   height: 30px !important;
+}
+
+.gjs-device-label {
+  display: none !important;
 }
 
 .gjs-pn-views {
@@ -292,23 +327,45 @@
   height: 25px !important;
   left: 0;
   top: 6px !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: none !important;
 }
 
 .gjs-pn-views > .gjs-pn-buttons {
-  background: #2f2f2f !important;
+  background: #bbbaba !important;
 }
 
 .gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-bars {
   background: $keppler-color !important;
   margin: 0;
   border-radius: 0;
+  color: #fff !important;
 }
 
 .gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-times {
   background: $keppler-color !important;
   margin: 0;
   border-radius: 0;
+  color: #fff !important;
+}
+
+// .gjs-hovered {
+//   border: 2px solid $keppler-color !important;
+// }
+
+.gjs-toolbar {
+  position: absolute;
+  color: white;
+  background-color: $keppler-color !important;
+  z-index: 10;
+}
+
+.gjs-badge {
+  background-color: $keppler-color !important;
+}
+
+.gjs-comp-selected {
+  outline: 2px solid $keppler-color !important;
+  outline-offset: -3px;
 }
 
 .gsj-show-tools {
@@ -342,7 +399,8 @@
   content: 'Keppler';
   font-family: 'Patua One';
   font-size: 22px !important;
-  margin-top: 6px !important;
+  position: relative !important;
+  top: -2px !important;
   color: $keppler-color;
 }
 
@@ -355,3 +413,54 @@
   padding: 5px;
   padding-bottom: 0px;
 }
+
+.gjs-sm-title,
+.gjs-layer-name, 
+.gjs-traits-label,
+.gjs-label,
+.gjs-device-label,
+#gjs-clm-label,
+#gjs-clm-new {
+  color: #3a3939 !important;
+}
+
+.gjs-input-holder {
+  input {
+    color: #3a3939 !important;
+  }
+}
+
+
+.gjs-field,
+.gjs-field {
+  background: #06060624 !important;
+  color: #191919 !important;
+}
+
+.input-unit {
+  color: #191919 !important;
+}
+
+.gjs-field-arrow-u {
+  border-bottom: 4px solid #191919 !important;
+}
+
+.gjs-field-arrow-d,
+.gjs-d-s-arrow {
+  border-top: 4px solid #191919 !important;
+}
+
+.gjs-off-prv {
+  background: $keppler-color !important;
+  color: #fff !important;
+}
+
+.gjs-field-checkbox input:checked + .gjs-chk-icon {
+  border-color: rgba(0, 0, 0, 0.5) !important;
+  border-width: 0 2px 2px 0;
+  border-style: solid;
+}
+
+// .gjs-layer:nth-child(4) {
+//   display: none;
+// }
