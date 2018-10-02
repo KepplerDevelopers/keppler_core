@@ -3,19 +3,24 @@
     %ul.nav.nav-tabs
       %li.active
         %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
-          = "application.html.erb"
-          .kf-signal.html_signal
+          = "head"
+          .kf-signal.head_signal
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+          = "header"
+          .kf-signal.header_signal
+      %li
+        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+          = "footer"
+          .kf-signal.footer_signal
       %li.pull-right
         = link_to "/", target: '_blank',title: t('keppler.actions.preview') do
           %i.fa.fa-globe
       %li.pull-right
-        %a#btn-theme-editor{title: t('keppler.actions.user_interfaces') }
-          %i.fa.fa-paint-brush
-      %li.pull-right
         %a#btn-assets-editor{title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
-        %a{onclick: "controls.saveLayout(#{@theme.id})", title: t('keppler.actions.save')}
+        %a{onclick: "controlsLayout.save(#{@theme.id})", title: t('keppler.actions.save')}
           %i.fa.fa-save
       %li.pull-right
         = link_to admin_frontend_themes_path, title: t('keppler.actions.themes_list') do
@@ -24,22 +29,54 @@
     .tab-content
       #tab_1.tab-pane.active
         %div.html.code-container
-          %textarea#code-html{name: "code"}
-            = @theme.layout_code
-
-
+          %textarea#code-head{name: "code"}
+            = @theme.head_code
+      #tab_2.tab-pane
+        %div.css.code-container
+          %textarea#code-header{:name => "code"}
+            = @theme.keppler_header_code
+      #tab_3.tab-pane
+        %div.js.code-container
+          %textarea#code-footer{:name => "code"}
+            = @theme.keppler_footer_code
   = render "editor_assets"
-  = render "editor_themes"
 
-  :javascript
-    codeHTML.codeMirrorHtml();
-    var tab = `application.html.erb`;
-    var id = `#{@theme.id}`;
+:javascript
+  $(document).bind('keydown', function(e) {
+    if(e.ctrlKey && (e.which == 83)) {
+      e.preventDefault();
+      save()
+    }
+  });
 
-    $(document).bind('keydown',function(e) {
-      if(e.ctrlKey && (e.which == 83)) {
-        e.preventDefault();
-        codeHTML.saveLayout(id);
-      }
-    });
-  
+  function save() {
+    if ( tab === `head`) {
+      codeHead.saveHead(id);
+    } else if (tab === `header`) {
+      codeHeader.saveHeader(id);
+    } else if (tab === `footer`) {
+      codeFooter.saveFooter(id);
+    }
+  }
+  codeHead.codeMirrorHead();
+  codeHeader.codeMirrorHeader();
+  codeFooter.codeMirrorFooter();
+
+  var tab = `head`;
+  var id = `#{@theme.id}`;
+  var ready = { head: false, header: false, footer: false }
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    tab = $(this)[0].innerText
+    if ( tab === `header` && ready.header === false ) {
+      codeHeader.codeMirrorHeader();
+      ready.header = true;
+    } else if( tab === `footer` && ready.footer === false ) {
+      codeFooter.codeMirrorFooter();
+      ready.footer = true;
+    }
+  })
+
+  $('.head_signal').css('display', 'none');
+  $('.header_signal').css('display', 'none');
+  $('.footer_signal').css('display', 'none');
