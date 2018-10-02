@@ -77,16 +77,16 @@ var codeHeader = {
       CodeMirror.commands.autocomplete = function(cm) {
         cm.showHint({hint: CodeMirror.hint.anyword});
       }
-      editor_header = CodeMirror.fromTextArea($(this).get(0), {
+      editor_header =  CodeMirror.fromTextArea($(this).get(0), {
         lineNumbers: true,
-        mode: "text/x-ejs",
+        mode: "application/x-ejs",
         keyMap: "sublime",
         theme: 'monokai',
         autoCloseBrackets: true,
         matchBrackets: true,
         indentUnit: 2,
-        showTrailingSpace: true,
         tabSize: 2,
+        showTrailingSpace: true,
         highlightSelectionMatches: {
           showToken: /\w/,
           annotateScrollbar: true
