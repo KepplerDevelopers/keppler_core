@@ -12,7 +12,7 @@ module KepplerFrontend
 
       def install_scss
         out_file = File.open("#{url_front}/app/assets/stylesheets/keppler_frontend/app/views/#{name}.scss", "w")
-        out_file.puts("// Keppler - #{name}.scss file");
+        out_file.puts("/* Keppler - #{name}.scss file */");
         out_file.close
         true
       end

@@ -102,4 +102,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.assets.precompile += %w( 
+    keppler_frontend/app/grapes/grapes-editor.js keppler_frontend/app/grapes/font-awesome.css 
+    keppler_frontend/app/grapes/grapes-editor.js keppler_frontend/app/grapes/grapes-custom.scss
+  )
 end

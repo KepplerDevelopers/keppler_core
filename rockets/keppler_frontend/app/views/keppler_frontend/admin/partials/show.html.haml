@@ -25,9 +25,6 @@
           = "#{@partial.name}.js"
           .kf-signal.js_signal
       %li.pull-right
-        %a#btn-theme-editor{ title: t('keppler.actions.user_interfaces') }
-          %i.fa.fa-paint-brush
-      %li.pull-right
         %a#btn-assets-editor{ title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
@@ -52,7 +49,6 @@
           %textarea#code-js{:name => "code"}
             = @partial.js_code
 = render "keppler_frontend/admin/partials/editor_assets"
-= render "keppler_frontend/admin/partials/editor_themes"
 
 :javascript
   $(document).bind('keydown', function(e) {
