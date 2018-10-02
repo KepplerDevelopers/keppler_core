@@ -24583,7 +24583,11 @@ module.exports = function () {
      * @return {HTMLBodyElement}
      */
     getBody: function getBody() {
-      return this.getDocument().body;
+      try  {
+        return this.getDocument().body;
+      } catch (e) {
+        var error = e;
+      }
     },
 
 
@@ -24592,7 +24596,11 @@ module.exports = function () {
      * @return {HTMLElement}
      */
     getWrapperEl: function getWrapperEl() {
-      return this.getBody().querySelector('#wrapper');
+      try  {
+        return this.getBody().querySelector('#wrapper');
+      } catch (e) {
+        var error = e;
+      }
     },
 
 
@@ -32473,7 +32481,7 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
     // Testing 1000000 components with `+ 2` returns 0 collisions
     var ilen = componentIndex.toString().length + 2;
     var uid = (Math.random() + 1.1).toString(36).slice(-ilen);
-    var nextId = 'i' + uid;
+    var nextId = 'kppl-' + uid;
     componentList[nextId] = model;
     return nextId;
   },
@@ -33248,6 +33256,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var Component = __webpack_require__(/*! ./ComponentImage */ "./src/dom_components/model/ComponentImage.js");
 var OComponent = __webpack_require__(/*! ./Component */ "./src/dom_components/model/Component.js");
+
 var yt = 'yt';
 var vi = 'vi';
 var ytnc = 'ytnc';
@@ -33459,6 +33468,11 @@ module.exports = Component.extend({
       label: 'Modest',
       name: 'modestbranding',
       changeProp: 1
+    }, {
+      type: 'checkbox',
+      label: 'Mute',
+      name: 'mute',
+      changeProp: 1
     }];
   },
 
@@ -33544,6 +33558,7 @@ module.exports = Component.extend({
     url += this.get('loop') ? '&loop=1&playlist=' + id : '';
     url += this.get('rel') ? '' : '&rel=0';
     url += this.get('modestbranding') ? '&modestbranding=1' : '';
+    url += this.get('mute') ? '&mute=1' : '';
     return url;
   },
 
@@ -37739,7 +37754,7 @@ module.exports = function () {
         } else if ((0, _underscore.isFunction)(pluginId)) {
           pluginId(editor, plgOptions);
         } else {
-          console.warn('Plugin ' + pluginId + ' not found');
+          //console.warn('Plugin ' + pluginId + ' not found');
         }
       });
 
@@ -38449,7 +38464,6 @@ module.exports = function () {
       config = _extends({}, _config2.default, opts);
       config.stylePrefix = opts.pStylePrefix;
       em = config.em;
-
       return this;
     },
     getConfig: function getConfig() {
@@ -38470,7 +38484,7 @@ module.exports = function () {
       var root = config.root;
       root && this.setRoot(root);
 
-      if (elTo) {
+      if (elTo) {    
         var el = (0, _underscore.isElement)(elTo) ? elTo : document.querySelector(elTo);
         el.appendChild(this.render());
       }

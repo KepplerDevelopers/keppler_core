@@ -983,6 +983,7 @@ domComps.addType('input', {
     view: dView,
 });
 
+
 editor.on('traverse:html', function (node, resultNode) {
 
 });
@@ -1076,3 +1077,17 @@ devices.add('iPhone X Landscape (812px x 375px)', '812px', {
 })
 
 extrasEditor.createNoEditAreaEditor();
+
+// Quitar el keppler-style link de layers
+$(document).ready(function(){
+  $('.gjs-pn-buttons > .gjs-pn-btn').click(function() {
+    var layers = $('.gjs-layer');
+    if(layers.length > 0) {
+      for(var i=0; i < layers.length; i++) {
+        if(layers[i].outerText==="Keppler-style\n1") {
+          $(layers[i]).remove();
+        }
+      }
+    }
+  });
+})
