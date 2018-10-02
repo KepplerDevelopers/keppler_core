@@ -29,6 +29,7 @@ KepplerLanguages::Engine.routes.draw do
         get '/download', action: 'download', as: 'download'
         get '/add_fields', action: 'add_fields', as: 'add_fields'
         post '/create_fields', action: 'create_fields', as: 'create_fields'
+        post '/toggle', action: 'toggle', as: 'toggle'
         get(
           '/reload',
           action: :reload,
