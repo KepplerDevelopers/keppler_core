@@ -12,5 +12,8 @@ module KepplerLanguages
       true
     end
 
+    def toggle?
+      true
+    end
   end
 end

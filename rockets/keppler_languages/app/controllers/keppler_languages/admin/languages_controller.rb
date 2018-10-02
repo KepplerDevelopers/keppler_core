@@ -138,6 +138,15 @@ module KepplerLanguages
         render :index
       end
 
+      def toggle
+        languages = Language.all
+        language = Language.find(params[:language_id])
+        languages.update_all(active: false)
+        language.update(active: params[:language][:active])
+
+        redirect_to admin_languages_languages_path
+     end
+
       private
 
       def languages_names
