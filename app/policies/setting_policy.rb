@@ -8,4 +8,8 @@ class SettingPolicy < ControllerPolicy
     @user = user
     @objects = objects
   end
+
+  def change_locale?
+    true
+  end
 end
