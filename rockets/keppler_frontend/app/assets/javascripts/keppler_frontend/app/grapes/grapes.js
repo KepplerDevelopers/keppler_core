@@ -24583,7 +24583,11 @@ module.exports = function () {
      * @return {HTMLBodyElement}
      */
     getBody: function getBody() {
-      return this.getDocument().body;
+      try  {
+        return this.getDocument().body;
+      } catch (e) {
+        var error = e;
+      }
     },
 
 
@@ -24592,7 +24596,11 @@ module.exports = function () {
      * @return {HTMLElement}
      */
     getWrapperEl: function getWrapperEl() {
-      return this.getBody().querySelector('#wrapper');
+      try  {
+        return this.getBody().querySelector('#wrapper');
+      } catch (e) {
+        var error = e;
+      }
     },
 
 
@@ -37746,7 +37754,7 @@ module.exports = function () {
         } else if ((0, _underscore.isFunction)(pluginId)) {
           pluginId(editor, plgOptions);
         } else {
-          console.warn('Plugin ' + pluginId + ' not found');
+          //console.warn('Plugin ' + pluginId + ' not found');
         }
       });
 
@@ -38456,7 +38464,6 @@ module.exports = function () {
       config = _extends({}, _config2.default, opts);
       config.stylePrefix = opts.pStylePrefix;
       em = config.em;
-
       return this;
     },
     getConfig: function getConfig() {
@@ -38477,7 +38484,7 @@ module.exports = function () {
       var root = config.root;
       root && this.setRoot(root);
 
-      if (elTo) {
+      if (elTo) {    
         var el = (0, _underscore.isElement)(elTo) ? elTo : document.querySelector(elTo);
         el.appendChild(this.render());
       }
