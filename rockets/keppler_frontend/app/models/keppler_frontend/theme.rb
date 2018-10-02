@@ -40,8 +40,7 @@ module KepplerFrontend
       old_name = "#{root}/#{file.filename}"
       new_name = "#{root}/#{new_file.original_filename.downcase.gsub(' ', '_').gsub('-', '_')}"
       File.rename(old_name, new_name)
-      # system("unzip #{new_name}")
-      unzip(new_name)
+      system("unzip #{new_name}")
       theme_folder = new_file.original_filename.split('.').first
       assets_folder = File.directory?("#{Rails.root}/#{theme_folder}/assets/themes/")
       html_folder = File.directory?("#{Rails.root}/#{theme_folder}/views")
@@ -54,26 +53,6 @@ module KepplerFrontend
       else
         post_install(new_file.original_filename)
         false
-      end
-    end
-
-    # Unzipping into rockets folder
-    def unzip(file)
-      require 'zip'
-      zip = "#{Rails.root}/public/keppler_frontend/#{file.split('/').last}"
-      Zip::File.open(zip) do |zip_file|
-        dir = Rails.root.join('public', 'keppler_frontend')
-        Dir.mkdir(dir) unless Dir.exist?(dir)
-        uncompress_pkg(zip_file, 'keppler_frontend')
-      end
-    end
-
-    def uncompress_pkg(zip_file, rocket_name)
-      zip_file.each do |entry|
-        unless File.exist?("#{Rails.root}/rockets/#{rocket_name}/#{entry.name}")
-          puts "*** Extracting #{entry.name} ***"
-          entry.extract("#{Rails.root}/rockets/#{rocket_name}/#{entry.name}")
-        end
       end
     end
 
