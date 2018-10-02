@@ -13,9 +13,8 @@
           = @names[0][language.name.to_sym]['name']
           (#{language.name})
     %td.hidden-xs
-      = link_to admin_languages_language_path(language), class: 'new-menu', title: t('keppler.actions.show') do
-        %span
-          = render 'switch', language: language
+      %span
+        = render 'switch', language: language
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{language.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
