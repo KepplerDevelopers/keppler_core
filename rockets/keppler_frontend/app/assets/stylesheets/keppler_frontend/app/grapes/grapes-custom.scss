@@ -461,6 +461,49 @@ label {
   border-style: solid;
 }
 
+.keppler-header-area {
+  background-color: #1fc8db1f;
+  border: 2px dashed #0daefb;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.keppler-view-area {
+  background: #adf7cb27;
+  border: 2px dashed #27fb0d;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.keppler-footer-area {
+  background: #f7f5ad2c;
+  border: 2px dashed #fb9c0d;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 // .gjs-layer:nth-child(4) {
 //   display: none;
 // }
+
+.gjs-layer-count {
+  position: absolute !important;
+  right: 27px !important;
+  top: 6px !important;
+  // background: #e8e8e8 !important;
+  color: #676767 !important;
+  padding: 1px !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  font-weight: bold !important;
+  border-radius: 10px !important;
+  // border: 1px solid #9c9c9c !important;
+}
