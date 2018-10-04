@@ -196,7 +196,4 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
-
-  # Starklord routes engine
-  mount KepplerStarklord::Engine, at: '/', as: 'starklord'
 end

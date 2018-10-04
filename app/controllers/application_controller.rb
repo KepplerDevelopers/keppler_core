@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   include Pundit
   include AdminHelper
   include PublicActivity::StoreController
-  helper KepplerStarklord::ApplicationHelper
   helper KepplerLanguages::LanguagesHelper
   helper KepplerCapsules::CapsulesHelper
 
@@ -97,6 +96,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_admin_locale
+    I18n.default_locale = Appearance.first.language || :en
     if controller_path.include?('admin')
       I18n.locale = Appearance.first.language || I18n.default_locale
     end

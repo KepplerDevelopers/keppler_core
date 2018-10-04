@@ -6,7 +6,7 @@ es:
       en: Inglés
     preloader:
       title: Es dificil trabajar en el espacio
-      message: Esto puede tardar uno segundos...
+      message: Esto puede tardar unos segundos...
     devise:
       profile: Perfil
       sign_out: Salir
@@ -42,7 +42,7 @@ es:
       rockets: Rockets
       setting: Configuración
       setting-submenu:
-        keppler-configuration: Configuración de Keppler
+        keppler-configuration: Ajustes de Keppler
         basic-information: 'Información básica'
         email-setting-smtp: 'Configuración SMTP'
         social-accounts: 'Redes sociales'

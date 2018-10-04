@@ -24583,7 +24583,11 @@ module.exports = function () {
      * @return {HTMLBodyElement}
      */
     getBody: function getBody() {
-      return this.getDocument().body;
+      try  {
+        return this.getDocument().body;
+      } catch (e) {
+        var error = e;
+      }
     },
 
 
@@ -24592,7 +24596,11 @@ module.exports = function () {
      * @return {HTMLElement}
      */
     getWrapperEl: function getWrapperEl() {
-      return this.getBody().querySelector('#wrapper');
+      try  {
+        return this.getBody().querySelector('#wrapper');
+      } catch (e) {
+        var error = e;
+      }
     },
 
 
@@ -26357,6 +26365,15 @@ module.exports = function () {
 
       defaultCommands['tlb-move'] = {
         run: function run(ed, sender, opts) {
+          
+          $(document).ready(function(){
+            var section = ['header', 'view', 'footer']
+            for(var i=0; i < section.length; i++) {
+              var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+              $(el).addClass("keppler-"+section[i]+"-area")
+            }
+          });
+          
           var dragger = void 0;
           var em = ed.getModel();
           var event = opts && opts.event;
@@ -26397,6 +26414,13 @@ module.exports = function () {
             ed.select(selAll);
             sel.emitUpdate();
             dragger && dragger.blur();
+            $(document).ready(function(){
+              var section = ['header', 'view', 'footer']
+              for(var i=0; i < section.length; i++) {
+                var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+                $(el).removeClass("keppler-"+section[i]+"-area")
+              }
+            });
           };
 
           var onDrag = function onDrag(e, opts) {
@@ -28148,7 +28172,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Layers = __webpack_require__(/*! navigator */ "./src/navigator/index.js");
 var $ = _backbone2.default.$;
-
+///////////////////////////////////////// Administrar Layers /////////////////////////////////////////
 module.exports = {
   run: function run(editor) {
     var lm = editor.LayerManager;
@@ -28161,16 +28185,28 @@ module.exports = {
       layers.appendChild(lm.render());
       panels.set('appendContent', layers).trigger('change:appendContent');
       this.layers = layers;
+    
+      this.layers = this.layers.getElementsByClassName("gjs-layers")[0];
+
+      var sections = ["Keppler-header", "Keppler-view", "Keppler-footer"]
+
+      for(var i=0; i < sections.length; i++) {
+        this.layers.children[i].getElementsByClassName("gjs-layer-move")[0].remove();
+        this.layers.children[i].getElementsByClassName("gjs-layer-name")[0].innerText = sections[i];
+
+      }
+
     }
 
     this.layers.style.display = 'block';
   },
+
   stop: function stop() {
     var layers = this.layers;
     layers && (layers.style.display = 'none');
   }
 };
-
+///////////////////////////////////////// Administrar Layers /////////////////////////////////////////
 /***/ }),
 
 /***/ "./src/commands/view/OpenStyleManager.js":
@@ -32052,8 +32088,15 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
     if (!model.get('toolbar')) {
       var tb = [];
       var className = "";
+      var idName = "";
+      var sections = ['keppler-header', 'keppler-view', 'keppler-footer']
       try {
-        className = model.attributes.classes.models[0].attributes.name 
+        className = model.attributes.classes.models[0].attributes.name;
+      } catch (e) {
+        var err = "no attributes";
+      }
+      try {
+        idName = model.attributes.attributes.id;
       } catch (e) {
         var err = "no attributes";
       }
@@ -32063,7 +32106,7 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
           command: 'select-parent'
         });
       }
-      if (model.get('draggable')) {
+      if (model.get('draggable') && !sections.includes(idName)) {
         tb.push({
           attributes: {
             class: 'fa fa-arrows ' + ppfx + 'no-touch-actions',
@@ -32073,13 +32116,13 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
           command: 'tlb-move'
         });
       }
-      if (model.get('copyable') && className!=='no-edit-area') {
+      if (model.get('copyable') && className!=='no-edit-area' && !sections.includes(idName)) {
         tb.push({
           attributes: { class: 'fa fa-clone' },
           command: 'tlb-clone'
         });
       }
-      if (model.get('removable')) {
+      if (model.get('removable') && !sections.includes(idName)) {
         tb.push({
           attributes: { class: 'fa fa-trash-o' },
           command: 'tlb-delete'
@@ -32473,7 +32516,7 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
     // Testing 1000000 components with `+ 2` returns 0 collisions
     var ilen = componentIndex.toString().length + 2;
     var uid = (Math.random() + 1.1).toString(36).slice(-ilen);
-    var nextId = 'i' + uid;
+    var nextId = 'kppl-' + uid;
     componentList[nextId] = model;
     return nextId;
   },
@@ -33248,6 +33291,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var Component = __webpack_require__(/*! ./ComponentImage */ "./src/dom_components/model/ComponentImage.js");
 var OComponent = __webpack_require__(/*! ./Component */ "./src/dom_components/model/Component.js");
+
 var yt = 'yt';
 var vi = 'vi';
 var ytnc = 'ytnc';
@@ -33459,6 +33503,11 @@ module.exports = Component.extend({
       label: 'Modest',
       name: 'modestbranding',
       changeProp: 1
+    }, {
+      type: 'checkbox',
+      label: 'Mute',
+      name: 'mute',
+      changeProp: 1
     }];
   },
 
@@ -33544,6 +33593,7 @@ module.exports = Component.extend({
     url += this.get('loop') ? '&loop=1&playlist=' + id : '';
     url += this.get('rel') ? '' : '&rel=0';
     url += this.get('modestbranding') ? '&modestbranding=1' : '';
+    url += this.get('mute') ? '&mute=1' : '';
     return url;
   },
 
@@ -37739,7 +37789,7 @@ module.exports = function () {
         } else if ((0, _underscore.isFunction)(pluginId)) {
           pluginId(editor, plgOptions);
         } else {
-          console.warn('Plugin ' + pluginId + ' not found');
+          //console.warn('Plugin ' + pluginId + ' not found');
         }
       });
 
@@ -37844,7 +37894,7 @@ module.exports = function () {
         handler: 'core:component-exit'
       },
       'core:component-delete': {
-        keys: 'backspace, delete',
+        keys: 'delete',
         handler: 'core:component-delete'
       }
     }
@@ -38449,7 +38499,6 @@ module.exports = function () {
       config = _extends({}, _config2.default, opts);
       config.stylePrefix = opts.pStylePrefix;
       em = config.em;
-
       return this;
     },
     getConfig: function getConfig() {
@@ -38470,7 +38519,7 @@ module.exports = function () {
       var root = config.root;
       root && this.setRoot(root);
 
-      if (elTo) {
+      if (elTo) {    
         var el = (0, _underscore.isElement)(elTo) ? elTo : document.querySelector(elTo);
         el.appendChild(this.render());
       }
