@@ -5,7 +5,7 @@
         = t 'keppler.sidebar-menu.setting-submenu.google-analytics'
     .box-body.pure-input
       .container
-        = f.simple_fields_for :google_analytics_setting, { multipart: true } do |f|
+        = f.simple_fields_for :google_analytics_setting do |f|
           .row
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
               = f.input :ga_account_id
