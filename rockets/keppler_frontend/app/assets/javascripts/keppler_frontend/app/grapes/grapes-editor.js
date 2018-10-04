@@ -1,6 +1,5 @@
 var extrasEditor = {
   buildHtml: function(html) {
-    var html = $(html)
     var sections = ""
     var sectionsPermit = ['keppler-header', 'keppler-view', 'keppler-footer']
     for(var i=0; i < html.length; i++) {
@@ -54,6 +53,47 @@ var extrasEditor = {
     }
   },
 
+  getIfNotArea: function(some) {
+    var sections = ["keppler-header", "keppler-view", "keppler-footer"]
+    var includeKepplerLabel = false;
+    for(var i=0; i < some.path.length; i++) {
+      var label = $(some.path[i])[0].id;
+      if(sections.includes(label)) {
+        includeKepplerLabel = true
+      }
+    }
+    return includeKepplerLabel;
+  },
+
+  createAreas: function() {
+    var sections = ['keppler-header', 'keppler-view', 'keppler-footer']
+
+    for(var i=0; i < sections.length; i++) {
+      $(sections[i]).replaceWith(function () {
+          return $('<div/>', {
+              id:  sections[i], 
+              html: this.innerHTML
+          });
+      });
+    }
+  },
+
+  deleteAreas: function(html, view_name) {
+    var html = $(html);
+    var sections = ['keppler-header', 'keppler-view', 'keppler-footer']
+    var result = [];
+    for(var i=0; i < html.length; i++) {
+      if(sections.includes(html[i].id)) {
+        var el = document.createElement(html[i].id)
+        el.innerHTML = html[i].innerHTML
+        if (html[i].id==="keppler-view") {
+          el.id = view_name;
+        }
+        result.push(el)
+      }
+    }
+    return result;
+  },
 
 }
 
@@ -564,6 +604,7 @@ try {
   var css_style = gon.css_style;
   var images_assets = gon.images_assets;
   var view_id = gon.view_id;
+  var view_name = gon.view_name;
 } catch (e) {
   if (e instanceof SyntaxError) {
       console.log(e.message);
@@ -623,7 +664,8 @@ window.editor = editor;
 
 function saveCode() { 
   try {
-    var html = extrasEditor.buildHtml(editor.getHtml());
+    var html = extrasEditor.deleteAreas(editor.getHtml(), view_name);
+    var html = extrasEditor.buildHtml(html);
     var css = editor.getCss();
     var css = cssbeautify(css, {
       indent: ' ',
@@ -728,6 +770,8 @@ codeButton.collection.remove(codeButton);
 // codeButton.collection.remove(codeButton);
 
 var bm = editor.BlockManager;
+var noArea = false;
+
 
 
 editor.on('canvas:dragenter', (some, argument) => {
@@ -739,11 +783,35 @@ editor.on('canvas:dragenter', (some, argument) => {
 
 editor.on('canvas:dragend', (some, argument) => {
   // do something
+  noArea = extrasEditor.getIfNotArea(some);
+ 
   $(".gjs-pn-views").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
   $(".gjs-pn-views-container").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
   $(".gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-times ").removeClass('fa-bars').addClass('fa-times')
 })
 
+editor.on("block:drag:start", (some, argument) => {
+  var section = ['header', 'view', 'footer']
+
+  for(var i=0; i < section.length; i++) {
+    var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+    $(el).addClass("keppler-"+section[i]+"-area")
+  }
+})
+
+
+editor.on("block:drag:stop", (some, argument) => {
+  var section = ['header', 'view', 'footer']
+
+  for(var i=0; i < section.length; i++) {
+    var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+    $(el).removeClass("keppler-"+section[i]+"-area")
+  }
+  var el = $(some.view.$el[0]);
+  if (!noArea) {
+    el.remove();
+  }
+})
 
 
 bm.add('link', {
@@ -1076,7 +1144,10 @@ devices.add('iPhone X Landscape (812px x 375px)', '812px', {
 
 })
 
+
+
 extrasEditor.createNoEditAreaEditor();
+extrasEditor.createAreas();
 
 // Quitar el keppler-style link de layers
 $(document).ready(function(){
@@ -1084,6 +1155,7 @@ $(document).ready(function(){
     var layers = $('.gjs-layer');
     if(layers.length > 0) {
       for(var i=0; i < layers.length; i++) {
+        // console.log(layers[i])
         if(layers[i].outerText==="Keppler-style\n1") {
           $(layers[i]).remove();
         }

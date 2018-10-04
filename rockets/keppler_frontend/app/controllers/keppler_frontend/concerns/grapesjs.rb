@@ -39,6 +39,7 @@ module KepplerFrontend
       def grapes_info      
         if params[:editor] && controller_name.eql?('frontend') && !action_name.eql?('keppler')
           gon.view_id = params[:view]
+          gon.view_name = KepplerFrontend::View.find(params[:view]).name;
           gon.css_style = set_css_style
           gon.images_assets = set_assets
           gon.components = set_components
