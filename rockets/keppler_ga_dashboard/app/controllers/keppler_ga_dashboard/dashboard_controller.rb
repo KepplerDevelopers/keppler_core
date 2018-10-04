@@ -5,6 +5,7 @@ module KepplerGaDashboard
   class DashboardController < ::ApplicationController
     layout 'keppler_ga_dashboard/admin/layouts/application'
     before_action :dashboard_access, only: [:analytics]
+    before_action :set_apparience_colors
     before_action :authenticate_user!
 
     def analytics
@@ -19,6 +20,8 @@ module KepplerGaDashboard
       ).tap(&:fetch_access_token!)
 
       @access_token = client.authorization.fetch_access_token!['access_token']
+
+      gon.color = @color
     end
 
     # Options for authenticate
@@ -33,6 +36,19 @@ module KepplerGaDashboard
           file_key, 'notasecret'
         )
       }
+    end
+
+    def set_apparience_colors
+      variables_file = File.readlines(style_file)
+      @color = ""
+      variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
+
+
+      puts "********************** #{@color}"
+    end
+
+    def style_file
+      "#{Rails.root}/app/assets/stylesheets/admin/utils/_variables.scss"
     end
 
     # get .p12 File for authenticate token
