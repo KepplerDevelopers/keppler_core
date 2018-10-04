@@ -26365,6 +26365,15 @@ module.exports = function () {
 
       defaultCommands['tlb-move'] = {
         run: function run(ed, sender, opts) {
+          
+          $(document).ready(function(){
+            var section = ['header', 'view', 'footer']
+            for(var i=0; i < section.length; i++) {
+              var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+              $(el).addClass("keppler-"+section[i]+"-area")
+            }
+          });
+          
           var dragger = void 0;
           var em = ed.getModel();
           var event = opts && opts.event;
@@ -26405,6 +26414,13 @@ module.exports = function () {
             ed.select(selAll);
             sel.emitUpdate();
             dragger && dragger.blur();
+            $(document).ready(function(){
+              var section = ['header', 'view', 'footer']
+              for(var i=0; i < section.length; i++) {
+                var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+                $(el).removeClass("keppler-"+section[i]+"-area")
+              }
+            });
           };
 
           var onDrag = function onDrag(e, opts) {
@@ -28156,7 +28172,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Layers = __webpack_require__(/*! navigator */ "./src/navigator/index.js");
 var $ = _backbone2.default.$;
-
+///////////////////////////////////////// Administrar Layers /////////////////////////////////////////
 module.exports = {
   run: function run(editor) {
     var lm = editor.LayerManager;
@@ -28169,16 +28185,28 @@ module.exports = {
       layers.appendChild(lm.render());
       panels.set('appendContent', layers).trigger('change:appendContent');
       this.layers = layers;
+    
+      this.layers = this.layers.getElementsByClassName("gjs-layers")[0];
+
+      var sections = ["Keppler-header", "Keppler-view", "Keppler-footer"]
+
+      for(var i=0; i < sections.length; i++) {
+        this.layers.children[i].getElementsByClassName("gjs-layer-move")[0].remove();
+        this.layers.children[i].getElementsByClassName("gjs-layer-name")[0].innerText = sections[i];
+
+      }
+
     }
 
     this.layers.style.display = 'block';
   },
+
   stop: function stop() {
     var layers = this.layers;
     layers && (layers.style.display = 'none');
   }
 };
-
+///////////////////////////////////////// Administrar Layers /////////////////////////////////////////
 /***/ }),
 
 /***/ "./src/commands/view/OpenStyleManager.js":
@@ -32060,8 +32088,15 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
     if (!model.get('toolbar')) {
       var tb = [];
       var className = "";
+      var idName = "";
+      var sections = ['keppler-header', 'keppler-view', 'keppler-footer']
       try {
-        className = model.attributes.classes.models[0].attributes.name 
+        className = model.attributes.classes.models[0].attributes.name;
+      } catch (e) {
+        var err = "no attributes";
+      }
+      try {
+        idName = model.attributes.attributes.id;
       } catch (e) {
         var err = "no attributes";
       }
@@ -32071,7 +32106,7 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
           command: 'select-parent'
         });
       }
-      if (model.get('draggable')) {
+      if (model.get('draggable') && !sections.includes(idName)) {
         tb.push({
           attributes: {
             class: 'fa fa-arrows ' + ppfx + 'no-touch-actions',
@@ -32081,13 +32116,13 @@ var Component = Backbone.Model.extend(_Styleable2.default).extend({
           command: 'tlb-move'
         });
       }
-      if (model.get('copyable') && className!=='no-edit-area') {
+      if (model.get('copyable') && className!=='no-edit-area' && !sections.includes(idName)) {
         tb.push({
           attributes: { class: 'fa fa-clone' },
           command: 'tlb-clone'
         });
       }
-      if (model.get('removable')) {
+      if (model.get('removable') && !sections.includes(idName)) {
         tb.push({
           attributes: { class: 'fa fa-trash-o' },
           command: 'tlb-delete'
@@ -37859,7 +37894,7 @@ module.exports = function () {
         handler: 'core:component-exit'
       },
       'core:component-delete': {
-        keys: 'backspace, delete',
+        keys: 'delete',
         handler: 'core:component-delete'
       }
     }
