@@ -8,7 +8,7 @@ module App
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
-    
+
     def set_metas
       @theme_color = nil
       # Descomentar el modelo que exista depende del proyecto

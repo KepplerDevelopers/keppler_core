@@ -53,6 +53,9 @@
                     %th.hidden-xs
                       = sort_link(@q, :name) do
                         = t('activerecord.attributes.name')
+                    %th.hidden-xs
+                      = sort_link(@q, :active) do
+                        = t('activerecord.attributes.active')
                     %th
                     %th
               %tbody.objects-container
