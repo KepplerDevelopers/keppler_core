@@ -12,6 +12,9 @@
         %span
           = @names[0][language.name.to_sym]['name']
           (#{language.name})
+    %td.hidden-xs
+      %span
+        = render 'switch', language: language
     %td{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{language.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
         %i.icon-options-vertical
