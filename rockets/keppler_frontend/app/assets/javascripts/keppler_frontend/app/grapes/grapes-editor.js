@@ -57,7 +57,7 @@ var extrasEditor = {
     var sections = ["keppler-header", "keppler-view", "keppler-footer"]
     var includeKepplerLabel = false;
     for(var i=0; i < some.path.length; i++) {
-      var label = $(some.path[i])[0].localName;
+      var label = $(some.path[i])[0].id;
       if(sections.includes(label)) {
         includeKepplerLabel = true
       }
@@ -783,7 +783,7 @@ editor.on('canvas:dragenter', (some, argument) => {
 
 editor.on('canvas:dragend', (some, argument) => {
   // do something
-  // noArea = extrasEditor.getIfNotArea(some);
+  noArea = extrasEditor.getIfNotArea(some);
  
   $(".gjs-pn-views").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
   $(".gjs-pn-views-container").removeClass('gsj-hide-tools').addClass('gsj-show-tools')
@@ -791,29 +791,26 @@ editor.on('canvas:dragend', (some, argument) => {
 })
 
 editor.on("block:drag:start", (some, argument) => {
-  var el = $(".gjs-frame").contents().find("#keppler-header");
-  $(el).addClass("keppler-header-area");
-  var el = $(".gjs-frame").contents().find("#keppler-view");
-  $(el).addClass("keppler-view-area");
-  var el = $(".gjs-frame").contents().find("#keppler-footer");
-  $(el).addClass("keppler-footer-area");
+  var section = ['header', 'view', 'footer']
+
+  for(var i=0; i < section.length; i++) {
+    var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+    $(el).addClass("keppler-"+section[i]+"-area")
+  }
 })
 
-editor.on("component:update:moved", (some, argument) => {
-  alert("hola")
-});
 
 editor.on("block:drag:stop", (some, argument) => {
-  var el = $(".gjs-frame").contents().find("#keppler-header");
-  $(el).removeClass("keppler-header-area");
-  var el = $(".gjs-frame").contents().find("#keppler-view");
-  $(el).removeClass("keppler-view-area");
-  var el = $(".gjs-frame").contents().find("#keppler-footer");
-  $(el).removeClass("keppler-footer-area");
-  // var el = $(some.view.$el[0]);
-  // if (!noArea) {
-  //   el.remove();
-  // }
+  var section = ['header', 'view', 'footer']
+
+  for(var i=0; i < section.length; i++) {
+    var el = $(".gjs-frame").contents().find("#keppler-"+section[i]);
+    $(el).removeClass("keppler-"+section[i]+"-area")
+  }
+  var el = $(some.view.$el[0]);
+  if (!noArea) {
+    el.remove();
+  }
 })
 
 

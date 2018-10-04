@@ -466,9 +466,7 @@ label {
   border: 2px dashed #0daefb;
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 .keppler-view-area {
@@ -476,19 +474,15 @@ label {
   border: 2px dashed #27fb0d;
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 .keppler-footer-area {
-  background: #f7f5ad2c;
-  border: 2px dashed #fb9c0d;
+  background-color: #1fc8db1f;
+  border: 2px dashed #0daefb;
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 // .gjs-layer:nth-child(4) {
 //   display: none;
