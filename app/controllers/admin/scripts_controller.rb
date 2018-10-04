@@ -62,27 +62,17 @@ module Admin
     # DELETE /scripts/1
     def destroy
       @script.destroy
-
-      redirect_to(
-        admin_scripts_path,
-        notice: actions_messages(@script)
-      )
+      redirect_to_index(@objects)
     end
 
     def destroy_multiple
       Script.destroy redefine_ids(params[:multiple_ids])
-      redirect_to(
-        admin_scripts_path(page: @current_page, search: @query),
-        notice: actions_messages(Script.new)
-      )
+      redirect_to_index(@objects)
     end
 
     def upload
       Script.upload(params[:file])
-      redirect_to(
-        admin_scripts_path(page: @current_page, search: @query),
-        notice: actions_messages(Script.new)
-      )
+      redirect_to_index(@objects)
     end
 
     def reload

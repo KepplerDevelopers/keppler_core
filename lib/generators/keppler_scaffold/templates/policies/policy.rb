@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Policy for <%= controller_class_name.singularize %> model
 class <%= controller_class_name.singularize %>Policy < ControllerPolicy
   attr_reader :user, :objects

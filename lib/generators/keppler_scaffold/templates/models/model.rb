@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# <%= class_name %> Model
 <% module_namespacing do -%>
+# <%= class_name %> Model
 class <%= class_name %> < ApplicationRecord
   include ActivityHistory
   include CloneRecord
@@ -11,6 +11,8 @@ class <%= class_name %> < ApplicationRecord
   <%- attributes.each do |attribute| -%>
     <%- if SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
   mount_uploader :<%=attribute.name%>, AttachmentUploader
+    <%- elsif PLURAL_ATTACHMENTS.include?(attribute.name) -%>
+  mount_uploaders :<%=attribute.name%>, AttachmentUploader
     <%- end -%>
     <%- if attribute.reference? -%>
   belongs_to :<%= attribute.name %>
@@ -21,7 +23,7 @@ class <%= class_name %> < ApplicationRecord
 
   # Fields for the search form in the navbar
   def self.search_field
-    fields = %i[<%= attributes_names.map { |name| name }.join(' ') %>]
+    fields = %i[<%= SEARCHABLE_ATTRIBUTES -%>]
     build_query(fields, :or, :cont)
   end
 

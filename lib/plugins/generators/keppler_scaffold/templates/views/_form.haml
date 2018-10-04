@@ -1,20 +1,20 @@
-= simple_form_for [:admin, @<%= MODULE_NAME %>] do |f|
+= simple_form_for [:admin, :<%= namespaced_path.split('_').drop(1).join('_') %>, @<%= singular_table_name %>] do |f|
   .container
     .row
       .col-lg-2
-        = link_to admin_<%= plural_table_name %>_path, class: '', 'data-position' => 'bottom', 'data-tooltip' => t('keppler.actions.back') do
+        = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path, 'data-position': 'bottom', 'data-tooltip': t('keppler.actions.back') do
           .arrow-back.btn.btn-default
-            %i.icon-arrow-left
+            %i.fa.fa-angle-left
             = t('keppler.actions.back')
 
     .row
       .col-lg-12
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{action_name.underscore}")
+            %h3.box-title= t('keppler.models.pluralize.<%= plural_table_name %>').humanize
             .box-tools.pull-right
-              %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                %i.icon-minus
+              %a.btn.btn-box-tool{'data-widget': 'collapse', type: 'button'}
+                %i.fa.fa-minus
           .box-body
             %table.table.table-bordered
               %tbody
@@ -33,12 +33,12 @@
                     = f.input :<%= attribute.first %>, as: :string, input_html: { class: 'datepicker' }
                     <%- elsif attribute.last.eql?('boolean') -%>
                     = f.input :<%= attribute.first %>, as: :keppler_boolean
+                    <%- elsif %w[position deleted_at].include?(attribute.first) || attribute.last.eql?('timestamp') -%>
+                    = f.input :<%= attribute.first %>, as: :hidden
                     <%- elsif %w[integer float decimal].include?(attribute.last) -%>
                     = f.input :<%= attribute.first %>, input_html: { min: 0 }
                     <%- elsif attribute.last.eql?('binary') || attribute.last.eql?('string') -%>
                     = f.input :<%= attribute.first %>, as: :string
-                    <%- elsif %w[position].include?(attribute.first) || attribute.last.eql?('timestamp') -%>
-                    = f.input :<%= attribute.first %>, as: :hidden
                     <%- else -%>
                     = f.input :<%= attribute.first %>
                     <%- end -%>

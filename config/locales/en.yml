@@ -77,6 +77,7 @@ en:
         setting: setting
         configuration: configuration
         user: user
+        capsule: capsule
       pluralize:
         seos: seos
         roles: roles
@@ -111,13 +112,19 @@ en:
       isnt_a_rocket: Houston! That file isn't a rocket :(
       first_upload: First upload a rocket please!
       choose_a_name: Choose a name
-      rocket_name: This will be your rocket's name
-      create: Create
+      rocket_name: This will be the name of your rocket
+      create_rocket: Create
       you_sure: Are you sure?
       will_be_named: Your rocket will be named
       great: Great!
       wait_generator: Please wait until your rocket is ready...
       cancel: Cancel
+      installed: installed
+      uninstalled: uninstalled
+      created: created
+      built: built
+      success: "Keppler%{rocket} has been %{action} seccessfully"
+      error: "Error: %{rocket} cannot be %{action}"
     appearance:
       main_color: Main color
       admin_theme: KepplerAdmin Theme
@@ -184,6 +191,10 @@ en:
       appearance_defaut: Set default
       apply: Apply
       drop_file: Drop a file or press here
+      reload_page: Reload page
+      download:
+        csv: Download CSV
+        xls: Download XLS
   activerecord:
     attributes:
       public: Public

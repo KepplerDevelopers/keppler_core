@@ -64,11 +64,13 @@ module Admin
     end
 
     def rocket_name(rocket)
-      if rocket.try(:original_filename).nil?
-        rocket.camelize
-      else
-        rocket.original_filename.split('.').first.camelize
-      end
+      name =
+        if rocket.try(:original_filename).nil?
+          rocket.remove('keppler_')
+        else
+          rocket.original_filename.split('.').first.remove('keppler_')
+        end
+      "keppler_#{name}".camelize
     end
 
     def message_action

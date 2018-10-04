@@ -189,7 +189,7 @@ module KepplerFrontend
       # Get submit key to redirect, only [:create, :update]
       def redirect(object, commit)
         if commit.key?('_save')
-          redirect_to([:admin, :frontend, object], notice: actions_messages(object))
+          redirect_to([:admin, :frontend, object], notice: actions_messages(object)
         elsif commit.key?('_add_other')
           redirect_to(
             send("new_admin_frontend_#{underscore(object)}_path"),

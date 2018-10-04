@@ -34,7 +34,7 @@ module Rails
 
       ROCKET_NAME = Dir.getwd.split('/').last
       MODULE_NAME = ARGV[0].underscore
-      ATTRIBUTES = ARGV[1] ? ARGV[1..20].map { |x| x.include?(':') ? x.split(':') : [x, 'string'] }.to_h : nil
+      ATTRIBUTES = ARGV[1] ? ARGV[1..20].map { |x| x.include?(':') ? x.split(':') : ([x, 'string'] if x.exclude?('-')) }.compact.to_h : nil
       ATTRIBUTES_NAMES = ATTRIBUTES.keys
       ROCKET_DIRECTORY = Dir.getwd
 
@@ -44,8 +44,7 @@ module Rails
       NAMES = %w[name title first_name full_name]
       SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
       PLURAL_ATTACHMENTS = SINGULAR_ATTACHMENTS.map(&:pluralize)
-      SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| v.eql?('string') || v.eql?('text') }.map(&:first).join(' ')
-      # puts "********************* #{ROCKET_DIRECTORY} ***************************"
+      SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| SINGULAR_ATTACHMENTS.exclude?(k) && PLURAL_ATTACHMENTS.exclude?(k) && %w[string text integer].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ')
 
       def add_route
         return if options[:skip_routes]
@@ -120,10 +119,11 @@ module Rails
 
       def create_views_files
         %w[
-          _description _index_show _listing _form show edit new index
-          show.js reload.js
-        ].each do |file_name|
-          template_keppler_views("#{file_name}.haml")
+          _description _form _listing
+          edit index new show
+          reload.js
+        ].each do |filename|
+          template_keppler_views("#{filename}.haml")
         end
       end
 

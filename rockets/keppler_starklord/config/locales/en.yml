@@ -1,0 +1,22 @@
+en:
+  keppler:
+    sidebar-menu:
+      keppler-starklord: Keppler starklord
+      keppler-starklord-submenu:
+        elliot: Elliot
+    permissions:
+    models:
+      singularize:
+        elliot: elliot
+      pluralize:
+        elliots: elliots
+    modules:
+      admin/elliot: Elliot
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

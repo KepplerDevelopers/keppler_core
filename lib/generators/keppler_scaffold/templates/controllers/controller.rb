@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 <% if namespaced? -%>
-require_dependency "<%= namespaced_file_path %>/application_controller"
+require_dependency "<%= namespaced_path %>/application_controller"
 <% end -%>
 <% module_namespacing do -%>
 module Admin
   # <%= controller_class_name %>Controller
-  class <%= controller_class_name %>Controller < AdminController
+  class <%= controller_class_name %>Controller < ::Admin::AdminController
+    layout '<%= namespaced_path %>/admin/layouts/application'
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
-    before_action :show_history, only: %i[index]
-    before_action :authorization, except: %i[reload]
     include ObjectQuery
 
     # GET <%= route_url %>
@@ -69,18 +70,12 @@ module Admin
 
     def destroy_multiple
       <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-      redirect_to(
-        admin_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
-      )
+      redirect_to_index(@<%= singular_table_name %>)
     end
 
     def upload
       <%= class_name %>.upload(params[:file])
-      redirect_to(
-        admin_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
-      )
+      redirect_to_index(@<%= singular_table_name %>)
     end
 
     def reload
@@ -98,10 +93,6 @@ module Admin
 
     private
 
-    def authorization
-      authorize <%= class_name %>
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>
       @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
@@ -112,12 +103,10 @@ module Admin
       <%- if attributes_names.empty? -%>
       params[:<%= singular_table_name %>]
       <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+      params.require(:<%= singular_table_name %>).permit(
+        <%= attributes.map { |attribute| attribute| attribute.type.eql?('jsonb') ? "{ #{attribute.name}: [] }" : attribute.inspect }.join(', ') %>
+      )
       <%- end -%>
-    end
-
-    def show_history
-      get_history(<%= singular_table_name.camelcase %>)
     end
   end
 end

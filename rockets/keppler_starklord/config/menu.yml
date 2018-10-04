@@ -1,0 +1,21 @@
+menu:
+  keppler_starklord:
+    name: Keppler Starklord
+    current: ['/']
+    url_path: /
+    icon: layers
+    model: User
+    submenu:
+      - elliot:
+          name: elliot
+          url_path: /admin/starklord/elliots
+          icon: layers
+          current: ['/admin/starklord/elliots']
+          model: KepplerStarklord::Elliot
+
+      - new:
+          name: + Add new module
+          url_path: /url_path
+          current: ['/current_path']
+          enviroment: development
+          model: User

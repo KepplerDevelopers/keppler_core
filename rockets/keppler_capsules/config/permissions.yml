@@ -1,2 +1,20 @@
 modules:
+ person:
+    name: Person
+    model: KepplerCapsulesPerson
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  
+ user:
+    name: User
+    model: KepplerCapsulesUser
+    actions: [
+      'index', 'create', 'update',
+      'destroy', 'download', 'upload',
+      'clone'
+    ]
+  
   #

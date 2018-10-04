@@ -38,9 +38,12 @@ module AdminHelper
   end
 
   # Messages for the crud actions
-  def actions_messages(object)
+  def actions_messages(_object)
     t("keppler.messages.successfully.#{action_convert_to_locale}",
-      model: t("keppler.models.singularize.#{underscore(object)}").humanize)
+      model: t(
+        "keppler.models.singularize.#{controller_name.singularize}"
+      ).humanize
+    )
   end
 
   def entries(total, objects)
@@ -95,7 +98,7 @@ module AdminHelper
   end
   # ------------ preload
 
-  # ------------ action_message
+  # ------------ actions_messages(object)
   def action_convert_to_locale
     case action_name
     when 'create' then 'created'
@@ -104,7 +107,7 @@ module AdminHelper
     when 'destroy_multiple' then 'removed'
     end
   end
-  # ------------ action_message
+  # ------------ actions_messages(object)
 
   # ------------ entries
   def message(total, objects)

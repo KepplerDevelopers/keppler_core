@@ -3,9 +3,10 @@
 class KepplerModuleGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
-  ROCKET_NAME = "keppler_#{ARGV[0].underscore.split('keppler_').last}"
+  FILE_NAME = "#{(ARGV[0].eql?('keppler_module') ? ARGV[1] : ARGV[0]).underscore.split('keppler_').last}"
+  ROCKET_NAME = "keppler_#{FILE_NAME}"
   MODULE_NAME = ARGV[1].underscore
-  ATTRIBUTES = ARGV[2] ? ARGV[2..20].map { |x| x.include?(':') ? x.split(':') : [x, 'string'] }.to_h : nil
+  ATTRIBUTES = ARGV[2] ? ARGV[2..20].map { |x| x.include?(':') ? x.split(':') : ([x, 'string'] if x.exclude?('-')) }.compact.to_h : nil
   ATTRIBUTES_NAMES = ATTRIBUTES.keys
   ROCKET_DIRECTORY = "#{Rails.root}/rockets/#{ROCKET_NAME}"
 
@@ -15,28 +16,29 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
   NAMES = %w[name title first_name full_name]
   SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
   PLURAL_ATTACHMENTS = SINGULAR_ATTACHMENTS.map(&:pluralize)
-  SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| v.eql?('string') || v.eql?('text') }.map(&:first).join(' ')
+  SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| SINGULAR_ATTACHMENTS.exclude?(k) && PLURAL_ATTACHMENTS.exclude?(k) && %w[string text integer].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ')
 
   def create_module
     if ROCKET_NAME
       if MODULE_NAME
         if Dir.exist? ROCKET_DIRECTORY
           say "\n*** Creating #{MODULE_CLASS_NAME} module ***"
+          add_route
+          add_option_menu
+          add_option_permissions
+          add_locales
           remove_migrations
           if validate_rocket_scaffold
             say "***** RUNNING KEPPLER SCAFFOLD *****"
             run_rocket_scaffold
           else
-            add_route
-            add_option_menu
-            add_option_permissions
-            add_locales
             create_model_file
             create_policies_file
             create_controller_file
             create_views_files
             create_migration_file
           end
+          extract_migrations
           migrate_database
           restart_server
           say "=== All Done. #{MODULE_NAME.classify} module has been created and installed ===\n", :green
@@ -59,7 +61,7 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
     inject_into_file(
       "#{ROCKET_DIRECTORY}/config/routes.rb",
       "\n#{indent(str_route, 6)}",
-      after: "scope :#{ROCKET_NAME}, as: :#{ROCKET_NAME} do"
+      after: "scope :#{FILE_NAME}, as: :#{FILE_NAME} do"
     )
     say "=== Routes has been added ===\n", :green
   end
@@ -150,9 +152,13 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
     system "rails g migration create_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
     say "*** Exiting from Rocket Directory ***"
     FileUtils.cd Rails.root
+    say "=== Migration has been created ===\n", :green
+  end
+
+  def extract_migrations
     say "*** Importing migrations from #{ROCKET_NAME}/db ***"
     system "rake #{ROCKET_NAME}:install:migrations"
-    say "=== Migration has been created ===\n", :green
+    say "=== Migration has been extracted ===\n", :green
   end
 
   def create_model_file
@@ -185,11 +191,11 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
 
   def create_views_files
     %w[
-      _description _listing _form
-      show edit new index
+      _description _form _listing
+      edit index new show
       reload.js
-    ].each do |file_name|
-      template_keppler_views("#{file_name}.haml")
+    ].each do |filename|
+      template_keppler_views("#{filename}.haml")
     end
   end
 
@@ -225,7 +231,7 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
 
   def str_route
     <<~HEREDOC
-      resources :#{MODULE_NAME} do
+      resources :#{MODULE_NAME.pluralize} do
         post '/sort', action: :sort, on: :collection
         get '(page/:page)', action: :index, on: :collection, as: ''
         get '/clone', action: 'clone'

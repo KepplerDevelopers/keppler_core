@@ -82,6 +82,7 @@ es:
         setting: configuración
         configuration: configuración
         user: usuario
+        capsule: capsule
       pluralize:
         seos: seos
         roles: roles
@@ -200,6 +201,10 @@ es:
       download_records: Descargar registros
       upload_records: Cargar registros
       drop_files: Arrastra un archivo o presiona aquí
+      reload_page: Recargar página
+      download:
+        csv: Descargar CSV
+        xls: Descargar XLS
   activerecord:
     attributes:
       public: Publico

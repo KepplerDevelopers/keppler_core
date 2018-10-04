@@ -1,0 +1,13 @@
+modules:elliots:
+  name: Elliot
+  model: KepplerStarklordElliot
+  actions: [
+    'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+  ]
+
+  elliots:
+    name: Elliot
+    model: KepplerStarklordElliot
+    actions: [
+      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+    ]

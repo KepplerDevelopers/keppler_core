@@ -36,7 +36,7 @@ module Rails
 
       # Modify the paths of the view of the son module
       def modify_views_path
-        ["_listing", "index", "_form", "_index_show", "show"].each do |view|
+        ["_listing", "index", "_form", "show"].each do |view|
           singular_path(name,args[0],view)
           if view == '_listing'
             clone_path(name,args[0],view)

@@ -68,7 +68,7 @@ module Admin
       MetaTag.destroy redefine_ids(params[:multiple_ids])
       redirect_to(
         admin_meta_tags_path(page: @current_page, search: @query),
-        notice: actions_messages(MetaTag.new)
+        notice: actions_messages(@meta_tag)
       )
     end
 
@@ -76,7 +76,7 @@ module Admin
       MetaTag.upload(params[:file])
       redirect_to(
         admin_meta_tags_path(page: @current_page, search: @query),
-        notice: actions_messages(MetaTag.new)
+        notice: actions_messages(@meta_tag)
       )
     end
 

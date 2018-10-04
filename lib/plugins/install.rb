@@ -124,10 +124,10 @@ dummy_test = dummy_test.join("")
 
 File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/test/dummy/config/database.yml", dummy_test)
 
-generator_routes = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb")
+# generator_routes = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb")
 
-generator_routes[37] = "          after: 'scope :#{ARGV[0].split('_').drop(1).join('')}, as: :#{ARGV[0].split('_').drop(1).join('')} do'\n"
-generator_routes = generator_routes.join("")
+# generator_routes[37] = "          after: 'scope :#{ARGV[0].split('_').drop(1).join('')}, as: :#{ARGV[0].split('_').drop(1).join('')} do'\n"
+# generator_routes = generator_routes.join("")
 
 File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb", generator_routes)
 

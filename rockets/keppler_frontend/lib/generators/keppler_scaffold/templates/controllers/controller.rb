@@ -1,40 +1,28 @@
+# frozen_string_literal: true
+
 <% if namespaced? -%>
 require_dependency "<%= namespaced_path %>/application_controller"
 <% end -%>
 <% module_namespacing do -%>
 module Admin
   # <%= controller_class_name %>Controller
-  class <%= controller_class_name %>Controller < ApplicationController
+  class <%= controller_class_name %>Controller < ::Admin::AdminController
     layout '<%= namespaced_path %>/admin/layouts/application'
-    before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
-    before_action :show_history, only: [:index]
-    before_action :set_attachments
-    before_action :authorization
-    include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::Commons
-    include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::History
-    include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::DestroyMultiple
-
+    before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
+    include ObjectQuery
 
     # GET <%= route_url %>
     def index
       @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :asc)
-      @total = <%= plural_table_name %>.size
-      @<%= plural_table_name %> = @objects.all
-      if !@objects.first_page? && @objects.size.zero?
-        redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
-      end
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
-        format.json { render :json => @objects }
-      end
+      @<%= plural_table_name %> = @q.result(distinct: true)
+      @objects = @<%= plural_table_name %>.page(@current_page).order(position: :desc)
+      @total = @<%= plural_table_name %>.size
+      redirect_to_index(@objects)
+      respond_to_formats(@<%= plural_table_name %>)
     end
 
     # GET <%= route_url %>/1
-    def show
-    end
+    def show; end
 
     # GET <%= route_url %>/new
     def new
@@ -42,8 +30,7 @@ module Admin
     end
 
     # GET <%= route_url %>/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST <%= route_url %>
     def create
@@ -69,7 +56,7 @@ module Admin
       @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
 
       if @<%= singular_table_name %>.save
-        redirect_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path
+        redirect_to_index(@objects)
       else
         render :new
       end
@@ -78,32 +65,17 @@ module Admin
     # DELETE <%= route_url %>/1
     def destroy
       @<%= orm_instance.destroy %>
-      redirect_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= index_helper %>_path, notice: actions_messages(@<%= singular_table_name %>)
+      redirect_to_index(@<%= singular_table_name %>)
     end
 
     def destroy_multiple
       <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-      redirect_to(
-        admin_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
-      )
+      redirect_to_index(@<%= singular_table_name %>)
     end
 
     def upload
       <%= class_name %>.upload(params[:file])
-      redirect_to(
-        admin_<%= index_helper %>_path(page: @current_page, search: @query),
-        notice: actions_messages(<%= orm_class.build(class_name) %>)
-      )
-    end
-
-    def download
-      @<%= plural_table_name %> = <%= class_name %>.all
-      respond_to do |format|
-        format.html
-        format.xls { send_data(@<%= plural_table_name %>.to_xls) }
-        format.json { render json: @<%= plural_table_name %> }
-      end
+      redirect_to_index(@<%= singular_table_name %>)
     end
 
     def reload
@@ -116,20 +88,10 @@ module Admin
       <%= class_name %>.sorter(params[:row])
       @q = <%= class_name %>.ransack(params[:q])
       <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page)
-      render :index
+      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
     end
 
     private
-
-    def authorization
-      authorize <%= class_name %>
-    end
-
-    def set_attachments
-      SINGULAR_ATTACHMENTS = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
-                      'picture', 'banner', 'attachment', 'pic', 'file']
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>
@@ -141,30 +103,10 @@ module Admin
       <%- if attributes_names.empty? -%>
       params[:<%= singular_table_name %>]
       <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+      params.require(:<%= singular_table_name %>).permit(
+        <%= attributes.map { |attribute| attribute.type.eql?(:jsonb) ? "{ #{attribute.name}: [] }" : (attribute.reference? ? ":#{attribute.name}_id" : ":#{attribute.name}") }.join(', ') %>
+      )
       <%- end -%>
-    end
-
-    def show_history
-      get_history(<%= singular_table_name.camelcase %>)
-    end
-
-    def get_history(model)
-      @activities = PublicActivity::Activity.where(
-        trackable_type: model.to_s
-      ).order('created_at desc').limit(50)
-    end
-
-    # Get submit key to redirect, only [:create, :update]
-    def redirect(object, commit)
-      if commit.key?('_save')
-        redirect_to([:admin, :<%= namespaced_path.split('_').drop(1).join('_') %>, object], notice: actions_messages(object))
-      elsif commit.key?('_add_other')
-        redirect_to(
-          send("new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_#{underscore(object)}_path"),
-          notice: actions_messages(object)
-        )
-      end
     end
   end
 end

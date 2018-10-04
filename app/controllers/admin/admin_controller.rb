@@ -10,6 +10,8 @@ module Admin
     before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
     before_action :tables_name
+    before_action :attachments
+    before_action :authorization
 
     def root
       if current_user
@@ -32,7 +34,21 @@ module Admin
 
     private
 
-    def get_history(model)
+    def authorization
+      table = model.to_s.tableize.underscore.to_sym
+      return unless ActiveRecord::Base.connection.table_exists? table
+      authorize model
+    end
+
+    def attachments
+      @singular_attachments =
+        %w[
+          logo brand photo avatar cover image picture banner attachment pic file
+        ]
+      @plural_attachments = @singular_attachments.map(&:pluralize)
+    end
+
+    def get_history(_object)
       @activities = PublicActivity::Activity.where(
         trackable_type: model.to_s
       ).order('created_at desc').limit(50)
@@ -46,33 +62,26 @@ module Admin
 
     # Get submit key to redirect, only [:create, :update]
     def redirect(object, commit)
-      if commit.key?('_save')
-        redirect_to([:admin, object], notice: actions_messages(object))
-      elsif commit.key?('_add_other')
-        redirect_to(
-          send("new_admin_#{underscore(object)}_path"),
-          notice: actions_messages(object)
-        )
-      end
+      redirect_to(
+        {
+          action: (commit.key?('_save') ? :show : :new),
+          id: (object.id if commit.key?('_save'))
+        },
+        notice: actions_messages(object)
+      )
     end
 
     def redefine_ids(ids)
-      is_admin = controller_path.include?('admin')
-      klass =  is_admin ? controller_name : controller_path
-
       ids.delete('[]').split(',').select do |id|
-        id if klass.classify.constantize.exists? id
+        id if model.exists? id
       end
     end
 
     # Check whether the user has permission to delete
     # each of the selected objects
     def can_multiple_destroy
-      is_admin = controller_path.include?('admin')
-      klass = is_admin ? controller_name : controller_path
-
       redefine_ids(params[:multiple_ids]).each do |id|
-        authorize klass.classify.constantize.find(id)
+        authorize model.find(id)
       end
     end
   end

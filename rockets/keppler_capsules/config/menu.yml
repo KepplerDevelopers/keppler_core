@@ -12,4 +12,14 @@ menu:
           current: ['current']
           model: KepplerCapsules::Capsule
       # begin capusules generated (don't delete)
+      - user:
+          name: users
+          url_path: /admin/space/users
+          current: ['admin/users']
+          model: KepplerCapsules::User
+      - person:
+          name: people
+          url_path: /admin/space/people
+          current: ['admin/people']
+          model: KepplerCapsules::Person
       # end capusules generated

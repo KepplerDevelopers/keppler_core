@@ -5,17 +5,11 @@ module KepplerLanguages
       extend ActiveSupport::Concern
 
       included do
-        before_action :set_attachments
         before_action :paginator_params
         before_action :set_setting
       end
 
       private
-
-      def set_attachments
-        @attachments = %w[logo brand photo avatar cover image
-                          picture banner attachment pic file]
-      end
 
       def paginator_params
         @search_field = model.search_field if listing?
@@ -34,7 +28,7 @@ module KepplerLanguages
       # Get submit key to redirect, only [:create, :update]
       def redirect(object, commit)
         if commit.key?('_save')
-          redirect_to([:admin, :ckn, object], notice: actions_messages(object))
+          redirect_to(request.path.split('/')[1..-2].map(&:to_sym).push(object), notice: actions_messages(object)
         elsif commit.key?('_add_other')
           redirect_to(
             send("new_admin_#{underscore(object)}_path"),
