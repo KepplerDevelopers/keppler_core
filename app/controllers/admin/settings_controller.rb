@@ -16,6 +16,13 @@ module Admin
     end
 
     def update
+      if params["google_analytics_setting_attributes"] && params["google_analytics_setting_attributes"]["p12"]
+        file = params["google_analytics_setting_attributes"]["p12"]
+        name = file.original_filename
+        path = File.join("config", "gaAuth", name)
+        File.open(path, "wb") { |f| f.write(file.read) }
+      end
+
       if @setting.update(setting_params)
         appearance_service.get_color(params[:color])
         redirect_to(
