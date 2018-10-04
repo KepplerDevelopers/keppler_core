@@ -96,6 +96,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_admin_locale
+    I18n.default_locale = Appearance.first.language || :en
     if controller_path.include?('admin')
       I18n.locale = Appearance.first.language || I18n.default_locale
     end

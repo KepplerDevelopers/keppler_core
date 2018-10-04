@@ -17,9 +17,6 @@
         = link_to "/", target: '_blank',title: t('keppler.actions.preview') do
           %i.fa.fa-globe
       %li.pull-right
-        %a#btn-theme-editor{title: t('keppler.actions.user_interfaces') }
-          %i.fa.fa-paint-brush
-      %li.pull-right
         %a#btn-assets-editor{title: t('keppler.actions.assets')}
           %i.fa.fa-folder
       %li.pull-right
@@ -43,7 +40,6 @@
           %textarea#code-footer{:name => "code"}
             = @theme.keppler_footer_code
   = render "editor_assets"
-  = render "editor_themes"
 
 :javascript
   $(document).bind('keydown', function(e) {

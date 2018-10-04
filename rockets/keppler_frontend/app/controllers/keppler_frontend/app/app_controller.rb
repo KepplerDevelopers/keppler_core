@@ -3,6 +3,7 @@ module KepplerFrontend
   class App::AppController < ::ApplicationController
     layout 'app/layouts/application'
     skip_before_action :verify_authenticity_token
+    before_action :set_default_locale
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
@@ -27,11 +28,15 @@ module KepplerFrontend
     end
 
     private
-    
+
     def rocket(name, model)
       name = name.singularize.downcase.capitalize
       model = model.singularize.downcase.capitalize
       "Keppler#{name}::#{model}".constantize
+    end
+
+    def set_default_locale
+      I18n.default_locale = KepplerLanguages::Language.where(active: true).first.try(:name)&.to_sym || :en
     end
 
     def set_locale
