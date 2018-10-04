@@ -2,7 +2,7 @@ require_dependency "keppler_frontend/application_controller"
 module KepplerFrontend
   module Admin
     # ViewsController
-    class ViewsController < ApplicationController
+    class ViewsController < ::Admin::AdminController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :set_view, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
@@ -13,9 +13,9 @@ module KepplerFrontend
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :reload_view_callbacks, only: [:index]
       after_action :update_view_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      include KepplerFrontend::Concerns::Commons
-      include KepplerFrontend::Concerns::History
-      include KepplerFrontend::Concerns::DestroyMultiple
+      # include KepplerFrontend::Concerns::Commons
+      # include KepplerFrontend::Concerns::History
+      # include KepplerFrontend::Concerns::DestroyMultiple
       include KepplerFrontend::Concerns::Grapesjs
 
       skip_before_action :verify_authenticity_token, only: :live_editor_save
@@ -259,7 +259,7 @@ module KepplerFrontend
       # Get submit key to redirect, only [:create, :update]
       def redirect(object, commit)
         if commit.key?('_save')
-          redirect_to([:admin, :frontend, object], notice: actions_messages(object)
+          redirect_to([:admin, :frontend, object], notice: actions_messages(object))
         elsif commit.key?('_add_other')
           redirect_to(
             send("new_admin_frontend_#{underscore(object)}_path"),

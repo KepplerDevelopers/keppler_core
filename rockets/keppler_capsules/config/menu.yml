@@ -22,4 +22,9 @@ menu:
           url_path: /admin/space/people
           current: ['admin/people']
           model: KepplerCapsules::Person
+      - dog:
+          name: dogs
+          url_path: /admin/space/dogs
+          current: ['admin/dogs']
+          model: KepplerCapsules::Dog
       # end capusules generated

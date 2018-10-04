@@ -34,6 +34,10 @@ module Admin
 
     private
 
+    def only_development
+      redirect_to '/admin' if Rails.env.eql?("production")
+    end
+
     def authorization
       table = model.to_s.tableize.underscore.to_sym
       return unless ActiveRecord::Base.connection.table_exists? table

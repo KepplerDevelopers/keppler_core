@@ -1,3 +1,4 @@
+# This migration comes from keppler_capsules (originally 20181004152655)
 class CreateKrmyxgtgypKepplerCapsulesUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :keppler_capsules_users do |t|
