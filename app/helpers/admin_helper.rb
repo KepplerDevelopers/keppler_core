@@ -39,7 +39,8 @@ module AdminHelper
 
   # Messages for the crud actions
   def actions_messages(_object)
-    t("keppler.messages.successfully.#{action_convert_to_locale}",
+    t(
+      "keppler.messages.successfully.#{action_convert_to_locale}",
       model: t(
         "keppler.models.singularize.#{controller_name.singularize}"
       ).humanize

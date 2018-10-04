@@ -35,7 +35,7 @@ module Admin
     private
 
     def only_development
-      redirect_to '/admin' if Rails.env.eql?("production")
+      redirect_to '/admin' if Rails.env.eql?('production')
     end
 
     def authorization
