@@ -2,57 +2,52 @@
 
 = library_analytics
 
-= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js", 'data-turbolinks-track' => true
-= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js", 'data-turbolinks-track' => true
-= javascript_include_tag "/assets/keppler_ga_dashboard/view-selector2.js?body=1", 'data-turbolinks-track' => true
-= javascript_include_tag "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1", 'data-turbolinks-track' => true
-= javascript_include_tag "/assets/keppler_ga_dashboard/active-users.self.js?body=1", 'data-turbolinks-track' => true
+-# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"}
+%script{:src => "/assets/keppler_ga_dashboard/view-selector2.js?body=1"}
+%script{:src => "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1"}
+%script{:src => "/assets/keppler_ga_dashboard/active-users.self.js?body=1"}
 
 .container
 	.dashboard
 		.row
 			.col-lg-12
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Información
 					.box-body.pure-input
 						.dashboard-head
-							-# .form-group
-							-# 	%select.form-control
-							-# 		%option Opción 1
 							.row
-								.col-lg-12.separator-dash
-									.col-lg-6
+								.col-lg-12.col-md-12.col-sm-12.col-xs-12.separator-dash
+									.col-lg-6.col-md-6.col-sm-12.col-xs-12
 										#view-name.hide-on-small-only
-									.col-lg-6
+									.col-lg-6.col-md-6.col-sm-12.col-xs-12
 										#active-users-container
-								.col-lg-12
+								.col-lg-12.col-md-12.col-sm-12.col-xs-12
 									#view-selector-container.hide-on-small-only
 		.row
 			.col-lg-6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Uso por semana
-						-# .box-tools.pull-right
-						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
-						-# 		%i.icon-minus
 					.box-body.pure-input
 						%canvas#chart-1-container{:height => "300", :width => "350"}
 						#legend-1-container.charts-legend
 
 			.col-lg-6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
-							Uso por semana
+							Uso por mes
 					.box-body.pure-input
 						%canvas#chart-2-container{:height => "300", :width => "350"}
 						#legend-2-container.charts-legend
 		.row
 			.col-lg-6.m6.l6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Usuarios por navegador
@@ -61,7 +56,7 @@
 							%canvas#chart-3-container{:height => "300", :width => "350"}
 
 			.col-lg-6.m6.l6
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Usuarios por países
@@ -302,7 +297,7 @@
 						var config = {
 								type: 'bar',
 								data: {
-										labels: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+										labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
 										datasets: [{
 												label: "Año pasado",
 												backgroundColor: 'rgba(245, 14, 30, 0.2)',
@@ -574,10 +569,19 @@
 
 
 :scss
+	#active-users-container {
+		display: flex;
+		justify-content: flex-end;
+
+		@media only screen and (min-width:0) and (max-width: 991px) {
+			justify-content: flex-start;
+			margin-bottom: 15px;
+			margin-left: -13px;
+			margin-top: 15px;
+		}
+	}
+
 	.ActiveUsers{
-		position: absolute;
-		top: -3px;
-		right: 10px;
 		background: none;
 		border: 1px solid #d4d2d0;
 		border-radius: 4px;
@@ -587,11 +591,11 @@
 	}
 
 	#view-name{
-		margin-left: -13px;
-		margin-top: 10px;
+		margin-left: -13px	;
 		font-family: "roboto";
 		font-weight: 300;
 		font-size: 15px;
+		margin-top: 10px;
 		color: #777;
 	}
 
