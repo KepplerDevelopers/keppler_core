@@ -54,4 +54,4 @@ jobs:
       - run: scss-lint app/assets/stylesheets/admin/pages
       - run: scss-lint app/assets/stylesheets/admin/utils
       - run: scss-lint app/assets/stylesheets/admin/application.scss
-      - run: bundle exec rspec
+      # - run: bundle exec rspec
