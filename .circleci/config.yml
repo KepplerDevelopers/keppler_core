@@ -45,7 +45,7 @@ jobs:
 
       - run: bundle exec rake db:create RAILS_ENV=test
       - run: bundle exec rake db:migrate RAILS_ENV=test
-      - run: bundle exec rake db:seed RAILS_ENV=test
+      # - run: bundle exec rake db:seed RAILS_ENV=test
       - run: bundle exec rubocop
       - run: gem install haml_lint
       - run: gem install scss_lint
@@ -54,4 +54,4 @@ jobs:
       - run: scss-lint app/assets/stylesheets/admin/pages
       - run: scss-lint app/assets/stylesheets/admin/utils
       - run: scss-lint app/assets/stylesheets/admin/application.scss
-      # - run: bundle exec rspec
+      - run: bundle exec rspec
