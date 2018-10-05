@@ -69,7 +69,7 @@ module Admin
       Customize.destroy redefine_ids(params[:multiple_ids])
       redirect_to(
         admin_customizes_path(page: @current_page, search: @query),
-        notice: actions_messages(Customize.new)
+        notice: actions_messages(@customize)
       )
     end
 

@@ -1,0 +1,24 @@
+images: 
+  names: ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
+  formats: ['jpg', 'jpeg', 'png', 'svg', 'gif', 'tiff', 'bmp']
+audios:
+  names: ['music', 'song', 'track', 'sound']
+  formats: ['mp3']
+fonts: 
+  names: ['font', 'letter']
+  formats: ['eot', 'otf', 'ttf', 'woff', 'woff2']
+videos: 
+  names: ['video', 'movie']
+  formats: ['mp4', 'mpeg', 'webm']
+documents:
+  names: ['document', 'file', 'attachment', 'word', 'excel']
+  formats: ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'dot', 'odt', 'csv']
+html: 
+  names: ['html']
+  formats: ['html', 'haml']
+javascripts: 
+  names: ['javascript', 'coffeescript']
+  formats: ['js', 'coffee', 'js.erb', 'json']
+stylesheets: 
+  names: ['style', 'css', 'sass']
+  formats: ['css', 'scss', 'sass', 'scss.erb']
