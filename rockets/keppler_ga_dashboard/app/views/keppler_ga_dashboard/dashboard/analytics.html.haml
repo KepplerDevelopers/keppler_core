@@ -365,7 +365,7 @@
 					.then(function(response) {
 
 						var data = [];
-						var colors = ["rgba(245, 14, 30, 0.2)",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
+						var colors = ["rgba(245, 14, 30, 0.2)",'#e3e3e3','#1565c0','#ffff00','#f44336'];
 
 						response.rows.forEach(function(row, i) {
 							data.push({
@@ -390,17 +390,17 @@
 												data: data_value,
 												backgroundColor: [
 													gon.color,
-													'rgba(4, 208, 7, 0.22)',
-													'rgba(33, 150, 243, 0.29)',
-													'rgba(241, 221, 48, 0.26)',
-													'rgba(205, 133, 63, 0.3)'
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548'
 													],
 												borderColor: [
 													gon.color,
-													'#04d007',
-													'#2196f3',
-													'#f1dd30',
-													'peru',
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548',
 												],
 												label: 'Browser'
 										}],
@@ -433,7 +433,7 @@
 					.then(function(response) {
 
 						var data = [];
-						var colors = ["#{@color}",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
+						var colors = ["#{@color}",'#e3e3e3','#2196f3','#ffff00','#795548'];
 
 						response.rows.forEach(function(row, i) {
 							data.push({
@@ -458,17 +458,17 @@
 												data: data_value,
 												backgroundColor: [
 													gon.color,
-													'rgba(4, 208, 7, 0.22)',
-													'rgba(33, 150, 243, 0.29)',
-													'rgba(241, 221, 48, 0.26)',
-													'rgba(205, 133, 63, 0.3)'
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548'
 													],
 												borderColor: [
 													gon.color,
-													'#04d007',
-													'#2196f3',
-													'#f1dd30',
-													'peru',
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548',
 												],
 												label: 'Country'
 										}],
@@ -552,6 +552,11 @@
 
 		}
 
+:javascript
+	$(document).ready(function() {
+		$('.ViewSelector2-item').last().remove()
+		$('.ViewSelector2-item').eq(1).addClass('col-lg-12')
+	})
 
 :scss
 	#active-users-container {
