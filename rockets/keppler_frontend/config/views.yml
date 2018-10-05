@@ -6,8 +6,9 @@
   active: true
   format_result: HTML
   position: 1
-  deleted_at: 
+  deleted_at:
   created_at: !ruby/object:ActiveSupport::TimeWithZone
+<<<<<<< HEAD
     utc: 2018-10-03 20:37:38.468126000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone
       name: America/Caracas
@@ -16,3 +17,13 @@
     utc: 2018-10-03 20:37:38.468126000 Z
     zone: *1
     time: 2018-10-03 16:37:38.468126000 Z
+=======
+    utc: 2018-10-05 14:54:27.913206000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2018-10-05 10:54:27.913206000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-10-05 14:54:27.913206000 Z
+    zone: *1
+    time: 2018-10-05 10:54:27.913206000 Z
+>>>>>>> 5bc63e1cb513d0291d6e3ac075143e56f062927c
