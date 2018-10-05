@@ -28,7 +28,7 @@
 								.col-lg-12.col-md-12.col-sm-12.col-xs-12
 									#view-selector-container
 		.row
-			.col-lg-6
+			.col-lg-12
 				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
@@ -37,7 +37,7 @@
 						%canvas#chart-1-container{:height => "300", :width => "350"}
 						#legend-1-container.charts-legend
 
-			.col-lg-6
+			.col-lg-12
 				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
@@ -45,24 +45,24 @@
 					.box-body.pure-input
 						%canvas#chart-2-container{:height => "300", :width => "350"}
 						#legend-2-container.charts-legend
-		.row
-			.col-lg-6.m6.l6
-				.box.slice-box.p-15
-					.box-header.with-border
-						%h3.box-title
-							Usuarios por navegador
-					.box-body.pure-input
-						#canvas-holder{:height => "300", :width => "350"}
-							%canvas#chart-3-container{:height => "300", :width => "350"}
-
-			.col-lg-6.m6.l6
-				.box.slice-box.p-15
-					.box-header.with-border
-						%h3.box-title
-							Usuarios por países
-					.box-body.pure-input
-						#canvas-holder{:height => "300", :width => "350"}
-							%canvas#chart-4-container{:height => "300", :width => "350"}
+		-# .row
+		-# 	.col-lg-6.m6.l6
+		-# 		.box.slice-box.p-15
+		-# 			.box-header.with-border
+		-# 				%h3.box-title
+		-# 					Usuarios por navegador
+		-# 			.box-body.pure-input
+		-# 				#canvas-holder{:height => "300", :width => "350"}
+		-# 					%canvas#chart-3-container{:height => "300", :width => "350"}
+		-#
+		-# 	.col-lg-6.m6.l6
+		-# 		.box.slice-box.p-15
+		-# 			.box-header.with-border
+		-# 				%h3.box-title
+		-# 					Usuarios por países
+		-# 			.box-body.pure-input
+		-# 				#canvas-holder{:height => "300", :width => "350"}
+		-# 					%canvas#chart-4-container{:height => "300", :width => "350"}
 
 :javascript
 	var status;
