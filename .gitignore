@@ -23,7 +23,6 @@ db/schema.rb
 /log/*
 /tmp
 /tmp/*
-Gemfile.lock
 # various artifacts
 **.war
 *.rbc

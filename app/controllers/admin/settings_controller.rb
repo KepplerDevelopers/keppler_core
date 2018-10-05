@@ -16,6 +16,8 @@ module Admin
     end
 
     def update
+      upload_p12(params)
+
       if @setting.update(setting_params)
         update_ga_status(params)
         appearance_service.get_color(params[:color])
@@ -46,6 +48,15 @@ module Admin
       )
     end
 
+    def upload_p12(params)
+      return unless params['google_analytics_setting_attributes']
+      return unless params['google_analytics_setting_attributes']['p12']
+      file = params['google_analytics_setting_attributes']['p12']
+      name = file.original_filename
+      path = File.join('config', 'gaAuth', name)
+      File.open(path, 'wb') { |f| f.write(file.read) }
+    end
+
     private
 
     def appearance_service
@@ -62,7 +73,7 @@ module Admin
       authorize Setting
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Only allow a trusted parameter 'white list' through.
     def setting_params
       params.require(:setting).permit(
         :name, :description, :email, :phone, :mobile, :logo,
