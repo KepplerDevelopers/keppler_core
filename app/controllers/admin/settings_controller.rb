@@ -17,6 +17,7 @@ module Admin
 
     def update
       if @setting.update(setting_params)
+        update_ga_status(params)
         appearance_service.get_color(params[:color])
         redirect_to(
           admin_settings_path(@render), notice: actions_messages(@setting)
@@ -24,6 +25,12 @@ module Admin
       else
         render :edit
       end
+    end
+
+    def update_ga_status(params)
+      return unless params[:setting][:google_analytics_setting]
+      return unless params[:setting][:google_analytics_setting][:ga_status]
+      @setting.google_analytics_setting.update(ga_status: params[:setting][:google_analytics_setting][:ga_status])
     end
 
     def change_locale
