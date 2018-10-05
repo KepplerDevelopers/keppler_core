@@ -28,9 +28,10 @@ module Admin
     end
 
     def update_ga_status(params)
+      status = params[:setting][:google_analytics_setting][:ga_status]
       return unless params[:setting][:google_analytics_setting]
-      return unless params[:setting][:google_analytics_setting][:ga_status]
-      @setting.google_analytics_setting.update(ga_status: params[:setting][:google_analytics_setting][:ga_status])
+      return if status.nil?
+      @setting.google_analytics_setting.update(ga_status: status)
     end
 
     def change_locale
