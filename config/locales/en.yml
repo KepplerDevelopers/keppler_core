@@ -143,6 +143,7 @@ en:
       login_in_activity: login to system at
       logout_in_activity: logout to system at
       successfully:
+        cloned: "%{model} has been cloned successfully"
         created: "%{model} has been created successfully"
         updated: "%{model} has been updated successfully"
         deleted: "%{model} has been deleted successfully"

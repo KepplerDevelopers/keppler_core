@@ -7,37 +7,30 @@
             %input{ type: 'checkbox', id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model': 'check', 'checklist-value': "#{<%= singular_table_name %>.id}", '@click': "listDelete(#{<%= singular_table_name %>.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
-    <%- attributes.each do |attribute| -%>
-      <%- if SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
-    %td
-      = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
-        %span
-          = image_tag <%= singular_table_name %>.<%= attribute.name %>.url unless <%= singular_table_name %>.<%= attribute.name %>.url.blank?
-      <%- end -%>
-    <%- end -%>
-    <%- attributes.each_with_index do |attribute, index| -%>
-      <%- if index < 6 && (%i[string integer].include?(attribute.type)) -%>
-        <%- unless attribute.type.to_s.eql?('text') || attribute.name.eql?('position') || attribute.name.eql?('deleted_at') -%>
-          <%- unless SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
-            <%- if index < 2 -%>
-    %td
-      = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
-        %span
-          = <%= singular_table_name %>.<%= attribute.name %>
-            <%- else -%>
-    %td
-      = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>, search: @query), remote: true, class: 'show-row' do
-        %span
-          = <%= singular_table_name %>.<%= attribute.name %>
-            <%- end -%>
-          <%- end -%>
-        <%- end -%>
-      <%- end -%>
-    <%- end -%>
+    - attributes.each do |attribute|
+      - if @attachments.dig('images', 'names').include?(attribute.to_s)
+        %td
+          = link_to admin_prueba_prueba_path(prueba, search: @query), remote: true, class: 'show-row' do
+            %span
+              = image_tag prueba.try(attribute).try(:url)
+      - elsif @attachments.dig('images', 'names').map(&:pluralize).include?(attribute.to_s)
+        %td
+          = link_to admin_prueba_prueba_path(prueba, search: @query), remote: true, class: 'show-row' do
+            %span
+              - prueba.try(attribute).each do |image|
+                = image_tag image.try(:url)
+      - elsif prueba.try(attribute).is_a?(Integer)
+        %td
+          = link_to admin_prueba_prueba_path(prueba, search: @query), remote: true, class: 'show-row' do
+            %span= prueba.try(attribute)
+      - else
+        %td
+          = link_to admin_prueba_prueba_path(prueba, search: @query), remote: true, class: 'show-row' do
+            %span= prueba.try(attribute).try(:truncate_words, 4)
     %td.dropdown{ style: 'width: 15px;padding-right:15px;' }
-      %a.action-btn.pull-right{:id => "menu-#{<%= singular_table_name %>.id}", "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+      %a.action-btn.pull-right{:id => "menu-#{<%= singular_table_name %>.id}", 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown' }
         %i.icon-options-vertical
-      %ul.actions.dropdown-menu{"aria-labelledby" => "menu-#{<%= singular_table_name %>.id}" }
+      %ul.actions.dropdown-menu{ 'aria-labelledby': "menu-#{<%= singular_table_name %>.id}" }
         - if can?(model).index?
           %li
             = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), title: t('keppler.actions.show') do
@@ -55,10 +48,10 @@
               = t('keppler.actions.clone')
         - if can?(model).destroy?
           %li
-            = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), title: t('keppler.actions.delete'), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+            = link_to admin_<%= singular_table_name %>_path(<%= singular_table_name %>), title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
               %i.icon-trash
               = t('keppler.actions.delete')
 
     %td{ style: 'width: 5%;'}
-      %a.drop{:href=>"#"}
+      %a.drop{ href: '#' }
         %i.icon-cursor-move

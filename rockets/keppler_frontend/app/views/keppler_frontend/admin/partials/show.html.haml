@@ -10,17 +10,17 @@
   .nav-tabs-custom
     %ul.nav.nav-tabs
       %li.active
-        %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+        %a{'aria-expanded': "true", "data-toggle" => "tab", :href => "#tab_1"}
           -# %i.fa.fa-html5
           = "#{@partial.underscore_name}.html.erb"
           .kf-signal.html_signal
       %li
-        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+        %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_2"}
           -# %i.fa.fa-css3
           = "#{@partial.underscore_name}.scss"
           .kf-signal.scss_signal
       %li
-        %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+        %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_3"}
           -# %i.fa.fa-js
           = "#{@partial.name}.js"
           .kf-signal.js_signal

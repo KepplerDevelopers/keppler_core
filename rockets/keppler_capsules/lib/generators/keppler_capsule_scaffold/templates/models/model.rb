@@ -8,6 +8,7 @@ class <%= class_name %> < ApplicationRecord
   include Uploadable
   include Downloadable
   include Sortable
+  include Searchable
   <%- attributes.each do |attribute| -%>
     <%- if @singular_attachments.include?(attribute.name) -%>
   mount_uploader :<%=attribute.name%>, AttachmentUploader
@@ -21,17 +22,8 @@ class <%= class_name %> < ApplicationRecord
   acts_as_list
   acts_as_paranoid
 
-  # Fields for the search form in the navbar
-  def self.search_field
-    fields = %i[<%= attributes.select { |k,v| @singular_attachments.exclude?(k) && @plural_attachments.exclude?(k) && %w[string text integer].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ') -%>]
-    build_query(fields, :or, :cont)
-  end
-
-  # Funcion para armar el query de ransack
-  def self.build_query(fields, operator, conf)
-    query = fields.join("_#{operator}_")
-    query << "_#{conf}"
-    query.to_sym
+  def self.index_attributes
+    %i[<%= attributes.select { |k,v| @singular_attachments.exclude?(k) && @plural_attachments.exclude?(k) && %w[string text integer].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ') -%>]
   end
 end
 <% end -%>

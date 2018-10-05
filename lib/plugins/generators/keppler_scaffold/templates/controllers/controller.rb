@@ -9,16 +9,13 @@ module Admin
   class <%= controller_class_name %>Controller < ::Admin::AdminController
     layout '<%= namespaced_path %>/admin/layouts/application'
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
+    before_action :index_variables
     include ObjectQuery
 
     # GET <%= route_url %>
     def index
-      @q = <%= class_name %>.ransack(params[:q])
-      @<%= plural_table_name %> = @q.result(distinct: true)
-      @objects = @<%= plural_table_name %>.page(@current_page).order(position: :desc)
-      @total = @<%= plural_table_name %>.size
-      redirect_to_index(@objects)
       respond_to_formats(@<%= plural_table_name %>)
+      redirect_to_index(@objects)
     end
 
     # GET <%= route_url %>/1
@@ -54,44 +51,41 @@ module Admin
 
     def clone
       @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
-
-      if @<%= singular_table_name %>.save
-        redirect_to_index(@objects)
-      else
-        render :new
-      end
+      @<%= singular_table_name %>.save
+      redirect_to_index(@objects)
     end
 
     # DELETE <%= route_url %>/1
     def destroy
       @<%= orm_instance.destroy %>
-      redirect_to_index(@<%= singular_table_name %>)
+      redirect_to_index(@objects)
     end
 
     def destroy_multiple
       <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-      redirect_to_index(@<%= singular_table_name %>)
+      redirect_to_index(@objects)
     end
 
     def upload
       <%= class_name %>.upload(params[:file])
-      redirect_to_index(@<%= singular_table_name %>)
+      redirect_to_index(@objects)
     end
 
-    def reload
-      @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
-    end
+    def reload; end
 
     def sort
       <%= class_name %>.sorter(params[:row])
-      @q = <%= class_name %>.ransack(params[:q])
-      <%= plural_table_name %> = @q.result(distinct: true)
-      @objects = <%= plural_table_name %>.page(@current_page).order(position: :desc)
     end
 
     private
+
+    def index_variables
+      @q = <%= class_name %>.ransack(params[:q])
+      @<%= plural_table_name %> = @q.result(distinct: true)
+      @objects = @<%= plural_table_name %>.page(@current_page).order(position: :desc)
+      @total = @<%= plural_table_name %>.size
+      @attributes = <%= class_name %>.index_attributes
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_<%= singular_table_name %>

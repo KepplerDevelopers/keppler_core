@@ -12,6 +12,7 @@ module Admin
     before_action :tables_name
     before_action :attachments
     before_action :authorization
+    before_action :history
 
     def root
       if current_user
@@ -34,6 +35,12 @@ module Admin
 
     private
 
+    def attachments
+      @attachments = YAML.load_file(
+        "#{Rails.root}/config/attachments.yml"
+      )
+    end
+
     def only_development
       redirect_to '/admin' if Rails.env.eql?('production')
     end
@@ -44,15 +51,11 @@ module Admin
       authorize model
     end
 
-    def attachments
-      @singular_attachments =
-        %w[
-          logo brand photo avatar cover image picture banner attachment pic file
-        ]
-      @plural_attachments = @singular_attachments.map(&:pluralize)
+    def get_history(_object)
+      history
     end
 
-    def get_history(_object)
+    def history
       @activities = PublicActivity::Activity.where(
         trackable_type: model.to_s
       ).order('created_at desc').limit(50)

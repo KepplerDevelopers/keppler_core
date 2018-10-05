@@ -153,6 +153,7 @@ es:
       login_in_activity: Inicio de sesión en
       logout_in_activity: Salido del sistema en
       successfully:
+        cloned: "%{model} se ha clonado satisfactoriamente"
         created: "%{model} se ha creado satisfactoriamente"
         updated: "%{model} se ha actualizado satisfactoriamente"
         deleted: "%{model} se ha eliminado satisfactoriamente"
@@ -213,8 +214,8 @@ es:
       subtitle: Subtítulo
       tags: Etiquetas
       name: Nombre
-      first_name: 'Primer Nombre'
-      last_name: 'Último Nombre'
+      first_name: Nombre
+      last_name: Apellido
       full_name: 'Nombre Completo'
       email: Correo
       role: Rol

@@ -26,9 +26,9 @@
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2
-                      - if @singular_attachments.include?(attribute)
+                      - if @attachments.dig('images', 'names').include?(attribute)
                         = image_tag value.url if value.url
-                      - elsif @plural_attachments.include?(attribute)
+                      - elsif @attachments.dig('images', 'names').map(&:pluralize).include?(attribute)
                         - value.each do |image|
                           = image_tag image.url if image.url
                       - else 

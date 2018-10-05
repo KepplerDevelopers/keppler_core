@@ -53,18 +53,15 @@
                               %input{ type: 'checkbox', id: 'checkbox-all', '@click': 'selectAll()' }
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
-                    <%- attributes.each_with_index do |attribute, index| -%>
-                     <%- if index < 6 && (%i[string integer].include?(attribute.type) && %w[position].exclude?(attribute.name)) -%>
-                    %th
-                      = sort_link(@q, :<%= attribute.name %>) do
-                        = t('activerecord.attributes.<%= attribute.name %>')
-                      <%- end -%>
-                    <%- end -%>
+                    - @attributes.each do |attribute|
+                      %th
+                        = sort_link(@q, attribute) do
+                          = t("activerecord.attributes.#{attribute.to_s}")
                     %th
                     %th
               %tbody.objects-container
                 = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @objects, query: @query
+                = render 'listing', objects: @objects, query: @query, attributes: @attributes
 
         %center.paginator-module
           = paginate @objects, window: 1

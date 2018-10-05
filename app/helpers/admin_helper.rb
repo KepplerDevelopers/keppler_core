@@ -102,6 +102,7 @@ module AdminHelper
   # ------------ actions_messages(object)
   def action_convert_to_locale
     case action_name
+    when 'clone' then 'cloned'
     when 'create' then 'created'
     when 'update' then 'updated'
     when 'destroy' then 'deleted'
