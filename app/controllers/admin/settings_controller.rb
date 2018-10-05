@@ -19,6 +19,7 @@ module Admin
       upload_p12(params)
 
       if @setting.update(setting_params)
+        update_ga_status(params)
         appearance_service.get_color(params[:color])
         redirect_to(
           admin_settings_path(@render), notice: actions_messages(@setting)
@@ -26,6 +27,13 @@ module Admin
       else
         render :edit
       end
+    end
+
+    def update_ga_status(params)
+      status = params[:setting][:google_analytics_setting][:ga_status]
+      return unless params[:setting][:google_analytics_setting]
+      return if status.nil?
+      @setting.google_analytics_setting.update(ga_status: status)
     end
 
     def change_locale
