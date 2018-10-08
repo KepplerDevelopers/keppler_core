@@ -1,0 +1,18 @@
+es:
+  keppler:
+    sidebar-menu:
+      keppler-luiz: Keppler luiz
+      keppler-luiz-submenu:
+    permissions:
+    models:
+      singularize:
+      pluralize:
+    modules:
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

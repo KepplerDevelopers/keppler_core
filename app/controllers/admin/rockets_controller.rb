@@ -3,6 +3,7 @@
 module Admin
   # RocketsController
   class RocketsController < AdminController
+    skip_before_filter :verify_authenticity_token  
     before_action :rocket_params, except: %i[rockets install]
     before_action :rocket_file_params, only: %i[install]
 

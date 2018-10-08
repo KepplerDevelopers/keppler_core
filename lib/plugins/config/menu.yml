@@ -7,8 +7,8 @@ menu:
     model: User
     submenu:
       - new:
-          name: + Add new module
-          url_path: /url_path
-          current: ['/current_path']
-          enviroment: development
-          model: User
+          # name: + Add new module
+          # url_path: /url_path
+          # current: ['/current_path']
+          # enviroment: development
+          # model: User
