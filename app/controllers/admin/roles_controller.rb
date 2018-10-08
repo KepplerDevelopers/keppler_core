@@ -16,7 +16,7 @@ module Admin
       @roles = @roles.where.not(name: 'keppler_admin')
       @objects = @roles.page(@current_page).order(position: :desc)
       @total = @roles.size
-      redirect_to_index(roles_path) if nothing_in_first_page?(@objects)
+      redirect_to_index(@objects)
       respond_to_formats(@roles)
     end
 
@@ -103,11 +103,6 @@ module Admin
     end
 
     private
-
-    def set_attachments
-      @attachments = %i[ logo brand photo avatar cover image
-                         picture banner attachment pic file ]
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_role

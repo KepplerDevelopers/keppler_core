@@ -2,10 +2,13 @@
   background: $white;
   margin: 0 auto;
   max-width: 500px;
-  min-height: 300px;
+  min-height: 250px;
 
   .file-container {
     align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     display: flex;
     flex-flow: column;
     height: 240px;
@@ -16,11 +19,26 @@
     position: relative;
     transition: outline-offset .15s ease;
 
-    .opacity {
-      color: $white;
-      opacity: 0;
-      text-shadow: 0 0 5px $light-black;
-      transition: .3s;
+    &:hover {
+      outline: 2px dashed $gray;
+      outline-offset: -5px;
+      transition: outline-offset .15s ease;
+    }
+
+    .form-group {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    .control-label {
+      position: absolute;
+      top: 20%;
     }
 
     input {
@@ -57,17 +75,6 @@
     }
   }
 
-  .file-container:hover {
-    outline: 2px dashed $gray;
-    outline-offset: -5px;
-    transition: outline-offset .15s ease;
-
-    .opacity {
-      opacity: 1;
-      transition: .3s;
-    }
-  }
-
   button,
   a,
   [type=submit] {
@@ -83,6 +90,28 @@
 
     &:hover {
       filter: brightness(110%);
+      transition: .3s;
+    }
+  }
+}
+
+.already-uploaded {
+  .control-label,
+  .file-icon,
+  .file-text,
+  .file-name {
+    color: $white;
+    opacity: 0;
+    text-shadow: 0 0 5px $light-black;
+    transition: .3s;
+  }
+
+  &:hover {
+    .control-label,
+    .file-icon,
+    .file-text,
+    .file-name {
+      opacity: 1;
       transition: .3s;
     }
   }
