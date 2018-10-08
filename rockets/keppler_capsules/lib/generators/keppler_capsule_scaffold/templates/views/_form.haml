@@ -11,7 +11,7 @@
       .col-lg-12
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t('keppler.models.pluralize.<%= plural_table_name %>').humanize
+            %h3.box-title <%= singular_table_name.humanize %>
             .box-tools.pull-right
               %a.btn.btn-box-tool{'data-widget': 'collapse', type: 'button'}
                 %i.fa.fa-minus

@@ -10,7 +10,7 @@
       .col-lg-12
         .box.slice-box.p-15
           .box-header.with-border
-            %h3.box-title= t('keppler.models.singularize.<%= singular_table_name %>').humanize
+            %h3.box-title <%= singular_table_name.humanize %>
             .box-tools.pull-right
               - if can?(model).update?
                 = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-box-tool', title: t('keppler.actions.edit') do

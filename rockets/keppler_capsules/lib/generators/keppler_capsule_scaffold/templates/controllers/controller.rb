@@ -10,6 +10,7 @@ module Admin
     layout '<%= namespaced_path %>/admin/layouts/application'
     before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
     before_action :index_variables
+    before_action :set_capsule
     include ObjectQuery
 
     # GET <%= route_url %>
@@ -78,6 +79,10 @@ module Admin
     end
 
     private
+
+    def set_capsule
+      @capsule = Capsule.find_by_name('<%= controller_class_name.downcase %>')
+    end
 
     def index_variables
       @q = <%= class_name %>.ransack(params[:q])

@@ -55,7 +55,7 @@
                     - @capsule.capsule_fields.take(3).each do |field|
                       %th
                         = sort_link(@q, field.name_field.to_sym) do
-                          t("capsule.attributes.#{field.name_field}")
+                          = t("capsule.attributes.#{field.name_field}")
                     %th
                     %th
               %tbody.objects-container
