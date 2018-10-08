@@ -6,9 +6,9 @@ menu:
     icon: layers
     model: User
     submenu:
-      - new:
-          # name: + Add new module
-          # url_path: /url_path
-          # current: ['/current_path']
-          # enviroment: development
-          # model: User
+      # - new:
+      #     name: + Add new module
+      #     url_path: /url_path
+      #     current: ['/current_path']
+      #     enviroment: development
+      #     model: User

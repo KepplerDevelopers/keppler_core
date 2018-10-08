@@ -32,7 +32,7 @@ module Rails
       )
 
       def add_route
-        eturn if  options[:skip_routes]
+        return if  options[:skip_routes]
         inject_into_file(
           'config/routes.rb',
           "\n #{indent(str_route)}",
@@ -44,7 +44,7 @@ module Rails
        inject_into_file(
          'config/menu.yml',
          str_menu,
-         before: '      # end capusules generated'
+         before: '      # end capsules generated'
        )
       end
 

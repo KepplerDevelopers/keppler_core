@@ -196,7 +196,4 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
-
-  # Luiz routes engine
-  mount KepplerLuiz::Engine, at: '/', as: 'luiz'
 end
