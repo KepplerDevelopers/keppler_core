@@ -23,7 +23,6 @@ KepplerCapsules::Engine.routes.draw do
           as: :destroy_multiple
         )
       end
-
     end
   end
 end

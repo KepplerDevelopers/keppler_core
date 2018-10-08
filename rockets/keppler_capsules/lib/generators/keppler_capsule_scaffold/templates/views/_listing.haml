@@ -1,0 +1,41 @@
+- objects.each do |<%= singular_table_name %>|
+  %tr{ id: "row-#{<%= singular_table_name %>.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can?(model).destroy_multiple?
+        .checkbox
+          %label{ for: "checkbox-#{<%= singular_table_name %>.id}" }
+            %input{ type: 'checkbox', id: "checkbox-#{<%= singular_table_name %>.id}", 'checklist-model' => 'check', 'checklist-value' => "#{<%= singular_table_name %>.id}", '@click' => "listDelete(#{<%= singular_table_name %>.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+    - @capsule.capsule_fields.take(3).each do |field|
+      %td
+        = link_to admin_capsules_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'show-row' do
+          %span
+            - if <%= singular_table_name %>[field.name_field]
+              = truncate(<%= singular_table_name %>[field.name_field].to_s, length: 20, omission: '...')
+            - else
+              ="-----"
+    %td{ style: 'width: 15px;padding-right:15px;' }
+      %a.action-btn.pull-right{:id => "menu-#{<%= singular_table_name %>.id}", 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown' }
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{ 'aria-labelledby': "menu-#{<%= singular_table_name %>.id}" }
+        - if can?(model).index?
+          %li
+            = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.show') do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can?(model).update?
+          %li
+            = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.edit') do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can?(model).clone?
+          %li
+            = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_clone_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.clone') do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can?(model).destroy?
+          %li
+            = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'new-menu', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+              %i.icon-trash
+              = t('keppler.actions.delete')

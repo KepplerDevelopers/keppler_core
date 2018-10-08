@@ -2,7 +2,7 @@ require_dependency "keppler_frontend/application_controller"
 module KepplerFrontend
   module Admin
     # ThemesController
-    class ThemesController < ApplicationController
+    class ThemesController < ::Admin::AdminController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :set_theme, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
@@ -11,9 +11,9 @@ module KepplerFrontend
       before_action :only_development
       before_action :reload_themes, only: [:index]
       after_action :update_theme_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      include KepplerFrontend::Concerns::Commons
-      include KepplerFrontend::Concerns::History
-      include KepplerFrontend::Concerns::DestroyMultiple
+      # include KepplerFrontend::Concerns::Commons
+      # include KepplerFrontend::Concerns::History
+      # include KepplerFrontend::Concerns::DestroyMultiple
 
 
       # GET /themes

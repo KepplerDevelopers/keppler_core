@@ -2,15 +2,15 @@ require_dependency "keppler_frontend/application_controller"
 module KepplerFrontend
   module Admin
     # ParametersController
-    class ParametersController < ApplicationController
+    class ParametersController < ::Admin::AdminController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :set_parameter, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
-      include KepplerFrontend::Concerns::Commons
-      include KepplerFrontend::Concerns::History
-      include KepplerFrontend::Concerns::DestroyMultiple
+      # include KepplerFrontend::Concerns::Commons
+      # include KepplerFrontend::Concerns::History
+      # include KepplerFrontend::Concerns::DestroyMultiple
 
 
       # GET /parameters

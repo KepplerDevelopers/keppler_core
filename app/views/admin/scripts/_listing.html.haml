@@ -7,11 +7,11 @@
             %input{ type: 'checkbox', id: "checkbox-#{script.id}", 'checklist-model' => 'check', 'checklist-value' => script.id.to_s, '@click' => "listDelete(#{script.id})" }
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
-    %td.hide-on-small-and-down
-    %td.hide-on-small-and-down
+    %td.hidden-xs.hidden-sm
+    %td.hidden-xs.hidden-sm
       = link_to admin_script_path(script), title: t('keppler.actions.show') do
         %span= script.name
-    %td.hide-on-small-and-down
+    %td.hidden-xs.hidden-sm
       = link_to admin_script_path(script), title: t('keppler.actions.show') do
         %span= script.url
     %td.dropdown{ style: 'padding-right: 30px' }
