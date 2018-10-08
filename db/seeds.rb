@@ -86,14 +86,6 @@ else
   puts 'Setting default has been created'
 end
 
-if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
-  KepplerContactUs::MessageSetting.create(
-    mailer_from: 'contacto@slicegroup.xyz',
-    mailer_to: 'contacto@slicegroup.xyz'
-  )
-  puts 'KepplerContactUs mailer_to and mailer_from has been created'
-end
-
 if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
   file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/views.yml")
   routes = YAML.load_file(file)
