@@ -6,12 +6,16 @@ module ObjectQuery
 
   private
 
-  def redirect_to_index(_objects_path)
-    redirect_to objects_path(page: @current_page.to_i.pred, search: @query)
-  end
-
-  def nothing_in_first_page?(objects)
-    !objects.first_page? && objects.size.zero?
+  def redirect_to_index(objects)
+    return if listing? && (objects.first_page? || !objects.size.zero?)
+    redirect_to(
+      {
+        action: :index,
+        page: (@current_page.to_i if params[:page]),
+        search: @query
+      },
+      notice: actions_messages(model.new)
+    )
   end
 
   def send_format_data(objects, extension)

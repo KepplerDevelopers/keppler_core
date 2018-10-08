@@ -2,7 +2,7 @@ require_dependency "keppler_frontend/application_controller"
 module KepplerFrontend
   module Admin
     # CallbackFunctionsController
-    class CallbackFunctionsController < ApplicationController
+    class CallbackFunctionsController < ::Admin::AdminController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :set_callback_function, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
@@ -10,9 +10,9 @@ module KepplerFrontend
       before_action :reload_callbacks, only: [:index]
       after_action :update_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :authorization
-      include KepplerFrontend::Concerns::Commons
-      include KepplerFrontend::Concerns::History
-      include KepplerFrontend::Concerns::DestroyMultiple
+      # include KepplerFrontend::Concerns::Commons
+      # include KepplerFrontend::Concerns::History
+      # include KepplerFrontend::Concerns::DestroyMultiple
 
 
       # GET /callback_functions

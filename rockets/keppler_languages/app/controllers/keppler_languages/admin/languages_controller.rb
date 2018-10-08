@@ -2,7 +2,7 @@ require_dependency "keppler_languages/application_controller"
 module KepplerLanguages
   module Admin
     # LanguagesController
-    class LanguagesController < ApplicationController
+    class LanguagesController < ::Admin::AdminController
       layout 'keppler_languages/admin/layouts/application'
       before_action :set_language, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
@@ -12,9 +12,9 @@ module KepplerLanguages
       after_action :update_languages_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       after_action :update_fields_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
 
-      include KepplerLanguages::Concerns::Commons
-      include KepplerLanguages::Concerns::History
-      include KepplerLanguages::Concerns::DestroyMultiple
+      # include KepplerLanguages::Concerns::Commons
+      # include KepplerLanguages::Concerns::History
+      # include KepplerLanguages::Concerns::DestroyMultiple
       include KepplerLanguages::Concerns::Yml
 
 
@@ -138,6 +138,15 @@ module KepplerLanguages
         render :index
       end
 
+      def toggle
+        languages = Language.all
+        language = Language.find(params[:language_id])
+        languages.update_all(active: false)
+        language.update(active: params[:language][:active])
+
+        redirect_to admin_languages_languages_path
+     end
+
       private
 
       def languages_names
@@ -192,18 +201,6 @@ module KepplerLanguages
         @activities = PublicActivity::Activity.where(
           trackable_type: model.to_s
         ).order('created_at desc').limit(50)
-      end
-
-      # Get submit key to redirect, only [:create, :update]
-      def redirect(object, commit)
-        if commit.key?('_save')
-          redirect_to([:admin, :languages, object], notice: actions_messages(object))
-        elsif commit.key?('_add_other')
-          redirect_to(
-            send("new_admin_languages_#{underscore(object)}_path"),
-            notice: actions_messages(object)
-          )
-        end
       end
     end
   end

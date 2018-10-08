@@ -28,7 +28,8 @@
           - if can?(KepplerLanguages::Language).create?
             .add
               = link_to new_admin_languages_language_path, class: 'btn-add' do
-                + Agregar
+                +
+                = t('keppler.actions.add')
 
         .box.slice-box
           .box-body.no-padding
@@ -52,6 +53,9 @@
                     %th.hidden-xs
                       = sort_link(@q, :name) do
                         = t('activerecord.attributes.name')
+                    %th.hidden-xs
+                      = sort_link(@q, :active) do
+                        = t('activerecord.attributes.active')
                     %th
                     %th
               %tbody.objects-container

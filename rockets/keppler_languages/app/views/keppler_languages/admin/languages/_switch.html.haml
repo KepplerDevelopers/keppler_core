@@ -1,0 +1,18 @@
+= simple_form_for language, url: admin_languages_language_toggle_path(language), method: :post do |f|
+  %label
+    - if language.active?
+      %label.switch
+        %input{name: "language[active]", type: "hidden", value: 'false'}
+        %input.active{id: "switch-#{language.id}", :type => "checkbox", checked: "checked"}
+        %span.slider.round{onclick: "sendPermission('#{language.id}')"}
+
+    - else
+      %label.switch
+        %input{name: "language[active]", type: "hidden", value: "true"}
+        %input{id: "switch-#{language.id}", :type => "checkbox"}
+        %span.slider.round{onclick: "sendPermission('#{language.id}')"}
+
+:javascript
+  function sendPermission(id) {
+    $("#edit_language_"+id).submit()
+  }

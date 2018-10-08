@@ -91,6 +91,11 @@ Rails.application.routes.draw do
         to: 'permissions#create',
         as: :role_create_permissions
       )
+      post(
+        ':role_id/toggle_permissions',
+        to: 'permissions#toggle_permissions',
+        as: :role_toggle_permissions
+      )
     end
 
     # resources :customizes do
@@ -163,6 +168,7 @@ Rails.application.routes.draw do
 
     resources :settings, only: [] do
       collection do
+        post '/lang/:locale', to: 'settings#change_locale', as: :change_locale
         get '/:config', to: 'settings#edit', as: ''
         put '/:config', to: 'settings#update', as: 'update'
         put '/:config/appearance_default', to: 'settings#appearance_default', as: 'appearance_default'

@@ -3,6 +3,7 @@ function renderImg(){
   xOffset = -20;
   yOffset = 40;
   $('.show-row img').hover(function(e){
+    alert('asda')
     $('body').append( "<img src=" + this.src + " alt='Image preview' class='img-show' />" );
     $('.img-show')
       .css({

@@ -15,37 +15,37 @@
         .nav-tabs-custom
           %ul.nav.nav-tabs
             %li{ class: "#{'active' if flash[:notice].second.eql?('images') }"}
-              %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+              %a{'aria-expanded': "true", "data-toggle" => "tab", :href => "#tab_1"}
                 %i.fa.fa-image
                 %span.hidden-xs
                   Images
             %li{ class: "#{'active' if flash[:notice].second.eql?('videos') }"}
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+              %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_2"}
                 %i.fa.fa-film
                 %span.hidden-xs
                   Videos
             %li{ class: "#{'active' if flash[:notice].second.eql?('audios') }"}
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+              %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_3"}
                 %i.fa.fa-music
                 %span.hidden-xs
                   Audios
             %li{ class: "#{'active' if flash[:notice].second.eql?('fonts') }"}
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_4"}
+              %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_4"}
                 %i.fa.fa-text-height
                 %span.hidden-xs
                   Fonts
             %li{ class: "#{'active' if flash[:notice].second.eql?('html') }"}
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
+              %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_5"}
                 %i.fa.fa-code
                 %span.hidden-xs
                   Components
             %li{ class: "#{'active' if flash[:notice].second.eql?('javascripts') }"}
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_6"}
+              %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_6"}
                 %i.fa.fa-magic
                 %span.hidden-xs
                   Javascripts
             %li{ class: "#{'active' if flash[:notice].second.eql?('stylesheets') }"}
-              %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_7"}
+              %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_7"}
                 %i.fa.fa-paint-brush
                 %span.hidden-xs
                   Stylesheets
@@ -63,7 +63,7 @@
                                 %i.fa.fa-image
                                 = truncate(file[:name], length: 40, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
@@ -88,7 +88,7 @@
                                 %i.fa.fa-film
                                 = truncate(file[:name], length: 40, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete , data: { confirm: t("keppler.messages.data_confirm") } do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete , data: { confirm: t('keppler.messages.data_confirm') } do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
@@ -116,7 +116,7 @@
                                 %i.fa.fa-music
                                 = truncate(file[:name], length: 40, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete , data: { confirm: t("keppler.messages.data_confirm") } do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete , data: { confirm: t('keppler.messages.data_confirm') } do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
@@ -144,7 +144,7 @@
                                 %i.fa.fa-text-height
                                 = truncate(file[:name], length: 35, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t('keppler.messages.data_confirm') }  do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
@@ -169,9 +169,9 @@
                             .col-lg-10
                               %h4.box-title
                                 %i.fa.fa-code
-                                = truncate(file[:name], length: 35, omission: '...')
+                                = truncate(file[:name], length: 25, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t('keppler.messages.data_confirm') }  do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
@@ -201,7 +201,7 @@
                                 %i.fa.fa-magic
                                 = truncate(file[:name], length: 35, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t('keppler.messages.data_confirm') }  do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file
@@ -227,7 +227,7 @@
                                 %i.fa.fa-paint-brush
                                 = truncate(file[:name], length: 35, omission: '...')
                             .col-lg-2
-                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t("keppler.messages.data_confirm") }  do
+                              = link_to admin_frontend_destroy_multimedia_path(file[:search], file[:format]), method: :delete, data: { confirm: t('keppler.messages.data_confirm') }  do
                                 %i.fa.fa-trash
                         .box-body.no-padding
                           .back-file

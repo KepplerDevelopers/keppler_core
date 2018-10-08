@@ -23,7 +23,7 @@
                 = link_to '#', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
                   %i.icon-cloud-upload
             .toolbar-item
-              %a.tool-btn{ 'data-confirm' => '¿Estás seguro?', 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
+              %a.tool-btn{ 'data-confirm' => t('keppler.messages.data_confirm'), 'data-method' => 'delete', 'v-bind:href' => 'link', rel: 'nofollow', ':class' => '{disabled: !checks}' }
                 %i.icon-trash
           .hide
             = form_tag admin_meta_tag_upload_path(@objects), id: 'upload-form', multipart: true, method: :post do
@@ -31,7 +31,8 @@
           - if can?(MetaTag).create?
             .add
               = link_to new_admin_meta_tag_path, class: 'btn-add' do
-                + Agregar
+                +
+                = t('keppler.actions.add')
 
         .box.slice-box
           .box-body.no-padding
@@ -64,5 +65,5 @@
                 = render 'listing', objects: @objects, query: @query
         %center.paginator-module
           = paginate @objects, window: 1
-  .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+  .listing-show.col.l3.m12.hidden-xs.hidden-sm.hide-on-med-and-down
     = render 'description', activities: @activities

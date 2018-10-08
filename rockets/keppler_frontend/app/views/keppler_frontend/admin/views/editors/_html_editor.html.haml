@@ -1,27 +1,31 @@
 .nav-tabs-custom
   %ul.nav.nav-tabs
     %li.active
-      %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+      %a{'aria-expanded': "true", "data-toggle" => "tab", :href => "#tab_1"}
         = "#{@view.name}.html.erb"
         .kf-signal.html_signal
     %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_2"}
         = "#{@view.name}.scss"
         .kf-signal.scss_signal
     %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_3"}
         = "#{@view.name}.js"
         .kf-signal.js_signal
     %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_5"}
         Action
         .kf-signal.action_signal
     -# %li.pull-right
     -#   %a{href: "#", onclick: "controls.save(#{@view.id})", title: t('keppler.actions.download') }
     -#     %i.fa.fa-download
-    %li.pull-right
-      = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
-        %i.fa.fa-globe
+    - if @view.active?
+      %li.pull-right
+        = link_to "#{@view.url}?view=#{@view.id}&editor=true",title: t('keppler.actions.interface') do
+          %i.fa.fa-object-group
+      %li.pull-right
+        = link_to @view.url, target: '_blank',title: t('keppler.actions.preview') do
+          %i.fa.fa-globe
     %li.pull-right
       %a#btn-theme-editor{title: t('keppler.actions.user_interfaces') }
         %i.fa.fa-paint-brush
@@ -29,7 +33,7 @@
       %a#btn-assets-editor{title: t('keppler.actions.assets')}
         %i.fa.fa-folder
     %li.pull-right
-      %a{onclick: "controls.save(#{@view.id})", title: t('keppler.actions.save')}
+      %a{onclick: "codeHTML.save(#{@view.id})", title: t('keppler.actions.save')}
         %i.fa.fa-save
     %li.pull-right
       %a#btn-views-editor{title: t('keppler.actions.views')}

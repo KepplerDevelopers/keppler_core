@@ -11,7 +11,10 @@
               = f.input :ga_account_id
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
               = f.input :ga_tracking_id
-            .col-lg-6.col-md-6.col-sm-12.col-xs-12
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              %label .p12 File
+              = file_field_tag 'google_analytics_setting_attributes[p12]', as: :keppler_file, label: '.p12 file'
+            .col-lg-6.col-md-6.col-sm-12.col-xs-12{ style: 'margin-top: 20px' }
               = f.input :ga_status, as: :keppler_boolean
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
               .pull-right

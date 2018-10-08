@@ -39,6 +39,10 @@ Para crear un nuevo proyecto en Ruby on Rails con Keppler Admin, podemos ejecuta
 
 `keppler new NuevoProyecto`
 
+### Otros comandos:
+
+Los siguientes comandos se ejecutarán automáticamente al ejecutar `keppler new`:
+
 #### Creación del archivo secrets.yml
 
 Si detienes el proceso a la mitad o aún no tienes configurado un archivo `secrets.yml` con la configuración de
@@ -53,17 +57,21 @@ instanciadas en el `Gemfile`, ubicado en la raíz del proyecto, con el comando:
 
 `keppler dep`
 
-### Keppler Scaffolds
+#### Para acceder al proyecto recién creado:
+
+`cd NuevoProyecto`
+
+### Keppler Modules
 
 Keppler ofrece la posibilidad de realizar tareas de scaffolds totalmente
-configurados para adaptarse al administrativo. Para crear un nuevo
-módulo sólo debes llamar al siguiente comando desde la consola:
+configurados para adaptarse al administrativo dentro de un rocket ya existente.
+Para crear un nuevo módulo sólo debes llamar al siguiente comando desde la consola:
 
-`keppler add module ModuleName attribute:type`
+`keppler add module RocketName ModuleName attribute:type attribute:type ...`
 
-Por ejemplo, crearemos un scaffold de productos con diversos campos y tipos de datos:
+Por ejemplo, crearemos un módulo de productos con diversos campos y tipos de datos:
 
-`keppler add module Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references`
+`keppler add module KepplerProducts Product title:string description:text quantity:integer price:float arrival_date:date arrival_time:time available:boolean user:references`
 
 Luego debemos migrar la tabla a la base de datos con:
 

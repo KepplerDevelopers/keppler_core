@@ -4,14 +4,8 @@
       X
   %ul.nav.nav-tabs
     %li.active
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_theme_tab_2"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#editor_theme_tab_2"}
         %i.fa.fa-tint
-    %li
-      %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#editor_theme_tab_1"}
-        %i.fa.fa-code
-    %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#editor_partials_tab_3"}
-        %i.fa.fa-list
   .tab-content.container-files.bg-gray
     #editor_theme_tab_2.tab-pane.active
       - @files_views.each_with_index do |file, i|
@@ -34,45 +28,6 @@
               = file[:size]
               = link_to admin_frontend_view_select_theme_path(@view, file[:name]), class: 'btn btn-default pull-right', method: :post, data: { confirm: t("keppler_frontend.select_view_confirm") } do
                 %i.fa.fa-check
-    #editor_theme_tab_1.tab-pane
-      - @files_list.each_with_index do |file, i|
-        - if file[:format].eql?("html")
-          .box.box-solid
-            .box-header.with-border{title: "#{file[:name]}"}
-              .row
-                .col-lg-12
-                  %h4.box-title
-                    %i.fa.fa-code
-                    = truncate(file[:name].split('.').first, length: 30, omission: '...')
-            .box-body.no-padding
-              .back-file-xs
-                .center
-                  - if file[:cover].nil?
-                    %i.fa.fa-code#font-icon-size
-                  - else
-                    = image_tag file[:cover]
-            .box-body
-              %span.box-title
-                = file[:size]
-                %button.btn.btn-default.pull-right{onclick: "copyHtml('#{file[:id]}')"}
-                  %textarea.hidden{id: "#{file[:id]}", value: "#{file[:html]}"}
-                  %i.fa.fa-save    
-    #editor_partials_tab_3.tab-pane
-      - @partials.each_with_index do |partial, i|
-        .box.box-solid
-          .box-header.with-border{ title: "#{partial[:name]}" }
-            .row
-              .col-lg-12
-                %h4.box-title
-                  = truncate(partial[:name], length: 30, omission: '...')
-          .box-body.no-padding
-            .back-file-xs
-              .center
-                %i.fa.fa-code#font-icon-size
-          .box-body
-            %button.btn.btn-default.pull-right{onclick: "copyPartial('#{partial[:id]}')"}
-              %textarea.hidden{ id: "partial#{partial[:id]}", value: "<%= #{partial[:name]} %>" }
-              %i.fa.fa-save
 .control-sidebar-bg
 
 :javascript

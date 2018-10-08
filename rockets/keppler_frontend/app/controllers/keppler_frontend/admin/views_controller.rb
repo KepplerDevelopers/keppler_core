@@ -2,7 +2,7 @@ require_dependency "keppler_frontend/application_controller"
 module KepplerFrontend
   module Admin
     # ViewsController
-    class ViewsController < ApplicationController
+    class ViewsController < ::Admin::AdminController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :set_view, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
@@ -13,9 +13,12 @@ module KepplerFrontend
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :reload_view_callbacks, only: [:index]
       after_action :update_view_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      include KepplerFrontend::Concerns::Commons
-      include KepplerFrontend::Concerns::History
-      include KepplerFrontend::Concerns::DestroyMultiple
+      # include KepplerFrontend::Concerns::Commons
+      # include KepplerFrontend::Concerns::History
+      # include KepplerFrontend::Concerns::DestroyMultiple
+      include KepplerFrontend::Concerns::Grapesjs
+
+      skip_before_action :verify_authenticity_token, only: :live_editor_save
 
 
       # GET /views
@@ -125,7 +128,7 @@ module KepplerFrontend
       def editor
         @view = View.find(params[:view_id])
         filesystem = FileUploadSystem.new
-        @files_list = filesystem.files_list + filesystem.files_list_custom("bootstrap")
+        @files_list = filesystem.files_list 
         @files_views = filesystem.files_list_custom('views')
         @partials = Partial.all
         @views = View.where.not(name: 'keppler').order(position: :asc)
@@ -147,9 +150,18 @@ module KepplerFrontend
         theme_view=File.readlines("#{url_front}/app/assets/html/keppler_frontend/views/#{params[:theme_view]}.html")
         theme_view = theme_view.join
         out_file = File.open("#{url_front}/app/views/keppler_frontend/app/frontend/#{@view.name}.html.erb", "w")
-        out_file.puts("<keppler-#{@view.name}>\n  #{theme_view}\n</keppler-#{@view.name}>");
+        out_file.puts("<keppler-view id='#{@view.name}'>\n  #{theme_view}\n</keppler-view>");
         out_file.close
         redirect_to admin_frontend_view_editor_path(params[:view_id])
+      end
+
+      def live_editor_save
+        result = save_grapesjs_code(
+          params[:view_id], 
+          params[:html], 
+          params[:css]
+        )
+        render json: { result: result}
       end
 
       private

@@ -1,41 +1,29 @@
-# <%= class_name %> Model
+# frozen_string_literal: true
+
 <% module_namespacing do -%>
-class <%= class_name %> < ActiveRecord::Base
+# <%= class_name %> Model
+class <%= class_name %> < ApplicationRecord
   include ActivityHistory
   include CloneRecord
-  require 'csv'
-  <%- attributes_names.each do |attribute| -%>
-    <%- if @attachments.include?(attribute) -%>
-  mount_uploader :<%=attribute%>, AttachmentUploader
+  include Uploadable
+  include Downloadable
+  include Sortable
+  include Searchable
+  <%- attributes.each do |attribute| -%>
+    <%- if SINGULAR_ATTACHMENTS.include?(attribute.name) -%>
+  mount_uploader :<%=attribute.name%>, AttachmentUploader
+    <%- elsif PLURAL_ATTACHMENTS.include?(attribute.name) -%>
+  mount_uploaders :<%=attribute.name%>, AttachmentUploader
+    <%- end -%>
+    <%- if attribute.reference? -%>
+  belongs_to :<%= attribute.name %>
     <%- end -%>
   <%- end -%>
   acts_as_list
-  # Fields for the search form in the navbar
-  def self.search_field
-    fields = <%= attributes_names.map { |name| name } %>
-    build_query(fields, :or, :cont)
-  end
+  acts_as_paranoid
 
-  def self.upload(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      begin
-        self.create! row.to_hash
-      rescue => err
-      end
-    end
-  end
-
-  def self.sorter(params)
-    params.each_with_index do |id, idx|
-      self.find(id).update(position: idx.to_i+1)
-    end
-  end
-
-  # Funcion para armar el query de ransack
-  def self.build_query(fields, operator, conf)
-    query = fields.join("_#{operator}_")
-    query << "_#{conf}"
-    query.to_sym
+  def self.index_attributes
+    %i[<%= SEARCHABLE_ATTRIBUTES -%>]
   end
 end
 <% end -%>

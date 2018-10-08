@@ -12,10 +12,14 @@ module Admin
     def edit
       @social_medias = social_account_permit_attributes
       @colors = social_account_colors
+      @languages = %w[en es]
     end
 
     def update
+      upload_p12(params)
+
       if @setting.update(setting_params)
+        update_ga_status(params)
         appearance_service.get_color(params[:color])
         redirect_to(
           admin_settings_path(@render), notice: actions_messages(@setting)
@@ -25,11 +29,32 @@ module Admin
       end
     end
 
+    def update_ga_status(params)
+      status = params[:setting][:google_analytics_setting][:ga_status]
+      return unless params[:setting][:google_analytics_setting]
+      return if status.nil?
+      @setting.google_analytics_setting.update(ga_status: status)
+    end
+
+    def change_locale
+      Appearance.first.update(language: params[:locale])
+      redirect_back fallback_location: admin_root_path
+    end
+
     def appearance_default
       appearance_service.set_default
       redirect_to(
         admin_settings_path(@render), notice: actions_messages(@setting)
       )
+    end
+
+    def upload_p12(params)
+      return unless params['google_analytics_setting_attributes']
+      return unless params['google_analytics_setting_attributes']['p12']
+      file = params['google_analytics_setting_attributes']['p12']
+      name = file.original_filename
+      path = File.join('config', 'gaAuth', name)
+      File.open(path, 'wb') { |f| f.write(file.read) }
     end
 
     private
@@ -48,7 +73,7 @@ module Admin
       authorize Setting
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Only allow a trusted parameter 'white list' through.
     def setting_params
       params.require(:setting).permit(
         :name, :description, :email, :phone, :mobile, :logo,
@@ -88,7 +113,7 @@ module Admin
 
     def apparence_permit_attributes
       %i[
-        id theme_name image_background
+        id theme_name image_background language time_zone
         image_background_cache remove_image_background
       ]
     end

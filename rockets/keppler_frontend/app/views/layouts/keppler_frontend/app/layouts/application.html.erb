@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html id="keppler-html">
   <head>
     <%= set_head %>
   </head>
-  <body>
+  <body id="keppler-editor">
     <keppler-header>
+      <!-- Keppler Section -->
     </keppler-header>
-
-    <keppler-body>
-      <%= yield %>
-    </keppler-body>
-
+    <%= yield %>
     <keppler-footer>
+      <!-- Keppler Section -->
     </keppler-footer>
+    <!-- end keppler-footer -->
   </body>
+  <%= keppler_editor %>
 </html>

@@ -38,7 +38,7 @@ if yml = YAML.load_file("#{Rails.root}/config/settings.yml")
       port: yml['port'],
       domain_name: yml['domain_name'],
       email: yml['smtp_email'],
-      password: yml['password']
+      password: yml['password'] ? yml['password'] : '12345678'
     },
     google_analytics_setting_attributes: {
       ga_account_id: yml['ga_account_id'],
@@ -84,14 +84,6 @@ else
   setting.appearance = Appearance.new(theme_name: 'keppler')
   setting.save
   puts 'Setting default has been created'
-end
-
-if defined?(KepplerContactUs) && KepplerContactUs.is_a?(Class)
-  KepplerContactUs::MessageSetting.create(
-    mailer_from: 'contacto@slicegroup.xyz',
-    mailer_to: 'contacto@slicegroup.xyz'
-  )
-  puts 'KepplerContactUs mailer_to and mailer_from has been created'
 end
 
 if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)

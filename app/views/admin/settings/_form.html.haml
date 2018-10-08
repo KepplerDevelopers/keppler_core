@@ -1,9 +1,10 @@
 #settings
   .container-fluid
     #action-section
-      = simple_form_for setting, url: update_admin_settings_path(render), method: :put do |f|
+      = simple_form_for setting, url: update_admin_settings_path(render), method: :put, html: { multipart: true } do |f|
         .row
-          = render partial: "admin/settings/fields/#{render}", locals: { f: f, color: color }
+          = render partial: "admin/settings/fields/#{render}", locals: { f: f, color: color, languages: languages }
+
 :sass
   #action-section
     padding: 12px

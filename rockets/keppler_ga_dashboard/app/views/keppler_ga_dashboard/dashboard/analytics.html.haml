@@ -2,76 +2,70 @@
 
 = library_analytics
 
-= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js", 'data-turbolinks-track' => true
-= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js", 'data-turbolinks-track' => true
-= javascript_include_tag "/assets/keppler_ga_dashboard/view-selector2.js?body=1", 'data-turbolinks-track' => true
-= javascript_include_tag "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1", 'data-turbolinks-track' => true
-= javascript_include_tag "/assets/keppler_ga_dashboard/active-users.self.js?body=1", 'data-turbolinks-track' => true
+-# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"}
+%script{:src => "/assets/keppler_ga_dashboard/view-selector2.js?body=1"}
+%script{:src => "/assets/keppler_ga_dashboard/date-range-selector.self.js?body=1"}
+%script{:src => "/assets/keppler_ga_dashboard/active-users.self.js?body=1"}
 
 .container
 	.dashboard
 		.row
 			.col-lg-12
-				.box.slice-box
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Información
 					.box-body.pure-input
 						.dashboard-head
-							-# .form-group
-							-# 	%select.form-control
-							-# 		%option Opción 1
 							.row
-								.col-lg-12.separator-dash
-									.col-lg-6
+								.col-lg-12.col-md-12.col-sm-12.col-xs-12.separator-dash
+									.col-lg-6.col-md-6.col-sm-12.col-xs-12
 										#view-name.hide-on-small-only
-									.col-lg-6
+									.col-lg-6.col-md-6.col-sm-12.col-xs-12
 										#active-users-container
-								.col-lg-12
-									#view-selector-container.hide-on-small-only
+								.col-lg-12.col-md-12.col-sm-12.col-xs-12
+									#view-selector-container
 		.row
-			.col-lg-6
-				.box.slice-box
+			.col-lg-12
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
 							Uso por semana
-						-# .box-tools.pull-right
-						-# 	%a.btn.btn-box-tool{"data-widget" => "collapse", type: "button"}
-						-# 		%i.icon-minus
 					.box-body.pure-input
 						%canvas#chart-1-container{:height => "300", :width => "350"}
 						#legend-1-container.charts-legend
 
-			.col-lg-6
-				.box.slice-box
+			.col-lg-12
+				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
-							Uso por semana
+							Uso por mes
 					.box-body.pure-input
 						%canvas#chart-2-container{:height => "300", :width => "350"}
 						#legend-2-container.charts-legend
-		.row
-			.col-lg-6.m6.l6
-				.box.slice-box
-					.box-header.with-border
-						%h3.box-title
-							Usuarios por navegador
-					.box-body.pure-input
-						#canvas-holder{:height => "300", :width => "350"}
-							%canvas#chart-3-container{:height => "300", :width => "350"}
-
-			.col-lg-6.m6.l6
-				.box.slice-box
-					.box-header.with-border
-						%h3.box-title
-							Usuarios por países
-					.box-body.pure-input
-						#canvas-holder{:height => "300", :width => "350"}
-							%canvas#chart-4-container{:height => "300", :width => "350"}
+		-# .row
+		-# 	.col-lg-6.m6.l6
+		-# 		.box.slice-box.p-15
+		-# 			.box-header.with-border
+		-# 				%h3.box-title
+		-# 					Usuarios por navegador
+		-# 			.box-body.pure-input
+		-# 				#canvas-holder{:height => "300", :width => "350"}
+		-# 					%canvas#chart-3-container{:height => "300", :width => "350"}
+		-#
+		-# 	.col-lg-6.m6.l6
+		-# 		.box.slice-box.p-15
+		-# 			.box-header.with-border
+		-# 				%h3.box-title
+		-# 					Usuarios por países
+		-# 			.box-body.pure-input
+		-# 				#canvas-holder{:height => "300", :width => "350"}
+		-# 					%canvas#chart-4-container{:height => "300", :width => "350"}
 
 :javascript
-
-	 var status;
+	var status;
 
 	 function updateOnlineStatus() {
 		 var condition = navigator.onLine ? "ONLINE" : "OFFLINE";
@@ -130,7 +124,7 @@
 				*/
 				var viewSelector = new gapi.analytics.ext.ViewSelector2({
 					container: 'view-selector-container',
-					accountId: "#{Rails.application.secrets.ga_auth.fetch(:account_id)}"
+					accountId: "#{Setting.first.google_analytics_setting.ga_account_id}"
 				}).execute();
 
 
@@ -192,23 +186,16 @@
 										labels: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
 										datasets: [{
 												label: "Esta semana",
-												backgroundColor: 'rgba(245, 14, 30, 0.2)',
-												borderColor: [
-														'rgba(255,99,132,1)',
-														'rgba(54, 162, 235, 1)',
-														'rgba(255, 206, 86, 1)',
-														'rgba(75, 192, 192, 1)',
-														'rgba(153, 102, 255, 1)',
-														'rgba(255, 159, 64, 1)'
-												],
+												backgroundColor: gon.color,
+												borderColor: gon.color,
 												// borderWidth: 1,
 												fill: true,
 												data: data1,
 										}, {
 												label: "Semana Pasada",
 												fill: true,
-												backgroundColor:'rgba(33, 150, 243, 0.29)',
-												borderColor: '#2196f3',
+												backgroundColor: '#e0e0e0',
+												borderColor: '#e0e0e0',
 												data: data2,
 												// borderWidth: 1
 										}]
@@ -302,19 +289,19 @@
 						var config = {
 								type: 'bar',
 								data: {
-										labels: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+										labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
 										datasets: [{
 												label: "Año pasado",
-												backgroundColor: 'rgba(245, 14, 30, 0.2)',
-												borderColor: 'rgba(255,99,132,1)',
+												backgroundColor: '#e0e0e0',
+												borderColor: '#e0e0e0',
 												borderWidth: 2,
 												fill: true,
 												data: data2,
 										}, {
 												label: "Año actual",
 												fill: true,
-												backgroundColor:'rgba(33, 150, 243, 0.29)',
-												borderColor: '#2196f3',
+												backgroundColor: gon.color,
+												borderColor: gon.color,
 												data: data1,
 												borderWidth: 2
 										}]
@@ -323,7 +310,7 @@
 										responsive: true,
 										title:{
 												display:true,
-												text:' Semana a Semana'
+												text:' Mes a mes'
 										},
 										tooltips: {
 												mode: 'index',
@@ -338,7 +325,7 @@
 														display: true,
 														scaleLabel: {
 																display: true,
-																labelString: 'Dias'
+																labelString: 'Meses'
 														}
 												}],
 												yAxes: [{
@@ -347,13 +334,6 @@
 																display: true,
 																labelString: 'Visitas'
 														},
-														// ticks: {
-														// 		min: 0,
-														// 		max: 100,
-														//
-														// 		// forces step size to be 5 units
-														// 		stepSize: 5
-														// }
 												}]
 										}
 								}
@@ -385,7 +365,7 @@
 					.then(function(response) {
 
 						var data = [];
-						var colors = ["rgba(245, 14, 30, 0.2)",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
+						var colors = ["rgba(245, 14, 30, 0.2)",'#e3e3e3','#1565c0','#ffff00','#f44336'];
 
 						response.rows.forEach(function(row, i) {
 							data.push({
@@ -409,18 +389,18 @@
 										datasets: [{
 												data: data_value,
 												backgroundColor: [
-													'rgba(245, 14, 30, 0.2)',
-													'rgba(4, 208, 7, 0.22)',
-													'rgba(33, 150, 243, 0.29)',
-													'rgba(241, 221, 48, 0.26)',
-													'rgba(205, 133, 63, 0.3)'
+													gon.color,
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548'
 													],
 												borderColor: [
-													'rgba(255,99,132,1)',
-													'#04d007',
-													'#2196f3',
-													'#f1dd30',
-													'peru',
+													gon.color,
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548',
 												],
 												label: 'Browser'
 										}],
@@ -453,7 +433,7 @@
 					.then(function(response) {
 
 						var data = [];
-						var colors = ["#{@color}",'#e3e3e3','#2196f3','#f1dd30','#f44336'];
+						var colors = ["#{@color}",'#e3e3e3','#2196f3','#ffff00','#795548'];
 
 						response.rows.forEach(function(row, i) {
 							data.push({
@@ -477,18 +457,18 @@
 										datasets: [{
 												data: data_value,
 												backgroundColor: [
-													'rgba(245, 14, 30, 0.2)',
-													'rgba(4, 208, 7, 0.22)',
-													'rgba(33, 150, 243, 0.29)',
-													'rgba(241, 221, 48, 0.26)',
-													'rgba(205, 133, 63, 0.3)'
+													gon.color,
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548'
 													],
 												borderColor: [
-													'rgba(255,99,132,1)',
-													'#04d007',
-													'#2196f3',
-													'#f1dd30',
-													'peru',
+													gon.color,
+													'#00e676',
+													'#1565c0',
+													'#ffff00',
+													'#795548',
 												],
 												label: 'Country'
 										}],
@@ -572,12 +552,26 @@
 
 		}
 
+:javascript
+	$(document).ready(function() {
+		$('.ViewSelector2-item').last().remove()
+		$('.ViewSelector2-item').eq(1).addClass('col-lg-12')
+	})
 
 :scss
+	#active-users-container {
+		display: flex;
+		justify-content: flex-end;
+
+		@media only screen and (min-width:0) and (max-width: 991px) {
+			justify-content: flex-start;
+			margin-bottom: 15px;
+			margin-left: -13px;
+			margin-top: 15px;
+		}
+	}
+
 	.ActiveUsers{
-		position: absolute;
-		top: -3px;
-		right: 10px;
 		background: none;
 		border: 1px solid #d4d2d0;
 		border-radius: 4px;
@@ -587,11 +581,11 @@
 	}
 
 	#view-name{
-		margin-left: -13px;
-		margin-top: 10px;
+		margin-left: -13px	;
 		font-family: "roboto";
 		font-weight: 300;
 		font-size: 15px;
+		margin-top: 10px;
 		color: #777;
 	}
 

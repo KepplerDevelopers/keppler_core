@@ -101,7 +101,7 @@ module KepplerFrontend
 
     def code_save(code, type_code)
       if type_code.eql?('html')
-        save_code("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", code)
+        save_html_code("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", code, name)
       elsif type_code.eql?('scss')
         save_code("#{url_front}/app/assets/stylesheets/keppler_frontend/app/views/#{name}.scss", code)
       elsif type_code.eql?('js')
@@ -117,6 +117,13 @@ module KepplerFrontend
       File.delete(file) if File.exist?(file)
       out_file = File.open(file, "w")
       out_file.puts(code)
+      out_file.close
+    end
+
+    def save_html_code(file, code, name)
+      File.delete(file) if File.exist?(file)
+      out_file = File.open(file, "w")
+      out_file.puts("<keppler-view id='#{name}'>\n#{code}\n</keppler-view>")
       out_file.close
     end
 

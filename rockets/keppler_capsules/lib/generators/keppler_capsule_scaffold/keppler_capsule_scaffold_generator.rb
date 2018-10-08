@@ -1,3 +1,4 @@
+
 require 'rails/generators/rails/resource/resource_generator'
 require 'rails/generators/resource_helpers'
 module Rails
@@ -31,7 +32,7 @@ module Rails
       )
 
       def add_route
-        eturn if  options[:skip_routes]
+        return if  options[:skip_routes]
         inject_into_file(
           'config/routes.rb',
           "\n #{indent(str_route)}",
@@ -43,7 +44,7 @@ module Rails
        inject_into_file(
          'config/menu.yml',
          str_menu,
-         before: '      # end capusules generated'
+         before: '      # end capsules generated'
        )
       end
 
@@ -108,15 +109,13 @@ module Rails
 
       def create_views_files
         attachments
-        template_keppler_views('_description.html.haml')
-        template_keppler_views('_listing.html.haml')
-        template_keppler_views('_form.html.haml')
-        template_keppler_views('show.js.haml')
-        template_keppler_views('edit.html.haml')
-        template_keppler_views('new.html.haml')
-        template_keppler_views('show.html.haml')
-        template_keppler_views('index.html.haml')
-        template_keppler_views('reload.js.haml')
+        %w[
+          _description _form _listing
+          edit index new show
+          reload.js
+        ].each do |filename|
+          template_keppler_views("#{filename}.haml")
+        end
       end
 
       hook_for :test_framework, as: :scaffold
@@ -141,7 +140,8 @@ module Rails
       end
 
       def attachments
-        @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
+        @singular_attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image', 'picture', 'banner', 'attachment', 'pic', 'file']
+        @plural_attachments = @singular_attachments.map(&:pluralize)
       end
 
       def str_route

@@ -1,0 +1,527 @@
+
+@import 'admin/utils/variables';
+.icon-just-start {
+  background: url(/assets/keppler_frontend/grapes/flex-just-start.png) no-repeat center;
+}
+
+.icon-dir-row {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-row.png) no-repeat center;
+}
+
+.icon-dir-row-rev {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-row-rev.png) no-repeat center !important;
+}
+
+.icon-dir-col {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-col.png) no-repeat center;
+}
+
+.icon-dir-col-rev {
+  background: url(/assets/keppler_frontend/grapes/flex-dir-col-rev.png) no-repeat center;
+}
+
+.icon-just-end {
+  background: url(/assets/keppler_frontend/grapes/flex-just-end.png) no-repeat center;
+}
+
+.icon-just-sp-bet {
+  background: url(/assets/keppler_frontend/grapes/flex-just-sp-bet.png) no-repeat center;
+}
+
+.icon-just-sp-ar {
+  background: url(/assets/keppler_frontend/grapes/flex-just-sp-ar.png) no-repeat center;
+}
+
+.icon-just-sp-cent {
+  background: url(/assets/keppler_frontend/grapes/flex-just-sp-cent.png) no-repeat center;
+}
+
+.icon-al-start {
+  background: url(/assets/keppler_frontend/grapes/flex-al-start.png) no-repeat center;
+}
+
+.icon-al-end {
+  background: url(/assets/keppler_frontend/grapes/flex-al-end.png) no-repeat center;
+}
+
+.icon-al-str {
+  background: url(/assets/keppler_frontend/grapes/flex-al-str.png) no-repeat center;
+}
+
+.icon-al-center {
+  background: url(/assets/keppler_frontend/grapes/flex-al-center.png) no-repeat center;
+}
+
+#gjs {
+  border: none;
+}
+
+.gjs-one-bg {
+  background-color: #ecebeb !important;
+}
+
+.gjs-editor {
+  font-family: Helvetica,sans-serif;  
+  font-size: 1.2rem !important;
+  position: relative;
+  box-sizing: border-box;
+  height: 101% !important;
+}
+
+.gjs-sm-properties {
+  font-size: 1rem !important;
+  padding: 10px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.gjs-clm-tags {
+  font-size: 1rem !important;
+  padding: 10px 5px;
+}
+
+.gjs-block-label {
+  line-height: normal;
+  font-size: 1rem !important;
+  font-weight: normal;
+  font-family: Helvetica, sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gjs-pn-btn {
+  box-sizing: border-box;
+  min-height: 30px;
+  min-width: 30px;
+  line-height: 21px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.7rem !important;
+  margin-right: 5px;
+  border-radius: 2px;
+  padding: 4px;
+  padding-top: .6rem !important;
+  position: relative;
+  cursor: pointer;
+}
+
+.gjs-layer {
+  font-weight: lighter;
+  text-align: left;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 1rem !important;
+}
+
+/* Secondary color for the text color */
+.gjs-two-color {
+  color: #6f6b6b !important;
+}
+
+.gjs-blocks-c {
+  background: #ececec !important;
+
+  .gjs-four-color-h {
+    background: #f7f7f7 !important;
+    border-radius: 10px !important;
+  }
+}
+
+.gjs-sm-label {
+  margin: 5px 5px 3px 0;
+  color: #191919 !important;
+  font-weight: 500 !important;
+}
+
+label {
+  font-weight: 500 !important;
+}
+
+
+.gjs-radio-item input:checked + .gjs-radio-item-label {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+
+.gjs-radio-item-label {
+  color: #191919 !important;
+}
+
+/* Tertiary color for the background */
+.gjs-three-bg {
+  background-color: $keppler-color !important;
+  color: white;
+}
+
+/* Quaternary color for the text color */
+.gjs-four-color,
+.gjs-four-color-h:hover {
+  color: $keppler-color !important;
+}
+.gjs-radio-item-label {
+  cursor: pointer;
+  display: block;
+  padding: 5px;
+  margin: 0 !important;
+}
+
+.icons-flex {
+  background-size: 26% 60% !important;
+  height: 23px !important;
+  width: 100% !important;
+  opacity: 0.9;
+}
+
+.gjs-radio-item input:checked+.gjs-radio-item-label {
+  background-color: none !important;
+}
+
+.grp-handler-close {
+  color: rgba(255, 255, 255, 0.77);
+  border-radius: 100%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  background-color: #73737300;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  margin-left: -5px;
+  line-height: 10px;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+#gjs-sm-background-image {
+  width: 100% !important;
+}
+
+.gjs-pn-panel {
+  display: inline-block;
+  position: fixed !important;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0px !important;
+  z-index: 3;
+}
+
+.gjs-trt-traits {
+  font-size: 1.2rem !important;
+}
+
+.gjs-pn-views-container {
+  height: 100%;
+  padding: 42px 0 0;
+  right: 0;
+  width: 15%;
+  overflow: auto;
+  top: 33px !important;
+  box-shadow: none !important;
+  border-left: 1px solid #c0c0c0 !important;
+}
+
+.gjs-am-file-uploader {
+  display: none;
+}
+
+.gjs-am-assets-cont {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100% !important;
+  float: right;
+  height: 325px;
+  overflow: hidden;
+}
+
+.gjs-am-add-asset {
+  display: none;
+}
+
+.gjs-am-preview-cont {
+  position: relative;
+  height: 82px !important;
+  width: 20% !important;
+  background-color: #444;
+  border-radius: 2px;
+  float: left;
+  overflow: hidden;
+}
+
+.gjs-field-checkbox {
+  height: 20px !important;
+}
+
+.gjs-block svg {
+    fill: currentColor;
+    width: 46px !important;
+}
+
+.gjs-layer-vis {
+  display: none !important;
+}
+
+.gjs-editor-cont {
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+}
+
+.gjs-cv-canvas {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  border-top: 1px solid #c0c0c0 !important;
+  box-sizing: border-box;
+  width: 100% !important;
+  height: calc(100% - 40px);
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 32px !important;
+}
+
+.gjs-devices-c {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  height: 30px !important;
+}
+
+.gjs-device-label {
+  display: none !important;
+}
+
+.gjs-pn-views {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  right: 0;
+  top: 31px !important;
+  width: 15%;
+  z-index: 4;
+  position: fixed !important;
+  right: -15% !important;
+}
+
+.gjs-pn-views-container {
+  height: 93% !important;
+  padding: 42px 0 0;
+  right: 0;
+  top: 62px !important;
+  width: 15%;
+  overflow: auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  position: fixed !important;
+  right: -15% !important;
+}
+
+.gjs-pn-options {
+  right: 0% !important;
+  top: 0;
+}
+
+.gjs-pn-commands {
+  width: 100% !important;
+  height: 25px !important;
+  left: 0;
+  top: 6px !important;
+  box-shadow: none !important;
+}
+
+.gjs-pn-views > .gjs-pn-buttons {
+  background: #bbbaba !important;
+}
+
+.gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-bars {
+  background: $keppler-color !important;
+  margin: 0;
+  border-radius: 0;
+  color: #fff !important;
+}
+
+.gjs-pn-options > .gjs-pn-buttons > .gjs-pn-btn.fa-times {
+  background: $keppler-color !important;
+  margin: 0;
+  border-radius: 0;
+  color: #fff !important;
+}
+
+// .gjs-hovered {
+//   border: 2px solid $keppler-color !important;
+// }
+
+.gjs-toolbar {
+  position: absolute;
+  color: white;
+  background-color: $keppler-color !important;
+  z-index: 10;
+}
+
+.gjs-badge {
+  background-color: $keppler-color !important;
+}
+
+.gjs-comp-selected {
+  outline: 2px solid $keppler-color !important;
+  outline-offset: -3px;
+}
+
+.gsj-show-tools {
+  -webkit-animation: showtools .5s forwards; /* Safari 4.0 - 8.0 */
+  animation: showtools .3s forwards;
+}
+
+.gsj-hide-tools {
+  -webkit-animation: hidetools .5s forwards; /* Safari 4.0 - 8.0 */
+  animation: hidetools .3s forwards;
+}
+
+@keyframes showtools {
+  from {right: -15%;}
+  to {right: 0%;}
+}
+
+@keyframes hidetools {
+  from {right: 0%;}
+  to {right: -15%;}
+}
+
+.gjs-pn-commands > .gjs-pn-buttons {
+  align-items: center;
+  display: initial !important;
+  justify-content: space-between;
+  top: 5px;
+}
+
+.gjs-keppler-logo:after {
+  content: 'Keppler';
+  font-family: 'Patua One';
+  font-size: 22px !important;
+  position: relative !important;
+  top: -2px !important;
+  color: $keppler-color;
+}
+
+.gjs-off-prv.fa-eye-slash {
+  font-size: 22px !important;
+}
+
+.no-edit-area {
+  border: 1px dashed red !important;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+.gjs-sm-title,
+.gjs-layer-name, 
+.gjs-traits-label,
+.gjs-label,
+.gjs-device-label,
+#gjs-clm-label,
+#gjs-clm-new {
+  color: #3a3939 !important;
+}
+
+.gjs-input-holder {
+  input {
+    color: #3a3939 !important;
+  }
+}
+
+
+.gjs-field,
+.gjs-field {
+  background: #06060624 !important;
+  color: #191919 !important;
+}
+
+.input-unit {
+  color: #191919 !important;
+}
+
+.gjs-field-arrow-u {
+  border-bottom: 4px solid #191919 !important;
+}
+
+.gjs-field-arrow-d,
+.gjs-d-s-arrow {
+  border-top: 4px solid #191919 !important;
+}
+
+.gjs-off-prv {
+  background: $keppler-color !important;
+  color: #fff !important;
+}
+
+.gjs-field-checkbox input:checked + .gjs-chk-icon {
+  border-color: rgba(0, 0, 0, 0.5) !important;
+  border-width: 0 2px 2px 0;
+  border-style: solid;
+}
+
+.keppler-header-area {
+  background-color: #1fc8db1f;
+  border: 2px dashed #0daefb;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 10px;
+  transition: margin .3s;
+}
+
+.keppler-view-area {
+  background: #adf7cb27;
+  border: 2px dashed #27fb0d;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 10px;
+  transition: margin .3s;
+}
+
+.keppler-footer-area {
+  background-color: #1fc8db1f;
+  border: 2px dashed #0daefb;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 10px;
+  transition: margin .3s;
+}
+// .gjs-layer:nth-child(4) {
+//   display: none;
+// }
+
+.gjs-layer-count {
+  position: absolute !important;
+  right: 27px !important;
+  top: 6px !important;
+  // background: #e8e8e8 !important;
+  color: #676767 !important;
+  padding: 1px !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  font-weight: bold !important;
+  border-radius: 10px !important;
+  // border: 1px solid #9c9c9c !important;
+}
+
+.gjs-sm-sector .gjs-sm-stack #gjs-sm-add, .gjs-clm-tags .gjs-sm-stack #gjs-sm-add {
+    background: #000000c9 !important;
+    font-size: 12px !important;
+    padding: 5px  !important;
+}
+
+.gjs-select {
+  select {
+    color: #191919 !important;
+  }
+
+  option {
+    background: #06060624 !important;
+    color: #191919 !important;
+  }
+}
+
+.gjs-sm-sector .gjs-sm-property .gjs-sm-btn, .gjs-clm-tags .gjs-sm-property .gjs-sm-btn {
+  color: #191919 !important;
+}

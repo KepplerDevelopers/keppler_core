@@ -1,0 +1,13 @@
+= simple_form_for role, url: admin_role_toggle_permissions_path(role), method: :post, remote: true do
+  %label.switch-box
+    %label.switch
+      %input{ name: 'role[module]', type: 'hidden', value: module_name }
+      - actions.each do |action|
+        %input{ name: 'role[actions][]', type: 'hidden', value: action }
+      %input{ id: "all-#{module_name.split('::').join('')}", type: 'checkbox', class: ('active' if role.all_actions?(module_name, actions)) }
+      %span.slider.round{ onclick: "send('#{module_name}', '#{actions}')" }
+
+:javascript
+  function send(module_name, actions) {
+    $('#all-'+module_name.split('::').join('')).parent().parent().parent().submit()
+  }
