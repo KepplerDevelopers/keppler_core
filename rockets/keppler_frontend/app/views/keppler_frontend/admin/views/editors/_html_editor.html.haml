@@ -1,19 +1,19 @@
 .nav-tabs-custom
   %ul.nav.nav-tabs
     %li.active
-      %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+      %a{'aria-expanded': "true", "data-toggle" => "tab", :href => "#tab_1"}
         = "#{@view.name}.html.erb"
         .kf-signal.html_signal
     %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_2"}
         = "#{@view.name}.scss"
         .kf-signal.scss_signal
     %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_3"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_3"}
         = "#{@view.name}.js"
         .kf-signal.js_signal
     %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_5"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_5"}
         Action
         .kf-signal.action_signal
     -# %li.pull-right

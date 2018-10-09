@@ -2,16 +2,16 @@ require_dependency "keppler_frontend/application_controller"
 module KepplerFrontend
   module Admin
     # PartialsController
-    class PartialsController < ApplicationController
+    class PartialsController < ::Admin::AdminController
       layout 'keppler_frontend/admin/layouts/application'
       before_action :set_partial, only: [:show, :edit, :update, :destroy]
       before_action :show_history, only: [:index]
       before_action :set_attachments
       before_action :authorization
       after_action :update_partials_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      include KepplerFrontend::Concerns::Commons
-      include KepplerFrontend::Concerns::History
-      include KepplerFrontend::Concerns::DestroyMultiple
+      # include KepplerFrontend::Concerns::Commons
+      # include KepplerFrontend::Concerns::History
+      # include KepplerFrontend::Concerns::DestroyMultiple
 
 
       # GET /partials

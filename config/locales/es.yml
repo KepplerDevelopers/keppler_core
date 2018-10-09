@@ -82,6 +82,7 @@ es:
         setting: configuración
         configuration: configuración
         user: usuario
+        capsule: capsule
       pluralize:
         seos: seos
         roles: roles
@@ -131,6 +132,10 @@ es:
       built: construido
       success: "%{rocket} ha sido %{action} satisfactoriamente"
       error: "Error: %{rocket} no pudo ser %{action}"
+    appearance:
+      main_color: Color principal
+      admin_theme: Tema de KepplerAdmin
+      preview: Vista previa
     messages:
       not_authorized_page: Usted no tiene autorización para acceder a esta página
       not_authorized_action: Usted no tiene autorización para realizar esta acción
@@ -148,6 +153,7 @@ es:
       login_in_activity: Inicio de sesión en
       logout_in_activity: Salido del sistema en
       successfully:
+        cloned: "%{model} se ha clonado satisfactoriamente"
         created: "%{model} se ha creado satisfactoriamente"
         updated: "%{model} se ha actualizado satisfactoriamente"
         deleted: "%{model} se ha eliminado satisfactoriamente"
@@ -195,6 +201,11 @@ es:
       apply: Aplicar
       download_records: Descargar registros
       upload_records: Cargar registros
+      drop_files: Arrastra un archivo o presiona aquí
+      reload_page: Recargar página
+      download:
+        csv: Descargar CSV
+        xls: Descargar XLS
   activerecord:
     attributes:
       public: Publico
@@ -203,8 +214,8 @@ es:
       subtitle: Subtítulo
       tags: Etiquetas
       name: Nombre
-      first_name: 'Primer Nombre'
-      last_name: 'Último Nombre'
+      first_name: Nombre
+      last_name: Apellido
       full_name: 'Nombre Completo'
       email: Correo
       role: Rol

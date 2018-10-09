@@ -1,11 +1,11 @@
 .nav-tabs-custom
   %ul.nav.nav-tabs
     %li.active
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_1"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_1"}
         Action
         .kf-signal.action_signal
     %li
-      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_2"}
+      %a{'aria-expanded': 'false', "data-toggle" => "tab", :href => "#tab_2"}
         = "#{@view.name}.js.erb"
         .kf-signal.js_erb_signal
     %li.pull-right

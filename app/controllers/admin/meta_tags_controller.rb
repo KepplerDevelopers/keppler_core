@@ -14,7 +14,7 @@ module Admin
       @meta_tags = @q.result(distinct: true)
       @objects = @meta_tags.page(@current_page).order(position: :desc)
       @total = @meta_tags.size
-      redirect_to_index(meta_tags_path) if nothing_in_first_page?(@objects)
+      redirect_to_index(@objects)
       respond_to_formats(@meta_tags)
     end
 
@@ -68,7 +68,7 @@ module Admin
       MetaTag.destroy redefine_ids(params[:multiple_ids])
       redirect_to(
         admin_meta_tags_path(page: @current_page, search: @query),
-        notice: actions_messages(MetaTag.new)
+        notice: actions_messages(@meta_tag)
       )
     end
 
@@ -76,7 +76,7 @@ module Admin
       MetaTag.upload(params[:file])
       redirect_to(
         admin_meta_tags_path(page: @current_page, search: @query),
-        notice: actions_messages(MetaTag.new)
+        notice: actions_messages(@meta_tag)
       )
     end
 

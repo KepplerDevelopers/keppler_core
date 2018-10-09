@@ -32,7 +32,7 @@ file_uploader = ->
   # Display the file to be uploaded.
   $fileInput.on 'change', (e) ->
     $fileContainer.css 'background', 'none'
-    $fileContainer.children().removeClass 'opacity'
+    $fileContainer.removeClass 'already-uploaded'
     readURL(this)
 
   readURL = (input) ->
@@ -144,8 +144,7 @@ file_uploader = ->
           'background-size': 'contain',
           'background-repeat': 'no-repeat'
         }
-        $('.file-container').children()
-          .not($fileInput).addClass 'opacity'
+        $('.file-container').addClass 'already-uploaded'
 
     reader.readAsDataURL(files[0])
 

@@ -2,24 +2,19 @@ require_dependency "keppler_capsules/application_controller"
 module KepplerCapsules
   module Admin
     # CapsulesController
-    class CapsulesController < ApplicationController
+    class CapsulesController < ::Admin::AdminController
       layout 'keppler_capsules/admin/layouts/application'
-      before_action :set_capsule, only: [:show, :edit, :update, :destroy, :destroy_validation]
-      before_action :show_history, only: [:index]
-      before_action :set_attachments
-      before_action :authorization
+      before_action :set_capsule, only: %i[show edit update destroy destroy_validation]
+      before_action :show_history, only: %i[index]
       before_action :only_development
-      before_action :reload_capsules, only: [:index]
-      after_action :update_capsules_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      before_action :reload_capsule_fields, only: [:index]
-      after_action :update_capsule_fields_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      before_action :reload_capsule_validations, only: [:index]
-      after_action :update_capsule_validations_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      before_action :reload_capsule_associations, only: [:index]
-      after_action :update_capsule_associations_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      include KepplerCapsules::Concerns::Commons
-      include KepplerCapsules::Concerns::History
-      include KepplerCapsules::Concerns::DestroyMultiple
+      before_action :reload_capsules, only: %i[index]
+      after_action :update_capsules_yml, only: %i[create update destroy destroy_multiple clone]
+      before_action :reload_capsule_fields, only: %i[index]
+      after_action :update_capsule_fields_yml, only: %i[create update destroy destroy_multiple clone]
+      before_action :reload_capsule_validations, only: %i[index]
+      after_action :update_capsule_validations_yml, only: %i[create update destroy destroy_multiple clone]
+      before_action :reload_capsule_associations, only: %i[index]
+      after_action :update_capsule_associations_yml, only: %i[create update destroy destroy_multiple clone]
       include KepplerCapsules::Concerns::YmlSave
 
 
@@ -215,18 +210,6 @@ module KepplerCapsules
         @activities = PublicActivity::Activity.where(
           trackable_type: model.to_s
         ).order('created_at desc').limit(50)
-      end
-
-      # Get submit key to redirect, only [:create, :update]
-      def redirect(object, commit)
-        if commit.key?('_save')
-          redirect_to([:admin, :capsules, object], notice: actions_messages(object))
-        elsif commit.key?('_add_other')
-          redirect_to(
-            send("new_admin_capsules_#{underscore(object)}_path"),
-            notice: actions_messages(object)
-          )
-        end
       end
     end
   end

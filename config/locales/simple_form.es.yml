@@ -19,8 +19,8 @@ es:
         subtitle: Subtítulo
         tags: Etiquetas
         name: 'Nombre'
-        first_name: 'Primer Nombre'
-        last_name: 'Último Nombre'
+        first_name: Nombre
+        last_name: Apellido
         full_name: 'Nombre Completo'
         email: Correo
         phone: Teléfono

@@ -2,7 +2,7 @@
   .container
     .row
       .col-lg-2
-        = link_to admin_languages_languages_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+        = link_to admin_languages_languages_path, "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
           .arrow-back.btn.btn-default
             %i.fa.fa-angle-left
             = t('keppler.actions.back')
@@ -11,14 +11,14 @@
       .col-lg-12
         .box.slice-box.p-15
           .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{action_name.underscore}")
+            %h3.box-title= t("keppler.actions.#{action_name.underscore}")
           .box-body
             %table.table.table-bordered
               %tbody
                 .form-padding
                   .row
                     .col-xs-12
-                      = f.input :name, collection: @languages.first.map { |k, v| [v["name"], k] }, include_blank: 'Selecciona un lenguaje'
+                      = f.input :name, collection: @names.first.map { |k, v| [v["name"], k] }, include_blank: 'Selecciona un lenguaje'
                     .col-xs-12
                       = f.input :position, as: :hidden
                     .col-xs-12
