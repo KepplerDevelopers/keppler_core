@@ -16,4 +16,9 @@ class PermissionPolicy < ControllerPolicy
   def add?
     true
   end
+
+  def toggle_permissions?
+    true
+  end
+
 end
