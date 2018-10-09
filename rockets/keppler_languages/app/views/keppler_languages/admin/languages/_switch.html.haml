@@ -11,8 +11,3 @@
         %input{name: "language[active]", type: "hidden", value: "true"}
         %input{id: "switch-#{language.id}", :type => "checkbox"}
         %span.slider.round{onclick: "sendPermission('#{language.id}')"}
-
-:javascript
-  function sendPermission(id) {
-    $("#edit_language_"+id).submit()
-  }
