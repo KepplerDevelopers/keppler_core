@@ -1,3 +1,4 @@
+$bg-box: rgb(26, 42, 78);
 
 .slice-box {
   border-top: 0;
@@ -35,9 +36,9 @@
     margin: 5px;
     width: 130px;
   }
-  
+
   .info-box-icon {
-    background-color: rgb(26, 42, 78) !important;
+    background-color: $bg-box;
   }
 
   .file {
