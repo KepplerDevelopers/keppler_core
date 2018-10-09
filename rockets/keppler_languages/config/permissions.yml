@@ -4,6 +4,5 @@ modules:
      model: KepplerLanguagesLanguage
      actions: [
        'index', 'create', 'update',
-       'destroy', 'download', 'upload',
-       'clone'
+       'destroy'
      ]
