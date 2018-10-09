@@ -11,14 +11,6 @@
             .toolbar-item
               = link_to reload_admin_languages_languages_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if can?(KepplerLanguages::Language).download?
-              .toolbar-item
-                = link_to admin_languages_language_download_path(KepplerLanguages::Language, :format => :xls), class: "tool-btn", title: t('keppler.actions.download_records') do
-                  %i.icon-cloud-download
-            - if can?(KepplerLanguages::Language).upload?
-              .toolbar-item
-                = link_to "", class: "tool-btn", title: t('keppler.actions.upload_records'), id: "language" do
-                  %i.icon-cloud-upload
             .toolbar-item
               %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
                 %i.icon-trash

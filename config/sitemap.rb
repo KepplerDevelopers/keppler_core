@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<h1> asda template </h1>asdadad
-=======
 require 'rubygems'
 require 'sitemap_generator'
 
@@ -31,4 +28,3 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 end
->>>>>>> 5d9fa4fb5a8a79ed19bdf07738656f391d5a1d31
