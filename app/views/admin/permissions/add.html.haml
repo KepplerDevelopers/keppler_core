@@ -27,7 +27,7 @@
                     .pull-right
                       %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
                         %i.fa.fa-plus
-                .box-body
+                .box-body{ style: 'padding: 0 !important' }
                   %table.table
                     %tbody
                       - module_name[key.first]['actions'].each do |action|
@@ -39,30 +39,30 @@
                               .pull-right.switch-div
                                 = render 'admin/roles/switch', role: @role, module_name: module_name[key.first]['model'], action: action, actions: module_name[key.first]['actions']
 
-                  .col-lg-12
-                    - module_name&.dig(key.first, 'childrens')&.each do |children|
-                      - children.each do |ky|
-                        .box.slice-box.collapsed-box
-                          .box-header.with-border
-                            %h4.box-title= t("keppler.sidebar-menu.#{children[ky.first]['name'].parameterize.pluralize}")
-                            .box-tools
-                              .pull-left
-                                .switch-div{ id: "switch-container-#{children[ky.first]['model']}" }
-                                  = render 'admin/permissions/switch', role: @role, module_name: children[ky.first]['model'], actions: children[ky.first]['actions']
-                              .pull-right
-                                %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
-                                  %i.fa.fa-plus
-                          .box-body
-                            %table.table.table-bordered
-                              %tbody
-                                - children[ky.first]['actions'].each do |action|
-                                  %tr
-                                    %td.row-selectable.table-data
-                                      = link_to admin_role_show_description_path(@role, children[ky.first]['model'].split('::').join(''), action), method: :post, remote: true do
-                                        .pull-left
-                                          %h4= t("keppler.permissions.#{action}")
-                                        .pull-right.switch-div
-                                          = render 'admin/roles/switch', role: @role, module_name: children[ky.first]['model'], action: action, actions: children[ky.first]['actions']
+
+                  - module_name&.dig(key.first, 'childrens')&.each do |children|
+                    - children.each do |ky|
+                      .box.slice-box.collapsed-box{ style: 'padding-right: 0 !important' }
+                        .box-header.with-border
+                          %h4.box-title= t("keppler.sidebar-menu.#{children[ky.first]['name'].parameterize.pluralize}")
+                          .box-tools
+                            .pull-left
+                              #children-switch.switch-div{ id: "switch-container-#{children[ky.first]['model']}" }
+                                = render 'admin/permissions/switch', role: @role, module_name: children[ky.first]['model'], actions: children[ky.first]['actions']
+                            .pull-right
+                              %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
+                                %i.fa.fa-plus
+                        .box-body{ style: 'padding: 0 !important' }
+                          %table.table.table-bordered
+                            %tbody
+                              - children[ky.first]['actions'].each do |action|
+                                %tr
+                                  %td.row-selectable.table-data{ style: 'padding-left: 20px' }
+                                    = link_to admin_role_show_description_path(@role, children[ky.first]['model'].split('::').join(''), action), method: :post, remote: true do
+                                      .pull-left
+                                        %h4= t("keppler.permissions.#{action}")
+                                      .pull-right.switch-div
+                                        = render 'admin/roles/switch', role: @role, module_name: children[ky.first]['model'], action: action, actions: children[ky.first]['actions']
 
     .col-lg-6.hidden-xs
       %div{ style: 'width: 43%; height: 100%; position: fixed; right: 0px' }
@@ -71,7 +71,7 @@
             .box-header.with-border
               %h4.box-title= t('activerecord.attributes.description')
 
-            .box-body{ style: 'min-height: 100px' }
+            .box-body{ style: 'min-height: 100px; padding: 0 !important' }
               %table.table.table-bordered
                 %tbody
                   #description-list
