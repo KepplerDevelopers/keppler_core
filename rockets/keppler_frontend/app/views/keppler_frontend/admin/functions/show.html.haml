@@ -2,7 +2,7 @@
   .container
     .row
       .col-lg-2
-        = link_to admin_frontend_functions_path, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
+        = link_to admin_frontend_functions_path, "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
           .arrow-back.btn.btn-default
             %i.fa.fa-angle-left
             = t('keppler.actions.back')
@@ -10,7 +10,7 @@
   .nav-tabs-custom
     %ul.nav.nav-tabs
       %li.active
-        %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_1"}
+        %a{'aria-expanded': "true", "data-toggle" => "tab", :href => "#tab_1"}
           = "#{@function.name}"
           .kf-signal.function_signal
       %li.pull-right

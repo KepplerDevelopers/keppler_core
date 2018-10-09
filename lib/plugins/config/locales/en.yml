@@ -1,1 +1,16 @@
 en:
+  keppler:
+    sidebar-menu:
+    permissions:
+    models:
+      singularize:
+      pluralize:
+    modules:
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

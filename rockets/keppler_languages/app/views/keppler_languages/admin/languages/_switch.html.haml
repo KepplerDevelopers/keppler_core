@@ -2,7 +2,7 @@
   %label
     - if language.active?
       %label.switch
-        %input{name: "language[active]", type: "hidden", value: "false"}
+        %input{name: "language[active]", type: "hidden", value: 'false'}
         %input.active{id: "switch-#{language.id}", :type => "checkbox", checked: "checked"}
         %span.slider.round{onclick: "sendPermission('#{language.id}')"}
 

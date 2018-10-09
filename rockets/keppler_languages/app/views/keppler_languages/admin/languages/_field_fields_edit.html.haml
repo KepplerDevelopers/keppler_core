@@ -4,5 +4,5 @@
   .col-lg-5
     = f.input :value, label: 'Valor'
   .col-lg-2
-    = link_to admin_languages_language_destroy_field_path(@language.id, f.object.id.to_i), class: "btn btn-default btn-delete-field" , method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+    = link_to admin_languages_language_destroy_field_path(@language.id, f.object.id.to_i), class: "btn btn-default btn-delete-field" , method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
       %i.icon-trash{ style: 'color: red' }

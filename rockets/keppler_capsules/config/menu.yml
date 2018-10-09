@@ -11,5 +11,5 @@ menu:
           url_path: /admin/space/capsules
           current: ['current']
           model: KepplerCapsules::Capsule
-      # begin capusules generated (don't delete)
-      # end capusules generated
+      # begin capsules generated (don't delete)
+      # end capsules generated

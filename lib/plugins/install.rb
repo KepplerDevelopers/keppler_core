@@ -62,23 +62,24 @@ system("scp -r #{ARGV[1]}/lib/plugins/config/locales #{ARGV[1]}/rockets/#{ARGV[0
 
 project = ARGV[0].to_s
 
-locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml")
+# locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml")
 
-locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
-locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
+# locales[2] = "    #{project.remove('keppler').gsub('_', '-')}:\n"
+# locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
+# locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
 
-locales = locales.join("")
+# locales = locales.join("")
 
-File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml", locales)
+# File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/en.yml", locales)
 
-locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml")
+# locales = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml")
 
-locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
-locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
+# locales[3] = "      #{project.gsub('_', '-')}: #{ARGV[0].split('_').map(&:capitalize).join(' ')}\n"
+# locales[4] = "      #{project.gsub('_', '-')}-submenu:\n"
 
-locales = locales.join("")
+# locales = locales.join("")
 
-File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml", locales)
+# File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/config/locales/es.yml", locales)
 
 
 system("scp -r #{ARGV[1]}/lib/plugins/concerns #{ARGV[1]}/rockets/#{ARGV[0]}/app/controllers/#{ARGV[0]}")
@@ -123,10 +124,10 @@ dummy_test = dummy_test.join("")
 
 File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/test/dummy/config/database.yml", dummy_test)
 
-generator_routes = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb")
+# generator_routes = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb")
 
-generator_routes[37] = "          after: 'scope :#{ARGV[0].split('_').drop(1).join('')}, as: :#{ARGV[0].split('_').drop(1).join('')} do'\n"
-generator_routes = generator_routes.join("")
+# generator_routes[37] = "          after: 'scope :#{ARGV[0].split('_').drop(1).join('')}, as: :#{ARGV[0].split('_').drop(1).join('')} do'\n"
+# generator_routes = generator_routes.join("")
 
 File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb", generator_routes)
 

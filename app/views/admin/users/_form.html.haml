@@ -12,10 +12,6 @@
         .box.slice-box.p-15
           .box-header.with-border
             %h3.box-title Avatar
-            - unless user.avatar.blank?
-              .pull-right
-                = link_to admin_user_delete_avatar_path(user), remote: true do
-                  %i.icon-trash
           .box-body.box-profile
             = f.input :avatar, as: :keppler_file, label: false
 
