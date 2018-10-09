@@ -47,7 +47,7 @@
                           %h4.box-title= t("keppler.sidebar-menu.#{children[ky.first]['name'].parameterize.pluralize}")
                           .box-tools
                             .pull-left
-                              #children-switch.switch-div{ id: "switch-container-#{children[ky.first]['model']}" }
+                              .switch-div{ id: "switch-container-#{children[ky.first]['model']}" }
                                 = render 'admin/permissions/switch', role: @role, module_name: children[ky.first]['model'], actions: children[ky.first]['actions']
                             .pull-right
                               %a.btn.btn-box-tool{ 'data-widget' => 'collapse', type: 'button' }
