@@ -16,7 +16,7 @@
         - module_name&.each do |key|
           - unless module_name[key.first]['name'].eql?('dashboard')
             .col-lg-12
-              .box.slice-box.collapsed-box.p-15
+              .box.slice-box.collapsed-box
                 .box-header.with-border
                   .pull-left
                     %h4.box-title= t("keppler.sidebar-menu.#{module_name[key.first]['name'].downcase}")
