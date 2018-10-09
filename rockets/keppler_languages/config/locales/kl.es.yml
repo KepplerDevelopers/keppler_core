@@ -1,0 +1,5 @@
+---
+es:
+  keppler_languages:
+    firstname: nombre
+    lastname: apellido
