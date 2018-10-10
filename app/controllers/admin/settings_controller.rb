@@ -20,7 +20,7 @@ module Admin
 
       if @setting.update(setting_params)
         update_ga_status(params)
-        appearance_service.get_color(params[:color])
+        appearance_service.get_color(parsed_color)
         redirect_to(
           admin_settings_path(@render), notice: actions_messages(@setting)
         )
@@ -61,6 +61,14 @@ module Admin
 
     def appearance_service
       Admin::AppearanceService.new
+    end
+
+    def parsed_color
+      if params[:color].include?('#') || params[:color].include?('rgb')
+        params[:color]
+      else
+        "##{params[:color]}"
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.
