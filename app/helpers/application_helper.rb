@@ -24,4 +24,10 @@ module ApplicationHelper
   def landing?
     controller_name.eql?('front') && action_name.eql?('index')
   end
+
+  def model_object
+    parent = controller.class.parent.to_s.underscore
+    parent_sym = parent.remove('keppler_').split('/').first.to_sym
+    parent.eql?('admin') ? [:admin] : [:admin, parent_sym]
+  end
 end

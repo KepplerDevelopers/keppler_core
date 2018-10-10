@@ -1,44 +1,35 @@
 # frozen_string_literal: true
 
-class KepplerModuleGenerator < Rails::Generators::NamedBase
+class KepplerDeleteModuleGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   FILE_NAME = "#{(ARGV[0].eql?('keppler_module') ? ARGV[1] : ARGV[0]).underscore.split('keppler_').last}"
   ROCKET_NAME = "keppler_#{FILE_NAME}"
   MODULE_NAME = ARGV[1].underscore
-  ATTRIBUTES = ARGV[2] ? ARGV[2..20].map { |x| x.include?(':') ? x.split(':') : ([x, 'string'] if x.exclude?('-')) }.compact.to_h : nil
-  ATTRIBUTES_NAMES = ATTRIBUTES.keys
-  ROCKET_DIRECTORY = "#{Rails.root}/rockets/#{ROCKET_NAME}"
+  ROCKET_DIRECTORY = "rockets/#{ROCKET_NAME}"
 
   ROCKET_CLASS_NAME = "#{ROCKET_NAME}".camelize
   MODULE_CLASS_NAME = MODULE_NAME.singularize.classify
-
-  NAMES = %w[name title first_name full_name]
-  SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
-  PLURAL_ATTACHMENTS = SINGULAR_ATTACHMENTS.map(&:pluralize)
-  SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| SINGULAR_ATTACHMENTS.exclude?(k) && PLURAL_ATTACHMENTS.exclude?(k) && %w[string text integer].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ')
 
   def create_module
     if ROCKET_NAME
       if MODULE_NAME
         if Dir.exist? ROCKET_DIRECTORY
           say "\n*** Creating #{MODULE_CLASS_NAME} module ***"
-          add_route
-          add_option_menu
-          add_locales
+          remove_route
+          remove_option_menu
+          remove_option_permissions
+          remove_locales
           remove_migrations
           if validate_rocket_scaffold
-            say "***** RUNNING KEPPLER SCAFFOLD *****"
-            run_rocket_scaffold
+            say "\n***** RUNNING RAILS D SCAFFOLD *****\n"
+            run_rails_d_scaffold
           else
-            add_option_permissions
-            create_model_file
-            create_policies_file
-            create_controller_file
-            create_views_files
-            create_migration_file
+            delete_model_file
+            delete_policies_file
+            delete_controller_file
+            delete_views_files
           end
-          extract_migrations
           migrate_database
           restart_server
           say "=== All Done. #{MODULE_NAME.classify} module has been created and installed ===\n", :green
@@ -55,43 +46,43 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
 
   private
 
-  def add_route
+  def remove_route
     return if options[:skip_routes]
-    say "\n*** Adding routes ***"
-    inject_into_file(
-      "#{ROCKET_DIRECTORY}/config/routes.rb",
-      "\n#{indent(str_route, 6)}",
-      after: "scope :#{FILE_NAME}, as: :#{FILE_NAME} do"
+    say "\n*** Removing routes ***"
+    gsub_file(
+      "#{ROCKET_DIRECTORY}/config/routes.rb", 
+      "\n#{indent(str_route, 6)}", 
+      ''
     )
-    say "=== Routes has been added ===\n", :green
+    say "=== Routes has been removed ===\n", :green
   end
 
-  def add_option_menu
-    say "\n*** Adding option in menu.yml ***"
-    inject_into_file(
+  def remove_option_menu
+    say "\n*** Removing option in menu.yml ***"
+    gsub_file(
       "#{ROCKET_DIRECTORY}/config/menu.yml",
       "\n#{indent(str_menu, 6)}",
-      after: 'submenu:'
+      ''
     )
-    say "=== Menu option has been added ===\n", :green
+    say "=== Menu option has been removed ===\n", :green
   end
 
-  def add_option_permissions
-    say "\n*** Adding option in permissions.yml ***"
-    inject_into_file(
+  def remove_option_permissions
+    say "\n*** Removing option in permissions.yml ***"
+    gsub_file(
       "#{ROCKET_DIRECTORY}/config/permissions.yml",
       "\n#{indent(str_permissions, 2)}",
-      after: 'modules:'
+      ''
     )
-    say "=== Permission option has been added ===\n", :green
+    say "=== Permission option has been removed ===\n", :green
   end
 
-  def add_locales
+  def remove_locales
     %w[en es].each do |locale|
       %W[singularize pluralize modules #{ROCKET_NAME.dasherize}-submenu].each do |switch|
-        say "\n*** Adding locale #{switch} in #{locale}.yml ***"
-        add_str_locales(locale, switch)
-        say "=== Locale #{switch} has been added in #{locale}.yml ===\n", :green
+        say "\n*** Removing locale #{switch} from #{locale}.yml ***"
+        remove_str_locales(locale, switch)
+        say "=== Locale #{switch} has been removed from #{locale}.yml ===\n", :green
       end
     end
   end
@@ -136,66 +127,47 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
   #     .join('_')
   # end
 
-  def run_rocket_scaffold
+  def run_rails_d_scaffold
     say "*** Entering to rockets/#{ROCKET_NAME} folder ***"
     FileUtils.cd ROCKET_DIRECTORY
-    say "*** Running #{ROCKET_NAME} scaffold ***"
-    system "rails g keppler_scaffold #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
+    say "*** Running 'Rails d scaffold #{ROCKET_NAME}' ***"
+    system "rails d keppler_scaffold #{MODULE_NAME.classify}"
     say "*** Coming back to Rails root folder ***"
     FileUtils.cd Rails.root
   end
 
-  def create_migration_file
-    say "*** Entering to Rocket Directory ***"
-    FileUtils.cd ROCKET_DIRECTORY
-    say "*** Running 'rails g migration #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f' ***"
-    system "rails g migration create_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
-    say "*** Exiting from Rocket Directory ***"
-    FileUtils.cd Rails.root
-    say "=== Migration has been created ===\n", :green
-  end
-
-  def extract_migrations
-    say "*** Importing migrations from #{ROCKET_NAME}/db ***"
-    system "rake #{ROCKET_NAME}:install:migrations"
-    say "=== Migration has been extracted ===\n", :green
-  end
-
-  def create_model_file
-    say "\n*** Creating #{MODULE_NAME.classify} model ***"
+  def delete_model_file
+    say "\n*** Deleting #{MODULE_NAME.classify} model ***"
     model_path = "#{ROCKET_DIRECTORY}/app/models/#{ROCKET_NAME}/#{MODULE_NAME.singularize}.rb"
     File.delete(model_path) if File.exist?(model_path)
-    template("models/model.rb", model_path)
-    say "=== #{MODULE_NAME.classify} model has been created ===\n", :green
+    say "=== #{MODULE_NAME.classify} model has been deleted ===\n", :green
   end
 
-  def create_policies_file
-    say "\n*** Creating #{MODULE_NAME.classify} policy ***"
+  def deleted_policies_file
+    say "\n*** Deleting #{MODULE_NAME.classify} policy ***"
     policy_path = "#{ROCKET_DIRECTORY}/app/policies/#{ROCKET_NAME}/#{MODULE_NAME.singularize}_policy.rb"
     File.delete(policy_path) if File.exist?(policy_path)
-    template('policies/policy.rb', policy_path)
-    say "=== #{MODULE_NAME.classify} policy has been created ===\n", :green
+    say "=== #{MODULE_NAME.classify} policy has been deletedd ===\n", :green
   end
 
-  def create_controller_file
-    say "\n*** Creating #{MODULE_NAME.pluralize.classify} controller ***"
+  def delete_controller_file
+    say "\n*** Deleting #{MODULE_NAME.pluralize.classify} controller ***"
     controller_path = "#{ROCKET_DIRECTORY}/app/controllers/#{ROCKET_NAME}/admin/#{MODULE_NAME.pluralize}_controller.rb"
     File.delete(controller_path) if File.exist?(controller_path)
-    template('controllers/controller.rb', controller_path)
-    say "=== #{MODULE_NAME.pluralize.classify}Controller has been created ===\n", :green
+    say "=== #{MODULE_NAME.pluralize.classify}Controller has been deleted ===\n", :green
   end
 
   def validate_rocket_scaffold
     File.exist? "#{ROCKET_DIRECTORY}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb"
   end
 
-  def create_views_files
+  def delete_views_files
     %w[
       _description _form _listing
       edit index new show
       reload.js
     ].each do |filename|
-      template_keppler_views("#{filename}.haml")
+      delete_template_view("#{filename}.haml")
     end
   end
 
@@ -221,11 +193,11 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
 
   protected
 
-  def add_str_locales(locale, switch)
-    inject_into_file(
+  def remove_str_locales(locale, switch)
+    gsub_file(
       "#{ROCKET_DIRECTORY}/config/locales/#{locale}.yml",
       "\n#{str_locales(switch)}",
-      after: "#{switch}:"
+      ''
     )
   end
 
@@ -277,10 +249,10 @@ class KepplerModuleGenerator < Rails::Generators::NamedBase
     end
   end
 
-  def template_keppler_views(name_file)
+  def delete_template_view(name_file)
+    say "*** Removing #{name_file} ***"
     view_path = "#{ROCKET_DIRECTORY}/app/views/#{ROCKET_NAME}/admin/#{MODULE_NAME}/#{name_file}"
     File.delete(view_path) if File.exist?(view_path)
-    template("views/#{name_file}", view_path)
   end
 
   def arr_exist(path, search)
