@@ -25,7 +25,7 @@
                 %i.file-icon.icon-picture
                 %h5.file-text= t 'keppler.actions.drop_files'
             %p= t 'appearance.main_color'
-            %input.form-control#colorpicker{ type: 'text', name: 'color', placeholder: 'Color', value: color }
+            %input.form-control.jscolor#colorpicker{ type: 'text', name: 'color', placeholder: 'Color', value: color }
           .pull-right
             = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
             - if @render.eql?('appearance')
@@ -39,40 +39,28 @@
           = f.input :language, collection: languages.map { |lang| [t("keppler.language.#{lang}"), lang] }, label: false, include_blank: false
           .pull-right
             = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
-
+%link{href: "css/colorpicker.css", media: "screen", rel: "stylesheet", type: "text/css"}/
+%script{src: "js/colorpicker.js", type: "text/javascript"}
 :javascript
   $(function() {
-      $('#colorpicker').colorpicker({
-        customClass: 'colorpicker-2x',
-        sliders: {
-          saturation: {
-            maxLeft: 200,
-            maxTop: 200
-          },
-          hue: {
-            maxTop: 200
-          },
-          alpha: {
-            maxTop: 200
-          }
-        }
-      }).on('changeColor', function(e) {
-        $('.logo span').css('color', e.color)
-        $('.keppler-background').css('background', e.color)
-        $('.keppler-border-top-color').css('border-top-color', e.color)
-        $('.keppler-border-left-color').css('border-left-color', e.color)
-        $('.sidebar-toggle').css('background', e.color)
-        $('.btn-primary').css('background', e.color)
-        $('.slice-box').css('border-top-color', e.color)
-        $('#span').css('color', e.color)
-        $('.side-img-profile').css('background', e.color)
-        $('.small-profile-img').css('background', e.color)
-        $('.login-logo span').css('color', e.color)
-        $('.login-footer span').css('color', e.color)
+      $('#colorpicker').on('change', function(e) {
+        color = e.currentTarget.style.backgroundColor
+        $('.logo span').css('color', color)
+        $('.keppler-background').css('background', color)
+        $('.keppler-border-top-color').css('border-top-color', color)
+        $('.keppler-border-left-color').css('border-left-color', color)
+        $('.sidebar-toggle').css('background', color)
+        $('.btn-primary').css('background', color)
+        $('.slice-box').css('border-top-color', color)
+        $('#span').css('color', color)
+        $('.side-img-profile').css('background', color)
+        $('.small-profile-img').css('background', color)
+        $('.login-logo span').css('color', color)
+        $('.login-footer span').css('color', color)
         $('.sidebar-menu > li:hover > a, .sidebar-menu > li.active > a')
           .css({
-            'color': e.color,
-            'border-left-color': e.color
+            'color': color,
+            'border-left-color': color
           })
       });
     });
