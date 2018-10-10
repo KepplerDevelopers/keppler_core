@@ -68,7 +68,7 @@ module Rails
       def add_option_permissions
         inject_into_file(
           'config/permissions.yml',
-          str_permissions,
+          "\n#{indent(str_permissions, 2)}",
           before: 'scripts:'
         )
       end
