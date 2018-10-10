@@ -32,6 +32,12 @@ module AdminHelper
       .classify.constantize
   end
 
+  def model_object
+    parent = controller.class.parent.to_s.underscore
+    parent_sym = parent.remove('keppler_').split('/').first.to_sym
+    parent.eql?('admin') ? [:admin] : [:admin, parent_sym]
+  end
+
   # Underscore class_name from a object
   def underscore(object)
     object.class.to_s.underscore
