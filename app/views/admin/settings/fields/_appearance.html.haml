@@ -39,8 +39,6 @@
           = f.input :language, collection: languages.map { |lang| [t("keppler.language.#{lang}"), lang] }, label: false, include_blank: false
           .pull-right
             = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
-%link{href: "css/colorpicker.css", media: "screen", rel: "stylesheet", type: "text/css"}/
-%script{src: "js/colorpicker.js", type: "text/javascript"}
 :javascript
   $(function() {
       $('#colorpicker').on('change', function(e) {
