@@ -30,8 +30,8 @@ module Admin
     end
 
     def update_ga_status(params)
-      status = params[:setting][:google_analytics_setting][:ga_status]
       return unless params[:setting][:google_analytics_setting]
+      status = params[:setting][:google_analytics_setting][:ga_status]
       return if status.nil?
       @setting.google_analytics_setting.update(ga_status: status)
     end
