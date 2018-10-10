@@ -1,0 +1,7 @@
+Description:
+    KepplerModule is a generator to create a new module in a Keppler Rocket.
+
+Example:
+    rails generate keppler_module RocketName ModuleName field:dbtype field:dbtype
+
+    This will create:
