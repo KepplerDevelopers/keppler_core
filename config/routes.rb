@@ -196,7 +196,4 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
-
-  # ToDo routes engine
-  mount KepplerToDo::Engine, at: '/', as: 'to_do'
 end

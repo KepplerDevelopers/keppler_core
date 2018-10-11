@@ -33,15 +33,6 @@ PATH
       rails (= 5.2.0)
       simple_form
 
-PATH
-  remote: rockets/keppler_to_do
-  specs:
-    keppler_to_do (0.1.0)
-      haml_rails
-      pundit
-      rails (= 5.2.0)
-      simple_form
-
 GEM
   remote: https://rubygems.org/
   remote: http://insecure.rails-assets.org/
@@ -608,7 +599,6 @@ DEPENDENCIES
   keppler_frontend!
   keppler_ga_dashboard!
   keppler_languages!
-  keppler_to_do!
   mini_magick (= 4.8.0)
   nprogress-rails (= 0.2.0.2)
   paranoia (= 2.4.1)

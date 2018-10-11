@@ -1,7 +1,0 @@
-modules:
-  tasks:
-    name: Task
-    model: KepplerToDoTask
-    actions: [
-      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
-    ]
