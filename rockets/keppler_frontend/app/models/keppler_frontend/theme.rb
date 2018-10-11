@@ -7,6 +7,7 @@ module KepplerFrontend
     acts_as_list
     before_destroy :uninstall
     include KepplerFrontend::Concerns::LayoutFile
+    include KepplerFrontend::Concerns::StringActions
     # Fields for the search form in the navbar
     def self.search_field
       fields = ["name", "active", "position", "deleted_at"]
@@ -42,6 +43,7 @@ module KepplerFrontend
       File.rename(old_name, new_name)
       system("unzip #{new_name}")
       theme_folder = new_file.original_filename.split('.').first
+      return false if has_a_special_characters(theme_folder)
       assets_folder = File.directory?("#{Rails.root}/#{theme_folder}/assets/themes/")
       html_folder = File.directory?("#{Rails.root}/#{theme_folder}/views")
       covers_folder = File.directory?("#{Rails.root}/#{theme_folder}/covers")

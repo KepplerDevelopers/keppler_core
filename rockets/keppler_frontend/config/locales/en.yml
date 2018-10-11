@@ -59,11 +59,13 @@ en:
         view: view
         theme: theme
         partial: partial
+        function: function
       pluralize:
         keppler_frontend/views: views
         views: views
         themes: themes
         partials: partials
+        functions: functions
     modules:
       keppler_frontend/admin/views: Frontend
       keppler_frontend/admin/themes: Themes

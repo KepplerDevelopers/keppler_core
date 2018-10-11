@@ -5,11 +5,11 @@
   position: 1
   deleted_at: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-10-01 14:12:27.616276000 Z
+    utc: 2018-10-08 20:37:11.978683000 Z
     zone: &1 !ruby/object:ActiveSupport::TimeZone
       name: America/Caracas
-    time: 2018-10-01 10:12:27.616276000 Z
+    time: 2018-10-08 16:37:11.978683000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-10-01 18:58:24.544080000 Z
+    utc: 2018-10-11 14:18:08.374428000 Z
     zone: *1
-    time: 2018-10-01 14:58:24.544080000 Z
+    time: 2018-10-11 10:18:08.374428000 Z
