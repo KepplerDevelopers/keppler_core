@@ -28177,7 +28177,6 @@ module.exports = {
   run: function run(editor) {
     var lm = editor.LayerManager;
     var pn = editor.Panels;
-
     if (!this.layers) {
       var id = 'views-container';
       var layers = document.createElement('div');
@@ -28188,12 +28187,16 @@ module.exports = {
     
       this.layers = this.layers.getElementsByClassName("gjs-layers")[0];
 
-      var sections = ["Keppler-header", "Keppler-view", "Keppler-footer"]
+      var sections = ["keppler-header", "keppler-view", "keppler-footer"]
 
-      for(var i=0; i < sections.length; i++) {
+      for(var i=0; i < this.layers.children.length; i++) {
         this.layers.children[i].getElementsByClassName("gjs-layer-move")[0].remove();
-        this.layers.children[i].getElementsByClassName("gjs-layer-name")[0].innerText = sections[i];
+        var section = this.layers.children[i].getElementsByClassName("gjs-layer-name")[0]
 
+        if (!sections.includes(section.innerText)) {
+          console.log(section.innerText)
+          this.layers.children[i].remove();
+        }
       }
 
     }

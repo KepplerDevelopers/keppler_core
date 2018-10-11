@@ -16,9 +16,16 @@ module KepplerFrontend
         special_characters.each { |sc| self.name.gsub!(sc, '') }
       end
 
+      def has_a_special_characters(name)
+        special_characters.each do |sc| 
+          result = name.include?(sc) ?  true :  false 
+          return result
+        end
+      end
+
       def special_characters
         [
-          '/', '.', '@', '"', "'", '%', '&', '$',
+          '/', '.', '@', '"', "'", '%', '&', '$', 
           '?', '¿', '/', '=', ')', '(', '#', '{',
           '}', ',', ';', ':', '[', ']', '^', '`',
           '¨', '~', '+', '-', '*', '¡', '!', '|',
