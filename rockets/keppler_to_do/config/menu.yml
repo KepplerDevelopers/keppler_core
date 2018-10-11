@@ -1,0 +1,21 @@
+menu:
+  keppler_to_do:
+    name: Keppler To Do
+    current: ['/']
+    url_path: /
+    icon: layers
+    model: User
+    submenu:
+      - task:
+          name: tasks
+          url_path: /admin/to_do/tasks
+          icon: layers
+          current: ['/admin/to_do/tasks']
+          model: KepplerToDo::Task
+
+      # - new:
+      #     name: + Add new module
+      #     url_path: /url_path
+      #     current: ['/current_path']
+      #     enviroment: development
+      #     model: User

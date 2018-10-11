@@ -1,0 +1,58 @@
+- objects.each do |object|
+  %tr{ id: "row-#{object.id}" }
+    %td.item-check{ style: 'width: 10%' }
+      - if can?(model).destroy_multiple?
+        .checkbox
+          %label{ for: "checkbox-#{object.id}" }
+            %input{ type: 'checkbox', id: "checkbox-#{object.id}", 'checklist-model' => 'check', 'checklist-value' => "#{object.id}", '@click' => "listDelete(#{object.id})"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+    - attributes.each do |attribute|
+      - if @attachments.dig('images', 'names').include?(attribute.to_s)
+        %td
+          = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
+            %span
+              = image_tag object.try(attribute).try(:url)
+      - elsif @attachments.dig('images', 'names').map(&:pluralize).include?(attribute.to_s)
+        %td
+          = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
+            %span
+              - object.try(attribute).each do |image|
+                = image_tag image.try(:url)
+      - elsif object.try(attribute).is_a?(Integer)
+        %td
+          = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
+            %span= object.try(attribute)
+      - else
+        %td
+          = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
+            %span= object.try(attribute).try(:truncate_words, 4)
+
+    %td.dropdown{ style: 'width: 15px;padding-right:15px;' }
+      %a.action-btn.pull-right{:id => "menu-#{object.id}", 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown' }
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{ 'aria-labelledby': "menu-#{object.id}" }
+        - if can?(model).index?
+          %li
+            = link_to({action: :show, id: object}, {title: t('keppler.actions.show')}) do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        - if can?(model).update?
+          %li
+            = link_to({action: :edit, id: object}, {title: t('keppler.actions.edit')}) do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can?(model).clone?
+          %li
+            = link_to(admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_clone_path(object), {title: t('keppler.actions.clone')}) do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can?(model).destroy?
+          %li
+            = link_to({action: :destroy, id: object}, {title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') }}) do
+              %i.icon-trash
+              = t('keppler.actions.delete')
+
+    %td{ style: 'width: 5%;'}
+      %a.drop{ href: '#' }
+        %i.icon-cursor-move

@@ -1,0 +1,22 @@
+en:
+  keppler:
+    sidebar-menu:
+      keppler-to-do: Keppler to do
+      keppler-to-do-submenu:
+        tasks: Tasks
+    permissions:
+    models:
+      singularize:
+        task: task
+      pluralize:
+        tasks: tasks
+    modules:
+      admin/tasks: Tasks
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:
