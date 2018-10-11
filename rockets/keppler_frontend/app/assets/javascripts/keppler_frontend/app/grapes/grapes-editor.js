@@ -9,6 +9,7 @@ var extrasEditor = {
           $(html[i]).find('#'+noEditIds[j]).replaceWith(function () {
             return $('<keppler-no-edit/>', {
                 id: noEditIds[j],
+                'data-gjs-name': noEditIds[j]+" (No edit)",
                 html: this.innerHTML
             });
           });
@@ -72,6 +73,7 @@ var extrasEditor = {
       $(sections[i]).replaceWith(function () {
           return $('<div/>', {
               id:  sections[i], 
+              'data-gjs-name': sections[i],
               html: this.innerHTML
           });
       });
@@ -1111,8 +1113,7 @@ $(document).ready(function(){
     var layers = $('.gjs-layer');
     if(layers.length > 0) {
       for(var i=0; i < layers.length; i++) {
-        // console.log(layers[i])
-        if(layers[i].outerText==="Keppler-style\n1") {
+        if(layers[i].outerText.split("\n")[0]==="Keppler-style") {
           $(layers[i]).remove();
         }
       }
