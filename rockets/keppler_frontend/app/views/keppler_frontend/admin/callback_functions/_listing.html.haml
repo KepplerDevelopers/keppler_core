@@ -8,11 +8,11 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
     %td
-      = link_to admin_frontend_callback_function_path(callback_function), class: 'new-menu', title: t('keppler.actions.show') do
+      = link_to admin_frontend_callback_function_editor_path(callback_function), class: 'new-menu', title: t('keppler.actions.show') do
         %span
           = callback_function.name
     %td.hidden-xs
-      = link_to admin_frontend_callback_function_path(callback_function), class: 'new-menu', title: t('keppler.actions.show') do
+      = link_to admin_frontend_callback_function_editor_path(callback_function), class: 'new-menu', title: t('keppler.actions.show') do
         %span
           = callback_function.description
     %td{ style: 'width: 15px;padding-right:15px;' }

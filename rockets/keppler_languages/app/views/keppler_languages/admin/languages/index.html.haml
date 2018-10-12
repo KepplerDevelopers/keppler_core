@@ -67,6 +67,9 @@
         $('#upload_form_language').submit()
       })
     });
-
     renderImg();
   });
+
+  function sendPermission(id) {
+    $("#edit_language_"+id).submit()
+  }
