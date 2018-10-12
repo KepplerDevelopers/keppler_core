@@ -10,7 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require ./grapes/grapes
  *= require ./grapes/grapes-custom
  *= require ./grapes/grapick
@@ -22,5 +21,7 @@
  @import 'bootstrap';
  @import 'slick';
  @import 'slick-theme';
+ @import 'utils/*';
+ @import 'base/*';
  @import 'partials/*';
  @import 'views/*';
