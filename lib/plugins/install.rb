@@ -132,7 +132,7 @@ File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/test/dummy/config/database.yml", dummy
 File.write("#{ARGV[1]}/rockets/#{ARGV[0]}/lib/generators/keppler_scaffold/keppler_scaffold_generator.rb", generator_routes)
 
 layouts = File.readlines("#{ARGV[1]}/rockets/#{ARGV[0]}/app/views/#{ARGV[0]}/admin/layouts/application.html.haml")
-layouts[7] = "        = render 'admin/layouts/navigation', q: @q, appearance: @appearance, model_obj: [:admin, :#{ARGV[0].split('_').drop(1).join('')}, @q]\n"
+layouts[7] = "        = render 'admin/layouts/navigation', q: @q, appearance: @appearance, model_obj: model_object.push(@q)\n"
 
 layouts = layouts.join("")
 
