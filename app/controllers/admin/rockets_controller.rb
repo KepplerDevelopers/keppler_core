@@ -12,8 +12,13 @@ module Admin
     end
 
     def create
-      Rocket.new_rocket(@rocket_undescore_name)
-      redirect_to_rockets_list(@rocket)
+      if Dir.exist? "#{Rails.root}/rockets/keppler_#{@rocket.remove('keppler_')}"
+        @duplicated = true
+        puts "\n\n!!!!!! Rocket keppler_#{@rocket} is already created !!!!!!\n\n"
+      else
+        Rocket.new_rocket(@rocket_undescore_name)
+      end
+      redirect_to_rockets_list(@duplicated ? 'error' : @rocket)
     end
 
     def install
@@ -54,14 +59,14 @@ module Admin
 
     def redirect_to_rockets_list(rocket)
       message_action
-      redirect_to(
-        admin_rockets_path,
-        notice: t(
-          "keppler.rockets.#{rocket ? 'success' : 'error'}",
-          rocket: rocket_name(rocket),
+      state = rocket.eql?('error') ? 'error' : 'success'
+      flash[rocket.to_sym] =
+        t(
+          "keppler.rockets.#{state}",
+          rocket: rocket_name(@rocket),
           action: t("keppler.rockets.#{@action}")
         )
-      )
+      redirect_to admin_rockets_path
     end
 
     def rocket_name(rocket)
