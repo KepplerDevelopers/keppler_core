@@ -60,7 +60,7 @@ module Admin
     def redirect_to_rockets_list(rocket)
       message_action
       state = rocket.eql?('error') ? 'error' : 'success'
-      flash[rocket.to_sym] =
+      flash[state.to_sym] =
         t(
           "keppler.rockets.#{state}",
           rocket: rocket_name(@rocket),
