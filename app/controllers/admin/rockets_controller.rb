@@ -12,9 +12,10 @@ module Admin
     end
 
     def create
-      if Dir.exist? "#{Rails.root}/rockets/keppler_#{@rocket}"
+      rocket = @rocket.remove('keppler_')
+      if Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket}"
         @duplicated = true
-        puts "\n\n!!!!! Rocket keppler_#{@rocket} is already created !!!!!\n\n"
+        puts "\n\n!!!!! Rocket keppler_#{rocket} is already created !!!!!\n\n"
       else
         Rocket.new_rocket(@rocket_undescore_name)
       end
@@ -62,7 +63,7 @@ module Admin
       state = rocket.eql?('error') ? 'error' : 'success'
       flash[state.to_sym] =
         t(
-          "keppler.rockets.#{state}",
+          "keppler.rockets.#{state.eql?('error') ? 'duplicated' : 'success'}",
           rocket: rocket_name(@rocket),
           action: t("keppler.rockets.#{@action}")
         )

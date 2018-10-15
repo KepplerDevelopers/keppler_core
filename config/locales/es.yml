@@ -132,6 +132,7 @@ es:
       built: construido
       success: "%{rocket} ha sido %{action} satisfactoriamente"
       error: "Error: %{rocket} no pudo ser %{action}"
+      duplicated: "Error: %{rocket} ya existe"
     appearance:
       main_color: Color principal
       admin_theme: Tema de KepplerAdmin

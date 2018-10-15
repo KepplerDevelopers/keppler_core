@@ -12,7 +12,7 @@
         var rocket_name = result.value;
         swal({
           title: "#{t('keppler.rockets.you_sure')}",
-          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${result.value.toLowerCase().split(' ').join('_')}</code></pre>`,
+          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${result.value.toLowerCase().split('keppler_').join('').split(' ').join('_')}</code></pre>`,
           confirmButtonText: "#{t('keppler.rockets.great')}",
           showCancelButton: true,
         }).then((result) => {
