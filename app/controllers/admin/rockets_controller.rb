@@ -12,9 +12,9 @@ module Admin
     end
 
     def create
-      if Dir.exist? "#{Rails.root}/rockets/keppler_#{@rocket.remove('keppler_')}"
+      if Dir.exist? "#{Rails.root}/rockets/keppler_#{@rocket}"
         @duplicated = true
-        puts "\n\n!!!!!! Rocket keppler_#{@rocket} is already created !!!!!!\n\n"
+        puts "\n\n!!!!! Rocket keppler_#{@rocket} is already created !!!!!\n\n"
       else
         Rocket.new_rocket(@rocket_undescore_name)
       end
