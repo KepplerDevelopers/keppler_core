@@ -9,6 +9,9 @@
     %li
       %a{'aria-expanded': "true", "data-toggle" => "tab", :href => "#editor_views_tab_2"}
         %i.fa.fa-code
+    %li
+      %a{'aria-expanded': "true", "data-toggle" => "tab", :href => "#editor_views_tab_3"}
+        %i.fa.fa-file
   .tab-content.container-files.bg-gray
     #editor_views_tab_1.tab-pane.active
       - @views.each do |view|
@@ -55,6 +58,23 @@
               %span.box-title
                 = link_to admin_frontend_function_path(function.id), class: 'btn btn-default pull-right' do
                   %i.fa.fa-reply
+    #editor_views_tab_3.tab-pane
+      - @partials.each do |partial|
+        .box.box-solid
+          .box-header.with-border{title: "#{partial.name}"}
+            .row
+              .col-lg-6
+                %h4.box-title
+                  = truncate(partial.name, length: 30, omission: '...')
+              .col-lg-3
+                %span.box-title
+                  %a.btn.btn-default.pull-right{onclick: "copyPartial('#{partial.id}')"}
+                    %input.hidden{id: "partial#{partial.id}", value: "<%= #{partial.name} %>" }
+                    %i.fa.fa-save
+              .col-lg-2
+                %span.box-title
+                  = link_to admin_frontend_partial_path(partial), class: 'btn btn-default pull-right', target: '_blank' do
+                    %i.fa.fa-reply
 .control-sidebar-bg
 
 :javascript

@@ -30,8 +30,8 @@ module KepplerFrontend
     private
 
     def rocket(name, model)
-      name = name.singularize.downcase.capitalize
-      model = model.singularize.downcase.capitalize
+      name = name.singularize.downcase.camelize
+      model = model.singularize.downcase.camelize
       "Keppler#{name}::#{model}".constantize
     end
 
@@ -43,8 +43,7 @@ module KepplerFrontend
       if params[:locale]
         @locale = I18n.locale = params[:locale]
       elsif request.env['HTTP_ACCEPT_LANGUAGE']
-        request_lang = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/)[0]
-        @locale = I18n.locale = request_lang.eql?('es') ? 'es' : 'en'
+        @locale = I18n.locale = I18n.default_locale
       end
     end
 
