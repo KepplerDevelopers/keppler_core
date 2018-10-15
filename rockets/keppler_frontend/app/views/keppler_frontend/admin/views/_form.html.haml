@@ -20,7 +20,7 @@
                     .col-xs-3
                       = f.input :name
                     .col-xs-3
-                      = f.input :url
+                      = f.input :url, input_html: {value: '/'}
                     .col-xs-2
                       = f.input :method, collection: [:GET, :POST, :PATCH, :PUT, :DELETE], prompt: false
                     .col-xs-2
