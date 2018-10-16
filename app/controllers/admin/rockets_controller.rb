@@ -12,10 +12,10 @@ module Admin
     end
 
     def create
-      rocket = @rocket.remove('keppler_')
-      if Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket}"
+      rocket_name = Rocket.parse_name(@rocket)
+      if Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket_name}"
         @duplicated = true
-        puts "\n\n!!!!! Rocket keppler_#{rocket} is already created !!!!!\n\n"
+        puts "\n\n!!!!! Rocket keppler_#{rocket_name} is already created !!!!!\n\n"
       else
         Rocket.new_rocket(@rocket_undescore_name)
       end
@@ -73,9 +73,9 @@ module Admin
     def rocket_name(rocket)
       name =
         if rocket.try(:original_filename).nil?
-          rocket.remove('keppler_')
+          Rocket.parse_name(rocket)
         else
-          rocket.original_filename.split('.').first.remove('keppler_')
+          Rocket.parse_name(rocket.original_filename.split('.').first)
         end
       "keppler_#{name}".camelize
     end
