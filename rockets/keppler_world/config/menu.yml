@@ -1,0 +1,21 @@
+menu:
+  keppler_world:
+    name: Keppler World
+    current: ['/']
+    url_path: /
+    icon: layers
+    model: User
+    submenu:
+      - planet:
+          name: planet
+          url_path: /admin/world/planets
+          icon: layers
+          current: ['/admin/world/planets']
+          model: KepplerWorld::Planet
+
+      # - new:
+      #     name: + Add new module
+      #     url_path: /url_path
+      #     current: ['/current_path']
+      #     enviroment: development
+      #     model: User

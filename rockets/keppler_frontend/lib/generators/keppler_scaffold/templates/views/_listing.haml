@@ -12,7 +12,7 @@
         %td
           = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
             %span
-              = image_tag object.try(attribute).try(:url)
+              = image_tag object.try(attribute).url if object.try(attribute).url
       - elsif @attachments.dig('images', 'names').map(&:pluralize).include?(attribute.to_s)
         %td
           = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do

@@ -196,4 +196,7 @@ Rails.application.routes.draw do
 
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
+
+  # World routes engine
+  mount KepplerWorld::Engine, at: '/', as: 'world'
 end

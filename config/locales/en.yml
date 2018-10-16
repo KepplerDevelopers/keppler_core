@@ -139,6 +139,7 @@ en:
       record_msg: "%{from} to %{to} of %{total}"
       to: "to"
       at: "at"
+      has: 'has'
       since_been_removed: whitch has since been removed
       login_in_activity: login to system at
       logout_in_activity: logout to system at
