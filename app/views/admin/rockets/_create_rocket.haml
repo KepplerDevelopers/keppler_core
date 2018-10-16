@@ -8,8 +8,8 @@
       cancelButtonText: "#{t('keppler.rockets.cancel')}",
       showCancelButton: true,
     }).then((result) => {
-      if (result.value) {
-        var rocket_name = result.value;
+      if (result.value && parseRocketName(result.value) != '') {
+        var rocket_name = parseRocketName(result.value);
         swal({
           title: "#{t('keppler.rockets.you_sure')}",
           html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${parseRocketName(result.value)}</code></pre>`,
@@ -39,38 +39,41 @@
   })
 
   function parseRocketName(rocket_name) {
-    return rocket_name
+    var rn = rocket_name
       .toLowerCase()
-      .replace('keppler_', '')
-      .replace('keppler ', '')
-      .replace('keppler-', '')
-      .replace('keppler.', '')
-      .replace('keppler/', '')
-      .replace(';', '')
-      .replace(':', '')
-      .replace(',', '')
-      .replace('%', '')
-      .replace('.', '')
-      .replace('*', '')
-      .replace('#', '')
-      .replace('!', '')
-      .replace('?', '')
-      .replace('"', '')
-      .replace('<', '')
-      .replace('>', '')
-      .replace('«', '')
-      .replace('»', '')
-      .replace('\'', '')
-      .replace(' ', '_')
-      .replace('/', '_')
-      .replace('-', '_')
-      .replace('&', 'y')
-      .replace('á', 'a')
-      .replace('é', 'e')
-      .replace('í', 'i')
-      .replace('ó', 'o')
-      .replace('ö', 'o')
-      .replace('ú', 'u')
-      .replace('ü', 'u')
-      .replace('ñ', 'n')
+      .split(';').join('')
+      .split(',').join('')
+      .split('%').join('')
+      .split('.').join('')
+      .split('*').join('')
+      .split('#').join('')
+      .split('!').join('')
+      .split('?').join('')
+      .split('"').join('')
+      .split('<').join('')
+      .split('>').join('')
+      .split('«').join('')
+      .split('»').join('')
+      .split('\'').join('')
+      .split(';').join('')
+      .split(':').join('')
+      .split(' ').join('_')
+      .split('/').join('_')
+      .split('-').join('_')
+      .split('&').join('y')
+      .split('á').join('a')
+      .split('é').join('e')
+      .split('í').join('i')
+      .split('ó').join('o')
+      .split('ö').join('o')
+      .split('ú').join('u')
+      .split('ü').join('u')
+      .split('ñ').join('n')
+      .split('keppler_').join('')
+      .split('keppler ').join('')
+      .split('keppler-').join('')
+      .split('keppler.').join('')
+      .split('keppler/').join('')
+    while (rn[0]=='_') rn = rn.substring(1, rn.length);
+    return rn;
   }

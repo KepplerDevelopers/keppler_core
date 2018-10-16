@@ -13,13 +13,13 @@ module Admin
 
     def create
       rocket = Rocket.parse_name(@rocket)
-      if Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket}"
-        @duplicated = true
+      if (Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket}") || rocket.blank?
+        @error = true
         puts "\n\n!!!!! Rocket keppler_#{rocket} is already created !!!!!\n\n"
       else
         Rocket.new_rocket(@rocket_undescore_name)
       end
-      redirect_to_rockets_list(@duplicated ? 'error' : @rocket)
+      redirect_to_rockets_list(@error ? 'error' : @rocket)
     end
 
     def install

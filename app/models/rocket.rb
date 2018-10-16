@@ -95,6 +95,7 @@ class Rocket < ApplicationRecord
 
   def self.parse_name(rocket_name)
     rocket_name
+      .remove(':', ';', '\'', '"')
       .downcase
       .parameterize
       .dasherize
