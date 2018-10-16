@@ -118,6 +118,7 @@ en:
       will_be_named: Your rocket will be named
       great: Great!
       wait_generator: Please wait until your rocket is ready...
+      unpermitted_name: That name is not permitted
       cancel: Cancel
       installed: installed
       uninstalled: uninstalled
