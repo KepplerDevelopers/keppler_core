@@ -12,10 +12,10 @@ module Admin
     end
 
     def create
-      rocket_name = Rocket.parse_name(@rocket)
-      if Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket_name}"
+      rocket = Rocket.parse_name(@rocket)
+      if Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket}"
         @duplicated = true
-        puts "\n\n!!!!! Rocket keppler_#{rocket_name} is already created !!!!!\n\n"
+        puts "\n\n!!!!! Rocket keppler_#{rocket} is already created !!!!!\n\n"
       else
         Rocket.new_rocket(@rocket_undescore_name)
       end
