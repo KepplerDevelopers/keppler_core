@@ -5,7 +5,6 @@ module App
   class AppController < ::ApplicationController
     layout 'app/layouts/application'
     skip_before_action :verify_authenticity_token
-    before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
 
@@ -26,15 +25,6 @@ module App
     end
 
     private
-
-    def set_locale
-      if params[:locale]
-        @locale = I18n.locale = params[:locale]
-      elsif request.env['HTTP_ACCEPT_LANGUAGE']
-        request_lang = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/)[0]
-        @locale = I18n.locale = request_lang.eql?('es') ? 'es' : 'en'
-      end
-    end
 
     def default_url_options(options = {})
       logger.debug "default_url_options is passed options: #{options.inspect}\n"
