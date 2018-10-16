@@ -3,7 +3,7 @@ function imgPreview() {
   yOffset = 20; // separacion de la imagen con respecto al puntero en Y
   imgMargin = 50; // separacion de la imagen con respecto al borde de la pantalla
   $('.show-row img, .list-row img').hover(function (e) {
-    $('body').append(`<img src='${this.src}' alt='No image source' class='img-show'>`);
+    $('body').append(`<img src='${this.src}' alt='No image source' class='img-show' >`);
     xImgOffset = $(window).width() - ($('.img-show').width() + imgMargin);
     yImgOffset = $(window).height() - ($('.img-show').height() + imgMargin); // breakpoint para que la imagen siempre esté visible en la pantalla
     $('.img-show')
