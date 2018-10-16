@@ -1,7 +1,0 @@
-modules:
-  planets:
-    name: Planet
-    model: KepplerWorldPlanet
-    actions: [
-      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
-    ]
