@@ -8,7 +8,7 @@
       cancelButtonText: "#{t('keppler.rockets.cancel')}",
       showCancelButton: true,
     }).then((result) => {
-      if (result.value && parseRocketName(result.value) != '') {
+      if (result.value && result.value.includes() && parseRocketName(result.value) != '') {
         var rocket_name = parseRocketName(result.value);
         swal({
           title: "#{t('keppler.rockets.you_sure')}",
@@ -41,6 +41,7 @@
   function parseRocketName(rocket_name) {
     var rn = rocket_name
       .toLowerCase()
+      .replace(/[^a-zA-Z]/g, '')
       .split(';').join('')
       .split(',').join('')
       .split('%').join('')
