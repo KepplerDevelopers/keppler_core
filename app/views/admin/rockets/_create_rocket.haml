@@ -12,7 +12,7 @@
         var rocket_name = result.value;
         swal({
           title: "#{t('keppler.rockets.you_sure')}",
-          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${result.value.toLowerCase().split('keppler_').join('').split(' ').join('_')}</code></pre>`,
+          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${parseRocketName(result.value)}</code></pre>`,
           confirmButtonText: "#{t('keppler.rockets.great')}",
           showCancelButton: true,
         }).then((result) => {
@@ -37,3 +37,40 @@
       }
     })
   })
+
+  function parseRocketName(rocket_name) {
+    return rocket_name
+      .toLowerCase()
+      .replace('keppler_', '')
+      .replace('keppler ', '')
+      .replace('keppler-', '')
+      .replace('keppler.', '')
+      .replace('keppler/', '')
+      .replace(';', '')
+      .replace(':', '')
+      .replace(',', '')
+      .replace('%', '')
+      .replace('.', '')
+      .replace('*', '')
+      .replace('#', '')
+      .replace('!', '')
+      .replace('?', '')
+      .replace('"', '')
+      .replace('<', '')
+      .replace('>', '')
+      .replace('«', '')
+      .replace('»', '')
+      .replace('\'', '')
+      .replace(' ', '_')
+      .replace('/', '_')
+      .replace('-', '_')
+      .replace('&', 'y')
+      .replace('á', 'a')
+      .replace('é', 'e')
+      .replace('í', 'i')
+      .replace('ó', 'o')
+      .replace('ö', 'o')
+      .replace('ú', 'u')
+      .replace('ü', 'u')
+      .replace('ñ', 'n')
+  }
