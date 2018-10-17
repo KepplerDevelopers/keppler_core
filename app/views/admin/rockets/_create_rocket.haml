@@ -8,11 +8,11 @@
       cancelButtonText: "#{t('keppler.rockets.cancel')}",
       showCancelButton: true,
     }).then((result) => {
-      if (result.value) {
-        var rocket_name = result.value;
+      if (parseRocketName(result.value) && parseRocketName(result.value) != '') {
+        var rocket_name = parseRocketName(result.value);
         swal({
           title: "#{t('keppler.rockets.you_sure')}",
-          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${result.value.toLowerCase().split(' ').join('_')}</code></pre>`,
+          html: `#{t('keppler.rockets.will_be_named')}:<pre><code>keppler_${parseRocketName(result.value)}</code></pre>`,
           confirmButtonText: "#{t('keppler.rockets.great')}",
           showCancelButton: true,
         }).then((result) => {
@@ -34,6 +34,28 @@
             })
           }
         })
+      } else {
+        swal({
+          title: 'Oops!',
+          html: "#{t('keppler.rockets.unpermitted_name')}",
+          timer: 3000
+        })
       }
     })
   })
+
+  function parseRocketName(rocket_name) {
+    var rn = rocket_name
+      .toLowerCase()
+      .split('keppler').join('')
+
+    var valid_chars = [];
+    for (var i = 0; i < rn.split('').length; i++){
+      var char = rn.split('')[i]
+      if ([' ', '_'].includes(char)) valid_chars.push('_')
+      else if (/[a-zA-Z]/.test(char)) valid_chars.push(char);
+    }
+    rn = valid_chars.join('')
+    while (rn[0]=='_') rn = rn.substring(1, rn.length);
+    return rn
+  }

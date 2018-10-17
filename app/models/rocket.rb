@@ -92,4 +92,14 @@ class Rocket < ApplicationRecord
     exp = 6 if exp > 6
     [(size.to_f / 1024**exp).round(2), units[exp]].join(' ')
   end
+
+  def self.parse_name(rocket_name)
+    rocket_name
+      .remove(':', ';', '\'', '"')
+      .downcase
+      .parameterize
+      .dasherize
+      .remove('keppler-')
+      .underscore
+  end
 end

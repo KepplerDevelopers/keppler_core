@@ -1,4 +1,4 @@
-function notify(notice) {
+function notify(notice, state) {
   const toast = swal.mixin({
     toast: true,
     position: 'top',
@@ -8,7 +8,7 @@ function notify(notice) {
   });
 
   toast({
-    type: 'success',
+    type: state == 'error' ? 'error' : 'success',
     html: `<h5>${notice}</h5>`
   })
 }
