@@ -12,9 +12,13 @@ module KepplerFrontend
 
       def output
         css_url = "#{@core_css_app}/views/#{@view_name}.scss"
-        lines = File.readlines(css_url)
-        lines = lines.select { |l| l unless l.include?('//') }
-        lines.join
+        begin
+          lines = File.readlines(css_url)
+          lines = lines.select { |l| l unless l.include?('//') }
+          lines.join
+        rescue StandardError
+          nil
+        end
       end
     end
   end
