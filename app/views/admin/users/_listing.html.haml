@@ -9,16 +9,16 @@
               %i.cr-icon.glyphicon.glyphicon-ok
 
     %td.avatar
-      = link_to admin_user_path(user), title: t('keppler.actions.show') do
+      = link_to admin_user_path(user), title: t('keppler.actions.show'), class: 'show-row' do
         = image_tag user.avatar.url if user.avatar.url
     %td.visible-lg.visible-md
-      = link_to admin_user_path(user), title: t('keppler.actions.show') do
+      = link_to admin_user_path(user), title: t('keppler.actions.show'), class: 'show-row' do
         %span= user.name
     %td
-      = link_to admin_user_path(user), title: t('keppler.actions.show') do
+      = link_to admin_user_path(user), title: t('keppler.actions.show'), class: 'show-row' do
         %span= user.email
     %td.visible-lg.visible-md
-      = link_to admin_user_path(user), title: t('keppler.actions.show') do
+      = link_to admin_user_path(user), title: t('keppler.actions.show'), class: 'show-row' do
         %span= user.rol.humanize
     %td
       %a.action-btn.pull-right{ id: "menu-#{user.id}", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown' }
@@ -26,7 +26,7 @@
       %ul.actions.dropdown-menu{ 'aria-labelledby' => "menu-#{user.id}" }
         - if can?(User).show?
           %li
-            = link_to admin_user_path(user), title: t('keppler.actions.show') do
+            = link_to admin_user_path(user), title: t('keppler.actions.show'), class: 'show-row' do
               %i.icon-eye
               = t('keppler.actions.show')
         - if can?(User).update?

@@ -41,7 +41,7 @@ module Rails
       NAMES = %w[name title first_name full_name]
       SINGULAR_ATTACHMENTS = %w[logo brand photo avatar cover image picture banner attachment pic file]
       PLURAL_ATTACHMENTS = SINGULAR_ATTACHMENTS.map(&:pluralize)
-      SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| SINGULAR_ATTACHMENTS.exclude?(k) && PLURAL_ATTACHMENTS.exclude?(k) && %w[string text integer].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ')
+      SEARCHABLE_ATTRIBUTES = ATTRIBUTES.select { |k,v| %w[string].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ')
 
       def add_route
         eturn if  options[:skip_routes]

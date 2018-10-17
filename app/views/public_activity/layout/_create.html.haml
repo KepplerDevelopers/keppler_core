@@ -21,11 +21,11 @@
   %h6.timeline-header.no-border
     %small
       %b
-        = activity.owner.name if activity.owner
+        = activity.owner&.name
     %small
       = t('keppler.messages.has')
       = t('keppler.actions.created').downcase
-      = t("keppler.models.singularize.#{activity.trackable_type.underscore}").humanize
+      = t("keppler.models.singularize.#{activity.trackable_type.underscore.split('/').last}").humanize
       %b
         = activity.trackable.send(method) if activity.trackable
   - if activity.trackable
@@ -42,4 +42,3 @@
       = activity.created_at.to_formatted_s(:time)
       = t('keppler.messages.to')
       = activity.created_at.to_formatted_s(:day)
-      = t('keppler.messages.since_been_removed')
