@@ -55,5 +55,6 @@
       if ([' ', '_'].includes(char)) valid_chars.push('_')
       else if (/[a-zA-Z]/.test(char)) valid_chars.push(char);
     }
+    while (rn[0]=='_') rn = rn.substring(1, rn.length);
     return valid_chars.join('')
   }
