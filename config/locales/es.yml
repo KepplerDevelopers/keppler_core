@@ -125,6 +125,7 @@ es:
       will_be_named: Tu rocket será llamado
       great: ¡Genial!
       wait_generator: Por favor espera mientras armamos tu rocket...
+      unpermitted_name: Ese nombre no está permitido
       cancel: Cancelar
       installed: instalado
       uninstalled: desinstalado
@@ -132,6 +133,7 @@ es:
       built: construido
       success: "%{rocket} ha sido %{action} satisfactoriamente"
       error: "Error: %{rocket} no pudo ser %{action}"
+      duplicated: "Error: %{rocket} ya existe"
     appearance:
       main_color: Color principal
       admin_theme: Tema de KepplerAdmin

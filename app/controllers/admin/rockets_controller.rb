@@ -12,8 +12,14 @@ module Admin
     end
 
     def create
-      Rocket.new_rocket(@rocket_undescore_name)
-      redirect_to_rockets_list(@rocket)
+      rocket = Rocket.parse_name(@rocket)
+      if (Dir.exist? "#{Rails.root}/rockets/keppler_#{rocket}") || rocket.blank?
+        @error = true
+        puts "\n\n!!!!! Rocket keppler_#{rocket} is already created !!!!!\n\n"
+      else
+        Rocket.new_rocket(@rocket_undescore_name)
+      end
+      redirect_to_rockets_list(@error ? 'error' : @rocket)
     end
 
     def install
@@ -54,22 +60,22 @@ module Admin
 
     def redirect_to_rockets_list(rocket)
       message_action
-      redirect_to(
-        admin_rockets_path,
-        notice: t(
-          "keppler.rockets.#{rocket ? 'success' : 'error'}",
-          rocket: rocket_name(rocket),
+      state = rocket.eql?('error') ? 'error' : 'success'
+      flash[state.to_sym] =
+        t(
+          "keppler.rockets.#{state.eql?('error') ? 'duplicated' : 'success'}",
+          rocket: rocket_name(@rocket),
           action: t("keppler.rockets.#{@action}")
         )
-      )
+      redirect_to admin_rockets_path
     end
 
     def rocket_name(rocket)
       name =
         if rocket.try(:original_filename).nil?
-          rocket.remove('keppler_')
+          Rocket.parse_name(rocket)
         else
-          rocket.original_filename.split('.').first.remove('keppler_')
+          Rocket.parse_name(rocket.original_filename.split('.').first)
         end
       "keppler_#{name}".camelize
     end
