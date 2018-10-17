@@ -9,7 +9,6 @@ var extrasEditor = {
           $(html[i]).find('#'+noEditIds[j]).replaceWith(function () {
             return $('<keppler-no-edit/>', {
                 id: noEditIds[j],
-                'data-gjs-name': noEditIds[j]+" (No edit)",
                 html: this.innerHTML
             });
           });
@@ -73,7 +72,6 @@ var extrasEditor = {
       $(sections[i]).replaceWith(function () {
           return $('<div/>', {
               id:  sections[i], 
-              'data-gjs-name': sections[i],
               html: this.innerHTML
           });
       });
@@ -403,9 +401,54 @@ var sectors = [{
 ]
 },
 {
-  name: 'Decorations',
+  name: 'Background',
   open: false,
-  buildProps: ['border-radius-c', 'background-color', 'border-radius', 'border', 'box-shadow', 'background'],
+  buildProps: ['background-color', 'box-shadow', 'background'],
+},{
+  name: 'Border',
+  open: false,
+  buildProps: ['border-radius-c', 'border-radius', 'border'],
+  properties: [
+    {
+      name    : 'Border width',
+      property  : 'border-width',
+      type    : 'composite',
+      properties  : [
+        {
+          id: 'border-top-width',
+          type: 'integer',
+          name: 'Border top',
+          units: ['px', '%', 'rem', 'em'],
+          property: 'border-top-width',
+          defaults: 0
+        }, 
+        {
+          id: 'border-right-width',
+          type: 'integer',
+          name: 'Border right',
+          units: ['px', '%', 'rem', 'em'],
+          property: 'border-right-width',
+          defaults: 0
+        },
+        {
+          id: 'border-bottom-width',
+          type: 'integer',
+          name: 'Border bottom',
+          units: ['px', '%', 'rem', 'em'],
+          property: 'border-bottom-width',
+          defaults: 0
+        },
+        {
+          id: 'border-left-width',
+          type: 'integer',
+          name: 'Border left',
+          units: ['px', '%', 'rem', 'em'],
+          property: 'border-left-width',
+          defaults: 0
+        }
+      ]
+    }, 
+  ]
 },{
   name: 'Extra',
   open: false,
@@ -758,7 +801,7 @@ pnm.addButton('options', [{
 }]);
 
 
-editor.StyleManager.addProperty('Decorations', {
+editor.StyleManager.addProperty('Background', {
   id: 'gradient',
   name: 'Gradient',
   property: 'background-image',
@@ -1020,7 +1063,9 @@ editor.render();
 editor.on('styleable:change', (model, property) => {
   const value = model.getStyle()[property];
   if (value!=undefined && value.indexOf('!important') === -1) {
-    model.addStyle({ [property]: value + ' !important' });
+    if (property.includes("background")) {
+      model.addStyle({ [property]: value + ' !important' });
+    }
   }
 });
 
@@ -1113,7 +1158,8 @@ $(document).ready(function(){
     var layers = $('.gjs-layer');
     if(layers.length > 0) {
       for(var i=0; i < layers.length; i++) {
-        if(layers[i].outerText.split("\n")[0]==="Keppler-style") {
+        // console.log(layers[i])
+        if(layers[i].outerText==="Keppler-style\n1") {
           $(layers[i]).remove();
         }
       }

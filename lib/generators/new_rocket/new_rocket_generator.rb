@@ -45,8 +45,8 @@ class NewRocketGenerator < Rails::Generators::NamedBase
   def add_route_line
     # if File.file?("#{Rails.root}/rockets/#{ROCKET_NAME}/config/routes.rb")
     puts "\n*** Adding #{ROCKET_CLASS_NAME} route to config/routes ***"
-    inject_into_file 'config/routes.rb', after: "mount Ckeditor::Engine => '/ckeditor'\n" do
-      "\n  # #{class_name} routes engine\n  mount #{ROCKET_CLASS_NAME}::Engine, at: '/', as: '#{file_name}'\n"
+    inject_into_file 'config/routes.rb', after: "mount Ckeditor::Engine => '/ckeditor'" do
+      "\n\n  # #{class_name} routes engine\n  mount #{ROCKET_CLASS_NAME}::Engine, at: '/', as: '#{file_name}'"
     end
     say "=== #{ROCKET_CLASS_NAME}'s route added to config/routes ===\n", :green
     # else

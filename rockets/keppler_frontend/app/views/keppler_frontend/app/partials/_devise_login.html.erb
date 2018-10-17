@@ -1,6 +1,6 @@
 <!-- begin devise_login -->
 <div id='devise_login'>
-  <%- if !current_user %>
+  <%- unless current_user %>
     <%= form_for(User.new, :as => User.new, :url => session_path(User.new), :html => { :role => 'form'}) do |f| %>
       <%= f.text_field :path, type: :hidden, class: "form-control validate", :value => "#{controller_path}##{action_name}" %>
       <div class="form-group">
