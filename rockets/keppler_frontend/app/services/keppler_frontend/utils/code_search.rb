@@ -14,9 +14,10 @@ module KepplerFrontend
         end_index(point_two, idx)
       end
 
-      def index_empty_section(point)
-        idx[0] = 0
-        begin_index(point, idx)
+      def search_line(point)
+        idx = [0]
+        idx = begin_index(point, idx)
+        idx.first
       end
 
       private
