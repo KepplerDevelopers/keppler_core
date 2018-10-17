@@ -646,10 +646,10 @@ for(var i=0; i < links.length; i++) {
 }
 
 try {
-  var css_style = gon.css_style;
-  var images_assets = gon.images_assets;
-  var view_id = gon.view_id;
-  var view_name = gon.view_name;
+  var css_style = gon.editor.css_style;
+  var images_assets = gon.editor.images_assets;
+  var view_id = gon.editor.view_id;
+  var view_name = gon.editor.view_name;
 } catch (e) {
   if (e instanceof SyntaxError) {
       console.log(e.message);
@@ -940,10 +940,10 @@ bm.add('b1-2', {
 });
 
 try {
-  for(var i=0; i < gon.components.length; i++) {    
-    var component = eval(gon.components[i][0]);     
+  for(var i=0; i < gon.editor.components.length; i++) {    
+    var component = eval(gon.editor.components[i][0]);     
     if (component.length === 2) {
-      component[1].content.components = gon.components[i][1]
+      component[1].content.components = gon.editor.components[i][1]
       bm.add(component[0], component[1]);
     }      
   }
