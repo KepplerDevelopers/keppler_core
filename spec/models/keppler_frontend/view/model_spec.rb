@@ -15,16 +15,5 @@ RSpec.describe KepplerFrontend::View, type: :model do
     context 'assosiations' do
       it { should have_many(:view_callbacks) }
     end
-
-    context 'render live editor' do
-      it 'give data for live editor' do
-        view = create(:keppler_frontend_views, method: "get")
-        editor = view.live_editor_render
-        expect(editor.count).to eq(5)
-        expect(editor[:view_id]).to be_a(Numeric)
-        expect(editor[:view_name]).to be_a(String)
-        # expect(editor[:css_style]).not_to eq(nil)
-      end
-    end
   end
 end
