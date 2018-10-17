@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class KepplerModuleGenerator < Rails::Generators::NamedBase
+class KepplerAddModuleGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   FILE_NAME = "#{(ARGV[0].eql?('keppler_module') ? ARGV[1] : ARGV[0]).underscore.split('keppler_').last}"

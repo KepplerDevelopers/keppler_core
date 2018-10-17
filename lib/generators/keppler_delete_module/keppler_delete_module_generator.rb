@@ -3,7 +3,7 @@
 class KepplerDeleteModuleGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
-  FILE_NAME = "#{(ARGV[0].eql?('keppler_module') ? ARGV[1] : ARGV[0]).underscore.split('keppler_').last}"
+  FILE_NAME = "#{ARGV[0].underscore.split('keppler_').last}"
   ROCKET_NAME = "keppler_#{FILE_NAME}"
   MODULE_NAME = ARGV[1].underscore
   ROCKET_DIRECTORY = "rockets/#{ROCKET_NAME}"
@@ -89,24 +89,26 @@ class KepplerDeleteModuleGenerator < Rails::Generators::NamedBase
 
   def remove_migrations
     removed_files = false
+    say "\n*** Removing #{MODULE_NAME} migrations ***" unless removed_files
     Dir.glob("#{Rails.root}/db/migrate/*").each do |migration|
       if migration.include?(MODULE_NAME)
-        say "\n*** Removing #{MODULE_NAME} migrations ***" unless removed_files
-        if ActiveRecord::Base.connection.table_exists? name_table(migration).to_sym
-          if migration.include?('create')
+        say "=== Migration name: #{migration} ==="
+        say "=== Table name: #{name_table(migration).to_sym}"
+        if migration.include?('create')
+          if ActiveRecord::Base.connection.table_exists? name_table(migration).to_sym
             if ActiveRecord::Migration.drop_table(name_table(migration).to_sym)
-              say "--- #{name_table(migration)} table dropped ---"
+              say "--- #{name_table(migration)} table dropped ---", :green
             end
           end
         end
         if FileUtils.rm(migration)
-          say "--- #{migration_name(migration)} migration file has been removed ---"
+          say "--- #{migration_name(migration)} migration file has been removed ---", :green
         end
         removed_files = true
       end
     end
     if removed_files
-      say "=== #{MODULE_NAME} migrations has been removed ===", :green
+      say "=== #{MODULE_NAME.humanize} migrations has been removed ===", :green
     else
       say "\n... Doesn' t exist migrations with this rocket name. Skipping ..."
     end
@@ -295,12 +297,6 @@ class KepplerDeleteModuleGenerator < Rails::Generators::NamedBase
       .split('.')
       .first
       .remove('_create')
-      .remove('_rename')
-      .remove('_drop')
-      .remove('_remove')
-      .remove('_column')
-      .remove('_from')
-      .remove('_to')
       .split('_')
       .flatten[1..-1]
       .join('_')
