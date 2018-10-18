@@ -20,6 +20,14 @@ module KepplerFrontend
           nil
         end
       end
+
+      def save(css)
+        file = "#{@core_css_app}/views/#{@view_name}.scss"
+        File.delete(file) if File.exist?(file)
+        out_file = File.open(file, 'w')
+        out_file.puts(css)
+        out_file.close
+      end
     end
   end
 end
