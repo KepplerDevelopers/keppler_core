@@ -9,32 +9,33 @@ module KepplerFrontend
       end
 
       def save(html_editor)
-        original_view = File.readlines(front_url.view(@view_name))
-        original_layout = File.readlines(front_url.layout)
-        html_original = build_html(original_layout, original_view)
+        html_original = build_html(utils.lines('layout'), utils.lines('view'))
         no_edit_area = no_edit_area(html_original)
         html_processed = no_edit_area.merge_to(html_editor.split("\n"))
-        ['header', 'view', 'footer'].each do |area| 
-          url =  area.eql?('view') ? front_url.view(@view_name) : front_url.layout
-          save_area(area, url, html_processed)
+        %w[header view footer].each do |area|
+          save_area(area, html_processed)
         end
       end
 
-      def save_area(area, origin_url, html_processed)
-        idx_area = find_area(html_processed, area)
-        return if idx_area[1].zero?
-        area_edit = html_processed[idx_area[0]..idx_area[1]]
-        update(area, area_edit, origin_url)
+      def save_area(area, html_processed)
+        idx_first, idx_last = utils.find_area(html_processed, area)
+        return if idx_last.zero?
+        area_edit = html_processed[idx_first..idx_last]
+        update(area, area_edit)
       end
 
       private
 
-      def front_url
+      def front
         KepplerFrontend::Urls::Front.new
       end
 
       def no_edit_area(html_original)
         KepplerFrontend::LiveEditor::NoEditArea.new(html_original)
+      end
+
+      def utils
+        KepplerFrontend::LiveEditor::HtmlSaveUtils.new(@view_name)
       end
 
       def code_search(html)
@@ -51,28 +52,21 @@ module KepplerFrontend
         layout_original
       end
 
-      def label_area(area)
-        label_one = "<keppler-#{area}"
-        label_two = "<keppler-#{area} id='#{@view_name}'"
-        !area.eql?('view') ? label_one : label_two
+      def update(area, area_edit)
+        origin_code = utils.lines(area)
+        idx_first, idx_last = utils.find_area(origin_code, area)
+        origin_code = add_new_code(origin_code, area_edit, idx_first, idx_last)
+        File.write(utils.url(area), HtmlBeautifier.beautify(origin_code))
+        origin_code
       end
 
-      def find_area(html_processed, area)        
-        label = label_area(area)
-        find = code_search(html_processed)
-        find.search_section(label.gsub("'", "\""), "</keppler-#{area}>")
-      end   
-
-      def update(area, area_edit, origin_url)
-        origin_code = File.readlines(origin_url)
-        origin_area = find_area(origin_code, area)
-        origin_code.slice!(origin_area[0] + 1..origin_area[1] - 1)
-        area_edit[1..area_edit.length - 2].reverse.each_with_index do |line, i|
-          origin_code.insert(origin_area[0] + 1, "#{line}\n")
+      def add_new_code(origin_code, area_edit, idx_first, idx_last)
+        origin_code.slice!(idx_first + 1..idx_last - 1)
+        area_edit[1..area_edit.length - 2].reverse.each do |line|
+          origin_code.insert(idx_first + 1, "#{line}\n")
         end
-        origin_code.insert(origin_area[0]+1, "<!-- Keppler Section -->\n")
-        File.write(origin_url, HtmlBeautifier.beautify(origin_code.join('')))
-        origin_code
+        origin_code.insert(idx_first + 1, "<!-- Keppler Section -->\n")
+        origin_code.join
       end
     end
   end
