@@ -9,6 +9,7 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlSaveUtils, type: :services do
       @view = create(:keppler_frontend_views, method: "GET")
       @view.install
       @utils = KepplerFrontend::LiveEditor::HtmlSaveUtils.new(@view.name)
+      @root = KepplerFrontend::Urls::Roots.new
     end
 
     context 'get file lines' do
@@ -23,8 +24,8 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlSaveUtils, type: :services do
       let(:get_view_url) { @utils.url('view') }
       let(:get_layouts_url) { @utils.url('layouts') }
 
-      it { expect(get_view_url).to eq("/home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/views/keppler_frontend/app/frontend/test_index.html.erb") }
-      it { expect(get_layouts_url).to eq("/home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/views/layouts/keppler_frontend/app/layouts/application.html.erb") }
+      it { expect(get_view_url).to eq("#{@root.rocket_root}/app/views/keppler_frontend/app/frontend/test_index.html.erb") }
+      it { expect(get_layouts_url).to eq("#{@root.rocket_root}/app/views/layouts/keppler_frontend/app/layouts/application.html.erb") }
     end
 
     context 'get find a layout area' do

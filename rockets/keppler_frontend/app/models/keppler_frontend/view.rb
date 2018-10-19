@@ -18,7 +18,7 @@ module KepplerFrontend
     before_validation :convert_to_downcase, :without_special_characters
     has_many :view_callbacks, dependent: :destroy, inverse_of: :view
     accepts_nested_attributes_for :view_callbacks, reject_if: :all_blank, allow_destroy: true
-    delegate :live_editor_render, to: :live_editor
+    delegate :live_editor_render, :live_editor_save, to: :live_editor
 
     # Fields for the search form in the navbar
     def self.search_field

@@ -719,10 +719,14 @@ function saveCode() {
       });    
     
     $.post("/admin/frontend/views/"+view_id+"/live_editor/save", {html: html, css: css}, function(data){
-      alert(data.result)
+      if(data.result) {
+        alert('Your code has been saved')
+      } else {
+        alert('Error when saving: Check that all is well')
+      }
     }) 
   } catch (e) {
-    alert("Error when saving: Check that all is well")
+    alert('Error when saving: Check that all is well')
   }   
 }
 
