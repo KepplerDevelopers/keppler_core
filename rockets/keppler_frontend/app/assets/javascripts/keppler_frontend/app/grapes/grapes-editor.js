@@ -1063,9 +1063,9 @@ editor.render();
 editor.on('styleable:change', (model, property) => {
   const value = model.getStyle()[property];
   if (value!=undefined && value.indexOf('!important') === -1) {
-    if (property.includes("background")) {
-      model.addStyle({ [property]: value + ' !important' });
-    }
+    // if (property.includes("background")) {
+    model.addStyle({ [property]: value + ' !important' });
+    // }
   }
 });
 
