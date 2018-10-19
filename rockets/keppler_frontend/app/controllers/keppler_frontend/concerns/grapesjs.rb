@@ -39,7 +39,9 @@ module KepplerFrontend
       def save_grapesjs_code(view_id, html, css)
         view = KepplerFrontend::View.find(view_id)
         save_css(view.name, css)
-        save_html(view.name, html)
+        # save_html(view.name, html)
+        save_html = KepplerFrontend::LiveEditor::HtmlHandler.new(view.name)
+        save_html.save(html)
         'Your code has been saved'
       end
 
@@ -64,6 +66,7 @@ module KepplerFrontend
         ids = ids_no_edit(editor)
         codes_no_edit = code_no_edit(ids, origin_merged)
         edit_code_processed = merge_to_editor(editor.split("\n"), codes_no_edit)
+        byebug
         areas = ['header', 'view', 'footer', 'aside', 'nav']
         area_codes = {}
         areas.each do |area| 

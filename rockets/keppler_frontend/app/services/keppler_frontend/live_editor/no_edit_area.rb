@@ -4,8 +4,8 @@ module KepplerFrontend
   module LiveEditor
     # CssHandler
     class NoEditArea
-      def initialize(html_lines)
-        @html_original = File.readlines(html_lines)
+      def initialize(html_original_lines)
+        @html_original = html_original_lines
       end
 
       def ids
@@ -25,7 +25,6 @@ module KepplerFrontend
       end
 
       def merge_to(html_editor)
-        html_editor = File.readlines(html_editor)
         code_no_edit(ids).each do |code|
           next if delete_empty_areas?(html_editor, code)
           idx_section = search_area(html_editor, code.first)
@@ -42,7 +41,7 @@ module KepplerFrontend
 
       def search_area(html, id)
         find = code_search(html)
-        find.search_section("id='#{id}'", '</keppler-no-edit>')
+        find.search_section("id=\"#{id}\"", '</keppler-no-edit>')
       end
 
       def delete_empty_areas?(html_editor, code)

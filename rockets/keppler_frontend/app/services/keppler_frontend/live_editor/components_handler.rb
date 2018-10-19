@@ -27,7 +27,7 @@ module KepplerFrontend
         lines = File.readlines(component)
         find = KepplerFrontend::Utils::CodeSearch.new(lines)
         idx = find.search_section('<script>', '</script>')
-        lines = lines[idx[0] + 1..idx[1] - 1].join('').delete!("\n", '')
+        lines = lines[idx[0] + 1..idx[1] - 1].join('').gsub!("\n", '')
         "[#{lines}]"
       end
 

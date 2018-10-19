@@ -12,7 +12,9 @@ RSpec.describe KepplerFrontend::LiveEditor::ComponentsHandler, type: :services d
       it { expect(@components_handler.output).not_to eq(nil) }
       it { expect(@components_handler.output).not_to eq([]) }
       it { expect(@components_handler.output).to be_a(Array) }
- 
+
+      it { expect(@components_handler.output[0].first).not_to eq("[]") }
+      it { expect(@components_handler.output[0].last).not_to eq("") }
     end
   end
 end
