@@ -16,7 +16,6 @@ module KepplerFrontend
       # include KepplerFrontend::Concerns::Commons
       # include KepplerFrontend::Concerns::History
       # include KepplerFrontend::Concerns::DestroyMultiple
-      include KepplerFrontend::Concerns::Grapesjs
 
       skip_before_action :verify_authenticity_token, only: :live_editor_save
 
@@ -157,7 +156,7 @@ module KepplerFrontend
 
       def live_editor_save
         view = View.where(id: params[:view_id]).first
-        view.live_editor_save(params[:html], params[:css])
+        result = view.live_editor_save(params[:html], params[:css])
         render json: { result: result}
       end
 
