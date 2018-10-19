@@ -35,7 +35,7 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlHandler, type: :services do
     context 'save a area' do      
       before(:each) do
         html_processed = @view_no_edit.merge_to(file_editor.split("\n"))
-        @html_handler.save_area('view', front.view(@view.name), html_processed)
+        @html_handler.save_area('view', html_processed)
         @view_result = File.readlines(front.view(@view.name))
       end
 
