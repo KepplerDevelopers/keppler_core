@@ -15,6 +15,8 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlHandler, type: :services do
       view.insert(1, "  <keppler-no-edit id=\"area_two\">\n    <%= area_two %>\n  </keppler-no-edit>\n")
       save.puts(view.join("\n"))
       save.close
+      view.insert(0, "<keppler-header></keppler-header>\n")
+      view.insert(view.count, "\n<keppler-footer></keppler-footer>")
       view.join("\n")
     end
 
@@ -27,8 +29,7 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlHandler, type: :services do
       @view.install
       @layout_original = File.read(front.layout)
       @html_handler = KepplerFrontend::LiveEditor::HtmlHandler.new(@view.name)
-      view_processed = "<keppler-header></keppler-header>\n#{view_original}\n<keppler-footer></keppler-footer>"
-      @view_no_edit = KepplerFrontend::LiveEditor::NoEditArea.new(view_processed.split("\n"))
+      @view_no_edit = KepplerFrontend::LiveEditor::NoEditArea.new(view_original.split("\n"))
     end
 
     context 'save a area' do      
