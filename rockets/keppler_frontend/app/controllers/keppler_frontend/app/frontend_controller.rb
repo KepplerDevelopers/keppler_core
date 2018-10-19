@@ -5,6 +5,11 @@ module KepplerFrontend
     # End callbacks area (don't delete)
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
+    # begin index
+    def index
+      # Insert ruby code...
+    end
+    # end index
 
     # begin keppler
     def keppler
