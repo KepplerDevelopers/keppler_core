@@ -156,11 +156,8 @@ module KepplerFrontend
       end
 
       def live_editor_save
-        result = save_grapesjs_code(
-          params[:view_id], 
-          params[:html], 
-          params[:css]
-        )
+        view = View.where(id: params[:view_id]).first
+        view.live_editor_save(params[:html], params[:css])
         render json: { result: result}
       end
 

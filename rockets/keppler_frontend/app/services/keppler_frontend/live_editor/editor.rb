@@ -18,7 +18,19 @@ module KepplerFrontend
         }
       end
 
+      def live_editor_save(html_code, css_code)
+        html.save(html_code)
+        css.save(css_code)
+        true
+      rescue StandardError
+        false
+      end
+
       private
+
+      def html
+        KepplerFrontend::LiveEditor::HtmlHandler.new(@data[:view_name])
+      end
 
       def css
         KepplerFrontend::LiveEditor::CssHandler.new(@data[:view_name])
