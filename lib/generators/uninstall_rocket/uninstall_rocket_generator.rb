@@ -76,7 +76,7 @@ class UninstallRocketGenerator < Rails::Generators::NamedBase
 
   def remove_route_line
     say "\n*** Removing #{class_name} routes from config/routes ***"
-    gsub_file 'config/routes.rb', "\n  # #{file_name.remove('keppler_').camelize} routes engine\n  mount #{class_name}::Engine, at: '/', as: '#{file_name.remove('keppler_')}'\n", ""
+    gsub_file 'config/routes.rb', "\n\n  # #{file_name.remove('keppler_').camelize} routes engine\n  mount #{class_name}::Engine, at: '/', as: '#{file_name.remove('keppler_')}'", ""
     say "=== #{class_name} route removed from config/routes.rb ===\n", :green
   end
 

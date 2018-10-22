@@ -1,107 +1,105 @@
 # frozen_string_literal: true
 
-<% if namespaced? -%>
-require_dependency "<%= namespaced_path %>/application_controller"
-<% end -%>
-<% module_namespacing do -%>
-module Admin
-  # <%= controller_class_name %>Controller
-  class <%= controller_class_name %>Controller < ::Admin::AdminController
-    layout '<%= namespaced_path %>/admin/layouts/application'
-    before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
-    before_action :index_variables
-    include ObjectQuery
+require_dependency "<%= ROCKET_NAME %>/application_controller"
+module <%= ROCKET_CLASS_NAME %>
+  module Admin
+    # <%= MODULE_CLASS_NAME.pluralize %>Controller
+    class <%= MODULE_CLASS_NAME.pluralize %>Controller < ::Admin::AdminController
+      layout '<%= ROCKET_NAME %>/admin/layouts/application'
+      before_action :set_<%= MODULE_NAME.singularize %>, only: %i[show edit update destroy]
+      before_action :index_variables
+      include ObjectQuery
 
-    # GET <%= route_url %>
-    def index
-      respond_to_formats(@<%= plural_table_name %>)
-      redirect_to_index(@objects)
-    end
-
-    # GET <%= route_url %>/1
-    def show; end
-
-    # GET <%= route_url %>/new
-    def new
-      @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
-    end
-
-    # GET <%= route_url %>/1/edit
-    def edit; end
-
-    # POST <%= route_url %>
-    def create
-      @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
-
-      if @<%= orm_instance.save %>
-        redirect(@<%= singular_table_name %>, params)
-      else
-        render :new
+      # GET <%= route_url %>
+      def index
+        respond_to_formats(@<%= MODULE_NAME.pluralize %>)
+        redirect_to_index(@objects)
       end
-    end
 
-    # PATCH/PUT <%= route_url %>/1
-    def update
-      if @<%= orm_instance.update("#{singular_table_name}_params") %>
-        redirect(@<%= singular_table_name %>, params)
-      else
-        render :edit
+      # GET <%= route_url %>/1
+      def show; end
+
+      # GET <%= route_url %>/new
+      def new
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.new
       end
-    end
 
-    def clone
-      @<%= singular_table_name %> = <%= class_name %>.clone_record params[:<%=singular_table_name%>_id]
-      @<%= singular_table_name %>.save
-      redirect_to_index(@objects)
-    end
+      # GET <%= route_url %>/1/edit
+      def edit; end
 
-    # DELETE <%= route_url %>/1
-    def destroy
-      @<%= orm_instance.destroy %>
-      redirect_to_index(@objects)
-    end
+      # POST <%= route_url %>
+      def create
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.new(<%= MODULE_NAME.singularize %>_params)
 
-    def destroy_multiple
-      <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-      redirect_to_index(@objects)
-    end
+        if @<%= MODULE_NAME.singularize %>.save
+          redirect(@<%= MODULE_NAME.singularize %>, params)
+        else
+          render :new
+        end
+      end
 
-    def upload
-      <%= class_name %>.upload(params[:file])
-      redirect_to_index(@objects)
-    end
+      # PATCH/PUT <%= route_url %>/1
+      def update
+        if <%= MODULE_CLASS_NAME %>.update(<%= MODULE_NAME.singularize %>_params)
+          redirect(@<%= MODULE_NAME.singularize %>, params)
+        else
+          render :edit
+        end
+      end
 
-    def reload; end
+      def clone
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.clone_record params[:<%=MODULE_NAME.singularize%>_id]
+        @<%= MODULE_NAME.singularize %>.save
+        redirect_to_index(@objects)
+      end
 
-    def sort
-      <%= class_name %>.sorter(params[:row])
-    end
+      # DELETE <%= route_url %>/1
+      def destroy
+        @<%= MODULE_NAME.singularize %>.destroy
+        redirect_to_index(@objects)
+      end
 
-    private
+      def destroy_multiple
+        <%= MODULE_CLASS_NAME %>.destroy redefine_ids(params[:multiple_ids])
+        redirect_to_index(@objects)
+      end
 
-    def index_variables
-      @q = <%= class_name %>.ransack(params[:q])
-      @<%= plural_table_name %> = @q.result(distinct: true)
-      @objects = @<%= plural_table_name %>.page(@current_page).order(position: :desc)
-      @total = @<%= plural_table_name %>.size
-      @attributes = <%= class_name %>.index_attributes
-    end
+      def upload
+        <%= MODULE_CLASS_NAME %>.upload(params[:file])
+        redirect_to_index(@objects)
+      end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_<%= singular_table_name %>
-      @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
-    end
+      def reload; end
 
-    # Only allow a trusted parameter "white list" through.
-    def <%= "#{singular_table_name}_params" %>
-      <%- if attributes_names.empty? -%>
-      params[:<%= singular_table_name %>]
-      <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(
-        <%= attributes.map { |attribute| attribute.type.eql?(:jsonb) ? "{ #{attribute.name}: [] }" : (attribute.reference? ? ":#{attribute.name}_id" : ":#{attribute.name}") }.join(', ') %>
-      )
-      <%- end -%>
+      def sort
+        <%= MODULE_CLASS_NAME %>.sorter(params[:row])
+      end
+
+      private
+
+      def index_variables
+        @q = <%= MODULE_CLASS_NAME %>.ransack(params[:q])
+        @<%= MODULE_NAME.pluralize %> = @q.result(distinct: true)
+        @objects = @<%= MODULE_NAME.pluralize %>.page(@current_page).order(position: :desc)
+        @total = @<%= MODULE_NAME.pluralize %>.size
+        @attributes = <%= MODULE_CLASS_NAME %>.index_attributes
+      end
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_<%= MODULE_NAME.singularize %>
+        @<%= MODULE_NAME.singularize %> = <%= MODULE_CLASS_NAME %>.find(params[:id])
+      end
+
+      # Only allow a trusted parameter "white list" through.
+      def <%= "#{MODULE_NAME.singularize}_params" %>
+        <%- if ATTRIBUTES_NAMES.empty? -%>
+        params[:<%= MODULE_NAME.singularize %>]
+        <%- else -%>
+        params.require(:<%= MODULE_NAME.singularize %>).permit(
+          <%= ATTRIBUTES.map { |attribute| attribute.last.eql?(:jsonb) ? "{ #{attribute.first}: [] }" : (attribute.last.eql?("references") ? ":#{attribute.first}_id" : ":#{attribute.first}") }.join(', ') %>
+        )
+        <%- end -%>
+      end
     end
   end
 end
-<% end -%>
