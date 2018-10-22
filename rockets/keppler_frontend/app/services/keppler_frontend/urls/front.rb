@@ -5,7 +5,6 @@ module KepplerFrontend
     # Assets
     class Front
       def initialize
-        @root = KepplerFrontend::Urls::Roots.new
       end
 
       def view(name)
@@ -20,11 +19,15 @@ module KepplerFrontend
 
       def folder(folder_type)
         if folder_type.eql?('view')
-          "#{@root.rocket_root}/app/views/keppler_frontend/app/frontend"
+          "#{root.rocket_root}/app/views/keppler_frontend/app/frontend"
         else
-          "#{@root.rocket_root}/app/views/layouts/keppler_frontend/app/layouts"
+          "#{root.rocket_root}/app/views/layouts/keppler_frontend/app/layouts"
         end
       end
+
+      def root
+        KepplerFrontend::Urls::Roots.new
+      end 
     end
   end
 end
