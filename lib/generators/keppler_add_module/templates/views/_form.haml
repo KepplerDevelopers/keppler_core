@@ -1,8 +1,8 @@
-= simple_form_for [:admin, :<%= namespaced_path.split('_').drop(1).join('_') %>, @<%= singular_table_name %>] do |f|
+= simple_form_for [:admin, :<%= ROCKET_NAME.remove('keppler_') %>, @<%= MODULE_NAME.singularize %>] do |f|
   .container
     .row
       .col-lg-2
-        = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path, 'data-position': 'bottom', 'data-tooltip': t('keppler.actions.back') do
+        = link_to admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.pluralize %>_path, 'data-position': 'bottom', 'data-tooltip': t('keppler.actions.back') do
           .arrow-back.btn.btn-default
             %i.fa.fa-angle-left
             = t('keppler.actions.back')
@@ -11,7 +11,7 @@
       .col-lg-12
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t('keppler.models.pluralize.<%= plural_table_name %>').humanize
+            %h3.box-title= t('keppler.models.pluralize.<%= MODULE_NAME.pluralize %>').humanize
             .box-tools.pull-right
               %a.btn.btn-box-tool{'data-widget': 'collapse', type: 'button'}
                 %i.fa.fa-minus

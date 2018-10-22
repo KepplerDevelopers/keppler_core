@@ -21,15 +21,15 @@ class KepplerDeleteModuleGenerator < Rails::Generators::NamedBase
           remove_option_permissions
           remove_locales
           remove_migrations
-          if validate_rocket_scaffold
-            say "\n***** RUNNING RAILS D SCAFFOLD *****\n"
-            run_rails_d_scaffold
-          else
-            delete_model_file
-            delete_policies_file
-            delete_controller_file
-            delete_views_files
-          end
+          # if validate_rocket_scaffold
+          #   say "\n***** RUNNING RAILS D SCAFFOLD *****\n"
+          #   run_rails_d_scaffold
+          # else
+          delete_model_file
+          delete_policies_file
+          delete_controller_file
+          delete_views_files
+          # end
           migrate_database
           restart_server
           say "=== All Done. #{MODULE_NAME.classify} module has been created and installed ===\n", :green
@@ -145,7 +145,7 @@ class KepplerDeleteModuleGenerator < Rails::Generators::NamedBase
     say "=== #{MODULE_NAME.classify} model has been deleted ===\n", :green
   end
 
-  def deleted_policies_file
+  def delete_policies_file
     say "\n*** Deleting #{MODULE_NAME.classify} policy ***"
     policy_path = "#{ROCKET_DIRECTORY}/app/policies/#{ROCKET_NAME}/#{MODULE_NAME.singularize}_policy.rb"
     File.delete(policy_path) if File.exist?(policy_path)
