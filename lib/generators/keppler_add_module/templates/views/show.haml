@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-2
-      = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path, 'data-position': 'bottom', 'data-tooltip': t('keppler.actions.back') do
+      = link_to admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.pluralize %>_path, 'data-position': 'bottom', 'data-tooltip': t('keppler.actions.back') do
         .arrow-back.btn.btn-default
           %i.icon-arrow-left
           = t('keppler.actions.back')
@@ -10,19 +10,19 @@
       .col-lg-12
         .box.slice-box.p-15
           .box-header.with-border
-            %h3.box-title= t('keppler.models.singularize.<%= singular_table_name %>').humanize
+            %h3.box-title= t('keppler.models.singularize.<%= MODULE_NAME.singularize %>').humanize
             .box-tools.pull-right
               - if can?(model).update?
-                = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-box-tool', title: t('keppler.actions.edit') do
+                = link_to edit_admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.singularize %>_path(@<%= MODULE_NAME.singularize %>), class: 'btn btn-box-tool', title: t('keppler.actions.edit') do
                   %i.icon-pencil
               - if can?(model).destroy?
-                = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-box-tool', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
+                = link_to admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.singularize %>_path(@<%= MODULE_NAME.singularize %>), class: 'btn btn-box-tool', title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                   %i.icon-trash
 
           .box-body.no-padding
             %table.table
               %tbody
-                - @<%= singular_table_name %>.as_json(except: %w[position deleted_at]).each do |attribute, value|
+                - @<%= MODULE_NAME.singularize %>.as_json(except: %w[position deleted_at]).each do |attribute, value|
                   %tr.list-row
                     %th.display-label= t("activerecord.attributes.#{attribute}")
                     %td.display-value.fs-body-1.tc-black-2

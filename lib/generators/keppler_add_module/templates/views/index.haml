@@ -1,23 +1,23 @@
-#index-container{ controller: '<%= plural_table_name %>' }
+#index-container{ controller: '<%= MODULE_NAME.pluralize %>' }
   .container
     .row
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1
-            = t("keppler.models.pluralize.<%= plural_table_name %>").humanize
+            = t("keppler.models.pluralize.<%= MODULE_NAME.pluralize %>").humanize
           = entries(@total, @objects)
         %section.content-actions
           .toolbar
             .toolbar-item
-              = link_to reload_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path, class: 'tool-btn', remote: true, title: t('keppler.actions.reload_page') do
+              = link_to reload_admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.pluralize %>_path, class: 'tool-btn', remote: true, title: t('keppler.actions.reload_page') do
                 %i.icon-reload
             - if can?(model).download?
               %li.toolbar-item.dropdown
                 %a.dropdown-toggle{ 'data-toggle': 'dropdown', href: '#', title: t('keppler.actions.download_records') }
                   %i.icon-cloud-download
                 %ul.dropdown-menu
-                  %li= link_to t('keppler.actions.download.csv'), admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path(format: :csv), class: 'tool-btn'
-                  %li= link_to t('keppler.actions.download.xls'), admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path(format: :xls), class: 'tool-btn'
+                  %li= link_to t('keppler.actions.download.csv'), admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.pluralize %>_path(format: :csv), class: 'tool-btn'
+                  %li= link_to t('keppler.actions.download.xls'), admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.pluralize %>_path(format: :xls), class: 'tool-btn'
             - if can?(model).upload?
               .toolbar-item
                 = link_to '#', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
@@ -27,11 +27,11 @@
                 %i.icon-trash
           - if can?(model).create?
             .add
-              = link_to new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path, class: 'btn-add' do
+              = link_to new_admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.singularize %>_path, class: 'btn-add' do
                 +
                 = t('keppler.actions.add')
           .hide
-            = form_tag admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_upload_path(@objects), id: 'upload-form', multipart: true, method: :post do
+            = form_tag admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.singularize %>_upload_path(@objects), id: 'upload-form', multipart: true, method: :post do
               = file_field_tag :file, id: 'upload-file'
 
         .box.slice-box
@@ -41,7 +41,7 @@
                 - if @objects.size.zero?
                   %tr
                     %th.not-records.center
-                      %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.<%= plural_table_name %>'))
+                      %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.<%= MODULE_NAME.pluralize %>'))
 
                 - else
                   %tr
