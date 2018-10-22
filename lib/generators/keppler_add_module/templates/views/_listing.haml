@@ -44,7 +44,7 @@
               = t('keppler.actions.edit')
         - if can?(model).clone?
           %li
-            = link_to(admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_clone_path(object), {title: t('keppler.actions.clone')}) do
+            = link_to(admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.singularize %>_clone_path(object), {title: t('keppler.actions.clone')}) do
               %i.icon-docs
               = t('keppler.actions.clone')
         - if can?(model).destroy?
