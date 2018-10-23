@@ -11,22 +11,18 @@ module KepplerFrontend
       def install
         out_file = File.open(front.view(@view.name), 'w')
         out_file.puts(template)
-        begin
-          out_file.close
-          true
-        rescue StandardError
-          false
-        end
+        out_file.close
+        true
+      rescue StandardError
+        false
       end
 
       def uninstall
         file = front.view(@view.name)
-        begin
-          File.delete(file) if File.exist?(file)
-          true
-        rescue StandardError
-          false
-        end
+        File.delete(file) if File.exist?(file)
+        true
+      rescue StandardError
+        false
       end
 
       private
