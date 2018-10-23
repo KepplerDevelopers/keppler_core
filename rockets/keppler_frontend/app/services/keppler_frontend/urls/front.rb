@@ -14,6 +14,11 @@ module KepplerFrontend
         "#{folder('layout')}/application.html.erb"
       end
 
+      def controller
+        "#{root.rocket_root}/app/controllers/keppler_frontend/" \
+                            'app/frontend_controller.rb'
+      end
+
       private
 
       def folder(folder_type)
