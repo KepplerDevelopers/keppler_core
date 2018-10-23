@@ -3,15 +3,15 @@
 module KepplerFrontend
   module Urls
     # Assets
-    class Assets
+    class Config
       def initialize; end
 
-      def core_assets(asset_type, side)
-        "#{root.rocket_root}/app/assets/#{asset_type}/keppler_frontend/#{side}"
+      def routes
+        "#{root.rocket_root}/config/routes.rb"
       end
 
-      def front_assets(file)
-        "/assets/keppler_frontend/app/#{file}"
+      def yml(file_name)
+        "#{root.rocket_root}/config/data/#{file_name}.yml"
       end
 
       private

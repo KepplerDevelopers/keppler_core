@@ -4,8 +4,7 @@ module KepplerFrontend
   module Urls
     # Assets
     class Front
-      def initialize
-      end
+      def initialize; end
 
       def view(name)
         "#{folder('view')}/#{name}.html.erb"
@@ -27,7 +26,7 @@ module KepplerFrontend
 
       def root
         KepplerFrontend::Urls::Roots.new
-      end 
+      end
     end
   end
 end
