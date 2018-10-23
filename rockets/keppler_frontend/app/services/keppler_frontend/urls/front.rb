@@ -10,6 +10,10 @@ module KepplerFrontend
         "#{folder('view')}/#{name}.html.erb"
       end
 
+      def view_js(name)
+        "#{folder('view')}/#{name}.js.erb"
+      end
+
       def layout
         "#{folder('layout')}/application.html.erb"
       end
