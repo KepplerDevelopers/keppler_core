@@ -6,7 +6,10 @@ RSpec.describe KepplerFrontend::Views::RoutesHandler, type: :services do
   before(:each) do
     @view_active = create(:keppler_frontend_views, method: "GET")
     @route_active = KepplerFrontend::Views::RoutesHandler.new(@view_active)
-    @view_inactive = create(:keppler_frontend_views, name: 'test_index_two', url: '/test_index_two', method: "GET", active: false)
+    @view_inactive = create(:keppler_frontend_views, name: 'test_index_two', 
+                                                     url: '/test_index_two', 
+                                                     method: "GET", 
+                                                     active: false)
     @route_inactive = KepplerFrontend::Views::RoutesHandler.new(@view_inactive)
   end
 
