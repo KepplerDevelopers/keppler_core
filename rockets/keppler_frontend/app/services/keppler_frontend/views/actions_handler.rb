@@ -3,7 +3,7 @@
 module KepplerFrontend
   module Views
     # CodeHandler
-    class ActionHandler
+    class ActionsHandler
       def initialize(view_data)
         @view = view_data
       end
