@@ -23,21 +23,21 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
       if MODULE_NAME
         if Dir.exist? ROCKET_DIRECTORY
           say "\n*** Creating #{MODULE_CLASS_NAME} module ***"
+          remove_migrations
+          # if validate_rocket_scaffold
+          #   say "***** RUNNING KEPPLER SCAFFOLD *****"
+          #   run_rocket_scaffold
+          # else
           add_route
           add_option_menu
           add_locales
-          remove_migrations
-          if validate_rocket_scaffold
-            say "***** RUNNING KEPPLER SCAFFOLD *****"
-            run_rocket_scaffold
-          else
-            add_option_permissions
-            create_model_file
-            create_policies_file
-            create_controller_file
-            create_views_files
-            create_migration_file
-          end
+          add_option_permissions
+          create_model_file
+          create_policies_file
+          create_controller_file
+          create_views_files
+          create_migration_file
+          # end
           extract_migrations
           migrate_database
           restart_server
@@ -148,8 +148,8 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
   def create_migration_file
     say "*** Entering to Rocket Directory ***"
     FileUtils.cd ROCKET_DIRECTORY
-    say "*** Running 'rails g migration #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f' ***"
-    system "rails g migration create_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
+    say "*** Running 'rails g migration create_#{ROCKET_NAME}_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f' ***"
+    system "rails g migration create_#{ROCKET_NAME}_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
     say "*** Exiting from Rocket Directory ***"
     FileUtils.cd Rails.root
     say "=== Migration has been created ===\n", :green
@@ -190,6 +190,7 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
   end
 
   def create_views_files
+    say "\n*** Creating #{MODULE_NAME.pluralize.classify} views ***"
     %w[
       _description _form _listing
       edit index new show
@@ -197,6 +198,7 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
     ].each do |filename|
       template_keppler_views("#{filename}.haml")
     end
+    say "=== #{MODULE_NAME.pluralize.classify} views have been created ===\n", :green
   end
 
   # hook_for :test_framework, as: :scaffold
@@ -278,7 +280,7 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
   end
 
   def template_keppler_views(name_file)
-    view_path = "#{ROCKET_DIRECTORY}/app/views/#{ROCKET_NAME}/admin/#{MODULE_NAME}/#{name_file}"
+    view_path = "#{ROCKET_DIRECTORY}/app/views/#{ROCKET_NAME}/admin/#{MODULE_NAME.pluralize}/#{name_file}"
     File.delete(view_path) if File.exist?(view_path)
     template("views/#{name_file}", view_path)
   end
