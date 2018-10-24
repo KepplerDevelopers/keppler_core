@@ -6,12 +6,12 @@ RSpec.describe KepplerFrontend::Utils::YmlHandler, type: :services do
   before(:each) do
     @view = create(:keppler_frontend_views, method: "GET")
     @views = KepplerFrontend::View.all
-    @yml = KepplerFrontend::Utils::YmlHandler.new(@views)
+    @yml = KepplerFrontend::Utils::YmlHandler.new('views', @views)
     @config = KepplerFrontend::Urls::Config.new
   end
 
   context 'update' do
-    before(:each) { @update_yml = @yml.update('views') }
+    before(:each) { @update_yml = @yml.update }
     let(:database) { KepplerFrontend::View.all.map { |v| v.name } }
     let(:yml) { YAML.load_file(File.join(@config.yml('views'))).map { |v| v["name"] } }
 
@@ -19,8 +19,8 @@ RSpec.describe KepplerFrontend::Utils::YmlHandler, type: :services do
     it { expect(yml).to eq(database) }
   end
 
-  context 'load' do
-    before(:each) { @reload_yml = @yml.update('views') }
+  context 'reload' do
+    before(:each) { @reload_yml = @yml.reload }
     let(:database) { KepplerFrontend::View.all.map { |v| v.name } }
     let(:yml) { YAML.load_file(File.join(@config.yml('views'))).map { |v| v["name"] } }
 
@@ -32,6 +32,6 @@ RSpec.describe KepplerFrontend::Utils::YmlHandler, type: :services do
     @view.destroy
     @views = KepplerFrontend::View.all
     @yml = KepplerFrontend::Utils::YmlHandler.new(@views)
-    @yml.update('views')
+    @yml.update
   end
 end

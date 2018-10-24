@@ -12,4 +12,18 @@ RSpec.describe 'routing to views', type: :routing do
       view_id: @view.id.to_s
     )
   end
+
+  it 'routes GET /admin/frontend/views/new' do
+    expect(get: "/admin/frontend/views/new").to route_to(
+      controller: 'keppler_frontend/admin/views',
+      action: 'new'
+    )
+  end
+
+  it 'routes POST /admin/frontend/views/create' do
+    expect(post: "/admin/frontend/views").to route_to(
+      controller: 'keppler_frontend/admin/views',
+      action: 'create'
+    )
+  end
 end

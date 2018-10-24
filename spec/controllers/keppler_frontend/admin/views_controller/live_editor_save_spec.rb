@@ -25,10 +25,11 @@ RSpec.describe KepplerFrontend::Admin::ViewsController, type: :controller do
     it { expect(response.body).to eq(expected.to_json) }
       
   end
+  
 
   after(:each) do
     @view.uninstall
-    out_file = File.open(front.layout, "w")
+    out_file = File.open(front.layout, 'w')
     out_file.puts(@layout_original);
     out_file.close
   end
