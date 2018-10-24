@@ -1,11 +1,11 @@
 require 'rails_helper'
 require 'byebug'
 
-RSpec.describe KepplerFrontend::Views::ActionHandler, type: :services do
+RSpec.describe KepplerFrontend::Views::ActionsHandler, type: :services do
 
   before(:each) do
     @view = create(:keppler_frontend_views, method: "GET")
-    @action = KepplerFrontend::Views::ActionHandler.new(@view)
+    @action = KepplerFrontend::Views::ActionsHandler.new(@view)
   end
 
   let(:action_installed) { @action.install }
