@@ -127,7 +127,7 @@ module KepplerFrontend
 
     def view_uninstall_files
       KepplerFrontend::Views::Uninstall.new(self)
-    end 
+    end
 
     def convert_to_downcase
       self.url.downcase!

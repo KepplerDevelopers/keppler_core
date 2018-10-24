@@ -4,12 +4,13 @@ module KepplerFrontend
   module Utils
     # CodeHandler
     class YmlHandler
-      def initialize(obj = {})
+      def initialize(objs_name, obj = {})
         @obj = obj
+        @objs_name = objs_name
       end
 
-      def update(objs_name)
-        file = File.join(config.yml(objs_name))
+      def update
+        file = File.join(config.yml(@objs_name))
         data = @obj.as_json.to_yaml
         File.write(file, data)
         true
@@ -17,11 +18,9 @@ module KepplerFrontend
         false
       end
 
-      def reload(objs_name)
-        objs = YAML.load_file(File.join(config.yml(objs_name)))
-        objs.each do |obj|
-          add_object(objs_name, obj)
-        end
+      def reload
+        objs = YAML.load_file(File.join(config.yml(@objs_name)))
+        objs.each { |obj| add_object(obj) }
         true
       rescue StandardError
         false
@@ -33,12 +32,12 @@ module KepplerFrontend
         KepplerFrontend::Urls::Config.new
       end
 
-      def add_object(objs_name, obj)
-        objs_name = objs_name.singularize.camelize
+      def add_object(obj)
+        objs_name = @objs_name.singularize.camelize
         model = "KepplerFrontend::#{objs_name}".constantize
-        obj_db = model.where(name: obj[:name]).first
+        obj_db = model.where(name: obj["name"]).first
         obj.delete('id')
-        return unless obj_db
+        return if obj_db
         model.create(obj.as_json)
       end
     end
