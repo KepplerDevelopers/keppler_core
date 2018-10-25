@@ -28191,10 +28191,9 @@ module.exports = {
 
       for(var i=0; i < this.layers.children.length; i++) {
         this.layers.children[i].getElementsByClassName("gjs-layer-move")[0].remove();
+        this.layers.children[i].getElementsByClassName("gjs-layer-name")[0].innerText = sections[i]
         var section = this.layers.children[i].getElementsByClassName("gjs-layer-name")[0]
-
         if (!sections.includes(section.innerText)) {
-          console.log(section.innerText)
           this.layers.children[i].remove();
         }
       }
