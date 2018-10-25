@@ -1,0 +1,37 @@
+en:
+  keppler_ga_dashboard:
+    information: Information
+    week_stats: Use per week
+    month_stats: Use per month
+    this_week: This week
+    last_week: Last week
+    week_to_week: Week to week
+    days: Days
+    visits: Visits    
+    month: Month
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+
+    month_to_month: Month to month
+    this_year: This year
+    last_year: Last year
+
+    abbr_month_names:
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
