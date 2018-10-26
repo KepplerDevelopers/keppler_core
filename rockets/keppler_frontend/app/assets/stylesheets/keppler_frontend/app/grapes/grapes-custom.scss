@@ -274,7 +274,7 @@ label {
   background-color: rgba(0, 0, 0, 0.15) !important;
   border-top: 1px solid #c0c0c0 !important;
   box-sizing: border-box;
-  width: 100% !important;
+  width: 100%;
   height: calc(100% - 40px);
   bottom: 0;
   overflow: hidden;
@@ -282,6 +282,12 @@ label {
   position: absolute;
   left: 0;
   top: 32px !important;
+  transition: width .3s;
+}
+
+.gjs-cv-canvas-width {
+  width: 85% !important;
+  transition: all .3s;
 }
 
 .gjs-devices-c {
