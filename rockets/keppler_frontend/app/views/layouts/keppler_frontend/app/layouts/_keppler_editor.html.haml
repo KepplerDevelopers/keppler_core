@@ -1,5 +1,6 @@
 - if  current_user
   - if !params[:editor] && current_user.rol.eql?('keppler_admin') && Rails.env.eql?("development") && !action_name.eql?("keppler")
+    - view = KepplerFrontend::View.find_by_url(request.fullpath.to_s)
     .keppler-front-control
       .logo 
         Keppler
@@ -7,8 +8,11 @@
         = link_to "/admin" do
           %i.fa.fa-cog
           Admin
+      .code
+        = link_to "/admin/frontend/views/#{view.id}/editor" do
+          %i.fa.fa-code
+          Code
       .editor 
-        - view = KepplerFrontend::View.find_by_url(request.fullpath.to_s)
         = link_to "?view=#{view.id}&&editor=true" do
           %i.fa.fa-object-group
           Editor
