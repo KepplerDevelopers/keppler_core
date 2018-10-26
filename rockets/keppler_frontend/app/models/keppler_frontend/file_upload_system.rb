@@ -141,7 +141,7 @@ module KepplerFrontend
         audios: ['.mp3'],
         fonts: ['.eot', '.otf', '.ttf', '.woff', '.woff2'],
         images: ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.tiff', '.bmp'],
-        videos: ['.mp4', '.mpeg', '.webm'],
+        videos: ['.mp4', '.mpeg', '.webm', '.m4v'],
         html: ['.html'],
         javascripts: ['.js', '.coffee', '.js.erb', '.json'],
         stylesheets: ['.css', '.scss', 'sass', '.scss.erb']
