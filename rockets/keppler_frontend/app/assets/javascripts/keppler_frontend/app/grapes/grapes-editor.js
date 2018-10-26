@@ -776,8 +776,7 @@ pnm.addButton('options', [{
   command(editor, sender) {
     var confirmation = confirm("Are you sure?");
     if (confirmation===true) {
-      var route = "/admin/frontend/views/"+view_id+"/editor";
-      window.location.href = route
+      window.location.href = window.location.pathname
     }     
   },
 },
