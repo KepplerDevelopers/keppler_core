@@ -560,11 +560,28 @@ label {
     font-family: 'Patua One';
     height: 35px;
     position: absolute;
-    right: 6%;
+    right: 11.5%;
     font-size: 17px;
     top: 0px;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    a { 
+      color: #4e4e4e !important;
+      position: relative;
+      top: 4px;
+    }
+  }
+
+  .code {
+    font-family: 'Patua One';
+    height: 35px;
+    position: absolute;
+    right: 6.5%;
+    font-size: 17px;
+    top: 0px;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     a { 
       color: #4e4e4e !important;
@@ -581,8 +598,8 @@ label {
     font-size: 17px;
     top: 0;
     background: #f44336;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     a { 
       position: relative;
