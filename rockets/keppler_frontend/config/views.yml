@@ -16,19 +16,3 @@
     utc: 2018-10-22 20:03:03.595551000 Z
     zone: *1
     time: 2018-10-22 16:03:03.595551000 Z
-- id: 25905
-  name: index
-  url: "/"
-  method: GET
-  active: true
-  format_result: HTML
-  position: 2
-  deleted_at: 
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-10-26 17:26:48.674507000 Z
-    zone: *1
-    time: 2018-10-26 13:26:48.674507000 Z
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2018-10-26 17:26:48.674507000 Z
-    zone: *1
-    time: 2018-10-26 13:26:48.674507000 Z
