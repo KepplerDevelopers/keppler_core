@@ -21,7 +21,7 @@
               .col-lg-6
                 %h4.box-title
                   %i.fa.fa-desktop
-                  = truncate(view.name, length: 30, omission: '...')
+                  = truncate(view.name, length: 10, omission: '...')
               .col-lg-3
                 %span.box-title
                   %a.btn.btn-default.pull-right{onclick: "copy('#{view.id}')"}
@@ -29,7 +29,7 @@
                     %i.fa.fa-save
               .col-lg-2
                 %span.box-title
-                  = link_to view.route, class: 'btn btn-default pull-right' do
+                  = link_to view.route, class: 'btn btn-default pull-right', 'data-no-turbolink': true do
                     %i.fa.fa-reply
     #editor_views_tab_2.tab-pane
       - @functions.each do |function|
