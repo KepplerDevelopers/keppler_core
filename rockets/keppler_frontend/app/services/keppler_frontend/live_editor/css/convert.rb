@@ -13,8 +13,8 @@ module KepplerFrontend
 
         def to_scss
           scss = Sass::CSS.new(@input).render(:scss)
-          scss = scss.split("\n").select do |l|
-            l unless l.include?('initial') || l.include?('undefined')
+          scss = scss.split("\n").select do |line|
+            line unless line.include?('initial') || line.include?('undefined')
           end
           scss.join("\n")
         end
