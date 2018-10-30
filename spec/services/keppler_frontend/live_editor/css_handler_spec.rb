@@ -21,7 +21,7 @@ RSpec.describe KepplerFrontend::LiveEditor::CssHandler, type: :services do
       before(:each) { @save_css = @css_handler.save("h1 { background: red; }") }
 
       it { expect(@save_css).to eq(nil) }
-      it { expect(@css_handler.output).to eq("h1 { background: red; }\n") }
+      it { expect(@css_handler.output).to eq("h1 {  background: red; }") }
     end 
 
     after(:each) do

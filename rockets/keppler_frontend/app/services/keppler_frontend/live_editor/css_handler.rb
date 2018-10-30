@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sass/css'
+
 module KepplerFrontend
   module LiveEditor
     # CssHandler
@@ -11,8 +13,8 @@ module KepplerFrontend
       def output
         css_url = "#{core_css_app}/views/#{@view_name}.scss"
         begin
-          lines = File.readlines(css_url)
-          lines = lines.select { |l| l unless l.include?('//') }
+          css = convert(css_url).to_css
+          lines = css.split("\n").select { |l| l unless l.include?('//') }
           lines.join
         rescue StandardError
           nil
@@ -23,7 +25,7 @@ module KepplerFrontend
         file = "#{core_css_app}/views/#{@view_name}.scss"
         File.delete(file) if File.exist?(file)
         out_file = File.open(file, 'w')
-        out_file.puts(css)
+        out_file.puts(convert(css).to_scss)
         out_file.close
       end
 
@@ -32,6 +34,10 @@ module KepplerFrontend
       def core_css_app
         urls = KepplerFrontend::Urls::Assets.new
         urls.core_assets('stylesheets', 'app')
+      end
+
+      def convert(input)
+        Css::Convert.new(input)
       end
     end
   end

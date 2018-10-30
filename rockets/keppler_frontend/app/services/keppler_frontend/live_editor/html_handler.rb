@@ -31,11 +31,11 @@ module KepplerFrontend
       end
 
       def no_edit_area(html_original)
-        KepplerFrontend::LiveEditor::NoEditArea.new(html_original)
+        NoEditArea.new(html_original)
       end
 
       def utils
-        KepplerFrontend::LiveEditor::HtmlSaveUtils.new(@view_name)
+        HtmlSaveUtils.new(@view_name)
       end
 
       def code_search(html)

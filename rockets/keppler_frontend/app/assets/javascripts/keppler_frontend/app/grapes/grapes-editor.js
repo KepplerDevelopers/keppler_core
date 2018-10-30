@@ -654,11 +654,11 @@ try {
   if (e instanceof SyntaxError) {
       console.log(e.message);
   }
-}  
+}
 
 var editor  = grapesjs.init(
 {
-  container: '#keppler-editor',
+  container: document.getElementById("keppler-editor"),
   protectedCss: '',
   style: css_style,
   scripts: "function abr(){}",

@@ -29,19 +29,19 @@ module KepplerFrontend
       private
 
       def html
-        KepplerFrontend::LiveEditor::HtmlHandler.new(@data[:view_name])
+        HtmlHandler.new(@data[:view_name])
       end
 
       def css
-        KepplerFrontend::LiveEditor::CssHandler.new(@data[:view_name])
+        CssHandler.new(@data[:view_name])
       end
 
       def images
-        KepplerFrontend::LiveEditor::ImagesHandler.new
+        ImagesHandler.new
       end
 
       def components
-        KepplerFrontend::LiveEditor::ComponentsHandler.new
+        ComponentsHandler.new
       end
     end
   end
