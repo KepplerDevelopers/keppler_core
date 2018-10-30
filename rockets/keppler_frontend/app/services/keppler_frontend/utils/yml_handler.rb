@@ -35,7 +35,7 @@ module KepplerFrontend
       def add_object(obj)
         objs_name = @objs_name.singularize.camelize
         model = "KepplerFrontend::#{objs_name}".constantize
-        obj_db = model.where(name: obj["name"]).first
+        obj_db = model.where(name: obj['name']).first
         obj.delete('id')
         return if obj_db
         model.create(obj.as_json)
