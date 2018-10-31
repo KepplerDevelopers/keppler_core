@@ -13,10 +13,6 @@ module KepplerFrontend
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :reload_view_callbacks, only: [:index]
       after_action :update_view_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
-      # include KepplerFrontend::Concerns::Commons
-      # include KepplerFrontend::Concerns::History
-      # include KepplerFrontend::Concerns::DestroyMultiple
-      include KepplerFrontend::Concerns::Grapesjs
 
       skip_before_action :verify_authenticity_token, only: :live_editor_save
 
@@ -156,13 +152,11 @@ module KepplerFrontend
       end
 
       def live_editor_save
-        result = save_grapesjs_code(
-          params[:view_id], 
-          params[:html], 
-          params[:css]
-        )
+        view = View.where(id: params[:view_id]).first
+        result = view.live_editor_save(params[:html], params[:css])
         render json: { result: result}
       end
+      
 
       private
 
@@ -175,27 +169,16 @@ module KepplerFrontend
       end
 
       def reload_views
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/views.yml")
-        routes = YAML.load_file(file)
-        routes.each do |route|
-          view = KepplerFrontend::View.where(url: route['url']).first
-          unless view
-            KepplerFrontend::View.create(
-              name: route['name'],
-              url: route['url'],
-              method: route['method'],
-              active: route['active'],
-              format_result: route['format_result']
-            )
-          end
-        end
+        yml = KepplerFrontend::Utils::YmlHandler
+        yml = yml.new('views')
+        yml.reload
       end
 
       def update_view_yml
         views = View.all
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/views.yml")
-        data = views.as_json.to_yaml
-        File.write(file, data)
+        yml = KepplerFrontend::Utils::YmlHandler
+        yml = yml.new('views', views)
+        yml.update
       end
 
       def reload_view_callbacks

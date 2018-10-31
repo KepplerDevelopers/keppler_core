@@ -8,6 +8,7 @@ module Admin
     before_action :set_setting, only: %i[edit update appearance_default]
     before_action :authorization, except: %i[reload appearance_default]
     after_action :update_settings_yml, only: %i[create update destroy clone]
+    before_action :only_development
 
     def edit
       @social_medias = social_account_permit_attributes
@@ -112,10 +113,8 @@ module Admin
 
     def social_account_colors
       %w[
-        #3b5998 #1da1f2 #e1306c #dd4b39
-        #00af87 #bd081c #ff0084 #1769ff
-        #ff8833 #35465c #333333 #0077b5
-        #ff8800 #ff0000 #00aff0 #162221
+        #3b5998 #1da1f2 #e1306c #dd4b39 #00af87 #bd081c #ff0084 #1769ff
+        #ff8833 #35465c #333333 #0077b5 #ff8800 #ff0000 #00aff0 #162221
       ]
     end
 
