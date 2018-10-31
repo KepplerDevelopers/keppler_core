@@ -1,0 +1,18 @@
+---
+- id: 1
+  name: keppler
+  url: "/keppler"
+  method: GET
+  active: true
+  format_result: HTML
+  position: 1
+  deleted_at: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-10-08 12:56:30.554898000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2018-10-08 08:56:30.554898000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2018-10-22 20:03:03.595551000 Z
+    zone: *1
+    time: 2018-10-22 16:03:03.595551000 Z

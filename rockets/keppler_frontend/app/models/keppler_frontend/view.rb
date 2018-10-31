@@ -18,6 +18,9 @@ module KepplerFrontend
     before_validation :convert_to_downcase, :without_special_characters
     has_many :view_callbacks, dependent: :destroy, inverse_of: :view
     accepts_nested_attributes_for :view_callbacks, reject_if: :all_blank, allow_destroy: true
+    delegate :live_editor_render, :live_editor_save, to: :live_editor
+    delegate :install, :install_html, :install_remote_js, :install_only_action, to: :view_install_files
+    delegate :uninstall, :uninstall_html, :uninstall_remote_js, :iunnstall_only_action, to: :view_uninstall_files
 
     # Fields for the search form in the navbar
     def self.search_field
@@ -60,36 +63,6 @@ module KepplerFrontend
 
     def route
       "/admin/frontend/views/#{self.id}/editor"
-    end
-
-    def install
-      if self.format_result.eql?('HTML')
-        create_action_html
-        install_html
-        install_scss
-        install_js
-      elsif self.format_result.eql?('JS')
-        create_action_html
-        install_view_js
-      elsif self.format_result.eql?('Action')
-        create_action_html
-      end
-      add_route
-    end
-
-    def uninstall
-      if self.format_result.eql?('HTML')
-        delete_action_html
-        uninstall_html
-        uninstall_scss
-        uninstall_js
-      elsif self.format_result.eql?('JS')
-        delete_action_html
-        uninstall_view_js
-      elsif self.format_result.eql?('Action')
-        delete_action_html
-      end
-      delete_route
     end
 
     def update_files(params)
@@ -141,6 +114,19 @@ module KepplerFrontend
 
     def url_front
       "#{Rails.root}/rockets/keppler_frontend"
+    end
+
+    def live_editor
+      data = { view_id: id, view_name: name }
+      KepplerFrontend::LiveEditor::Editor.new(data)
+    end  
+
+    def view_install_files
+      KepplerFrontend::Views::Install.new(self)
+    end  
+
+    def view_uninstall_files
+      KepplerFrontend::Views::Uninstall.new(self)
     end
 
     def convert_to_downcase
