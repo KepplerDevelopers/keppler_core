@@ -41,9 +41,10 @@
           %i.icon-settings
           %span= t('keppler.sidebar-menu.setting')
         %ul.treeview-menu
-          %li
-            = link_to '/admin/settings/appearance' do
-              = t('keppler.sidebar-menu.setting-submenu.keppler-configuration')
+          - if Rails.env.eql?('development')
+            %li
+              = link_to '/admin/settings/appearance' do
+                = t('keppler.sidebar-menu.setting-submenu.keppler-configuration')
           %li
             = link_to '/admin/settings/basic_information' do
               = t('keppler.sidebar-menu.setting-submenu.basic-information')
