@@ -30,7 +30,7 @@ RSpec.describe KepplerFrontend::Admin::ViewsController, type: :controller do
   after(:each) do
     @view.uninstall
     out_file = File.open(front.layout, 'w')
-    out_file.puts(@layout_original);
+    out_file.puts(@layout_original)
     out_file.close
   end
 end
