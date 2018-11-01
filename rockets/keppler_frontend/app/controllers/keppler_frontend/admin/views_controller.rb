@@ -16,6 +16,8 @@ module KepplerFrontend
 
       skip_before_action :verify_authenticity_token, only: :live_editor_save
 
+      include KepplerFrontend::Concerns::Services
+
 
       # GET /views
       def index
@@ -124,7 +126,7 @@ module KepplerFrontend
       def editor
         @view = View.find(params[:view_id])
         filesystem = FileUploadSystem.new
-        @files_list = filesystem.files_list 
+        @files_list = resources.list 
         @files_views = filesystem.files_list_custom('views')
         @partials = Partial.all
         @views = View.where.not(name: 'keppler').order(position: :asc)
