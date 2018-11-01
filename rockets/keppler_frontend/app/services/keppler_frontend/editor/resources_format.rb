@@ -4,21 +4,22 @@ module KepplerFrontend
   module Editor
     # Assets
     class ResourcesFormat
-      def initialize(input)
+      def initialize(input, container)
         @file = input
         @name = input.split('.').first
         @extend = File.extname(input)
-        @folder = folder_name(@file)
-        @size = File.size("#{url_core(@folder)}/#{@file}")
-        @cover = url.front_assets(input) 
-        @cover_url = "#{url_core('html')}/#{input}"
+        @folder = utils.folder(@file)
+        @size = File.size("#{url_core(@folder, container)}/#{@file}")
+        @cover = "#{url.front_assets(input)}.png"
+        @cover_url = "#{url_core('html', container)}/#{input}.png"
+        @container = container
       end
 
       def output            
         {
           id: SecureRandom.uuid,
           name: @file,
-          url: "#{url_core(@folder)}/#{@file}",
+          url: "#{url_core(@folder, @container)}/#{@file}",
           search: @name,
           path: url.front_assets(@file),
           folder: @folder,
@@ -32,11 +33,6 @@ module KepplerFrontend
 
       private
 
-      def folder_name(file)
-        file_format = KepplerFrontend::Utils::FileFormat.new
-        file_format.folder(file)
-      end
-
       def url
         KepplerFrontend::Urls::Assets.new
       end
@@ -45,12 +41,12 @@ module KepplerFrontend
         KepplerFrontend::Utils::FileFormat.new
       end
 
-      def url_core(folder)
-        url.core_assets(folder, 'app')
+      def url_core(folder, container)
+        url.core_assets(folder, container)
       end
 
       def code_custom
-        html = File.readlines("#{url_core('html')}/#{@file}}")
+        html = File.readlines("#{url_core('html', @container)}/#{@file}")
         html.join
       end
     end
