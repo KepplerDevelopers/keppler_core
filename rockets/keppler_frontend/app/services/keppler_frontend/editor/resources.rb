@@ -9,27 +9,42 @@ module KepplerFrontend
       def list
         files_result = []
         utils.folders.each do |folder|
-          result = Dir.entries(assets.core_assets(folder, 'app'))
-          result = result.select { |f| f if files.validate(f) }
-          result = result.map do |f|
-            render(f).output unless files.html_cover?(f)
-          end
+          result = only_files_validated(folder)
           files_result = files_result + result
         end
         files_result = files_result.select { |f| f unless f.nil? }
-        files_result.sort_by { |k| k[:name] }
+        sort(files_result)
       end
 
       def custom_list(custom)
+        custom = 'app/bootstrap' if custom.eql?('bootstrap')
+        files = only_files_custom_validated(custom)
+        files = files.map do |file|
+          render(file, 'views').output
+        end
+        sort(files)
       end
 
       private
 
-      def root
-        KepplerFrontend::Urls::Roots.new
+      def sort(files)
+        files.sort_by { |k| k[:name] }
       end
 
-      def assets
+      def only_files_validated(folder)
+        result = Dir.entries(url.core_assets(folder, 'app'))
+        result = result.select { |f| f if files.validate(f) }
+        result.map do |f|
+          render(f, 'app').output unless files.html_cover?(f)
+        end
+      end
+
+      def only_files_custom_validated(custom)
+        result = Dir.entries(url.core_assets('html', custom))
+        result.select { |f| f if files.validate(f) && utils.folder(f).eql?('html') }
+      end
+
+      def url
         KepplerFrontend::Urls::Assets.new
       end
 
@@ -41,8 +56,8 @@ module KepplerFrontend
         KepplerFrontend::Utils::FileFormat.new
       end
 
-      def render(result)
-        KepplerFrontend::Editor::ResourcesFormat.new(result)
+      def render(result, container)
+        KepplerFrontend::Editor::ResourcesFormat.new(result, container)
       end      
     end
   end

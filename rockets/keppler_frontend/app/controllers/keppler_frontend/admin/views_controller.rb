@@ -125,9 +125,8 @@ module KepplerFrontend
 
       def editor
         @view = View.find(params[:view_id])
-        filesystem = FileUploadSystem.new
-        @files_list = resources.list 
-        @files_views = filesystem.files_list_custom('views')
+        @files_list = resources.list
+        @files_views = resources.custom_list('views')
         @partials = Partial.all
         @views = View.where.not(name: 'keppler').order(position: :asc)
         @functions = KepplerFrontend::Function.all
