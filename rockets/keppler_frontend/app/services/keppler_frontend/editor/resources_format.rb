@@ -10,25 +10,13 @@ module KepplerFrontend
         @extend = File.extname(input)
         @folder = utils.folder(@file)
         @size = File.size("#{url_core(@folder, container)}/#{@file}")
-        @cover = "#{url.front_assets(input)}.png"
-        @cover_url = "#{url_core('html', container)}/#{input}.png"
+        @cover = "/assets/keppler_frontend/views/#{@name}.png"
+        @cover_url = "#{url_core('html', container)}/#{@name}.png"
         @container = container
       end
 
-      def output            
-        {
-          id: SecureRandom.uuid,
-          name: @file,
-          url: "#{url_core(@folder, @container)}/#{@file}",
-          search: @name,
-          path: url.front_assets(@file),
-          folder: @folder,
-          size: utils.size(@size),
-          format: @extend.split('.').last,
-          html: @folder.eql?('html') ? code_custom : '',
-          cover: File.file?(@cover_url) ? @cover : nil,
-          cover_url: File.file?(@cover_url) ? @cover_url : ''
-        }
+      def output
+        file_object.merge(html_attr)
       end
 
       private
@@ -48,6 +36,27 @@ module KepplerFrontend
       def code_custom
         html = File.readlines("#{url_core('html', @container)}/#{@file}")
         html.join
+      end
+
+      def file_object
+        {
+          id: SecureRandom.uuid,
+          name: @file,
+          url: "#{url_core(@folder, @container)}/#{@file}",
+          search: @name,
+          path: url.front_assets(@file),
+          folder: @folder,
+          size: utils.size(@size),
+          format: @extend.split('.').last
+        }
+      end
+
+      def html_attr
+        {
+          html: @folder.eql?('html') ? code_custom : '',
+          cover: File.file?(@cover_url) ? @cover : nil,
+          cover_url: File.file?(@cover_url) ? @cover_url : ''
+        }
       end
     end
   end

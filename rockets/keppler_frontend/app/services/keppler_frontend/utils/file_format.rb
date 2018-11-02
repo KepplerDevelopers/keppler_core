@@ -7,7 +7,7 @@ module KepplerFrontend
       def initialize; end
 
       def folders
-        ['audios', 'fonts', 'images', 'videos', 'html', 'javascripts', 'stylesheets']
+        %w[audios fonts images videos html javascripts stylesheets]
       end
 
       def formats
@@ -17,8 +17,8 @@ module KepplerFrontend
           images: ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.tiff', '.bmp'],
           videos: ['.mp4', '.mpeg', '.webm', '.m4v'],
           html: ['.html'],
-          javascripts: ['.js', '.coffee', '.js.erb', '.json'],
-          stylesheets: ['.css', '.scss', 'sass', '.scss.erb']
+          javascripts: ['.js', '.coffee', '.json'],
+          stylesheets: ['.css', '.scss', '.sass']
         }
       end
 
@@ -32,13 +32,12 @@ module KepplerFrontend
       end
 
       def size(size)
-        units = ['B', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb']
-  
-        return '0.0 B' if size == 0
+        units = %w[B Kb Mb Gb Tb Pb Eb]
+        return '0.0 B' if size.zero?
         exp = (Math.log(size) / Math.log(1024)).to_i
         exp = 6 if exp > 6
-  
-        '%.1f %s' % [size.to_f / 1024 ** exp, units[exp]]
+        result = (size.to_f / 1024 * exp).round(1)
+        format('%<result>s %<units>s', result: result, units: units[exp])
       end
     end
   end
