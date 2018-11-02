@@ -10,10 +10,12 @@ module KepplerFrontend
         files_result = []
         utils.folders.each do |folder|
           result = only_files_validated(folder)
-          files_result = files_result + result
+          files_result += result
         end
         files_result = files_result.select { |f| f unless f.nil? }
         sort(files_result)
+      rescue StandardError
+        false
       end
 
       def custom_list(custom)
@@ -23,6 +25,8 @@ module KepplerFrontend
           render(file, 'views').output
         end
         sort(files)
+      rescue StandardError
+        false
       end
 
       private
@@ -35,13 +39,15 @@ module KepplerFrontend
         result = Dir.entries(url.core_assets(folder, 'app'))
         result = result.select { |f| f if files.validate(f) }
         result.map do |f|
-          render(f, 'app').output unless files.html_cover?(f)
+          render(f, 'app').output
         end
       end
 
       def only_files_custom_validated(custom)
+        fi = files
+        utl = utils
         result = Dir.entries(url.core_assets('html', custom))
-        result.select { |f| f if files.validate(f) && utils.folder(f).eql?('html') }
+        result.select { |f| f if fi.validate(f) && utl.folder(f).eql?('html') }
       end
 
       def url
@@ -58,7 +64,7 @@ module KepplerFrontend
 
       def render(result, container)
         KepplerFrontend::Editor::ResourcesFormat.new(result, container)
-      end      
+      end
     end
   end
 end
