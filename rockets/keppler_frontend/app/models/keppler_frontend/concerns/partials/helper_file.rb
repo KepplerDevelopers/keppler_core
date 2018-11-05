@@ -15,8 +15,8 @@ module KepplerFrontend
             head_idx = index_html.find_index(i) if i.include?("  module App::FrontendHelper")
           end
           index_html.insert(head_idx.to_i + 1, "    # begin #{name}\n")
-          index_html.insert(head_idx.to_i + 2, "    def #{name}(hash = {})\n")
-          index_html.insert(head_idx.to_i + 3, "      render 'keppler_frontend/app/partials/#{name}', hash: hash\n")
+          index_html.insert(head_idx.to_i + 2, "    def #{name}(params = {})\n")
+          index_html.insert(head_idx.to_i + 3, "      render 'keppler_frontend/app/partials/#{name}', params: params\n")
           index_html.insert(head_idx.to_i + 4, "    end\n")
           index_html.insert(head_idx.to_i + 5, "    # end #{name}\n")
           index_html = index_html.join('')
@@ -51,8 +51,8 @@ module KepplerFrontend
           end
           return if begin_idx==0
           index_html[begin_idx] = "    # begin #{helper[:name]}\n"
-          index_html[begin_idx+1] = "    def #{helper[:name]}(hash = {})\n"
-          index_html[begin_idx+2] = "      render 'keppler_frontend/app/partials/#{helper[:name]}', hash: hash\n"
+          index_html[begin_idx+1] = "    def #{helper[:name]}(params = {})\n"
+          index_html[begin_idx+2] = "      render 'keppler_frontend/app/partials/#{helper[:name]}', params: params\n"
           index_html[begin_idx+4] = "    # end #{helper[:name]}\n"
           index_html = index_html.join('')
           File.write(file, index_html)
