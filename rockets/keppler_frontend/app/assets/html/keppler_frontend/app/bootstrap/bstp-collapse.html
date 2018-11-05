@@ -1,0 +1,23 @@
+<keppler-component>
+  <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-target
+  </button>
+  <div class="collapse" id="collapseExample">
+    <div class="well">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quis accusamus deleniti quia quaerat illo voluptatum dolores doloribus! Officiis minus excepturi laborum amet ducimus minima a perferendis dolorum neque. Quam.
+    </div>
+  </div>
+</keppler-component>
+<script>
+  'bootstrap-collapse', {
+    label: 'Collapse',
+    category: 'Bootstrap',
+    attributes: { class:'fa fa-plus-square' },
+    content: {
+      script: function() {}
+    } 
+  }
+</script>
