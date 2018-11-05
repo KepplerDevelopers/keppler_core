@@ -7,7 +7,6 @@ module KepplerFrontend
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
-    # before_action :live_editor_info
 
     include KepplerCapsules::Concerns::Lib
     def set_metas
@@ -27,13 +26,6 @@ module KepplerFrontend
     end
 
     private
-
-    # def live_editor_info      
-    #   if params[:editor] && controller_name.eql?('frontend') && !action_name.eql?('keppler')
-    #     view = View.find(params[:view])
-    #     gon.editor = view.live_editor_render
-    #   end
-    # end
 
     def rocket(name, model)
       name = name.singularize.downcase.camelize

@@ -12,10 +12,5 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= stub ./grapes/grapes-editor
-// = require ./grapes/grapes
-// = require ./grapes/grapick
-// = require ./grapes/grapes-gradient
-// = require ./grapes/grapes-custom-code
 //= require jquery.slick
 //= require_tree .

@@ -6,15 +6,14 @@ RSpec.describe KepplerFrontend::Utils::CodeSearch, type: :services do
   context 'code search' do
 
     before(:all) do
-      urls = KepplerFrontend::Urls::Assets.new
-      core_app = urls.core_assets('html', 'app')
-      component = Dir["#{core_app}/**/*.html"].first
+      urls = KepplerFrontend::Urls::Roots.new
+      component = Dir["#{urls.rocket_root}/app/views/layouts/keppler_frontend/app/layouts/application.html.erb"].first
       lines = File.readlines(component)
       @find = KepplerFrontend::Utils::CodeSearch.new(lines)
     end
 
     context 'find between a range of lines' do
-      let(:find_section) { @find.search_section('<script>', '</script>') }
+      let(:find_section) { @find.search_section('    <keppler-header>', '    </keppler-header>') }
 
       it { expect(find_section).to be_a(Array) }
       it { expect(find_section.count).to eq(2) }
@@ -22,7 +21,7 @@ RSpec.describe KepplerFrontend::Utils::CodeSearch, type: :services do
     end
 
     context 'find a lines' do
-      let(:find_section) { @find.search_line('<script>') }
+      let(:find_section) { @find.search_line('    <keppler-header>') }
 
       it { expect(find_section).to be_a(Numeric) }
     end
