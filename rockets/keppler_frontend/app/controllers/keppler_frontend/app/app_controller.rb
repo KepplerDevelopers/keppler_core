@@ -7,7 +7,6 @@ module KepplerFrontend
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
-    before_action :live_editor_info
 
     include KepplerCapsules::Concerns::Lib
     def set_metas
