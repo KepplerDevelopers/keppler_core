@@ -1,4 +1,7 @@
 en:
+  keppler_language:
+    modules:
+      language: Language
   keppler:
     sidebar-menu:
       keppler-languages: Languages

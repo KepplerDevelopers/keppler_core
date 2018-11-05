@@ -112,10 +112,8 @@ module Admin
 
     def social_account_colors
       %w[
-        #3b5998 #1da1f2 #e1306c #dd4b39
-        #00af87 #bd081c #ff0084 #1769ff
-        #ff8833 #35465c #333333 #0077b5
-        #ff8800 #ff0000 #00aff0 #162221
+        #3b5998 #1da1f2 #e1306c #dd4b39 #00af87 #bd081c #ff0084 #1769ff
+        #ff8833 #35465c #333333 #0077b5 #ff8800 #ff0000 #00aff0 #162221
       ]
     end
 

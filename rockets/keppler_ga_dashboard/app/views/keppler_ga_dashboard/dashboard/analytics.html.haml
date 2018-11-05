@@ -16,7 +16,7 @@
 				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
-							Información
+							= t("keppler_ga_dashboard.information")
 					.box-body.pure-input
 						.dashboard-head
 							.row
@@ -32,7 +32,7 @@
 				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
-							Uso por semana
+							= t("keppler_ga_dashboard.week_stats")
 					.box-body.pure-input
 						%canvas#chart-1-container{:height => "300", :width => "350"}
 						#legend-1-container.charts-legend
@@ -41,7 +41,7 @@
 				.box.slice-box.p-15
 					.box-header.with-border
 						%h3.box-title
-							Uso por mes
+							= t("keppler_ga_dashboard.month_stats")
 					.box-body.pure-input
 						%canvas#chart-2-container{:height => "300", :width => "350"}
 						#legend-2-container.charts-legend
@@ -180,19 +180,27 @@
 						var labels = results[1].rows.map(function(row) { return +row[0]; });
 
 						// Chart line fill
+						var names = "#{t('keppler_ga_dashboard.abbr_day_names')}".split("&quot;");
+						var days = [];
+						var noInclude = ['[', ']', ',', ', ']
+						for(var i=0; i < names.length; i++) {
+							if(!noInclude.includes(names[i])) {
+								days.push(names[i])
+							}
+						}
 						var config = {
 								type: 'line',
 								data: {
-										labels: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+										labels: days,
 										datasets: [{
-												label: "Esta semana",
+												label: "#{t('keppler_ga_dashboard.this_week')}",
 												backgroundColor: gon.color,
 												borderColor: gon.color,
 												// borderWidth: 1,
 												fill: true,
 												data: data1,
 										}, {
-												label: "Semana Pasada",
+												label: "#{t('keppler_ga_dashboard.last_week')}",
 												fill: true,
 												backgroundColor: '#e0e0e0',
 												borderColor: '#e0e0e0',
@@ -204,7 +212,7 @@
 										responsive: true,
 										title:{
 												display:true,
-												text:' Semana a Semana'
+												label: "#{t('keppler_ga_dashboard.week_to_week')}",
 										},
 										tooltips: {
 												mode: 'index',
@@ -219,14 +227,14 @@
 														display: true,
 														scaleLabel: {
 																display: true,
-																labelString: 'Dias'
+																labelString: "#{t('keppler_ga_dashboard.days')}"
 														}
 												}],
 												yAxes: [{
 														display: true,
 														scaleLabel: {
 																display: true,
-																labelString: 'Visitas'
+																labelString: "#{t('keppler_ga_dashboard.visits')}"
 														},
 														// ticks: {
 														// 		min: 0,
@@ -276,7 +284,18 @@
 					Promise.all([thisYear, lastYear]).then(function(results) {
 						var data1 = results[0].rows.map(function(row) { return +row[2]; });
 						var data2 = results[1].rows.map(function(row) { return +row[2]; });
-						var labels = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+						var names = "#{t('keppler_ga_dashboard.abbr_month_names')}".split("&quot;");
+						var month = [];
+						var noInclude = ['[', ']', ',', ', ']
+						for(var i=0; i < names.length; i++) {
+							if(!noInclude.includes(names[i])) {
+								month.push(names[i])
+							}
+						}
+						console.log(month)
+
+						var labels = month;
 
 						// Ensure the data arrays are at least as long as the labels array.
 						// Chart.js bar charts don't (yet) accept sparse datasets.
@@ -289,16 +308,16 @@
 						var config = {
 								type: 'bar',
 								data: {
-										labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+										labels: month,
 										datasets: [{
-												label: "Año pasado",
+												label: "#{t('keppler_ga_dashboard.month_to_month')}",
 												backgroundColor: '#e0e0e0',
 												borderColor: '#e0e0e0',
 												borderWidth: 2,
 												fill: true,
 												data: data2,
 										}, {
-												label: "Año actual",
+												label: "#{t('keppler_ga_dashboard.this_year')}",
 												fill: true,
 												backgroundColor: gon.color,
 												borderColor: gon.color,
@@ -310,7 +329,7 @@
 										responsive: true,
 										title:{
 												display:true,
-												text:' Mes a mes'
+												text: "#{t('keppler_ga_dashboard.last_year')}"
 										},
 										tooltips: {
 												mode: 'index',
@@ -325,14 +344,14 @@
 														display: true,
 														scaleLabel: {
 																display: true,
-																labelString: 'Meses'
+																labelString: "#{t('keppler_ga_dashboard.month')}"
 														}
 												}],
 												yAxes: [{
 														display: true,
 														scaleLabel: {
 																display: true,
-																labelString: 'Visitas'
+																labelString: "#{t('keppler_ga_dashboard.visits')}"
 														},
 												}]
 										}
