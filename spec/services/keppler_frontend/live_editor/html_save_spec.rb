@@ -51,7 +51,7 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlHandler, type: :services do
       end
 
       it { expect(@view_result).to eq(["<keppler-view id=\"test_index\">\n", "  <!-- Keppler Section -->\n", "  <h1>Test Index Edited</h1>\n", "  <keppler-no-edit id=\"area_two\">\n", "    <%= area_two %>\n", "  </keppler-no-edit>\n", "</keppler-view>"]) }
-      it { expect(@view_layout).to eq(["<!DOCTYPE html>\n", "<html id=\"keppler-html\">\n", "  <head>\n", "    <%= set_head %>\n", "  </head>\n", "  <body id=\"keppler-editor\">\n", "    <keppler-header>\n", "      <!-- Keppler Section -->\n", "      <h1>Header Edited</h1>\n", "    </keppler-header>\n", "    <%= yield %>\n", "    <keppler-footer>\n", "      <!-- Keppler Section -->\n", "      <h1>Footer Edited</h1>\n", "    </keppler-footer>\n", "  </body>\n", "  <%= keppler_editor %>\n", "</html>"]) }
+      it { expect(@view_layout).to eq(["<!DOCTYPE html>\n", "<html id=\"keppler-html\">\n", "  <head>\n", "    <%= set_head %>\n", "  </head>\n", "  <body id=\"keppler-editor\">\n", "    <keppler-header>\n", "      <!-- Keppler Section -->\n", "      <h1>Header Edited</h1>\n", "    </keppler-header>\n", "    <%= yield %>\n", "    <keppler-footer>\n", "      <!-- Keppler Section -->\n", "      <h1>Footer Edited</h1>\n", "    </keppler-footer>\n", "  </body>\n", "  <!--  <%= keppler_editor %> -->\n", "</html>"]) }
     end
 
     context 'save when a element has beed moved' do      
@@ -62,7 +62,7 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlHandler, type: :services do
       end
 
       it { expect(@view_result).to eq(["<keppler-view id=\"test_index\">\n", "  <!-- Keppler Section -->\n", "  <h1>Test Index Edited</h1>\n", "</keppler-view>"]) }
-      it { expect(@view_layout).to eq(["<!DOCTYPE html>\n", "<html id=\"keppler-html\">\n", "  <head>\n", "    <%= set_head %>\n", "  </head>\n", "  <body id=\"keppler-editor\">\n", "    <keppler-header>\n", "      <!-- Keppler Section -->\n", "      <h1>Header Edited</h1>\n", "      <keppler-no-edit id=\"area_two\">\n", "        <%= area_two %>\n", "      </keppler-no-edit>\n", "    </keppler-header>\n", "    <%= yield %>\n", "    <keppler-footer>\n", "      <!-- Keppler Section -->\n", "      <h1>Footer Edited</h1>\n", "    </keppler-footer>\n", "  </body>\n", "  <%= keppler_editor %>\n", "</html>"]) }
+      it { expect(@view_layout).to eq(["<!DOCTYPE html>\n", "<html id=\"keppler-html\">\n", "  <head>\n", "    <%= set_head %>\n", "  </head>\n", "  <body id=\"keppler-editor\">\n", "    <keppler-header>\n", "      <!-- Keppler Section -->\n", "      <h1>Header Edited</h1>\n", "      <keppler-no-edit id=\"area_two\">\n", "        <%= area_two %>\n", "      </keppler-no-edit>\n", "    </keppler-header>\n", "    <%= yield %>\n", "    <keppler-footer>\n", "      <!-- Keppler Section -->\n", "      <h1>Footer Edited</h1>\n", "    </keppler-footer>\n", "  </body>\n", "  <!--  <%= keppler_editor %> -->\n", "</html>"]) }
     end
 
     after(:each) do

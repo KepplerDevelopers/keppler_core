@@ -17,7 +17,7 @@ RSpec.describe KepplerFrontend::LiveEditor::HtmlSaveUtils, type: :services do
       let(:get_layouts_lines) { @utils.lines('layouts') }
 
       it { expect(get_view_lines).to eq(["<keppler-view id=\"test_index\">\n", "  <h1> test_index template </h1>\n", "</keppler-view>\n"]) }
-      it { expect(get_layouts_lines).to eq(["<!DOCTYPE html>\n", "<html id=\"keppler-html\">\n", "  <head>\n", "    <%= set_head %>\n", "  </head>\n", "  <body id=\"keppler-editor\">\n", "    <keppler-header>\n", "      <!-- Keppler Section -->\n", "    </keppler-header>\n", "    <%= yield %>\n", "    <keppler-footer>\n", "      <!-- Keppler Section -->\n", "    </keppler-footer>\n", "  </body>\n", "  <%= keppler_editor %>\n", "</html>\n"]) }
+      it { expect(get_layouts_lines).to eq(["<!DOCTYPE html>\n", "<html id=\"keppler-html\">\n", "  <head>\n", "    <%= set_head %>\n", "  </head>\n", "  <body id=\"keppler-editor\">\n", "    <keppler-header>\n", "      <!-- Keppler Section -->\n", "    </keppler-header>\n", "    <%= yield %>\n", "    <keppler-footer>\n", "      <!-- Keppler Section -->\n", "    </keppler-footer>\n", "  </body>\n", "  <!--  <%= keppler_editor %> -->\n", "</html>\n"]) }
     end
 
     context 'get url file' do
