@@ -58,5 +58,6 @@ RSpec.describe KepplerFrontend::View, type: :model do
     #     out_file.close
     #   end 
     # end
+
   end
 end

@@ -13,6 +13,7 @@ RSpec.describe 'routing to views', type: :routing do
   #   )
   # end
 
+
   it 'routes GET /admin/frontend/views/new' do
     expect(get: "/admin/frontend/views/new").to route_to(
       controller: 'keppler_frontend/admin/views',
