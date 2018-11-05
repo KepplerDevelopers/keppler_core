@@ -7,10 +7,8 @@ module KepplerFrontend
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
-    before_action :grapes_info
 
     include KepplerCapsules::Concerns::Lib
-    include KepplerFrontend::Concerns::Grapesjs
     def set_metas
       @theme_color = nil
       # Descomentar el modelo que exista depende del proyecto
@@ -29,6 +27,13 @@ module KepplerFrontend
 
     private
 
+    def live_editor_info      
+      if params[:editor] && controller_name.eql?('frontend') && !action_name.eql?('keppler')
+        view = View.find(params[:view])
+        gon.editor = view.live_editor_render
+      end
+    end
+
     def rocket(name, model)
       name = name.singularize.downcase.camelize
       model = model.singularize.downcase.camelize
@@ -43,8 +48,7 @@ module KepplerFrontend
       if params[:locale]
         @locale = I18n.locale = params[:locale]
       elsif request.env['HTTP_ACCEPT_LANGUAGE']
-        request_lang = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/)[0]
-        @locale = I18n.locale = request_lang.eql?('es') ? 'es' : 'en'
+        @locale = I18n.locale = I18n.default_locale
       end
     end
 

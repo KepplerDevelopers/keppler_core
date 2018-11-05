@@ -1,8 +1,28 @@
-- if params[:editor] && current_user.rol.eql?('keppler_admin') && Rails.env.eql?("development")
-  %keppler-style
-    = javascript_include_tag 'keppler_frontend/app/grapes/grapes-editor.js', 'data-turbolinks-track': 'reload'
-    = Gon::Base.render_data
-    = stylesheet_link_tag 'keppler_frontend/app/grapes/grapes-custom', 'data-turbolinks-track': 'reload'
-- else  
-  :javascript
-    $('keppler-no-edit').removeClass('no-edit-area');
+- if  current_user
+  - if !params[:editor] && current_user.rol.eql?('keppler_admin') && Rails.env.eql?("development") && !action_name.eql?("keppler")
+    - view = KepplerFrontend::View.find_by_url(request.fullpath.to_s)
+    .keppler-front-control
+      .logo 
+        Keppler
+      .admin
+        = link_to "/admin" do
+          %i.fa.fa-cog
+          Admin
+      .code
+        = link_to "/admin/frontend/views/#{view.id}/editor" do
+          %i.fa.fa-code
+          Code
+      .editor 
+        = link_to "?view=#{view.id}&&editor=true" do
+          %i.fa.fa-object-group
+          Editor
+      :javascript
+        $('body').css('padding-top', '35px')
+  - if params[:editor] && current_user.rol.eql?('keppler_admin') && Rails.env.eql?("development")
+    %keppler-style
+      = javascript_include_tag 'keppler_frontend/app/grapes/grapes-editor.js', 'data-turbolinks-track': 'reload'
+      = Gon::Base.render_data
+      = stylesheet_link_tag 'keppler_frontend/app/grapes/grapes-custom', 'data-turbolinks-track': 'reload'
+  - else  
+    :javascript
+      $('keppler-no-edit').removeClass('no-edit-area');
