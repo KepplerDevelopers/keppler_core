@@ -28,7 +28,7 @@
                     <%- elsif attribute.last.eql?('references') -%>
                     = f.association :<%= attribute.first %>, include_blank: false
                     <%- elsif attribute.last.eql?('text') -%>
-                    = f.input :<%= attribute.first %>, input_html: { ckeditor: { toolbar: 'mini' } }
+                    = f.input :<%= attribute.first %>, as: :ckeditor, input_html: { ckeditor: { toolbar: 'mini' } }
                     <%- elsif attribute.last.eql?('date') -%>
                     = f.input :<%= attribute.first %>, as: :string, input_html: { class: 'datepicker' }
                     <%- elsif attribute.last.eql?('boolean') -%>

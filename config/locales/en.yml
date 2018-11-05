@@ -118,13 +118,15 @@ en:
       will_be_named: Your rocket will be named
       great: Great!
       wait_generator: Please wait until your rocket is ready...
+      unpermitted_name: That name is not permitted
       cancel: Cancel
       installed: installed
       uninstalled: uninstalled
       created: created
       built: built
-      success: "Keppler%{rocket} has been %{action} seccessfully"
+      success: "%{rocket} has been %{action} seccessfully"
       error: "Error: %{rocket} cannot be %{action}"
+      duplicated: "Error: %{rocket} already exists"
     appearance:
       main_color: Main color
       admin_theme: KepplerAdmin Theme
@@ -139,6 +141,7 @@ en:
       record_msg: "%{from} to %{to} of %{total}"
       to: "to"
       at: "at"
+      has: 'has'
       since_been_removed: whitch has since been removed
       login_in_activity: login to system at
       logout_in_activity: logout to system at
