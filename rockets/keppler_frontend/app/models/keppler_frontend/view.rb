@@ -18,7 +18,6 @@ module KepplerFrontend
     before_validation :convert_to_downcase, :without_special_characters
     has_many :view_callbacks, dependent: :destroy, inverse_of: :view
     accepts_nested_attributes_for :view_callbacks, reject_if: :all_blank, allow_destroy: true
-    delegate :live_editor_render, :live_editor_save, to: :live_editor
     delegate :install, :install_html, :install_remote_js, :install_only_action, to: :view_install_files
     delegate :uninstall, :uninstall_html, :uninstall_remote_js, :iunnstall_only_action, to: :view_uninstall_files
 

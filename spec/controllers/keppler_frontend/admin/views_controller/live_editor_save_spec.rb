@@ -14,23 +14,23 @@ RSpec.describe KepplerFrontend::Admin::ViewsController, type: :controller do
     @view.install
   end
 
-  describe 'POST to /live_editor/save' do
-    let(:response) do
-      sign_in user
-      params = { use_route: :appointly, html: html_code, css: css_code, view_id: @view.id }
-      post :live_editor_save, params: params, format: :json
-    end
+  # describe 'POST to /live_editor/save' do
+  #   let(:response) do
+  #     sign_in user
+  #     params = { use_route: :appointly, html: html_code, css: css_code, view_id: @view.id }
+  #     post :live_editor_save, params: params, format: :json
+  #   end
 
-    it { expect(response).to have_http_status(200) }
-    it { expect(response.body).to eq(expected.to_json) }
+  #   it { expect(response).to have_http_status(200) }
+  #   it { expect(response.body).to eq(expected.to_json) }
       
-  end
+  # end
   
 
   after(:each) do
     @view.uninstall
     out_file = File.open(front.layout, 'w')
-    out_file.puts(@layout_original);
+    out_file.puts(@layout_original)
     out_file.close
   end
 end
