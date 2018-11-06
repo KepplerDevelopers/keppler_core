@@ -77,7 +77,7 @@ module KepplerFrontend
           # return if begin_idx==0
           code_html.slice!(begin_idx+1..end_idx-1)
           code.split("\n").each_with_index do |line, i|
-            code_html.insert(begin_idx+(i+1), "  #{line}\n")
+            code_html.insert(begin_idx+(i+1), "#{line}\n")
           end
           code_html = code_html.join('')
           File.write(file, code_html)
