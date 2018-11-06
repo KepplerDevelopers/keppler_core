@@ -65,7 +65,7 @@
             .row
               .col-lg-6
                 %h4.box-title
-                  = truncate(partial.name, length: 30, omission: '...')
+                  = truncate(partial.name, length: 15, omission: '...')
               .col-lg-3
                 %span.box-title
                   %a.btn.btn-default.pull-right{onclick: "copyPartial('#{partial.id}')"}
