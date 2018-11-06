@@ -101,30 +101,32 @@
                   %i.fa.fa-save
 .control-sidebar-bg
 :javascript
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
-    var tab = ev.target.innerText;
-    var id = `#{@view.id}`;
+  $(document).on('turbolinks:load', function() {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
+      var tab = ev.target.innerText;
+      var id = `#{@view.id}`;
 
-    if (tab === '') {
-      tab = `#{@view.name}.html.erb`
-    }
-
-    $(document).bind('keydown', function(e) {
-      if(e.ctrlKey && (e.which == 83)) {
-        e.preventDefault();
-        save()
+      if (tab === '') {
+        tab = `#{@view.name}.html.erb`
       }
-    });
 
-    function save() {
-      if ( tab === `#{@view.name}.html.erb` ) {
-        codeHTML.save(id);
-      } else if (tab === `#{@view.name}.scss` ) {
-        codeCSS.save(id);
-      } else if (tab === `#{@view.name}.js` ) {
-        codeJs.save(id);
-      } else if (tab === 'Action') {
-        codeAction.save(id);
+      $(document).bind('keydown', function(e) {
+        if(e.ctrlKey && (e.which == 83)) {
+          e.preventDefault();
+          save()
+        }
+      });
+
+      function save() {
+        if ( tab === `#{@view.name}.html.erb` ) {
+          codeHTML.save(id);
+        } else if (tab === `#{@view.name}.scss` ) {
+          codeCSS.save(id);
+        } else if (tab === `#{@view.name}.js` ) {
+          codeJs.save(id);
+        } else if (tab === 'Action') {
+          codeAction.save(id);
+        }
       }
-    }
-  })
+    })
+  });
