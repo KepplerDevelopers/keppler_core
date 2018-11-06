@@ -87,7 +87,7 @@ else
 end
 
 if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
-  file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/views.yml")
+  file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/data/views.yml")
   routes = YAML.load_file(file)
   routes.each do |route|
     KepplerFrontend::View.create(

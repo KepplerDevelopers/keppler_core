@@ -230,7 +230,7 @@ module KepplerFrontend
         audios: ['.mp3'],
         fonts: ['.eot', '.otf', '.ttf', '.woff', '.woff2'],
         images: ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.tiff', '.bmp'],
-        videos: ['.mp4', '.mpeg', '.webm'],
+        videos: ['.mp4', '.mpeg', '.webm', '.m4v'],
         javascripts: ['.js', '.coffee'],
         stylesheets: ['.css', '.scss', '.sass'],
         html: ['.html', '.html.erb']
