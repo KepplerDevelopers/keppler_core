@@ -35,7 +35,7 @@ module KepplerFrontend
     end
 
     def rocket(name, model)
-      name = name.singularize.downcase.camelize
+      name = name.downcase.camelize
       model = model.singularize.downcase.camelize
       "Keppler#{name}::#{model}".constantize
     end
