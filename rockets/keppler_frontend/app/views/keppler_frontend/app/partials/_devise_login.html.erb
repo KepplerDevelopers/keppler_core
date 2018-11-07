@@ -1,5 +1,5 @@
 <!-- begin devise_login -->
-<div id='devise_login'>
+<keppler-partial id='devise_login'>
   <%- unless current_user %>
     <%= form_for(User.new, :as => User.new, :url => session_path(User.new), :html => { :role => 'form'}) do |f| %>
       <%= f.text_field :path, type: :hidden, class: "form-control validate", :value => "#{controller_path}##{action_name}" %>
@@ -38,5 +38,5 @@
       </div>
     <% end %>
   <%- end %>
-</div>
+</keppler-partial>
 <!-- end devise_login -->
