@@ -151,5 +151,5 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
       function_id: param['function_id']
     )
   end
-  puts 'Languages has been created'
+  puts 'Frontend functions has been created'
 end
