@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   helper KepplerLanguages::LanguagesHelper
   helper KepplerCapsules::CapsulesHelper
+  helper KepplerGaDashboard::Admin::DashboardHelper
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # rescue_from Faraday::ConnectionFailed do |error|

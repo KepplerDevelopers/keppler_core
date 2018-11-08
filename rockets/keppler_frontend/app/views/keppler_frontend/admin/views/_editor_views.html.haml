@@ -65,7 +65,7 @@
             .row
               .col-lg-6
                 %h4.box-title
-                  = truncate(partial.name, length: 30, omission: '...')
+                  = truncate(partial.name, length: 15, omission: '...')
               .col-lg-3
                 %span.box-title
                   %a.btn.btn-default.pull-right{onclick: "copyPartial('#{partial.id}')"}
@@ -78,24 +78,26 @@
 .control-sidebar-bg
 
 :javascript
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
-    $(document).bind('keydown',function(e) {
-      if(e.ctrlKey && (e.which == 83)) {
-        e.preventDefault();
-        var tab = e.target.innerText;
-        if (tab==='') {
-          var tab = `#{@view.name}.html.erb`;
+  $(document).on('turbolinks:load', function() {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (ev) {
+      $(document).bind('keydown',function(e) {
+        if(e.ctrlKey && (e.which == 83)) {
+          e.preventDefault();
+          var tab = e.target.innerText;
+          if (tab==='') {
+            var tab = `#{@view.name}.html.erb`;
+          }
+          var id = `#{@view.id}`
+          if ( tab === `#{@view.name}.html.erb`) {
+            codeHTML.save(id);
+          } else if (tab === `#{@view.name}.scss`) {
+            codeCSS.save(id);
+          } else if (tab === `#{@view.name}.js`) {
+            codeJs.save(id);
+          } else if (tab === 'Action') {
+            codeAction.save(id);
+          }
         }
-        var id = `#{@view.id}`
-        if ( tab === `#{@view.name}.html.erb`) {
-          codeHTML.save(id);
-        } else if (tab === `#{@view.name}.scss`) {
-          codeCSS.save(id);
-        } else if (tab === `#{@view.name}.js`) {
-          codeJs.save(id);
-        } else if (tab === 'Action') {
-          codeAction.save(id);
-        }
-      }
-    });
-  })
+      });
+    })
+  }

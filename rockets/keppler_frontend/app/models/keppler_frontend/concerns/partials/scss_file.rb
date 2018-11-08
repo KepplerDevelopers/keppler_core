@@ -78,7 +78,7 @@ module KepplerFrontend
           # return if begin_idx==0
           code_css.slice!(begin_idx+2..end_idx-2)
           code.split("\n").each_with_index do |line, i|
-            code_css.insert(begin_idx+(i+2), "  #{line}\n")
+            code_css.insert(begin_idx+(i+2), "#{line}\n")
           end
           code_css = code_css.join('')
           File.write(file, code_css)
