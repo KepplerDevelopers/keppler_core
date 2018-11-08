@@ -8,7 +8,6 @@ module Admin
     before_action :set_setting, only: %i[edit update appearance_default]
     before_action :authorization, except: %i[reload appearance_default]
     after_action :update_settings_yml, only: %i[create update destroy clone]
-    before_action :only_development
 
     def edit
       @social_medias = social_account_permit_attributes
