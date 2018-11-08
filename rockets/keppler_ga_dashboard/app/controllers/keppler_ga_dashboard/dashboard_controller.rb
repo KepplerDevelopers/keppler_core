@@ -42,9 +42,6 @@ module KepplerGaDashboard
       variables_file = File.readlines(style_file)
       @color = ""
       variables_file.each { |line| @color = line[15..21] if line.include?('$keppler-color') }
-
-
-      puts "********************** #{@color}"
     end
 
     def style_file
