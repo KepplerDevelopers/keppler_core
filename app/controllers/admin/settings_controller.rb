@@ -38,6 +38,7 @@ module Admin
 
     def change_locale
       Appearance.first.update(language: params[:locale])
+      I18n.locale = Appearance.first.language
       redirect_back fallback_location: admin_root_path
     end
 
