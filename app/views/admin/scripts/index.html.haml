@@ -9,7 +9,7 @@
         %section.content-actions
           .toolbar
             .toolbar-item
-              = link_to reload_admin_scripts_path, class: 'tool-btn', remote: true, title: 'Recargar página' do
+              = link_to reload_admin_scripts_path, class: 'tool-btn', remote: true, title: t('keppler.actions.reload_page') do
                 %i.icon-reload
             - if can?(Script).download?
               %li.toolbar-item.dropdown

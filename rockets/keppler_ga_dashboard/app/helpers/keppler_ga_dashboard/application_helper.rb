@@ -1,4 +1,7 @@
 module KepplerGaDashboard
-  module ApplicationHelper
+  module Admin
+
+    module ApplicationHelper
+    end
   end
 end
