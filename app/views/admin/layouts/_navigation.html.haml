@@ -22,7 +22,7 @@
       %ul.nav.navbar-nav.language-select
         %li.dropdown.messages-menu
           %a.dropdown-toggle.language-option{ 'aria-expanded' => 'false', 'data-toggle' => 'dropdown', :href => '#' }
-            = image_tag (Appearance.first.language.eql?('en') ? 'admin/en.png' : 'admin/es.png'), class: 'small-profile-img keppler-background'
+            = image_tag "admin/#{Appearance.first.language.eql?('es') ? 'es' : 'en'}.png", class: 'small-profile-img keppler-background'
           %ul.dropdown-menu
             %li.header= t('keppler.language.select_lang')
             %li
