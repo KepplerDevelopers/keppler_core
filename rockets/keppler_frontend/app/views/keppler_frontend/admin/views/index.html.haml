@@ -68,14 +68,15 @@
     = render "description"
 
 :javascript
-  $(document).ready(function(){
-    $('#view').click(function() {
-      $('#upload_file_view').click()
-      $('#upload_file_view').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_view').submit()
-      })
-    });
+  (function() {
+    $(document).on('turbolinks:load', function() {});
+      $('#view').click(function() {
+        $('#upload_file_view').click()
+        $('#upload_file_view').change(function() {
+          $('.waiting').css('display', 'block')
+          $('#upload_form_view').submit()
+        })
+      });
 
-    renderImg();
-  });
+      renderImg();
+    }).call(this);
