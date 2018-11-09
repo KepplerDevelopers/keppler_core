@@ -46,7 +46,7 @@ $(document).on 'turbolinks:load', ->
     $('.index-show').css 'right', -$('.index-show').outerWidth()
 
   $('#open-historial').click ->
-    $('.listing-show .control-sidebar').toggleClass 'control-sidebar-open'
+    $('.control-sidebar').toggleClass 'control-sidebar-open'
   
   searchButton()
   return
