@@ -75,8 +75,8 @@ else
       email: 'info@keppler.com', password: '12345678'
     },
     google_analytics_setting_attributes: {
-      ga_account_id: '60688852',
-      ga_tracking_id: 'UA-60688852-1',
+      ga_account_id: '121648466',
+      ga_tracking_id: 'UA-121648466-1',
       ga_status: true
     }
   )
