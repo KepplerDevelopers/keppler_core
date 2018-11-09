@@ -65,6 +65,8 @@ module Admin
     end
 
     def parsed_color
+      return if params[:color].nil?
+
       if params[:color].include?('#') || params[:color].include?('rgb')
         params[:color]
       else
