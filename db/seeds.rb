@@ -22,8 +22,6 @@ User.create(
 
 puts 'admin@keppler.io has been created'
 
-Customize.create(file: '', installed: true)
-puts 'Keppler Template has been created'
 
 # Create setting deafult
 if yml = YAML.load_file("#{Rails.root}/config/settings.yml")
@@ -153,5 +151,5 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
       function_id: param['function_id']
     )
   end
-  puts 'Languages has been created'
+  puts 'Frontend functions has been created'
 end
