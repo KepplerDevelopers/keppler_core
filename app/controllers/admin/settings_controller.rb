@@ -10,6 +10,9 @@ module Admin
     after_action :update_settings_yml, only: %i[create update destroy clone]
 
     def edit
+      if Rails.env.eql?('production') && params[:config].eql?('appearance')
+        redirect_to '/admin'
+      end
       @social_medias = social_account_permit_attributes
       @colors = social_account_colors
       @languages = %w[en es]
