@@ -2,7 +2,6 @@
 
 # Role model
 class Role < ApplicationRecord
-
   has_and_belongs_to_many :users, join_table: :users_roles
   belongs_to :resource,
              polymorphic: true,
@@ -16,11 +15,6 @@ class Role < ApplicationRecord
   has_many :permissions, dependent: :destroy
   def self.search_field
     :name_cont
-  end
-
-
-  def destroy_yml_file
-    destroy_yml('role')
   end
 
   def permissions?
