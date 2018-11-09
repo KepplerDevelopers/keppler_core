@@ -3,7 +3,6 @@ require 'byebug'
 
 RSpec.describe User, type: :model do
   let(:keppler_user) { create(:user) }
-  let(:admin_user) { build_stubbed(:user, role_ids: '2') }
 
   context 'database' do
     context 'columns' do
@@ -45,7 +44,6 @@ RSpec.describe User, type: :model do
   context 'instance fuctions' do
     it { expect(keppler_user.rol).to eq('keppler_admin') }
     it { expect(keppler_user.keppler_admin?).to eq(true) }
-    it { expect(admin_user.admin?).to eq(true) }
     it { expect(keppler_user.permalink?).to eq(true) }
   end
 end
