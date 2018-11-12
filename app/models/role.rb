@@ -13,6 +13,7 @@ class Role < ApplicationRecord
   scopify
   validates_uniqueness_of :name
   has_many :permissions, dependent: :destroy
+
   def self.search_field
     :name_cont
   end
