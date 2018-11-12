@@ -23,7 +23,7 @@ development:
   ga_auth:
     :service_account_email_address: 911375046727-9n50de61u7flmue7s76qelsthlhqhnnl@developer.gserviceaccount.com
     :file_key_name: gauth_key.p12
-    :account_id: 60688852
+    :account_id: 121648466
 
 test:
   domain_name: example.com
@@ -48,4 +48,4 @@ production:
   ga_auth:
     :service_account_email_address: 911375046727-9n50de61u7flmue7s76qelsthlhqhnnl@developer.gserviceaccount.com
     :file_key_name: gauth_key.p12
-    :account_id: 60688852
+    :account_id: 121648466
