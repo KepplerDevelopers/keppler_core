@@ -6,7 +6,7 @@ Keppler Admin es un CMS con un entorno de desarrollo que cuenta con una base de 
 
 ### Características
 
-* Base de datos por defecto PostreSQL
+* Base de datos por defecto [PostreSQL](https://www.postgresql.org/)
 * Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
 * Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
 * Integración para autorizaciones con [Pundit](https://github.com/varvet/pundit)
