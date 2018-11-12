@@ -3,7 +3,6 @@
 # Permission
 class Permission < ApplicationRecord
   belongs_to :role
-
   after_update :update_yml
 
   def update_yml
@@ -17,5 +16,4 @@ class Permission < ApplicationRecord
   def file
     "#{Rails.root}/config/roles.yml"
   end
-
 end
