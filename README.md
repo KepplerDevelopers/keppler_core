@@ -132,4 +132,3 @@ La plataforma permite la adaptación de módulos con facil instalación, algunos
 * [Keppler Catalogs](https://github.com/slicegroup/keppler_catalogs)
 * [Keppler Contact](https://github.com/slicegroup/keppler_contact_us)
 
-![keppler-footer](http://i67.tinypic.com/29yi9om.png)
