@@ -10,7 +10,7 @@ Keppler Admin es un CMS con un entorno de desarrollo que cuenta con una base de 
 * Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
 * Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
 * Integración para autorizaciones con [Pundit](https://github.com/varvet/pundit)
-* Inegración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
+* Integración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
 * Integración para helpers de formularios con [SimpleForm](https://github.com/RolifyCommunity/rolify)
 * Integración para búsquedas full-text con [Ransack](https://github.com/activerecord-hackery/ransack)
 * Integración con framework fronte-end para el administrativo con [AdminLTE](https://adminlte.io/)
