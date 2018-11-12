@@ -8,8 +8,8 @@
   port: '25'
   domain_name: keppler.com
   smtp_email: info@keppler.com
-  ga_account_id: '60688852'
-  ga_tracking_id: UA-60688852-1
+  ga_account_id: '121648466'
+  ga_tracking_id: UA-121648466-1
   ga_status: true
   facebook: 
   twitter: 
