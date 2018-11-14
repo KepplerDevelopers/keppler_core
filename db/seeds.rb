@@ -152,21 +152,3 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
   end
   puts 'Frontend functions has been created'
 end
-
-if roles_yml = YAML.load_file("#{Rails.root}/config/roles.yml")
-  roles = roles_yml.keys
-  return if roles.nil?
-
-  roles.each do |role_name|
-    role = Role.create(name: role_name)
-    puts "Role #{role_name} has been created"
-
-     unless roles_yml[role_name].nil?
-       Permission.create(
-         role_id: role.id,
-         modules: roles_yml[role_name]
-       )
-     end
-     puts "Added Permissions to #{role_name} Role"
-  end
-end
