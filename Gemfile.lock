@@ -35,7 +35,7 @@ PATH
 
 GEM
   remote: https://rubygems.org/
-  remote: http://insecure.rails-assets.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.2.0)
       actionpack (= 5.2.0)
@@ -389,7 +389,7 @@ GEM
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
-      loofah (~> 2.2, >= 2.2.2)
+      loofah (>= 2.2.3)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -599,6 +599,7 @@ DEPENDENCIES
   keppler_frontend!
   keppler_ga_dashboard!
   keppler_languages!
+  loofah (>= 2.2.3)
   mini_magick (= 4.8.0)
   nprogress-rails (= 0.2.0.2)
   paranoia (= 2.4.1)

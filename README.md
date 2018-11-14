@@ -1,3 +1,5 @@
+![keppler-footer](http://i66.tinypic.com/2602uzb.png)
+
 ### KEPPLER ADMIN
 
 Keppler Admin es un CMS con un entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
@@ -5,11 +7,11 @@ Keppler Admin es un CMS con un entorno de desarrollo que cuenta con una base de 
 
 ### Características
 
-* Base de datos por defecto PostreSQL
+* Base de datos por defecto [PostreSQL](https://www.postgresql.org/)
 * Integración para autenticación de usuarios con [Devise](https://github.com/plataformatec/devise)
 * Integración para roles de usuarios con [Rolify](https://github.com/RolifyCommunity/rolify)
 * Integración para autorizaciones con [Pundit](https://github.com/varvet/pundit)
-* Inegración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
+* Integración para el manejo de de paginación con [Kaminari](https://github.com/amatsuda/kaminari)
 * Integración para helpers de formularios con [SimpleForm](https://github.com/RolifyCommunity/rolify)
 * Integración para búsquedas full-text con [Ransack](https://github.com/activerecord-hackery/ransack)
 * Integración con framework fronte-end para el administrativo con [AdminLTE](https://adminlte.io/)
@@ -129,3 +131,4 @@ La plataforma permite la adaptación de módulos con facil instalación, algunos
 * [Keppler Blog](https://github.com/slicegroup/keppler_blog)
 * [Keppler Catalogs](https://github.com/slicegroup/keppler_catalogs)
 * [Keppler Contact](https://github.com/slicegroup/keppler_contact_us)
+
