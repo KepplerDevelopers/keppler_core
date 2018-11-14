@@ -195,7 +195,10 @@ en:
       appearance_defaut: Set default
       apply: Apply
       drop_file: Drop a file or press here
+      drop_files: Drop some files or press here
       reload_page: Reload page
+      download_records: Download records
+      upload_records: Upload records
       download:
         csv: Download CSV
         xls: Download XLS

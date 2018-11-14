@@ -98,14 +98,6 @@ Rails.application.routes.draw do
       )
     end
 
-    # resources :customizes do
-    #   get '(page/:page)', action: :index, on: :collection, as: ''
-    #   get '/clone', action: 'clone'
-    #   post '/upload', action: 'upload', as: :upload
-    #   post '/install_default', action: 'install_default'
-    # end
-
-
     resources :users do
       get '(page/:page)', action: :index, on: :collection, as: ''
       get '/delete_avatar', action: :delete_avatar

@@ -10,6 +10,7 @@ module Admin
     after_action :update_settings_yml, only: %i[create update destroy clone]
 
     def edit
+      only_development if params[:config].eql?('appearance')
       @social_medias = social_account_permit_attributes
       @colors = social_account_colors
       @languages = %w[en es]
@@ -38,6 +39,7 @@ module Admin
 
     def change_locale
       Appearance.first.update(language: params[:locale])
+      I18n.locale = Appearance.first.language
       redirect_back fallback_location: admin_root_path
     end
 
@@ -64,6 +66,8 @@ module Admin
     end
 
     def parsed_color
+      return if params[:color].nil?
+
       if params[:color].include?('#') || params[:color].include?('rgb')
         params[:color]
       else

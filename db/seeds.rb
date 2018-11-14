@@ -10,10 +10,8 @@
 # user = CreateAdminService.new.call
 # puts 'CREATED ADMIN USER: ' << user.email
 
-%i[keppler_admin].each do |name|
-  Role.create name: name
-  puts "Role #{name} has been created"
-end
+Role.create name: 'keppler_admin'
+puts 'Role Keppler Admin has been created'
 
 User.create(
   name: 'Keppler Admin', email: 'admin@keppleradmin.com', password: '+12345678+',
@@ -22,8 +20,6 @@ User.create(
 
 puts 'admin@keppler.io has been created'
 
-Customize.create(file: '', installed: true)
-puts 'Keppler Template has been created'
 
 # Create setting deafult
 if yml = YAML.load_file("#{Rails.root}/config/settings.yml")
@@ -75,8 +71,8 @@ else
       email: 'info@keppler.com', password: '12345678'
     },
     google_analytics_setting_attributes: {
-      ga_account_id: '60688852',
-      ga_tracking_id: 'UA-60688852-1',
+      ga_account_id: '121648466',
+      ga_tracking_id: 'UA-121648466-1',
       ga_status: true
     }
   )
@@ -153,5 +149,5 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
       function_id: param['function_id']
     )
   end
-  puts 'Languages has been created'
+  puts 'Frontend functions has been created'
 end
