@@ -47,7 +47,7 @@ gem 'sitemap_generator', '6.0.1'
 gem 'public_activity', '1.5.0'
 
 # AdminLTE
-source 'http://insecure.rails-assets.org/' do
+source 'https://rails-assets.org' do
   gem 'rails-assets-adminlte'
   gem 'rails-assets-animate-css'
   gem 'rails-assets-simple-line-icons'
@@ -55,7 +55,7 @@ end
 
 # Soft delete
 gem 'paranoia', '2.4.1'
-
+gem "loofah", ">= 2.2.3"
 gem 'goldiloader', '2.1.1'
 #
 # gem 'codemirror-rails', '5.15.2'
