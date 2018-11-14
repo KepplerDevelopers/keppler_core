@@ -18,6 +18,10 @@ class Role < ApplicationRecord
     :name_cont
   end
 
+  def update_permissions_yml
+    Permission.build_yml
+  end
+
   def permissions?
     !permissions.empty?
   end

@@ -1,0 +1,15 @@
+---
+dasdasdasd:
+  Seo:
+    actions:
+    - sitemap
+    - robots
+  Script:
+    actions:
+    - index
+    - create
+    - update
+    - destroy
+    - upload
+    - download
+    - clone
