@@ -2,7 +2,7 @@ menu:
   keppler_frontend:
     name: Keppler Frontend
     current: ['']
-    icon: layers
+    icon: layout
     model: KepplerFrontend::View
     enviroment: development
     submenu:

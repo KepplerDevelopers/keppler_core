@@ -2,19 +2,19 @@ menu:
   dashboard:
     name: dashboard
     url_path: /admin
-    icon: pie-chart
+    icon: dashboard
     current: ['admin/dashboard']
     model: Dashboard
   script:
     name: scripts
     url_path: /admin/scripts
-    icon: chart
+    icon: code
     current: ['admin/scripts']
     model: Script
   seo:
     name: Seo
     current: ['admin/meta_tags']
-    icon: graph
+    icon: chart
     model: Seo
     url_path: /admin/meta_tags
     submenu:

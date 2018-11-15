@@ -2,7 +2,7 @@ menu:
   keppler_capsules:
     name: Keppler Capsules
     current: ['']
-    icon: cursor
+    icon: cube
     model: KepplerCapsules::Capsule
     enviroment: development
     submenu:
