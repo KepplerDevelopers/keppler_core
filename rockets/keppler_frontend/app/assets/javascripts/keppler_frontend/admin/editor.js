@@ -75,6 +75,8 @@ var codeHTML = {
         autoCloseTags: true,
         matchTags: {bothTags: true},
         showTrailingSpace: true,
+        showToken: /\w/,
+        scrollbarStyle: "overlay",
         highlightSelectionMatches: {
           showToken: /\w/,
           annotateScrollbar: true
@@ -136,6 +138,7 @@ var codeCSS = {
         indentUnit: 2,
         showTrailingSpace: true,
         tabSize: 2,
+        scrollbarStyle: "overlay",
         highlightSelectionMatches: {
           showToken: /\w/,
           annotateScrollbar: true
@@ -182,6 +185,7 @@ var codeJs = {
         indentUnit: 2,
         tabSize: 2,
         showTrailingSpace: true,
+        scrollbarStyle: "overlay",
         highlightSelectionMatches: {
           showToken: /\w/,
           annotateScrollbar: true
@@ -228,6 +232,7 @@ var codeJsErb = {
         indentUnit: 2,
         tabSize: 2,
         showTrailingSpace: true,
+        scrollbarStyle: "overlay",
         highlightSelectionMatches: {
           showToken: /\w/,
           annotateScrollbar: true
@@ -274,6 +279,7 @@ var codeAction = {
         indentUnit: 2,
         tabSize: 2,
         showTrailingSpace: true,
+        scrollbarStyle: "overlay",
         highlightSelectionMatches: {
           showToken: /\w/,
           annotateScrollbar: true
@@ -315,6 +321,7 @@ var codeCallback = {
         mode: "text/x-ruby",
         keyMap: "sublime",
         theme: 'monokai',
+        scrollbarStyle: "overlay",
         autoCloseBrackets: true,
         matchBrackets: true,
         indentUnit: 2,
@@ -365,6 +372,7 @@ var codeFunction = {
         matchBrackets: true,
         indentUnit: 2,
         tabSize: 2,
+        scrollbarStyle: "overlay",
         showTrailingSpace: true,
         highlightSelectionMatches: {
           showToken: /\w/,

@@ -35,6 +35,7 @@ var codeHead = {
         matchBrackets: true,
         theme: "monokai",
         tabSize: 2,
+        scrollbarStyle: "overlay",
         autoCloseTags: true,
         matchTags: {bothTags: true},
         showTrailingSpace: true,
@@ -86,6 +87,7 @@ var codeHeader = {
         matchBrackets: true,
         indentUnit: 2,
         tabSize: 2,
+        scrollbarStyle: "overlay",
         showTrailingSpace: true,
         highlightSelectionMatches: {
           showToken: /\w/,
@@ -132,6 +134,7 @@ var codeFooter = {
         matchBrackets: true,
         indentUnit: 2,
         tabSize: 2,
+        scrollbarStyle: "overlay",
         showTrailingSpace: true,
         highlightSelectionMatches: {
           showToken: /\w/,
