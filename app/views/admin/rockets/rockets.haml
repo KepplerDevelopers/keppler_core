@@ -8,10 +8,10 @@
           .file-uploader
             .file-container
               = file_field_tag :rocket # , multiple: true
-              %i.file-icon.icon-rocket
+              %i.file-icon.bx.bx-rocket
               %h5.file-text= t 'keppler.rockets.drop'
             %a.spinnerTrigger#installRocket
-              %i.icon-rocket
+              %i.bx.bx-rocket
               = t 'keppler.rockets.install'
 
   .col-md-6.col-lg-6
@@ -35,8 +35,8 @@
               - @rockets.each do |rocket|
                 %tr
                   %td
-                    %i.icon-rocket
-                    %span.rocket-name= rocket
+                    %i.bx.bx-rocket
+                    %span.rocket-name= rocket.split('keppler_').last.humanize
                     .pull-right
                       - rocket_name = rocket.split(' ')[0..-3].join(' ')
                       - if rocket_is_built?(rocket_name)

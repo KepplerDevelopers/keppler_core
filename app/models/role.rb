@@ -11,8 +11,10 @@ class Role < ApplicationRecord
             inclusion: { in: Rolify.resource_types },
             allow_nil: true
   scopify
+  validates_presence_of :name
   validates_uniqueness_of :name
   has_many :permissions, dependent: :destroy
+
   def self.search_field
     :name_cont
   end
