@@ -40,7 +40,7 @@ module <%= ROCKET_CLASS_NAME %>
 
       # PATCH/PUT <%= route_url %>/1
       def update
-        if <%= MODULE_CLASS_NAME %>.update(<%= MODULE_NAME.singularize %>_params)
+        if @<%= MODULE_NAME.singularize %>.update(<%= MODULE_NAME.singularize %>_params)
           redirect(@<%= MODULE_NAME.singularize %>, params)
         else
           render :edit
