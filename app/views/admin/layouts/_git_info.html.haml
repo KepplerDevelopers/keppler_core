@@ -1,0 +1,7 @@
+- if Rails.env.eql?('development') && @git_installed
+  .current_branch{title: @git_status.split("\n").last}
+    %b    
+      %i.bx.bx-git-branch 
+      Branch: 
+    = @git_branch_name
+    .git-commit-status{style: "background-color: #{@git_status_color}"}

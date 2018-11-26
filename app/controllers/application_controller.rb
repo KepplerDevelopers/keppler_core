@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :set_modules
   before_action :set_languages
   before_action :set_admin_locale
-  before_action :branch_name
+  before_action :git_info
 
   skip_around_action :set_locale_from_url
   include Pundit
@@ -31,8 +31,13 @@ class ApplicationController < ActionController::Base
     defined?(klass) && klass.is_a?(Class)
   end
 
-  def branch_name
-    @branch_name = `git rev-parse --abbrev-ref HEAD`
+  def git_info
+    @git_branch_name = `git rev-parse --abbrev-ref HEAD`
+    @git_status = `git diff --stat HEAD`
+    @git_status_color = @git_status ? '#f98105' : '#12c752'
+    @git_installed = true
+  rescue StandardError
+    @git_installed = false
   end
 
   def appearance
