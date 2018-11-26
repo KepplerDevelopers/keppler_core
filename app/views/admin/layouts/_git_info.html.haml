@@ -1,5 +1,5 @@
 - if Rails.env.eql?('development') && @git.installed?
-  .current_branch{title: @git.changes_count[:status]}
+  .current_branch{title: @git.changes_count[:changes]}
     %b    
       %i.bx.bx-git-branch 
       Branch: 
