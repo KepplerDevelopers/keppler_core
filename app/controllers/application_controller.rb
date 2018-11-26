@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   def git_info
     @git_branch_name = `git rev-parse --abbrev-ref HEAD`
     @git_status = `git diff --stat HEAD`
-    @git_status_color = @git_status ? '#f98105' : '#12c752'
+    @git_status_color = @git_status.blank? ? '#12c752' : '#f98105'
     @git_installed = true
   rescue StandardError
     @git_installed = false
