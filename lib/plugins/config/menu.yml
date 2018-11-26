@@ -3,7 +3,7 @@ menu:
     name: keppler menu
     current: ['/']
     url_path: /
-    icon: layers
+    icon: rocket
     model: User
     submenu:
       # - new:
