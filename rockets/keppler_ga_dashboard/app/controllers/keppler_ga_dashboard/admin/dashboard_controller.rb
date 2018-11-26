@@ -24,6 +24,8 @@ module KepplerGaDashboard
         @access_token = client.authorization.fetch_access_token!['access_token']
 
         gon.color = @color
+      rescue StandardError
+        render :connection_error
       end
 
       # Options for authenticate

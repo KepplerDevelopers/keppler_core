@@ -6,8 +6,8 @@
 		- tracking = @setting.google_analytics_setting.ga_tracking_id
 
 	:javascript
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-	  gtag('config', "#{tracking}");
+		gtag('config', "#{tracking}");
