@@ -4,8 +4,8 @@ module Admin
   # Git Handler
   class GitHandler
     def installed?
-      @git_branch_name = `git status`
-      true
+      branch_name = `git rev-parse --abbrev-ref HEAD`
+      branch_name.blank? ? false : true
     rescue StandardError
       false
     end
