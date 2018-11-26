@@ -18,8 +18,8 @@ module Admin
 
     def changes_count
       changes = `git diff --stat HEAD`
-      status_color = changes.nil? ? '#12c752' : '#f98105'
-      changes = changes.nil? ? 'No changes' : changes.split("\n").last
+      status_color = changes.blank? ? '#12c752' : '#f98105'
+      changes = changes.blank? ? 'No changes' : changes.split("\n").last
       { changes: changes, color: status_color }
     rescue StandardError
       false
