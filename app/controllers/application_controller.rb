@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :set_modules
   before_action :set_languages
   before_action :set_admin_locale
+  before_action :branch_name
 
   skip_around_action :set_locale_from_url
   include Pundit
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
 
   def class_exists?(klass)
     defined?(klass) && klass.is_a?(Class)
+  end
+
+  def branch_name
+    @branch_name = `git rev-parse --abbrev-ref HEAD`
   end
 
   def appearance

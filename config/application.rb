@@ -42,8 +42,5 @@ module InyxmaterRails
     # config exeption routes
     config.exceptions_app = routes
 
-    config.after_initialize do
-      ::Git_current_branch = `git rev-parse --abbrev-ref HEAD`
-    end
   end
 end
