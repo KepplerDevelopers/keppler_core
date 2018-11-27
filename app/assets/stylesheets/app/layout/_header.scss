@@ -11,6 +11,14 @@
   z-index: 99999;
   opacity: .5;
 
+  @include respond-to(xs) {
+    display: none;
+  }
+
+  @include respond-to(sm) {
+    display: none;
+  }
+
   .git-commit-status {
     border-radius: 50%;
     position: relative;
@@ -24,4 +32,8 @@
 
 .current-branch:hover {
   opacity: 1;
+}
+
+.console {
+  display: none;
 }
