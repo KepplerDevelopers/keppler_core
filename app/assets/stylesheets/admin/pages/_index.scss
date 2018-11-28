@@ -418,7 +418,7 @@ $git-shadow: rgba(0, 0, 0, .12);
   bottom: 1%;
   display: flex;
   justify-content: center;
-  right: 16%;
+  right: 1%;
   width: 0;
 }
 
@@ -429,7 +429,7 @@ $git-shadow: rgba(0, 0, 0, .12);
 .current-branch {
   border-radius: 15px;
   bottom: 1%;
-  right: 1%;
+  right: 4%;
 
   .git-commit-status {
     border-radius: 50%;
