@@ -1,0 +1,13 @@
+- if Rails.env.eql?('development')
+  .dev-tool.console-btn{ title: 'Ruby Console' }
+    %b
+      %i.bx.bx-diamond
+  - if git.installed?
+    .dev-tool.current-branch{ title: git.changes_count[:changes] }
+      %b
+        %i.bx.bx-git-branch
+        Branch:
+      = git.current_branch
+
+      .git-commit-status{ style: "background-color: #{git.changes_count[:color]}" }
+  - console
