@@ -14,6 +14,7 @@
 #= require vue
 #= require jquery.remotipart
 #= require jquery.slick
+#= requite ruby_console
 #= require admin/codemirror/codemirror
 #= require_tree ./codemirror/mode
 #= require_tree ./codemirror/keymap
