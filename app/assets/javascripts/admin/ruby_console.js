@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$( document ).on('turbolinks:load', function() {
   var open = false;
-  $(".console").addClass('console-close');
+  
 
   $(".console-btn").click(function(){
     if(open===false) {
