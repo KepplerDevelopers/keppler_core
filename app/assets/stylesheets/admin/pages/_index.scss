@@ -394,10 +394,6 @@ $git-shadow: rgba(0, 0, 0, .12);
   }
 }
 
-.console {
-  height: 0 !important;
-}
-
 .dev-tool {
   background: $git-bg;
   box-shadow: 0 1px 3px $git-shadow;
@@ -452,6 +448,8 @@ $git-shadow: rgba(0, 0, 0, .12);
 }
 
 .console {
+  height: 0 !important; // scss-lint:disable ImportantRule
+
   .console-actions {
     display: none;
   }
