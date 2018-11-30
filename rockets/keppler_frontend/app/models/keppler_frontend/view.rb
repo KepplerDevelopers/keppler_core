@@ -3,10 +3,6 @@ module KepplerFrontend
   class View < ActiveRecord::Base
     include ActivityHistory
     include CloneRecord
-    include KepplerFrontend::Concerns::HtmlFile
-    include KepplerFrontend::Concerns::ScssFile
-    include KepplerFrontend::Concerns::JsFile
-    include KepplerFrontend::Concerns::ViewJsFile
     include KepplerFrontend::Concerns::ActionFile
     include KepplerFrontend::Concerns::StringActions
     include KepplerFrontend::Concerns::CallbackActions
@@ -21,6 +17,7 @@ module KepplerFrontend
     delegate :change_name, to: :view_update_files
     delegate :uninstall, :uninstall_html, :uninstall_remote_js, :uninstall_only_action, to: :view_uninstall_files
     delegate :install, :uninstall, to: :routes, prefix: true
+    delegate :html, :scss, :action, :js, :remote_js, to: :output, prefix: true
 
     # Fields for the search form in the navbar
     def self.search_field
@@ -123,6 +120,10 @@ module KepplerFrontend
 
     def view_uninstall_files
       KepplerFrontend::Views::Uninstall.new(self)
+    end
+
+    def output
+      KepplerFrontend::Views::Output.new(self)
     end
 
     def convert_to_downcase

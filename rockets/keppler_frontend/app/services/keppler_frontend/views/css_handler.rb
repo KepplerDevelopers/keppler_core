@@ -18,10 +18,14 @@ module KepplerFrontend
       end
 
       def uninstall
-        if File.exist?(view_css(@view.name))
-          File.delete(view_css(@view.name))
-        end
+        File.delete(view_css(@view.name)) if File.exist?(view_css(@view.name))
         true
+      rescue StandardError
+        false
+      end
+
+      def output
+        File.read(view_css(@view.name))
       rescue StandardError
         false
       end

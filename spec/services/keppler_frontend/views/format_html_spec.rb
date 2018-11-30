@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'byebug'
 
-RSpec.describe KepplerFrontend::Views::Install, type: :services do
+RSpec.describe KepplerFrontend::Views, type: :services do
 
   before(:each) do
     @view = create(:keppler_frontend_views, method: "GET")

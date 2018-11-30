@@ -18,11 +18,11 @@
     #tab_1.tab-pane.active
       %div.action.code-container
         %textarea#code-action{:name => "code"}
-          = @view.action_code
+          = @view.output_action
     #tab_2.tab-pane
       %div.js.code-container
         %textarea#code-js-erb{:name => "code"}
-          = @view.view_js_code
+          = @view.output_js
 
 = render "editor_views"
 :javascript

@@ -4,23 +4,8 @@
 module KepplerFrontend
   module Concerns
     module ActionFile
-      extend ActiveSupport::Concern
-
-       def action_code
-        file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-        index_html = File.readlines(file)
-        begin_idx = 0
-        end_idx = 0
-        index_html.each do |idx|
-          begin_idx = index_html.find_index(idx) if idx.include?("    # begin #{name}\n")
-          end_idx = index_html.find_index(idx) if idx.include?("    # end #{name}\n")
-        end
-        return if begin_idx==0
-        index_html = index_html[begin_idx+2..end_idx-2]
-        index_html = index_html.map { |line| line[6, line.length] }
-        index_html.join('')
-      end
-
+      extend ActiveSupport::Concerns
+      
       def save_action(code)
         file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
         code_ruby = File.readlines(file)

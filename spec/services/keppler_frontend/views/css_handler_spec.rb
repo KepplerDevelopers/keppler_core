@@ -24,6 +24,10 @@ RSpec.describe KepplerFrontend::Views::CssHandler, type: :services do
     it { expect(css_content).to eq("/* Keppler - test_index.scss file */\n") }
   end
 
+  context 'output' do 
+    it { expect(@css.output).to eq("/* Keppler - test_index.scss file */\n") }
+  end
+
   context 'update' do
     let(:view_updated) { @css.update("other_name") }
 
