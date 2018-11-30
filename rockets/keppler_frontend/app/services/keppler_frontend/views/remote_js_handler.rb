@@ -9,7 +9,7 @@ module KepplerFrontend
       end
 
       def install
-        out_file = File.open(view_js, 'w')
+        out_file = File.open(view_js(@view.name), 'w')
         out_file.puts("// #{@view.name} javascript Erb template")
         out_file.close
         true
@@ -18,7 +18,18 @@ module KepplerFrontend
       end
 
       def uninstall
-        File.delete(view_js) if File.exist?(view_js)
+        if File.exist?(view_js(@view.name))
+          File.delete(view_js(@view.name))
+        end
+        true
+      rescue StandardError
+        false
+      end
+
+      def update(name)
+        old_name = view_js(@view.name)
+        new_name = view_js(name)
+        File.rename(old_name, new_name)
         true
       rescue StandardError
         false
@@ -26,9 +37,9 @@ module KepplerFrontend
 
       private
 
-      def view_js
+      def view_js(name)
         front = KepplerFrontend::Urls::Front.new
-        front.view_js(@view.name)
+        front.view_js(name)
       end
     end
   end

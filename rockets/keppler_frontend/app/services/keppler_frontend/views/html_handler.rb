@@ -25,6 +25,15 @@ module KepplerFrontend
         false
       end
 
+      def update(name)
+        old_name = front.view(@view.name)
+        new_name = front.view(name)
+        File.rename(old_name, new_name)
+        true
+      rescue StandardError
+        false
+      end
+
       private
 
       def front

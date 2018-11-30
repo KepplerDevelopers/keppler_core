@@ -7,7 +7,6 @@ module KepplerFrontend
     include KepplerFrontend::Concerns::ScssFile
     include KepplerFrontend::Concerns::JsFile
     include KepplerFrontend::Concerns::ViewJsFile
-    include KepplerFrontend::Concerns::RouteFile
     include KepplerFrontend::Concerns::ActionFile
     include KepplerFrontend::Concerns::StringActions
     include KepplerFrontend::Concerns::CallbackActions
@@ -19,7 +18,9 @@ module KepplerFrontend
     has_many :view_callbacks, dependent: :destroy, inverse_of: :view
     accepts_nested_attributes_for :view_callbacks, reject_if: :all_blank, allow_destroy: true
     delegate :install, :install_html, :install_remote_js, :install_only_action, to: :view_install_files
-    delegate :uninstall, :uninstall_html, :uninstall_remote_js, :iunnstall_only_action, to: :view_uninstall_files
+    delegate :change_name, to: :view_update_files
+    delegate :uninstall, :uninstall_html, :uninstall_remote_js, :uninstall_only_action, to: :view_uninstall_files
+    delegate :install, :uninstall, to: :routes, prefix: true
 
     # Fields for the search form in the navbar
     def self.search_field
@@ -64,13 +65,6 @@ module KepplerFrontend
       "/admin/frontend/views/#{self.id}/editor"
     end
 
-    def update_files(params)
-      update_html(params) if self.format_result.eql?('HTML')
-      update_css(params) if self.format_result.eql?('HTML')
-      update_js(params) if self.format_result.eql?('HTML')
-      update_action(params)
-    end
-
     def code_save(code, type_code)
       if type_code.eql?('html')
         save_html_code("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.html.erb", code, name)
@@ -81,7 +75,7 @@ module KepplerFrontend
       elsif type_code.eql?('js_erb')
         save_code("#{url_front}/app/views/keppler_frontend/app/frontend/#{name}.js.erb", code)
       elsif type_code.eql?('action')
-        save_action(code)
+        save_action(code) # Solo falta esta función por llevar a services
       end
     end
 
@@ -115,14 +109,17 @@ module KepplerFrontend
       "#{Rails.root}/rockets/keppler_frontend"
     end
 
-    def live_editor
-      data = { view_id: id, view_name: name }
-      KepplerFrontend::LiveEditor::Editor.new(data)
+    def routes
+      KepplerFrontend::Views::RoutesHandler.new(self)
     end  
 
     def view_install_files
       KepplerFrontend::Views::Install.new(self)
-    end  
+    end
+
+    def view_update_files
+      KepplerFrontend::Views::Update.new(self)
+    end
 
     def view_uninstall_files
       KepplerFrontend::Views::Uninstall.new(self)

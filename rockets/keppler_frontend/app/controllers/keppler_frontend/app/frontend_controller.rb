@@ -6,6 +6,26 @@ module KepplerFrontend
     # End callbacks area (don't delete)
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
+    # begin other_name
+    def other_name
+      # Insert ruby code...
+    end
+    # end other_name
+    # begin other_name
+    def other_name
+      # Insert ruby code...
+    end
+    # end other_name
+    # begin other_name
+    def other_name
+      # Insert ruby code...
+    end
+    # end other_name
+    # begin other_name
+    def other_name
+      # Insert ruby code...
+    end
+    # end other_name
 
     # begin keppler
     def keppler
