@@ -30,6 +30,17 @@ module KepplerFrontend
         false
       end
 
+      def update(name)
+        ctrl = File.readlines(front.controller)
+        idx_one, idx_two = search(ctrl).search_section(point_one, point_two)
+        return if idx_one.zero?
+        ctrl = update_name(ctrl, idx_one, idx_two, name)
+        File.write(front.controller, ctrl)
+        true
+      rescue StandardError
+        false
+      end
+
       private
 
       def front
@@ -50,6 +61,13 @@ module KepplerFrontend
 
       def search(html)
         KepplerFrontend::Utils::CodeSearch.new(html)
+      end
+
+      def update_name(ctrl, idx_one, idx_two, name)
+        ctrl[idx_one] = "    # begin #{name}\n"
+        ctrl[idx_one+1] = "    def #{name}\n"
+        ctrl[idx_two] = "    # end #{name}\n"
+        ctrl.join('')
       end
 
       def add_action(controller, idx)

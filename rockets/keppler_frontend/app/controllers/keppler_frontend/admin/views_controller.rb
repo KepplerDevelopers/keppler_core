@@ -62,8 +62,8 @@ module KepplerFrontend
 
       # PATCH/PUT /views/1
       def update
-        @view.delete_route
-        @view.update_files(view_params)
+        @view.routes_uninstall
+        @view.change_name(view_params[:name])
         if @view.update(view_params)
           view = view_params.to_h
           @view.new_callback(@view, view[:view_callbacks_attributes])
@@ -71,7 +71,7 @@ module KepplerFrontend
         else
           render :edit
         end
-        @view.add_route
+        @view.routes_install
       end
 
       def clone

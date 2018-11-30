@@ -16,8 +16,6 @@ RSpec.describe KepplerFrontend::Views::CssHandler, type: :services do
 
   let(:css_installed) { @css.install }
 
-  let(:css_uninstalled) { @css.uninstall }
-
   let(:css_content) { File.read(css_file) }
   
   context 'install' do
@@ -26,7 +24,25 @@ RSpec.describe KepplerFrontend::Views::CssHandler, type: :services do
     it { expect(css_content).to eq("/* Keppler - test_index.scss file */\n") }
   end
 
+  context 'update' do
+    let(:view_updated) { @css.update("other_name") }
+
+    let(:asset_url) do
+      assets = KepplerFrontend::Urls::Assets.new
+      assets.core_assets('stylesheets', 'app')
+    end
+
+    it { expect(view_updated).to eq(true) }
+    it { expect(File.exist?("#{asset_url}/views/other_name.scss")).to eq(true) }
+    it { expect(File.exist?("#{asset_url}/views/#{@view.name}.scss")).to eq(false) }
+  end
+
   context 'uninstall' do
+    let(:css_uninstalled) do
+      @view.name = 'other_name'
+      @css.uninstall
+    end
+
     it { expect(css_uninstalled).to eq(true) }
     it { expect(File.exist?(css_file)).to eq(false) }
   end

@@ -6,59 +6,7 @@ module KepplerFrontend
     module ActionFile
       extend ActiveSupport::Concern
 
-      def create_action_html
-        file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-        index_html = File.readlines(file)
-        head_idx = 0
-        index_html.each do |i|
-          head_idx = index_html.find_index(i) if i.include?("    layout 'layouts/keppler_frontend/app/layouts/application'")
-        end
-        index_html.insert(head_idx.to_i + 1, "    # begin #{name}\n")
-        index_html.insert(head_idx.to_i + 2, "    def #{name}\n")
-        index_html.insert(head_idx.to_i + 3, "      # Insert ruby code...\n")
-        index_html.insert(head_idx.to_i + 4, "    end\n")
-        index_html.insert(head_idx.to_i + 5, "    # end #{name}\n")
-        index_html = index_html.join('')
-        File.write(file, index_html)
-        true
-      end
-
-      def delete_action_html
-        file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-        index_html = File.readlines(file)
-        begin_idx = 0
-        end_idx = 0
-        index_html.each do |i|
-          begin_idx = index_html.find_index(i) if i.include?("    # begin #{name}\n")
-          end_idx = index_html.find_index(i) if i.include?("    # end #{name}\n")
-        end
-        return if begin_idx==0
-        index_html.slice!(begin_idx..end_idx)
-        index_html = index_html.join('')
-        File.write(file, index_html)
-        true
-      end
-
-      def update_action(action)
-        obj = View.find(id)
-        file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-        index_html = File.readlines(file)
-        begin_idx = 0
-        end_idx = 0
-        index_html.each do |i|
-          begin_idx = index_html.find_index(i) if i.include?("    # begin #{obj.name}\n")
-          end_idx = index_html.find_index(i) if i.include?("    # end #{obj.name}\n")
-        end
-        return if begin_idx==0
-        index_html[begin_idx] = "    # begin #{action[:name]}\n"
-        index_html[begin_idx+1] = "    def #{action[:name]}\n"
-        index_html[end_idx] = "    # end #{action[:name]}\n"
-        index_html = index_html.join('')
-        File.write(file, index_html)
-        true
-      end
-
-      def action_code
+       def action_code
         file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
         index_html = File.readlines(file)
         begin_idx = 0
