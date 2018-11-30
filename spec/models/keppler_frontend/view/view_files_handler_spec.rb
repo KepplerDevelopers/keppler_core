@@ -13,7 +13,7 @@ RSpec.describe KepplerFrontend::View, type: :model do
       it { expect(@view.install).to eq(true) }
     end
 
-    context 'install' do
+    context 'update' do
       it { expect(@view.change_name('other_name')).to eq(true) }
       it '' do 
         @view.name = 'other_name'
