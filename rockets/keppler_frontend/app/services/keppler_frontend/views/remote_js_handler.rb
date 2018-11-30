@@ -18,9 +18,7 @@ module KepplerFrontend
       end
 
       def uninstall
-        if File.exist?(view_js(@view.name))
-          File.delete(view_js(@view.name))
-        end
+        File.delete(view_js(@view.name)) if File.exist?(view_js(@view.name))
         true
       rescue StandardError
         false
@@ -31,6 +29,13 @@ module KepplerFrontend
         new_name = view_js(name)
         File.rename(old_name, new_name)
         true
+      rescue StandardError
+        false
+      end
+
+      def output
+        html = File.readlines(view_js(@view.name))
+        html.join
       rescue StandardError
         false
       end

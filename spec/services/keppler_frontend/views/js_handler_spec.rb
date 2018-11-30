@@ -24,6 +24,10 @@ RSpec.describe KepplerFrontend::Views::JsHandler, type: :services do
     it { expect(js_content).to eq("// Keppler - test_index.js file\n$(document).ready(function(){\n  // Use jquery functions here\n});\n") }
   end
 
+  context 'output' do 
+    it { expect(@js.output).to eq("// Keppler - test_index.js file\n$(document).ready(function(){\n  // Use jquery functions here\n});\n") }
+  end
+
   context 'update' do
     let(:view_updated) { @js.update("other_name") }
 

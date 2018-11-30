@@ -20,6 +20,10 @@ RSpec.describe KepplerFrontend::Views::HtmlHandler, type: :services do
     it { expect(view_html).to eq("<keppler-view id=\"test_index\">\n  <h1> test_index template </h1>\n</keppler-view>\n") }
   end
 
+  context 'output' do 
+    it { expect(@html.output).to eq("  <h1> test_index template </h1>\n") }
+  end
+
   context 'update' do
     let(:view_updated) { @html.update("other_name") }
 

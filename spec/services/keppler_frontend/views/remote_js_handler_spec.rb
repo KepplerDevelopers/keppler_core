@@ -24,6 +24,10 @@ RSpec.describe KepplerFrontend::Views::RemoteJsHandler, type: :services do
     it { expect(File.exist?(remote_file)).to eq(true) }
     it { expect(remote_content).to eq("// test_index javascript Erb template\n") }
   end
+
+  context 'output' do 
+    it { expect(@remote_js.output).to eq("// test_index javascript Erb template\n") }
+  end
   
   context 'update' do
     let(:remote_updated) { @remote_js.update("other_name") }

@@ -34,7 +34,28 @@ module KepplerFrontend
         false
       end
 
+      def output
+        html = File.readlines(front.view(@view.name))
+        idx_one, idx_two = search(html).search_section(point_one, point_two)
+        html = html[idx_one + 1..idx_two - 1]
+        html.join('')
+      rescue StandardError
+        false
+      end
+
       private
+
+      def search(html)
+        KepplerFrontend::Utils::CodeSearch.new(html)
+      end
+
+      def point_one
+        "<keppler-view id='#{@view.name}'\n"
+      end
+
+      def point_two
+        "</keppler-view>\n"
+      end
 
       def front
         KepplerFrontend::Urls::Front.new

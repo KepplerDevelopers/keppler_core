@@ -8,29 +8,9 @@ module KepplerFrontend
     layout 'layouts/keppler_frontend/app/layouts/application'
     # begin index
     def index
-      # Insert ruby code...
+      # Insert ruby code...w
     end
     # end index
-    # begin other_name
-    def other_name
-      # Insert ruby code...
-    end
-    # end other_name
-    # begin other_name
-    def other_name
-      # Insert ruby code...
-    end
-    # end other_name
-    # begin other_name
-    def other_name
-      # Insert ruby code...
-    end
-    # end other_name
-    # begin other_name
-    def other_name
-      # Insert ruby code...
-    end
-    # end other_name
 
     # begin keppler
     def keppler

@@ -25,6 +25,10 @@ RSpec.describe KepplerFrontend::Views::ActionsHandler, type: :services do
     it { expect(action_exist).to eq(true) }
   end
 
+  context 'output' do 
+    it { expect(@action.output).to eq("# Insert ruby code...\n") }
+  end
+
   context 'update' do
     let(:action_updated) { @action.update('other_name') }
 

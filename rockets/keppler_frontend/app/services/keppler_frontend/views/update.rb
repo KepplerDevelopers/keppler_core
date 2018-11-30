@@ -13,9 +13,9 @@ module KepplerFrontend
         when 'HTML'
           update_html(name)
         when 'JS'
-          uninstall_remote_js(name)
+          update_remote_js(name)
         when 'Action'
-          uninstall_only_action(name)
+          update_only_action(name)
         end
       rescue StandardError
         false

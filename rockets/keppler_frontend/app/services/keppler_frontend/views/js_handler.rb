@@ -18,10 +18,14 @@ module KepplerFrontend
       end
 
       def uninstall
-        if File.exist?(view_js(@view.name))
-          File.delete(view_js(@view.name))
-        end
+        File.delete(view_js(@view.name)) if File.exist?(view_js(@view.name))
         true
+      rescue StandardError
+        false
+      end
+
+      def output
+        File.read(view_js(@view.name))
       rescue StandardError
         false
       end
