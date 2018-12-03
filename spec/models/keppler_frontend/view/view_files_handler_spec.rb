@@ -20,6 +20,13 @@ RSpec.describe KepplerFrontend::View, type: :model do
       it { expect(@view.output_action).to eq("# Insert ruby code...\n") }
     end
 
+    context 'save' do
+      it { expect(@view.save_code(:html, "<h1>New Title</h1>")).to eq(true) }
+      it { expect(@view.save_code(:css, ".new-class { color: red; }")).to eq(true) }
+      it { expect(@view.save_code(:js, "function newFuntion() { alert('new function') }")).to eq(true) }
+      it { expect(@view.save_code(:actions, '@say_hello = "Hello There"')).to eq(true) }
+    end
+
     context 'update' do
       it { expect(@view.change_name('other_name')).to eq(true) }
       it '' do 
@@ -44,6 +51,10 @@ RSpec.describe KepplerFrontend::View, type: :model do
 
     context 'output' do
       it { expect(@view.output_remote_js).to eq("// test_index javascript Erb template\n") }
+    end
+
+    context 'save' do
+      it { expect(@view.save_code(:remote_js, "alert('remote js has been saved')\n")).to eq(true) }
     end
 
     after(:each) do

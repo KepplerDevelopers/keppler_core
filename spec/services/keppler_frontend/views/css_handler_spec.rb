@@ -28,6 +28,11 @@ RSpec.describe KepplerFrontend::Views::CssHandler, type: :services do
     it { expect(@css.output).to eq("/* Keppler - test_index.scss file */\n") }
   end
 
+  context 'save code' do
+    it { expect(@css.save('.new-class { color: red; }')).to eq(true) }
+    it { expect(@css.output).to eq(".new-class { color: red; }\n") }
+  end
+
   context 'update' do
     let(:view_updated) { @css.update("other_name") }
 
@@ -44,6 +49,7 @@ RSpec.describe KepplerFrontend::Views::CssHandler, type: :services do
   context 'uninstall' do
     let(:css_uninstalled) do
       @view.name = 'other_name'
+      @css = KepplerFrontend::Views::CssHandler.new(@view)
       @css.uninstall
     end
 

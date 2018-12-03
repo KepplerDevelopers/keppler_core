@@ -28,6 +28,11 @@ RSpec.describe KepplerFrontend::Views::JsHandler, type: :services do
     it { expect(@js.output).to eq("// Keppler - test_index.js file\n$(document).ready(function(){\n  // Use jquery functions here\n});\n") }
   end
 
+  context 'save code' do
+    it { expect(@js.save("function newFuntion() { alert('new function') }")).to eq(true) }
+    it { expect(@js.output).to eq("function newFuntion() { alert('new function') }\n") }
+  end
+
   context 'update' do
     let(:view_updated) { @js.update("other_name") }
 
@@ -44,6 +49,7 @@ RSpec.describe KepplerFrontend::Views::JsHandler, type: :services do
   context 'uninstall' do
     let(:js_uninstalled) do
       @view.name = 'other_name'
+      @js = KepplerFrontend::Views::JsHandler.new(@view)
       @js.uninstall 
     end
 
