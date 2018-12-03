@@ -6,12 +6,6 @@ module KepplerFrontend
     # End callbacks area (don't delete)
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
-    # begin index
-    def index
-      # Insert ruby code...
-      @say_hello = "hola"
-    end
-    # end index
 
     # begin keppler
     def keppler
