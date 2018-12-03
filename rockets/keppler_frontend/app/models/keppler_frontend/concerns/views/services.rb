@@ -13,7 +13,7 @@ module KepplerFrontend
           delegate :uninstall, :uninstall_html, :uninstall_remote_js, :uninstall_only_action, to: :view_uninstall_files
           delegate :install, :uninstall, to: :routes, prefix: true
           delegate :html, :scss, :action, :js, :remote_js, to: :output, prefix: true
-          delegate :code, to: :save, prefix: true
+          delegate :code, to: :save_service, prefix: 'save'
         end
 
         private
@@ -38,7 +38,7 @@ module KepplerFrontend
           KepplerFrontend::Views::Output.new(self)
         end
     
-        def save
+        def save_service
           KepplerFrontend::Views::Save.new(self)
         end
       end
