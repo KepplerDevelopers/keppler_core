@@ -6,10 +6,11 @@ module KepplerFrontend
     class RemoteJsHandler
       def initialize(view_data)
         @view = view_data
+        @file = view_js(@view.name)
       end
 
       def install
-        out_file = File.open(view_js(@view.name), 'w')
+        out_file = File.open(@file, 'w')
         out_file.puts("// #{@view.name} javascript Erb template")
         out_file.close
         true
@@ -18,24 +19,32 @@ module KepplerFrontend
       end
 
       def uninstall
-        File.delete(view_js(@view.name)) if File.exist?(view_js(@view.name))
+        File.delete(@file) if File.exist?(@file)
         true
       rescue StandardError
         false
       end
 
       def update(name)
-        old_name = view_js(@view.name)
-        new_name = view_js(name)
-        File.rename(old_name, new_name)
+        File.rename(@file, view_js(name))
         true
       rescue StandardError
         false
       end
 
       def output
-        html = File.readlines(view_js(@view.name))
-        html.join
+        remote_js = File.readlines(@file)
+        remote_js.join
+      rescue StandardError
+        false
+      end
+
+      def save(input)
+        File.delete(@file) if File.exist?(@file)
+        out_file = File.open(@file, 'w')
+        out_file.puts(input)
+        out_file.close
+        true
       rescue StandardError
         false
       end

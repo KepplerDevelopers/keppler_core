@@ -24,6 +24,11 @@ RSpec.describe KepplerFrontend::Views::HtmlHandler, type: :services do
     it { expect(@html.output).to eq("  <h1> test_index template </h1>\n") }
   end
 
+  context 'save code' do
+    it { expect(@html.save('<h1> New Title </h1>')).to eq(true) }
+    it { expect(@html.output).to eq("  <h1> New Title </h1>\n") }
+  end
+
   context 'update' do
     let(:view_updated) { @html.update("other_name") }
 
@@ -35,6 +40,7 @@ RSpec.describe KepplerFrontend::Views::HtmlHandler, type: :services do
   context 'uninstall' do
     let(:view_uninstalled) do
       @view.name = 'other_name'
+      @html = KepplerFrontend::Views::HtmlHandler.new(@view)
       @html.uninstall
     end
     

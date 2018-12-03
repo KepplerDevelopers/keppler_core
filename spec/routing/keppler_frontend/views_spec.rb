@@ -35,4 +35,12 @@ RSpec.describe 'routing to views', type: :routing do
       view_id: @view.id.to_s
     )
   end
+
+  it 'routes POST /admin/frontend/views/:id/editor/save' do
+    expect(post: "/admin/frontend/views/#{@view.id}/editor/save").to route_to(
+      controller: 'keppler_frontend/admin/views',
+      action: 'editor_save',
+      view_id: @view.id.to_s
+    )
+  end
 end

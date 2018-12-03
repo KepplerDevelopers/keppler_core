@@ -28,6 +28,11 @@ RSpec.describe KepplerFrontend::Views::RemoteJsHandler, type: :services do
   context 'output' do 
     it { expect(@remote_js.output).to eq("// test_index javascript Erb template\n") }
   end
+
+  context 'save code' do
+    it { expect(@remote_js.save("alert('remote js has been saved')")).to eq(true) }
+    it { expect(@remote_js.output).to eq("alert('remote js has been saved')\n") }
+  end
   
   context 'update' do
     let(:remote_updated) { @remote_js.update("other_name") }
@@ -40,6 +45,7 @@ RSpec.describe KepplerFrontend::Views::RemoteJsHandler, type: :services do
   context 'uninstall' do
     let(:remote_uninstalled) do
       @view.name = 'other_name'
+      @remote_js = KepplerFrontend::Views::RemoteJsHandler.new(@view)
       @remote_js.uninstall
     end
 

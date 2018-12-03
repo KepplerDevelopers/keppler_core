@@ -29,6 +29,11 @@ RSpec.describe KepplerFrontend::Views::ActionsHandler, type: :services do
     it { expect(@action.output).to eq("# Insert ruby code...\n") }
   end
 
+  context 'save code' do
+    it { expect(@action.save('@say_hello = "Hello There"')).to eq(true) }
+    it { expect(@action.output).to eq("@say_hello = \"Hello There\"\n") }
+  end
+
   context 'update' do
     let(:action_updated) { @action.update('other_name') }
 

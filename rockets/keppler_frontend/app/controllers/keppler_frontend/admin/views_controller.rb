@@ -134,11 +134,9 @@ module KepplerFrontend
 
       def editor_save
         @view = View.find(params[:view_id])
-        @view.code_save(params[:html], 'html') if params[:html]
-        @view.code_save(params[:scss], 'scss') if params[:scss]
-        @view.code_save(params[:js], 'js') if params[:js]
-        @view.code_save(params[:js_erb], 'js_erb') if params[:js_erb]
-        @view.code_save(params[:ruby], 'action') if params[:ruby]
+        [:html, :css, :js, :remote_js, :actions].each do |lang|
+          @view.save_code(lang, params[lang]) if params[lang]
+        end
         render json: {result: true}
       end
 
@@ -170,15 +168,13 @@ module KepplerFrontend
       end
 
       def reload_views
-        yml = KepplerFrontend::Utils::YmlHandler
-        yml = yml.new('views')
+        yml = yml_handler.new('views')
         yml.reload
       end
 
       def update_view_yml
         views = View.all
-        yml = KepplerFrontend::Utils::YmlHandler
-        yml = yml.new('views', views)
+        yml = yml_handler.new('views', views)
         yml.update
       end
 
