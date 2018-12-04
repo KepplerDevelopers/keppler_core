@@ -6,23 +6,6 @@ module KepplerFrontend
     module CallbackFile
       extend ActiveSupport::Concern
 
-      def create_callback
-        file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-        index_html = File.readlines(file)
-        head_idx = 0
-        index_html.each do |i|
-          head_idx = index_html.find_index(i) if i.include?("    private")
-        end
-        index_html.insert(head_idx.to_i + 1, "    # begin callback #{name}\n")
-        index_html.insert(head_idx.to_i + 2, "    def #{name}\n")
-        index_html.insert(head_idx.to_i + 3, "      # Insert ruby code...\n")
-        index_html.insert(head_idx.to_i + 4, "    end\n")
-        index_html.insert(head_idx.to_i + 5, "    # end callback #{name}\n")
-        index_html = index_html.join('')
-        File.write(file, index_html)
-        true
-      end
-
       def delete_callback
         file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
         index_html = File.readlines(file)

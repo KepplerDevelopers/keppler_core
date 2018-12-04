@@ -49,8 +49,11 @@ module KepplerFrontend
       def create
         @callback_function = CallbackFunction.new(callback_function_params)
 
-        if @callback_function.save && @callback_function.create_callback
-          redirect_to admin_frontend_callback_function_editor_path(@callback_function), notice: actions_messages(@callback_function)
+        if @callback_function.save && @callback_function.install
+          redirect_to(
+            admin_frontend_callback_function_editor_path(@callback_function),
+            notice: actions_messages(@callback_function)
+          )
         else
           render :new
         end

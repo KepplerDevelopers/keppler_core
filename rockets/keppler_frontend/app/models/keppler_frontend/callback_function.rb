@@ -5,6 +5,7 @@ module KepplerFrontend
     include CloneRecord
     include KepplerFrontend::Concerns::CallbackFile
     include KepplerFrontend::Concerns::StringActions
+    include KepplerFrontend::Concerns::Callbacks::Services
     require 'csv'
     acts_as_list
     validates_presence_of :name
