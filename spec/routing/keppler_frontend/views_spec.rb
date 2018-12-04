@@ -5,14 +5,12 @@ RSpec.describe 'routing to views', type: :routing do
     @view = create(:keppler_frontend_views, method: "GET")
   end
 
-  # it 'routes POST /live_editor/save to keppler_frontend/admin/views#live_editor_save' do
-  #   expect(post: "/admin/frontend/views/#{@view.id}/live_editor/save").to route_to(
-  #     controller: 'keppler_frontend/admin/views',
-  #     action: 'live_editor_save',
-  #     view_id: @view.id.to_s
-  #   )
-  # end
-
+  it 'routes GET /admin/frontend/views/' do
+    expect(get: "/admin/frontend/views/").to route_to(
+      controller: 'keppler_frontend/admin/views',
+      action: 'index'
+    )
+  end
 
   it 'routes GET /admin/frontend/views/new' do
     expect(get: "/admin/frontend/views/new").to route_to(
@@ -25,6 +23,22 @@ RSpec.describe 'routing to views', type: :routing do
     expect(post: "/admin/frontend/views").to route_to(
       controller: 'keppler_frontend/admin/views',
       action: 'create'
+    ) 
+  end
+
+  it 'routes GET /admin/frontend/views/:id/edit' do
+    expect(get: "/admin/frontend/views/#{@view.id}/edit").to route_to(
+      controller: 'keppler_frontend/admin/views',
+      action: 'edit',
+      id: @view.id.to_s
+    )
+  end
+
+  it 'routes PATCH /admin/frontend/views/:id' do
+    expect(patch: "/admin/frontend/views/#{@view.id}").to route_to(
+      controller: 'keppler_frontend/admin/views',
+      action: 'update',
+      id: @view.id.to_s
     ) 
   end
 
@@ -41,6 +55,14 @@ RSpec.describe 'routing to views', type: :routing do
       controller: 'keppler_frontend/admin/views',
       action: 'editor_save',
       view_id: @view.id.to_s
+    )
+  end
+
+  it 'routes DELETE /admin/frontend/views/:id' do
+    expect(delete: "/admin/frontend/views/#{@view.id}").to route_to(
+      controller: 'keppler_frontend/admin/views',
+      action: 'destroy',
+      id: @view.id.to_s
     )
   end
 end
