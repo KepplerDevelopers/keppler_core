@@ -8,10 +8,15 @@ module KepplerFrontend
         extend ActiveSupport::Concern
 
         included do
-          delegate :install, :uninstall, to: :callbacks
+          delegate :install, :uninstall, to: :callbacks          
+          before_destroy :callback_uninstall
         end
 
         private
+
+        def callback_uninstall
+          callbacks.uninstall
+        end
 
         def callbacks
           KepplerFrontend::Callbacks::CodeHandler.new(self)
