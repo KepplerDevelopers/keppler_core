@@ -11,7 +11,6 @@ module KepplerFrontend
     validates_presence_of :name
     validates_uniqueness_of :name
     before_validation :convert_to_downcase, :without_special_characters
-    before_destroy :uninstall_callback
 
     # Fields for the search form in the navbar
     def self.search_field
