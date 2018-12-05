@@ -131,7 +131,7 @@ module KepplerFrontend
 
       def editor_save
         @callback_function = CallbackFunction.find(params[:callback_function_id])
-        @callback_function.code_save(params[:ruby], 'callback') if params[:ruby]
+        @callback_function.code_save(params[:actions])
         render json: {result: true}
       end
 
