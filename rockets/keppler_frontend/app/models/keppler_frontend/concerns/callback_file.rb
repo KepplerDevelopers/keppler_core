@@ -6,20 +6,20 @@ module KepplerFrontend
     module CallbackFile
       extend ActiveSupport::Concern
 
-      def callback_code
-        file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
-        index_html = File.readlines(file)
-        begin_idx = 0
-        end_idx = 0
-        index_html.each do |idx|
-          begin_idx = index_html.find_index(idx) if idx.include?("    # begin callback #{name}\n")
-          end_idx = index_html.find_index(idx) if idx.include?("    # end callback #{name}\n")
-        end
-        return if begin_idx==0
-        index_html = index_html[begin_idx+2..end_idx-2]
-        index_html = index_html.map { |line| line[6, line.length] }
-        index_html.join('')
-      end
+      # def callback_code
+      #   file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"
+      #   index_html = File.readlines(file)
+      #   begin_idx = 0
+      #   end_idx = 0
+      #   index_html.each do |idx|
+      #     begin_idx = index_html.find_index(idx) if idx.include?("    # begin callback #{name}\n")
+      #     end_idx = index_html.find_index(idx) if idx.include?("    # end callback #{name}\n")
+      #   end
+      #   return if begin_idx==0
+      #   index_html = index_html[begin_idx+2..end_idx-2]
+      #   index_html = index_html.map { |line| line[6, line.length] }
+      #   index_html.join('')
+      # end
 
       def save_callback(code)
         file = "#{url_front}/app/controllers/keppler_frontend/app/frontend_controller.rb"

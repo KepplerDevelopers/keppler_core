@@ -33,6 +33,11 @@ RSpec.describe KepplerFrontend::CallbackFunction, type: :model do
       it { expect(function_exist).to eq(true) }
     end
 
+    context 'output' do
+      it { expect(@callback.output).not_to eq(false) }
+      it { expect(@callback.output).to eq("# Insert ruby code...\n") }
+    end
+
     context 'change name' do
       it { expect(code_change_name).to eq(true) }
       it { expect(function_changed_exist).to eq(true) }
