@@ -39,6 +39,11 @@ RSpec.describe KepplerFrontend::Callbacks::CodeHandler, type: :services do
       it { expect(@code.output).to eq("# Insert ruby code...\n") }
     end
 
+    context 'save' do
+      it { expect(@code.code_save("puts 'Hello world'")).to eq(true) }
+      it { expect(@code.output).to eq("puts 'Hello world'\n") }
+    end
+
     context 'change name' do
       it { expect(code_change_name).to eq(true) }
       it { expect(function_changed_exist).to eq(true) }

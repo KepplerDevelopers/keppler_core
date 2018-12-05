@@ -15,7 +15,7 @@ module KepplerFrontend
     private
     # begin callback test
     def test
-      # Insert ruby code...
+      @say_hello = "holaaaaaaaaaaaaaaaaaaaaaa"
     end
     # end callback test
     # begin callback user_authenticate

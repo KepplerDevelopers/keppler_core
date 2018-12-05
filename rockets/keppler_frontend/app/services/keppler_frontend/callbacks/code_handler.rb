@@ -39,6 +39,17 @@ module KepplerFrontend
         false
       end
 
+      def code_save(input)
+        ctrl = File.readlines(@file)
+        idx_one, idx_two = search(ctrl).search_section(point_one, point_two)
+        return if idx_one.zero?
+        ctrl = save_format(ctrl, input, idx_one, idx_two)
+        File.write(@file, ctrl)
+        true
+      rescue StandardError
+        false
+      end
+
       def uninstall
         ctrl = File.readlines(@file)
         idx_one, idx_two = search(ctrl).search_section(point_one, point_two)
@@ -89,6 +100,14 @@ module KepplerFrontend
       def output_format(ctrl, idx_one, idx_two)
         ctrl = ctrl[idx_one + 2..idx_two - 2]
         ctrl = ctrl.map { |line| line[6, line.length] }
+        ctrl.join('')
+      end
+
+      def save_format(ctrl, input, idx_one, idx_two)
+        ctrl.slice!(idx_one + 2..idx_two - 2)
+        input.split("\n").each_with_index do |line, i|
+          ctrl.insert(idx_one + (i + 2), "      #{line}\n")
+        end
         ctrl.join('')
       end
     end

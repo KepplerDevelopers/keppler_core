@@ -3,7 +3,6 @@ module KepplerFrontend
   class CallbackFunction < ActiveRecord::Base
     include ActivityHistory
     include CloneRecord
-    include KepplerFrontend::Concerns::CallbackFile
     include KepplerFrontend::Concerns::StringActions
     include KepplerFrontend::Concerns::Callbacks::Services
     require 'csv'
@@ -38,12 +37,6 @@ module KepplerFrontend
       query = fields.join("_#{operator}_")
       query << "_#{conf}"
       query.to_sym
-    end
-
-    def code_save(code, type_code)
-      if type_code.eql?('callback')
-        save_callback(code)
-      end
     end
 
     private
