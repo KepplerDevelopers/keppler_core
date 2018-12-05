@@ -8,7 +8,7 @@ module KepplerFrontend
         extend ActiveSupport::Concern
 
         included do
-          delegate :install, :uninstall, to: :callbacks          
+          delegate :install, :change_name, :uninstall, to: :callbacks   
           before_destroy :callback_uninstall
         end
 

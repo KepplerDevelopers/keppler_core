@@ -19,6 +19,17 @@ module KepplerFrontend
         false
       end
 
+      def change_name(name)
+        ctrl = File.readlines(@file)
+        idx_one, idx_two = search(ctrl).search_section(point_one, point_two)
+        return if idx_one.zero?
+        update_function(ctrl, idx_one, idx_two, name)
+        File.write(@file, ctrl.join(''))
+        true
+      rescue StandardError
+        false
+      end
+
       def uninstall
         ctrl = File.readlines(@file)
         idx_one, idx_two = search(ctrl).search_section(point_one, point_two)
@@ -58,6 +69,12 @@ module KepplerFrontend
         ctrl.insert(idx + 3, "      # Insert ruby code...\n")
         ctrl.insert(idx + 4, "    end\n")
         ctrl.insert(idx + 5, "    # end callback #{@callback.name}\n")
+      end
+
+      def update_function(ctrl, idx_one, idx_two, name)
+        ctrl[idx_one ] = "    # begin callback #{name}\n"
+        ctrl[idx_one + 1] = "    def #{name}\n"
+        ctrl[idx_two] = "    # end callback #{name}\n"
       end
     end
   end

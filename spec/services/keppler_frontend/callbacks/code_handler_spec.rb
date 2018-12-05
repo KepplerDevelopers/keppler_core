@@ -21,15 +21,32 @@ RSpec.describe KepplerFrontend::Callbacks::CodeHandler, type: :services do
       @controller[idx_one..idx_two].count == 1 ? false : true
     end
 
-    let(:code_uninstall) { @code.uninstall }
+    let(:function_changed_exist) do
+      idx_one, idx_two = @search.search_section("    # begin callback other_name\n", 
+                                               "    # end callback other_name\n")
+      @controller[idx_one..idx_two].count == 1 ? false : true
+    end
+
+    let(:code_change_name) { @code.change_name("other_name") }
 
     context 'install' do
       it { expect(code_install).to eq(true) }
       it { expect(function_exist).to eq(true) }
     end
 
+    context 'change name' do
+      it { expect(code_change_name).to eq(true) }
+      it { expect(function_changed_exist).to eq(true) }
+    end
+
     context 'uninstall' do
-      it { expect(code_uninstall).to eq(true) }
+      let(:callback_uninstalled) do
+        @callback.name = 'other_name'
+        @code =  KepplerFrontend::Callbacks::CodeHandler.new(@callback)
+        @code.uninstall
+      end
+
+      it { expect(callback_uninstalled).to eq(true) }
       it { expect(function_exist).to eq(false) }
     end
   end
