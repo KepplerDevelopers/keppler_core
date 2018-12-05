@@ -41,6 +41,10 @@ module KepplerFrontend
         def save_service
           KepplerFrontend::Views::Save.new(self)
         end
+
+        def callback_view(callback)
+          KepplerFrontend::Callbacks::CodeViews.new(self, callback)
+        end
       end
     end
   end

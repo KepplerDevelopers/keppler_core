@@ -13,6 +13,7 @@ module KepplerFrontend
       # include KepplerFrontend::Concerns::Commons
       # include KepplerFrontend::Concerns::History
       # include KepplerFrontend::Concerns::DestroyMultiple
+      include KepplerFrontend::Concerns::Services
 
 
       # GET /callback_functions
@@ -147,26 +148,14 @@ module KepplerFrontend
       end
 
       def reload_callbacks
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/callbacks.yml")
-        callbacks = YAML.load_file(file)
-        if callbacks
-          callbacks.each do |callback|
-            callback_db = KepplerFrontend::CallbackFunction.where(name: callback['name']).first
-            unless callback_db
-              KepplerFrontend::CallbackFunction.create(
-                name: callback['name'],
-                description: callback['description']
-              )
-            end
-          end
-        end
+        yml = yml_handler.new('callback_functions')
+        yml.reload
       end
 
       def update_callback_yml
         callbacks = CallbackFunction.all
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/callbacks.yml")
-        data = callbacks.as_json.to_yaml
-        File.write(file, data)
+        yml = yml_handler.new('callback_functions', callbacks)
+        yml.update
       end
 
       # Use callbacks to share common setup or constraints between actions.
