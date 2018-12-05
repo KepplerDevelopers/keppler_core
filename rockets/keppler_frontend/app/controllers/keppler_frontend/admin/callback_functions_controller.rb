@@ -61,7 +61,7 @@ module KepplerFrontend
 
       # PATCH/PUT /callback_functions/1
       def update
-        @callback_function.update_callback(callback_function_params)
+        @callback_function.change_name(callback_function_params[:name])
         if @callback_function.update(callback_function_params)
           redirect(@callback_function, params)
         else
