@@ -41,10 +41,6 @@ module KepplerFrontend
 
     private
 
-    def uninstall_callback
-      self.delete_callback
-    end
-
     def convert_to_downcase
       self.name.downcase!
     end

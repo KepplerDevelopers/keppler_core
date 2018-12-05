@@ -58,14 +58,17 @@ module KepplerFrontend
       "/admin/frontend/views/#{self.id}/editor"
     end
 
-    def new_callback(view, callbacks)
+    def new_callback(callbacks)
       return unless callbacks
       callbacks.each do |key, value|
         if value[:name]
           callback = ViewCallback.where(name: value[:name], function_type: value[:function_type])
-          add_callback_to(view, value) if callback.count == 1
+          callback_view(callback.first).add(value[:function_type]) if callback.count == 1
         end
       end
+      true
+    rescue StandardError
+      false
     end
 
     private
