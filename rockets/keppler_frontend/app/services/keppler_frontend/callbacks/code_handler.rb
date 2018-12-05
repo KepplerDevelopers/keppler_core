@@ -30,6 +30,15 @@ module KepplerFrontend
         false
       end
 
+      def output
+        ctrl = File.readlines(@file)
+        idx_one, idx_two = search(ctrl).search_section(point_one, point_two)
+        return if idx_one.zero?
+        output_format(ctrl, idx_one, idx_two)
+      rescue StandardError
+        false
+      end
+
       def uninstall
         ctrl = File.readlines(@file)
         idx_one, idx_two = search(ctrl).search_section(point_one, point_two)
@@ -72,9 +81,15 @@ module KepplerFrontend
       end
 
       def update_function(ctrl, idx_one, idx_two, name)
-        ctrl[idx_one ] = "    # begin callback #{name}\n"
+        ctrl[idx_one] = "    # begin callback #{name}\n"
         ctrl[idx_one + 1] = "    def #{name}\n"
         ctrl[idx_two] = "    # end callback #{name}\n"
+      end
+
+      def output_format(ctrl, idx_one, idx_two)
+        ctrl = ctrl[idx_one + 2..idx_two - 2]
+        ctrl = ctrl.map { |line| line[6, line.length] }
+        ctrl.join('')
       end
     end
   end

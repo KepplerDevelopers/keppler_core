@@ -13,6 +13,11 @@ module KepplerFrontend
     # end keppler
 
     private
+    # begin callback test
+    def test
+      # Insert ruby code...
+    end
+    # end callback test
     # begin callback user_authenticate
     def user_authenticate
       redirect_to '/' unless user_signed_in?
