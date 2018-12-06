@@ -96,6 +96,15 @@ if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
     )
   end
 
+  callback_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/data/callback_functions.yml")
+  calbbacks = YAML.load_file(callback_file)
+  calbbacks.each do |route|
+    KepplerFrontend::CallbackFunction.create(
+      name: callback['name'],
+      description: callback['description'],
+    )
+  end
+
   partials_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/partials.yml")
   partials = YAML.load_file(partials_file)
 
