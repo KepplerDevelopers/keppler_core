@@ -88,16 +88,17 @@ module KepplerFrontend
 
       # DELETE /views/1
       def destroy
-        if @view
-          @view.uninstall
-          @view.destroy
-        end
+        return unless @view
+        @view.view_callbacks.each { |c| @view.remove_callback(c) }          
+        @view.uninstall
+        @view.destroy
         redirect_to admin_frontend_views_path, notice: actions_messages(@view)
       end
 
       def destroy_callback
         @view = View.find(params[:view_id])
         @callback = ViewCallback.find(params[:view_callback_id])
+        @view.remove_callback(@callback)
         @callback.destroy
       end
 

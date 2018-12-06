@@ -10,11 +10,21 @@ module KepplerFrontend
         @file = front.controller
       end
 
-      def add(function_type)
+      def add
         ctrl = File.readlines(@file)
         idx = search(ctrl).search_line(flag_point)
-        return unless search_line(ctrl, function_type).zero?
-        ctrl.insert(idx.to_i + 1, line_template(function_type))
+        return unless search_callback(ctrl).zero?
+        ctrl.insert(idx.to_i + 1, line_template)
+        File.write(@file, ctrl.join(''))
+        true
+      rescue StandardError
+        false
+      end
+
+      def remove
+        ctrl = File.readlines(@file)
+        idx = search_callback(ctrl)
+        ctrl.delete_at(idx) unless idx.zero?
         File.write(@file, ctrl.join(''))
         true
       rescue StandardError
@@ -31,21 +41,20 @@ module KepplerFrontend
         '  class App::FrontendController < App::AppController'
       end
 
-      def line_template(function_type)
-        "    #{callback_line(function_type)}\n"
+      def line_template
+        "    #{callback_line}\n"
       end
 
       def search(html)
         KepplerFrontend::Utils::CodeSearch.new(html)
       end
 
-      def search_line(ctrl, function_type)
-        line = callback_line(function_type)
-        ctrl.include?(line) ? ctrl.find_index(line) : 0
+      def search_callback(ctrl)
+        ctrl.include?(line_template) ? ctrl.find_index(line_template) : 0
       end
 
-      def callback_line(function_type)
-        code_lines[function_type.to_sym]
+      def callback_line
+        code_lines[@callback.function_type.to_sym]
       end
 
       def code_lines
