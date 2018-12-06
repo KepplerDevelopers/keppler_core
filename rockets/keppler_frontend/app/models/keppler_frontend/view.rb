@@ -61,14 +61,17 @@ module KepplerFrontend
     def new_callback(callbacks)
       return unless callbacks
       callbacks.each do |key, value|
-        if value[:name]
-          callback = ViewCallback.where(name: value[:name], function_type: value[:function_type])
-          callback_view(callback.first).add(value[:function_type]) if callback.count == 1
-        end
+        next unless value[:name]
+        callback = ViewCallback.where(name: value[:name], function_type: value[:function_type])
+        callback_view(callback.first).add if callback.count == 1
       end
       true
     rescue StandardError
       false
+    end
+
+    def remove_callback(callback)
+      callback_view(callback).remove
     end
 
     private

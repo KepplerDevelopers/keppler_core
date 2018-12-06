@@ -29,6 +29,11 @@ RSpec.describe KepplerFrontend::View, type: :services do
     end
 
     context 'remove callback line' do
+      it { expect(@view.remove_callback(@view_callback)).to eq(true) }
+      it { expect(action_exist).to eq(false) }
+    end
+
+    context 'remove callback line' do
     end
   end
 end
