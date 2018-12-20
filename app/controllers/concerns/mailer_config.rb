@@ -32,5 +32,6 @@ module MailerConfig
     smtp.delivery_method = :smtp
     smtp.perform_deliveries = true
     smtp.default charset: 'utf-8'
+    Devise.mailer_sender = "no-reply@#{setting.domain_name}"
   end
 end
