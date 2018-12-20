@@ -7,7 +7,7 @@ module MailerConfig
   private
 
   def setting
-    Setting.first.smtp_settings
+    SmtpSetting.first
   end
 
   def smtp
