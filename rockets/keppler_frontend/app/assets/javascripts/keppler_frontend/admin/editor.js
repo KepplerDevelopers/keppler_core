@@ -380,7 +380,6 @@ var codeFunction = {
         },
         extraKeys: {"Ctrl-Space": "autocomplete"}
       });
-
       editor_function.on('change', function () {
         if(editor_function.getValue() === $("#code-function").val()) {
           $('.function_signal').css('display', 'none');
