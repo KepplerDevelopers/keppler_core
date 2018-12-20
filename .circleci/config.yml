@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.5.1-node-browsers
         environment:
-          RAILS_ENV: development
+          RAILS_ENV: test
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
@@ -13,7 +13,7 @@ jobs:
 
       - image: circleci/postgres:9.4
         environment:
-          POSTGRES_DB: keppler-development-dev
+          POSTGRES_DB: keppler-test-dev
           POSTGRES_USER: dev
           POSTGRES_PASSWORD: dev
 
@@ -47,10 +47,10 @@ jobs:
           command: |
             scp -r config/circleci/db_config.yml config/secrets.yml
 
-      - run: bundle exec rake db:drop RAILS_ENV=development
-      - run: bundle exec rake db:create RAILS_ENV=development
-      - run: bundle exec rake db:migrate RAILS_ENV=development
-      - run: bundle exec rake db:seed RAILS_ENV=development
+      - run: bundle exec rake db:drop RAILS_ENV=test
+      - run: bundle exec rake db:create RAILS_ENV=test
+      - run: bundle exec rake db:migrate RAILS_ENV=test
+      - run: bundle exec rake db:seed RAILS_ENV=test
       - run: bundle exec rubocop
       - run: gem install haml_lint
       - run: gem install scss_lint
