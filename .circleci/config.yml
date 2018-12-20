@@ -47,7 +47,7 @@ jobs:
           command: |
             scp -r config/circleci/db_config.yml config/secrets.yml
 
-      - run: bundle exec rake db:drop RAILS_ENV=test
+      # - run: bundle exec rake db:drop RAILS_ENV=test
       - run: bundle exec rake db:create RAILS_ENV=test
       - run: bundle exec rake db:migrate RAILS_ENV=test
       - run: bundle exec rake db:seed RAILS_ENV=test
