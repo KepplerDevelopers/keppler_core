@@ -4,10 +4,10 @@
   email: 
   phone: 
   mobile: 
-  address: test
-  port: '25'
-  domain_name: keppler.com
-  smtp_email: info@keppler.com
+  address: smtp.keppleradmin.com
+  port: '587'
+  domain_name: keppleradmin.com
+  smtp_email: email@keppleradmin.com
   ga_account_id: '121648466'
   ga_tracking_id: UA-121648466-1
   ga_status: true
