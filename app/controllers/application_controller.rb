@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include MailerConfig
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :appearance
@@ -10,6 +11,8 @@ class ApplicationController < ActionController::Base
   before_action :set_modules
   before_action :set_languages
   before_action :set_admin_locale
+  before_action :git_info
+  before_action :set_mailer_settings
 
   skip_around_action :set_locale_from_url
   include Pundit
@@ -28,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   def class_exists?(klass)
     defined?(klass) && klass.is_a?(Class)
+  end
+
+  def git_info
+    @git = Admin::GitHandler.new
   end
 
   def appearance

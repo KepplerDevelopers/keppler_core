@@ -1,0 +1,39 @@
+.current-branch {
+  background: #c0c0c0;
+  border-radius: 15px;
+  bottom: 1%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: 5px 20px;
+  position: fixed;
+  right: 1%;
+  z-index: 99999;
+  opacity: .5;
+
+  @include respond-to(xs) {
+    display: none;
+  }
+
+  @include respond-to(sm) {
+    display: none;
+  }
+
+  .git-commit-status {
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    left: 10px;
+    float: right;
+    height: 10px;
+    width: 10px;
+  }
+}
+
+.current-branch:hover {
+  opacity: 1;
+}
+
+.console {
+  display: none;
+}

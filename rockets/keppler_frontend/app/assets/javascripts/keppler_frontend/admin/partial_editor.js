@@ -35,6 +35,7 @@ var codePartialHTML = {
         matchBrackets: true,
         theme: "monokai",
         tabSize: 2,
+        scrollbarStyle: "overlay",
         autoCloseTags: true,
         matchTags: {bothTags: true},
         showTrailingSpace: true,
@@ -87,6 +88,7 @@ var codePartialCSS = {
         indentUnit: 2,
         showTrailingSpace: true,
         tabSize: 2,
+        scrollbarStyle: "overlay",
         highlightSelectionMatches: {
           showToken: /\w/,
           annotateScrollbar: true
@@ -132,6 +134,7 @@ var codePartialJs = {
         matchBrackets: true,
         indentUnit: 2,
         tabSize: 2,
+        scrollbarStyle: "overlay",
         showTrailingSpace: true,
         highlightSelectionMatches: {
           showToken: /\w/,
