@@ -1,3 +1,6 @@
+$git-bg: #c0c0c0;
+$git-shadow: rgba(0, 0, 0, .12);
+
 .btn {
   border-radius: 15px;
 }
@@ -389,4 +392,75 @@
   i {
     font-size: 10px;
   }
+}
+
+.dev-tool {
+  background: $git-bg;
+  box-shadow: 0 1px 3px $git-shadow;
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: 5px 20px;
+  position: fixed;
+  z-index: 99999;
+
+  @include respond-to(xs) {
+    display: none;
+  }
+
+  @include respond-to(sm) {
+    display: none;
+  }
+}
+
+.console-btn {
+  align-items: center;
+  border-radius: 25px;
+  bottom: 1%;
+  display: flex;
+  justify-content: center;
+  right: 1%;
+  width: 0;
+}
+
+.console-btn:hover {
+  color: $error-color;
+}
+
+.current-branch {
+  border-radius: 15px;
+  bottom: 1%;
+  right: 4%;
+
+  .git-commit-status {
+    border-radius: 50%;
+    float: right;
+    height: 10px;
+    left: 10px;
+    position: relative;
+    top: 5px;
+    width: 10px;
+  }
+}
+
+.sidebar-mini {
+  margin-bottom: 0 !important; // scss-lint:disable ImportantRule
+  padding-bottom: 5%;
+}
+
+.console {
+  height: 0 !important; // scss-lint:disable ImportantRule
+
+  .console-actions {
+    display: none;
+  }
+}
+
+.console-close {
+  height: 0 !important; // scss-lint:disable ImportantRule
+  transition: all .5s;
+}
+
+.console-open {
+  height: 70% !important; // scss-lint:disable ImportantRule
+  transition: all .5s;
 }

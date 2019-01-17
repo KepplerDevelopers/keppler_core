@@ -3,7 +3,7 @@
     %ul.sidebar-menu.tree{ 'data-widget': 'tree' }
       %li.sidebar-item
         = link_to '/admin/dashboard', class: "sidebar-link #{'active' if request.env['REQUEST_PATH'].eql?('/admin/dashboard')}", 'data-turbolinks': false do
-          %i.icon-pie-chart
+          %i.bx.bx-pie-chart-alt
           %span= t('keppler.sidebar-menu.dashboard')
         - @sidebar.each do |menu|
           - menu.each do |key, _value|
@@ -13,7 +13,7 @@
                   - if included_in?(current_user.allowed_modules, menu[key]['submenu'].map(&:keys).flatten) || can?(menu[key]['model'].constantize).index? || allowed_action?(menu[key]['model'], menu[key]['submenu'].map(&:keys).flatten)
                     %li.sidebar-item{ class: ('active' if menu[key]['current'].include?(controller_path)) }
                       %a.sidebar-link{ href: '#', class: ('active current' if menu[key]['current'].include?(controller_path)) }
-                        %i{ class: "icon-#{menu[key]['icon']}" }
+                        %i{ class: "bx bx-#{menu[key]['icon']}" }
                         %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
                       %ul.treeview-menu
                         - menu[key]['submenu'].each do |submenu, _val|
@@ -33,12 +33,12 @@
               - if !menu[key]['enviroment'] || menu[key]['enviroment'].eql?(Rails.env)
                 %li.sidebar-item.treeview{ class: ('active' if controller_name.eql?(menu[key]['name'])) }
                   = link_to menu[key]['url_path'], class: "sidebar-link collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
-                    %i{ class: "icon-#{menu[key]['icon']}" }
+                    %i{ class: "bx bx-#{menu[key]['icon']}" }
                     %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
 
       %li.sidebar-item{ class: ('active' if 'admin/settings/basic_information'.eql?(controller_path)) }
         %a.sidebar-link{ href: '#', class: ('active current' if 'admin/settings/basic_information'.eql?(controller_path)) }
-          %i.icon-settings
+          %i.bx.bx-cog
           %span= t('keppler.sidebar-menu.setting')
         %ul.treeview-menu
           - if Rails.env.eql?('development')
@@ -59,14 +59,14 @@
               = t('keppler.sidebar-menu.setting-submenu.social-accounts')
       %li.sidebar-item.info-keppler
         %a.sidebar-link{ href: '#' }
-          %i.icon-exclamation
+          %i.bx.bx-error-circle
           %span= t('keppler.sidebar-menu.about')
 :javascript
   $('.info-keppler').click(function (ev) {
     ev.preventDefault();
     swal({
       html: '<h1 class="modal-h1">Keppler <span>Admin</span></h1><div class="modal-info">' +
-        '<span> v 2.1.14 </span>' +
+        '<span> v 2.1.15 </span>' +
         "<span>#{t('keppler.release_date')}: 25/10/2018</span>" +
         '<span>Ruby on Rails v 5.2.1</span>' +
         '<ul class= "modal-social">' +

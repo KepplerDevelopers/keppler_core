@@ -16,11 +16,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def rol
-    roles.first.name
+    roles&.first&.name || 'default'
   end
 
   def permissions?
-    roles.first.permissions?
+    roles&.first&.permissions?
   end
 
   def allowed_modules
