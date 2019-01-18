@@ -13,7 +13,6 @@
 Role.create name: 'keppler_admin'
 puts 'Role Keppler Admin has been created'
 
-
 User.create(
   name: 'Keppler Admin', email: 'admin@keppleradmin.com', password: '+12345678+',
   password_confirmation: '+12345678+', role_ids: '1'
