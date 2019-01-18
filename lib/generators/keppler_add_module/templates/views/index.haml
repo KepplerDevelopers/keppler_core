@@ -59,7 +59,8 @@
                           = t("activerecord.attributes.#{attribute.to_s}")
                     %th
                     %th
-              %tbody.objects-container
+
+              %tbody.objects-container{ 'data-update-url': sort_admin_<%= ROCKET_NAME.remove('keppler_') %>_<%= MODULE_NAME.pluralize  %>_path }
                 = render 'admin/layouts/listing_preloader'
                 = render 'listing', objects: @objects, query: @query, attributes: @attributes
 
