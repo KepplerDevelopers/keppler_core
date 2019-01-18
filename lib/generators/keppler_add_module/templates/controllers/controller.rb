@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 require_dependency "<%= ROCKET_NAME %>/application_controller"
@@ -80,7 +81,7 @@ module <%= ROCKET_CLASS_NAME %>
       def index_variables
         @q = <%= MODULE_CLASS_NAME %>.ransack(params[:q])
         @<%= MODULE_NAME.pluralize %> = @q.result(distinct: true)
-        @objects = @<%= MODULE_NAME.pluralize %>.page(@current_page).order(position: :desc)
+        @objects = @<%= MODULE_NAME.pluralize %>.page(@current_page).order(position: :asc)
         @total = @<%= MODULE_NAME.pluralize %>.size
         @attributes = <%= MODULE_CLASS_NAME %>.index_attributes
       end
