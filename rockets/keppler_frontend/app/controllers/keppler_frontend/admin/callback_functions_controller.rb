@@ -13,6 +13,7 @@ module KepplerFrontend
       # include KepplerFrontend::Concerns::Commons
       # include KepplerFrontend::Concerns::History
       # include KepplerFrontend::Concerns::DestroyMultiple
+      include KepplerFrontend::Concerns::Services
 
 
       # GET /callback_functions
@@ -49,8 +50,11 @@ module KepplerFrontend
       def create
         @callback_function = CallbackFunction.new(callback_function_params)
 
-        if @callback_function.save && @callback_function.create_callback
-          redirect_to admin_frontend_callback_function_editor_path(@callback_function), notice: actions_messages(@callback_function)
+        if @callback_function.save && @callback_function.install
+          redirect_to(
+            admin_frontend_callback_function_editor_path(@callback_function),
+            notice: actions_messages(@callback_function)
+          )
         else
           render :new
         end
@@ -58,7 +62,7 @@ module KepplerFrontend
 
       # PATCH/PUT /callback_functions/1
       def update
-        @callback_function.update_callback(callback_function_params)
+        @callback_function.change_name(callback_function_params[:name])
         if @callback_function.update(callback_function_params)
           redirect(@callback_function, params)
         else
@@ -128,7 +132,7 @@ module KepplerFrontend
 
       def editor_save
         @callback_function = CallbackFunction.find(params[:callback_function_id])
-        @callback_function.code_save(params[:ruby], 'callback') if params[:ruby]
+        @callback_function.code_save(params[:actions])
         render json: {result: true}
       end
 
@@ -144,26 +148,14 @@ module KepplerFrontend
       end
 
       def reload_callbacks
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/callbacks.yml")
-        callbacks = YAML.load_file(file)
-        if callbacks
-          callbacks.each do |callback|
-            callback_db = KepplerFrontend::CallbackFunction.where(name: callback['name']).first
-            unless callback_db
-              KepplerFrontend::CallbackFunction.create(
-                name: callback['name'],
-                description: callback['description']
-              )
-            end
-          end
-        end
+        yml = yml_handler.new('callback_functions')
+        yml.reload
       end
 
       def update_callback_yml
         callbacks = CallbackFunction.all
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/callbacks.yml")
-        data = callbacks.as_json.to_yaml
-        File.write(file, data)
+        yml = yml_handler.new('callback_functions', callbacks)
+        yml.update
       end
 
       # Use callbacks to share common setup or constraints between actions.

@@ -13,6 +13,8 @@ module KepplerFrontend
       after_action :update_view_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
       before_action :reload_view_callbacks, only: [:index]
       after_action :update_view_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
+      before_action :reload_callbacks, only: [:index]
+      after_action :update_callback_yml, only: [:create, :update, :destroy, :destroy_multiple, :clone]
 
       skip_before_action :verify_authenticity_token, only: :live_editor_save
 
@@ -62,16 +64,16 @@ module KepplerFrontend
 
       # PATCH/PUT /views/1
       def update
-        @view.delete_route
-        @view.update_files(view_params)
+        @view.routes_uninstall
+        @view.change_name(view_params[:name])
         if @view.update(view_params)
           view = view_params.to_h
-          @view.new_callback(@view, view[:view_callbacks_attributes])
+          @view.new_callback(view[:view_callbacks_attributes])
           redirect_to edit_admin_frontend_view_path(@view), notice: actions_messages(@view)
         else
           render :edit
         end
-        @view.add_route
+        @view.routes_install
       end
 
       def clone
@@ -86,16 +88,17 @@ module KepplerFrontend
 
       # DELETE /views/1
       def destroy
-        if @view
-          @view.uninstall
-          @view.destroy
-        end
+        return unless @view
+        @view.view_callbacks.each { |c| @view.remove_callback(c) }          
+        @view.uninstall
+        @view.destroy
         redirect_to admin_frontend_views_path, notice: actions_messages(@view)
       end
 
       def destroy_callback
         @view = View.find(params[:view_id])
         @callback = ViewCallback.find(params[:view_callback_id])
+        @view.remove_callback(@callback)
         @callback.destroy
       end
 
@@ -134,11 +137,9 @@ module KepplerFrontend
 
       def editor_save
         @view = View.find(params[:view_id])
-        @view.code_save(params[:html], 'html') if params[:html]
-        @view.code_save(params[:scss], 'scss') if params[:scss]
-        @view.code_save(params[:js], 'js') if params[:js]
-        @view.code_save(params[:js_erb], 'js_erb') if params[:js_erb]
-        @view.code_save(params[:ruby], 'action') if params[:ruby]
+        [:html, :css, :js, :remote_js, :actions].each do |lang|
+          @view.save_code(lang, params[lang]) if params[lang]
+        end
         render json: {result: true}
       end
 
@@ -170,37 +171,36 @@ module KepplerFrontend
       end
 
       def reload_views
-        yml = KepplerFrontend::Utils::YmlHandler
-        yml = yml.new('views')
+        yml = yml_handler.new('views')
         yml.reload
       end
 
       def update_view_yml
         views = View.all
-        yml = KepplerFrontend::Utils::YmlHandler
-        yml = yml.new('views', views)
+        yml = yml_handler.new('views', views)
         yml.update
       end
 
       def reload_view_callbacks
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/view_callbacks.yml")
-        view_callbacks = YAML.load_file(file)
-        view_callbacks.each do |route|
-          callback = KepplerFrontend::ViewCallback.where(name: route['name']).first
-          unless callback
-            KepplerFrontend::ViewCallback.create(
-              name: route['name'],
-              function_type: route['function_type']
-            )
-          end
-        end
+        yml = yml_handler.new('view_callbacks')
+        yml.reload
       end
 
       def update_view_callback_yml
-        view_callbacks = ViewCallback.all
-        file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/view_callbacks.yml")
-        data = view_callbacks.as_json.to_yaml
-        File.write(file, data)
+        callbacks = ViewCallback.all
+        yml = yml_handler.new('view_callbacks', callbacks)
+        yml.update
+      end
+
+      def reload_callbacks
+        yml = yml_handler.new('callback_functions')
+        yml.reload
+      end
+
+      def update_callback_yml
+        callbacks = CallbackFunction.all
+        yml = yml_handler.new('callback_functions', callbacks)
+        yml.update
       end
 
       def set_attachments

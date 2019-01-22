@@ -73,7 +73,7 @@ module KepplerFrontend
 
       # PATCH/PUT /themes/1
       def update
-        if params[:theme][:active].eql?('true')
+        if params[:theme] && params[:theme][:active].eql?('true')
           @theme.desactived
           change_all_to_false
           if @theme.update(theme_params)

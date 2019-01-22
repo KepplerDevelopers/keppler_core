@@ -1,6 +1,6 @@
 en:
   keppler_ga_dashboard:
-    error_connection: Error connecting to the internet
+    error_connection: Error connecting to internet
     information: Information
     week_stats: Use per week
     month_stats: Use per month
