@@ -103,7 +103,7 @@ module KepplerFrontend
       return unless callbacks
       callbacks.each do |key, value|
         if value[:name]
-          callback = ViewCallback.where(name: value[:name], function_type: value[:function_type])
+          callback = ViewCallback.where(name: value[:name], function_type: value[:function_type], view_id: self.id)
           add_callback_to(view, value) if callback.count == 1
         end
       end
