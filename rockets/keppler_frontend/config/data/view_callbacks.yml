@@ -1,1 +1,38 @@
---- []
+---
+- id: 35
+  name: user_authenticate
+  function_type: before_action
+  view_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-01-22 14:38:18.443253000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: America/Caracas
+    time: 2019-01-22 10:38:18.443253000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-01-22 14:38:18.443253000 Z
+    zone: *1
+    time: 2019-01-22 10:38:18.443253000 Z
+- id: 46
+  name: hello_song
+  function_type: after_action
+  view_id: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-01-22 14:58:20.136177000 Z
+    zone: *1
+    time: 2019-01-22 10:58:20.136177000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-01-22 14:58:20.136177000 Z
+    zone: *1
+    time: 2019-01-22 10:58:20.136177000 Z
+- id: 53
+  name: user_authenticate
+  function_type: before_action
+  view_id: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-01-22 15:02:32.752499000 Z
+    zone: *1
+    time: 2019-01-22 11:02:32.752499000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-01-22 15:02:32.752499000 Z
+    zone: *1
+    time: 2019-01-22 11:02:32.752499000 Z

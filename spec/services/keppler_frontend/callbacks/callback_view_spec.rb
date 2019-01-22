@@ -66,28 +66,14 @@ RSpec.describe KepplerFrontend::Callbacks::CodeViews, type: :services do
     end
 
     context 'add callback line' do
-      it { expect(before_action.add).to eq(true) }
+      it { expect(before_action.change).to eq(true) }
       it { expect(before_action_exist).to eq(true) }
-      it { expect(before_filter.add).to eq(true) }
+      it { expect(before_filter.change).to eq(true) }
       it { expect(before_filter_exist).to eq(true) }
-      it { expect(after_action.add).to eq(true) }
+      it { expect(after_action.change).to eq(true) }
       it { expect(after_action_exist).to eq(true) }
-      it { expect(after_filter.add).to eq(true) }
+      it { expect(after_filter.change).to eq(true) }
       it { expect(after_filter_exist).to eq(true) }
-    end
-
-    context 'remove callback line' do
-      it { expect(before_action.remove).to eq(true) }
-      it { expect(before_action_exist).to eq(false) }
-      it { expect(before_filter.remove).to eq(true) }
-      it { expect(before_filter_exist).to eq(false) }
-      it { expect(after_action.remove).to eq(true) }
-      it { expect(after_action_exist).to eq(false) }
-      it { expect(after_filter.remove).to eq(true) }
-      it { expect(after_filter_exist).to eq(false) }
-    end
-
-    context 'remove callback line' do
     end
   end
 end
