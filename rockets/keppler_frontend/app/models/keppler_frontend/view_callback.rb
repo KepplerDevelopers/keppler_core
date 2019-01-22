@@ -15,7 +15,9 @@ module KepplerFrontend
     def callback_exists?
       callback = ViewCallback.where(
         function_type: self.function_type,
-        name: self.name)
+        name: self.name,
+        view_id: self.view.id
+      )
       callback.count == 0 ? false : true
     end
 
