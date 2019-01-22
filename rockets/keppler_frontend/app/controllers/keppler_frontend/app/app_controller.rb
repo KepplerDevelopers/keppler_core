@@ -27,13 +27,6 @@ module KepplerFrontend
 
     private
 
-    def live_editor_info      
-      if params[:editor] && controller_name.eql?('frontend') && !action_name.eql?('keppler')
-        view = View.find(params[:view])
-        gon.editor = view.live_editor_render
-      end
-    end
-
     def rocket(name, model)
       name = name.downcase.camelize
       model = model.singularize.downcase.camelize

@@ -9,6 +9,10 @@ module KepplerFrontend
       def resources
         KepplerFrontend::Editor::Resources.new
       end
+
+      def yml_handler
+        KepplerFrontend::Utils::YmlHandler
+      end
     end
   end
 end
