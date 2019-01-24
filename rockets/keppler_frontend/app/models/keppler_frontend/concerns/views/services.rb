@@ -12,7 +12,7 @@ module KepplerFrontend
           delegate :change_name, to: :view_update_files
           delegate :uninstall, :uninstall_html, :uninstall_remote_js, :uninstall_only_action, to: :view_uninstall_files
           delegate :install, :uninstall, to: :routes, prefix: true
-          delegate :html, :scss, :action, :js, :remote_js, to: :output, prefix: true
+          delegate :html, :scss, :action, :js, :remote_js, to: :output, prefix: true, allow_nil: true
           delegate :code, to: :save_service, prefix: 'save'
         end
 

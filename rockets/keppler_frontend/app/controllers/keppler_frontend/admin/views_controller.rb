@@ -100,6 +100,7 @@ module KepplerFrontend
         @callback = ViewCallback.find(params[:view_callback_id])
         @view.remove_callback(@callback)
         @callback.destroy
+        @view.remove_callback(@callback)
       end
 
       def destroy_multiple
