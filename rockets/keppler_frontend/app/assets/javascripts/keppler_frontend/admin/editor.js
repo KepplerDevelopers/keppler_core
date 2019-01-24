@@ -11,9 +11,9 @@ var controls = {
   save: function(id) {
     this.codes = {
       html: editor.getValue(),
-      scss: editor_css.getValue(),
+      css: editor_css.getValue(),
       js: editor_js.getValue(),
-      ruby: editor_action.getValue()
+      actions: editor_action.getValue()
     }
     $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
       $("#code-html").val(editor.getValue())
@@ -37,7 +37,7 @@ var controls = {
   },
   saveOnlyAction: function(){
     this.codes = {
-      ruby: editor.getValue()
+      actions: editor.getValue()
     }
     $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
       $("#code-action").val(editor_action.getValue())
@@ -46,7 +46,7 @@ var controls = {
   },
   saveViewJs: function(){
     this.codes = {
-      ruby: editor_action.getValue(),
+      actions: editor_action.getValue(),
       js_erb: editor_js_erb.getValue(),
     }
     $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
@@ -159,7 +159,7 @@ var codeCSS = {
   save: function(id) {
     if(editor_css.getValue() !== $("#code-css").val()) {
       this.codes = {
-        scss: editor_css.getValue()
+        css: editor_css.getValue()
       }
       $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
         $("#code-css").val(editor_css.getValue())
@@ -253,7 +253,7 @@ var codeJsErb = {
   save: function(id) {
     if(editor_js_erb.getValue() !== $("#code-js-erb").val()) {
       this.codes = {
-        js_erb: editor_js_erb.getValue()
+        remote_js: editor_js_erb.getValue()
       }
       $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
         $("#code-js-erb").val(editor_js_erb.getValue())
@@ -300,7 +300,7 @@ var codeAction = {
   save: function(id) {
     if(editor_action.getValue() !== $("#code-action").val()) {
       this.codes = {
-        ruby: editor_action.getValue()
+        actions: editor_action.getValue()
       }
       $.post("/admin/frontend/views/"+id+"/editor/save", this.codes, function(data){
         $("#code-action").val(editor_action.getValue())
@@ -347,7 +347,7 @@ var codeCallback = {
   save: function(id) {
     if(editor_callback.getValue() !== $("#code-callback").val()) {
       this.codes = {
-        ruby: editor_callback.getValue()
+        actions: editor_callback.getValue()
       }
       $.post("/admin/frontend/callback_functions/"+id+"/editor/save", this.codes, function(data){
         $("#code-callback").val(editor_callback.getValue())
@@ -380,7 +380,6 @@ var codeFunction = {
         },
         extraKeys: {"Ctrl-Space": "autocomplete"}
       });
-
       editor_function.on('change', function () {
         if(editor_function.getValue() === $("#code-function").val()) {
           $('.function_signal').css('display', 'none');
@@ -394,7 +393,7 @@ var codeFunction = {
   save: function(id) {
     if(editor_function.getValue() !== $("#code-function").val()) {
       this.codes = {
-        ruby: editor_function.getValue()
+        actions: editor_function.getValue()
       }
       $.post("/admin/frontend/functions/"+id+"/editor/save", this.codes, function(data){
         $("#code-function").val(editor_callback.getValue())

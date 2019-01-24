@@ -6,10 +6,11 @@ module KepplerFrontend
     class CssHandler
       def initialize(view_data)
         @view = view_data
+        @file = view_css(@view.name)
       end
 
       def install
-        out_file = File.open(view_css, 'w')
+        out_file = File.open(@file, 'w')
         out_file.puts("/* Keppler - #{@view.name}.scss file */")
         out_file.close
         true
@@ -18,7 +19,30 @@ module KepplerFrontend
       end
 
       def uninstall
-        File.delete(view_css) if File.exist?(view_css)
+        File.delete(@file) if File.exist?(@file)
+        true
+      rescue StandardError
+        false
+      end
+
+      def output
+        File.read(@file)
+      rescue StandardError
+        false
+      end
+
+      def update(name)
+        File.rename(@file, view_css(name))
+        true
+      rescue StandardError
+        false
+      end
+
+      def save(input)
+        File.delete(@file) if File.exist?(@file)
+        out_file = File.open(@file, 'w')
+        out_file.puts(input)
+        out_file.close
         true
       rescue StandardError
         false
@@ -26,10 +50,10 @@ module KepplerFrontend
 
       private
 
-      def view_css
+      def view_css(name)
         assets = KepplerFrontend::Urls::Assets.new
         assets = assets.core_assets('stylesheets', 'app')
-        "#{assets}/views/#{@view.name}.scss"
+        "#{assets}/views/#{name}.scss"
       end
     end
   end
