@@ -5,6 +5,7 @@ menu:
     url_path: /
     icon: rocket
     model: User
+    environment: all
     submenu:
       # - new:
       #     name: + Add new module
