@@ -22,16 +22,6 @@ module KepplerFrontend
         false
       end
 
-      def remove
-        ctrl = File.readlines(@file)
-        idx = search_callback(ctrl)
-        ctrl.delete_at(idx) unless idx.zero?
-        File.write(@file, ctrl.join(''))
-        true
-      rescue StandardError
-        false
-      end
-
       private
 
       def front
