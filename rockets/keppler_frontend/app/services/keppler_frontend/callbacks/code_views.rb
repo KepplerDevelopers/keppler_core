@@ -10,21 +10,12 @@ module KepplerFrontend
         @file = front.controller
       end
 
-      def add
+      def change
         ctrl = File.readlines(@file)
         idx = search(ctrl).search_line(flag_point)
-        return unless search_callback(ctrl).zero?
+        idx_remove = search_callback(ctrl)
+        ctrl.delete_at(idx_remove) unless idx_remove.zero?
         ctrl.insert(idx.to_i + 1, line_template)
-        File.write(@file, ctrl.join(''))
-        true
-      rescue StandardError
-        false
-      end
-
-      def remove
-        ctrl = File.readlines(@file)
-        idx = search_callback(ctrl)
-        ctrl.delete_at(idx) unless idx.zero?
         File.write(@file, ctrl.join(''))
         true
       rescue StandardError
@@ -42,7 +33,14 @@ module KepplerFrontend
       end
 
       def line_template
-        "    #{callback_line}\n"
+        @actions = ViewCallback.where(name: @callback.name, 
+                                      function_type: @callback.function_type)
+        @actions = @actions.map { |c| c.view.name.to_sym }
+        if @actions.count.zero?
+          nil
+        else
+          "    #{callback_line}, only: #{@actions}\n"
+        end
       end
 
       def search(html)
@@ -50,7 +48,13 @@ module KepplerFrontend
       end
 
       def search_callback(ctrl)
-        ctrl.include?(line_template) ? ctrl.find_index(line_template) : 0
+        idx = 0
+        ctrl.each do |line|
+          if line.include?(callback_line) 
+            idx = ctrl.find_index(line)
+          end 
+        end
+        idx
       end
 
       def callback_line
@@ -59,14 +63,10 @@ module KepplerFrontend
 
       def code_lines
         {
-          before_action: "before_action :#{@callback.name}, " \
-                          "only: [:#{@view.name}]",
-          before_filter: "before_filter :#{@callback.name}, " \
-                          "only: [:#{@view.name}]",
-          after_action: "after_action :#{@callback.name}, " \
-                          "only: [:#{@view.name}]",
-          after_filter: "after_filter :#{@callback.name}, " \
-                          "only: [:#{@view.name}]"
+          before_action: "before_action :#{@callback.name}",
+          before_filter: "before_filter :#{@callback.name}",
+          after_action: "after_action :#{@callback.name}",
+          after_filter: "after_filter :#{@callback.name }"
         }
       end
     end

@@ -4,7 +4,6 @@ module KepplerFrontend
     include ActivityHistory
     include CloneRecord
     include KepplerFrontend::Concerns::StringActions
-    include KepplerFrontend::Concerns::CallbackActions
     include KepplerFrontend::Concerns::Views::Services
     require 'csv'
     acts_as_list
@@ -63,7 +62,7 @@ module KepplerFrontend
       callbacks.each do |key, value|
         if value[:name]
           callback = ViewCallback.where(name: value[:name], function_type: value[:function_type], view_id: self.id)
-          add_callback_to(view, value) if callback.count == 1
+          callback_view(callback.first).change 
         end
       end
       true
@@ -72,7 +71,7 @@ module KepplerFrontend
     end
 
     def remove_callback(callback)
-      callback_view(callback).remove
+      callback_view(callback).change
     end
 
     private
