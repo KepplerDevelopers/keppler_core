@@ -134,7 +134,7 @@ module KepplerFrontend
 
       def editor_save
         @function = Function.find(params[:function_id])
-        @function.save_function(params[:ruby]) if params[:ruby]
+        @function.save_function(params[:actions]) if params[:actions]
         render json: {result: true}
       end
 

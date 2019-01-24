@@ -6,10 +6,11 @@ module KepplerFrontend
     class JsHandler
       def initialize(view_data)
         @view = view_data
+        @file = view_js(@view.name)
       end
 
       def install
-        out_file = File.open(view_js, 'w')
+        out_file = File.open(@file, 'w')
         out_file.puts(template)
         out_file.close
         true
@@ -18,7 +19,30 @@ module KepplerFrontend
       end
 
       def uninstall
-        File.delete(view_js) if File.exist?(view_js)
+        File.delete(@file) if File.exist?(@file)
+        true
+      rescue StandardError
+        false
+      end
+
+      def output
+        File.read(@file)
+      rescue StandardError
+        false
+      end
+
+      def update(name)
+        File.rename(@file, view_js(name))
+        true
+      rescue StandardError
+        false
+      end
+
+      def save(input)
+        File.delete(@file) if File.exist?(@file)
+        out_file = File.open(@file, 'w')
+        out_file.puts(input)
+        out_file.close
         true
       rescue StandardError
         false
@@ -26,10 +50,10 @@ module KepplerFrontend
 
       private
 
-      def view_js
+      def view_js(name)
         assets = KepplerFrontend::Urls::Assets.new
         assets = assets.core_assets('javascripts', 'app')
-        "#{assets}/views/#{@view.name}.js"
+        "#{assets}/views/#{name}.js"
       end
 
       def template

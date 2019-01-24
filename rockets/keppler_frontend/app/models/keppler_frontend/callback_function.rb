@@ -3,14 +3,13 @@ module KepplerFrontend
   class CallbackFunction < ActiveRecord::Base
     include ActivityHistory
     include CloneRecord
-    include KepplerFrontend::Concerns::CallbackFile
     include KepplerFrontend::Concerns::StringActions
+    include KepplerFrontend::Concerns::Callbacks::Services
     require 'csv'
     acts_as_list
     validates_presence_of :name
     validates_uniqueness_of :name
     before_validation :convert_to_downcase, :without_special_characters
-    before_destroy :uninstall_callback
 
     # Fields for the search form in the navbar
     def self.search_field
@@ -40,17 +39,7 @@ module KepplerFrontend
       query.to_sym
     end
 
-    def code_save(code, type_code)
-      if type_code.eql?('callback')
-        save_callback(code)
-      end
-    end
-
     private
-
-    def uninstall_callback
-      self.delete_callback
-    end
 
     def convert_to_downcase
       self.name.downcase!

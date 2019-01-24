@@ -32,19 +32,19 @@
     #tab_1.tab-pane.active
       %div.html.code-container
         %textarea#code-html{name: "code"}
-          = @view.html_code
+          = @view.output_html
     #tab_2.tab-pane
       %div.css.code-container
         %textarea#code-css{:name => "code"}
-          = @view.scss_code
+          = @view.output_scss
     #tab_3.tab-pane
       %div.js.code-container
         %textarea#code-js{:name => "code"}
-          = @view.js_code
+          = @view.output_js
     #tab_5.tab-pane
       %div.action.code-container
         %textarea#code-action{:name => "code"}
-          = @view.action_code
+          = @view.output_action
 
 
 = render "editor_assets"
