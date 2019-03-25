@@ -84,6 +84,8 @@ class ApplicationController < ActionController::Base
         @sidebar[0] = @sidebar[0].merge(module_menu[0])
       end
     end
+
+    @sidebar[0] = @sidebar[0].sort_by { |key| key }.to_h
   end
 
   def set_modules
