@@ -5,6 +5,7 @@ menu:
     icon: cube
     model: KepplerCapsules::Capsule
     environment: development
+    position: 5
     submenu:
       - keppler_capsules_capsule:
           name: add_capsule

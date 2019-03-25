@@ -85,7 +85,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    @sidebar[0] = @sidebar[0].sort_by { |key| key }.to_h
+    @sidebar[0] = @sidebar[0].sort_by do |_key, value|
+      value&.dig("position") || 0
+    end
+
+    @sidebar[0] = @sidebar[0].to_h
   end
 
   def set_modules
