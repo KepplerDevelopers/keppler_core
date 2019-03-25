@@ -6,6 +6,7 @@ menu:
     icon: rocket
     model: User
     environment: all
+    position: 4
     submenu:
       # - new:
       #     name: + Add new module
