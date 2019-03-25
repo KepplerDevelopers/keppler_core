@@ -121,26 +121,11 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
     end
   end
 
-  # def table_name(migration)
-  #   migration.split('/').last
-  #     .split('.').first
-  #     .remove('_create')
-  #     .remove('_rename')
-  #     .remove('_drop')
-  #     .remove('_remove')
-  #     .remove('_column')
-  #     .remove('_from')
-  #     .remove('_to')
-  #     .split('_')
-  #     .flatten[1..-1]
-  #     .join('_')
-  # end
-
   def run_rocket_scaffold
     say "*** Entering to rockets/#{ROCKET_NAME} folder ***"
     FileUtils.cd ROCKET_DIRECTORY
     say "*** Running #{ROCKET_NAME} scaffold ***"
-    system "rails g keppler_scaffold #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
+    system "rails g keppler_scaffold #{MODULE_NAME.classify} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime created_at:datetime updated_at:datetime -f"
     say "*** Coming back to Rails root folder ***"
     FileUtils.cd Rails.root
   end
@@ -148,8 +133,8 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
   def create_migration_file
     say "*** Entering to Rocket Directory ***"
     FileUtils.cd ROCKET_DIRECTORY
-    say "*** Running 'rails g migration create_#{ROCKET_NAME}_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f' ***"
-    system "rails g migration create_#{ROCKET_NAME}_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime -f"
+    say "*** Running 'rails g migration create_#{ROCKET_NAME}_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime created_at:datetime updated_at:datetime -f' ***"
+    system "rails g migration create_#{ROCKET_NAME}_#{MODULE_NAME.pluralize} #{ATTRIBUTES.map { |x| "#{x.first}:#{x.last}" }.join(' ') } position:integer deleted_at:datetime created_at:datetime updated_at:datetime -f"
     say "*** Exiting from Rocket Directory ***"
     FileUtils.cd Rails.root
     say "=== Migration has been created ===\n", :green
@@ -208,18 +193,18 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
   #   invoke invoked, [controller_name]
   # end
 
-    def migrate_database
-      puts "\n*** Updating database ***"
-      system 'bin/rails db:migrate'
-      say "=== Database is updated ===\n", :green
-    end
+  def migrate_database
+    puts "\n*** Updating database ***"
+    system 'bin/rails db:migrate'
+    say "=== Database is updated ===\n", :green
+  end
 
-    def restart_server
-      puts "\n*** Restarting application server ***"
-      system 'bin/rails restart'
-      system 'bin/rails restart'
-      say "=== Application server has been restarted ===\n\n", :green
-    end
+  def restart_server
+    puts "\n*** Restarting application server ***"
+    system 'bin/rails restart'
+    system 'bin/rails restart'
+    say "=== Application server has been restarted ===\n\n", :green
+  end
 
   protected
 
