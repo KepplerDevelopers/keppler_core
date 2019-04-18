@@ -25,6 +25,7 @@
           = @view.output_js
 
 = render "editor_views"
+%script{:type => "text/javascript", :src => "/assets/keppler_frontend/admin/assets_file.js"}
 :javascript
   codeJsErb.codeMirrorJsErb();
   codeAction.codeMirrorAction();

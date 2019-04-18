@@ -53,7 +53,7 @@ module KepplerFrontend
       "#{name}_path"
     end
 
-    def routet 
+    def route
       "/admin/frontend/views/#{self.id}/editor"
     end
 

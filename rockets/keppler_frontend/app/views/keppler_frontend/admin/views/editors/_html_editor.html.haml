@@ -51,6 +51,7 @@
 = render "editor_themes"
 = render "editor_views"
 
+%script{:type => "text/javascript", :src => "/assets/keppler_frontend/admin/assets_files.js"}
 :javascript
   codeHTML.codeMirrorHtml();
   codeCSS.codeMirrorCSS();
@@ -89,3 +90,5 @@
       }
     }
   });
+
+  
