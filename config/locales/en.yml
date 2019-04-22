@@ -31,7 +31,8 @@ en:
       keppler-design: 'Keppler Design'
       development: 'Development'
       setting-submenu:
-        keppler-configuration: Keppler Settings
+        keppler-configuration: Appearance
+        configuration: Application Settings
         basic-information: Basic Information
         email-setting-smtp: 'Email setup (SMTP)'
         social-accounts: 'Social accounts'

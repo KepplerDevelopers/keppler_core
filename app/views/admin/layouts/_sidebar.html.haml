@@ -41,6 +41,9 @@
           %i.bx.bx-cog
           %span= t('keppler.sidebar-menu.setting')
         %ul.treeview-menu
+          %li
+            = link_to '/admin/settings/configuration' do
+              = t('keppler.sidebar-menu.setting-submenu.configuration')
           - if Rails.env.eql?('development')
             %li
               = link_to '/admin/settings/appearance' do
