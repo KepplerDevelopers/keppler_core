@@ -4,8 +4,8 @@ module Admin
   # AdminController
   class AdminController < ::ApplicationController
     layout 'admin/layouts/application'
-    before_action :authenticate_user!
-    before_action :validate_permissions
+    before_action :authenticate_admin_user, except: [:root]
+    before_action :validate_permissions, except: [:root]
     before_action :paginator_params
     before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
@@ -18,7 +18,7 @@ module Admin
       if current_user
         redirect_to dashboard_path
       else
-        redirect_to new_user_session_path
+        redirect_to frontend_path
       end
     end
 
@@ -89,6 +89,12 @@ module Admin
     def can_multiple_destroy
       redefine_ids(params[:multiple_ids]).each do |id|
         authorize model.find(id)
+      end
+    end
+
+    def authenticate_admin_user
+      if !current_user
+        redirect_to main_app.not_authorized_path
       end
     end
   end

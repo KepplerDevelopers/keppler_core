@@ -123,7 +123,7 @@ module Admin
 
     def apparence_permit_attributes
       %i[
-        id theme_name image_background language time_zone
+        id theme_name image_background language admin_code time_zone
         image_background_cache remove_image_background
       ]
     end

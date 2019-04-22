@@ -8,7 +8,7 @@
             Admin
         / /.login-logo
         .login-box-body
-          = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
+          = form_for(resource, :as => resource_name, :url => keppler_new_session, :html => { :role => 'form'}) do |f|
             %p.login-box-msg= t('keppler.login_message')
             %form{:action => "../../index2.html", :method => "post"}
               .form-group.has-feedback

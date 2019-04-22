@@ -10,6 +10,8 @@ module Devise
       request.env['devise.skip_timeout'] = true
     end
 
+    before_action :validate_admin_code, only: [:new]
+
     # GET /resource/sign_in
     def new
       self.resource = resource_class.new(sign_in_params)
@@ -64,6 +66,12 @@ module Devise
     end
 
     private
+
+    def validate_admin_code
+      unless params[:admin_code].eql?(Appearance.first.admin_code)
+        redirect_to main_app.not_authorized_path
+      end
+    end
 
     # Check if there is no signed in user before doing the sign out.
     #

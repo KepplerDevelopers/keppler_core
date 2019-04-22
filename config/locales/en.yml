@@ -51,6 +51,7 @@ en:
       location: Location
       language: Language
       preview: Preview
+      login_security_url: Login Security Name
     permissions:
       index: Index
       create: Create
