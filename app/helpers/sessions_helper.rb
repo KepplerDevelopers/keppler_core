@@ -2,7 +2,6 @@
 
 # SessionsHelper Backoffice
 module SessionsHelper
-
   def keppler_new_session
     "/#{@appearance.admin_code}/sign_in"
   end

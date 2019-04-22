@@ -93,9 +93,7 @@ module Admin
     end
 
     def authenticate_admin_user
-      if !current_user
-        redirect_to main_app.not_authorized_path
-      end
+      redirect_to main_app.not_authorized_path unless current_user
     end
   end
 end
