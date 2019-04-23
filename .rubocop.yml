@@ -14,6 +14,5 @@ AllCops:
     - 'spec/**/*'
     - 'app/controllers/app/*.rb'
     - 'app/controllers/devise/*.rb'
-    - 'app/services/admin/template_service.rb'
     - 'app/controllers/application_controller.rb'
     - 'Gemfile'
