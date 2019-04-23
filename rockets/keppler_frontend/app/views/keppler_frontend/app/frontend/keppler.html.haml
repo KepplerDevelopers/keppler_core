@@ -10,7 +10,10 @@
         .languages
           %a.active-lang{ href: '#' } ESP
           %a{ href: '#' } ENG
-        %a.btn-main{href: '/admin'} Ir a admin
+        - if current_user
+          %a.btn-main{href: "/admin" } Ir a admin
+        - else
+          %a.btn-main{href: "/#{Appearance.first.admin_code}" } Ir a admin
         .front-content
           .front-logo
             %span Keppler

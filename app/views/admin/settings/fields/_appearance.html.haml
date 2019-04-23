@@ -31,14 +31,6 @@
             - if @render.eql?('appearance')
               = link_to appearance_default_admin_settings_path(@render), class: 'btn btn-default', method: :put do
                 = t('keppler.actions.appearance_defaut')
-      .box.slice-box.p-15
-        .box-header.with-border
-          %h3.box-title= t('keppler.customize.language')
-
-        .box-body
-          = f.input :language, collection: languages.map { |lang| [t("keppler.language.#{lang}"), lang] }, label: false, include_blank: false
-          .pull-right
-            = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'
 :javascript
   $(function() {
       $('#colorpicker').on('change', function(e) {
