@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   def appearance
     @setting = Setting.includes(:appearance, :social_account).first
     @appearance = @setting.appearance
+    Time.zone = @setting.appearance.time_zone
   end
 
   def set_apparience_colors

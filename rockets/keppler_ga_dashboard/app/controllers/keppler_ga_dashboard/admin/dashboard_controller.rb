@@ -6,9 +6,9 @@ module KepplerGaDashboard
     # DashboarController
     class DashboardController < ::ApplicationController
       layout 'keppler_ga_dashboard/admin/layouts/application'
+      before_action :authenticate_admin_user
       before_action :dashboard_access, only: [:analytics]
       before_action :set_apparience_colors
-      before_action :authenticate_user!
 
       def analytics
         # set up a client instance
@@ -60,6 +60,12 @@ module KepplerGaDashboard
           'gaAuth',
           Rails.application.secrets.ga_auth.fetch(:file_key_name)
         )
+      end
+
+      def authenticate_admin_user
+        if !current_user
+          redirect_to '/403'
+        end
       end
     end
   end

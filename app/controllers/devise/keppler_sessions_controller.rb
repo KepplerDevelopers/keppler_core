@@ -1,7 +1,7 @@
 # Devise module authenticate
 module Devise
   # SessionsController
-  class SessionsController < DeviseController
+  class KepplerSessionsController < DeviseController
     prepend_before_action :require_no_authentication, only: [:new, :create]
     prepend_before_action :allow_params_authentication!, only: :create
     prepend_before_action :verify_signed_out_user, only: :destroy
@@ -9,6 +9,8 @@ module Devise
     prepend_before_action only: [:create, :destroy] do
       request.env['devise.skip_timeout'] = true
     end
+
+    before_action :validate_admin_code, only: [:new]
 
     # GET /resource/sign_in
     def new
@@ -64,6 +66,12 @@ module Devise
     end
 
     private
+
+    def validate_admin_code
+      unless params[:admin_code].eql?(Appearance.first.admin_code)
+        redirect_to main_app.not_authorized_path
+      end
+    end
 
     # Check if there is no signed in user before doing the sign out.
     #

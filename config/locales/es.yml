@@ -42,7 +42,8 @@ es:
       rockets: Rockets
       setting: Configuración
       setting-submenu:
-        keppler-configuration: Ajustes de Keppler
+        keppler-configuration: Apariencia
+        configuration: Ajustes
         basic-information: 'Información básica'
         email-setting-smtp: 'Configuración SMTP'
         social-accounts: 'Redes sociales'
@@ -54,6 +55,7 @@ es:
       location: Localización
       time_zone: Zona Horaria
       preview: Vista previa
+      login_security_url: Nombre de Seguridad de Login
     permissions:
       index: Listar
       create: Crear
