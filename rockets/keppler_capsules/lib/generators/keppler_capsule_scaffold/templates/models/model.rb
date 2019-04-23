@@ -21,6 +21,8 @@ class <%= class_name %> < ApplicationRecord
   <%- end -%>
   acts_as_list
   acts_as_paranoid
+  # Begin validations area (don't delete)
+  # End validations area (don't delete
 
   def self.index_attributes
     %i[<%= attributes.select { |k,v| @singular_attachments.exclude?(k) && @plural_attachments.exclude?(k) && %w[string text integer].include?(v) && %w[position].exclude?(k) && k.exclude?('-') }.map(&:first).join(' ') -%>]
