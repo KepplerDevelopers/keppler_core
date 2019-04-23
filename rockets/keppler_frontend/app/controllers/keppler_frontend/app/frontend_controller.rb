@@ -4,17 +4,5 @@ module KepplerFrontend
   class App::FrontendController < App::AppController
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
-
-    # begin keppler
-    def keppler
-    end
-    # end keppler
-
-    private
-    # begin callback user_authenticate
-    def user_authenticate
-      redirect_to '/' unless user_signed_in?
-    end
-    # end callback user_authenticate
   end
 end

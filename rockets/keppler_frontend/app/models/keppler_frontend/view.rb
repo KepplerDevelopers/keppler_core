@@ -57,19 +57,6 @@ module KepplerFrontend
       "/admin/frontend/views/#{self.id}/editor"
     end
 
-    def new_callback(callbacks)
-      return unless callbacks
-      callbacks.each do |key, value|
-        if value[:name]
-          callback = ViewCallback.where(name: value[:name], function_type: value[:function_type], view_id: self.id)
-          callback_view(callback.first).change 
-        end
-      end
-      true
-    rescue StandardError
-      false
-    end
-
     def remove_callback(callback)
       callback_view(callback).change
     end

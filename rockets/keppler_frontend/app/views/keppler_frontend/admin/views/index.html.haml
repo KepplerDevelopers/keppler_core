@@ -1,85 +1,34 @@
-#index-container{ :controller => "views" }
-  .container
-    .row
-      .listing.col-lg-12.col-xs-12
-        %section.content-header.index-header
-          %h1{ style: 'display: inline-block' }
-            = t("keppler_frontend.modules.#{controller_path.underscore}")
-          = entries(@total, @objects)
-        %section.content-actions
-          .toolbar
-            .toolbar-item
-              = link_to reload_admin_frontend_views_path, class: "tool-btn", remote: true do
-                %i.icon-reload
-            .toolbar-item
-              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
-                %i.icon-trash
-          - if can?(KepplerFrontend::View).create?
-            .add
-              = link_to new_admin_frontend_view_path, class: 'btn-add' do
-                +
-                = t('keppler.actions.add')
-
-        .box.slice-box
-          .box-body.no-padding
-            %table.table
-              %thead
-                - if @objects.size.zero?
-                  %tr
-                    %th.not-records.center
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
-
-                - else
-                  %tr
-                    %th
-                      - if can?(KepplerFrontend::View).destroy_multiple?
-                        .item-check
-                          .checkbox
-                            %label{ for: 'checkbox-all' }
-                              %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
-                              %span.cr
-                                %i.cr-icon.glyphicon.glyphicon-ok
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :method) do
-                        = t('activerecord.attributes.method')
-                    %th.hidden-xs
-                      = sort_link(@q, :name) do
-                        = t('activerecord.attributes.name')
-                    %th.hidden-xs
-                      = sort_link(@q, :url) do
-                        = t('activerecord.attributes.url')
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :active) do
-                        = t('activerecord.attributes.active')
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :format_result) do
-                        = t('activerecord.attributes.format_result')
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :path) do
-                        = t('activerecord.attributes.path')
-                    %th
-                    %th
-              %tbody.objects-container
-                = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @objects
-        %center#paginator-module
-          = paginate @objects, window: 1
-  %aside.control-sidebar
-    = render "description"
-
-:javascript
-  (function() {
-    $(document).on('turbolinks:load', function() {});
-      $('#view').click(function() {
-        $('#upload_file_view').click()
-        $('#upload_file_view').change(function() {
-          $('.waiting').css('display', 'block')
-          $('#upload_form_view').submit()
-        })
-      });
-
-      try {
-        renderImg();
-      } catch (e) {
-      }
-    }).call(this);
+.container
+  %section.content-header.index-header
+    %h1{ style: 'display: inline-block' }
+      = t("keppler_frontend.modules.#{controller_path.underscore}")
+  .row
+    .col-lg-5
+    .col-lg-7
+      .box.slice-box
+        .box-body.no-padding
+          %table.table
+            %thead
+              - if @views.size.zero?
+                %tr
+                  %th{style: 'text-align: center;'}
+                    %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
+              - else
+                %tr
+                  %th
+                  %th.hidden-xs= t('activerecord.attributes.name')
+                  %th.hidden-xs= t('activerecord.attributes.type')
+                  %th
+            %tbody.objects-container
+              - @views.each do |view|
+                %tr
+                  %td
+                    %i.bx.bx-file
+                  %td
+                    = link_to "#", remote: true, class: 'show-row' do
+                      %span
+                        = view.split('.').first
+                  %td
+                    = link_to "#", remote: true, class: 'show-row' do
+                      %span
+                        = view.split('.').last.capitalize

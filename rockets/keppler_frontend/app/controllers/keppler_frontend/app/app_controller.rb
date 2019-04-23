@@ -27,6 +27,11 @@ module KepplerFrontend
 
     private
 
+    def capsule(model)
+      model = model.singularize.downcase.camelize
+      "KepplerCapsules::#{model}".constantize
+    end
+
     def rocket(name, model)
       name = name.downcase.camelize
       model = model.singularize.downcase.camelize
