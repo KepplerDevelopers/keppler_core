@@ -15,5 +15,17 @@ module KepplerFrontend
     def select_theme?
       keppler_admin? || user_can?(@objects, 'select_theme')
     end
+
+    def refresh?
+      keppler_admin? || user_can?(@objects, 'select_theme')
+    end
+
+    def generate?
+      keppler_admin? || user_can?(@objects, 'select_theme')
+    end
+
+    def delete?
+      keppler_admin? || user_can?(@objects, 'select_theme')
+    end
   end
 end

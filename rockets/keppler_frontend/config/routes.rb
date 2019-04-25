@@ -1,6 +1,9 @@
 KepplerFrontend::Engine.routes.draw do
+  get '/products', to: 'app/frontend#products', as: :products
   root to: 'app/frontend#keppler', as: :keppler
-  get '/index', to: 'app/frontend#index',as: :index
+
+  get '/new', to: 'app/frontend#new',as: :new  
+  get '/', to: 'app/frontend#index',as: :index
   get '/show', to: 'app/frontend#show',as: :show
 
   namespace :admin do
@@ -27,6 +30,8 @@ KepplerFrontend::Engine.routes.draw do
 
       get '/views', to: 'views#index', as: 'views'
       post '/views/select_theme', to: 'views#select_theme', as: 'views_select_theme'
+      get '/views/refresh', to: 'views#refresh', as: 'views_refresh'
+      post '/views/generate', to: 'views#generate', as: 'views_generate'
 
       get '/assets', to: 'multimedia#index', as: 'multimedia'
       post '/assets/upload', to: 'multimedia#upload', as: 'upload_multimedia'

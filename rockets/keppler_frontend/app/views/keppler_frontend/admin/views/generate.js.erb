@@ -1,0 +1,7 @@
+<%- if @error %>
+  $('#error-message').html("<%= @error %>")
+<%- else %>
+  $('#error-message').html("");
+  $('#new-view').modal('hide');
+  $("#views-listing").html("<%= j render 'views_listing', views: @views %>");
+<%- end %>

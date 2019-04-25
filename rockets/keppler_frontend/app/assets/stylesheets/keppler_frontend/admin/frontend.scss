@@ -372,3 +372,18 @@
     }
   }
 } 
+
+.new-view {
+  .modal-content {
+    border-radius: 10px;
+  }
+  
+  .modal-title {
+    width: 50%;
+    float: left;
+  }
+}
+
+#error-message {
+  color: red;
+}

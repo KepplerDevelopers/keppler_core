@@ -19,43 +19,12 @@
       .col-lg-6
         %section.content-actions
           .add
-            = link_to "#", class: "btn-add" do
+            = link_to "#", class: "btn-add", "data-toggle": "modal", "data-target": "#new-view" do
               +
               = t('keppler.actions.new_view')
-        .box.slice-box
-          .box-body.no-padding
-            %table.table
-              %thead
-                - if @views.size.zero?
-                  %tr
-                    %th{style: 'text-align: center;'}
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
-                - else
-                  %tr
-                    %th.hidden-xs
-                    %th.hidden-xs= t('activerecord.attributes.method')
-                    %th.hidden-xs= t('activerecord.attributes.route')
-                    %th.hidden-xs= t('activerecord.attributes.type')
-                    %th.hidden-xs= t('keppler_frontend.models.singularize.theme')
-              %tbody.objects-container
-                - @views.each_with_index do |view, i|
-                  %tr
-                    %td
-                      %i.bx.bx-file
-                    %td.hidden-xs
-                      = link_to "#", remote: true, class: 'show-row' do
-                        %span.badge
-                          = view.last.upcase
-                    %td
-                      = link_to "#", remote: true, class: 'show-row' do
-                        %span
-                          = view.second
-                    %td.hidden-xs
-                      = link_to "#", remote: true, class: 'show-row' do
-                        %span
-                          = view.first.split('.').last.capitalize
-                    %td
-                      = link_to "#", remote: true, class: 'show-row', title: t('keppler.actions.add_theme'), "data-toggle": "modal",  "data-target": "#asign-theme-#{i}" do
-                        %span
-                          %i.bx.bxs-magic-wand
-                  = render 'select_theme', view: view, index: i
+            = link_to admin_frontend_views_refresh_path, remote: true, class: "btn btn-secondary" do
+              %i.bx.bx-revision
+              = t('keppler.actions.refresh')
+        #views-listing
+          = render 'views_listing', views: @views
+= render 'new_view'

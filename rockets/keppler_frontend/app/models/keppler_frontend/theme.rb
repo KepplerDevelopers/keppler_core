@@ -47,10 +47,9 @@ module KepplerFrontend
       assets_folder = File.directory?("#{Rails.root}/#{theme_folder}/assets/themes/")
       html_folder = File.directory?("#{Rails.root}/#{theme_folder}/views")
       covers_folder = File.directory?("#{Rails.root}/#{theme_folder}/covers")
-      components_folder = File.directory?("#{Rails.root}/#{theme_folder}/components")
       layout_field = File.file?("#{Rails.root}/#{theme_folder}/layouts/application.html.erb")
 
-      if assets_folder && html_folder && covers_folder && layout_field && components_folder
+      if assets_folder && html_folder && covers_folder && layout_field
         true
       else
         post_install(new_file.original_filename)
@@ -62,7 +61,6 @@ module KepplerFrontend
       theme_folder = new_file.original_filename.split('.').first
       install_layout(theme_folder)
       install_views(theme_folder)
-      install_components(theme_folder)
       install_assets(theme_folder)
       post_install(new_file.original_filename)
     end
@@ -89,17 +87,17 @@ module KepplerFrontend
       end
     end
 
-    def install_components(folder)
-      old_theme_folder = "#{Rails.root}/#{folder}/components"
-      scripts = Dir.entries(old_theme_folder)
-      theme_folder = "#{url_front}/app/assets/html/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
-      FileUtils::mkdir_p "#{theme_folder}/components"
-      scripts.each do |script|
-        unless script.eql?('.') || script.eql?('..')
-          FileUtils.mv("#{old_theme_folder}/#{script}", "#{theme_folder}/components")
-        end
-      end
-    end
+    # def install_components(folder)
+    #   old_theme_folder = "#{Rails.root}/#{folder}/components"
+    #   scripts = Dir.entries(old_theme_folder)
+    #   theme_folder = "#{url_front}/app/assets/html/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"
+    #   FileUtils::mkdir_p "#{theme_folder}/components"
+    #   scripts.each do |script|
+    #     unless script.eql?('.') || script.eql?('..')
+    #       FileUtils.mv("#{old_theme_folder}/#{script}", "#{theme_folder}/components")
+    #     end
+    #   end
+    # end
 
     def install_assets(folder)
       assets_theme = "#{Rails.root}/#{folder.split('.').first}/assets/themes/#{folder.downcase.gsub(' ', '_').gsub('-', '_')}"

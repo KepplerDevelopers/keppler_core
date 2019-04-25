@@ -72,6 +72,7 @@ en:
       keppler_frontend/admin/themes: Themes
       keppler_frontend/admin/partials: Partials
     actions:
+      generate: Generate
       new_view: New View
       created: Created
       updated: Updated
@@ -111,6 +112,9 @@ en:
       appearance_defaut: Set default
       apply: Apply
       views: Views
+      close: Close
+  route_errors:
+    exist: View alright exist
   activerecord:
     attributes:
       id: Id
@@ -170,6 +174,7 @@ en:
       check_out: 'Check Out'
       price_local: Local Price
       price_dollar: Dollar Price
+      format: Format
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
