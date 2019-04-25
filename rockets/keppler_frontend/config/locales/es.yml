@@ -81,6 +81,7 @@ es:
       new: Nuevo
       show: Ver
       preview: Visualizar
+      add_theme: Asignar Tema
       interface: Editor de Interfaz
       download: Descargar
       user_interfaces: Interfaces de Usuario

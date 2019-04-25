@@ -1,10 +1,22 @@
+
 .container
   %section.content-header.index-header
     %h1{ style: 'display: inline-block' }
-      = t("keppler_frontend.modules.#{controller_path.underscore}")
+      = t("keppler.actions.views")
   .row
-    .col-lg-5
-    .col-lg-7
+    .col-lg-6
+      .box.slice-box.box-preview.hidden-xs
+        .box-header.with-border
+          %h3.box-title= t('keppler.actions.preview')
+          .box-tools.pull-right#tools
+            %i.bx.bx-desktop#lg
+            %i.bx.bx-tab#md
+            %i.bx.bx-mobile#xs
+            %i.bx.bx-revision#reload
+        .box-body.box-body-no-padding.hidden-xs#box-body-bg
+          #box-body
+            %iframe.preview-iframe.hidden-xs{ src: "#{request.base_url}" }
+    .col-lg-6
       .box.slice-box
         .box-body.no-padding
           %table.table
@@ -16,19 +28,28 @@
               - else
                 %tr
                   %th
-                  %th.hidden-xs= t('activerecord.attributes.name')
+                  %th.hidden-xs= t('activerecord.attributes.method')
+                  %th.hidden-xs= t('activerecord.attributes.route')
                   %th.hidden-xs= t('activerecord.attributes.type')
-                  %th
+                  %th.hidden-xs= t('keppler_frontend.models.singularize.theme')
             %tbody.objects-container
-              - @views.each do |view|
+              - @views.each_with_index do |view, i|
                 %tr
                   %td
                     %i.bx.bx-file
                   %td
                     = link_to "#", remote: true, class: 'show-row' do
+                      %span.badge
+                        = view.last.upcase
+                  %td{ style: 'width: 40%' }
+                    = link_to "#", remote: true, class: 'show-row' do
                       %span
-                        = view.split('.').first
+                        = view.second
                   %td
                     = link_to "#", remote: true, class: 'show-row' do
                       %span
-                        = view.split('.').last.capitalize
+                        = view.first.split('.').last.capitalize
+                  %td
+                    = link_to "#", remote: true, class: 'show-row', title: t('keppler.actions.add_theme') do
+                      %span
+                        %i.bx.bxs-magic-wand

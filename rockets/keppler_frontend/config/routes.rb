@@ -2,6 +2,7 @@ KepplerFrontend::Engine.routes.draw do
   root to: 'app/frontend#keppler', as: :keppler
   get '/index', to: 'app/frontend#index',as: :index
   get '/show', to: 'app/frontend#show',as: :show
+
   namespace :admin do
     scope :frontend, as: :frontend do
       resources :themes do

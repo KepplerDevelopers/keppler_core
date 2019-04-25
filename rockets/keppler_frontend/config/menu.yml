@@ -3,7 +3,7 @@ menu:
     name: Keppler Frontend
     current: ['']
     icon: layout
-    model: KepplerFrontend::View
+    model: KepplerFrontend::Theme
     environment: development
     position: 4
     submenu:

@@ -55,7 +55,7 @@ module KepplerFrontend
       private
 
       def authorization
-        authorize View
+        authorize Theme
       end
 
       def set_filesystem
