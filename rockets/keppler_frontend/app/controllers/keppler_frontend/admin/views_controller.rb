@@ -6,7 +6,7 @@ module KepplerFrontend
       layout 'keppler_frontend/admin/layouts/application'
       before_action :only_development
       before_action :authorization
-      before_action :set_data, only: [:index, :refresh, :generate]
+      before_action :set_data, only: [:index, :refresh]
       include KepplerFrontend::Concerns::Services
       include KepplerFrontend::Concerns::StringActions
 
@@ -27,6 +27,7 @@ module KepplerFrontend
         else
           @error = t('route_errors.exist')
         end
+        set_data
       end
 
       private
