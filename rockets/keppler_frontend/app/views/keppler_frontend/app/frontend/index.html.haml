@@ -1,8 +1,27 @@
 %body
   %header.header_area
+    .top_menu.row.m0
+      .container
+        .float-left
+          %a{:href => "mailto:support@colorlib.com"} support@colorlib.com
+          %a{:href => "#"} Welcome to Catalouge
+        .float-right
+          %ul.header_social
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-facebook
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-twitter
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-dribbble
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-behance
     .main_menu
-      %nav.navbar.navbar-expand-lg.navbar-light
-        .container.box_1620
+      %nav.navbar.navbar-expand-lg.navbar-light.main_box
+        .container
           / Brand and toggle get grouped for better mobile display
           %a.navbar-brand.logo_h{:href => "index.html"}
             %img{:alt => "", :src => "/assets/themes/listashop/logo.png"}/
@@ -13,7 +32,7 @@
           / Collect the nav links, forms, and other content for toggling
           #navbarSupportedContent.collapse.navbar-collapse.offset
             %ul.nav.navbar-nav.menu_nav.ml-auto
-              %li.nav-item
+              %li.nav-item.active
                 %a.nav-link{:href => "index.html"} Home
               %li.nav-item.submenu.dropdown
                 %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} Shop
@@ -28,7 +47,7 @@
                     %a.nav-link{:href => "cart.html"} Shopping Cart
                   %li.nav-item
                     %a.nav-link{:href => "confirmation.html"} Confirmation
-              %li.nav-item.submenu.dropdown.active
+              %li.nav-item.submenu.dropdown
                 %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} Blog
                 %ul.dropdown-menu
                   %li.nav-item
@@ -48,375 +67,400 @@
                 %a.nav-link{:href => "contact.html"} Contact
             %ul.nav.navbar-nav.navbar-right
               %li.nav-item
+                %a.cart{:href => "#"}
+                  %i.lnr.lnr.lnr-cart
+              %li.nav-item
                 %a.search{:href => "#"}
                   %i.lnr.lnr-magnifier
   / ================Header Menu Area =================
   / ================Home Banner Area =================
-  %section.home_banner_area.blog_banner
+  %section.home_banner_area
     .banner_inner.d-flex.align-items-center
-      .overlay.bg-parallax{"data-background" => "", "data-stellar-ratio" => "0.9", "data-stellar-vertical-offset" => "0"}
       .container
-        .blog_b_text.text-center
-          %h2
-            Dude You’re Getting
-            %br/
-            a Telescope
-          %p There is a moment in the life of any aspiring astronomer that it is time to buy that first
-          %a.white_bg_btn{:href => "#"} View More
+        .banner_content.row
+          .col-lg-5
+            %h3
+              Georgia Helmet
+              = succeed "Collections!" do
+                %br/
+            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+            %a.white_bg_btn{:href => "#"} View Collection
+          .col-lg-7
+            .halemet_img
+              %img{:alt => "", :src => "/assets/themes/listashop/helmat.png"}/
   / ================End Home Banner Area =================
-  / ================Blog Categorie Area =================
-  %section.blog_categorie_area
+  / ================Feature Product Area =================
+  %section.feature_product_area
+    .main_box
+      .container
+        .row.hot_product_inner
+          .col-lg-6
+            .hot_p_item
+              %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/hot-p-1.jpg"}/
+              .product_text
+                %h4
+                  Hot Deals of
+                  = succeed "this" do
+                    %br/
+                %a{:href => "#"} Shop Now
+          .col-lg-6
+            .hot_p_item
+              %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/hot-p-2.jpg"}/
+              .product_text
+                %h4
+                  Hot Deals of
+                  = succeed "this" do
+                    %br/
+                %a{:href => "#"} Shop Now
+        .feature_product_inner
+          .main_title
+            %h2 Featured Products
+            %p Who are in extremely love with eco friendly system.
+          .feature_p_slider.owl-carousel
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-1.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-2.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-3.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-4.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-1.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-2.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-3.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .item
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-4.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+  / ================End Feature Product Area =================
+  / ================Deal Timer Area =================
+  %section.timer_area
     .container
-      .row
-        .col-lg-4
-          .categories_post
-            %img{:alt => "post", :src => "/assets/themes/listashop//cat-post-3.jpg"}/
-            .categories_details
-              .categories_text
-                %a{:href => "blog-details.html"}
-                  %h5 Social Life
-                .border_line
-                %p Enjoy your social life together
-        .col-lg-4
-          .categories_post
-            %img{:alt => "post", :src => "/assets/themes/listashop//cat-post-2.jpg"}/
-            .categories_details
-              .categories_text
-                %a{:href => "blog-details.html"}
-                  %h5 Politics
-                .border_line
-                %p Be a part of politics
-        .col-lg-4
-          .categories_post
-            %img{:alt => "post", :src => "/assets/themes/listashop//cat-post-1.jpg"}/
-            .categories_details
-              .categories_text
-                %a{:href => "blog-details.html"}
-                  %h5 Food
-                .border_line
-                %p Let the food be finished
-  / ================Blog Categorie Area =================
-  / ================Blog Area =================
-  %section.blog_area
+      .main_title
+        %h2 Exclusive Hot Deal Ends Soon!
+        %p Who are in extremely love with eco friendly system.
+        %a.main_btn{:href => "#"} Shop Now
+      .timer_inner
+        #timer.timer
+          .timer__section.days
+            .timer__number
+            .timer__label days
+          .timer__section.hours
+            .timer__number
+            .timer__label hours
+          .timer__section.minutes
+            .timer__number
+            .timer__label Minutes
+          .timer__section.seconds
+            .timer__number
+            .timer__label seconds
+  / ================End Deal Timer Area =================
+  / ================Latest Product Area =================
+  %section.feature_product_area.latest_product_area
+    .main_box
+      .container
+        .feature_product_inner
+          .main_title
+            %h2 Latest Products
+            %p Who are in extremely love with eco friendly system.
+          .latest_product_inner.row
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-1.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-2.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-3.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-4.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-5.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-6.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-7.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+            .col-lg-3.col-md-4.col-sm-6
+              .f_p_item
+                .f_p_img
+                  %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/f-p-8.jpg"}/
+                  .p_icon
+                    %a{:href => "#"}
+                      %i.lnr.lnr-heart
+                    %a{:href => "#"}
+                      %i.lnr.lnr-cart
+                %a{:href => "#"}
+                  %h4 Long Sleeve TShirt
+                %h5 $150.00
+  / ================End Latest Product Area =================
+  / ================Clients Logo Area =================
+  %section.clients_logo_area
     .container
-      .row
-        .col-lg-8
-          .blog_left_sidebar
-            %article.row.blog_item
-              .col-md-3
-                .blog_info.text-right
-                  .post_tag
-                    %a{:href => "#"} Food,
-                    %a.active{:href => "#"} Technology,
-                    %a{:href => "#"} Politics,
-                    %a{:href => "#"} Lifestyle
-                  %ul.blog_meta.list
-                    %li
-                      %a{:href => "#"}
-                        Mark wiens
-                        %i.lnr.lnr-user
-                    %li
-                      %a{:href => "#"}
-                        12 Dec, 2017
-                        %i.lnr.lnr-calendar-full
-                    %li
-                      %a{:href => "#"}
-                        1.2M Views
-                        %i.lnr.lnr-eye
-                    %li
-                      %a{:href => "#"}
-                        06 Comments
-                        %i.lnr.lnr-bubble
-              .col-md-9
-                .blog_post
-                  %img{:alt => "", :src => "/assets/themes/listashop/m-blog-1.jpg"}/
-                  .blog_details
-                    %a{:href => "single-blog.html"}
-                      %h2 Astronomy Binoculars A Great Alternative
-                    %p MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-                    %a.white_bg_btn{:href => "single-blog.html"} View More
-            %article.row.blog_item
-              .col-md-3
-                .blog_info.text-right
-                  .post_tag
-                    %a{:href => "#"} Food,
-                    %a.active{:href => "#"} Technology,
-                    %a{:href => "#"} Politics,
-                    %a{:href => "#"} Lifestyle
-                  %ul.blog_meta.list
-                    %li
-                      %a{:href => "#"}
-                        Mark wiens
-                        %i.lnr.lnr-user
-                    %li
-                      %a{:href => "#"}
-                        12 Dec, 2017
-                        %i.lnr.lnr-calendar-full
-                    %li
-                      %a{:href => "#"}
-                        1.2M Views
-                        %i.lnr.lnr-eye
-                    %li
-                      %a{:href => "#"}
-                        06 Comments
-                        %i.lnr.lnr-bubble
-              .col-md-9
-                .blog_post
-                  %img{:alt => "", :src => "/assets/themes/listashop/m-blog-2.jpg"}/
-                  .blog_details
-                    %a{:href => "single-blog.html"}
-                      %h2 The Basics Of Buying A Telescope
-                    %p MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-                    %a.white_bg_btn{:href => "single-blog.html"} View More
-            %article.row.blog_item
-              .col-md-3
-                .blog_info.text-right
-                  .post_tag
-                    %a{:href => "#"} Food,
-                    %a.active{:href => "#"} Technology,
-                    %a{:href => "#"} Politics,
-                    %a{:href => "#"} Lifestyle
-                  %ul.blog_meta.list
-                    %li
-                      %a{:href => "#"}
-                        Mark wiens
-                        %i.lnr.lnr-user
-                    %li
-                      %a{:href => "#"}
-                        12 Dec, 2017
-                        %i.lnr.lnr-calendar-full
-                    %li
-                      %a{:href => "#"}
-                        1.2M Views
-                        %i.lnr.lnr-eye
-                    %li
-                      %a{:href => "#"}
-                        06 Comments
-                        %i.lnr.lnr-bubble
-              .col-md-9
-                .blog_post
-                  %img{:alt => "", :src => "/assets/themes/listashop/m-blog-3.jpg"}/
-                  .blog_details
-                    %a{:href => "single-blog.html"}
-                      %h2 The Glossary Of Telescopes
-                    %p MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-                    %a.white_bg_btn{:href => "single-blog.html"} View More
-            %article.row.blog_item
-              .col-md-3
-                .blog_info.text-right
-                  .post_tag
-                    %a{:href => "#"} Food,
-                    %a.active{:href => "#"} Technology,
-                    %a{:href => "#"} Politics,
-                    %a{:href => "#"} Lifestyle
-                  %ul.blog_meta.list
-                    %li
-                      %a{:href => "#"}
-                        Mark wiens
-                        %i.lnr.lnr-user
-                    %li
-                      %a{:href => "#"}
-                        12 Dec, 2017
-                        %i.lnr.lnr-calendar-full
-                    %li
-                      %a{:href => "#"}
-                        1.2M Views
-                        %i.lnr.lnr-eye
-                    %li
-                      %a{:href => "#"}
-                        06 Comments
-                        %i.lnr.lnr-bubble
-              .col-md-9
-                .blog_post
-                  %img{:alt => "", :src => "/assets/themes/listashop/m-blog-4.jpg"}/
-                  .blog_details
-                    %a{:href => "single-blog.html"}
-                      %h2 The Night Sky
-                    %p MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-                    %a.white_bg_btn{:href => "single-blog.html"} View More
-            %article.row.blog_item
-              .col-md-3
-                .blog_info.text-right
-                  .post_tag
-                    %a{:href => "#"} Food,
-                    %a.active{:href => "#"} Technology,
-                    %a{:href => "#"} Politics,
-                    %a{:href => "#"} Lifestyle
-                  %ul.blog_meta.list
-                    %li
-                      %a{:href => "#"}
-                        Mark wiens
-                        %i.lnr.lnr-user
-                    %li
-                      %a{:href => "#"}
-                        12 Dec, 2017
-                        %i.lnr.lnr-calendar-full
-                    %li
-                      %a{:href => "#"}
-                        1.2M Views
-                        %i.lnr.lnr-eye
-                    %li
-                      %a{:href => "#"}
-                        06 Comments
-                        %i.lnr.lnr-bubble
-              .col-md-9
-                .blog_post
-                  %img{:alt => "", :src => "/assets/themes/listashop/m-blog-5.jpg"}/
-                  .blog_details
-                    %a{:href => "single-blog.html"}
-                      %h2 Telescopes 101
-                    %p MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction.
-                    %a.white_bg_btn{:href => "single-blog.html"} View More
-            %nav.blog-pagination.justify-content-center.d-flex
-              %ul.pagination
-                %li.page-item
-                  %a.page-link{"aria-label" => "Previous", :href => "#"}
-                    %span{"aria-hidden" => "true"}
-                      %span.lnr.lnr-chevron-left
-                %li.page-item
-                  %a.page-link{:href => "#"} 01
-                %li.page-item.active
-                  %a.page-link{:href => "#"} 02
-                %li.page-item
-                  %a.page-link{:href => "#"} 03
-                %li.page-item
-                  %a.page-link{:href => "#"} 04
-                %li.page-item
-                  %a.page-link{:href => "#"} 09
-                %li.page-item
-                  %a.page-link{"aria-label" => "Next", :href => "#"}
-                    %span{"aria-hidden" => "true"}
-                      %span.lnr.lnr-chevron-right
-        .col-lg-4
-          .blog_right_sidebar
-            %aside.single_sidebar_widget.search_widget
-              .input-group
-                %input.form-control{:placeholder => "Search Posts", :type => "text"}/
-                %span.input-group-btn
-                  %button.btn.btn-default{:type => "button"}
-                    %i.lnr.lnr-magnifier
-              / /input-group
-              .br
-            %aside.single_sidebar_widget.author_widget
-              %img.author_img.rounded-circle{:alt => "", :src => "/assets/themes/listashop/author.png"}/
-              %h4 Charlie Barber
-              %p Senior blog writer
-              .social_icon
-                %a{:href => "#"}
-                  %i.fa.fa-facebook
-                %a{:href => "#"}
-                  %i.fa.fa-twitter
-                %a{:href => "#"}
-                  %i.fa.fa-github
-                %a{:href => "#"}
-                  %i.fa.fa-behance
-              %p Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.
-              .br
-            %aside.single_sidebar_widget.popular_post_widget
-              %h3.widget_title Popular Posts
-              .media.post_item
-                %img{:alt => "post", :src => "/assets/themes/listashop/post1.jpg"}/
+      .main_title
+        %h2 Top Brands of this Month
+        %p Who are in extremely love with eco friendly system.
+      .clients_slider.owl-carousel
+        .item
+          %img{:alt => "", :src => "/assets/themes/listashop/c-logo-1.png"}/
+        .item
+          %img{:alt => "", :src => "/assets/themes/listashop/c-logo-2.png"}/
+        .item
+          %img{:alt => "", :src => "/assets/themes/listashop/c-logo-3.png"}/
+        .item
+          %img{:alt => "", :src => "/assets/themes/listashop/c-logo-4.png"}/
+        .item
+          %img{:alt => "", :src => "/assets/themes/listashop/c-logo-5.png"}/
+  / ================End Clients Logo Area =================
+  / ================Most Product Area =================
+  %section.most_product_area
+    .main_box
+      .container
+        .main_title
+          %h2 Most Searched Products
+          %p Who are in extremely love with eco friendly system.
+        .row.most_product_inner
+          .col-lg-3.col-sm-6
+            .most_p_list
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-1.jpg"}/
                 .media-body
-                  %a{:href => "blog-details.html"}
-                    %h3 Space The Final Frontier
-                  %p 02 Hours ago
-              .media.post_item
-                %img{:alt => "post", :src => "/assets/themes/listashop/post2.jpg"}/
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-2.jpg"}/
                 .media-body
-                  %a{:href => "blog-details.html"}
-                    %h3 The Amazing Hubble
-                  %p 02 Hours ago
-              .media.post_item
-                %img{:alt => "post", :src => "/assets/themes/listashop/post3.jpg"}/
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-3.jpg"}/
                 .media-body
-                  %a{:href => "blog-details.html"}
-                    %h3 Astronomy Or Astrology
-                  %p 03 Hours ago
-              .media.post_item
-                %img{:alt => "post", :src => "/assets/themes/listashop/post4.jpg"}/
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+          .col-lg-3.col-sm-6
+            .most_p_list
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-4.jpg"}/
                 .media-body
-                  %a{:href => "blog-details.html"}
-                    %h3 Asteroids telescope
-                  %p 01 Hours ago
-              .br
-            %aside.single_sidebar_widget.ads_widget
-              %a{:href => "#"}
-                %img.img-fluid{:alt => "", :src => "/assets/themes/listashop/add.jpg"}/
-              .br
-            %aside.single_sidebar_widget.post_category_widget
-              %h4.widget_title Post Catgories
-              %ul.list.cat-list
-                %li
-                  %a.d-flex.justify-content-between{:href => "#"}
-                    %p Technology
-                    %p 37
-                %li
-                  %a.d-flex.justify-content-between{:href => "#"}
-                    %p Lifestyle
-                    %p 24
-                %li
-                  %a.d-flex.justify-content-between{:href => "#"}
-                    %p Fashion
-                    %p 59
-                %li
-                  %a.d-flex.justify-content-between{:href => "#"}
-                    %p Art
-                    %p 29
-                %li
-                  %a.d-flex.justify-content-between{:href => "#"}
-                    %p Food
-                    %p 15
-                %li
-                  %a.d-flex.justify-content-between{:href => "#"}
-                    %p Architecture
-                    %p 09
-                %li
-                  %a.d-flex.justify-content-between{:href => "#"}
-                    %p Adventure
-                    %p 44
-              .br
-            %aside.single-sidebar-widget.newsletter_widget
-              %h4.widget_title Newsletter
-              %p
-                Here, I focus on a range of items and features that we use in life without
-                giving them a second thought.
-              .form-group.d-flex.flex-row
-                .input-group
-                  .input-group-prepend
-                    .input-group-text
-                      %i.fa.fa-envelope{"aria-hidden" => "true"}
-                  %input#inlineFormInputGroup.form-control{:onblur => "this.placeholder = 'Enter email'", :onfocus => "this.placeholder = ''", :placeholder => "Enter email", :type => "text"}/
-                %a.bbtns{:href => "#"} Subcribe
-              %p.text-bottom You can unsubscribe at any time
-              .br
-            %aside.single-sidebar-widget.tag_cloud_widget
-              %h4.widget_title Tag Clouds
-              %ul.list
-                %li
-                  %a{:href => "#"} Technology
-                %li
-                  %a{:href => "#"} Fashion
-                %li
-                  %a{:href => "#"} Architecture
-                %li
-                  %a{:href => "#"} Fashion
-                %li
-                  %a{:href => "#"} Food
-                %li
-                  %a{:href => "#"} Technology
-                %li
-                  %a{:href => "#"} Lifestyle
-                %li
-                  %a{:href => "#"} Art
-                %li
-                  %a{:href => "#"} Adventure
-                %li
-                  %a{:href => "#"} Food
-                %li
-                  %a{:href => "#"} Lifestyle
-                %li
-                  %a{:href => "#"} Adventure
-  / ================Blog Area =================
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-5.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-6.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+          .col-lg-3.col-sm-6
+            .most_p_list
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-7.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-8.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-9.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+          .col-lg-3.col-sm-6
+            .most_p_list
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-10.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-11.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+              .media
+                .d-flex
+                  %img{:alt => "", :src => "/assets/themes/listashop/m-product-12.jpg"}/
+                .media-body
+                  %a{:href => "#"}
+                    %h4 Black lace Heels
+                  %h3 $189.00
+  / ================End Most Product Area =================
   / ================ start footer Area  =================
   %footer.footer-area
     .container

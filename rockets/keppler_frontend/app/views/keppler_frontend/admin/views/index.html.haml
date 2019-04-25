@@ -17,6 +17,11 @@
             #box-body
               %iframe.preview-iframe#preview.hidden-xs{ src: "#{request.base_url}" }
       .col-lg-6
+        %section.content-actions
+          .add
+            = link_to "#", class: "btn-add" do
+              +
+              = t('keppler.actions.new_view')
         .box.slice-box
           .box-body.no-padding
             %table.table
@@ -27,7 +32,7 @@
                       %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
                 - else
                   %tr
-                    %th
+                    %th.hidden-xs
                     %th.hidden-xs= t('activerecord.attributes.method')
                     %th.hidden-xs= t('activerecord.attributes.route')
                     %th.hidden-xs= t('activerecord.attributes.type')
@@ -37,15 +42,15 @@
                   %tr
                     %td
                       %i.bx.bx-file
-                    %td
+                    %td.hidden-xs
                       = link_to "#", remote: true, class: 'show-row' do
                         %span.badge
                           = view.last.upcase
-                    %td{ style: 'width: 40%' }
+                    %td
                       = link_to "#", remote: true, class: 'show-row' do
                         %span
                           = view.second
-                    %td
+                    %td.hidden-xs
                       = link_to "#", remote: true, class: 'show-row' do
                         %span
                           = view.first.split('.').last.capitalize

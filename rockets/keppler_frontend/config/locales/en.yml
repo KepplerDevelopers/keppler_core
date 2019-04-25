@@ -72,6 +72,7 @@ en:
       keppler_frontend/admin/themes: Themes
       keppler_frontend/admin/partials: Partials
     actions:
+      new_view: New View
       created: Created
       updated: Updated
       create: Create
