@@ -12,6 +12,7 @@ $(document).ready(function() {
   })
 
   $('#reload').click(function() {
-    $('iframe').attr('src', '/')
+    var url = document.getElementById("preview").contentWindow.location.href
+    $('iframe').attr('src', url)
   })
 });

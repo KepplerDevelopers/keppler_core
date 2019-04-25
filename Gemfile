@@ -25,6 +25,8 @@ gem 'sdoc', '1.0.0'
 # Pipelines
 gem 'coffee-rails', '4.2.2'
 gem 'haml-rails', '1.0'
+gem 'html-to-haml'
+gem 'html2haml', '2.2.0'
 gem 'sass-rails', '5.0.7'
 
 gem 'acts_as_list', '0.9.11'

@@ -11,6 +11,12 @@ module KepplerFrontend
       # GET /views
       def index
         @views = views_list.all_with_routes
+        @resources = resources.custom_list('views')
+      end
+
+      def select_theme
+        theme_view.select_theme(params)
+        redirect_to admin_frontend_views_path
       end
 
       private
@@ -21,6 +27,14 @@ module KepplerFrontend
 
       def views_list
         KepplerFrontend::ViewsList.new
+      end
+
+      def theme_view
+        KepplerFrontend::ThemeViews.new
+      end
+
+      def resources
+        KepplerFrontend::Editor::Resources.new
       end
     end
   end

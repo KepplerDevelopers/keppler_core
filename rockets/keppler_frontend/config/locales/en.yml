@@ -11,6 +11,7 @@ en:
     fail: The file format is not valid
     destroy: The file has been successfully deleted
     select_view_confirm: This action will overwrite the view. Do you want to continue?
+    select_theme_view: Select a theme view
     multimedia:
       copy: Copy Url
       copy_html: Copy Html

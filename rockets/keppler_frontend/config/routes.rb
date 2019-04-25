@@ -26,6 +26,7 @@ KepplerFrontend::Engine.routes.draw do
       end
 
       get '/views', to: 'views#index', as: 'views'
+      post '/views/select_theme', to: 'views#select_theme', as: 'views_select_theme'
 
       get '/assets', to: 'multimedia#index', as: 'multimedia'
       post '/assets/upload', to: 'multimedia#upload', as: 'upload_multimedia'

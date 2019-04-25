@@ -1,7 +1,7 @@
 ---
 - id: 1
   name: keppler_default
-  active: true
+  active: false
   position: 1
   deleted_at: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
@@ -10,6 +10,19 @@
       name: America/Caracas
     time: 2019-04-23 18:03:39.392687000 Z
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: 2019-04-23 22:59:23.481951000 Z
+    utc: 2019-04-25 12:58:42.248042000 Z
     zone: *1
-    time: 2019-04-23 18:59:23.481951000 Z
+    time: 2019-04-25 08:58:42.248042000 Z
+- id: 4
+  name: listashop
+  active: true
+  position: 2
+  deleted_at: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-04-25 12:58:34.730887000 Z
+    zone: *1
+    time: 2019-04-25 08:58:34.730887000 Z
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2019-04-25 12:58:42.322228000 Z
+    zone: *1
+    time: 2019-04-25 08:58:42.322228000 Z

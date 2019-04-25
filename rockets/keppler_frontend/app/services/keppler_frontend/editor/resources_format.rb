@@ -44,7 +44,7 @@ module KepplerFrontend
           name: @file,
           url: "#{url_core(@folder, @container)}/#{@file}",
           search: @name,
-          path: url.front_assets(@file),
+          path: url.views_assets(@file),
           folder: @folder,
           size: utils.size(@size),
           format: @extend.split('.').last

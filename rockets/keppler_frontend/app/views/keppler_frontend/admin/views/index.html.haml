@@ -1,55 +1,56 @@
-
-.container
-  %section.content-header.index-header
-    %h1{ style: 'display: inline-block' }
-      = t("keppler.actions.views")
-  .row
-    .col-lg-6
-      .box.slice-box.box-preview.hidden-xs
-        .box-header.with-border
-          %h3.box-title= t('keppler.actions.preview')
-          .box-tools.pull-right#tools
-            %i.bx.bx-desktop#lg
-            %i.bx.bx-tab#md
-            %i.bx.bx-mobile#xs
-            %i.bx.bx-revision#reload
-        .box-body.box-body-no-padding.hidden-xs#box-body-bg
-          #box-body
-            %iframe.preview-iframe.hidden-xs{ src: "#{request.base_url}" }
-    .col-lg-6
-      .box.slice-box
-        .box-body.no-padding
-          %table.table
-            %thead
-              - if @views.size.zero?
-                %tr
-                  %th{style: 'text-align: center;'}
-                    %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
-              - else
-                %tr
-                  %th
-                  %th.hidden-xs= t('activerecord.attributes.method')
-                  %th.hidden-xs= t('activerecord.attributes.route')
-                  %th.hidden-xs= t('activerecord.attributes.type')
-                  %th.hidden-xs= t('keppler_frontend.models.singularize.theme')
-            %tbody.objects-container
-              - @views.each_with_index do |view, i|
-                %tr
-                  %td
-                    %i.bx.bx-file
-                  %td
-                    = link_to "#", remote: true, class: 'show-row' do
-                      %span.badge
-                        = view.last.upcase
-                  %td{ style: 'width: 40%' }
-                    = link_to "#", remote: true, class: 'show-row' do
-                      %span
-                        = view.second
-                  %td
-                    = link_to "#", remote: true, class: 'show-row' do
-                      %span
-                        = view.first.split('.').last.capitalize
-                  %td
-                    = link_to "#", remote: true, class: 'show-row', title: t('keppler.actions.add_theme') do
-                      %span
-                        %i.bx.bxs-magic-wand
+#index-container
+  .container
+    %section.content-header.index-header
+      %h1{ style: 'display: inline-block' }
+        = t("keppler.actions.views")
+    .row
+      .col-lg-6
+        .box.slice-box.box-preview.hidden-xs
+          .box-header.with-border
+            %h3.box-title= t('keppler.actions.preview')
+            .box-tools.pull-right#tools
+              %i.bx.bx-desktop#lg
+              %i.bx.bx-tab#md
+              %i.bx.bx-mobile#xs
+              %i.bx.bx-revision#reload
+          .box-body.box-body-no-padding.hidden-xs#box-body-bg
+            #box-body
+              %iframe.preview-iframe#preview.hidden-xs{ src: "#{request.base_url}" }
+      .col-lg-6
+        .box.slice-box
+          .box-body.no-padding
+            %table.table
+              %thead
+                - if @views.size.zero?
+                  %tr
+                    %th{style: 'text-align: center;'}
+                      %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
+                - else
+                  %tr
+                    %th
+                    %th.hidden-xs= t('activerecord.attributes.method')
+                    %th.hidden-xs= t('activerecord.attributes.route')
+                    %th.hidden-xs= t('activerecord.attributes.type')
+                    %th.hidden-xs= t('keppler_frontend.models.singularize.theme')
+              %tbody.objects-container
+                - @views.each_with_index do |view, i|
+                  %tr
+                    %td
+                      %i.bx.bx-file
+                    %td
+                      = link_to "#", remote: true, class: 'show-row' do
+                        %span.badge
+                          = view.last.upcase
+                    %td{ style: 'width: 40%' }
+                      = link_to "#", remote: true, class: 'show-row' do
+                        %span
+                          = view.second
+                    %td
+                      = link_to "#", remote: true, class: 'show-row' do
+                        %span
+                          = view.first.split('.').last.capitalize
+                    %td
+                      = link_to "#", remote: true, class: 'show-row', title: t('keppler.actions.add_theme'), "data-toggle": "modal",  "data-target": "#asign-theme-#{i}" do
+                        %span
+                          %i.bx.bxs-magic-wand
+                  = render 'select_theme', view: view, index: i

@@ -343,3 +343,32 @@
 .box-preview {
   margin-bottom: 0 !important;
 }
+
+.asign-theme {
+  .modal-content {
+    border-radius: 10px;
+  }
+
+  .modal-dialog {
+    width: 60%;
+    margin: 30px auto;
+  }
+  
+  .modal-title {
+    width: 50%;
+    float: left;
+  }
+
+  .modal-body {
+    background: #dedbdb;
+    height: 450px;
+    overflow: auto;
+
+    .theme-img {
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+} 

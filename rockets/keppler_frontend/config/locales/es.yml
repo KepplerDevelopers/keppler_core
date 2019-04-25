@@ -4,6 +4,7 @@ es:
     fail: El formato del archivo no es válido
     destroy: El archivo se ha sido eliminado satisfactoriamente
     select_view_confirm: Esta acción sobrescribirá la vista. ¿Deseas continuar?
+    select_theme_view: Selecciona un tema para esta vista
     multimedia:
       copy: Copiar Url
       copy_html: Copiar Html
