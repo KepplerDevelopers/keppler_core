@@ -6,7 +6,7 @@ module KepplerFrontend
 
     def user_signed_in?
       return if current_user
-      redirect_to main_app.new_user_session_path
+      redirect_to '/alert/403'
     end
 
     def only_development

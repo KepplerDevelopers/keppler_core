@@ -55,7 +55,7 @@ module KepplerFrontend
         file = file.split('.').first
         controller = file.split('/').second
         action = file.split('/').last
-        route.include?("#{controller}##{action}")
+        route.include?("app/#{controller}##{action}")
       end
     end
   end
