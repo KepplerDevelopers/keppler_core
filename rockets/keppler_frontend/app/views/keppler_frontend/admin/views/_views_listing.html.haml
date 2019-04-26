@@ -1,0 +1,43 @@
+.box.slice-box
+  .box-body.no-padding
+    %table.table
+      %thead
+        - if views.size.zero?
+          %tr
+            %th{style: 'text-align: center;'}
+              %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
+        - else
+          %tr
+            %th.hidden-xs= t('activerecord.attributes.method')
+            %th.hidden-xs= t('activerecord.attributes.route')
+            %th.hidden-xs= t('activerecord.attributes.type')
+            %th.hidden-xs= t('keppler_frontend.models.singularize.theme')
+            %th.hidden-xs
+      %tbody.objects-container
+        - views.each_with_index do |view, i|
+          - unless view.last.eql?('')
+            %tr
+              %td.hidden-xs{ style: "width: 10%"}
+                = link_to "#", remote: true, class: 'show-row' do
+                  %span.badge
+                    = view.last.upcase
+              %td
+                = link_to "#", remote: true, class: 'show-row' do
+                  %span
+                    - if view.last.upcase.eql?('ROOT')
+                      = '/'
+                    - else
+                      = view.second
+              %td.hidden-xs{ style: "width: 10%"}
+                = link_to "#", remote: true, class: 'show-row' do
+                  %span
+                    = view.first.split('.').last.capitalize
+              %td{ style: "width: 10%"}
+                = link_to "#", remote: true, class: 'show-row', title: t('keppler.actions.add_theme'), "data-toggle": "modal",  "data-target": "#asign-theme-#{i}" do
+                  %span
+                    %i.bx.bxs-magic-wand
+              %td{ style: "width: 10%"}
+                = link_to admin_frontend_views_remove_path(i), remote: true, method: :delete, class: 'show-row', title: t('keppler.actions.delete') do
+                  %span
+                    %i.bx.bx-trash
+            = render 'select_theme', view: view, index: i

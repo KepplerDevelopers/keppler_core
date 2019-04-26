@@ -4,6 +4,7 @@ es:
     fail: El formato del archivo no es válido
     destroy: El archivo se ha sido eliminado satisfactoriamente
     select_view_confirm: Esta acción sobrescribirá la vista. ¿Deseas continuar?
+    select_theme_view: Selecciona un tema para esta vista
     multimedia:
       copy: Copiar Url
       copy_html: Copiar Html
@@ -76,11 +77,14 @@ es:
       keppler_frontend/admin/callback_functions: Callbacks
     settings:
     actions:
+      generate: Generar
+      new_view: Nueva Vista
       created: Creado
       updated: Actualizado
       new: Nuevo
       show: Ver
       preview: Visualizar
+      add_theme: Asignar Tema
       interface: Editor de Interfaz
       download: Descargar
       user_interfaces: Interfaces de Usuario
@@ -115,6 +119,9 @@ es:
       upload_records: Cargar registros
       reserve: Reservar
       views: Vistas
+      close: Cerrar
+  route_errors:
+    exist: Ya existe una vista con este nombre 
   activerecord:
     attributes:
       id: Identificador
@@ -211,6 +218,7 @@ es:
       ga_status: Habilitar Google Analytics
       price_local: Precio en moneda local
       price_dollar: Precio en dólares
+      format: Formato
     errors:
       messages:
         record_invalid: "Validación fallida: %{errors}"

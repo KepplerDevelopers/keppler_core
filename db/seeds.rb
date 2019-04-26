@@ -82,39 +82,6 @@ else
   puts 'Setting default has been created'
 end
 
-if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
-  file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/data/views.yml")
-  routes = YAML.load_file(file)
-  routes.each do |route|
-    KepplerFrontend::View.create(
-      name: route['name'],
-      url: route['url'],
-      method: route['method'],
-      active: route['active'],
-      format_result: route['format_result']
-    )
-  end
-
-  callback_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/data/callback_functions.yml")
-  callbacks = YAML.load_file(callback_file)
-  callbacks.each do |callback|
-    KepplerFrontend::CallbackFunction.create(
-      name: callback['name'],
-      description: callback['description'],
-    )
-  end
-
-  partials_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/partials.yml")
-  partials = YAML.load_file(partials_file)
-
-  partials.each do |partial|
-    KepplerFrontend::Partial.create(
-      name: partial['name'],
-    )
-  end
-  puts 'Views and Partials has been created'
-end
-
 if defined?(KepplerLanguages) && KepplerLanguages.is_a?(Module)
   languages =  File.join("#{Rails.root}/rockets/keppler_languages/config/languages.yml")
   langs = YAML.load_file(languages)
@@ -136,27 +103,4 @@ if defined?(KepplerLanguages) && KepplerLanguages.is_a?(Module)
     )
   end
   puts 'Languages has been created'
-end
-
-if defined?(KepplerFrontend) && KepplerFrontend.is_a?(Module)
-  functions =  File.join("#{Rails.root}/rockets/keppler_frontend/config/functions.yml")
-  funcs = YAML.load_file(functions)
-
-  funcs.each do |func|
-    KepplerFrontend::Function.create(
-      name: func['name'],
-      description: func['description']
-    )
-  end
-
-  parameters_file =  File.join("#{Rails.root}/rockets/keppler_frontend/config/parameters.yml")
-  params = YAML.load_file(parameters_file)
-
-  params.each do |param|
-    KepplerFrontend::Parameter.create(
-      name: param['name'],
-      function_id: param['function_id']
-    )
-  end
-  puts 'Frontend functions has been created'
 end

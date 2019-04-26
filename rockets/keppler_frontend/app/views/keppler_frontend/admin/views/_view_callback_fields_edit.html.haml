@@ -1,8 +1,0 @@
-.nested-fields.row{id: "callback-#{f.object.id}"}
-  .col-lg-3
-    = f.input :function_type, label: t('keppler_frontend.attributes.function'), collection: f.object.set_function_types.map { |v| [v.to_s.split('_').map(&:capitalize).join(" "), v] } , include_blank: false, disabled: true
-  .col-lg-4
-    = f.input :name, label: t('keppler_frontend.attributes.callback'), collection: f.object.set_callbacks, include_blank: false, disabled: true
-  .col-lg-2
-    = link_to admin_frontend_view_destroy_callback_path(@view.id, f.object.id.to_i), class: "btn btn-default btn-delete-field" , remote: true, method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
-      %i.icon-trash

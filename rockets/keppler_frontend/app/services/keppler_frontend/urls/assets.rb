@@ -14,6 +14,10 @@ module KepplerFrontend
         "/assets/keppler_frontend/app/#{file}"
       end
 
+      def views_assets(file)
+        "/assets/html/keppler_frontend/views/#{file}"
+      end
+
       private
 
       def root

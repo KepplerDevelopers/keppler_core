@@ -3,37 +3,22 @@ menu:
     name: Keppler Frontend
     current: ['']
     icon: layout
-    model: KepplerFrontend::View
+    model: KepplerFrontend::Theme
     environment: development
     position: 4
     submenu:
-      - keppler_frontend_view:
-          name: views
-          url_path: /admin/frontend/views
-          current: ['current']
-          model: KepplerFrontend::View
-      - keppler_frontend_callback_function:
-          name: callback_functions
-          url_path: /admin/frontend/callback_functions
-          current: ['current']
-          model: KepplerFrontend::CallbackFunction
-      - keppler_frontend_function:
-          name: functions
-          url_path: /admin/frontend/functions
-          current: ['current']
-          model: KepplerFrontend::Function
-      - keppler_frontend_partial:
-          name: partials
-          url_path: /admin/frontend/partials
-          current: ['current']
-          model: KepplerFrontend::Partial
-      - keppler_frontend_asset:
-          name: Assets
-          url_path: /admin/frontend/assets
-          current: ['current']
-          model: KepplerFrontend::View
       - keppler_frontend_theme:
           name: Themes
           url_path: /admin/frontend/themes
+          current: ['current']
+          model: KepplerFrontend::Theme
+      - keppler_frontend_asset:
+          name: Views
+          url_path: /admin/frontend/views
+          current: ['current']
+          model: KepplerFrontend::Theme
+      - keppler_frontend_asset:
+          name: Assets
+          url_path: /admin/frontend/assets
           current: ['current']
           model: KepplerFrontend::Theme
