@@ -12,12 +12,20 @@ module KepplerFrontend
       keppler_admin? || user_can?(@objects, 'show_covers')
     end
 
-    def editor?
-      keppler_admin? || user_can?(@objects, 'editor')
+    def select_theme?
+      keppler_admin? || user_can?(@objects, 'select_theme')
     end
 
-    def editor_save?
-      keppler_admin? || user_can?(@objects, 'editor_save')
+    def refresh?
+      keppler_admin? || user_can?(@objects, 'select_theme')
+    end
+
+    def generate?
+      keppler_admin? || user_can?(@objects, 'select_theme')
+    end
+
+    def remove?
+      keppler_admin? || user_can?(@objects, 'select_theme')
     end
   end
 end

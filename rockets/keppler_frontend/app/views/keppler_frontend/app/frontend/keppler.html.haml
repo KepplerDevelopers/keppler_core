@@ -13,7 +13,7 @@
         - if current_user
           %a.btn-main{href: "/admin" } Ir a admin
         - else
-          %a.btn-main{href: "/#{Appearance.first.admin_code}" } Ir a admin
+          %a.btn-main{href: "/#{Appearance.first.admin_code}/sign_in" } Ir a admin
         .front-content
           .front-logo
             %span Keppler

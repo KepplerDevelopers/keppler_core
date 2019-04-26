@@ -172,7 +172,7 @@ Rails.application.routes.draw do
 
   scope ":admin_code" do 
     devise_scope :user do
-      get '/', to: 'devise/keppler_sessions#new'
+      get '/sign_in', to: 'devise/keppler_sessions#new'
       post '/sign_in', to: 'devise/keppler_sessions#create'
       delete '/sign_out', to: 'devise/keppler_sessions#destroy'
     end

@@ -18,15 +18,15 @@ module KepplerFrontend
         uploader = ImgFileUploader.new
         tab = "images"
         message = "fail"
-        unless params[:view].nil?
-          fotmat_valid = @filesystem .validate_format(params[:view][:file].original_filename)
+        unless params[:theme].nil?
+          fotmat_valid = @filesystem .validate_format(params[:theme][:file].original_filename)
           message = "success"
           if fotmat_valid
-            File.open(params[:view][:file].path) do |file|
+            File.open(params[:theme][:file].path) do |file|
               uploader.store!(file)
-              @filesystem .move_and_rename_file(uploader, params[:view][:file])
+              @filesystem .move_and_rename_file(uploader, params[:theme][:file])
             end
-            filename = params[:view][:file].original_filename
+            filename = params[:theme][:file].original_filename
             tab = select_tab(fotmat_valid, filename)
           else
             tab = "images"
@@ -55,7 +55,7 @@ module KepplerFrontend
       private
 
       def authorization
-        authorize View
+        authorize Theme
       end
 
       def set_filesystem
@@ -63,7 +63,7 @@ module KepplerFrontend
       end
 
       def set_data(filesystem )
-        @view = View.new
+        @view = Theme.new
         @files_list = filesystem .files_list
       end
 

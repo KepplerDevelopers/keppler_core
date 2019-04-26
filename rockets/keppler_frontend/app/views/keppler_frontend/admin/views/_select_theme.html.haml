@@ -1,0 +1,32 @@
+.asign-theme.modal.fade{id: "asign-theme-#{index}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title= t('keppler_frontend.select_theme_view')
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body.clearfix
+        - @resources.each_with_index do |file, i|
+          .col-lg-4
+            .box.box-solid
+              .box-header.with-border{title: "#{file[:name]}"}
+                .row
+                  .col-lg-12
+                    %h4.box-title
+                      %i.fa.fa-tint
+                      = truncate(file[:name].split('.').first, length: 30, omission: '...')
+              .box-body.no-padding
+                .back-file-xs{ style: "height: 160px;"}
+                  .center
+                    - if file[:cover].nil?
+                      %i.fa.fa-tint#font-icon-size
+                    - else
+                      .theme-img{ style: "background-image: url(#{file[:cover]})" }
+              .box-body
+                %span.box-title
+                  = file[:size]
+                  = link_to admin_frontend_views_select_theme_path(view_format: view.first.split('.').last, view: view.first.to_s, theme: file[:path]), class: 'btn btn-default pull-right', method: :post, data: { confirm: t("keppler_frontend.select_view_confirm") } do
+                    %i.fa.fa-check
+          
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('keppler.actions.close')

@@ -1,54 +1,61 @@
-# frozen_string_literal: true
-
 module KepplerFrontend
   module Views
-    # CodeHandler
+    # Assets
     class RoutesHandler
-      def initialize(view_data)
-        @view = view_data
+      def initialize; end
+
+      def list
+        routes = KepplerFrontend::Engine.routes.routes
+        routes.map do |route|
+          setting = "#{route.defaults[:controller]}/" +
+                    "#{route.defaults[:action]}"
+          [ route.path.spec.to_s, 
+            setting 
+          ]
+        end
+      end
+        
+      def search_route(file)
+        route = ''
+        routes_lines.each do |line|
+          if controller_and_action?(file, line)
+            route = route_format(line)
+          end
+        end
+        route
       end
 
-      def install
-        routes_file = File.readlines(config.routes)
-        idx = code_search(routes_file).search_line(flag_point)
-        routes_file.insert(idx.to_i + 1, template)
-        routes_file = routes_file.join('')
-        File.write(config.routes, routes_file)
-        true
-      rescue StandardError
-        false
-      end
-
-      def uninstall
-        routes_file = File.readlines(config.routes)
-        idx = code_search(routes_file).search_line(template)
-        return if idx.zero?
-        routes_file.delete_at(idx.to_i)
-        routes_file = routes_file.join('')
-        File.write(config.routes, routes_file)
-        true
-      rescue StandardError
-        false
+      def route_method(file)
+        method = ''
+        routes_lines.each do |line|
+          if controller_and_action?(file, line)
+            method = line.split(' ').first
+          end
+        end
+        method
       end
 
       private
-
-      def config
-        KepplerFrontend::Urls::Config.new
+      
+      def routes_url
+        'rockets/keppler_frontend/config/routes.rb'
       end
 
-      def flag_point
-        'KepplerFrontend::Engine.routes.draw do'
+      def route_format(route)
+        route = route.split(' ').second
+        route.gsub!("'", '')
+        route.gsub!(",", '')
       end
 
-      def template
-        active = @view.active.eql?(false) ? '#' : ''
-        "#{active}  #{@view.method.downcase} '#{@view.url}'," \
-            " to: 'app/frontend##{@view.name}', as: :#{@view.name}\n"
+      def routes_lines
+        File.readlines(routes_url)
       end
-
-      def code_search(html)
-        KepplerFrontend::Utils::CodeSearch.new(html)
+      
+      def controller_and_action?(file, route)
+        file = file.split('.').first
+        controller = file.split('/').second
+        action = file.split('/').last
+        route.include?("#{controller}##{action}")
       end
     end
   end

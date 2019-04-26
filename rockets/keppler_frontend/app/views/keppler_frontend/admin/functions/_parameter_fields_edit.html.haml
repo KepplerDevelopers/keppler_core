@@ -1,6 +1,0 @@
-.nested-fields.row{ id: "parameter-#{f.object.id}" }
-  .col-lg-6
-    = f.input :name, label: 'Nombre'
-  .col-lg-2
-    = link_to admin_frontend_function_destroy_param_path(@function.id, f.object.id.to_i), class: "btn btn-default btn-delete-field" , method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
-      %i.icon-trash{ style: 'color: red' }
