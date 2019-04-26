@@ -30,7 +30,10 @@ module KepplerFrontend
         view_add.new_route(obj)
       end
 
-      def remove; end
+      def remove(file)
+        view_remove.remove_file(file)
+        view_remove.remove_route(file)
+      end
 
       private
 
@@ -48,6 +51,10 @@ module KepplerFrontend
 
       def view_add
         KepplerFrontend::Views::Add.new
+      end
+
+      def view_remove
+        KepplerFrontend::Views::Remove.new
       end
 
       def format_permit?(file)

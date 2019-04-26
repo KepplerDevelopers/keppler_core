@@ -1,0 +1,485 @@
+/* line 3, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 4px 6px;
+  color: #555;
+  vertical-align: middle;
+  max-width: 100%;
+  line-height: 22px;
+  cursor: text;
+}
+/* line 15, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 0;
+  width: auto;
+  max-width: inherit;
+}
+/* line 24, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+/* line 30, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  color: #777;
+  opacity: 1;
+}
+/* line 34, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+  color: #777;
+}
+/* line 37, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+  color: #777;
+}
+/* line 40, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control .tag {
+  margin-right: 2px;
+  color: white;
+  background-color: #f44336;
+}
+/* line 44, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+/* line 47, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 0px 2px;
+}
+/* line 51, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control .tag [data-role="remove"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+/* line 53, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/bootstrap-tagsinput.scss */
+.bootstrap-tagsinput.form-control .tag [data-role="remove"]:hover:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+/* line 1, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.code-container {
+  overflow: hidden;
+  height: 80vh;
+}
+
+/* line 6, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.aside-close {
+  position: absolute !important;
+  top: 50px !important;
+  z-index: 1 !important;
+  right: 0px !important;
+}
+
+/* line 14, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#theme-editor .box-title {
+  font-size: 11px;
+}
+/* line 17, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#theme-editor .box-title i {
+  font-size: 11px;
+}
+/* line 22, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#theme-editor .tab-content {
+  padding: 0 !important;
+  height: 100%;
+}
+/* line 27, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#theme-editor .box {
+  margin-bottom: 10px;
+}
+/* line 31, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#theme-editor .row {
+  width: 107%;
+}
+/* line 35, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#theme-editor #aside-audio {
+  width: 100% !important;
+}
+
+/* line 41, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#assets-editor .box-title {
+  font-size: 11px;
+}
+/* line 44, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#assets-editor .box-title i {
+  font-size: 11px;
+}
+/* line 49, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#assets-editor .tab-content {
+  padding: 0 !important;
+  height: 100%;
+}
+/* line 54, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#assets-editor .box {
+  margin-bottom: 10px;
+}
+/* line 58, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#assets-editor .row {
+  width: 107%;
+}
+/* line 62, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#assets-editor #aside-audio {
+  width: 100% !important;
+}
+
+/* line 68, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#views-editor .box-title {
+  font-size: 11px;
+}
+/* line 71, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#views-editor .box-title i {
+  font-size: 11px;
+}
+/* line 76, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#views-editor .tab-content {
+  padding: 0 !important;
+  height: 100%;
+}
+/* line 81, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#views-editor .box {
+  margin-bottom: 10px;
+}
+/* line 85, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#views-editor .row {
+  width: 107%;
+}
+/* line 89, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#views-editor #aside-audio {
+  width: 100% !important;
+}
+
+/* line 94, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#btn-assets-editor,
+#btn-theme-editor,
+#btn-views-editor,
+#close-assets-editor,
+#close-theme-editor,
+#close-views-editor {
+  cursor: pointer;
+}
+
+/* line 103, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.CodeMirror {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  line-height: 1.3;
+  height: 100%;
+  font-size: 12px;
+}
+
+/* line 111, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.kf-signal {
+  height: 10px;
+  width: 10px;
+  background: #61e1d8;
+  float: right;
+  border-radius: 50%;
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+
+/* line 122, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.html_signal {
+  display: none;
+}
+
+/* line 126, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.scss_signal {
+  display: none;
+}
+
+/* line 129, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.js_signal {
+  display: none;
+}
+
+/* line 133, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.js_erb_signal {
+  display: none;
+}
+
+/* line 137, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.action_signal {
+  display: none;
+}
+
+/* line 141, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.callback_signal {
+  display: none;
+}
+
+/* line 145, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files {
+  padding-right: 3%;
+  padding-left: 3%;
+  padding-bottom: 5%;
+}
+/* line 150, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .form-group {
+  margin-bottom: 15px;
+  border: 1px dashed #868686;
+  padding: 10px;
+}
+/* line 156, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-title {
+  font-size: 13px !important;
+}
+/* line 159, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-title a {
+  font-size: 11px !important;
+}
+/* line 164, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files #font-icon-size {
+  font-size: 7rem;
+}
+/* line 169, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-body .back-file {
+  background: #eaeaea;
+  width: 100%;
+  height: 200px;
+}
+/* line 174, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-body .back-file .file-image {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+/* line 182, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-body .back-file-xs {
+  background: #eaeaea;
+  width: 100%;
+  height: 117px;
+  overflow: hidden;
+}
+/* line 188, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-body .back-file-xs .file-image {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+/* line 195, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-body .back-file-xs img {
+  width: 100%;
+}
+/* line 199, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .box-body .back-file-xs #font-icon-size {
+  font-size: 3rem;
+}
+/* line 205, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.container-files .tab-pane {
+  padding: 2%;
+  height: 700px;
+  overflow: auto;
+}
+
+/* line 212, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.nav-tabs-custom > .tab-content {
+  background: #fff;
+  padding: 0 !important;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+/* line 218, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.cm-matchhighlight {
+  background-color: #4b4b4b;
+}
+
+/* line 219, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.CodeMirror-selection-highlight-scrollbar {
+  background-color: #4b4b4b;
+}
+
+/* line 220, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.cm-trailingspace {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAYAAAB/qH1jAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUXCToH00Y1UgAAACFJREFUCNdjPMDBUc/AwNDAAAFMTAwMDA0OP34wQgX/AQBYgwYEx4f9lQAAAABJRU5ErkJggg==);
+  background-position: bottom left;
+  background-repeat: repeat-x;
+}
+
+/* line 226, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#theme-cover-carousel {
+  height: 267px;
+}
+
+/* line 231, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.theme-covers .cover {
+  background-image: url("/assets/keppler_frontend/themes/keppler_default/covers/cover_1.png");
+  width: 100%;
+  display: inline-block;
+  height: 267px;
+  background-size: 100% 100%;
+  background-position: center;
+}
+/* line 240, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.theme-covers .ctrl {
+  font-size: 3rem;
+  opacity: 0;
+  transition: .5s;
+}
+/* line 246, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.theme-covers .ctrl-prev {
+  display: inline;
+  position: absolute;
+  z-index: 9;
+  top: 40%;
+}
+/* line 253, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.theme-covers .ctrl-next {
+  display: inline;
+  position: absolute;
+  z-index: 9;
+  top: 40%;
+  right: 4px;
+}
+
+/* line 263, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.theme-covers:hover .ctrl {
+  font-size: 3rem;
+  opacity: 1;
+  transition: .5s;
+}
+
+/* line 273, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.html .cm-s-monokai span.cm-bracket {
+  color: #ffffff;
+}
+/* line 277, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.html .cm-s-monokai span.cm-property {
+  color: #ffffff;
+}
+/* line 281, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.html .CodeMirror-matchingtag {
+  background-color: #a8ff004d;
+}
+
+/* line 287, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.css .cm-s-monokai span.cm-qualifier,
+.css .cm-s-monokai span.cm-builtin {
+  color: #a6e22e;
+}
+/* line 291, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.css .cm-s-monokai span.cm-property {
+  color: #40eded;
+}
+
+/* line 297, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.js .cm-s-monokai span.cm-keyword {
+  color: #40eded;
+}
+/* line 300, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.js .cm-s-monokai span.cm-property {
+  color: #ffffff;
+}
+
+/* line 306, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.action .cm-s-monokai span.cm-property {
+  color: #ffffff;
+}
+/* line 310, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.action .cm-s-monokai span.cm-tag {
+  color: #40eded;
+}
+/* line 314, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.action .cm-s-monokai span.cm-variable-2 {
+  color: #fff;
+}
+/* line 318, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.action .cm-s-monokai span.cm-atom {
+  color: #40eded;
+}
+
+/* line 323, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#box-body {
+  height: 325px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+/* line 329, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#box-body-bg {
+  background: #dedbdb;
+}
+
+/* line 333, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.preview-iframe {
+  background: #fff;
+  border: none;
+  height: 450px;
+  width: 250%;
+  zoom: 1.8;
+  transform: scale(0.4);
+  transform-origin: 0 0;
+}
+
+/* line 343, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.box-preview {
+  margin-bottom: 0 !important;
+}
+
+/* line 348, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.asign-theme .modal-content {
+  border-radius: 10px;
+}
+/* line 352, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.asign-theme .modal-dialog {
+  width: 60%;
+  margin: 30px auto;
+}
+/* line 357, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.asign-theme .modal-title {
+  width: 50%;
+  float: left;
+}
+/* line 362, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.asign-theme .modal-body {
+  background: #dedbdb;
+  height: 450px;
+  overflow: auto;
+}
+/* line 367, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.asign-theme .modal-body .theme-img {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* line 377, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.new-view .modal-content {
+  border-radius: 10px;
+}
+/* line 381, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+.new-view .modal-title {
+  width: 50%;
+  float: left;
+}
+
+/* line 387, /home/slice-d5/Proyectos/keppler_lab/keppler_core/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/admin/frontend.scss */
+#error-message {
+  color: red;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */

@@ -16,14 +16,13 @@ module KepplerFrontend
       end
         
       def search_route(file)
-        result = ""
-        file = file.split('.').first
-        list.each do | route |
-          if route.last.include?(file)
-            result = route_format(route)
+        route = ''
+        routes_lines.each do |line|
+          if controller_and_action?(file, line)
+            route = route_format(line)
           end
         end
-        result
+        route
       end
 
       def route_method(file)
@@ -43,8 +42,9 @@ module KepplerFrontend
       end
 
       def route_format(route)
-        route.first.slice!('(.:format)')
-        route.first
+        route = route.split(' ').second
+        route.gsub!("'", '')
+        route.gsub!(",", '')
       end
 
       def routes_lines

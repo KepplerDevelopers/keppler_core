@@ -6,7 +6,7 @@ module KepplerFrontend
       layout 'keppler_frontend/admin/layouts/application'
       before_action :only_development
       before_action :authorization
-      before_action :set_data, only: [:index, :refresh]
+      before_action :set_data, only: [:index, :refresh, :remove]
       include KepplerFrontend::Concerns::Services
       include KepplerFrontend::Concerns::StringActions
 
@@ -21,11 +21,19 @@ module KepplerFrontend
 
       def generate
         @error = false
-        obj = view_obj(params)
-        if !route_exist?(obj)
-          views.add(obj)
+        @obj = view_obj(params)
+        if !route_exist?(file_name(@obj))
+          views.add(@obj)
         else
           @error = t('route_errors.exist')
+        end
+        set_data
+      end
+
+      def remove
+        file = @views[params[:file].to_i].first
+        if route_exist?(file)
+          views.remove(file)
         end
         set_data
       end
@@ -34,22 +42,6 @@ module KepplerFrontend
 
       def authorization
         authorize Theme
-      end
-
-      def views
-        KepplerFrontend::Views::Views.new
-      end
-
-      def theme_view
-        KepplerFrontend::Views::ThemeViews.new
-      end
-
-      def resources
-        KepplerFrontend::Editor::Resources.new
-      end
-
-      def route_handler
-        KepplerFrontend::Views::RoutesHandler.new
       end
 
       def set_data
@@ -66,20 +58,29 @@ module KepplerFrontend
         }
       end
 
-      def route_exist?(obj)
-        file = "/frontend/#{obj[:name]}.html.#{obj[:view_format]}"
+      def route_exist?(file)
         result = route_handler.search_route(file)
         result.blank? ? false : true
+      end
+
+      def file_name(obj)
+        "/frontend/#{obj[:name]}.html.#{obj[:view_format]}"
       end
   
       def name_without_special_characters(name)
         name = name.downcase
-        name.split('').select { |x| x if not_special_chars.include?(x) } .join
+        name = name.split('').select do
+          |x| x if not_special_chars.include?(x) 
+        end
+        name.join
       end
 
       def url_without_special_characters(url)
         url = url.downcase
-        url.split('').select { |x| x if not_special_chars.include?(x) || x.eql?('/') } .join
+        url = url.split('').select do |x| 
+          x if not_special_chars.include?(x) || x.eql?('/') 
+        end
+        url.join
       end
     end
   end

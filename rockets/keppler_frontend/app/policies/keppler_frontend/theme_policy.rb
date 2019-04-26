@@ -24,7 +24,7 @@ module KepplerFrontend
       keppler_admin? || user_can?(@objects, 'select_theme')
     end
 
-    def delete?
+    def remove?
       keppler_admin? || user_can?(@objects, 'select_theme')
     end
   end
