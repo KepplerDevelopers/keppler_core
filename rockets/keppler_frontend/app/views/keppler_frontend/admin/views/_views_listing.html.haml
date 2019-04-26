@@ -24,7 +24,10 @@
               %td
                 = link_to "#", remote: true, class: 'show-row' do
                   %span
-                    = view.second
+                    - if view.last.upcase.eql?('ROOT')
+                      = '/'
+                    - else
+                      = view.second
               %td.hidden-xs{ style: "width: 10%"}
                 = link_to "#", remote: true, class: 'show-row' do
                   %span

@@ -1,30 +1,51 @@
-#index-container
-  .container
-    %section.content-header.index-header
-      %h1{ style: 'display: inline-block' }
-        = t("keppler.actions.views")
-    .row
-      .col-lg-6
-        .box.slice-box.box-preview.hidden-xs
-          .box-header.with-border
-            %h3.box-title= t('keppler.actions.preview')
-            .box-tools.pull-right#tools
-              %i.bx.bx-desktop#lg
-              %i.bx.bx-tab#md
-              %i.bx.bx-mobile#xs
-              %i.bx.bx-revision#reload
-          .box-body.box-body-no-padding.hidden-xs#box-body-bg
-            #box-body
-              %iframe.preview-iframe#preview.hidden-xs{ src: "#{request.base_url}" }
-      .col-lg-6
-        %section.content-actions
-          .add
-            = link_to "#", class: "btn-add", "data-toggle": "modal", "data-target": "#new-view" do
-              +
-              = t('keppler.actions.new_view')
-            = link_to admin_frontend_views_refresh_path, remote: true, class: "btn btn-secondary" do
-              %i.bx.bx-revision
-              = t('keppler.actions.refresh')
-        #views-listing
-          = render 'views_listing', views: @views
+.container
+  %section.content-header.index-header
+    %h1{ style: 'display: inline-block' }
+      = t("keppler.actions.views")
+  .row
+    .col-lg-6
+      .box.slice-box.box-preview.hidden-xs
+        .box-header.with-border
+          %h3.box-title= t('keppler.actions.preview')
+          .box-tools.pull-right#tools
+            %i.bx.bx-desktop#lg
+            %i.bx.bx-tab#md
+            %i.bx.bx-mobile#xs
+            %i.bx.bx-revision#reload
+        .box-body.box-body-no-padding.hidden-xs#box-body-bg
+          #box-body
+            %iframe.preview-iframe#preview.hidden-xs{ src: "#{request.base_url}" }
+    .col-lg-6
+      %section.content-actions
+        .add
+          = link_to "#", class: "btn-add", "data-toggle": "modal", "data-target": "#new-view" do
+            +
+            = t('keppler.actions.new_view')
+          = link_to admin_frontend_views_refresh_path, remote: true, class: "btn btn-secondary" do
+            %i.bx.bx-revision
+            = t('keppler.actions.refresh')
+      #views-listing
+        = render 'views_listing', views: @views
 = render 'new_view'
+
+:javascript
+  $(document).on("turbolinks:load",function(){
+    $(document).ready(function() {
+      $('#xs').click(function() {
+        $('#box-body').animate({ 'width': '35%' }, 300)
+      })
+
+      $('#md').click(function() {
+        $('#box-body').animate({ 'width': '70%' }, 300)
+      })
+
+      $('#lg').click(function() {
+        $('#box-body').animate({ 'width': '100%' }, 300)
+      })
+
+      $('#reload').click(function() {
+        var url = document.getElementById("preview").contentWindow.location.href
+        $('iframe').attr('src', url)
+      })
+    });
+  });
