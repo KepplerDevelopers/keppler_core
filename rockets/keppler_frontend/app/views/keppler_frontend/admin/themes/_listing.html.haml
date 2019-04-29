@@ -16,9 +16,6 @@
           - if can?(KepplerFrontend::Theme).destroy? && !theme.name.eql?('keppler_default') && !theme.active?
             = link_to admin_frontend_theme_path(theme), class: 'new-menu', style: "display: inline", title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
               %i.icon-trash
-          - if can?(KepplerFrontend::Theme).editor? && theme.active?
-            = link_to admin_frontend_theme_editor_path(theme), class: 'new-menu', style: "display: inline", title: t('keppler.actions.editor') do
-              %i.icon-note
 
     :javascript
       function installTemplate(customize_id) {

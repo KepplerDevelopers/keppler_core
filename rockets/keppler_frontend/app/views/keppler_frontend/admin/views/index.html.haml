@@ -1,82 +1,51 @@
-#index-container{ :controller => "views" }
-  .container
-    .row
-      .listing.col-lg-12.col-xs-12
-        %section.content-header.index-header
-          %h1{ style: 'display: inline-block' }
-            = t("keppler_frontend.modules.#{controller_path.underscore}")
-          = entries(@total, @objects)
-        %section.content-actions
-          .toolbar
-            .toolbar-item
-              = link_to reload_admin_frontend_views_path, class: "tool-btn", remote: true do
-                %i.icon-reload
-            .toolbar-item
-              %a.tool-btn{"data-confirm" => "¿Estás seguro?", "data-method" => "delete", "v-bind:href" => "link", :rel => "nofollow", ":class" => "{disabled: !checks}" }
-                %i.icon-trash
-          - if can?(KepplerFrontend::View).create?
-            .add
-              = link_to new_admin_frontend_view_path, class: 'btn-add' do
-                +
-                = t('keppler.actions.add')
-
-        .box.slice-box
-          .box-body.no-padding
-            %table.table
-              %thead
-                - if @objects.size.zero?
-                  %tr
-                    %th.not-records.center
-                      %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.views"))
-
-                - else
-                  %tr
-                    %th
-                      - if can?(KepplerFrontend::View).destroy_multiple?
-                        .item-check
-                          .checkbox
-                            %label{ for: 'checkbox-all' }
-                              %input{ type: 'checkbox', id: 'checkbox-all', '@click' => 'selectAll()' }
-                              %span.cr
-                                %i.cr-icon.glyphicon.glyphicon-ok
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :method) do
-                        = t('activerecord.attributes.method')
-                    %th.hidden-xs
-                      = sort_link(@q, :name) do
-                        = t('activerecord.attributes.name')
-                    %th.hidden-xs
-                      = sort_link(@q, :url) do
-                        = t('activerecord.attributes.url')
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :active) do
-                        = t('activerecord.attributes.active')
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :format_result) do
-                        = t('activerecord.attributes.format_result')
-                    %th.hidden-xs.hidden-sm
-                      = sort_link(@q, :path) do
-                        = t('activerecord.attributes.path')
-                    %th
-                    %th
-              %tbody.objects-container
-                = render 'admin/layouts/listing_preloader'
-                = render 'listing', objects: @objects
-        %center#paginator-module
-          = paginate @objects, window: 1
-  %aside.control-sidebar
-    = render "description"
+.container
+  %section.content-header.index-header
+    %h1{ style: 'display: inline-block' }
+      = t("keppler.actions.views")
+  .row
+    .col-lg-6
+      .box.slice-box.box-preview.hidden-xs
+        .box-header.with-border
+          %h3.box-title= t('keppler.actions.preview')
+          .box-tools.pull-right#tools
+            %i.bx.bx-desktop#lg
+            %i.bx.bx-tab#md
+            %i.bx.bx-mobile#xs
+            %i.bx.bx-revision#reload
+        .box-body.box-body-no-padding.hidden-xs#box-body-bg
+          #box-body
+            %iframe.preview-iframe#preview.hidden-xs{ src: "#{request.base_url}" }
+    .col-lg-6
+      %section.content-actions
+        .add
+          = link_to "#", class: "btn-add", "data-toggle": "modal", "data-target": "#new-view" do
+            +
+            = t('keppler.actions.new_view')
+          = link_to admin_frontend_views_refresh_path, remote: true, class: "btn btn-secondary" do
+            %i.bx.bx-revision
+            = t('keppler.actions.refresh')
+      #views-listing
+        = render 'views_listing', views: @views
+= render 'new_view'
 
 :javascript
-  (function() {
-    $(document).on('turbolinks:load', function() {});
-      $('#view').click(function() {
-        $('#upload_file_view').click()
-        $('#upload_file_view').change(function() {
-          $('.waiting').css('display', 'block')
-          $('#upload_form_view').submit()
-        })
-      });
+  $(document).on("turbolinks:load",function(){
+    $(document).ready(function() {
+      $('#xs').click(function() {
+        $('#box-body').animate({ 'width': '35%' }, 300)
+      })
 
-      renderImg();
-    }).call(this);
+      $('#md').click(function() {
+        $('#box-body').animate({ 'width': '70%' }, 300)
+      })
+
+      $('#lg').click(function() {
+        $('#box-body').animate({ 'width': '100%' }, 300)
+      })
+
+      $('#reload').click(function() {
+        var url = document.getElementById("preview").contentWindow.location.href
+        $('iframe').attr('src', url)
+      })
+    });
+  });

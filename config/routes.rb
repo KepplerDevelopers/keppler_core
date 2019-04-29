@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   localized do
     get '/index', to: 'app/front#index', as: :app_index
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   # root to: 'app/front#index'
 
   devise_for :users, skip: KepplerConfiguration.skip_module_devise
+
   post '/filter', to: 'admin/users#filter_by_role', as: :filter_by_role
 
   namespace :admin do
@@ -168,11 +170,19 @@ Rails.application.routes.draw do
     end
   end
 
+  scope ":admin_code" do 
+    devise_scope :user do
+      get '/sign_in', to: 'devise/keppler_sessions#new'
+      post '/sign_in', to: 'devise/keppler_sessions#create'
+      delete '/sign_out', to: 'devise/keppler_sessions#destroy'
+    end
+  end
+
   # Errors routes
-  match '/403', to: 'errors#not_authorized', via: :all, as: :not_authorized
-  match '/404', to: 'errors#not_found', via: :all
-  match '/422', to: 'errors#unprocessable', via: :all
-  match '/500', to: 'errors#internal_server_error', via: :all
+  match '/alert/403', to: 'errors#not_authorized', via: :all, as: :not_authorized
+  match '/alert/404', to: 'errors#not_found', via: :all
+  match '/alert/422', to: 'errors#unprocessable', via: :all
+  match '/alert/500', to: 'errors#internal_server_error', via: :all
 
   # Dashboard routes engine
   mount KepplerGaDashboard::Engine, at: 'admin/dashboard', as: 'dashboard'

@@ -1,0 +1,28 @@
+#colors
+  = f.simple_fields_for :appearance, html: { multipart: true } do |f|
+    .box.slice-box.p-15
+      .box-header.with-border
+        %h3.box-title= t('keppler.customize.login_security_url')
+
+      .box-body
+        = f.input :admin_code, label: false, include_blank: false
+    .box.slice-box.p-15
+      .box-header.with-border
+        %h3.box-title= t('keppler.customize.timezone')
+
+      .box-body
+        .row
+          .col-lg-8
+            = f.input :time_zone, label: false, include_blank: false
+          .col-lg-4
+            .time-zone-test
+              %b Time.zone.now =
+              = Time.zone.now
+    .box.slice-box.p-15
+      .box-header.with-border
+        %h3.box-title= t('keppler.customize.language')
+
+      .box-body
+        = f.input :language, collection: languages.map { |lang| [t("keppler.language.#{lang}"), lang] }, label: false, include_blank: false
+        .pull-right
+          = f.button :submit, t('keppler.actions.apply'), class: 'btn btn-primary change-color'

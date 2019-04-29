@@ -1,4 +1,6 @@
 $(document).on('confirm:complete', function(e, answer) {
-  $(".spinner").css('display', 'block');
-  return answer;
+  if (response) {
+    $('.spinner').css('display', 'block');
+    return answer;
+  }
 });

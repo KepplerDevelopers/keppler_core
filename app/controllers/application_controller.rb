@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   def appearance
     @setting = Setting.includes(:appearance, :social_account).first
     @appearance = @setting.appearance
+    Time.zone = @setting.appearance.time_zone
   end
 
   def set_apparience_colors
@@ -84,6 +85,12 @@ class ApplicationController < ActionController::Base
         @sidebar[0] = @sidebar[0].merge(module_menu[0])
       end
     end
+
+    @sidebar[0] = @sidebar[0].sort_by do |_key, value|
+      value&.dig("position") || 0
+    end
+
+    @sidebar[0] = @sidebar[0].to_h
   end
 
   def set_modules

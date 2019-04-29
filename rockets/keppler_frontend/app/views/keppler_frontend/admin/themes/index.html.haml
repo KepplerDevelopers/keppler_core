@@ -1,63 +1,65 @@
-#index-container{ :controller => "themes" }
-  .container
-    .row
-      .listing.col-lg-12.col-xs-12
-        %section.content-header.index-header
-          %h1{ style: 'display: inline-block' }
-            = t("keppler_frontend.modules.#{controller_path.underscore}")
-          = entries(@total, @objects)
-        %section.content-actions
-          .hide
-            = form_tag admin_frontend_theme_upload_path(@objects), id: "upload_form_themes", multipart: true, method: :post do
-              = file_field_tag :file, id: "upload_file_theme"
-          - if can?(KepplerFrontend::Theme).create?
-            .add
-              = link_to new_admin_frontend_theme_path, class: "btn-add" do
-                +
-                = t('keppler.actions.add')
-        .row
-          .col-lg-5.col-xs-12
-            .box.slice-box
-              .box-body.no-padding
-                #theme-cover-carousel
-                  = render 'keppler_frontend/admin/themes/covers', theme: @theme
-          .col-lg-7.col-xs-12
-            .box.slice-box
-              .box-body.no-padding
-                %table.table
-                  %thead
-                    - if @objects.size.zero?
-                      %tr
-                        %th{style: 'text-align: center;'}
-                          %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.themes"))
 
-                    - else
-                      %tr
-                        %th
-                        %th.hidden-xs= t('activerecord.attributes.name')
-                        %th.hidden-xs= t('activerecord.attributes.active')
-                        %th.center Menu
-                        %th
-                  %tbody.objects-container
-                    = render 'admin/layouts/listing_preloader'
-                    = render 'listing', objects: @objects
-            %center#paginator-module
-              = paginate @objects, window: 1
-  %aside.control-sidebar
-    = render "description"
-  %aside#index-show.control-sidebar
+.container
+  .row
+    .listing.col-lg-12.col-xs-12
+      %section.content-header.index-header
+        %h1{ style: 'display: inline-block' }
+          = t("keppler_frontend.modules.#{controller_path.underscore}")
+        = entries(@total, @objects)
+      %section.content-actions
+        .hide
+          = form_tag admin_frontend_theme_upload_path(@objects), id: "upload_form_themes", multipart: true, method: :post do
+            = file_field_tag :file, id: "upload_file_theme"
+        - if can?(KepplerFrontend::Theme).create?
+          .add
+            = link_to new_admin_frontend_theme_path, class: "btn-add" do
+              +
+              = t('keppler.actions.add')
+      .row
+        .col-lg-5.col-xs-12
+          .box.slice-box
+            .box-body.no-padding
+              #theme-cover-carousel
+                = render 'keppler_frontend/admin/themes/covers', theme: @theme
+        .col-lg-7.col-xs-12
+          .box.slice-box
+            .box-body.no-padding
+              %table.table
+                %thead
+                  - if @objects.size.zero?
+                    %tr
+                      %th{style: 'text-align: center;'}
+                        %h6= t('keppler.messages.not_found_records', model:  t("keppler_frontend.models.pluralize.themes"))
+
+                  - else
+                    %tr
+                      %th
+                      %th.hidden-xs= t('activerecord.attributes.name')
+                      %th.hidden-xs= t('activerecord.attributes.active')
+                      %th.center Menu
+                      %th
+                %tbody.objects-container
+                  = render 'admin/layouts/listing_preloader'
+                  = render 'listing', objects: @objects
+          %center#paginator-module
+            = paginate @objects, window: 1
+%aside.control-sidebar
+  = render "description"
+%aside#index-show.control-sidebar
 
 :javascript
-  $(document).ready(function(){
-    $('#theme').click(function() {
-      $('#upload_file_theme').click()
-      $('#upload_file_theme').change(function() {
-        $('.waiting').css('display', 'block')
-        $('#upload_form_theme').submit()
-      })
+  $(document).on("turbolinks:load",function(){
+    $(document).ready(function(){
+      $('#theme').click(function() {
+        $('#upload_file_theme').click()
+        $('#upload_file_theme').change(function() {
+          $('.waiting').css('display', 'block')
+          $('#upload_form_theme').submit()
+        })
+      });
+
+      //renderImg();
+
+      $('.theme-covers').slick();
     });
-
-    renderImg();
-
-    $('.theme-covers').slick();
   });

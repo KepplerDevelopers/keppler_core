@@ -1,7 +1,0 @@
-.container
-  - if @view.format_result.eql?('HTML')
-    = render "keppler_frontend/admin/views/editors/html_editor"
-  - if @view.format_result.eql?('Action')
-    = render "keppler_frontend/admin/views/editors/only_action"
-  - if @view.format_result.eql?('JS')
-    = render "keppler_frontend/admin/views/editors/view_js_editor"

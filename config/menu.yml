@@ -1,22 +1,18 @@
 menu:
-  dashboard:
-    name: dashboard
-    url_path: /admin
-    icon: dashboard
-    current: ['admin/dashboard']
-    model: Dashboard
   script:
     name: scripts
     url_path: /admin/scripts
     icon: code
     current: ['admin/scripts']
     model: Script
+    position: 0
   seo:
     name: Seo
     current: ['admin/meta_tags']
     icon: chart
     model: Seo
     url_path: /admin/meta_tags
+    position: 1
     submenu:
       - metatag:
           name: metatags
@@ -40,6 +36,7 @@ menu:
     icon: user
     current: ['admin/users', 'admin/roles']
     model: User
+    position: 2
     submenu:
       - user:
           name: users
@@ -58,3 +55,4 @@ menu:
     model: Rocket
     enviroment: development
     url_path: /admin/rockets
+    position: 3

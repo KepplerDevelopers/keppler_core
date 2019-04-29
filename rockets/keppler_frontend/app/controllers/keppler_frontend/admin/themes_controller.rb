@@ -73,7 +73,7 @@ module KepplerFrontend
 
       # PATCH/PUT /themes/1
       def update
-        if params[:theme][:active].eql?('true')
+        if params[:theme] && params[:theme][:active].eql?('true')
           @theme.desactived
           change_all_to_false
           if @theme.update(theme_params)
@@ -145,21 +145,6 @@ module KepplerFrontend
 
       def show_covers
         @theme = Theme.find(params[:theme_id])
-      end
-
-      def editor
-        @theme = Theme.find(params[:theme_id])
-        filesystem = FileUploadSystem.new
-        @files_list = filesystem.files_list + filesystem.files_list_custom("bootstrap")
-        @partials = Partial.all
-      end
-
-      def editor_save
-        @theme = Theme.find(params[:theme_id])
-        @theme.save_head(params[:head]) if params[:head]
-        @theme.save_header(params[:header]) if params[:header]
-        @theme.save_footer(params[:footer]) if params[:footer]
-        render json: {result: true}
       end
 
       private

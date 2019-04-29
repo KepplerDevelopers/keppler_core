@@ -10,7 +10,10 @@
         .languages
           %a.active-lang{ href: '#' } ESP
           %a{ href: '#' } ENG
-        %a.btn-main{href: '/admin'} Ir a admin
+        - if current_user
+          %a.btn-main{href: "/admin" } Ir a admin
+        - else
+          %a.btn-main{href: "/#{Appearance.first.admin_code}/sign_in" } Ir a admin
         .front-content
           .front-logo
             %span Keppler
@@ -222,4 +225,3 @@
                       = link_to 'Keppler Contact', 'https://github.com/slicegroup/keppler_contact_us'
     .doc-footer
       = "#{t('keppler.powered')} <span>Slice Group</span>".html_safe
-    %script{ src: '/assets/app/front.js' }

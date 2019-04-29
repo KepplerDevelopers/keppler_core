@@ -1,0 +1,25 @@
+.new-view.modal.fade{id: "new-view", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  = simple_form_for "", url: admin_frontend_views_generate_path, remote: true, method: :post do |f|
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %h5#exampleModalLabel.modal-title= t('keppler.actions.new_view')
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body.clearfix
+          %label= t('activerecord.attributes.name')
+          = f.input_field :name, class: "form-control", placeholder: t('activerecord.attributes.name')
+          %br
+          %label= t('activerecord.attributes.url')
+          = f.input_field :url, class: "form-control", placeholder: t('activerecord.attributes.url')
+          %br
+          %label= t('activerecord.attributes.method')
+          = f.input_field :method, collection: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'], include_blank: false, class: "form-control"
+          %br
+          %label= t('activerecord.attributes.format')
+          = f.input_field :view_format, collection: ['erb', 'haml'], include_blank: false, class: "form-control"
+          %br
+          #error-message
+        .modal-footer
+          = f.button :submit, t('keppler.actions.generate'), name: '_save', class: 'btn-primary'
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('keppler.actions.close')
