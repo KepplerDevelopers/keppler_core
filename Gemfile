@@ -122,6 +122,9 @@ group :development do
   gem 'spring', '2.0.2'
   gem 'table_print'
   gem 'web-console', '>= 3.3.0'
+  # Entity-Relationship Diagrams
+  gem 'erd' # http://localhost:3000
+  gem 'rails-erd' # rake erd
 end
 
 group :development, :test do
