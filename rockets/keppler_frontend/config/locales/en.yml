@@ -114,7 +114,7 @@ en:
       views: Views
       close: Close
   route_errors:
-    exist: View alright exist
+    exist: Error creating the view. It already exists or you have empty fields
   activerecord:
     attributes:
       id: Id

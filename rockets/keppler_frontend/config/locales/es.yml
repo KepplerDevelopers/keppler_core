@@ -121,7 +121,7 @@ es:
       views: Vistas
       close: Cerrar
   route_errors:
-    exist: Ya existe una vista con este nombre 
+    exist: Error al crear la vista. Ya existe o tienes campos vacios
   activerecord:
     attributes:
       id: Identificador
