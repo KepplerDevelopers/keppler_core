@@ -22,7 +22,7 @@ module KepplerFrontend
       def generate
         @error = false
         @obj = view_obj(params)
-        if !route_exist?(file_name(@obj))
+        if object_validate(@obj)
           views.add(@obj)
         else
           @error = t('route_errors.exist')
@@ -61,6 +61,13 @@ module KepplerFrontend
       def route_exist?(file)
         result = route_handler.search_route(file)
         result.blank? ? false : true
+      end
+
+      def object_validate(obj)
+        file = file_name(obj)
+        no_exist = route_handler.search_route(file).blank?
+        no_empty = !obj[:name].blank? && !obj[:url].blank?
+        no_exist && no_empty
       end
 
       def file_name(obj)
