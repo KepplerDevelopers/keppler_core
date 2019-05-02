@@ -99,8 +99,8 @@ class KepplerAddModuleGenerator < Rails::Generators::NamedBase
   def remove_migrations
     removed_files = false
     Dir.glob("#{Rails.root}/db/migrate/*").each do |migration|
-      if migration.include?(MODULE_NAME)
-        say "\n*** Removing #{MODULE_NAME} migrations ***" unless removed_files
+      if migration.include?("#{ROCKET_NAME}_#{MODULE_NAME}")
+        say "\n*** Removing #{ROCKET_NAME}_#{MODULE_NAME} migrations ***" unless removed_files
         if ActiveRecord::Base.connection.table_exists? name_table(migration).to_sym
           if migration.include?('create')
             if ActiveRecord::Migration.drop_table(name_table(migration).to_sym)
