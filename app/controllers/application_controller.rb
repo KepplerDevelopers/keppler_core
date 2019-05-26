@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :appearance
   before_action :set_apparience_colors
-  before_action :set_sidebar
   before_action :set_modules
+  before_action :set_sidebar_menu
   before_action :set_languages
   before_action :set_admin_locale
   before_action :git_info
@@ -72,25 +72,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_sidebar
-    @sidebar = YAML.load_file(
-      "#{Rails.root}/config/menu.yml"
-    ).values.each(&:symbolize_keys!)
-    modules = Dir[File.join("#{Rails.root}/rockets", '*')]
-    modules.each do |m|
-      if File.file?("#{m}/config/menu.yml")
-        module_menu = YAML.load_file(
-          "#{m}/config/menu.yml"
-        ).values.each(&:symbolize_keys!)
-        @sidebar[0] = @sidebar[0].merge(module_menu[0])
-      end
-    end
-
-    @sidebar[0] = @sidebar[0].sort_by do |_key, value|
-      value&.dig("position") || 0
-    end
-
-    @sidebar[0] = @sidebar[0].to_h
+  def set_sidebar_menu
+    @sidebar_menu = Admin::Sidebar::Menu.new(current_user).items
   end
 
   def set_modules

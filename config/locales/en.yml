@@ -1,9 +1,9 @@
 en:
   keppler:
-    language: 
+    language:
       select_lang: Select a language
       es: Spanish
-      en: English    
+      en: English
     preloader:
       title: It is difficult to work in space
       message: This may take seconds...
