@@ -29,7 +29,8 @@ module Admin
     end
 
     def uninstall
-      can_uninstall = !@rocket.eql?('keppler_ga_dashboard') && !@rocket.eql?('keppler_frontend')
+      can_uninstall = !@rocket.eql?('keppler_ga_dashboard') &&
+                      !@rocket.eql?('keppler_frontend')
       Rocket.uninstall(@rocket) if @rocket && can_uninstall
       redirect_to_rockets_list(@rocket)
     end
