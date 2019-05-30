@@ -29,9 +29,7 @@ module Admin
     end
 
     def uninstall
-      can_uninstall = !@rocket.eql?('keppler_ga_dashboard') &&
-                      !@rocket.eql?('keppler_frontend')
-      Rocket.uninstall(@rocket) if @rocket && can_uninstall
+      Rocket.uninstall(@rocket) if uninstall_authorize
       redirect_to_rockets_list(@rocket)
     end
 
@@ -41,6 +39,12 @@ module Admin
     end
 
     private
+
+    def uninstall_authorize
+      @rocket = params[:rocket]
+      rocket_policy = RocketPolicy.new(current_user, @rocket)
+      rocket_policy.uninstall?
+    end
 
     def rocket_params
       @rocket = params[:rocket]

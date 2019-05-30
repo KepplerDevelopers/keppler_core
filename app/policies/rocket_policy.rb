@@ -8,4 +8,8 @@ class RocketPolicy < ControllerPolicy
     @user = user
     @objects = objects
   end
+
+  def uninstall?
+    @objects && !Rocket.core_depending.include?(@objects)
+  end
 end
