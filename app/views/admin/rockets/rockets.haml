@@ -47,7 +47,10 @@
                       - else
                         = link_to admin_rockets_build_path(rocket_name), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.build') do
                           %i.icon-wrench
-                      - unless rocket.eql? 'keppler_ga_dashboard'
+                      - if rocket_name.eql?('keppler_ga_dashboard') || rocket_name.eql?('keppler_frontend')
+                        = link_to "#", class: 'uninstallRocket', 'data-toggle': 'tooltip', style: "color: #c0c0c0 !important;" do
+                          %i.icon-trash
+                      - else
                         = link_to admin_rockets_uninstall_path(rocket_name), class: 'uninstallRocket', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.uninstall'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                           %i.icon-trash.text-red
 = render 'install_rocket'
