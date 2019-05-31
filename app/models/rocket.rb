@@ -2,6 +2,15 @@
 
 # Rocket Model
 class Rocket
+
+  def initialize(name="")
+    @name = name
+  end
+
+  def name
+    @name
+  end
+
   # Rockets list
   def self.names_list
     Dir["#{Rails.root}/rockets/*"].map do |dir|

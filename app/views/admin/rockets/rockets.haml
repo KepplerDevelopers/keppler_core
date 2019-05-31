@@ -47,7 +47,7 @@
                       - else
                         = link_to admin_rockets_build_path(rocket_name), method: :post, 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.build') do
                           %i.icon-wrench
-                      - if can_uninstall?(rocket_name)
+                      - if can?(Rocket.new(rocket_name)).uninstall?
                         = link_to admin_rockets_uninstall_path(rocket_name), class: 'uninstallRocket', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.rockets.uninstall'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') } do
                           %i.icon-trash.text-red
                       - else
