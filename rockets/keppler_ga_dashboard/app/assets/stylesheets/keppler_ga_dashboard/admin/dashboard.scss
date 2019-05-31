@@ -83,3 +83,16 @@
   }
 }
 
+.connection-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 60vh;
+  color: #c0c0c0;
+  padding: 2rem;
+
+  i {
+    font-size: 5rem;
+  }
+}

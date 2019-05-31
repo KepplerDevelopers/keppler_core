@@ -24,7 +24,8 @@ module KepplerGaDashboard
         @access_token = client.authorization.fetch_access_token!['access_token']
 
         gon.color = @color
-      rescue StandardError
+      rescue StandardError => e
+        flash[:alert] = e
         render :connection_error
       end
 
