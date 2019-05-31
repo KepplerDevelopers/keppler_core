@@ -2,13 +2,10 @@
 
 # Rocket Model
 class Rocket
+  attr_reader :name
 
-  def initialize(name="")
+  def initialize(name = '')
     @name = name
-  end
-
-  def name
-    @name
   end
 
   # Rockets list
