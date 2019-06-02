@@ -4,15 +4,17 @@
       // Dynamic items
       - @sidebar_menu.each do |item|
         %li.sidebar-item
-          %a.sidebar-link{ :href => item.submenu? ? "#" : item.url_path }
+          %a.sidebar-link{ :href => item.submenu? ? "#" : item.url_path, class: ('active menu-open' if item.current?(controller_path)) }
             %i{ class: "bx bx-#{item.icon}" }
             %span= t("keppler.sidebar-menu.#{item.name.parameterize}")
           - if item.submenu?
-            %ul.treeview-menu
+            %ul.treeview-menu{ class: (item.current?(controller_path) ? 'menu-open' : 'closed') }
               - item.submenu.each do |subitem|
-                %li
+                %li{ class: ('active' if subitem.current?(controller_path)) }
                   %a.treeview-menu-link{ :href => subitem.url_path }
                     = t("keppler.sidebar-menu.#{item.name.parameterize}-submenu.#{subitem.name.parameterize}")
+
+
 
       // Static items
       %li.sidebar-item{ class: ('active' if 'admin/settings/basic_information'.eql?(controller_path)) }

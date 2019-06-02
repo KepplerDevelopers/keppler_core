@@ -3,7 +3,7 @@
 module Admin
   module Sidebar
     class Item
-      attr_accessor :name, :url_path, :icon, :model, :submenu
+      attr_accessor :name, :url_path, :icon, :model, :submenu, :current
 
       def initialize(args)
         @user = args[:user]
@@ -12,6 +12,7 @@ module Admin
         @icon = args[:icon]
         @model = args[:model].present? ? args[:model].constantize : nil
         @submenu = args[:submenu]
+        @current = args[:current]
       end
 
       def submenu?
@@ -20,6 +21,11 @@ module Admin
 
       def submenu_item?
         submenu_item
+      end
+
+      def current?(controller_path)
+        puts "#{controller_path}, #{current}"
+        current.include?(controller_path)
       end
     end
   end

@@ -1,7 +1,7 @@
 menu:
   keppler_frontend:
     name: Keppler Frontend
-    current: ['']
+    current: ['keppler_frontend/admin/themes', keppler_frontend/admin/views, 'keppler_frontend/admin/multimedia']
     icon: layout
     model: KepplerFrontend::Theme
     environment: development
@@ -10,15 +10,15 @@ menu:
       - keppler_frontend_theme:
           name: Themes
           url_path: /admin/frontend/themes
-          current: ['current']
+          current: ['keppler_frontend/admin/themes']
           model: KepplerFrontend::Theme
       - keppler_frontend_asset:
           name: Views
           url_path: /admin/frontend/views
-          current: ['current']
+          current: ['keppler_frontend/admin/views']
           model: KepplerFrontend::Theme
       - keppler_frontend_asset:
           name: Assets
           url_path: /admin/frontend/assets
-          current: ['current']
+          current: ['keppler_frontend/admin/multimedia']
           model: KepplerFrontend::Theme

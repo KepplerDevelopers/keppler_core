@@ -8,10 +8,9 @@ menu:
     position: 0
   seo:
     name: Seo
-    current: ['admin/meta_tags']
+    current: ['admin/meta_tags', 'admin/robots', 'admin/sitemaps']
     icon: chart
     model: Seo
-    url_path: /admin/meta_tags
     position: 1
     submenu:
       - metatag:
@@ -21,14 +20,14 @@ menu:
           model: MetaTag
       - sitemap:
           name: sitemap
-          url_path: /admin/seo/sitemap
-          current: ['admin/seo/sitemap']
+          url_path: /admin/sitemaps
+          current: ['admin/sitemaps']
           enviroment: development
           model: Seo
       - robots:
           name: robots
-          url_path: /admin/seo/robots
-          current: ['/admin/seo/robots']
+          url_path: /admin/robots
+          current: ['admin/robots']
           enviroment: development
           model: Seo
   user:
@@ -51,7 +50,7 @@ menu:
   rockets:
     name: rockets
     icon: rocket
-    current: ['/admin/rockets']
+    current: ['admin/rockets']
     model: Rocket
     enviroment: development
     url_path: /admin/rockets

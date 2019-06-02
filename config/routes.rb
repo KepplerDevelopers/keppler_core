@@ -21,10 +21,6 @@ Rails.application.routes.draw do
       delete 'uninstall/:rocket', action: :uninstall, as: :uninstall
     end
 
-    get '/seo/sitemap', to: 'seos#sitemap'
-    get '/seo/robots', to: 'seos#robots'
-    post '/seo/editor/save', to: 'seos#editor_save'
-
     resources :seos do
       post '/sort', action: :sort, on: :collection
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -42,6 +38,9 @@ Rails.application.routes.draw do
         as: :destroy_multiple
       )
     end
+
+    resources :robots, only: [:index, :update]
+    resources :sitemaps, only: [:index, :update]
 
     resources :roles do
       get '(page/:page)', action: :index, on: :collection, as: ''
@@ -170,7 +169,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope ":admin_code" do 
+  scope ":admin_code" do
     devise_scope :user do
       get '/sign_in', to: 'devise/keppler_sessions#new'
       post '/sign_in', to: 'devise/keppler_sessions#create'
@@ -197,5 +196,5 @@ Rails.application.routes.draw do
   mount KepplerCapsules::Engine, at: '/', as: 'capsules'
 
   # Ckeditor routes engine
-  mount Ckeditor::Engine => '/ckeditor' 
+  mount Ckeditor::Engine => '/ckeditor'
 end

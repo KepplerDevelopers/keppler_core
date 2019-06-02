@@ -27,9 +27,15 @@ module AdminHelper
 
   # Classify a model from a controller
   def model
-    controller_path
-      .remove('app/').remove('admin/')
-      .classify.constantize
+    controller = controller_path.camelize.concat("Controller").constantize.new
+
+    if controller.respond_to?(:scope)
+      controller.scope
+    else
+      controller_path
+        .remove('app/').remove('admin/')
+        .classify.constantize
+    end
   end
 
   # Underscore class_name from a object
