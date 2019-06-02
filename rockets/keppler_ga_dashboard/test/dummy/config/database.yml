@@ -10,8 +10,8 @@ default: &default
   encoding: utf8
   database: keppler-core-test
   pool: 5
-  username: novedo
-  password: novedo
+  username: gabrielmorillo
+  password:
   template: template0
 
 development:

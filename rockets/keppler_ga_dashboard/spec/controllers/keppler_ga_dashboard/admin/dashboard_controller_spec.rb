@@ -2,14 +2,51 @@ require 'rails_helper'
 require 'byebug'
 
 RSpec.describe KepplerGaDashboard::Admin::DashboardController, type: :controller do
-  # let(:user) { create(:user) }
+  routes { KepplerGaDashboard::Engine.routes }
 
-  describe 'Filter role' do
-    it 'POST to filter role' do
-      # sign_in user
-      get :analytics
-      expect(response).to have_http_status(200)
-      expect(response).to render_template('analytics')
+  describe 'GET /analytics' do
+    before do
+      allow(controller)
+        .to receive(:authenticate_admin_user)
+        .and_return(nil)
+
+      allow(controller)
+        .to receive(:set_apparience_colors)
+        .and_return("#f44336")
+    end
+
+    context "successfully" do
+      before do
+        get :analytics
+      end
+
+      it 'must be respone 200' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'must render teamplte' do
+        expect(response)
+          .to render_template("keppler_ga_dashboard/admin/dashboard/analytics")
+      end
+    end
+
+    context "when there is contection connection_error" do
+      before do
+        allow(Google::APIClient)
+          .to receive(:new)
+          .and_raise(StandardError.new("error"))
+
+        get :analytics
+      end
+
+      it 'must be respone 200' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'must render teamplte' do
+        expect(response)
+          .to render_template("keppler_ga_dashboard/admin/dashboard/connection_error")
+      end
     end
   end
 end

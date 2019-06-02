@@ -58,3 +58,11 @@
   ↳ /home/slice-d5/.rvm/gems/ruby-2.5.1/bin/rake:23
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /home/slice-d5/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (250.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "keppler-core-test"[0m
+  ↳ /Users/gabrielmorillo/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "keppler-core-test"[0m
+  ↳ /Users/gabrielmorillo/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (496.1ms)[0m  [1m[35mCREATE DATABASE "keppler-core-test" ENCODING = 'utf8' TEMPLATE = "template0"[0m
+  ↳ /Users/gabrielmorillo/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE DATABASE "keppler-core-test" ENCODING = 'utf8' TEMPLATE = "template0"[0m
+  ↳ /Users/gabrielmorillo/.rvm/gems/ruby-2.5.1/bin/rake:23

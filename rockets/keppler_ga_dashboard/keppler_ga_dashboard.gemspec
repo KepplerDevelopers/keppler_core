@@ -18,10 +18,14 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "5.2.0"
-  s.add_development_dependency "pg"
+  s.add_dependency "gon"
+  s.add_dependency "pg"
+  s.add_dependency "google-api-client", "0.7.1"
   s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency  'factory_bot_rails'
-  s.add_development_dependency 'google-api-client'
+  s.add_development_dependency 'factory_bot_rails'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'bootsnap'
+  s.add_development_dependency 'shoulda-matchers'
+  s.add_development_dependency 'haml-rails'
+  s.add_development_dependency 'rails-controller-testing'
 end
