@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 # Rocket Model
-class Rocket < ApplicationRecord
+class Rocket
+  attr_reader :name
+
+  def initialize(name = '')
+    @name = name
+  end
+
   # Rockets list
   def self.names_list
     Dir["#{Rails.root}/rockets/*"].map do |dir|
@@ -12,6 +18,11 @@ class Rocket < ApplicationRecord
       end
       "#{rocket_name} (#{filesize(dir_size)})"
     end
+  end
+
+  # Rockets needed for the core
+  def self.core_depending
+    %w[keppler_frontend keppler_ga_dashboard]
   end
 
   # Create rocket
