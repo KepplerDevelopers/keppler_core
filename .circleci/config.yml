@@ -41,8 +41,7 @@ jobs:
             sudo rm /usr/local/bin/bundle
             sudo rm /usr/local/bin/bundler
             sudo gem install bundler
-            # bundle install --jobs=4 --retry=3 --path vendor/bundle
-
+            bundle install
       - save_cache:
           paths:
             - ./vendor/bundle
