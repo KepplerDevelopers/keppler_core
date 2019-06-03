@@ -24,13 +24,13 @@ RSpec.describe KepplerGaDashboard::Admin::DashboardController, type: :controller
         expect(response).to have_http_status(200)
       end
 
-      it 'must render teamplte' do
+      it 'must render template' do
         expect(response)
           .to render_template("keppler_ga_dashboard/admin/dashboard/analytics")
       end
     end
 
-    context "when there is contection connection_error" do
+    context "failure" do
       before do
         allow(Google::APIClient)
           .to receive(:new)
@@ -43,7 +43,7 @@ RSpec.describe KepplerGaDashboard::Admin::DashboardController, type: :controller
         expect(response).to have_http_status(200)
       end
 
-      it 'must render teamplte' do
+      it 'must render template' do
         expect(response)
           .to render_template("keppler_ga_dashboard/admin/dashboard/connection_error")
       end

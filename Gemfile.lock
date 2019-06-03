@@ -21,6 +21,9 @@ PATH
   remote: rockets/keppler_ga_dashboard
   specs:
     keppler_ga_dashboard (0.0.1)
+      gon
+      google-api-client (= 0.7.1)
+      pg
       rails (= 5.2.0)
 
 PATH
