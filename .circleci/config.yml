@@ -36,11 +36,11 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            # sudo gem update --system
-            # sudo gem uninstall bundler
-            # sudo rm /usr/local/bin/bundle
-            # sudo rm /usr/local/bin/bundler
-            # sudo gem install bundler
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler
             bundle install
       - save_cache:
           paths:
