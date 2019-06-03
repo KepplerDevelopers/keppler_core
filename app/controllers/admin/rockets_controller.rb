@@ -6,6 +6,7 @@ module Admin
     skip_before_action :verify_authenticity_token
     before_action :rocket_params, except: %i[rockets install]
     before_action :rocket_file_params, only: %i[install]
+    before_action :authorization
 
     def rockets
       @rockets = Rocket.names_list
@@ -29,7 +30,7 @@ module Admin
     end
 
     def uninstall
-      Rocket.uninstall(@rocket) if @rocket
+      Rocket.uninstall(@rocket)
       redirect_to_rockets_list(@rocket)
     end
 
@@ -39,6 +40,16 @@ module Admin
     end
 
     private
+
+    # def uninstall_authorize
+    #   @rocket = params[:rocket]
+    #   rocket_policy = RocketPolicy.new(current_user, @rocket)
+    #   rocket_policy.uninstall?
+    # end
+
+    def authorization
+      authorize Rocket.new(@rocket)
+    end
 
     def rocket_params
       @rocket = params[:rocket]
