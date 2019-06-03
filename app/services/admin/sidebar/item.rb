@@ -24,7 +24,6 @@ module Admin
       end
 
       def current?(controller_path)
-        puts "#{controller_path}, #{current}"
         current.include?(controller_path)
       end
     end

@@ -5,14 +5,9 @@ class ApplicationController < ActionController::Base
   include MailerConfig
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :appearance
-  before_action :set_apparience_colors
-  before_action :set_modules
-  before_action :set_sidebar_menu
-  before_action :set_languages
-  before_action :set_admin_locale
-  before_action :git_info
-  before_action :set_mailer_settings
+  before_action :appearance, :set_apparience_colors, :set_modules,
+                :set_sidebar_menu, :set_languages, :set_admin_locale,
+                :git_info, :set_mailer_settings, :set_settings_options
 
   skip_around_action :set_locale_from_url
   include Pundit
@@ -28,6 +23,14 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def set_settings_options
+    @settings_options = %w[configuration basic_information
+                          email_setting google_analytics_setting
+                          social_accounts]
+
+    @settings_options.insert(1, 'appearance') if Rails.env == 'development'
+  end
 
   def class_exists?(klass)
     defined?(klass) && klass.is_a?(Class)
