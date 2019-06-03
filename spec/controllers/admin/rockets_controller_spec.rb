@@ -1,8 +1,11 @@
 require 'rails_helper'
+require "./spec/shared_stuff.rb"
 
 RSpec.describe Admin::RocketsController, type: :controller do
+  include_context "allow user and callbacks"
+
   before (:each) do
-    @user = create(:user)
+    allow_callbacks      
     sign_in @user
   end
 

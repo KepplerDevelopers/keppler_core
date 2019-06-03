@@ -1,9 +1,12 @@
 require 'rails_helper'
 require 'byebug'
+require "./spec/shared_stuff.rb"
 
 RSpec.describe Admin::SettingsController, type: :controller do
+  include_context "allow user and callbacks"
+
   before (:each) do
-    @user = create(:user)
+    allow_callbacks
     sign_in @user
   end
 
