@@ -10,14 +10,8 @@ class Rocket
 
   # Rockets list
   def self.names_list
-    Dir["#{Rails.root}/rockets/*"].map do |dir|
-      rocket_name = dir.split('/').last
-      dir_size = 0
-      Dir.glob("#{dir}/**/**").map do |file|
-        dir_size += File.size(file)
-      end
-      "#{rocket_name} (#{filesize(dir_size)})"
-    end
+    @rockets = Admin::Rockets::Names.new
+    @rockets.list
   end
 
   # Rockets needed for the core
@@ -96,21 +90,8 @@ class Rocket
     end
   end
 
-  def self.filesize(size)
-    units = %w[B KB MB GB TB Pb EB]
-    return '0.0 B' if size.zero?
-    exp = (Math.log(size) / Math.log(1024)).to_i
-    exp = 6 if exp > 6
-    [(size.to_f / 1024**exp).round(2), units[exp]].join(' ')
-  end
-
   def self.parse_name(rocket_name)
-    rocket_name
-      .remove(':', ';', '\'', '"')
-      .downcase
-      .parameterize
-      .dasherize
-      .remove('keppler-')
-      .underscore
+    @rockets = Admin::Rockets::Names.new
+    @rockets.name_format(rocket_name)
   end
 end

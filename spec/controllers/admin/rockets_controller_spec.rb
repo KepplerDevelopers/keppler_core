@@ -9,6 +9,14 @@ RSpec.describe Admin::RocketsController, type: :controller do
     sign_in @user
   end
 
+  describe 'GET to rockets' do
+    it 'successfully' do
+      get :rockets
+      expect(response).to have_http_status(200)
+      expect(response).to render_template('rockets')
+    end
+  end
+
   describe 'DELETE to uninstall' do
     it "don't delete frontend and render rockets list" do
       delete :uninstall, { params: { rocket: 'keppler_frontend' } }
