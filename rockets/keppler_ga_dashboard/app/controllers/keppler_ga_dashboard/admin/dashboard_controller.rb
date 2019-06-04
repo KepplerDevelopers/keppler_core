@@ -21,7 +21,7 @@ module KepplerGaDashboard
         gon.color = @color
       rescue StandardError => e
         flash[:alert] = e
-        render :connection_error
+        render :connection_error, status: 500
       end
 
       # Options for authenticate

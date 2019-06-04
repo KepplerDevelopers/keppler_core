@@ -21,6 +21,12 @@ RSpec.shared_context "allow user and callbacks", :shared_context => :metadata do
         .to receive(:set_mailer_settings)
         .and_return(nil)  
   end
+
+  def allow_appearance
+    allow(controller)
+        .to receive(:appearance)
+        .and_return(nil)
+  end
 end
 
 RSpec.configure do |rspec|

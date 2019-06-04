@@ -1,8 +1,10 @@
 require 'rails_helper'
 require 'byebug'
+require "./spec/shared_stuff.rb"
 
 RSpec.describe KepplerGaDashboard::Admin::DashboardController, type: :controller do
   routes { KepplerGaDashboard::Engine.routes }
+  include_context "allow user and callbacks"
 
   describe 'GET /analytics' do
     before do
@@ -15,23 +17,25 @@ RSpec.describe KepplerGaDashboard::Admin::DashboardController, type: :controller
         .and_return("#f44336")
     end
 
-    context "successfully" do
-      before do
-        get :analytics
-      end
+    # context "successfully" do
+    #   before do
+    #     allow_callbacks
+    #     get :analytics
+    #   end
 
-      it 'must be respone 200' do
-        expect(response).to have_http_status(200)
-      end
+    #   it 'must be respone 200' do
+    #     expect(response).to have_http_status(200)
+    #   end
 
-      it 'must render template' do
-        expect(response)
-          .to render_template("keppler_ga_dashboard/admin/dashboard/analytics")
-      end
-    end
+    #   it 'must render template' do
+    #     expect(response)
+    #       .to render_template("keppler_ga_dashboard/admin/dashboard/analytics")
+    #   end
+    # end
 
     context "failure" do
       before do
+        allow_callbacks
         allow(Google::APIClient)
           .to receive(:new)
           .and_raise(StandardError.new("error"))
@@ -40,7 +44,7 @@ RSpec.describe KepplerGaDashboard::Admin::DashboardController, type: :controller
       end
 
       it 'must be respone 200' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(500)
       end
 
       it 'must render template' do
