@@ -5,6 +5,7 @@ jobs:
       - image: circleci/ruby:2.5.1-node-browsers
         environment:
           RAILS_ENV: test
+          BUNDLER_VERSION: 2.0.1
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
@@ -35,8 +36,12 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler
+            bundle install
       - save_cache:
           paths:
             - ./vendor/bundle
@@ -50,7 +55,7 @@ jobs:
       - run: bundle exec rake db:drop RAILS_ENV=test
       - run: bundle exec rake db:create RAILS_ENV=test
       - run: bundle exec rake db:migrate RAILS_ENV=test
-      - run: bundle exec rake db:seed RAILS_ENV=test
+      # - run: bundle exec rake db:seed RAILS_ENV=test
       - run: bundle exec rubocop
       - run: gem install haml_lint
       - run: gem install scss_lint

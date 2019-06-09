@@ -2,7 +2,9 @@ require 'rails_helper'
 require 'byebug'
 
 RSpec.describe User, type: :model do
-  let(:keppler_user) { create(:user) }
+  before (:each) do
+    @keppler_user = create(:user)
+  end
 
   context 'database' do
     context 'columns' do
@@ -42,8 +44,8 @@ RSpec.describe User, type: :model do
   end
 
   context 'instance fuctions' do
-    it { expect(keppler_user.rol).to eq('keppler_admin') }
-    it { expect(keppler_user.keppler_admin?).to eq(true) }
-    it { expect(keppler_user.permalink?).to eq(true) }
+    it { expect(@keppler_user.rol).to eq('keppler_admin') }
+    it { expect(@keppler_user.keppler_admin?).to eq(true) }
+    it { expect(@keppler_user.permalink?).to eq(true) }
   end
 end

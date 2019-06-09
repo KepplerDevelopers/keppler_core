@@ -1,7 +1,7 @@
 .connection-error
   .container-error
     %i.fa.fa-plug
-    %h1= t('keppler_ga_dashboard.error_connection')
+    %h1= flash[:alert]
 
 :scss
   .connection-error {
@@ -11,8 +11,9 @@
     text-align: center;
     height: 60vh;
     color: #c0c0c0;
+    padding: 2rem;
 
     i {
-      font-size: 6rem;
+      font-size: 5rem;
     }
   }
