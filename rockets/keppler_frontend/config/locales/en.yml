@@ -133,6 +133,7 @@ en:
       area_code: 'Phone Code'
       phone_one: 'Phone One'
       phone_two: 'Phone Two'
+      url: Url
       age: Age
       image: Image
       photo: Photo
