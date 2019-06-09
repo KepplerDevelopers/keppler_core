@@ -1,8 +1,15 @@
 require 'rails_helper'
 require 'byebug'
+require "./spec/shared_stuff.rb"
 
 RSpec.describe Admin::SettingsController, type: :controller do
-  let(:user) { create(:user) }
+  include_context "allow user and callbacks"
+
+  before (:each) do
+    allow_callbacks
+    sign_in @user
+  end
+
   let(:languages) { ["en", "es"] }
   let(:colors) { [ "#3b5998", "#1da1f2", "#e1306c", "#dd4b39", 
                     "#00af87", "#bd081c", "#ff0084", "#1769ff",
@@ -20,7 +27,6 @@ RSpec.describe Admin::SettingsController, type: :controller do
 
   describe 'GET to edit' do
     it 'if config parameter is valid' do
-      sign_in user
       setting = Setting.first
       get :edit, { params: { config: 'configuration' } }
       expect(response).to have_http_status(200)

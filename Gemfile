@@ -139,7 +139,7 @@ group :development, :test do
   gem 'rails-controller-testing'
 end
 
-gem 'google-api-client', '~> 0.7.1'
+gem 'google-api-client', '~> 0.7.1', require: 'google/api_client'
 gem 'acts-as-taggable-on', '6.0'
 gem 'bootstrap-tagsinput-rails'
 gem 'social-share-button'

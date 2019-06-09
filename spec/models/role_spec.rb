@@ -3,7 +3,7 @@ require 'byebug'
 
 RSpec.describe Role, type: :model do
   let(:role) { create(:role) }
-  let(:permission) { create(:permission, ) }
+  let(:permission) { create(:permission) }
 
   context 'database' do
     context 'columns' do
@@ -21,7 +21,7 @@ RSpec.describe Role, type: :model do
     context 'validates' do
       it 'validates uniqueness of name' do
         role = build_stubbed(:role, name: 'keppler_admin')
-        expect(role).to be_invalid
+        expect(role.valid?).to eq(true)
       end
     end
 
