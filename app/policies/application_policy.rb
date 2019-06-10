@@ -5,7 +5,7 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def keppler_admin?
-    user && user.keppler_admin?
+    user&.keppler_admin?
   end
 
   def same_user?(id)
@@ -15,7 +15,7 @@ class ApplicationPolicy
   def user_can?(objects, method)
     return false unless user
     model = objects.model_name.name.split('::').join('')
-    permissions = user.permissions.select{|key, hash| key == model }
+    permissions = user.permissions.select { |key, _hash| key == model }
     permissions[model] && permissions[model]['actions'].include?(method)
   end
 end

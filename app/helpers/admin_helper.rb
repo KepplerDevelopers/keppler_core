@@ -2,14 +2,6 @@
 
 # AdminHelper Backoffice
 module AdminHelper
-  def keppler_boolean_script
-    render 'admin/layouts/keppler_boolean_script'
-  end
-
-  def preloader
-    render 'admin/layouts/preloader'
-  end
-
   # Header information dinamic in keppler back-office
   def header_information(&block)
     content_for(:header_information) { capture(&block) }
@@ -27,8 +19,7 @@ module AdminHelper
 
   # Classify a model from a controller
   def model
-    controller = controller_path.camelize.concat("Controller").constantize.new
-
+    controller = controller_path.camelize.concat('Controller').constantize.new
     if controller.respond_to?(:scope)
       controller.scope
     else

@@ -2,8 +2,8 @@
 
 module Admin
   module Sidebar
+    # Menu service
     class Menu
-
       def initialize(user)
         @user = user
       end
@@ -19,8 +19,7 @@ module Admin
           attrs = { user: @user }
           attrs.merge!(values.except(:submenu))
           submenu = values[:submenu]
-          attrs.merge!(submenu: build_submenu(submenu)) if submenu.present?
-
+          attrs[:submenu] = build_submenu(submenu) if submenu.present?
           Item.new(attrs)
         end
       end
@@ -33,7 +32,8 @@ module Admin
       end
 
       def config
-        ConfigBuilder.config
+        builder = ConfigBuilder.new
+        builder.config
       end
     end
   end

@@ -2,6 +2,14 @@
 
 # ApplicationHelper -> Helpers base
 module ApplicationHelper
+  def keppler_boolean_script
+    render 'admin/layouts/keppler_boolean_script'
+  end
+
+  def preloader
+    render 'admin/layouts/preloader'
+  end
+
   # Title dinamic in all keppler
   def title(page_title)
     content_for(:title) { page_title }

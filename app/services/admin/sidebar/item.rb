@@ -2,6 +2,7 @@
 
 module Admin
   module Sidebar
+    # Item service
     class Item
       attr_accessor :name, :url_path, :icon, :model, :submenu, :current
 

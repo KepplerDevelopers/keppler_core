@@ -15,7 +15,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  default_scope { includes(roles: [:permissions] ) }
+  default_scope { includes(roles: [:permissions]) }
 
   def rol
     roles&.first&.name || 'default'
