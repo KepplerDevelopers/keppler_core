@@ -56,4 +56,5 @@ class ControllerPolicy < ApplicationPolicy
   def sort?
     keppler_admin? || user_can?(@objects, 'sort')
   end
+
 end

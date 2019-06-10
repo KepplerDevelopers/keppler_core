@@ -5,5 +5,5 @@ menu:
     url_path: /admin/locales/languages
     icon: globe
     model: KepplerLanguages::Language
-    position: 6
+    position: 7
     # environment: development

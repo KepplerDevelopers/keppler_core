@@ -4,3 +4,4 @@ menu:
     url_path: /admin/dashboard
     icon: dashboard
     current: ['keppler_ga_dashboard/admin/dashboard']
+    position: 0

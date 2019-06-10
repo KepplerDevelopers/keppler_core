@@ -34,8 +34,7 @@ module Admin
       end
 
       def self.sort_menu(config)
-        config.keys.sort_by { |_, v| v&.dig(:position) || 0 }
-              .each_with_object({}) { |k, h| h[k] = config[k] }
+        config.sort_by { |_, v| v&.dig(:position) || 0 }
       end
     end
   end

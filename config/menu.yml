@@ -5,13 +5,13 @@ menu:
     icon: code
     current: ['admin/scripts']
     model: Script
-    position: 0
+    position: 1
   seo:
     name: Seo
     current: ['admin/meta_tags', 'admin/robots', 'admin/sitemaps']
     icon: chart
     model: Seo
-    position: 1
+    position: 2
     submenu:
       - metatag:
           name: metatags
@@ -35,7 +35,7 @@ menu:
     icon: user
     current: ['admin/users', 'admin/roles']
     model: User
-    position: 2
+    position: 3
     submenu:
       - user:
           name: users
@@ -54,4 +54,5 @@ menu:
     model: Rocket
     enviroment: development
     url_path: /admin/rockets
-    position: 3
+    position: 4
+

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   skip_around_action :set_locale_from_url
   include Pundit
   include AdminHelper
+  include ApplicationHelper
   include PublicActivity::StoreController
   helper KepplerLanguages::LanguagesHelper
   helper KepplerCapsules::CapsulesHelper
@@ -77,6 +78,7 @@ class ApplicationController < ActionController::Base
 
   def set_sidebar_menu
     @sidebar_menu = Admin::Sidebar::Menu.new(current_user).items
+    @sidebar_menu = @sidebar_menu.select { |sm| sm.model.nil? || can?(sm.model).index? }
   end
 
   def set_modules
@@ -113,26 +115,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    RUBY_VERSION < "2.2.0" ? devise_old : devise_new
-  end
-
-  def layout_by_resource
-    'admin/layouts/application' if devise_controller?
-  end
-
-  def devise_new
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :password, :password_confirmation])
   end
 
-  def devise_old
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:name, :email, :password, :password_confirmation)
-    end
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:name, :email, :password, :password_confirmation,
-               :current_password)
-    end
+  def layout_by_resource
+    'admin/layouts/application' if devise_controller?
   end
 
 end

@@ -5,7 +5,7 @@ menu:
     icon: layout
     model: KepplerFrontend::Theme
     environment: development
-    position: 4
+    position: 5
     submenu:
       - keppler_frontend_theme:
           name: Themes

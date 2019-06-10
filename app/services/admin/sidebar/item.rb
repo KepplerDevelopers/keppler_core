@@ -12,6 +12,7 @@ module Admin
         @icon = args[:icon]
         @model = args[:model].present? ? args[:model].constantize : nil
         @submenu = args[:submenu]
+        @position = args[:position]
         @current = args[:current]
       end
 

@@ -16,15 +16,16 @@
 
 
       // Static items
-      %li.sidebar-item{ class: ('active menu-open' if 'admin/settings'.eql?(controller_path)) }
-        %a.sidebar-link
-          %i.bx.bx-cog
-          %span= t('keppler.sidebar-menu.setting')
-        %ul.treeview-menu
-          - @settings_options.each do |action|
-            %li{ class: ('active' if action.eql?(params[:config])) }
-              = link_to "/admin/settings/#{action}" do
-                = t("keppler.sidebar-menu.setting-submenu.#{action}")
+      - if can?(Setting).index?
+        %li.sidebar-item{ class: ('active menu-open' if 'admin/settings'.eql?(controller_path)) }
+          %a.sidebar-link
+            %i.bx.bx-cog
+            %span= t('keppler.sidebar-menu.setting')
+          %ul.treeview-menu
+            - @settings_options.each do |action|
+              %li{ class: ('active' if action.eql?(params[:config])) }
+                = link_to "/admin/settings/#{action}" do
+                  = t("keppler.sidebar-menu.setting-submenu.#{action}")
 
       %li.sidebar-item.info-keppler
         %a.sidebar-link{ href: '#' }
