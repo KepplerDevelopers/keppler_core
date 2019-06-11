@@ -24,8 +24,8 @@ class User < ApplicationRecord
   def permissions?
     return true if rol.eql?('keppler_admin')
     return false if permissions.nil?
-    permissions.each do |key, hash| 
-      return true if hash.first.last.count > 0
+    permissions.each do |_key, hash|
+      return true if hash.first.last.count.positive?
     end
     false
   end

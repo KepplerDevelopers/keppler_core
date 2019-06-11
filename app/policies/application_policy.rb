@@ -12,7 +12,7 @@ class ApplicationPolicy
     user.id.eql?(id)
   end
 
-  def user_can?(objects, method)    
+  def user_can?(objects, method)
     return false unless user&.permissions
     model = objects.model_name.name.split('::').join('')
     permissions = user.permissions.select { |key, _hash| key == model }
