@@ -22,7 +22,12 @@ class User < ApplicationRecord
   end
 
   def permissions?
-    roles&.first&.permissions?
+    return true if rol.eql?('keppler_admin')
+    return false if permissions.nil?
+    permissions.each do |key, hash| 
+      return true if hash.first.last.count > 0
+    end
+    false
   end
 
   def allowed_modules

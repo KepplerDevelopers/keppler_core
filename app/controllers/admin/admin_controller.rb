@@ -11,7 +11,7 @@ module Admin
                   :authorization, :history
 
     def root
-      if current_user
+      if current_user&.permissions?
         redirect_to dashboard_path
       else
         redirect_to frontend_path
