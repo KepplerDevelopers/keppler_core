@@ -44,10 +44,10 @@ es:
       setting-submenu:
         keppler-configuration: Apariencia
         configuration: Ajustes
-        basic-information: 'Información básica'
-        email-setting-smtp: 'Configuración SMTP'
-        social-accounts: 'Redes sociales'
-        google-analytics: 'Google Analytics'
+        basic_information: 'Información básica'
+        email_setting: 'Configuración SMTP'
+        social_accounts: 'Redes sociales'
+        google_analytics_setting: 'Google Analytics'
         appearance: Apariencia
     customize:
       admin-theme: Tema de Keppler

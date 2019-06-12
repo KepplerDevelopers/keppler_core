@@ -34,9 +34,9 @@ en:
         keppler-configuration: Appearance
         configuration: Application Settings
         basic-information: Basic Information
-        email-setting-smtp: 'Email setup (SMTP)'
-        social-accounts: 'Social accounts'
-        google-analytics: 'Google Analytics'
+        email_setting: 'Email setup (SMTP)'
+        social_accounts: 'Social accounts'
+        google_analytics_setting: 'Google Analytics'
         appearance: Appearance
       meta_tags: Meta tags
       scripts: Scripts
