@@ -25,7 +25,7 @@ class RocketPolicy < ControllerPolicy
     @object.name && Rocket.core_depending.exclude?(@object.name)
   end
 
-  def build
+  def build?
     keppler_admin?
   end
 end
