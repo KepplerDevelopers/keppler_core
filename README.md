@@ -1,5 +1,3 @@
-![keppler-footer](http://i66.tinypic.com/2602uzb.png)
-
 ### KEPPLER ADMIN
 
 Keppler Admin es un CMS con un entorno de desarrollo que cuenta con una base de gemas ya integradas, de tal forma que acelerará el desarrollo de aplicaciones de vanguardia bajo la plataforma de Ruby on Rails.
