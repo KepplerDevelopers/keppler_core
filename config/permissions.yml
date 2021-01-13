@@ -37,3 +37,8 @@ modules:
             'index', 'create', 'update',
             'destroy', 'download'
           ]
+  settings:
+    name: Settings
+    model: Settings
+    actions: [
+      'index', 'update']

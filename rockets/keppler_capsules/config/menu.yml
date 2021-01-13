@@ -1,16 +1,16 @@
 menu:
   keppler_capsules:
     name: Keppler Capsules
-    current: ['']
+    current: ['keppler_capsules/admin/capsules'] # replace
     icon: cube
     model: KepplerCapsules::Capsule
     environment: development
-    position: 5
+    position: 6
     submenu:
       - keppler_capsules_capsule:
           name: add_capsule
           url_path: /admin/space/capsules
-          current: ['current']
+          current: ['keppler_capsules/admin/capsules']
           model: KepplerCapsules::Capsule
       # begin capsules generated (don't delete)
       # end capsules generated

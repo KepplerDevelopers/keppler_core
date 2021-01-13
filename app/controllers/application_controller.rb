@@ -5,18 +5,14 @@ class ApplicationController < ActionController::Base
   include MailerConfig
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :appearance
-  before_action :set_apparience_colors
-  before_action :set_sidebar
-  before_action :set_modules
-  before_action :set_languages
-  before_action :set_admin_locale
-  before_action :git_info
-  before_action :set_mailer_settings
+  before_action :appearance, :set_apparience_colors, :set_modules,
+                :set_sidebar_menu, :set_languages, :set_admin_locale,
+                :git_info, :set_mailer_settings, :set_settings_options
 
   skip_around_action :set_locale_from_url
   include Pundit
   include AdminHelper
+  include ApplicationHelper
   include PublicActivity::StoreController
   helper KepplerLanguages::LanguagesHelper
   helper KepplerCapsules::CapsulesHelper
@@ -28,6 +24,14 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def set_settings_options
+    @settings_options = %w[configuration basic_information
+                          email_setting google_analytics_setting
+                          social_accounts]
+
+    @settings_options.insert(1, 'appearance') if Rails.env == 'development'
+  end
 
   def class_exists?(klass)
     defined?(klass) && klass.is_a?(Class)
@@ -72,25 +76,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_sidebar
-    @sidebar = YAML.load_file(
-      "#{Rails.root}/config/menu.yml"
-    ).values.each(&:symbolize_keys!)
-    modules = Dir[File.join("#{Rails.root}/rockets", '*')]
-    modules.each do |m|
-      if File.file?("#{m}/config/menu.yml")
-        module_menu = YAML.load_file(
-          "#{m}/config/menu.yml"
-        ).values.each(&:symbolize_keys!)
-        @sidebar[0] = @sidebar[0].merge(module_menu[0])
-      end
-    end
-
-    @sidebar[0] = @sidebar[0].sort_by do |_key, value|
-      value&.dig("position") || 0
-    end
-
-    @sidebar[0] = @sidebar[0].to_h
+  def set_sidebar_menu
+    @sidebar_menu = Admin::Sidebar::Menu.new(current_user).items
+    @sidebar_menu = @sidebar_menu.select { |sm| sm.model.nil? || can?(sm.model).index? }
   end
 
   def set_modules
@@ -127,26 +115,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    RUBY_VERSION < "2.2.0" ? devise_old : devise_new
-  end
-
-  def layout_by_resource
-    'admin/layouts/application' if devise_controller?
-  end
-
-  def devise_new
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :password, :password_confirmation])
   end
 
-  def devise_old
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:name, :email, :password, :password_confirmation)
-    end
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:name, :email, :password, :password_confirmation,
-               :current_password)
-    end
+  def layout_by_resource
+    'admin/layouts/application' if devise_controller?
   end
 
 end

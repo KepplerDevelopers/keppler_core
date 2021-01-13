@@ -1,1 +1,8 @@
 modules:
+  keppler_view:
+    name: Capsules
+    model: KepplerCapsulesCapsule
+    actions: [
+      'index', 'create', 'update',
+      'destroy'
+    ]

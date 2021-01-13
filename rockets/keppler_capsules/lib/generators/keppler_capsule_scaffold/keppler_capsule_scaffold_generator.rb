@@ -1,6 +1,9 @@
 
 require 'rails/generators/rails/resource/resource_generator'
 require 'rails/generators/resource_helpers'
+require 'yaml'
+require 'byebug'
+
 module Rails
   module Generators
     # KepplerScaffold
@@ -40,6 +43,25 @@ module Rails
         )
       end
 
+      def update_current_list
+        menu_yaml = YAML::load_file('config/menu.yml')
+        current_list = menu_yaml.dig("menu", "keppler_capsules", "current")
+        item = ["keppler_capsules/admin/#{controller_file_name}"]
+
+        new_current_list = if current_list.include?(item.first)
+                             current_list - item
+                           else
+                             current_list + item
+                           end
+
+
+        gsub_file(
+          'config/menu.yml',
+          "['#{current_list.join("', '")}'] # replace",
+          "['#{new_current_list.join("', '")}'] # replace"
+        )
+      end
+
       def add_option_menu
        inject_into_file(
          'config/menu.yml',
@@ -47,23 +69,6 @@ module Rails
          before: '      # end capsules generated'
        )
       end
-
-      #def add_access_ability
-      #  inject_into_file(
-      #    'app/models/ability.rb',
-      #    str_ability,
-      #    after: '    if user.has_role? :admin'
-      #  )
-      #end
-
-      #def add_locales
-      #  %w(en es).each do |locale|
-      #    add_str_locales(locale, 'singularize')
-      #    add_str_locales(locale, 'pluralize')
-      #    add_str_locales(locale, 'modules')
-      #    add_str_locales(locale, 'sidebar-menu')
-      #  end
-      #end
 
       def add_option_permissions
         inject_into_file(
@@ -127,14 +132,6 @@ module Rails
 
       private
 
-      #def add_str_locales(locale, switch)
-      #  inject_into_file(
-      #    "config/locales/#{locale}.yml",
-      #    str_locales(switch),
-      #    after: "#{switch}:"
-      #  )
-      #end
-
       def names
         @names = ['name', 'title', 'first_name', 'full_name']
       end
@@ -149,7 +146,13 @@ module Rails
       end
 
       def str_menu
-        "      - #{controller_file_name.humanize.singularize.downcase}:\n          name: #{controller_file_name.humanize.downcase}\n          url_path: /admin/space/#{controller_file_name}\n          current: ['admin/#{controller_file_name}']\n          model: KepplerCapsules::#{controller_file_name.singularize.camelize}\n"
+        <<-EOS
+      - #{controller_file_name.humanize.singularize.downcase}:
+          name: #{controller_file_name.humanize.downcase}
+          url_path: /admin/space/#{controller_file_name}
+          current: ['keppler_capsules/admin/#{controller_file_name}']
+          model: KepplerCapsules::#{controller_file_name.singularize.camelize}
+        EOS
       end
 
       def str_ability

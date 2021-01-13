@@ -15,12 +15,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  default_scope { includes(roles: [:permissions]) }
+
   def rol
     roles&.first&.name || 'default'
   end
 
   def permissions?
-    roles&.first&.permissions?
+    return true if rol.eql?('keppler_admin')
+    return false if permissions.nil?
+    permissions.each do |_key, hash|
+      return true if hash.first.last.count.positive?
+    end
+    false
   end
 
   def allowed_modules

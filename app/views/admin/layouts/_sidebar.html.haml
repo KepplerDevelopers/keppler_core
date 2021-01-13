@@ -1,69 +1,38 @@
 %aside.main-sidebar
   %section.sidebar.sidebar-collapse
-    %ul.sidebar-menu.tree{ 'data-widget': 'tree' }
-      %li.sidebar-item
-        = link_to '/admin/dashboard', class: "sidebar-link #{'active' if request.env['REQUEST_PATH'].eql?('/admin/dashboard')}", 'data-turbolinks': false do
-          %i.bx.bx-pie-chart-alt
-          %span= t('keppler.sidebar-menu.dashboard')
-        - @sidebar.each do |menu|
-          - menu.each do |key, _value|
-            - if menu[key]['submenu']
-              - if !menu[key]['environment'] || menu[key]['environment'].eql?('all') || menu[key]['environment'].eql?(Rails.env)
-                - if menu[key]['model']
-                  - if included_in?(current_user.allowed_modules, menu[key]['submenu'].map(&:keys).flatten) || can?(menu[key]['model'].constantize).index? || allowed_action?(menu[key]['model'], menu[key]['submenu'].map(&:keys).flatten)
-                    %li.sidebar-item{ class: ('active' if menu[key]['current'].include?(controller_path)) }
-                      %a.sidebar-link{ href: '#', class: ('active current' if menu[key]['current'].include?(controller_path)) }
-                        %i{ class: "bx bx-#{menu[key]['icon']}" }
-                        %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
-                      %ul.treeview-menu
-                        - menu[key]['submenu'].each do |submenu, _val|
-                          - submenu.each do |name, _val|
-                            - if !submenu[name]['environment'] || submenu[name]['environment'].eql?('all') || submenu[name]['environment'].eql?(Rails.env)
-                              - if current_user.rol.eql?('keppler_admin') && can?(submenu[name]['model'].constantize).index?
-                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
-                              - elsif !submenu[name]['model'].nil? && can?(submenu[name]['model'].constantize).index? && !menu[key]['model'].casecmp('seo')
-                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
-                              - elsif name.eql?('metatag') && can?(submenu[name]['model'].constantize).index?
-                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
-                              - elsif menu[key]['model'].casecmp('seo') && current_user.roles.first.action?(menu[key]['model'], name)
-                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
-                              - elsif can?(submenu[name]['model'].constantize).index?
-                                %li= link_to t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}"), submenu[name]['url_path'], class: "treeview-menu-link #{'active current' if submenu[name]['url_path'].include?(controller_path)}", 'data-no-turbolink' => true
-            - elsif menu[key]['model'] && can?(menu[key]['model'].constantize).index?
-              - if !menu[key]['environment'] || menu[key]['environment'].eql?('all') || menu[key]['environment'].eql?(Rails.env)
-                %li.sidebar-item.treeview{ class: ('active' if controller_name.eql?(menu[key]['name'])) }
-                  = link_to menu[key]['url_path'], class: "sidebar-link collapsible-header #{'current' if menu[key]['current'].include?(controller_path)}", 'data-no-turbolink': true do
-                    %i{ class: "bx bx-#{menu[key]['icon']}" }
-                    %span= t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}")
+    %ul.sidebar-menu.tree
+      // Dynamic items
+      - @sidebar_menu.each do |item|
+        %li.sidebar-item
+          %a.sidebar-link{ href: item.submenu? ? '#' : item.url_path, class: ('active menu-open' if item.current?(controller_path)) }
+            %i{ class: "bx bx-#{item.icon}" }
+            %span= t("keppler.sidebar-menu.#{item.name.parameterize}")
+          - if item.submenu?
+            %ul.treeview-menu{ class: (item.current?(controller_path) ? 'menu-open' : 'closed') }
+              - item.submenu.each do |subitem|
+                %li{ class: ('active' if subitem.current?(controller_path)) }
+                  %a.treeview-menu-link{ href: subitem.url_path }
+                    = t("keppler.sidebar-menu.#{item.name.parameterize}-submenu.#{subitem.name.parameterize}")
 
-      %li.sidebar-item{ class: ('active' if 'admin/settings/basic_information'.eql?(controller_path)) }
-        %a.sidebar-link{ href: '#', class: ('active current' if 'admin/settings/basic_information'.eql?(controller_path)) }
-          %i.bx.bx-cog
-          %span= t('keppler.sidebar-menu.setting')
-        %ul.treeview-menu
-          %li
-            = link_to '/admin/settings/configuration' do
-              = t('keppler.sidebar-menu.setting-submenu.configuration')
-          - if Rails.env.eql?('development')
-            %li
-              = link_to '/admin/settings/appearance' do
-                = t('keppler.sidebar-menu.setting-submenu.keppler-configuration')
-          %li
-            = link_to '/admin/settings/basic_information' do
-              = t('keppler.sidebar-menu.setting-submenu.basic-information')
-          %li
-            = link_to '/admin/settings/email_setting' do
-              = t('keppler.sidebar-menu.setting-submenu.email-setting-smtp')
-          %li
-            = link_to '/admin/settings/google_analytics_setting' do
-              = t('keppler.sidebar-menu.setting-submenu.google-analytics')
-          %li
-            = link_to '/admin/settings/social_accounts' do
-              = t('keppler.sidebar-menu.setting-submenu.social-accounts')
+
+      // Static items
+      - if can?(Setting).index?
+        %li.sidebar-item{ class: ('active menu-open' if 'admin/settings'.eql?(controller_path)) }
+          %a.sidebar-link
+            %i.bx.bx-cog
+            %span= t('keppler.sidebar-menu.setting')
+          %ul.treeview-menu
+            - @settings_options.each do |action|
+              %li{ class: ('active' if action.eql?(params[:config])) }
+                = link_to "/admin/settings/#{action}" do
+                  = t("keppler.sidebar-menu.setting-submenu.#{action}")
+
       %li.sidebar-item.info-keppler
         %a.sidebar-link{ href: '#' }
           %i.bx.bx-error-circle
           %span= t('keppler.sidebar-menu.about')
+
+
 :javascript
   $('.info-keppler').click(function (ev) {
     ev.preventDefault();

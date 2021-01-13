@@ -6,16 +6,12 @@ module Admin
     layout 'admin/layouts/application'
     before_action :authenticate_admin_user, except: [:root]
     before_action :validate_permissions, except: [:root]
-    before_action :paginator_params
-    before_action :set_setting
     before_action :can_multiple_destroy, only: [:destroy_multiple]
-    before_action :tables_name
-    before_action :attachments
-    before_action :authorization
-    before_action :history
+    before_action :paginator_params, :set_setting, :tables_name, :attachments,
+                  :authorization, :history
 
     def root
-      if current_user
+      if current_user&.permissions?
         redirect_to dashboard_path
       else
         redirect_to frontend_path

@@ -75,6 +75,14 @@
       padding: 5px 5px 5px 40px;
     }
   }
+
+  .active a {
+    color: $dark-grey;
+  }
+
+  .menu-open {
+    display: block;
+  }
 }
 
 .treeview-menu {
